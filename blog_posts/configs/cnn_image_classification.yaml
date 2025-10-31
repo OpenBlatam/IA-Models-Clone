@@ -1,0 +1,115 @@
+experiment_name: "cnn_image_classification"
+experiment_description: "ResNet-based image classification for CIFAR-100"
+version: "1.0.0"
+tags:
+  - "computer-vision"
+  - "classification"
+  - "cnn"
+  - "resnet"
+
+environment: "development"
+seed: 42
+debug: false
+
+model:
+  model_type: "cnn"
+  model_name: "resnet50"
+  num_classes: 100
+  input_dim: 3
+  hidden_dim: 512
+  num_layers: 50
+  num_heads: null
+  dropout: 0.2
+  activation: "relu"
+  pretrained: true
+  freeze_backbone: false
+  pretrained_path: null
+  model_params:
+    input_channels: 3
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    pool_size: 2
+
+data:
+  data_path: "data/cifar100/"
+  train_data_path: null
+  val_data_path: null
+  test_data_path: null
+  batch_size: 32
+  val_batch_size: 32
+  test_batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  shuffle: true
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  target_column: "class"
+  feature_columns: null
+  text_column: null
+  image_column: "image"
+  preprocessing:
+    resize: [224, 224]
+    normalize:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+    to_tensor: true
+  augmentations:
+    horizontal_flip: true
+    random_rotation: 10
+    color_jitter:
+      brightness: 0.2
+      contrast: 0.2
+      saturation: 0.2
+      hue: 0.1
+    random_crop: [224, 224]
+    random_erasing: 0.1
+
+training:
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  optimizer: "adam"
+  optimizer_params:
+    betas: [0.9, 0.999]
+    eps: 1e-8
+  scheduler: "cosine"
+  scheduler_params:
+    T_max: 100
+    eta_min: 1e-6
+  loss_function: "cross_entropy"
+  loss_params:
+    label_smoothing: 0.1
+  device: "auto"
+  mixed_precision: true
+  gradient_clipping: 1.0
+  early_stopping_patience: 15
+  save_best_model: true
+  save_checkpoints: true
+  checkpoint_frequency: 10
+  output_dir: "outputs"
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+  experiment_name: "cnn_image_classification"
+  use_wandb: true
+  use_tensorboard: true
+
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "top5_accuracy"
+    - "confusion_matrix"
+  save_predictions: true
+  save_plots: true
+  output_dir: "evaluation_results"
+  results_file: "results.json"
+  threshold: 0.5
+  thresholds: [0.3, 0.5, 0.7, 0.9]
+  plot_config:
+    figsize: [12, 10]
+    dpi: 300
+    style: "seaborn-v0_8" 

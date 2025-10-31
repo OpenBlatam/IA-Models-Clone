@@ -1,0 +1,50 @@
+# Production Blog System Requirements
+# Core dependencies for enterprise-grade blog analysis
+
+# Core libraries
+torch>=2.0.0
+transformers>=4.30.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Performance optimization libraries
+orjson>=3.9.0
+uvloop>=0.17.0
+numba>=0.57.0
+
+# NLP libraries
+spacy>=3.6.0
+textblob>=0.17.0
+textstat>=0.7.0
+yake>=0.4.8
+langdetect>=1.0.9
+
+# Caching and storage
+redis>=4.5.0
+aioredis>=2.0.0
+diskcache>=5.6.0
+
+# Monitoring and profiling
+psutil>=5.9.0
+prometheus-client>=0.17.0
+
+# Async and concurrency
+aiohttp>=3.8.0
+asyncio-throttle>=1.0.0
+
+# Data processing
+scikit-learn>=1.3.0
+nltk>=3.8.0
+
+# Development and testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Optional GPU acceleration
+# cupy-cuda12x>=12.0.0  # Uncomment for CUDA 12.x support
+# cupy-cuda11x>=11.0.0  # Uncomment for CUDA 11.x support
+
+# Optional distributed processing
+# ray>=2.6.0  # Uncomment for distributed processing 

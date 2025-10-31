@@ -1,0 +1,26 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "AI Video Microservice",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "HTTP Requests",
+        "targets": [
+          {"expr": "http_requests_total", "legendFormat": "{{method}} {{handler}}"}
+        ],
+        "datasource": "Prometheus"
+      },
+      {
+        "type": "graph",
+        "title": "Request Duration",
+        "targets": [
+          {"expr": "http_request_duration_seconds_bucket", "legendFormat": "{{le}}s"}
+        ],
+        "datasource": "Prometheus"
+      }
+    ],
+    "schemaVersion": 16,
+    "version": 1
+  }
+} 

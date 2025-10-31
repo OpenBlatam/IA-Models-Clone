@@ -1,0 +1,52 @@
+{
+  "environment": "local",
+  "log_level": "INFO",
+  "debug_mode": false,
+  "parallel_workers": 1,
+  "test_timeout": 300.0,
+  "retry_failed_tests": true,
+  "max_retries": 3,
+  "database": {
+    "url": "sqlite:///:memory:",
+    "echo": false,
+    "pool_size": 5,
+    "max_overflow": 10,
+    "timeout": 30
+  },
+  "api": {
+    "base_url": "http://localhost:8000",
+    "timeout": 30,
+    "retry_attempts": 3,
+    "headers": {
+      "Content-Type": "application/json",
+      "User-Agent": "HeyGen-AI-Test/1.0"
+    }
+  },
+  "performance": {
+    "timeout_threshold": 1.0,
+    "memory_threshold": 100.0,
+    "cpu_threshold": 80.0,
+    "throughput_threshold": 100.0,
+    "max_iterations": 1000
+  },
+  "coverage": {
+    "min_coverage": 80.0,
+    "exclude_patterns": [
+      "*/tests/*",
+      "*/test_*",
+      "*/__pycache__/*",
+      "*/migrations/*",
+      "*/venv/*",
+      "*/env/*"
+    ],
+    "include_patterns": [
+      "*.py"
+    ]
+  },
+  "test_data_size": "small",
+  "generate_fake_data": true,
+  "data_cleanup": true,
+  "generate_reports": true,
+  "report_formats": ["json", "html", "xml"],
+  "report_output_dir": "test_reports"
+}

@@ -1,0 +1,10 @@
+transformers>=4.41.0
+torch>=2.2.0
+accelerate>=0.30.0
+textstat>=0.7.3
+yake>=0.4.8
+scikit-learn>=1.4.2
+diffusers>=0.28.0
+safetensors>=0.4.3
+opencv-python-headless>=4.9.0.80
+

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamma App - AI Content Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-magic text-2xl text-white"></i>
+                <h1 class="text-2xl font-bold text-white">Gamma App</h1>
+            </div>
+            <div class="flex space-x-4">
+                <button class="text-white hover:text-gray-200 px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all">
+                    <i class="fas fa-home mr-2"></i>Inicio
+                </button>
+                <button class="text-white hover:text-gray-200 px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all">
+                    <i class="fas fa-plus mr-2"></i>Crear
+                </button>
+                <button class="text-white hover:text-gray-200 px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all">
+                    <i class="fas fa-users mr-2"></i>Colaborar
+                </button>
+                <button class="text-white hover:text-gray-200 px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all">
+                    <i class="fas fa-chart-bar mr-2"></i>Analytics
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto p-6">
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <h2 class="text-5xl font-bold text-white mb-4">
+                Genera Contenido con IA
+            </h2>
+            <p class="text-xl text-gray-200 mb-8">
+                Crea presentaciones, documentos y páginas web profesionales en segundos
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all hover-scale">
+                    <i class="fas fa-play mr-2"></i>Comenzar Ahora
+                </button>
+                <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-all hover-scale">
+                    <i class="fas fa-video mr-2"></i>Ver Demo
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Types -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="glass-effect rounded-xl p-6 hover-scale">
+                <div class="text-center">
+                    <i class="fas fa-presentation text-4xl text-white mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-2">Presentaciones</h3>
+                    <p class="text-gray-200 mb-4">Crea presentaciones profesionales con diseño automático</p>
+                    <button class="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition-all">
+                        Crear Presentación
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-xl p-6 hover-scale">
+                <div class="text-center">
+                    <i class="fas fa-file-alt text-4xl text-white mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-2">Documentos</h3>
+                    <p class="text-gray-200 mb-4">Genera documentos, reportes y propuestas</p>
+                    <button class="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition-all">
+                        Crear Documento
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-xl p-6 hover-scale">
+                <div class="text-center">
+                    <i class="fas fa-globe text-4xl text-white mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-2">Páginas Web</h3>
+                    <p class="text-gray-200 mb-4">Diseña páginas web responsivas automáticamente</p>
+                    <button class="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition-all">
+                        Crear Página Web
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Features -->
+        <div class="glass-effect rounded-xl p-8 mb-12">
+            <h3 class="text-3xl font-bold text-white mb-6 text-center">Características de IA Avanzadas</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <i class="fas fa-brain text-3xl text-purple-300 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-white mb-2">GPT-4</h4>
+                    <p class="text-gray-200 text-sm">Modelo de lenguaje más avanzado</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-robot text-3xl text-purple-300 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-white mb-2">Claude</h4>
+                    <p class="text-gray-200 text-sm">IA conversacional avanzada</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-palette text-3xl text-purple-300 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-white mb-2">Diseño Automático</h4>
+                    <p class="text-gray-200 text-sm">Temas y estilos profesionales</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-sync text-3xl text-purple-300 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-white mb-2">Tiempo Real</h4>
+                    <p class="text-gray-200 text-sm">Colaboración instantánea</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Creation Form -->
+        <div class="glass-effect rounded-xl p-8">
+            <h3 class="text-3xl font-bold text-white mb-6 text-center">Crear Nuevo Contenido</h3>
+            <form id="contentForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-white font-semibold mb-2">Tipo de Contenido</label>
+                        <select class="w-full p-3 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="presentation">Presentación</option>
+                            <option value="document">Documento</option>
+                            <option value="webpage">Página Web</option>
+                            <option value="blog">Blog Post</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-white font-semibold mb-2">Estilo</label>
+                        <select class="w-full p-3 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="modern">Moderno</option>
+                            <option value="professional">Profesional</option>
+                            <option value="creative">Creativo</option>
+                            <option value="minimalist">Minimalista</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-white font-semibold mb-2">Tema o Título</label>
+                    <input type="text" placeholder="Ej: El Futuro de la Inteligencia Artificial" 
+                           class="w-full p-3 rounded-lg bg-white bg-opacity-20 text-white placeholder-gray-300 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-white font-semibold mb-2">Descripción</label>
+                    <textarea placeholder="Describe el contenido que quieres generar..." rows="4"
+                              class="w-full p-3 rounded-lg bg-white bg-opacity-20 text-white placeholder-gray-300 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-12 py-4 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all hover-scale pulse-animation">
+                        <i class="fas fa-magic mr-2"></i>Generar Contenido
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Recent Content -->
+        <div class="glass-effect rounded-xl p-8 mt-12">
+            <h3 class="text-3xl font-bold text-white mb-6">Contenido Reciente</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white bg-opacity-10 rounded-lg p-4 hover-scale">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-gray-300">Hace 2 horas</span>
+                        <i class="fas fa-presentation text-purple-300"></i>
+                    </div>
+                    <h4 class="text-white font-semibold mb-2">Presentación de Ventas Q4</h4>
+                    <p class="text-gray-300 text-sm">15 slides • Moderno</p>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4 hover-scale">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-gray-300">Hace 5 horas</span>
+                        <i class="fas fa-file-alt text-purple-300"></i>
+                    </div>
+                    <h4 class="text-white font-semibold mb-2">Reporte Mensual</h4>
+                    <p class="text-gray-300 text-sm">8 páginas • Profesional</p>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4 hover-scale">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-gray-300">Ayer</span>
+                        <i class="fas fa-globe text-purple-300"></i>
+                    </div>
+                    <h4 class="text-white font-semibold mb-2">Landing Page Producto</h4>
+                    <p class="text-gray-300 text-sm">Responsive • Creativo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-effect mt-12 p-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-gray-200">
+                © 2024 Gamma App - Generación de Contenido con IA
+            </p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('contentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const button = e.target.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            
+            // Show loading state
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Generando...';
+            button.disabled = true;
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                // Show success message
+                button.innerHTML = '<i class="fas fa-check mr-2"></i>¡Generado!';
+                button.classList.remove('pulse-animation');
+                button.classList.add('bg-green-500');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    button.classList.remove('bg-green-500');
+                    button.classList.add('pulse-animation');
+                }, 2000);
+                
+            } catch (error) {
+                button.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>Error';
+                button.classList.add('bg-red-500');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    button.classList.remove('bg-red-500');
+                }, 2000);
+            }
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

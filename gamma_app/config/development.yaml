@@ -1,0 +1,214 @@
+# Gamma App - Development Configuration
+# This file contains development-specific settings
+
+# Application Settings
+app:
+  name: "Gamma App (Dev)"
+  version: "1.0.0-dev"
+  environment: "development"
+  debug: true
+  host: "127.0.0.1"
+  port: 8000
+  workers: 1
+  reload: true
+
+# Database Configuration
+database:
+  url: "postgresql://gamma_user:gamma_password@localhost:5432/gamma_db_dev"
+  pool_size: 5
+  max_overflow: 10
+  pool_timeout: 30
+  pool_recycle: 3600
+  echo: true  # Show SQL queries in development
+
+# Redis Configuration
+redis:
+  url: "redis://localhost:6379/1"  # Use database 1 for dev
+  max_connections: 10
+  socket_timeout: 5
+  socket_connect_timeout: 5
+  retry_on_timeout: true
+
+# AI Configuration
+ai:
+  openai:
+    api_key: "${OPENAI_API_KEY}"
+    model: "gpt-3.5-turbo"  # Use cheaper model for dev
+    max_tokens: 2000
+    temperature: 0.7
+  
+  anthropic:
+    api_key: "${ANTHROPIC_API_KEY}"
+    model: "claude-3-haiku-20240307"  # Use faster model for dev
+    max_tokens: 2000
+  
+  local_models:
+    enabled: true
+    models_dir: "./models"
+    default_model: "gpt2-small"  # Use smaller model for dev
+    quantization: false  # Disable quantization for dev
+    device: "cpu"  # Use CPU for dev
+
+# Security Configuration
+security:
+  secret_key: "dev-secret-key-change-in-production"
+  algorithm: "HS256"
+  access_token_expire_minutes: 60  # Longer for dev
+  refresh_token_expire_days: 30
+  
+  rate_limiting:
+    enabled: false  # Disable for development
+    requests_per_minute: 1000
+    burst_size: 100
+  
+  password_policy:
+    min_length: 6  # Relaxed for dev
+    require_uppercase: false
+    require_lowercase: false
+    require_numbers: false
+    require_special_chars: false
+
+# Cache Configuration
+cache:
+  local:
+    enabled: true
+    max_size: "64MB"  # Smaller for dev
+    ttl: 300  # Shorter TTL for dev
+  
+  redis:
+    enabled: true
+    ttl: 600  # Shorter TTL for dev
+    key_prefix: "gamma:dev:"
+  
+  cdn:
+    enabled: false  # Disable CDN for dev
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+    path: "/metrics"
+  
+  logging:
+    level: "DEBUG"  # More verbose for dev
+    format: "text"  # Human readable for dev
+    file: "./logs/gamma_dev.log"
+    max_size: "10MB"
+    backup_count: 3
+  
+  health_checks:
+    enabled: true
+    interval: 60  # Less frequent for dev
+    timeout: 30
+
+# Export Configuration
+export:
+  max_file_size: "10MB"  # Smaller for dev
+  supported_formats:
+    - "pdf"
+    - "pptx"
+    - "html"
+    - "markdown"
+    - "json"
+  
+  quality:
+    default: "medium"  # Lower quality for dev
+    options: ["low", "medium", "high"]
+  
+  templates:
+    enabled: true
+    directory: "./templates"
+
+# Collaboration Configuration
+collaboration:
+  websockets:
+    enabled: true
+    max_connections: 100  # Lower for dev
+    ping_interval: 60
+    ping_timeout: 30
+  
+  real_time:
+    enabled: true
+    sync_interval: 500  # Slower for dev
+    conflict_resolution: "last_write_wins"
+
+# Performance Configuration
+performance:
+  profiling:
+    enabled: true  # Enable profiling for dev
+    sample_rate: 1.0  # Profile everything in dev
+  
+  optimization:
+    enabled: false  # Disable optimization for dev
+    auto_gc: false
+    gc_threshold: 0.9
+  
+  limits:
+    max_content_size: "5MB"  # Smaller for dev
+    max_concurrent_requests: 10
+    request_timeout: 60
+
+# Email Configuration
+email:
+  smtp:
+    host: "localhost"
+    port: 1025  # Use local SMTP server
+    username: ""
+    password: ""
+    use_tls: false
+  
+  templates:
+    directory: "./email_templates"
+  
+  notifications:
+    enabled: false  # Disable email for dev
+    from_email: "dev@gamma.app"
+
+# File Storage Configuration
+storage:
+  local:
+    enabled: true
+    upload_dir: "./uploads"
+    max_file_size: "10MB"
+  
+  s3:
+    enabled: false
+
+# Feature Flags
+features:
+  ai_generation: true
+  real_time_collaboration: true
+  advanced_export: true
+  analytics: true
+  user_management: true
+  content_templates: true
+  multimedia_support: true
+  custom_themes: true
+  api_access: true
+  webhooks: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

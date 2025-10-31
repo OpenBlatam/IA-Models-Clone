@@ -1,0 +1,36 @@
+# Exact Opus Clip Replica - Minimal Requirements
+# Only the essential libraries needed for exact Opus Clip functionality
+
+# Core Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# Video Processing (Exact same as Opus Clip)
+moviepy==1.0.3
+opencv-python==4.8.1.78
+pillow==10.1.0
+
+# AI/ML (Exact same models as Opus Clip)
+torch==2.1.1
+torchvision==0.16.1
+transformers==4.36.2
+whisper==20231117
+
+# Audio Processing (Exact same as Opus Clip)
+librosa==0.10.1
+soundfile==0.12.1
+
+# Data Processing (Exact same as Opus Clip)
+numpy==1.25.2
+pandas==2.1.4
+
+# Web and API (Exact same as Opus Clip)
+requests==2.31.0
+python-multipart==0.0.6
+
+# Utilities (Exact same as Opus Clip)
+python-dateutil==2.8.2
+structlog==23.2.0
+
+

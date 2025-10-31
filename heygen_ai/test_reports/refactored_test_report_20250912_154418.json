@@ -1,0 +1,107 @@
+{
+  "execution_summary": {
+    "total_duration": 68.5528199672699,
+    "timestamp": "2025-09-12T15:44:18.307294",
+    "test_runner": "Refactored Test Suite v2.0"
+  },
+  "test_statistics": {
+    "total_categories": 8,
+    "passed_categories": 8,
+    "failed_categories": 0,
+    "total_tests": 23,
+    "passed_tests": 23,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "category_success_rate": 100.0
+  },
+  "category_results": [
+    {
+      "name": "Basic Functionality Tests",
+      "description": "Core Python functionality and imports",
+      "status": "passed",
+      "duration": 10.281349897384644,
+      "test_count": 4,
+      "passed_count": 4,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:43:20.033818"
+    },
+    {
+      "name": "Performance Tests",
+      "description": "Performance and benchmarking tests",
+      "status": "passed",
+      "duration": 8.72403621673584,
+      "test_count": 3,
+      "passed_count": 3,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:43:28.758852"
+    },
+    {
+      "name": "Integration Tests",
+      "description": "File system and subprocess integration",
+      "status": "passed",
+      "duration": 9.685310363769531,
+      "test_count": 2,
+      "passed_count": 2,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:43:38.445164"
+    },
+    {
+      "name": "Unit Tests",
+      "description": "Data structures and error handling",
+      "status": "passed",
+      "duration": 7.459698915481567,
+      "test_count": 2,
+      "passed_count": 2,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:43:45.904862"
+    },
+    {
+      "name": "Data Generation Tests",
+      "description": "Test data generation functionality",
+      "status": "passed",
+      "duration": 7.76548171043396,
+      "test_count": 3,
+      "passed_count": 3,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:43:53.670344"
+    },
+    {
+      "name": "Performance Profiling Tests",
+      "description": "Performance profiling and measurement",
+      "status": "passed",
+      "duration": 8.205919742584229,
+      "test_count": 2,
+      "passed_count": 2,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:44:01.877274"
+    },
+    {
+      "name": "Assertion Tests",
+      "description": "Custom assertion functionality",
+      "status": "passed",
+      "duration": 7.551056146621704,
+      "test_count": 5,
+      "passed_count": 5,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:44:09.429333"
+    },
+    {
+      "name": "Test Runner Tests",
+      "description": "Test runner functionality",
+      "status": "passed",
+      "duration": 8.874958753585815,
+      "test_count": 2,
+      "passed_count": 2,
+      "failed_count": 0,
+      "return_code": 0,
+      "timestamp": "2025-09-12T15:44:18.304292"
+    }
+  ]
+}

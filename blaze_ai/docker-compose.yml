@@ -1,0 +1,283 @@
+# Enhanced Blaze AI Docker Compose Configuration
+# Complete production-ready deployment with monitoring and Redis
+
+version: '3.8'
+
+services:
+  # =============================================================================
+  # Blaze AI Application
+  # =============================================================================
+  blaze-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: blaze-ai
+    restart: unless-stopped
+    ports:
+      - "8000:8000"      # Main API
+      - "9090:9090"      # Prometheus metrics
+    environment:
+      - APP_ENVIRONMENT=production
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - API_WORKERS=4
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - PROMETHEUS_ENABLED=true
+      - PROMETHEUS_PORT=9090
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your-super-secret-key-change-in-production}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - STABILITY_API_KEY=${STABILITY_API_KEY}
+    volumes:
+      - blaze_ai_logs:/app/logs
+      - blaze_ai_cache:/app/cache
+      - blaze_ai_outputs:/app/outputs
+      - ./config-enhanced.yaml:/app/config-enhanced.yaml:ro
+    depends_on:
+      - redis
+    networks:
+      - blaze_ai_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+
+  # =============================================================================
+  # Redis for Rate Limiting and Caching
+  # =============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: blaze-ai-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    networks:
+      - blaze_ai_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+
+  # =============================================================================
+  # Prometheus for Metrics Collection
+  # =============================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: blaze-ai-prometheus
+    restart: unless-stopped
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - blaze_ai_network
+    depends_on:
+      - blaze-ai
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+
+  # =============================================================================
+  # Grafana for Metrics Visualization
+  # =============================================================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: blaze-ai-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    networks:
+      - blaze_ai_network
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+
+  # =============================================================================
+  # Nginx Reverse Proxy (Optional)
+  # =============================================================================
+  nginx:
+    image: nginx:alpine
+    container_name: blaze-ai-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    networks:
+      - blaze_ai_network
+    depends_on:
+      - blaze-ai
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+
+  # =============================================================================
+  # Development Service (Optional)
+  # =============================================================================
+  blaze-ai-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: blaze-ai-dev
+    restart: "no"
+    ports:
+      - "8001:8000"
+      - "9091:9090"
+    environment:
+      - APP_ENVIRONMENT=development
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=1
+    volumes:
+      - .:/app
+      - blaze_ai_dev_logs:/app/logs
+    networks:
+      - blaze_ai_network
+    depends_on:
+      - redis
+    profiles:
+      - dev
+    command: ["python", "main.py", "--dev"]
+
+  # =============================================================================
+  # Testing Service (Optional)
+  # =============================================================================
+  blaze-ai-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: testing
+    container_name: blaze-ai-test
+    restart: "no"
+    environment:
+      - BASE_URL=http://blaze-ai:8000
+    networks:
+      - blaze_ai_network
+    depends_on:
+      - blaze-ai
+    profiles:
+      - test
+    command: ["python", "test_enhanced_features.py"]
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  blaze_ai_logs:
+    driver: local
+  blaze_ai_cache:
+    driver: local
+  blaze_ai_outputs:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  nginx_logs:
+    driver: local
+  blaze_ai_dev_logs:
+    driver: local
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  blaze_ai_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# =============================================================================
+# Environment Variables (Create .env file)
+# =============================================================================
+# JWT_SECRET_KEY=your-super-secret-key-change-in-production
+# OPENAI_API_KEY=your-openai-api-key
+# ANTHROPIC_API_KEY=your-anthropic-api-key
+# STABILITY_API_KEY=your-stability-api-key
+# GRAFANA_PASSWORD=your-grafana-password

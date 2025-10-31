@@ -1,0 +1,495 @@
+{
+  "system_configuration": {
+    "enable_api": true,
+    "enable_dashboard": true,
+    "enable_ml_predictor": true,
+    "enable_alerts": true,
+    "enable_integration": true,
+    "api_port": 8002,
+    "dashboard_port": 8003,
+    "ml_model_storage_path": "ml_models",
+    "alert_cooldown_minutes": 30,
+    "health_check_interval": 60,
+    "performance_monitoring": true,
+    "auto_scaling": false,
+    "backup_enabled": true,
+    "log_level": "INFO"
+  },
+  "ai_models": {
+    "openai": {
+      "gpt-4": {
+        "name": "GPT-4",
+        "provider": "openai",
+        "category": "text_generation",
+        "version": "4.0",
+        "context_length": 8192,
+        "parameters": "175B",
+        "release_date": "2023-03-14",
+        "description": "Most capable GPT-4 model",
+        "cost_per_1k_tokens": 0.03,
+        "max_tokens_per_minute": 10000,
+        "capabilities": ["text_generation", "code_generation", "analysis", "reasoning"]
+      },
+      "gpt-4-turbo": {
+        "name": "GPT-4 Turbo",
+        "provider": "openai",
+        "category": "text_generation",
+        "version": "4.0-turbo",
+        "context_length": 128000,
+        "parameters": "175B",
+        "release_date": "2023-11-06",
+        "description": "GPT-4 with extended context window",
+        "cost_per_1k_tokens": 0.01,
+        "max_tokens_per_minute": 20000,
+        "capabilities": ["text_generation", "code_generation", "analysis", "reasoning", "long_context"]
+      },
+      "gpt-3.5-turbo": {
+        "name": "GPT-3.5 Turbo",
+        "provider": "openai",
+        "category": "text_generation",
+        "version": "3.5-turbo",
+        "context_length": 4096,
+        "parameters": "20B",
+        "release_date": "2022-11-28",
+        "description": "Fast and efficient GPT-3.5 model",
+        "cost_per_1k_tokens": 0.002,
+        "max_tokens_per_minute": 50000,
+        "capabilities": ["text_generation", "code_generation", "analysis"]
+      }
+    },
+    "anthropic": {
+      "claude-3-opus": {
+        "name": "Claude 3 Opus",
+        "provider": "anthropic",
+        "category": "text_generation",
+        "version": "3.0-opus",
+        "context_length": 200000,
+        "parameters": "Unknown",
+        "release_date": "2024-03-04",
+        "description": "Most capable Claude 3 model",
+        "cost_per_1k_tokens": 0.015,
+        "max_tokens_per_minute": 5000,
+        "capabilities": ["text_generation", "analysis", "reasoning", "long_context", "code_generation"]
+      },
+      "claude-3-sonnet": {
+        "name": "Claude 3 Sonnet",
+        "provider": "anthropic",
+        "category": "text_generation",
+        "version": "3.0-sonnet",
+        "context_length": 200000,
+        "parameters": "Unknown",
+        "release_date": "2024-03-04",
+        "description": "Balanced Claude 3 model",
+        "cost_per_1k_tokens": 0.003,
+        "max_tokens_per_minute": 10000,
+        "capabilities": ["text_generation", "analysis", "reasoning", "long_context", "code_generation"]
+      },
+      "claude-3-haiku": {
+        "name": "Claude 3 Haiku",
+        "provider": "anthropic",
+        "category": "text_generation",
+        "version": "3.0-haiku",
+        "context_length": 200000,
+        "parameters": "Unknown",
+        "release_date": "2024-03-04",
+        "description": "Fast and efficient Claude 3 model",
+        "cost_per_1k_tokens": 0.00025,
+        "max_tokens_per_minute": 20000,
+        "capabilities": ["text_generation", "analysis", "reasoning", "long_context", "code_generation"]
+      }
+    },
+    "google": {
+      "gemini-1.5-pro": {
+        "name": "Gemini 1.5 Pro",
+        "provider": "google",
+        "category": "text_generation",
+        "version": "1.5-pro",
+        "context_length": 2000000,
+        "parameters": "Unknown",
+        "release_date": "2024-02-15",
+        "description": "Most capable Gemini 1.5 model",
+        "cost_per_1k_tokens": 0.00125,
+        "max_tokens_per_minute": 10000,
+        "capabilities": ["text_generation", "analysis", "reasoning", "ultra_long_context", "multimodal"]
+      },
+      "gemini-1.5-flash": {
+        "name": "Gemini 1.5 Flash",
+        "provider": "google",
+        "category": "text_generation",
+        "version": "1.5-flash",
+        "context_length": 1000000,
+        "parameters": "Unknown",
+        "release_date": "2024-02-15",
+        "description": "Fast Gemini 1.5 model",
+        "cost_per_1k_tokens": 0.000075,
+        "max_tokens_per_minute": 20000,
+        "capabilities": ["text_generation", "analysis", "reasoning", "long_context", "multimodal"]
+      },
+      "gemini-pro": {
+        "name": "Gemini Pro",
+        "provider": "google",
+        "category": "text_generation",
+        "version": "1.0-pro",
+        "context_length": 30720,
+        "parameters": "Unknown",
+        "release_date": "2023-12-06",
+        "description": "Standard Gemini Pro model",
+        "cost_per_1k_tokens": 0.0005,
+        "max_tokens_per_minute": 15000,
+        "capabilities": ["text_generation", "analysis", "reasoning", "code_generation"]
+      }
+    }
+  },
+  "performance_metrics": {
+    "quality_score": {
+      "name": "Quality Score",
+      "description": "Overall quality of generated content",
+      "unit": "score",
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "optimal_range": [0.7, 1.0],
+      "weight": 0.3,
+      "alert_thresholds": {
+        "warning": 0.6,
+        "critical": 0.4
+      }
+    },
+    "response_time": {
+      "name": "Response Time",
+      "description": "Time taken to generate response",
+      "unit": "seconds",
+      "min_value": 0.0,
+      "max_value": 60.0,
+      "optimal_range": [0.0, 5.0],
+      "weight": 0.2,
+      "alert_thresholds": {
+        "warning": 10.0,
+        "critical": 30.0
+      }
+    },
+    "token_efficiency": {
+      "name": "Token Efficiency",
+      "description": "Efficiency of token usage",
+      "unit": "score",
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "optimal_range": [0.6, 1.0],
+      "weight": 0.2,
+      "alert_thresholds": {
+        "warning": 0.4,
+        "critical": 0.2
+      }
+    },
+    "cost_efficiency": {
+      "name": "Cost Efficiency",
+      "description": "Efficiency of cost per quality unit",
+      "unit": "score",
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "optimal_range": [0.5, 1.0],
+      "weight": 0.15,
+      "alert_thresholds": {
+        "warning": 0.3,
+        "critical": 0.1
+      }
+    },
+    "accuracy": {
+      "name": "Accuracy",
+      "description": "Accuracy of generated content",
+      "unit": "score",
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "optimal_range": [0.8, 1.0],
+      "weight": 0.15,
+      "alert_thresholds": {
+        "warning": 0.6,
+        "critical": 0.4
+      }
+    },
+    "coherence": {
+      "name": "Coherence",
+      "description": "Logical coherence and flow",
+      "unit": "score",
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "optimal_range": [0.7, 1.0],
+      "weight": 0.1,
+      "alert_thresholds": {
+        "warning": 0.5,
+        "critical": 0.3
+      }
+    },
+    "relevance": {
+      "name": "Relevance",
+      "description": "Relevance to input prompt",
+      "unit": "score",
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "optimal_range": [0.8, 1.0],
+      "weight": 0.1,
+      "alert_thresholds": {
+        "warning": 0.6,
+        "critical": 0.4
+      }
+    },
+    "creativity": {
+      "name": "Creativity",
+      "description": "Creativity and originality",
+      "unit": "score",
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "optimal_range": [0.5, 1.0],
+      "weight": 0.05,
+      "alert_thresholds": {
+        "warning": 0.3,
+        "critical": 0.1
+      }
+    }
+  },
+  "alert_rules": {
+    "quality_degradation": {
+      "rule_id": "quality_degradation",
+      "name": "Quality Score Degradation",
+      "description": "Alert when model quality score drops below threshold",
+      "alert_type": "performance_degradation",
+      "severity": "warning",
+      "metric": "quality_score",
+      "threshold_value": 0.7,
+      "threshold_operator": "less_than",
+      "time_window_minutes": 60,
+      "cooldown_minutes": 30,
+      "enabled": true,
+      "notification_channels": ["dashboard", "email"],
+      "escalation_rules": [],
+      "conditions": {}
+    },
+    "response_time_high": {
+      "rule_id": "response_time_high",
+      "name": "High Response Time",
+      "description": "Alert when response time exceeds threshold",
+      "alert_type": "threshold_breach",
+      "severity": "warning",
+      "metric": "response_time",
+      "threshold_value": 10.0,
+      "threshold_operator": "greater_than",
+      "time_window_minutes": 30,
+      "cooldown_minutes": 15,
+      "enabled": true,
+      "notification_channels": ["dashboard"],
+      "escalation_rules": [],
+      "conditions": {}
+    },
+    "critical_quality_failure": {
+      "rule_id": "critical_quality_failure",
+      "name": "Critical Quality Failure",
+      "description": "Alert when quality score drops critically low",
+      "alert_type": "model_failure",
+      "severity": "critical",
+      "metric": "quality_score",
+      "threshold_value": 0.3,
+      "threshold_operator": "less_than",
+      "time_window_minutes": 15,
+      "cooldown_minutes": 5,
+      "enabled": true,
+      "notification_channels": ["dashboard", "email", "slack"],
+      "escalation_rules": ["immediate_escalation"],
+      "conditions": {}
+    }
+  },
+  "notification_channels": {
+    "dashboard": {
+      "channel_id": "dashboard",
+      "channel_type": "dashboard",
+      "name": "Dashboard Notifications",
+      "enabled": true,
+      "configuration": {
+        "show_popup": true,
+        "sound": true,
+        "auto_dismiss": false
+      }
+    },
+    "email": {
+      "channel_id": "email",
+      "channel_type": "email",
+      "name": "Email Notifications",
+      "enabled": true,
+      "configuration": {
+        "from_email": "alerts@ai-system.com",
+        "to_email": "admin@ai-system.com",
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "username": "alerts@ai-system.com",
+        "password": "your_password_here"
+      }
+    },
+    "slack": {
+      "channel_id": "slack",
+      "channel_type": "slack",
+      "name": "Slack Notifications",
+      "enabled": false,
+      "configuration": {
+        "webhook_url": "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK",
+        "channel": "#ai-alerts",
+        "username": "AI System Bot"
+      }
+    },
+    "teams": {
+      "channel_id": "teams",
+      "channel_type": "teams",
+      "name": "Microsoft Teams Notifications",
+      "enabled": false,
+      "configuration": {
+        "webhook_url": "https://your-org.webhook.office.com/webhookb2/YOUR/TEAMS/WEBHOOK",
+        "title": "AI System Alerts"
+      }
+    }
+  },
+  "ml_models": {
+    "performance_prediction": {
+      "algorithms": ["random_forest", "gradient_boosting", "linear_regression", "ridge"],
+      "default_algorithm": "random_forest",
+      "training_data_days": 365,
+      "min_training_samples": 50,
+      "cross_validation_folds": 5,
+      "feature_engineering": {
+        "time_features": true,
+        "historical_features": true,
+        "context_features": true,
+        "model_features": true
+      }
+    },
+    "anomaly_detection": {
+      "algorithm": "isolation_forest",
+      "contamination": 0.1,
+      "min_samples": 10,
+      "severity_mapping": {
+        "low": ["low"],
+        "medium": ["low", "medium"],
+        "high": ["low", "medium", "high"],
+        "critical": ["low", "medium", "high", "critical"]
+      }
+    },
+    "optimization": {
+      "model_selection": {
+        "min_improvement_threshold": 0.05,
+        "confidence_threshold": 0.7,
+        "cost_weight": 0.3,
+        "quality_weight": 0.7
+      },
+      "parameter_tuning": {
+        "estimated_improvement": 0.1,
+        "confidence": 0.6,
+        "implementation_cost": 0.3
+      },
+      "resource_allocation": {
+        "response_time_threshold": 5.0,
+        "estimated_improvement": 0.2,
+        "confidence": 0.7,
+        "implementation_cost": 0.5
+      }
+    }
+  },
+  "integration": {
+    "workflow_chain_engine": {
+      "enabled": true,
+      "auto_optimization": true,
+      "performance_tracking": true,
+      "model_recommendations": true,
+      "real_time_monitoring": true
+    },
+    "external_systems": {
+      "monitoring": {
+        "prometheus": {
+          "enabled": false,
+          "endpoint": "http://localhost:9090",
+          "metrics_path": "/metrics"
+        },
+        "grafana": {
+          "enabled": false,
+          "endpoint": "http://localhost:3000",
+          "dashboard_id": "ai-system"
+        }
+      },
+      "logging": {
+        "elasticsearch": {
+          "enabled": false,
+          "endpoint": "http://localhost:9200",
+          "index": "ai-system-logs"
+        },
+        "splunk": {
+          "enabled": false,
+          "endpoint": "https://your-splunk-instance.com",
+          "token": "your-splunk-token"
+        }
+      }
+    }
+  },
+  "security": {
+    "authentication": {
+      "enabled": true,
+      "jwt_secret": "your-jwt-secret-key",
+      "token_expiry_hours": 24,
+      "refresh_token_expiry_days": 7
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 100,
+      "burst_limit": 200
+    },
+    "cors": {
+      "enabled": true,
+      "allowed_origins": ["http://localhost:3000", "http://localhost:8003"],
+      "allowed_methods": ["GET", "POST", "PUT", "DELETE"],
+      "allowed_headers": ["*"]
+    },
+    "data_encryption": {
+      "enabled": true,
+      "algorithm": "AES-256-GCM",
+      "key_rotation_days": 90
+    }
+  },
+  "backup": {
+    "enabled": true,
+    "schedule": "0 2 * * *",
+    "retention_days": 30,
+    "storage": {
+      "type": "local",
+      "path": "./backups"
+    },
+    "compression": true,
+    "encryption": true
+  },
+  "scaling": {
+    "auto_scaling": false,
+    "min_instances": 1,
+    "max_instances": 10,
+    "scale_up_threshold": 0.8,
+    "scale_down_threshold": 0.3,
+    "cooldown_minutes": 5
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

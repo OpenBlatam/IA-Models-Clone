@@ -1,0 +1,161 @@
+- name: "Technical Design Document"
+  document_type: "design"
+  sections:
+    - name: "Title Page"
+      required: true
+      description: "Project name, version, date, author"
+    - name: "Executive Summary"
+      required: true
+      description: "High-level overview of the design"
+    - name: "Design Overview"
+      required: true
+      description: "Purpose, scope, and objectives"
+    - name: "Technical Specifications"
+      required: true
+      description: "Detailed technical requirements"
+    - name: "System Architecture"
+      required: true
+      description: "Overall system design and components"
+    - name: "Drawings and Diagrams"
+      required: true
+      description: "Visual representations of the design"
+    - name: "Materials List"
+      required: true
+      description: "Required materials and components"
+    - name: "Implementation Plan"
+      required: true
+      description: "Step-by-step implementation guide"
+    - name: "Testing and Validation"
+      required: true
+      description: "Testing procedures and criteria"
+  formatting:
+    font: "Arial"
+    size: 10
+    line_spacing: 1.15
+    margins:
+      top: 0.75
+      bottom: 0.75
+      left: 0.75
+      right: 0.75
+    page_numbers: true
+    headers: true
+  metadata:
+    include_diagrams: true
+    technical_format: true
+    version_control: true
+    review_required: true
+
+- name: "Architectural Design"
+  document_type: "design"
+  sections:
+    - name: "Title Page"
+      required: true
+    - name: "Project Information"
+      required: true
+      description: "Client, location, project type"
+    - name: "Site Analysis"
+      required: true
+      description: "Site conditions and constraints"
+    - name: "Design Concept"
+      required: true
+      description: "Architectural vision and approach"
+    - name: "Floor Plans"
+      required: true
+      description: "Detailed floor plan drawings"
+    - name: "Elevations"
+      required: true
+      description: "Exterior elevation drawings"
+    - name: "Sections"
+      required: true
+      description: "Building section drawings"
+    - name: "Specifications"
+      required: true
+      description: "Materials and construction details"
+    - name: "3D Renderings"
+      required: false
+      description: "Visual representations of the design"
+  formatting:
+    font: "Arial"
+    size: 10
+    line_spacing: 1.15
+    margins:
+      top: 0.75
+      bottom: 0.75
+      left: 0.75
+      right: 0.75
+  metadata:
+    include_diagrams: true
+    architectural_format: true
+    scale_drawings: true
+    building_codes: true
+
+- name: "Product Design Document"
+  document_type: "design"
+  sections:
+    - name: "Title Page"
+      required: true
+    - name: "Product Overview"
+      required: true
+      description: "Product description and purpose"
+    - name: "User Requirements"
+      required: true
+      description: "Target users and their needs"
+    - name: "Design Specifications"
+      required: true
+      description: "Technical and functional requirements"
+    - name: "Concept Sketches"
+      required: true
+      description: "Initial design concepts and ideas"
+    - name: "3D Models"
+      required: true
+      description: "Digital 3D representations"
+    - name: "Prototype Plans"
+      required: true
+      description: "Prototyping approach and materials"
+    - name: "Manufacturing Considerations"
+      required: true
+      description: "Production methods and constraints"
+    - name: "Testing Plan"
+      required: true
+      description: "User testing and validation"
+  formatting:
+    font: "Arial"
+    size: 10
+    line_spacing: 1.15
+    margins:
+      top: 0.75
+      bottom: 0.75
+      left: 0.75
+      right: 0.75
+  metadata:
+    include_diagrams: true
+    product_focused: true
+    user_centered: true
+    manufacturing_ready: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

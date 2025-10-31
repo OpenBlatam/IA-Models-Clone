@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\port_scanner.py
+# hypothesis_version: 6.135.23
+
+[b'\r\n', 0.0, 1.0, 3.0, 100, 110, 143, 253, 443, 993, 995, 1024, 1433, 3306, 3389, 5432, 5900, 6379, 8080, 8443, 9200, 27017, 65535, ',', '-', 'Connection refused', 'Connection timeout', 'closed', 'dns', 'elasticsearch', 'filtered', 'ftp', 'http', 'http-alt', 'https', 'https-alt', 'ignore', 'imap', 'imaps', 'mongodb', 'mssql', 'mysql', 'open', 'pop3', 'pop3s', 'postgresql', 'rdp', 'redis', 'smtp', 'ssh', 'telnet', 'unknown', 'utf-8', 'vnc']

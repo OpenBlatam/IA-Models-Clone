@@ -1,0 +1,128 @@
+# =============================================================================
+# Production Requirements for Next-Level HeyGen AI FastAPI
+# Additional production-specific packages for monitoring, security, and deployment
+# =============================================================================
+
+# Production Server - High performance ASGI server
+gunicorn>=21.2.0,<22.0.0
+uvicorn[standard]>=0.24.0,<0.25.0
+
+# Monitoring and Observability
+prometheus-client>=0.19.0,<0.20.0
+structlog>=23.2.0,<24.0.0
+sentry-sdk[fastapi]>=1.38.0,<2.0.0
+opentelemetry-api>=1.21.0,<2.0.0
+opentelemetry-sdk>=1.21.0,<2.0.0
+opentelemetry-instrumentation-fastapi>=0.42b0,<1.0.0
+opentelemetry-instrumentation-requests>=0.42b0,<1.0.0
+opentelemetry-instrumentation-redis>=0.42b0,<1.0.0
+opentelemetry-exporter-prometheus>=1.12.0rc1,<2.0.0
+
+# Security and Authentication
+python-jose[cryptography]>=3.3.0,<4.0.0
+passlib[bcrypt]>=1.7.4,<2.0.0
+cryptography>=41.0.7,<42.0.0
+pyotp>=2.9.0,<3.0.0
+python-multipart>=0.0.6,<0.1.0
+
+# Rate Limiting and Protection
+slowapi>=0.1.9,<0.2.0
+limits>=3.6.0,<4.0.0
+redis-py-cluster>=2.1.3,<3.0.0
+
+# Health Checks and Diagnostics
+psutil>=5.9.6,<6.0.0
+healthcheck>=1.3.3,<2.0.0
+
+# Configuration Management
+python-dotenv>=1.0.0,<2.0.0
+pydantic-settings>=2.1.0,<3.0.0
+dynaconf>=3.2.4,<4.0.0
+
+# HTTP Client and Networking
+httpx>=0.25.2,<0.26.0
+aiohttp>=3.9.1,<4.0.0
+requests>=2.31.0,<3.0.0
+urllib3>=2.1.0,<3.0.0
+
+# Data Validation and Serialization
+pydantic>=2.5.1,<3.0.0
+orjson>=3.9.10,<4.0.0
+msgpack>=1.0.7,<2.0.0
+
+# Database Production Features
+sqlalchemy>=2.0.23,<3.0.0
+alembic>=1.13.0,<2.0.0
+asyncpg>=0.29.0,<0.30.0
+psycopg2-binary>=2.9.9,<3.0.0
+
+# Redis and Caching
+redis>=5.0.1,<6.0.0
+aioredis>=2.0.1,<3.0.0
+hiredis>=2.2.3,<3.0.0
+
+# File Handling and Storage
+aiofiles>=23.2.1,<24.0.0
+minio>=7.2.0,<8.0.0
+boto3>=1.34.0,<2.0.0
+botocore>=1.34.0,<2.0.0
+
+# Compression and Performance
+zstandard>=0.22.0,<1.0.0
+lz4>=4.3.2,<5.0.0
+brotli>=1.1.0,<2.0.0
+
+# Logging and Formatting
+colorama>=0.4.6,<1.0.0
+rich>=13.7.0,<14.0.0
+python-json-logger>=2.0.7,<3.0.0
+
+# Process Management
+supervisor>=4.2.5,<5.0.0
+circus>=0.18.0,<1.0.0
+
+# SSL/TLS and Certificates
+certifi>=2023.11.17
+pyopenssl>=23.3.0,<24.0.0
+certbot>=2.8.0,<3.0.0
+
+# Environment and Deployment
+click>=8.1.7,<9.0.0
+typer>=0.9.0,<1.0.0
+python-decouple>=3.8,<4.0.0
+
+# Backup and Recovery
+schedule>=1.2.1,<2.0.0
+croniter>=2.0.1,<3.0.0
+
+# Notification and Alerting
+slack-sdk>=3.26.0,<4.0.0
+discord-webhook>=1.3.0,<2.0.0
+sendgrid>=6.11.0,<7.0.0
+
+# Performance Monitoring
+py-spy>=0.3.14,<1.0.0
+memory-profiler>=0.61.0,<1.0.0
+line-profiler>=4.1.1,<5.0.0
+
+# Testing in Production (Smoke Tests)
+pytest>=7.4.3,<8.0.0
+pytest-asyncio>=0.21.1,<1.0.0
+httpx>=0.25.2,<0.26.0
+
+# Container and Orchestration
+kubernetes>=28.1.0,<29.0.0
+docker>=7.0.0,<8.0.0
+
+# Metrics and Analytics
+statsd>=4.0.1,<5.0.0
+datadog>=0.49.1,<1.0.0
+newrelic>=9.3.0,<10.0.0
+
+# Development Tools (Optional for debugging in production)
+ipython>=8.17.2,<9.0.0
+debugpy>=1.8.0,<2.0.0
+
+# Documentation Generation
+mkdocs>=1.5.3,<2.0.0
+mkdocs-material>=9.5.0,<10.0.0 

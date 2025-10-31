@@ -1,0 +1,4 @@
+gradio>=4.00lotly>=5.00mpy>=1.21
+pandas>=1.3.0
+matplotlib>=3.5.0eaborn>=0.11>=10.12.0transformers>=40.20.0
+scikit-learn>=1.1nltk>=3.7at>=00.70.3nguage-tool-python>=2.7.1 

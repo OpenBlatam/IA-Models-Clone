@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .widget {
+            transition: all 0.3s ease;
+        }
+        .widget:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .metric-card.success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .metric-card.warning {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .metric-card.danger {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .sidebar {
+            transition: transform 0.3s ease;
+        }
+        .sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-project-diagram text-2xl text-blue-600 mr-3"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">Document Workflow Chain</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="refresh-btn" class="p-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="relative">
+                        <button id="user-menu" class="flex items-center space-x-2 p-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+                            <img src="https://via.placeholder.com/32" alt="User" class="w-8 h-8 rounded-full">
+                            <span>User</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar w-64 bg-white shadow-lg min-h-screen">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Dashboard</h2>
+                <nav class="space-y-2">
+                    <a href="#" class="nav-item flex items-center space-x-3 p-3 rounded-lg bg-blue-100 text-blue-700">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Workflows</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-users"></i>
+                        <span>Collaboration</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-clock"></i>
+                        <span>Schedules</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center space-x-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Status Bar -->
+            <div class="mb-6 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-green-500 rounded-full pulse"></div>
+                        <span class="text-sm text-gray-600">System Online</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-wifi text-green-500"></i>
+                        <span class="text-sm text-gray-600">Real-time Connected</span>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-500">
+                    Last updated: <span id="last-updated">--</span>
+                </div>
+            </div>
+
+            <!-- Metrics Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="metric-card success rounded-lg p-6 text-white">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-75">Total Workflows</p>
+                            <p class="text-3xl font-bold" id="total-workflows">--</p>
+                        </div>
+                        <i class="fas fa-project-diagram text-4xl opacity-50"></i>
+                    </div>
+                </div>
+                <div class="metric-card rounded-lg p-6 text-white">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-75">Active Workflows</p>
+                            <p class="text-3xl font-bold" id="active-workflows">--</p>
+                        </div>
+                        <i class="fas fa-play-circle text-4xl opacity-50"></i>
+                    </div>
+                </div>
+                <div class="metric-card warning rounded-lg p-6 text-white">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-75">Quality Score</p>
+                            <p class="text-3xl font-bold" id="quality-score">--</p>
+                        </div>
+                        <i class="fas fa-star text-4xl opacity-50"></i>
+                    </div>
+                </div>
+                <div class="metric-card danger rounded-lg p-6 text-white">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-75">Total Documents</p>
+                            <p class="text-3xl font-bold" id="total-documents">--</p>
+                        </div>
+                        <i class="fas fa-file-alt text-4xl opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widgets Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Workflow Overview Widget -->
+                <div class="widget bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Workflow Overview</h3>
+                        <i class="fas fa-project-diagram text-blue-500"></i>
+                    </div>
+                    <div id="workflow-overview-content">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality Metrics Widget -->
+                <div class="widget bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Quality Metrics</h3>
+                        <i class="fas fa-chart-line text-green-500"></i>
+                    </div>
+                    <div id="quality-metrics-content">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Charts Widget -->
+                <div class="widget bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Performance</h3>
+                        <i class="fas fa-tachometer-alt text-purple-500"></i>
+                    </div>
+                    <div id="performance-charts-content">
+                        <canvas id="performance-chart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Widget -->
+                <div class="widget bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Recent Activity</h3>
+                        <i class="fas fa-clock text-orange-500"></i>
+                    </div>
+                    <div id="recent-activity-content">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule Status Widget -->
+                <div class="widget bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Schedule Status</h3>
+                        <i class="fas fa-calendar-alt text-indigo-500"></i>
+                    </div>
+                    <div id="schedule-status-content">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collaboration Users Widget -->
+                <div class="widget bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Collaboration</h3>
+                        <i class="fas fa-users text-pink-500"></i>
+                    </div>
+                    <div id="collaboration-users-content">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                            <div class="h-4 bg-gray-200 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 flex items-center space-x-4">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            <span class="text-gray-700">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-message">Success!</span>
+        </div>
+    </div>
+
+    <script>
+        class Dashboard {
+            constructor() {
+                this.userId = 'user_' + Math.random().toString(36).substr(2, 9);
+                this.websocket = null;
+                this.charts = {};
+                this.autoRefresh = true;
+                this.refreshInterval = 30000; // 30 seconds
+                this.refreshTimer = null;
+                
+                this.init();
+            }
+
+            async init() {
+                this.setupEventListeners();
+                await this.connectWebSocket();
+                await this.loadDashboardData();
+                this.startAutoRefresh();
+            }
+
+            setupEventListeners() {
+                // Theme toggle
+                document.getElementById('theme-toggle').addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+
+                // Refresh button
+                document.getElementById('refresh-btn').addEventListener('click', () => {
+                    this.loadDashboardData();
+                });
+
+                // Navigation items
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.setActiveNavItem(item);
+                    });
+                });
+            }
+
+            async connectWebSocket() {
+                try {
+                    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                    const wsUrl = `${protocol}//${window.location.host}/ws/dashboard/${this.userId}`;
+                    
+                    this.websocket = new WebSocket(wsUrl);
+                    
+                    this.websocket.onopen = () => {
+                        console.log('WebSocket connected');
+                        this.showNotification('Connected to real-time updates', 'success');
+                    };
+                    
+                    this.websocket.onmessage = (event) => {
+                        const data = JSON.parse(event.data);
+                        this.handleWebSocketMessage(data);
+                    };
+                    
+                    this.websocket.onclose = () => {
+                        console.log('WebSocket disconnected');
+                        this.showNotification('Disconnected from real-time updates', 'warning');
+                        // Reconnect after 5 seconds
+                        setTimeout(() => this.connectWebSocket(), 5000);
+                    };
+                    
+                    this.websocket.onerror = (error) => {
+                        console.error('WebSocket error:', error);
+                        this.showNotification('Connection error', 'error');
+                    };
+                } catch (error) {
+                    console.error('Failed to connect WebSocket:', error);
+                }
+            }
+
+            handleWebSocketMessage(data) {
+                switch (data.type) {
+                    case 'initial_data':
+                    case 'update':
+                        this.updateDashboard(data.data);
+                        break;
+                    case 'broadcast_update':
+                        this.handleBroadcastUpdate(data);
+                        break;
+                    case 'pong':
+                        // Handle pong response
+                        break;
+                }
+            }
+
+            async loadDashboardData() {
+                try {
+                    this.showLoading(true);
+                    
+                    const response = await fetch(`/api/dashboard/data/${this.userId}`);
+                    const data = await response.json();
+                    
+                    this.updateDashboard(data);
+                    this.updateLastUpdated();
+                    
+                } catch (error) {
+                    console.error('Failed to load dashboard data:', error);
+                    this.showNotification('Failed to load dashboard data', 'error');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+
+            updateDashboard(data) {
+                // Update metrics
+                if (data.widgets && data.widgets.workflow_overview) {
+                    this.updateWorkflowOverview(data.widgets.workflow_overview);
+                }
+                
+                if (data.widgets && data.widgets.quality_metrics) {
+                    this.updateQualityMetrics(data.widgets.quality_metrics);
+                }
+                
+                if (data.widgets && data.widgets.performance_charts) {
+                    this.updatePerformanceCharts(data.widgets.performance_charts);
+                }
+                
+                if (data.widgets && data.widgets.recent_activity) {
+                    this.updateRecentActivity(data.widgets.recent_activity);
+                }
+                
+                if (data.widgets && data.widgets.schedule_status) {
+                    this.updateScheduleStatus(data.widgets.schedule_status);
+                }
+                
+                if (data.widgets && data.widgets.collaboration_users) {
+                    this.updateCollaborationUsers(data.widgets.collaboration_users);
+                }
+            }
+
+            updateWorkflowOverview(data) {
+                document.getElementById('total-workflows').textContent = data.total_workflows || 0;
+                document.getElementById('active-workflows').textContent = data.active_workflows || 0;
+                document.getElementById('total-documents').textContent = data.total_documents || 0;
+                
+                const content = document.getElementById('workflow-overview-content');
+                content.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Completed</span>
+                            <span class="font-semibold">${data.completed_workflows || 0}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Success Rate</span>
+                            <span class="font-semibold text-green-600">${((data.completed_workflows || 0) / Math.max(1, data.total_workflows || 1) * 100).toFixed(1)}%</span>
+                        </div>
+                        ${data.recent_workflows ? `
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-700 mb-2">Recent Workflows</h4>
+                                <div class="space-y-2">
+                                    ${data.recent_workflows.slice(0, 3).map(wf => `
+                                        <div class="flex justify-between items-center text-sm">
+                                            <span class="truncate">${wf.name}</span>
+                                            <span class="px-2 py-1 rounded text-xs ${wf.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}">${wf.status}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            updateQualityMetrics(data) {
+                const score = (data.average_score || 0) * 100;
+                document.getElementById('quality-score').textContent = score.toFixed(1) + '%';
+                
+                const content = document.getElementById('quality-metrics-content');
+                content.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Average Score</span>
+                            <span class="font-semibold ${score >= 80 ? 'text-green-600' : score >= 60 ? 'text-yellow-600' : 'text-red-600'}">${score.toFixed(1)}%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Trend</span>
+                            <span class="font-semibold ${data.score_trend === 'improving' ? 'text-green-600' : data.score_trend === 'declining' ? 'text-red-600' : 'text-gray-600'}">
+                                <i class="fas fa-arrow-${data.score_trend === 'improving' ? 'up' : data.score_trend === 'declining' ? 'down' : 'right'}"></i>
+                                ${data.score_trend || 'stable'}
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Total Reports</span>
+                            <span class="font-semibold">${data.total_reports || 0}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            updatePerformanceCharts(data) {
+                const ctx = document.getElementById('performance-chart').getContext('2d');
+                
+                if (this.charts.performance) {
+                    this.charts.performance.destroy();
+                }
+                
+                this.charts.performance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Execution Time', 'Success Rate', 'Quality Score', 'Throughput', 'Error Rate'],
+                        datasets: [{
+                            label: 'Performance Metrics',
+                            data: [
+                                data.execution_times || 0,
+                                (data.success_rates || 0) * 100,
+                                (data.quality_scores || 0) * 100,
+                                data.throughput || 0,
+                                (data.error_rates || 0) * 100
+                            ],
+                            borderColor: 'rgb(59, 130, 246)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            updateRecentActivity(data) {
+                const content = document.getElementById('recent-activity-content');
+                
+                if (!data.recent_activities || data.recent_activities.length === 0) {
+                    content.innerHTML = '<p class="text-gray-500 text-sm">No recent activity</p>';
+                    return;
+                }
+                
+                content.innerHTML = `
+                    <div class="space-y-3">
+                        ${data.recent_activities.slice(0, 5).map(activity => `
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-gray-800">${activity.description}</p>
+                                    <p class="text-xs text-gray-500">${this.formatTime(activity.timestamp)}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            updateScheduleStatus(data) {
+                const content = document.getElementById('schedule-status-content');
+                content.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Active Schedules</span>
+                            <span class="font-semibold text-green-600">${data.active_schedules || 0}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Paused Schedules</span>
+                            <span class="font-semibold text-yellow-600">${data.paused_schedules || 0}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Success Rate</span>
+                            <span class="font-semibold">${((data.successful_executions || 0) / Math.max(1, data.total_executions || 1) * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            updateCollaborationUsers(data) {
+                const content = document.getElementById('collaboration-users-content');
+                content.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Active Users</span>
+                            <span class="font-semibold text-green-600">${data.active_users || 0}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Total Users</span>
+                            <span class="font-semibold">${data.total_users || 0}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Workspaces</span>
+                            <span class="font-semibold">${data.total_workspaces || 0}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            toggleTheme() {
+                document.body.classList.toggle('dark');
+                const icon = document.querySelector('#theme-toggle i');
+                icon.classList.toggle('fa-moon');
+                icon.classList.toggle('fa-sun');
+            }
+
+            setActiveNavItem(item) {
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('bg-blue-100', 'text-blue-700');
+                    nav.classList.add('text-gray-600', 'hover:bg-gray-100');
+                });
+                
+                item.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                item.classList.add('bg-blue-100', 'text-blue-700');
+            }
+
+            showLoading(show) {
+                const overlay = document.getElementById('loading-overlay');
+                if (show) {
+                    overlay.classList.remove('hidden');
+                } else {
+                    overlay.classList.add('hidden');
+                }
+            }
+
+            showNotification(message, type = 'success') {
+                const toast = document.getElementById('notification-toast');
+                const messageEl = document.getElementById('notification-message');
+                
+                messageEl.textContent = message;
+                
+                // Update colors based on type
+                toast.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50 ${
+                    type === 'success' ? 'bg-green-500 text-white' :
+                    type === 'warning' ? 'bg-yellow-500 text-white' :
+                    type === 'error' ? 'bg-red-500 text-white' :
+                    'bg-blue-500 text-white'
+                }`;
+                
+                // Show toast
+                setTimeout(() => {
+                    toast.classList.remove('translate-x-full');
+                }, 100);
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full');
+                }, 3000);
+            }
+
+            updateLastUpdated() {
+                const now = new Date();
+                document.getElementById('last-updated').textContent = now.toLocaleTimeString();
+            }
+
+            formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+                
+                if (diff < 60000) return 'Just now';
+                if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+                if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+                return date.toLocaleDateString();
+            }
+
+            startAutoRefresh() {
+                if (this.autoRefresh) {
+                    this.refreshTimer = setInterval(() => {
+                        this.loadDashboardData();
+                    }, this.refreshInterval);
+                }
+            }
+
+            stopAutoRefresh() {
+                if (this.refreshTimer) {
+                    clearInterval(this.refreshTimer);
+                    this.refreshTimer = null;
+                }
+            }
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new Dashboard();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

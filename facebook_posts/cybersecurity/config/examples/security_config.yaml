@@ -1,0 +1,73 @@
+# Security Scanner Configuration
+# This file defines the configuration for cybersecurity scanning operations
+
+# Basic settings
+timeout: 15.0
+max_workers: 100
+retry_count: 3
+verify_ssl: true
+
+# User agent for HTTP requests
+user_agent: "Mozilla/5.0 (Security Scanner) Chrome/91.0.4472.124"
+
+# Logging configuration
+log_level: "INFO"
+output_format: "json"
+enable_colors: true
+
+# Network scanning settings
+network:
+  scan_type: "tcp"
+  port_range: "1-1000,3306,5432,27017"
+  common_ports: true
+  banner_grab: true
+  ssl_check: true
+  use_nmap: true
+  nmap_arguments: "-sS -sV -O --version-intensity 5"
+
+# HTTP scanning settings
+http:
+  follow_redirects: true
+  max_redirects: 5
+  check_security_headers: true
+  check_cors: true
+  check_csp: true
+  check_hsts: true
+  check_xss_protection: true
+
+# SSH scanning settings
+ssh:
+  timeout: 10.0
+  banner_grab: true
+  version_detection: true
+  auth_testing: false  # Disabled for safety
+  common_users: ["root", "admin", "user", "test"]
+  common_passwords: ["password", "123456", "admin", "root"]
+
+# Output settings
+output:
+  directory: "reports"
+  filename_format: "{timestamp}_{target}_{scan_type}"
+  include_timestamps: true
+  compress_output: false
+  max_file_size: 10485760  # 10MB
+
+# Performance settings
+performance:
+  connection_pool_size: 20
+  max_concurrent_requests: 50
+  request_timeout: 30.0
+  retry_delay: 1.0
+  exponential_backoff: true
+
+# Security settings
+security:
+  rate_limit: 100  # requests per second
+  respect_robots_txt: true
+  follow_redirects: true
+  verify_ssl_certificates: true
+  custom_headers:
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    Accept-Language: "en-US,en;q=0.5"
+    Accept-Encoding: "gzip, deflate"
+    Connection: "keep-alive" 

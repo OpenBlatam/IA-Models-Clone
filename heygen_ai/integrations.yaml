@@ -1,0 +1,261 @@
+integrations:
+  heygen_ai_core:
+    type: rest_api
+    base_url: "http://localhost:8000/api/v1"
+    authentication: api_key
+    credentials:
+      api_key: "your-heygen-ai-api-key-here"
+    timeout: 30
+    retry_count: 3
+    rate_limit: 100
+    enabled: true
+    metadata:
+      description: "Core HeyGen AI API for video generation"
+      version: "1.0.0"
+      category: "ai_video"
+    endpoints:
+      - name: "health_check"
+        url: "/health"
+        method: "GET"
+        cache_ttl: 60
+        enabled: true
+      - name: "generate_video"
+        url: "/generate/video"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+      - name: "get_status"
+        url: "/status/{job_id}"
+        method: "GET"
+        cache_ttl: 30
+        enabled: true
+      - name: "list_avatars"
+        url: "/avatars"
+        method: "GET"
+        cache_ttl: 300
+        enabled: true
+      - name: "list_voices"
+        url: "/voices"
+        method: "GET"
+        cache_ttl: 300
+        enabled: true
+
+  performance_monitoring:
+    type: rest_api
+    base_url: "http://localhost:8001/api/v1"
+    authentication: jwt_token
+    credentials:
+      token: "your-jwt-token-here"
+    timeout: 15
+    retry_count: 2
+    rate_limit: 200
+    enabled: true
+    metadata:
+      description: "Performance monitoring and analytics API"
+      version: "1.0.0"
+      category: "monitoring"
+    endpoints:
+      - name: "get_metrics"
+        url: "/metrics"
+        method: "GET"
+        cache_ttl: 60
+        enabled: true
+      - name: "get_health"
+        url: "/health"
+        method: "GET"
+        cache_ttl: 30
+        enabled: true
+      - name: "get_reports"
+        url: "/reports"
+        method: "GET"
+        cache_ttl: 300
+        enabled: true
+
+  security_service:
+    type: rest_api
+    base_url: "http://localhost:8002/api/v1"
+    authentication: api_key
+    credentials:
+      api_key: "your-security-api-key-here"
+    timeout: 10
+    retry_count: 3
+    rate_limit: 500
+    enabled: true
+    metadata:
+      description: "Security analysis and threat detection API"
+      version: "1.0.0"
+      category: "security"
+    endpoints:
+      - name: "analyze_request"
+        url: "/analyze"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+      - name: "get_threats"
+        url: "/threats"
+        method: "GET"
+        cache_ttl: 60
+        enabled: true
+      - name: "get_security_status"
+        url: "/status"
+        method: "GET"
+        cache_ttl: 30
+        enabled: true
+
+  ai_model_service:
+    type: rest_api
+    base_url: "http://localhost:8003/api/v1"
+    authentication: api_key
+    credentials:
+      api_key: "your-ai-model-api-key-here"
+    timeout: 60
+    retry_count: 2
+    rate_limit: 50
+    enabled: true
+    metadata:
+      description: "AI model optimization and management API"
+      version: "1.0.0"
+      category: "ai_models"
+    endpoints:
+      - name: "optimize_model"
+        url: "/optimize"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+      - name: "get_model_info"
+        url: "/models/{model_id}"
+        method: "GET"
+        cache_ttl: 300
+        enabled: true
+      - name: "list_models"
+        url: "/models"
+        method: "GET"
+        cache_ttl: 60
+        enabled: true
+      - name: "benchmark_model"
+        url: "/benchmark"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+
+  configuration_service:
+    type: rest_api
+    base_url: "http://localhost:8004/api/v1"
+    authentication: basic_auth
+    credentials:
+      username: "admin"
+      password: "your-config-password-here"
+    timeout: 20
+    retry_count: 3
+    rate_limit: 100
+    enabled: true
+    metadata:
+      description: "Configuration management and deployment API"
+      version: "1.0.0"
+      category: "configuration"
+    endpoints:
+      - name: "get_config"
+        url: "/config"
+        method: "GET"
+        cache_ttl: 300
+        enabled: true
+      - name: "update_config"
+        url: "/config"
+        method: "PUT"
+        cache_ttl: 0
+        enabled: true
+      - name: "reload_config"
+        url: "/config/reload"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+
+  external_ai_provider:
+    type: rest_api
+    base_url: "https://api.openai.com/v1"
+    authentication: api_key
+    credentials:
+      api_key: "your-openai-api-key-here"
+    timeout: 30
+    retry_count: 3
+    rate_limit: 60
+    enabled: false
+    metadata:
+      description: "External AI provider for additional capabilities"
+      version: "1.0.0"
+      category: "external"
+    endpoints:
+      - name: "chat_completion"
+        url: "/chat/completions"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+      - name: "text_embedding"
+        url: "/embeddings"
+        method: "POST"
+        cache_ttl: 3600
+        enabled: true
+
+  database_service:
+    type: rest_api
+    base_url: "http://localhost:8005/api/v1"
+    authentication: api_key
+    credentials:
+      api_key: "your-database-api-key-here"
+    timeout: 15
+    retry_count: 3
+    rate_limit: 1000
+    enabled: true
+    metadata:
+      description: "Database operations and data management API"
+      version: "1.0.0"
+      category: "database"
+    endpoints:
+      - name: "query_data"
+        url: "/query"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+      - name: "get_schema"
+        url: "/schema"
+        method: "GET"
+        cache_ttl: 3600
+        enabled: true
+      - name: "backup_data"
+        url: "/backup"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+
+  notification_service:
+    type: rest_api
+    base_url: "http://localhost:8006/api/v1"
+    authentication: api_key
+    credentials:
+      api_key: "your-notification-api-key-here"
+    timeout: 10
+    retry_count: 2
+    rate_limit: 200
+    enabled: true
+    metadata:
+      description: "Notification and alerting service API"
+      version: "1.0.0"
+      category: "notifications"
+    endpoints:
+      - name: "send_notification"
+        url: "/send"
+        method: "POST"
+        cache_ttl: 0
+        enabled: true
+      - name: "get_notifications"
+        url: "/notifications"
+        method: "GET"
+        cache_ttl: 60
+        enabled: true
+      - name: "get_alert_rules"
+        url: "/alerts/rules"
+        method: "GET"
+        cache_ttl: 300
+        enabled: true
+
+

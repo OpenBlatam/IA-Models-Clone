@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\vulnerability_scanner.py
+# hypothesis_version: 6.137.3
+
+[10.0, 30.0, '\nRecommendations:', '%2e%2e%2f', '%2e%2e%5c', '(\\||&|;|\\$\\(|`)', '<iframe[^>]*>', '=', 'DENY', 'HTTPS enforcement', 'SAMEORIGIN', 'X-Frame-Options', '\\.\\./', '\\.\\.\\\\', 'command_injection', 'connection_error', 'critical', 'cross_site_scripting', "default-src 'self'", 'description', 'detailed_findings', 'high', 'http://', 'http://test.com', 'http_usage', 'https://demo.com', 'https://example.com', 'is_exploitable', 'javascript:', 'low', 'medium', 'nosniff', 'on\\w+\\s*=', 'path_traversal', 'patterns', 'recommendations', 'recommended_values', 'remediation', 'scan_error', 'scan_timestamp', 'severity', 'sql_injection', 'weak_security_header']

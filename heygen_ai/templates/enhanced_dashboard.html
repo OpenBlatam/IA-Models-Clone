@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Advanced AI System Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.7.0/socket.io.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --info-color: #17a2b8;
+            --dark-color: #34495e;
+            --light-color: #ecf0f1;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .dashboard-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 30px;
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            color: var(--dark-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-active { background-color: var(--success-color); }
+        .status-inactive { background-color: var(--danger-color); }
+        .status-warning { background-color: var(--warning-color); }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .control-panel {
+            background: var(--light-color);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .btn-custom {
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .alert-custom {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .health-score {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .health-excellent { color: var(--success-color); }
+        .health-good { color: var(--info-color); }
+        .health-fair { color: var(--warning-color); }
+        .health-poor { color: var(--danger-color); }
+        
+        .real-time-indicator {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .trend-indicator {
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+        
+        .trend-up { color: var(--success-color); }
+        .trend-down { color: var(--danger-color); }
+        .trend-stable { color: var(--info-color); }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1 class="display-4">🚀 Enhanced Advanced AI System Dashboard</h1>
+            <p class="lead">Real-time monitoring, optimization control, and intelligent system management</p>
+            <div class="real-time-indicator">
+                <span class="badge bg-success fs-6">LIVE</span>
+                <small class="text-light ms-2">Real-time updates enabled</small>
+            </div>
+        </div>
+        
+        <!-- System Status Row -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="metric-card text-center">
+                    <div class="metric-label">System Status</div>
+                    <div class="metric-value" id="systemStatus">Initializing</div>
+                    <div class="status-indicator status-warning" id="statusIndicator"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card text-center">
+                    <div class="metric-label">Health Score</div>
+                    <div class="health-score health-excellent" id="healthScore">--</div>
+                    <small class="text-muted" id="healthStatus">--</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card text-center">
+                    <div class="metric-label">Performance Score</div>
+                    <div class="metric-value" id="performanceScore">--</div>
+                    <div class="trend-indicator" id="performanceTrend"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card text-center">
+                    <div class="metric-label">Active Alerts</div>
+                    <div class="metric-value" id="activeAlerts">--</div>
+                    <small class="text-muted">Unacknowledged</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <h4>🎛️ System Control Panel</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <button class="btn btn-success btn-custom w-100 mb-2" id="startMonitoring">
+                        ▶️ Start Monitoring
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary btn-custom w-100 mb-2" id="startOptimization">
+                        ⚡ Start Optimization
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-info btn-custom w-100 mb-2" id="toggleAutoScaling">
+                        🔄 Auto-Scaling
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-warning btn-custom w-100 mb-2" id="triggerOptimization">
+                        🚀 Manual Optimization
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Metrics Row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="metric-card">
+                    <h5>💻 System Resources</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="metric-label">CPU Usage</div>
+                            <div class="metric-value" id="cpuUsage">--</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="metric-label">Memory Usage</div>
+                            <div class="metric-value" id="memoryUsage">--</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <div class="metric-label">System Load</div>
+                            <div class="metric-value" id="systemLoad">--</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="metric-label">Disk Usage</div>
+                            <div class="metric-value" id="diskUsage">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="metric-card">
+                    <h5>🧠 AI Performance</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="metric-label">Quantum Advantage</div>
+                            <div class="metric-value" id="quantumAdvantage">--</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="metric-label">Learning Efficiency</div>
+                            <div class="metric-value" id="learningEfficiency">--</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <div class="metric-label">GPU Usage</div>
+                            <div class="metric-value" id="gpuUsage">--</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="metric-label">Temperature</div>
+                            <div class="metric-value" id="temperature">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="chart-container">
+                    <h5>📊 Performance Trends</h5>
+                    <canvas id="performanceChart" height="100"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="chart-container">
+                    <h5>🎯 Optimization Results</h5>
+                    <canvas id="optimizationChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Health and Alerts Row -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="chart-container">
+                    <h5>🏥 System Health Analysis</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="metric-card text-center">
+                                <div class="metric-label">Performance Health</div>
+                                <div class="metric-value" id="performanceHealth">--</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="metric-card text-center">
+                                <div class="metric-label">Resource Health</div>
+                                <div class="metric-value" id="resourceHealth">--</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="metric-card text-center">
+                                <div class="metric-label">Stability Health</div>
+                                <div class="metric-value" id="stabilityHealth">--</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="healthRecommendations" class="mt-3"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="chart-container">
+                    <h5>🚨 System Alerts</h5>
+                    <div id="alertsContainer">
+                        <div class="alert alert-info alert-custom">
+                            <small>No active alerts</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Predictive Analytics Row -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="chart-container">
+                    <h5>🔮 Predictive Analytics</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="predictionChart" height="100"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="predictionInsights">
+                                <div class="metric-card">
+                                    <h6>📈 Performance Forecast</h6>
+                                    <div id="forecastData">Loading predictions...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center text-muted mt-4">
+            <small>Enhanced Advanced AI System Dashboard v2.0 | Real-time monitoring and intelligent optimization</small>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        class EnhancedDashboard {
+            constructor() {
+                this.socket = io();
+                this.charts = {};
+                this.data = {
+                    performance: [],
+                    optimization: [],
+                    alerts: []
+                };
+                this.updateInterval = null;
+                
+                this.initializeSocket();
+                this.initializeCharts();
+                this.setupEventListeners();
+                this.startDataUpdates();
+            }
+            
+            initializeSocket() {
+                this.socket.on('connect', () => {
+                    console.log('Connected to dashboard');
+                    this.updateConnectionStatus(true);
+                });
+                
+                this.socket.on('disconnect', () => {
+                    console.log('Disconnected from dashboard');
+                    this.updateConnectionStatus(false);
+                });
+                
+                this.socket.on('enhanced_system_update', (data) => {
+                    this.handleSystemUpdate(data);
+                });
+                
+                this.socket.on('new_alert', (alert) => {
+                    this.handleNewAlert(alert);
+                });
+                
+                this.socket.on('auto_scaling_completed', (data) => {
+                    this.handleAutoScalingUpdate(data);
+                });
+            }
+            
+            initializeCharts() {
+                // Performance Chart
+                const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+                this.charts.performance = new Chart(performanceCtx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Overall Score',
+                            data: [],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            tension: 0.4
+                        }, {
+                            label: 'CPU Usage',
+                            data: [],
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 1
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    }
+                });
+                
+                // Optimization Chart
+                const optimizationCtx = document.getElementById('optimizationChart').getContext('2d');
+                this.charts.optimization = new Chart(optimizationCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Successful', 'Failed'],
+                        datasets: [{
+                            data: [0, 0],
+                            backgroundColor: ['#27ae60', '#e74c3c']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+                
+                // Prediction Chart
+                const predictionCtx = document.getElementById('predictionChart').getContext('2d');
+                this.charts.prediction = new Chart(predictionCtx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Historical',
+                            data: [],
+                            borderColor: '#9b59b6',
+                            backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                            tension: 0.4
+                        }, {
+                            label: 'Predicted',
+                            data: [],
+                            borderColor: '#f39c12',
+                            backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                            borderDash: [5, 5],
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 1
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    }
+                });
+            }
+            
+            setupEventListeners() {
+                document.getElementById('startMonitoring').addEventListener('click', () => {
+                    this.toggleMonitoring();
+                });
+                
+                document.getElementById('startOptimization').addEventListener('click', () => {
+                    this.toggleOptimization();
+                });
+                
+                document.getElementById('toggleAutoScaling').addEventListener('click', () => {
+                    this.toggleAutoScaling();
+                });
+                
+                document.getElementById('triggerOptimization').addEventListener('click', () => {
+                    this.triggerManualOptimization();
+                });
+            }
+            
+            startDataUpdates() {
+                this.updateInterval = setInterval(() => {
+                    this.fetchSystemData();
+                }, 2000);
+            }
+            
+            async fetchSystemData() {
+                try {
+                    const [status, performance, optimization, health] = await Promise.all([
+                        fetch('/api/v2/status').then(r => r.json()),
+                        fetch('/api/v2/performance').then(r => r.json()),
+                        fetch('/api/v2/optimization').then(r => r.json()),
+                        fetch('/api/v2/system_health').then(r => r.json())
+                    ]);
+                    
+                    this.updateDashboard(status, performance, optimization, health);
+                } catch (error) {
+                    console.error('Failed to fetch system data:', error);
+                }
+            }
+            
+            updateDashboard(status, performance, optimization, health) {
+                // Update system status
+                this.updateSystemStatus(status);
+                
+                // Update performance metrics
+                this.updatePerformanceMetrics(performance);
+                
+                // Update optimization data
+                this.updateOptimizationData(optimization);
+                
+                // Update system health
+                this.updateSystemHealth(health);
+                
+                // Update charts
+                this.updateCharts(performance, optimization);
+            }
+            
+            updateSystemStatus(status) {
+                document.getElementById('systemStatus').textContent = status.status;
+                document.getElementById('healthScore').textContent = (status.system_health_score * 100).toFixed(1);
+                
+                // Update status indicator
+                const indicator = document.getElementById('statusIndicator');
+                indicator.className = 'status-indicator';
+                
+                if (status.status === 'ready') {
+                    indicator.classList.add('status-active');
+                } else if (status.status === 'error') {
+                    indicator.classList.add('status-inactive');
+                } else {
+                    indicator.classList.add('status-warning');
+                }
+            }
+            
+            updatePerformanceMetrics(performance) {
+                if (performance.summary && performance.summary.overall_score) {
+                    const score = performance.summary.overall_score;
+                    document.getElementById('performanceScore').textContent = (score.current * 100).toFixed(1);
+                    
+                    // Update trend indicator
+                    const trendElement = document.getElementById('performanceTrend');
+                    trendElement.className = 'trend-indicator';
+                    trendElement.textContent = this.getTrendIcon(score.trend);
+                    
+                    if (score.trend === 'improving') {
+                        trendElement.classList.add('trend-up');
+                    } else if (score.trend === 'degrading') {
+                        trendElement.classList.add('trend-down');
+                    } else {
+                        trendElement.classList.add('trend-stable');
+                    }
+                }
+                
+                if (performance.summary && performance.summary.system_performance) {
+                    const perf = performance.summary.system_performance;
+                    document.getElementById('cpuUsage').textContent = (perf.cpu_usage.current * 100).toFixed(1) + '%';
+                    document.getElementById('memoryUsage').textContent = (perf.memory_usage.current * 100).toFixed(1) + '%';
+                    document.getElementById('systemLoad').textContent = perf.system_load.current.toFixed(2);
+                }
+            }
+            
+            updateSystemHealth(health) {
+                if (health.overall_health !== undefined) {
+                    const healthElement = document.getElementById('healthScore');
+                    const statusElement = document.getElementById('healthStatus');
+                    
+                    healthElement.textContent = (health.overall_health * 100).toFixed(1);
+                    statusElement.textContent = health.health_status;
+                    
+                    // Update health color
+                    healthElement.className = 'health-score';
+                    if (health.overall_health >= 0.8) {
+                        healthElement.classList.add('health-excellent');
+                    } else if (health.overall_health >= 0.6) {
+                        healthElement.classList.add('health-good');
+                    } else if (health.overall_health >= 0.4) {
+                        healthElement.classList.add('health-fair');
+                    } else {
+                        healthElement.classList.add('health-poor');
+                    }
+                    
+                    // Update health metrics
+                    if (health.performance_health !== undefined) {
+                        document.getElementById('performanceHealth').textContent = (health.performance_health * 100).toFixed(1);
+                    }
+                    if (health.resource_health !== undefined) {
+                        document.getElementById('resourceHealth').textContent = (health.resource_health * 100).toFixed(1);
+                    }
+                    if (health.stability_health !== undefined) {
+                        document.getElementById('stabilityHealth').textContent = (health.stability_health * 100).toFixed(1);
+                    }
+                    
+                    // Update recommendations
+                    this.updateHealthRecommendations(health.recommendations);
+                }
+            }
+            
+            updateHealthRecommendations(recommendations) {
+                const container = document.getElementById('healthRecommendations');
+                if (recommendations && recommendations.length > 0) {
+                    container.innerHTML = '<h6>💡 Recommendations:</h6>' + 
+                        recommendations.map(rec => `<div class="alert alert-info alert-custom">${rec}</div>`).join('');
+                } else {
+                    container.innerHTML = '<div class="alert alert-success alert-custom">✅ System is performing optimally</div>';
+                }
+            }
+            
+            updateCharts(performance, optimization) {
+                // Update performance chart
+                if (performance.data && performance.data.length > 0) {
+                    const labels = performance.data.map(d => new Date(d.timestamp * 1000).toLocaleTimeString());
+                    const scores = performance.data.map(d => d.overall_score);
+                    const cpuUsage = performance.data.map(d => d.cpu_usage);
+                    
+                    this.charts.performance.data.labels = labels;
+                    this.charts.performance.data.datasets[0].data = scores;
+                    this.charts.performance.data.datasets[1].data = cpuUsage;
+                    this.charts.performance.update();
+                }
+                
+                // Update optimization chart
+                if (optimization.summary && optimization.summary.total_optimizations > 0) {
+                    const successful = optimization.summary.successful_optimizations;
+                    const failed = optimization.summary.total_optimizations - successful;
+                    
+                    this.charts.optimization.data.datasets[0].data = [successful, failed];
+                    this.charts.optimization.update();
+                }
+            }
+            
+            getTrendIcon(trend) {
+                switch (trend) {
+                    case 'improving': return '↗️';
+                    case 'degrading': return '↘️';
+                    case 'stable': return '→';
+                    default: return '?';
+                }
+            }
+            
+            handleSystemUpdate(data) {
+                // Handle real-time system updates
+                console.log('System update received:', data);
+            }
+            
+            handleNewAlert(alert) {
+                // Handle new system alerts
+                console.log('New alert received:', alert);
+                this.addAlert(alert);
+            }
+            
+            handleAutoScalingUpdate(data) {
+                // Handle auto-scaling updates
+                console.log('Auto-scaling update:', data);
+            }
+            
+            addAlert(alert) {
+                const container = document.getElementById('alertsContainer');
+                const alertElement = document.createElement('div');
+                alertElement.className = `alert alert-${this.getAlertClass(alert.severity)} alert-custom`;
+                alertElement.innerHTML = `
+                    <strong>${alert.severity}:</strong> ${alert.message}
+                    <small class="d-block text-muted">${new Date(alert.timestamp * 1000).toLocaleString()}</small>
+                `;
+                
+                container.insertBefore(alertElement, container.firstChild);
+                
+                // Keep only last 5 alerts
+                while (container.children.length > 5) {
+                    container.removeChild(container.lastChild);
+                }
+            }
+            
+            getAlertClass(severity) {
+                switch (severity.toLowerCase()) {
+                    case 'critical': return 'danger';
+                    case 'warning': return 'warning';
+                    case 'info': return 'info';
+                    default: return 'secondary';
+                }
+            }
+            
+            async toggleMonitoring() {
+                try {
+                    const response = await fetch('/api/v2/start_monitoring', { method: 'POST' });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        document.getElementById('startMonitoring').textContent = '⏹️ Stop Monitoring';
+                        document.getElementById('startMonitoring').classList.remove('btn-success');
+                        document.getElementById('startMonitoring').classList.add('btn-danger');
+                    }
+                } catch (error) {
+                    console.error('Failed to toggle monitoring:', error);
+                }
+            }
+            
+            async toggleOptimization() {
+                try {
+                    const response = await fetch('/api/v2/start_optimization', { method: 'POST' });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        document.getElementById('startOptimization').textContent = '⏹️ Stop Optimization';
+                        document.getElementById('startOptimization').classList.remove('btn-primary');
+                        document.getElementById('startOptimization').classList.add('btn-danger');
+                    }
+                } catch (error) {
+                    console.error('Failed to toggle optimization:', error);
+                }
+            }
+            
+            async toggleAutoScaling() {
+                try {
+                    const button = document.getElementById('toggleAutoScaling');
+                    const enable = !button.classList.contains('btn-success');
+                    
+                    const response = await fetch('/api/v2/auto_scaling', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ enable })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        if (result.auto_scaling) {
+                            button.textContent = '🔄 Auto-Scaling ON';
+                            button.classList.remove('btn-info');
+                            button.classList.add('btn-success');
+                        } else {
+                            button.textContent = '🔄 Auto-Scaling OFF';
+                            button.classList.remove('btn-success');
+                            button.classList.add('btn-info');
+                        }
+                    }
+                } catch (error) {
+                    console.error('Failed to toggle auto-scaling:', error);
+                }
+            }
+            
+            async triggerManualOptimization() {
+                try {
+                    const response = await fetch('/api/v2/trigger_optimization', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            target: 'improve_performance',
+                            target_metrics: {}
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Show success message
+                        this.showNotification('Manual optimization triggered successfully', 'success');
+                    } else {
+                        this.showNotification('Failed to trigger optimization', 'error');
+                    }
+                } catch (error) {
+                    console.error('Failed to trigger optimization:', error);
+                    this.showNotification('Failed to trigger optimization', 'error');
+                }
+            }
+            
+            showNotification(message, type) {
+                // Simple notification system
+                const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+                const notification = document.createElement('div');
+                notification.className = `alert ${alertClass} alert-custom position-fixed`;
+                notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+            
+            updateConnectionStatus(connected) {
+                const indicator = document.querySelector('.real-time-indicator .badge');
+                if (connected) {
+                    indicator.className = 'badge bg-success fs-6';
+                    indicator.textContent = 'LIVE';
+                } else {
+                    indicator.className = 'badge bg-danger fs-6';
+                    indicator.textContent = 'OFFLINE';
+                }
+            }
+        }
+        
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dashboard = new EnhancedDashboard();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+# Requirements for Advanced Noise Schedulers and Sampling Methods
+# Core dependencies for noise schedulers and sampling methods
+
+# PyTorch ecosystem
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Diffusers library for noise schedulers
+diffusers>=0.21.0
+transformers>=4.30.0
+accelerate>=0.20.0
+
+# Scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Image processing
+Pillow>=9.5.0
+opencv-python>=4.8.0
+
+# Testing and validation
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+
+# Performance monitoring
+psutil>=5.9.0
+memory-profiler>=0.61.0
+
+# Visualization and analysis
+plotly>=5.15.0
+wandb>=0.15.0
+tensorboard>=2.13.0
+
+# Utilities
+tqdm>=4.65.0
+rich>=13.4.0
+click>=8.1.0
+
+# Type checking
+mypy>=1.4.0
+types-PyYAML>=6.0.0
+
+# Code quality
+black>=23.7.0
+isort>=5.12.0
+flake8>=6.0.0
+
+# Jupyter support
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+
+# Optional: GPU acceleration
+# nvidia-ml-py3>=7.352.0  # For GPU monitoring
+
+# Optional: Advanced optimizations
+# xformers>=0.0.20  # For memory efficient attention
+# flash-attn>=2.0.0  # For flash attention
+
+# Optional: Additional schedulers
+# k-diffusion>=0.1.0  # For additional noise schedulers
+
+# Development dependencies
+pre-commit>=3.3.0
+pytest-benchmark>=4.0.0 

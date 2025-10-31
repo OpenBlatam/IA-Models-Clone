@@ -1,0 +1,34 @@
+# config.yaml
+# Configuración de hiperparámetros y settings de modelo para entrenamiento y experimentos
+
+experiment:
+  name: "stable_diffusion_experiment"
+  seed: 42
+  output_dir: "./outputs"
+
+model:
+  type: "StableDiffusionPipeline"
+  pretrained_model: "runwayml/stable-diffusion-v1-5"
+  use_fp16: true
+  device: "cuda"
+
+training:
+  epochs: 10
+  batch_size: 16
+  accumulation_steps: 4
+  learning_rate: 2e-5
+  optimizer: "AdamW"
+  weight_decay: 0.01
+  lr_scheduler: "cosine"
+  warmup_steps: 500
+  gradient_clipping: 1.0
+  mixed_precision: true
+
+inference:
+  guidance_scale: 7.5
+  num_inference_steps: 30
+
+logging:
+  use_tensorboard: true
+  use_wandb: false
+  log_interval: 10 

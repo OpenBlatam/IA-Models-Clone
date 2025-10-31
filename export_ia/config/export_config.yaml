@@ -1,0 +1,313 @@
+# Export IA Configuration File
+# ============================
+
+system:
+  output_directory: "exports"
+  temp_directory: "temp"
+  max_concurrent_tasks: 10
+  task_timeout: 300
+  cleanup_temp_files: true
+  enable_logging: true
+  log_level: "INFO"
+
+quality_levels:
+  basic:
+    font_family: "Arial"
+    font_size: 11
+    line_spacing: 1.0
+    margins:
+      top: 1.0
+      bottom: 1.0
+      left: 1.0
+      right: 1.0
+    colors:
+      primary: "#000000"
+      secondary: "#666666"
+    header_footer: false
+    page_numbers: false
+    table_styling: false
+    custom_branding: false
+    advanced_formatting: false
+    interactive_elements: false
+    accessibility_features: false
+
+  standard:
+    font_family: "Calibri"
+    font_size: 11
+    line_spacing: 1.15
+    margins:
+      top: 1.0
+      bottom: 1.0
+      left: 1.0
+      right: 1.0
+    colors:
+      primary: "#2E2E2E"
+      secondary: "#5A5A5A"
+      accent: "#1F4E79"
+    header_footer: false
+    page_numbers: false
+    table_styling: false
+    custom_branding: false
+    advanced_formatting: false
+    interactive_elements: false
+    accessibility_features: false
+
+  professional:
+    font_family: "Calibri"
+    font_size: 11
+    line_spacing: 1.15
+    margins:
+      top: 1.0
+      bottom: 1.0
+      left: 1.0
+      right: 1.0
+    colors:
+      primary: "#2E2E2E"
+      secondary: "#5A5A5A"
+      accent: "#1F4E79"
+      highlight: "#F2F2F2"
+    header_footer: true
+    page_numbers: true
+    table_styling: true
+    custom_branding: false
+    advanced_formatting: false
+    interactive_elements: false
+    accessibility_features: false
+
+  premium:
+    font_family: "Calibri"
+    font_size: 11
+    line_spacing: 1.15
+    margins:
+      top: 1.0
+      bottom: 1.0
+      left: 1.0
+      right: 1.0
+    colors:
+      primary: "#2E2E2E"
+      secondary: "#5A5A5A"
+      accent: "#1F4E79"
+      highlight: "#F2F2F2"
+    header_footer: true
+    page_numbers: true
+    table_styling: true
+    custom_branding: true
+    advanced_formatting: true
+    interactive_elements: false
+    accessibility_features: false
+
+  enterprise:
+    font_family: "Calibri"
+    font_size: 11
+    line_spacing: 1.15
+    margins:
+      top: 1.0
+      bottom: 1.0
+      left: 1.0
+      right: 1.0
+    colors:
+      primary: "#2E2E2E"
+      secondary: "#5A5A5A"
+      accent: "#1F4E79"
+      highlight: "#F2F2F2"
+    header_footer: true
+    page_numbers: true
+    table_styling: true
+    custom_branding: true
+    advanced_formatting: true
+    interactive_elements: true
+    accessibility_features: true
+
+templates:
+  business_plan:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Executive Summary"
+      - "Company Description"
+      - "Market Analysis"
+      - "Organization & Management"
+      - "Service or Product Line"
+      - "Marketing & Sales"
+      - "Funding Request"
+      - "Financial Projections"
+      - "Appendix"
+
+  report:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Introduction"
+      - "Methodology"
+      - "Findings"
+      - "Analysis"
+      - "Conclusions"
+      - "Recommendations"
+      - "References"
+
+  proposal:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Executive Summary"
+      - "Problem Statement"
+      - "Proposed Solution"
+      - "Implementation Plan"
+      - "Budget"
+      - "Timeline"
+      - "Team Qualifications"
+      - "Next Steps"
+
+  presentation:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Title Slide"
+      - "Agenda"
+      - "Introduction"
+      - "Main Content"
+      - "Conclusion"
+      - "Q&A"
+
+  manual:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Introduction"
+      - "Getting Started"
+      - "Features"
+      - "Troubleshooting"
+      - "FAQ"
+      - "Support"
+
+  contract:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Parties"
+      - "Terms and Conditions"
+      - "Payment Terms"
+      - "Termination"
+      - "Legal Provisions"
+      - "Signatures"
+
+  letter:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Header"
+      - "Date"
+      - "Recipient"
+      - "Subject"
+      - "Body"
+      - "Closing"
+      - "Signature"
+
+  memo:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "To"
+      - "From"
+      - "Date"
+      - "Subject"
+      - "Body"
+      - "Action Items"
+
+  newsletter:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Header"
+      - "Featured Article"
+      - "News Items"
+      - "Events"
+      - "Contact Information"
+
+  catalog:
+    title_style: "Title"
+    heading_styles: ["Heading1", "Heading2", "Heading3"]
+    body_style: "Normal"
+    sections:
+      - "Cover"
+      - "Table of Contents"
+      - "Product Categories"
+      - "Product Details"
+      - "Pricing"
+      - "Order Information"
+
+format_features:
+  pdf:
+    - "High quality"
+    - "Print ready"
+    - "Professional layout"
+    - "Vector graphics"
+    - "Embedded fonts"
+    - "Page numbers"
+    - "Headers and footers"
+    - "Table support"
+    - "Image embedding"
+
+  docx:
+    - "Editable"
+    - "Professional formatting"
+    - "Table support"
+    - "Image embedding"
+    - "Style management"
+    - "Headers and footers"
+    - "Page numbers"
+    - "Cross-platform compatibility"
+
+  html:
+    - "Web ready"
+    - "Responsive"
+    - "Interactive elements"
+    - "SEO friendly"
+    - "CSS styling"
+    - "JavaScript support"
+    - "Cross-browser compatibility"
+
+  markdown:
+    - "Version control friendly"
+    - "Lightweight"
+    - "Platform agnostic"
+    - "Easy to edit"
+    - "GitHub compatible"
+    - "Plain text based"
+
+  rtf:
+    - "Cross platform"
+    - "Rich formatting"
+    - "Legacy support"
+    - "Microsoft Word compatible"
+
+  txt:
+    - "Universal compatibility"
+    - "Lightweight"
+    - "Fast processing"
+    - "No formatting dependencies"
+
+  json:
+    - "Structured data"
+    - "API friendly"
+    - "Machine readable"
+    - "Programmatic access"
+
+  xml:
+    - "Structured data"
+    - "Validation support"
+    - "Industry standard"
+    - "Schema validation"
+
+
+
+

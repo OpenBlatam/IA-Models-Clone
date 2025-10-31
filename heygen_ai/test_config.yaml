@@ -1,0 +1,309 @@
+# HeyGen AI Test Configuration
+# ============================
+# Advanced configuration for the comprehensive testing infrastructure
+
+# Test Execution Configuration
+test_execution:
+  # Default test timeout in seconds
+  timeout: 300
+  
+  # Maximum number of parallel workers
+  max_workers: 4
+  
+  # Test discovery patterns
+  test_patterns:
+    - "test_*.py"
+    - "tests/test_*.py"
+  
+  # Test markers configuration
+  markers:
+    unit:
+      description: "Unit tests (fast, isolated)"
+      timeout: 60
+    integration:
+      description: "Integration tests (slower, require multiple components)"
+      timeout: 300
+    performance:
+      description: "Performance tests (benchmarks, load testing)"
+      timeout: 600
+    slow:
+      description: "Tests that take longer than 5 seconds"
+      timeout: 900
+    enterprise:
+      description: "Enterprise features tests"
+      timeout: 300
+    core:
+      description: "Core functionality tests"
+      timeout: 120
+    api:
+      description: "API-related tests"
+      timeout: 180
+    security:
+      description: "Security-related tests"
+      timeout: 240
+
+# Coverage Configuration
+coverage:
+  # Minimum coverage threshold
+  threshold: 80.0
+  
+  # Coverage report formats
+  formats:
+    - "html"
+    - "xml"
+    - "json"
+    - "term-missing"
+  
+  # Files to include in coverage
+  include:
+    - "core/*.py"
+  
+  # Files to exclude from coverage
+  exclude:
+    - "*/tests/*"
+    - "*/test_*.py"
+    - "*/__pycache__/*"
+    - "*/migrations/*"
+
+# Quality Gate Configuration
+quality_gate:
+  # Quality thresholds
+  thresholds:
+    test_coverage: 80.0
+    test_success_rate: 95.0
+    test_execution_time: 300.0
+    code_complexity: 10.0
+    duplicate_code: 5.0
+    security_issues: 0.0
+    linting_errors: 0.0
+    documentation_coverage: 70.0
+  
+  # Quality levels
+  levels:
+    excellent: 90.0
+    good: 80.0
+    fair: 60.0
+    poor: 40.0
+    failed: 0.0
+
+# Benchmark Configuration
+benchmark:
+  # Default number of iterations for benchmarks
+  default_iterations: 1000
+  
+  # Benchmark categories
+  categories:
+    unit_operations:
+      iterations: 10000
+      timeout: 60
+    integration_operations:
+      iterations: 100
+      timeout: 300
+    performance_operations:
+      iterations: 50
+      timeout: 600
+  
+  # Memory benchmarking
+  memory_benchmarking:
+    enabled: true
+    threshold_mb: 100.0
+
+# Optimization Configuration
+optimization:
+  # Enable parallel execution
+  parallel_execution:
+    enabled: true
+    max_workers: 4
+  
+  # Optimization strategies
+  strategies:
+    - "parallel_execution"
+    - "fixture_optimization"
+    - "async_optimization"
+    - "network_mocking"
+    - "sleep_optimization"
+  
+  # Minimum improvement threshold to apply optimization
+  improvement_threshold: 10.0
+
+# CI/CD Configuration
+ci_cd:
+  # GitHub Actions configuration
+  github_actions:
+    # Python versions to test
+    python_versions:
+      - "3.8"
+      - "3.9"
+      - "3.10"
+      - "3.11"
+    
+    # Test matrix
+    test_matrix:
+      - name: "unit"
+        markers: ["unit"]
+      - name: "integration"
+        markers: ["integration"]
+      - name: "enterprise"
+        markers: ["enterprise"]
+      - name: "performance"
+        markers: ["performance"]
+  
+  # Artifact configuration
+  artifacts:
+    coverage_reports: true
+    test_results: true
+    benchmark_results: true
+    quality_reports: true
+
+# Security Configuration
+security:
+  # Security scanning tools
+  tools:
+    bandit:
+      enabled: true
+      severity_level: "medium"
+      confidence_level: "medium"
+    safety:
+      enabled: true
+      check_live: false
+  
+  # Security thresholds
+  thresholds:
+    high_severity: 0
+    medium_severity: 5
+    low_severity: 10
+
+# Documentation Configuration
+documentation:
+  # Documentation coverage
+  coverage:
+    enabled: true
+    threshold: 70.0
+  
+  # Documentation formats
+  formats:
+    - "markdown"
+    - "html"
+    - "pdf"
+  
+  # Auto-generation
+  auto_generate:
+    enabled: true
+    update_on_test: true
+
+# Logging Configuration
+logging:
+  # Log levels
+  levels:
+    test: "INFO"
+    benchmark: "DEBUG"
+    coverage: "INFO"
+    quality: "WARNING"
+    optimization: "INFO"
+  
+  # Log formats
+  formats:
+    console: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file: "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s"
+  
+  # Log files
+  files:
+    test_log: "logs/test.log"
+    benchmark_log: "logs/benchmark.log"
+    coverage_log: "logs/coverage.log"
+    quality_log: "logs/quality.log"
+
+# Environment Configuration
+environment:
+  # Test environment setup
+  setup:
+    - "pip install -r requirements-test.txt"
+    - "python -m pytest --collect-only"
+  
+  # Environment variables
+  variables:
+    PYTHONPATH: "."
+    TEST_ENV: "true"
+    COVERAGE_ENV: "true"
+  
+  # Cleanup commands
+  cleanup:
+    - "rm -rf .pytest_cache"
+    - "rm -rf htmlcov"
+    - "rm -rf .coverage"
+
+# Advanced Features
+advanced:
+  # Test data management
+  test_data:
+    fixtures_dir: "tests/fixtures"
+    factories_dir: "tests/factories"
+    mock_data_dir: "tests/mock_data"
+  
+  # Test parallelization
+  parallelization:
+    enabled: true
+    strategy: "per-file"  # per-file, per-test, per-class
+  
+  # Test isolation
+  isolation:
+    enabled: true
+    cleanup_after_test: true
+    reset_state_between_tests: true
+  
+  # Test reporting
+  reporting:
+    formats:
+      - "json"
+      - "xml"
+      - "html"
+      - "console"
+    
+    # Custom reporters
+    custom_reporters:
+      - "test_reporters.performance_reporter"
+      - "test_reporters.coverage_reporter"
+      - "test_reporters.quality_reporter"
+
+# Plugin Configuration
+plugins:
+  # Pytest plugins
+  pytest:
+    - "pytest-asyncio"
+    - "pytest-cov"
+    - "pytest-mock"
+    - "pytest-benchmark"
+    - "pytest-xdist"
+    - "pytest-html"
+    - "pytest-json-report"
+  
+  # Custom plugins
+  custom:
+    - "test_plugins.enterprise_plugin"
+    - "test_plugins.performance_plugin"
+    - "test_plugins.quality_plugin"
+
+# Maintenance Configuration
+maintenance:
+  # Auto-cleanup
+  auto_cleanup:
+    enabled: true
+    schedule: "daily"
+    keep_days: 30
+  
+  # Health checks
+  health_checks:
+    enabled: true
+    interval: 3600  # seconds
+    timeout: 60
+  
+  # Performance monitoring
+  performance_monitoring:
+    enabled: true
+    alert_threshold: 300  # seconds
+    trend_analysis: true
+
+
+
+
+

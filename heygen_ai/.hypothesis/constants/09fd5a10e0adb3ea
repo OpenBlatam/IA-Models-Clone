@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\core\error_handler.py
+# hypothesis_version: 6.135.23
+
+[1.0, 2.0, 60.0, 1000, 'CLOSED', 'HALF_OPEN', 'OPEN', 'context', 'error_counts', 'error_message', 'error_type', 'failure_count', 'failure_threshold', 'last_failure_time', 'recent_errors', 'recovery_timeout', 'state', 'timestamp', 'total_errors', 'traceback']

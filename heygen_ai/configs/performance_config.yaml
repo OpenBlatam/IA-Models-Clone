@@ -1,0 +1,205 @@
+# 🚀 HeyGen AI - Performance Configuration
+# ========================================
+# Comprehensive performance optimization settings for maximum speed and efficiency
+
+# ⚡ Core Performance Settings
+performance:
+  # Flash Attention 2.0 (2-4x speedup, 30-50% memory reduction)
+  flash_attention: true
+  flash_attention_config:
+    mode: "auto"                    # auto, forward, backward, or both
+    block_size: 128                 # Flash attention block size
+    num_heads: "auto"               # Number of attention heads (auto for model default)
+    causal: true                    # Enable causal attention for language models
+  
+  # xFormers (1.5-2x speedup, 30-50% memory reduction)
+  xformers: true
+  xformers_config:
+    enable_flash: true              # Enable Flash Attention in xFormers
+    enable_mem_efficient: true      # Enable memory-efficient attention
+    enable_math: false              # Disable math attention (use optimized versions)
+    attention_mode: "flash"         # flash, mem_efficient, or math
+    block_triton: true              # Use Triton kernels in xFormers
+  
+  # Triton Kernels (1.2-1.5x speedup, 10-20% memory reduction)
+  triton: true
+  triton_config:
+    enable_autotune: true           # Enable automatic kernel tuning
+    enable_cudagraphs: true         # Enable CUDA graphs for repeated operations
+    enable_optimization: true       # Enable Triton optimizations
+    max_workspace_size: 67108864    # Maximum workspace size (64MB)
+  
+  # PyTorch 2.0 Compilation (1.2-2x speedup)
+  torch_compile: true
+  torch_compile_config:
+    mode: "max-autotune"            # default, reduce-overhead, max-autotune
+    fullgraph: true                 # Compile entire model graph
+    dynamic: true                   # Enable dynamic shapes
+    backend: "inductor"             # Compilation backend: inductor, aot_eager, cudagraphs
+  
+  # Mixed Precision Training (1.5-2x speedup, 20-30% memory reduction)
+  mixed_precision: true
+  mixed_precision_config:
+    mode: "fp16"                    # fp16 or bf16
+    autocast: true                  # Enable autocast
+    scaler: true                    # Enable gradient scaler
+    scaler_config:
+      init_scale: 65536.0           # Initial scale factor
+      growth_factor: 2.0            # Scale growth factor
+      backoff_factor: 0.5           # Scale backoff factor
+      growth_interval: 2000         # Growth interval in steps
+
+# 🧠 Memory Optimization
+memory:
+  # Gradient Checkpointing (50-70% memory reduction)
+  gradient_checkpointing: true
+  gradient_checkpointing_config:
+    strategy: "auto"                # auto, sequential, or no_reentrant
+    memory_efficient: true          # Use memory-efficient checkpointing
+  
+  # Memory-Efficient Attention
+  memory_efficient_attention: true
+  attention_config:
+    use_sdpa: true                  # Use scaled dot-product attention
+    use_flash_attention: true       # Use Flash Attention when available
+    use_memory_efficient: true      # Use memory-efficient variants
+  
+  # Dynamic Batching
+  dynamic_batching: true
+  dynamic_batching_config:
+    max_batch_size: 32              # Maximum batch size
+    min_batch_size: 1               # Minimum batch size
+    target_memory_usage: 0.85       # Target GPU memory usage (85%)
+    adaptive: true                  # Enable adaptive batch sizing
+  
+  # Memory Pinning
+  memory_pinning: true
+  pinning_config:
+    pin_memory: true                # Pin memory in DataLoader
+    non_blocking: true              # Use non-blocking transfers
+    prefetch_factor: 2              # DataLoader prefetch factor
+
+# 🚀 Advanced Optimizations
+advanced:
+  # Fused Optimizers
+  fused_optimizers: true
+  optimizer_config:
+    use_fused_adamw: true          # Use fused AdamW optimizer
+    use_fused_lamb: false          # Use fused LAMB optimizer
+    use_fused_sgd: false           # Use fused SGD optimizer
+  
+  # Kernel Fusion
+  kernel_fusion: true
+  fusion_config:
+    enable_conv_bn_fusion: true     # Enable conv-bn fusion
+    enable_linear_bn_fusion: true   # Enable linear-bn fusion
+    enable_attention_fusion: true   # Enable attention fusion
+  
+  # CUDA Graphs
+  cuda_graphs: true
+  cuda_graphs_config:
+    enable: true                    # Enable CUDA graphs
+    max_graph_size: 100            # Maximum graph size
+    enable_optimization: true       # Enable graph optimization
+  
+  # Tensor Cores
+  tensor_cores: true
+  tensor_cores_config:
+    enable: true                    # Enable Tensor Core operations
+    precision: "mixed"              # mixed, fp16, or bf16
+    optimization_level: "max"       # Optimization level: min, default, max
+
+# 📊 Hardware Optimization
+hardware:
+  # GPU Configuration
+  gpu_config:
+    memory_fraction: 0.95           # GPU memory fraction to use
+    allow_growth: true              # Allow GPU memory growth
+    per_process_gpu_memory_fraction: 0.95  # Per-process GPU memory fraction
+  
+  # CPU Configuration
+  cpu_config:
+    num_workers: 4                  # Number of DataLoader workers
+    pin_memory: true                # Pin memory in DataLoader
+    persistent_workers: true        # Keep workers alive between epochs
+  
+  # Distributed Training
+  distributed_config:
+    backend: "nccl"                 # Distributed backend: nccl, gloo, mpi
+    init_method: "env"              # Initialization method: env, file, tcp
+    world_size: 1                   # World size for distributed training
+    rank: 0                         # Rank in distributed training
+
+# 🔍 Performance Monitoring
+monitoring:
+  # GPU Monitoring
+  gpu_monitoring: true
+  gpu_config:
+    monitor_utilization: true       # Monitor GPU utilization
+    monitor_memory: true            # Monitor GPU memory usage
+    monitor_temperature: true       # Monitor GPU temperature
+    monitor_power: true             # Monitor GPU power consumption
+  
+  # Memory Tracking
+  memory_tracking: true
+  memory_config:
+    track_allocations: true         # Track memory allocations
+    track_deallocations: true       # Track memory deallocations
+    track_fragmentation: true       # Track memory fragmentation
+  
+  # Performance Profiling
+  performance_profiling: true
+  profiling_config:
+    enable_profiler: true           # Enable PyTorch profiler
+    profile_memory: true            # Profile memory usage
+    profile_cpu: true               # Profile CPU usage
+    profile_cuda: true              # Profile CUDA operations
+  
+  # Metrics Collection
+  metrics:
+    - "throughput"                  # Training/inference throughput
+    - "latency"                     # Training/inference latency
+    - "memory_usage"                # Memory usage over time
+    - "gpu_utilization"             # GPU utilization over time
+    - "power_efficiency"            # Power efficiency metrics
+
+# 🎯 Task-Specific Optimizations
+task_optimizations:
+  # Language Models
+  language_models:
+    use_rope: true                  # Use RoPE positional encoding
+    use_alibi: false                # Use ALiBi positional encoding
+    use_flash_attention: true       # Use Flash Attention for language models
+    use_memory_efficient: true      # Use memory-efficient attention
+  
+  # Diffusion Models
+  diffusion_models:
+    use_xformers: true              # Use xFormers for diffusion
+    use_flash_attention: true       # Use Flash Attention for diffusion
+    optimize_sampling: true         # Optimize sampling process
+  
+  # Vision Models
+  vision_models:
+    use_torchvision_ops: true       # Use optimized torchvision operations
+    use_tensor_cores: true          # Use Tensor Cores for vision models
+    optimize_conv: true             # Optimize convolution operations
+
+# 🔧 Experimental Features
+experimental:
+  # Quantization
+  quantization:
+    use_8bit: false                 # Use 8-bit quantization
+    use_4bit: false                 # Use 4-bit quantization
+    use_dynamic: false              # Use dynamic quantization
+  
+  # Sparsity
+  sparsity:
+    use_structured: false           # Use structured sparsity
+    use_unstructured: false         # Use unstructured sparsity
+    sparsity_ratio: 0.5             # Sparsity ratio
+  
+  # Neural Architecture Search
+  nas:
+    enable: false                   # Enable Neural Architecture Search
+    search_space: "auto"            # Search space definition
+    optimization_target: "latency"  # Optimization target: latency, memory, accuracy

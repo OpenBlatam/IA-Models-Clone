@@ -1,0 +1,227 @@
+# AI History Comparison System - Development Requirements
+# Sistema de Comparación de Historial de IA - Requisitos de Desarrollo
+# Development and Testing Dependencies
+
+# Include base requirements
+-r requirements-optimized.txt
+
+# =============================================================================
+# DEVELOPMENT TOOLS - Developer Experience
+# =============================================================================
+# Code Formatting and Linting
+black>=23.11.0                      # Code formatter
+isort>=5.12.0                       # Import sorting
+flake8>=6.1.0                       # Linting
+mypy>=1.7.1                         # Type checking
+pylint>=3.0.3                       # Code analysis
+autopep8>=2.0.4                     # PEP 8 formatting
+yapf>=0.40.2                        # Yet Another Python Formatter
+
+# Pre-commit Hooks
+pre-commit>=3.6.0                   # Git hooks framework
+pre-commit-hooks>=4.5.0             # Common pre-commit hooks
+
+# =============================================================================
+# TESTING FRAMEWORK - Comprehensive Testing
+# =============================================================================
+# Core Testing
+pytest>=7.4.3                       # Testing framework
+pytest-asyncio>=0.21.1              # Async testing support
+pytest-cov>=4.1.0                   # Coverage plugin
+pytest-mock>=3.12.0                 # Mocking plugin
+pytest-xdist>=3.5.0                 # Parallel testing
+pytest-benchmark>=4.0.0             # Benchmarking
+pytest-html>=4.1.1                  # HTML reports
+pytest-json-report>=1.5.0           # JSON reports
+pytest-clarity>=1.0.1               # Better assertion output
+pytest-sugar>=0.9.7                 # Better test output
+pytest-timeout>=2.2.0               # Test timeout
+pytest-rerunfailures>=12.0          # Rerun failed tests
+
+# Advanced Testing
+hypothesis>=6.92.1                  # Property-based testing
+factory-boy>=3.3.0                  # Test data generation
+faker>=20.1.0                       # Fake data generation
+freezegun>=1.2.2                    # Date/time mocking
+responses>=0.24.1                   # HTTP mocking
+httpretty>=1.1.4                    # HTTP mocking
+vcrpy>=6.0.0                        # HTTP recording/replaying
+
+# =============================================================================
+# SECURITY TESTING - Security Analysis
+# =============================================================================
+bandit>=1.7.5                       # Security linting
+safety>=2.3.5                       # Security vulnerability scanner
+semgrep>=1.45.0                     # Static analysis
+detect-secrets>=1.4.0               # Secret detection
+cryptography>=41.0.8                # Cryptographic recipes
+
+# =============================================================================
+# PERFORMANCE TESTING - Performance Analysis
+# =============================================================================
+# Profiling
+py-spy>=0.3.14                      # Python profiler
+memory-profiler>=0.61.0             # Memory profiling
+line-profiler>=4.1.1                # Line-by-line profiling
+scalene>=1.5.30                     # CPU/GPU/memory profiler
+pympler>=0.9                        # Memory analysis
+objgraph>=3.6.0                     # Object graph analysis
+
+# Load Testing
+locust>=2.17.0                      # Load testing framework
+pytest-benchmark>=4.0.0             # Benchmarking
+wrk>=0.1.0                          # HTTP benchmarking tool
+
+# =============================================================================
+# DOCUMENTATION - Documentation Tools
+# =============================================================================
+sphinx>=7.2.6                       # Documentation generator
+sphinx-rtd-theme>=1.3.0             # Read the Docs theme
+sphinx-autodoc-typehints>=1.24.0    # Type hints in docs
+myst-parser>=2.0.0                  # Markdown parser for Sphinx
+sphinx-copybutton>=0.5.2            # Copy button for code blocks
+sphinx-tabs>=3.4.1                  # Tabbed content
+sphinx-panels>=0.6.0                # Panels and cards
+
+# API Documentation
+sphinxcontrib-openapi>=0.7.0        # OpenAPI documentation
+sphinxcontrib-redoc>=1.6.0          # ReDoc integration
+
+# =============================================================================
+# DEVELOPMENT ENVIRONMENT - IDE and Tools
+# =============================================================================
+# Jupyter and Interactive Development
+jupyter>=1.0.0                      # Jupyter notebook
+notebook>=7.0.6                     # Jupyter notebook server
+jupyterlab>=4.0.9                   # JupyterLab
+ipykernel>=6.27.1                   # Jupyter kernel
+ipywidgets>=8.1.1                   # Interactive widgets
+jupyter-contrib-nbextensions>=0.7.0 # Jupyter extensions
+
+# Debugging
+debugpy>=1.8.0                      # Python debugger
+ipdb>=0.13.13                       # Enhanced debugger
+pdbpp>=0.10.3                       # Enhanced debugger
+rich>=13.7.0                        # Rich text and beautiful formatting
+
+# =============================================================================
+# CODE QUALITY - Quality Assurance
+# =============================================================================
+# Code Analysis
+radon>=6.0.1                        # Code complexity analysis
+xenon>=0.9.0                        # Code complexity monitoring
+vulture>=2.10                       # Dead code detection
+dead>=0.1.0                         # Dead code detection
+unimport>=0.2.1                     # Unused import detection
+
+# Documentation
+doc8>=1.1.1                         # Documentation linting
+rstcheck>=6.1.1                     # reStructuredText linting
+
+# =============================================================================
+# DATABASE TESTING - Database Tools
+# =============================================================================
+# Test Databases
+pytest-postgresql>=5.0.0            # PostgreSQL test fixtures
+pytest-mysql>=2.2.0                 # MySQL test fixtures
+pytest-redis>=3.0.0                 # Redis test fixtures
+testcontainers>=3.7.1               # Docker test containers
+
+# Database Migration Testing
+alembic>=1.13.1                     # Database migration tool
+sqlalchemy-utils>=0.41.1            # SQLAlchemy utilities
+
+# =============================================================================
+# API TESTING - API Development Tools
+# =============================================================================
+# API Testing
+httpx>=0.25.2                       # HTTP client for testing
+requests>=2.31.0                    # HTTP library
+fastapi[all]>=0.104.1               # FastAPI with all dependencies
+uvicorn[standard]>=0.24.0           # ASGI server
+
+# API Documentation
+swagger-ui-bundle>=0.1.0            # Swagger UI
+redoc>=2.1.0                        # ReDoc API documentation
+
+# =============================================================================
+# MONITORING & OBSERVABILITY - Development Monitoring
+# =============================================================================
+# Development Monitoring
+prometheus-client>=0.19.0           # Prometheus metrics
+structlog>=23.2.0                   # Structured logging
+loguru>=0.7.2                       # Logging library
+
+# =============================================================================
+# CONTAINER & DEPLOYMENT - Development Deployment
+# =============================================================================
+# Container Development
+docker>=6.1.3                       # Docker client
+docker-compose>=1.29.2              # Docker Compose
+kubernetes>=28.1.0                  # Kubernetes client
+
+# =============================================================================
+# UTILITIES - Development Utilities
+# =============================================================================
+# Development Utilities
+python-dotenv>=1.0.0                # Environment variables
+click>=8.1.7                        # Command line interface
+typer>=0.9.0                        # CLI framework
+rich>=13.7.0                        # Rich text and beautiful formatting
+tqdm>=4.66.1                        # Progress bars
+colorama>=0.4.6                     # Cross-platform colored terminal
+
+# File and Data Utilities
+watchdog>=3.0.0                     # File system monitoring
+pathlib>=1.0.1                      # Object-oriented filesystem paths
+shutil>=1.0.0                       # High-level file operations
+
+# =============================================================================
+# OPTIONAL DEVELOPMENT TOOLS - Advanced Development
+# =============================================================================
+# Uncomment based on your development needs
+
+# Advanced Profiling
+# pyinstrument>=4.6.2               # Statistical profiler
+# austin>=3.4.0                     # Python profiler
+# pyflame>=1.6.7                    # Flame graph profiler
+
+# Advanced Testing
+# pytest-mock>=3.12.0               # Mocking plugin
+# pytest-asyncio>=0.21.1            # Async testing support
+# pytest-cov>=4.1.0                 # Coverage plugin
+
+# Advanced Documentation
+# sphinx-gallery>=0.13.0            # Gallery of examples
+# sphinx-paramlinks>=0.5.0          # Parameter links
+# sphinx-issues>=3.0.1              # GitHub issues integration
+
+# Advanced Security
+# truffleHog>=3.63.0                # Secret scanning
+# git-secrets>=1.3.0                # Git secrets scanning
+
+# Advanced Performance
+# py-spy>=0.3.14                    # Python profiler
+# memory-profiler>=0.61.0           # Memory profiling
+# line-profiler>=4.1.1              # Line-by-line profiling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

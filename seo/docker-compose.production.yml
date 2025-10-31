@@ -1,0 +1,766 @@
+version: '3.8'
+
+# Docker Compose para producción ultra-optimizado del servicio SEO
+# Stack completo con monitoreo, escalabilidad y alta disponibilidad
+
+services:
+  # =============================================================================
+  # SERVICIO PRINCIPAL SEO
+  # =============================================================================
+  seo-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+      target: production
+    image: seo-api:ultra-optimized
+    container_name: seo-api-production
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 8G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        monitor: 30s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints:
+          - node.role == worker
+        preferences:
+          - spread: node.labels.zone
+    
+    # Variables de entorno ultra-optimizadas
+    environment:
+      # Configuración del servidor
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - WORKERS=8
+      - HOST=0.0.0.0
+      - PORT=8000
+      - MAX_CONNECTIONS=200
+      - BACKLOG=2048
+      
+      # Configuración de caché
+      - CACHE_TYPE=ultra_optimized
+      - CACHE_SIZE=5000
+      - CACHE_TTL=7200
+      - CACHE_COMPRESSION_LEVEL=3
+      - CACHE_PERSISTENCE=true
+      
+      # Configuración HTTP
+      - HTTP_RATE_LIMIT=200
+      - HTTP_MAX_CONNECTIONS=200
+      - HTTP_TIMEOUT=15.0
+      - HTTP_KEEPALIVE=30
+      - HTTP_MAX_RETRIES=3
+      
+      # Configuración de parser
+      - PARSER_TYPE=selectolax
+      - PARSER_FALLBACK=lxml
+      - PARSER_TIMEOUT=10.0
+      - PARSER_MAX_SIZE=50MB
+      
+      # Configuración de analyzer
+      - ANALYZER_TYPE=ultra_fast
+      - ANALYZER_MODEL=gpt-4-turbo
+      - ANALYZER_TEMPERATURE=0.1
+      - ANALYZER_MAX_TOKENS=4000
+      - ANALYZER_CONCURRENT_REQUESTS=10
+      
+      # Configuración de métricas
+      - ENABLE_METRICS=true
+      - ENABLE_TRACEMALLOC=true
+      - METRICS_PORT=9090
+      - METRICS_INTERVAL=30s
+      
+      # Configuración de Chrome
+      - CHROME_HEADLESS=true
+      - CHROME_NO_SANDBOX=true
+      - CHROME_DISABLE_DEV_SHM=true
+      - CHROME_DISABLE_GPU=true
+      - CHROME_MEMORY_LIMIT=4GB
+      
+      # Configuración de Redis
+      - REDIS_URL=redis://redis-cluster:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DB=0
+      - REDIS_MAX_CONNECTIONS=50
+      
+      # Configuración de base de datos
+      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_POOL_SIZE=20
+      - DATABASE_MAX_OVERFLOW=30
+      
+      # Configuración de monitoreo
+      - PROMETHEUS_ENABLED=true
+      - GRAFANA_ENABLED=true
+      - JAEGER_ENABLED=true
+      
+      # Configuración de seguridad
+      - SECURITY_HEADERS=true
+      - CORS_ORIGINS=${CORS_ORIGINS}
+      - RATE_LIMIT_ENABLED=true
+      - API_KEY_REQUIRED=true
+    
+    # Puertos
+    ports:
+      - "8000:8000"
+      - "9090:9090"
+    
+    # Volúmenes
+    volumes:
+      - seo_logs:/app/logs
+      - seo_cache:/app/cache
+      - seo_temp:/app/temp
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    # Dependencias
+    depends_on:
+      redis-cluster:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+
+  # =============================================================================
+  # LOAD BALANCER HAProxy
+  # =============================================================================
+  haproxy:
+    image: haproxy:2.8-alpine
+    container_name: seo-haproxy
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      replicas: 2
+      placement:
+        constraints:
+          - node.role == manager
+    
+    # Variables de entorno
+    environment:
+      - HAPROXY_CONFIG=/usr/local/etc/haproxy/haproxy.cfg
+    
+    # Puertos
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8404:8404"  # HAProxy stats
+    
+    # Volúmenes
+    volumes:
+      - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./ssl:/etc/ssl/certs:ro
+      - haproxy_logs:/var/log/haproxy
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "haproxy", "-c", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # REDIS CLUSTER
+  # =============================================================================
+  redis-cluster:
+    image: redis:7.2-alpine
+    container_name: seo-redis-cluster
+    restart: unless-stopped
+    command: redis-server /usr/local/etc/redis/redis.conf
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+      replicas: 3
+      placement:
+        constraints:
+          - node.role == worker
+    
+    # Variables de entorno
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_MAXMEMORY=3GB
+      - REDIS_MAXMEMORY_POLICY=allkeys-lru
+    
+    # Puertos
+    ports:
+      - "6379:6379"
+      - "16379:16379"
+    
+    # Volúmenes
+    volumes:
+      - ./config/redis.optimized.conf:/usr/local/etc/redis/redis.conf:ro
+      - redis_data:/data
+      - redis_logs:/var/log/redis
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # POSTGRESQL
+  # =============================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: seo-postgres
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    
+    # Variables de entorno
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    
+    # Puertos
+    ports:
+      - "5432:5432"
+    
+    # Volúmenes
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_logs:/var/log/postgresql
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # ELASTICSEARCH
+  # =============================================================================
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: seo-elasticsearch
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 8G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    
+    # Variables de entorno
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms2g -Xmx4g"
+      - cluster.name=seo-cluster
+      - node.name=seo-node-1
+    
+    # Puertos
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    
+    # Volúmenes
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+      - elasticsearch_logs:/usr/share/elasticsearch/logs
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # PROMETHEUS
+  # =============================================================================
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: seo-prometheus
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    
+    # Variables de entorno
+    environment:
+      - PROMETHEUS_CONFIG=/etc/prometheus/prometheus.yml
+      - PROMETHEUS_STORAGE_PATH=/prometheus
+    
+    # Puertos
+    ports:
+      - "9091:9090"
+    
+    # Volúmenes
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+      - prometheus_config:/etc/prometheus
+    
+    # Networks
+    networks:
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # GRAFANA
+  # =============================================================================
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: seo-grafana
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    
+    # Variables de entorno
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+      - GF_FEATURE_TOGGLES_ENABLE=publicDashboards
+    
+    # Puertos
+    ports:
+      - "3000:3000"
+    
+    # Volúmenes
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - grafana_config:/etc/grafana
+      - ./config/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./config/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    
+    # Networks
+    networks:
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # KIBANA
+  # =============================================================================
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: seo-kibana
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    
+    # Variables de entorno
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - KIBANA_INDEX=.kibana
+      - XPACK_SECURITY_ENABLED=false
+    
+    # Puertos
+    ports:
+      - "5601:5601"
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # FILEBEAT
+  # =============================================================================
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.11.0
+    container_name: seo-filebeat
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    
+    # Variables de entorno
+    environment:
+      - ELASTICSEARCH_HOSTS=elasticsearch:9200
+      - KIBANA_HOSTS=kibana:5601
+    
+    # Volúmenes
+    volumes:
+      - ./config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - seo_logs:/var/log/seo:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD-SHELL", "filebeat test config || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # NGINX
+  # =============================================================================
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: seo-nginx
+    restart: unless-stopped
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      replicas: 2
+      placement:
+        constraints:
+          - node.role == worker
+    
+    # Puertos
+    ports:
+      - "8080:80"
+      - "8443:443"
+    
+    # Volúmenes
+    volumes:
+      - ./config/nginx.optimized.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+      - nginx_cache:/var/cache/nginx
+    
+    # Networks
+    networks:
+      - seo-network
+      - monitoring-network
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # BACKUP SERVICE
+  # =============================================================================
+  backup:
+    image: alpine:3.18
+    container_name: seo-backup
+    restart: "no"
+    
+    # Configuración de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      replicas: 0  # Solo se ejecuta manualmente
+    
+    # Variables de entorno
+    environment:
+      - BACKUP_SCHEDULE=0 2 * * *  # 2 AM diario
+      - BACKUP_RETENTION=30
+      - BACKUP_COMPRESSION=true
+    
+    # Volúmenes
+    volumes:
+      - ./scripts/backup.sh:/backup.sh:ro
+      - backup_data:/backups
+      - postgres_data:/var/lib/postgresql/data:ro
+      - redis_data:/data:ro
+      - elasticsearch_data:/usr/share/elasticsearch/data:ro
+    
+    # Networks
+    networks:
+      - seo-network
+    
+    # Comando
+    command: ["/bin/sh", "/backup.sh"]
+
+# =============================================================================
+# VOLUMENES
+# =============================================================================
+volumes:
+  # Volúmenes de datos
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/postgres_data
+  redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/redis_data
+  elasticsearch_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/elasticsearch_data
+  
+  # Volúmenes de logs
+  seo_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/logs
+  redis_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/redis_logs
+  postgres_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/postgres_logs
+  elasticsearch_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/elasticsearch_logs
+  nginx_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/nginx_logs
+  haproxy_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/haproxy_logs
+  
+  # Volúmenes de caché
+  seo_cache:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/cache
+  nginx_cache:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/nginx_cache
+  
+  # Volúmenes temporales
+  seo_temp:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/temp
+  
+  # Volúmenes de monitoreo
+  prometheus_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/prometheus_data
+  prometheus_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/prometheus_config
+  grafana_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/grafana_data
+  grafana_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/grafana_config
+  
+  # Volúmenes de backup
+  backup_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/seo/backups
+
+# =============================================================================
+# NETWORKS
+# =============================================================================
+networks:
+  seo-network:
+    driver: overlay
+    attachable: true
+    ipam:
+      config:
+        - subnet: 10.0.1.0/24
+  monitoring-network:
+    driver: overlay
+    attachable: true
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24 

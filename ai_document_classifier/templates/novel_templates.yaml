@@ -1,0 +1,150 @@
+- name: "Standard Novel"
+  document_type: "novel"
+  sections:
+    - name: "Title Page"
+      required: true
+      description: "Book title, author name, publisher"
+    - name: "Copyright Page"
+      required: true
+      description: "Copyright notice, ISBN, publication info"
+    - name: "Dedication"
+      required: false
+      description: "Personal dedication or acknowledgment"
+    - name: "Table of Contents"
+      required: true
+      description: "Chapter listing with page numbers"
+    - name: "Prologue"
+      required: false
+      description: "Opening scene or background information"
+    - name: "Chapters"
+      required: true
+      repeatable: true
+      description: "Main story content divided into chapters"
+    - name: "Epilogue"
+      required: false
+      description: "Closing scene or aftermath"
+    - name: "About the Author"
+      required: false
+      description: "Author biography and contact information"
+  formatting:
+    font: "Times New Roman"
+    size: 12
+    line_spacing: 1.5
+    margins:
+      top: 1
+      bottom: 1
+      left: 1.25
+      right: 1
+    page_numbers: true
+    headers: true
+  metadata:
+    pages_per_chapter: 10
+    total_chapters: 20
+    word_count_target: 80000
+    genre: "fiction"
+
+- name: "Science Fiction Novel"
+  document_type: "novel"
+  sections:
+    - name: "Title Page"
+      required: true
+    - name: "Copyright"
+      required: true
+    - name: "Dedication"
+      required: false
+    - name: "Table of Contents"
+      required: true
+    - name: "Glossary"
+      required: false
+      description: "Technical terms and world-building elements"
+    - name: "Timeline"
+      required: false
+      description: "Chronological events in the story world"
+    - name: "Chapters"
+      required: true
+      repeatable: true
+    - name: "Epilogue"
+      required: false
+    - name: "Author's Note"
+      required: false
+      description: "Research notes and inspiration"
+  formatting:
+    font: "Times New Roman"
+    size: 12
+    line_spacing: 1.5
+    margins:
+      top: 1
+      bottom: 1
+      left: 1.25
+      right: 1
+  metadata:
+    pages_per_chapter: 12
+    total_chapters: 25
+    word_count_target: 100000
+    genre: "science_fiction"
+    world_building: true
+
+- name: "Romance Novel"
+  document_type: "novel"
+  sections:
+    - name: "Title Page"
+      required: true
+    - name: "Copyright"
+      required: true
+    - name: "Dedication"
+      required: false
+    - name: "Table of Contents"
+      required: true
+    - name: "Chapters"
+      required: true
+      repeatable: true
+    - name: "Epilogue"
+      required: true
+      description: "Happy ending or future glimpse"
+    - name: "About the Author"
+      required: false
+    - name: "Other Books"
+      required: false
+      description: "List of other books by the author"
+  formatting:
+    font: "Times New Roman"
+    size: 12
+    line_spacing: 1.5
+    margins:
+      top: 1
+      bottom: 1
+      left: 1.25
+      right: 1
+  metadata:
+    pages_per_chapter: 8
+    total_chapters: 18
+    word_count_target: 70000
+    genre: "romance"
+    happy_ending: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

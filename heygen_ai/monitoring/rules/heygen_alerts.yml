@@ -1,0 +1,329 @@
+# =============================================================================
+# HeyGen AI Application Alerting Rules
+# Comprehensive alerts for application performance, errors, and business metrics
+# =============================================================================
+
+groups:
+  # =============================================================================
+  # Application Performance Alerts
+  # =============================================================================
+  - name: heygen_performance_alerts
+    rules:
+      # High Response Time Alert
+      - alert: HighResponseTime
+        expr: heygen:request_duration_seconds:p95 > 1.0
+        for: 2m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: performance
+        annotations:
+          summary: "High response time detected"
+          description: "P95 response time is {{ $value }}s for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-performance"
+          runbook: "https://docs.heygen.local/runbooks/high-response-time"
+
+      # Critical Response Time Alert
+      - alert: CriticalResponseTime
+        expr: heygen:request_duration_seconds:p95 > 5.0
+        for: 1m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: performance
+        annotations:
+          summary: "Critical response time detected"
+          description: "P95 response time is {{ $value }}s for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-performance"
+          runbook: "https://docs.heygen.local/runbooks/critical-response-time"
+
+      # High Error Rate Alert
+      - alert: HighErrorRate
+        expr: heygen:error_rate > 0.05
+        for: 2m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: reliability
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-reliability"
+          runbook: "https://docs.heygen.local/runbooks/high-error-rate"
+
+      # Critical Error Rate Alert
+      - alert: CriticalErrorRate
+        expr: heygen:error_rate > 0.10
+        for: 1m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: reliability
+        annotations:
+          summary: "Critical error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-reliability"
+          runbook: "https://docs.heygen.local/runbooks/critical-error-rate"
+
+      # Low Throughput Alert
+      - alert: LowThroughput
+        expr: heygen:requests_per_second < 100
+        for: 5m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: performance
+        annotations:
+          summary: "Low throughput detected"
+          description: "Request rate is {{ $value }} req/s for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-performance"
+          runbook: "https://docs.heygen.local/runbooks/low-throughput"
+
+  # =============================================================================
+  # Cache Performance Alerts
+  # =============================================================================
+  - name: heygen_cache_alerts
+    rules:
+      # Low Cache Hit Ratio Alert
+      - alert: LowCacheHitRatio
+        expr: heygen:cache_hit_ratio < 0.80
+        for: 5m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: performance
+        annotations:
+          summary: "Low cache hit ratio detected"
+          description: "Cache hit ratio is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-cache"
+          runbook: "https://docs.heygen.local/runbooks/low-cache-hit-ratio"
+
+      # Critical Cache Hit Ratio Alert
+      - alert: CriticalCacheHitRatio
+        expr: heygen:cache_hit_ratio < 0.50
+        for: 2m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: performance
+        annotations:
+          summary: "Critical cache hit ratio detected"
+          description: "Cache hit ratio is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-cache"
+          runbook: "https://docs.heygen.local/runbooks/critical-cache-hit-ratio"
+
+      # Redis Connection Issues
+      - alert: RedisConnectionIssues
+        expr: redis_up == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: infrastructure
+        annotations:
+          summary: "Redis connection issues detected"
+          description: "Redis is down for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-infrastructure"
+          runbook: "https://docs.heygen.local/runbooks/redis-connection-issues"
+
+  # =============================================================================
+  # AI/ML Model Performance Alerts
+  # =============================================================================
+  - name: heygen_ai_model_alerts
+    rules:
+      # High GPU Utilization Alert
+      - alert: HighGPUUtilization
+        expr: heygen:gpu_utilization > 90
+        for: 5m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: ai-performance
+        annotations:
+          summary: "High GPU utilization detected"
+          description: "GPU utilization is {{ $value }}% for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-ai-performance"
+          runbook: "https://docs.heygen.local/runbooks/high-gpu-utilization"
+
+      # Critical GPU Utilization Alert
+      - alert: CriticalGPUUtilization
+        expr: heygen:gpu_utilization > 95
+        for: 2m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: ai-performance
+        annotations:
+          summary: "Critical GPU utilization detected"
+          description: "GPU utilization is {{ $value }}% for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-ai-performance"
+          runbook: "https://docs.heygen.local/runbooks/critical-gpu-utilization"
+
+      # AI Model Inference Time Alert
+      - alert: HighAIModelInferenceTime
+        expr: histogram_quantile(0.95, sum(rate(ai_model_inference_duration_seconds_bucket[5m])) by (le)) > 10
+        for: 2m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: ai-performance
+        annotations:
+          summary: "High AI model inference time detected"
+          description: "P95 AI model inference time is {{ $value }}s for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-ai-performance"
+          runbook: "https://docs.heygen.local/runbooks/high-ai-inference-time"
+
+      # AI Model Error Rate Alert
+      - alert: HighAIModelErrorRate
+        expr: sum(rate(ai_model_errors_total[5m])) by (instance) / sum(rate(ai_model_requests_total[5m])) by (instance) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: ai-reliability
+        annotations:
+          summary: "High AI model error rate detected"
+          description: "AI model error rate is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-ai-reliability"
+          runbook: "https://docs.heygen.local/runbooks/high-ai-error-rate"
+
+  # =============================================================================
+  # Business Metrics Alerts
+  # =============================================================================
+  - name: heygen_business_alerts
+    rules:
+      # Video Generation Queue Alert
+      - alert: HighVideoGenerationQueue
+        expr: video_generation_queue_size > 100
+        for: 5m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: business
+        annotations:
+          summary: "High video generation queue detected"
+          description: "Video generation queue has {{ $value }} pending requests for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-business"
+          runbook: "https://docs.heygen.local/runbooks/high-video-queue"
+
+      # Video Generation Failure Rate Alert
+      - alert: HighVideoGenerationFailureRate
+        expr: sum(rate(video_generation_failures_total[5m])) by (instance) / sum(rate(video_generation_requests_total[5m])) by (instance) > 0.10
+        for: 2m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: business
+        annotations:
+          summary: "High video generation failure rate detected"
+          description: "Video generation failure rate is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-business"
+          runbook: "https://docs.heygen.local/runbooks/high-video-failure-rate"
+
+      # API Rate Limit Alert
+      - alert: APIRateLimitExceeded
+        expr: sum(rate(api_rate_limit_exceeded_total[5m])) by (instance) > 0
+        for: 1m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: business
+        annotations:
+          summary: "API rate limit exceeded"
+          description: "API rate limit exceeded for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-business"
+          runbook: "https://docs.heygen.local/runbooks/api-rate-limit"
+
+  # =============================================================================
+  # Infrastructure Alerts
+  # =============================================================================
+  - name: heygen_infrastructure_alerts
+    rules:
+      # Application Down Alert
+      - alert: HeyGenAIDown
+        expr: up{job="heygen-ai-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: infrastructure
+        annotations:
+          summary: "HeyGen AI application is down"
+          description: "HeyGen AI application has been down for more than 1 minute"
+          dashboard: "https://grafana.heygen.local/d/heygen-infrastructure"
+          runbook: "https://docs.heygen.local/runbooks/application-down"
+
+      # Database Connection Issues
+      - alert: DatabaseConnectionIssues
+        expr: up{job="postgres"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: infrastructure
+        annotations:
+          summary: "Database connection issues detected"
+          description: "Database is down for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-infrastructure"
+          runbook: "https://docs.heygen.local/runbooks/database-connection-issues"
+
+      # Load Balancer Issues
+      - alert: LoadBalancerIssues
+        expr: up{job="traefik"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: heygen-ai
+          category: infrastructure
+        annotations:
+          summary: "Load balancer issues detected"
+          description: "Traefik load balancer is down for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-infrastructure"
+          runbook: "https://docs.heygen.local/runbooks/load-balancer-issues"
+
+  # =============================================================================
+  # Optimization Alerts
+  # =============================================================================
+  - name: heygen_optimization_alerts
+    rules:
+      # Optimization Tier Degradation
+      - alert: OptimizationTierDegradation
+        expr: optimization_tier_current < optimization_tier_target
+        for: 5m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: optimization
+        annotations:
+          summary: "Optimization tier degradation detected"
+          description: "Current optimization tier ({{ $value }}) is below target for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-optimization"
+          runbook: "https://docs.heygen.local/runbooks/optimization-degradation"
+
+      # Performance Profiler Issues
+      - alert: PerformanceProfilerIssues
+        expr: performance_profiler_active == 0
+        for: 2m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: optimization
+        annotations:
+          summary: "Performance profiler issues detected"
+          description: "Performance profiler is inactive for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-optimization"
+          runbook: "https://docs.heygen.local/runbooks/profiler-issues"
+
+      # Auto-scaling Issues
+      - alert: AutoScalingIssues
+        expr: auto_scaling_active == 0
+        for: 2m
+        labels:
+          severity: warning
+          service: heygen-ai
+          category: optimization
+        annotations:
+          summary: "Auto-scaling issues detected"
+          description: "Auto-scaling is inactive for {{ $labels.instance }}"
+          dashboard: "https://grafana.heygen.local/d/heygen-optimization"
+          runbook: "https://docs.heygen.local/runbooks/auto-scaling-issues" 

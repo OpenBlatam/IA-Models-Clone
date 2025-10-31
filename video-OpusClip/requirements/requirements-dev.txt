@@ -1,0 +1,76 @@
+# Video-OpusClip Development Requirements
+# Additional dependencies for development and testing
+
+# Include main requirements
+-r requirements.txt
+
+# Development Tools
+jupyter==1.0.0
+ipython==8.18.1
+ipdb==0.13.13
+debugpy==1.8.0
+
+# Code Quality
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+flake8-docstrings==1.7.0
+flake8-import-order==0.18.2
+mypy==1.7.1
+mypy-extensions==1.0.0
+types-requests==2.31.0.10
+types-PyYAML==6.0.12.12
+types-python-dateutil==2.8.19.14
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+pytest-xdist==3.5.0
+pytest-benchmark==4.0.0
+pytest-html==4.1.1
+pytest-json-report==1.5.0
+factory-boy==3.3.0
+faker==20.1.0
+responses==0.24.1
+freezegun==1.2.2
+
+# Security
+bandit==1.7.5
+safety==2.3.5
+pip-audit==2.6.1
+
+# Documentation
+mkdocs==1.5.3
+mkdocs-material==9.4.8
+mkdocstrings[python]==0.24.0
+mkdocs-autorefs==0.4.1
+mkdocs-include-markdown-plugin==6.0.4
+
+# Pre-commit Hooks
+pre-commit==3.6.0
+commitizen==3.13.0
+
+# Monitoring & Profiling
+memory-profiler==0.61.0
+line-profiler==4.1.2
+py-spy==0.3.14
+
+# Database Testing
+pytest-postgresql==4.1.4
+pytest-redis==4.1.0
+
+# API Testing
+pytest-asyncio==0.21.1
+pytest-httpx==0.25.0
+pytest-aiohttp==1.0.4
+
+# Coverage
+coverage==7.3.2
+codecov==2.1.13
+
+# Environment Management
+pip-tools==7.3.0
+pipdeptree==2.13.2
+pip-check==2.0.0 

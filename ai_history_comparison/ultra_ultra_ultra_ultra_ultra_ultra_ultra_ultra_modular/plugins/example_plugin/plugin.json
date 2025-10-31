@@ -1,0 +1,45 @@
+{
+  "name": "example_plugin",
+  "version": "1.0.0",
+  "description": "Plugin de ejemplo para demostrar el sistema de plugins",
+  "author": "AI History Comparison Team",
+  "dependencies": [],
+  "entry_point": "main.ExamplePlugin",
+  "configuration": {
+    "enabled": true,
+    "priority": 100,
+    "settings": {
+      "debug_mode": false,
+      "max_retries": 3,
+      "timeout_seconds": 30
+    }
+  },
+  "hooks": [
+    "pre_analysis",
+    "post_analysis",
+    "pre_comparison",
+    "post_comparison"
+  ],
+  "extensions": [
+    {
+      "name": "example_analyzer",
+      "type": "analyzer",
+      "point": "pre_analysis"
+    },
+    {
+      "name": "example_transformer",
+      "type": "transformer", 
+      "point": "content_transformation"
+    }
+  ],
+  "metadata": {
+    "category": "analysis",
+    "tags": ["example", "demo", "analysis"],
+    "license": "MIT",
+    "homepage": "https://github.com/ai-history-comparison/example-plugin"
+  }
+}
+
+
+
+

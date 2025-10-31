@@ -1,0 +1,356 @@
+version: '3.8'
+
+services:
+  # Integration System (Main Gateway)
+  integration-system:
+    build:
+      context: ./integration_system
+      dockerfile: Dockerfile
+    container_name: integration-system
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=Blatam Academy Integration System
+      - DEBUG=false
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - SECRET_KEY=your-secure-secret-key-here
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/integration_db
+      - REDIS_URL=redis://redis:6379
+      - CONTENT_REDUNDANCY_ENDPOINT=http://content-redundancy:8001
+      - BUL_ENDPOINT=http://bul:8002
+      - GAMMA_APP_ENDPOINT=http://gamma-app:8003
+      - BUSINESS_AGENTS_ENDPOINT=http://business-agents:8004
+      - EXPORT_IA_ENDPOINT=http://export-ia:8005
+    depends_on:
+      - postgres
+      - redis
+      - content-redundancy
+      - bul
+      - gamma-app
+      - business-agents
+      - export-ia
+    networks:
+      - blatam-network
+    volumes:
+      - ./integration_system/logs:/app/logs
+      - ./integration_system/data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Content Redundancy Detector
+  content-redundancy:
+    build:
+      context: ./content_redundancy_detector
+      dockerfile: Dockerfile
+    container_name: content-redundancy
+    ports:
+      - "8001:8000"
+    environment:
+      - APP_NAME=Content Redundancy Detector
+      - DEBUG=false
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - MAX_CONTENT_LENGTH=10485760
+      - MIN_CONTENT_LENGTH=10
+    networks:
+      - blatam-network
+    volumes:
+      - ./content_redundancy_detector/logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # BUL (Business Unlimited)
+  bul:
+    build:
+      context: ./bulk
+      dockerfile: Dockerfile
+    container_name: bul
+    ports:
+      - "8002:8000"
+    environment:
+      - APP_NAME=BUL - Business Unlimited
+      - DEBUG=false
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - BUL_DEBUG=false
+      - BUL_MAX_CONCURRENT_TASKS=5
+    networks:
+      - blatam-network
+    volumes:
+      - ./bulk/logs:/app/logs
+      - ./bulk/exports:/app/exports
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Gamma App
+  gamma-app:
+    build:
+      context: ./gamma_app
+      dockerfile: Dockerfile
+    container_name: gamma-app
+    ports:
+      - "8003:8000"
+    environment:
+      - APP_NAME=Gamma App
+      - DEBUG=false
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - SECRET_KEY=your-secure-secret-key-here
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/gamma_db
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - blatam-network
+    volumes:
+      - ./gamma_app/logs:/app/logs
+      - ./gamma_app/static:/app/static
+      - ./gamma_app/uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Business Agents
+  business-agents:
+    build:
+      context: ./business_agents
+      dockerfile: Dockerfile
+    container_name: business-agents
+    ports:
+      - "8004:8000"
+    environment:
+      - APP_NAME=Business Agents System
+      - DEBUG=false
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - SECRET_KEY=your-secure-secret-key-here
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/business_agents_db
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - blatam-network
+    volumes:
+      - ./business_agents/logs:/app/logs
+      - ./business_agents/workflows:/app/workflows
+      - ./business_agents/documents:/app/documents
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Export IA
+  export-ia:
+    build:
+      context: ./export_ia
+      dockerfile: Dockerfile
+    container_name: export-ia
+    ports:
+      - "8005:8000"
+    environment:
+      - APP_NAME=Export IA
+      - DEBUG=false
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - SECRET_KEY=your-secure-secret-key-here
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/export_ia_db
+      - REDIS_URL=redis://redis:6379
+      - MAX_FILE_SIZE=52428800
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - blatam-network
+    volumes:
+      - ./export_ia/logs:/app/logs
+      - ./export_ia/exports:/app/exports
+      - ./export_ia/analytics:/app/analytics
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=blatam_academy
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_MULTIPLE_DATABASES=integration_db,gamma_db,business_agents_db,export_ia_db
+    networks:
+      - blatam-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass redispassword
+    networks:
+      - blatam-network
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - integration-system
+    networks:
+      - blatam-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Monitoring with Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - blatam-network
+    restart: unless-stopped
+
+  # Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - blatam-network
+    restart: unless-stopped
+
+  # Log Aggregation with ELK Stack
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - blatam-network
+    restart: unless-stopped
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.0
+    container_name: logstash
+    volumes:
+      - ./monitoring/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
+    networks:
+      - blatam-network
+    restart: unless-stopped
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - blatam-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+  elasticsearch_data:
+
+networks:
+  blatam-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

@@ -1,0 +1,68 @@
+{
+  "timestamp": "2025-09-12T15:25:08.497506",
+  "total_tests": 8,
+  "passed_tests": 8,
+  "failed_tests": 0,
+  "skipped_tests": 0,
+  "error_tests": 0,
+  "total_duration": 0.14022517204284668,
+  "coverage_percentage": 96.875,
+  "test_results": [
+    {
+      "name": "Basic Functionality - Basic Operations",
+      "status": "passed",
+      "duration": 0.0,
+      "message": null,
+      "coverage": 100.0
+    },
+    {
+      "name": "Import Tests - Import Validation",
+      "status": "passed",
+      "duration": 0.10400009155273438,
+      "message": null,
+      "coverage": 75.0
+    },
+    {
+      "name": "Performance Tests - Performance Benchmarks",
+      "status": "passed",
+      "duration": 0.0,
+      "message": null,
+      "coverage": 100.0
+    },
+    {
+      "name": "Integration Tests - System Integration",
+      "status": "passed",
+      "duration": 0.015236854553222656,
+      "message": null,
+      "coverage": 100.0
+    },
+    {
+      "name": "Error Handling Tests - Exception Handling",
+      "status": "passed",
+      "duration": 0.0,
+      "message": null,
+      "coverage": 100.0
+    },
+    {
+      "name": "Data Structure Tests - Data Structures",
+      "status": "passed",
+      "duration": 0.001004934310913086,
+      "message": null,
+      "coverage": 100.0
+    },
+    {
+      "name": "Async Tests - Async Operations",
+      "status": "passed",
+      "duration": 0.014000892639160156,
+      "message": null,
+      "coverage": 100.0
+    },
+    {
+      "name": "Serialization Tests - Serialization",
+      "status": "passed",
+      "duration": 0.0,
+      "message": null,
+      "coverage": 100.0
+    }
+  ]
+}

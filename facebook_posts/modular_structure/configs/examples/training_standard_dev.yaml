@@ -1,0 +1,38 @@
+# 🚀 Development Training Configuration
+# Environment-specific overrides for development
+# This file extends training_standard.yaml with development-specific settings
+
+# Quick training for development
+num_epochs: 10
+batch_size: 16
+log_interval: 10
+eval_interval: 1
+save_interval: 2
+
+# Faster convergence for testing
+learning_rate: 0.01
+early_stopping: false
+
+# Reduced workers for development
+num_workers: 2
+pin_memory: false
+
+# Less aggressive augmentation
+augmentation_config:
+  horizontal_flip: 0.3
+  rotation: 5.0
+  brightness: 0.1
+  contrast: 0.1
+
+# Development experiment tracking
+experiment_name: "dev_classification_training"
+tags: 
+  - "development"
+  - "quick_test"
+notes: "Development configuration for quick testing and iteration"
+
+
+
+
+
+

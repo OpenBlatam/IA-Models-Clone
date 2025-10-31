@@ -1,0 +1,396 @@
+# HeyGen AI Enterprise - Advanced MLOps System Configuration
+# This file contains comprehensive configuration for the Advanced MLOps System
+
+general:
+  enabled: true
+  log_level: "INFO"
+  enable_debug_mode: false
+  enable_audit_logging: true
+  enable_metrics_collection: true
+  enable_health_checks: true
+  health_check_interval_seconds: 60
+
+# Core MLOps Components
+core_components:
+  model_registry:
+    enabled: true
+    registry_path: "mlops_registry"
+    max_model_versions: 10
+    enable_auto_archiving: true
+    archive_threshold_days: 90
+    enable_version_control: true
+    enable_model_signatures: true
+    enable_model_metadata: true
+    enable_model_lineage: true
+  
+  deployment_pipelines:
+    enabled: true
+    enable_auto_deployment: true
+    enable_rollback: true
+    enable_canary_deployments: true
+    enable_blue_green_deployments: true
+    deployment_timeout_minutes: 30
+    health_check_interval_seconds: 60
+    enable_deployment_approval: true
+    enable_deployment_notifications: true
+  
+  lifecycle_management:
+    enabled: true
+    enable_auto_retraining: true
+    enable_performance_monitoring: true
+    enable_drift_detection: true
+    enable_model_decay_detection: true
+    enable_automated_archiving: true
+    enable_lifecycle_policies: true
+    enable_compliance_tracking: true
+
+# MLflow Integration
+mlflow_integration:
+  enabled: true
+  tracking_uri: "file://mlops_registry/mlflow"
+  experiment_name: "HeyGen_AI_Enterprise_MLOps"
+  enable_model_registry: true
+  enable_experiment_tracking: true
+  enable_artifact_logging: true
+  enable_metric_logging: true
+  enable_parameter_logging: true
+  enable_tagging: true
+  enable_search: true
+
+# Model Registry Settings
+model_registry_settings:
+  supported_model_types:
+    - "pytorch"
+    - "tensorflow"
+    - "sklearn"
+    - "onnx"
+    - "custom"
+    - "huggingface"
+    - "pytorch_lightning"
+  
+  model_validation:
+    enable_schema_validation: true
+    enable_model_testing: true
+    enable_performance_validation: true
+    enable_security_scanning: true
+    enable_compliance_checking: true
+  
+  model_storage:
+    storage_backend: "local"  # local, s3, gcs, azure
+    enable_compression: true
+    enable_encryption: false
+    enable_backup: true
+    backup_retention_days: 365
+
+# Deployment Pipeline Settings
+deployment_pipeline_settings:
+  environments:
+    development:
+      enabled: true
+      auto_approval: true
+      health_check_required: false
+      rollback_enabled: true
+    
+    staging:
+      enabled: true
+      auto_approval: false
+      health_check_required: true
+      rollback_enabled: true
+      approval_required: true
+    
+    production:
+      enabled: true
+      auto_approval: false
+      health_check_required: true
+      rollback_enabled: true
+      approval_required: true
+      canary_deployment: true
+  
+  deployment_strategies:
+    rolling_update:
+      enabled: true
+      max_unavailable: 1
+      max_surge: 1
+    
+    canary:
+      enabled: true
+      traffic_split: 0.1
+      evaluation_period_minutes: 30
+      success_threshold: 0.95
+    
+    blue_green:
+      enabled: true
+      switchover_timeout_minutes: 10
+      enable_automatic_switchback: true
+  
+  health_checks:
+    enable_liveness_probe: true
+    enable_readiness_probe: true
+    enable_startup_probe: true
+    health_check_timeout_seconds: 30
+    health_check_retries: 3
+    health_check_interval_seconds: 10
+
+# Lifecycle Management Settings
+lifecycle_management_settings:
+  retraining:
+    enable_automated_retraining: true
+    enable_scheduled_retraining: true
+    enable_performance_based_retraining: true
+    enable_data_drift_retraining: true
+    retraining_schedule: "0 2 * * *"  # Daily at 2 AM
+    performance_threshold: 0.85
+    drift_threshold: 0.1
+    max_retraining_frequency_days: 7
+  
+  archiving:
+    enable_automated_archiving: true
+    archive_criteria:
+      - "performance_below_threshold"
+      - "age_exceeds_limit"
+      - "replaced_by_newer_version"
+      - "manual_archival"
+    archive_retention_days: 365
+    enable_archive_compression: true
+    enable_archive_encryption: false
+  
+  monitoring:
+    enable_performance_monitoring: true
+    enable_drift_detection: true
+    enable_data_quality_monitoring: true
+    enable_model_bias_monitoring: true
+    enable_model_fairness_monitoring: true
+    monitoring_interval_minutes: 15
+    alert_threshold: 0.8
+
+# A/B Testing Framework
+ab_testing:
+  enabled: true
+  traffic_split_strategy: "weighted_random"
+  enable_dynamic_traffic_splitting: true
+  enable_automatic_winner_selection: true
+  evaluation_metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "latency"
+    - "throughput"
+  evaluation_period_days: 7
+  statistical_significance_threshold: 0.05
+  enable_multivariate_testing: true
+
+# Security and Compliance
+security_compliance:
+  authentication:
+    enable_mfa: true
+    enable_oauth2: true
+    enable_saml: true
+    enable_ldap: true
+  
+  authorization:
+    enable_rbac: true
+    enable_abac: true
+    enable_audit_logging: true
+    enable_access_control: true
+  
+  compliance:
+    enable_gdpr_compliance: true
+    enable_soc2_compliance: true
+    enable_hipaa_compliance: false
+    enable_iso27001_compliance: true
+    enable_audit_trail: true
+    enable_data_governance: true
+  
+  encryption:
+    enable_data_at_rest: true
+    enable_data_in_transit: true
+    enable_model_encryption: false
+    encryption_algorithm: "AES-256"
+
+# Performance and Scalability
+performance_scalability:
+  enable_horizontal_scaling: true
+  enable_vertical_scaling: true
+  enable_load_balancing: true
+  enable_caching: true
+  enable_cdn: false
+  
+  resource_limits:
+    max_concurrent_deployments: 10
+    max_concurrent_training_jobs: 5
+    max_model_size_mb: 1024
+    max_registry_size_gb: 100
+  
+  optimization:
+    enable_model_compression: true
+    enable_model_quantization: true
+    enable_model_pruning: true
+    enable_batch_processing: true
+    enable_async_processing: true
+
+# Monitoring and Observability
+monitoring_observability:
+  enable_metrics_collection: true
+  enable_logging: true
+  enable_tracing: true
+  enable_alerting: true
+  
+  metrics:
+    enable_prometheus_metrics: true
+    enable_custom_metrics: true
+    metrics_retention_days: 90
+    metrics_aggregation_interval: 60
+  
+  logging:
+    log_level: "INFO"
+    log_format: "json"
+    log_retention_days: 90
+    enable_structured_logging: true
+    enable_log_aggregation: true
+  
+  alerting:
+    enable_email_alerts: true
+    enable_slack_alerts: false
+    enable_webhook_alerts: true
+    alert_thresholds:
+      deployment_failure_rate: 0.05
+      model_performance_degradation: 0.1
+      system_resource_usage: 0.8
+
+# Integration Settings
+integration_settings:
+  enable_kubernetes_integration: true
+  enable_docker_integration: true
+  enable_ci_cd_integration: true
+  enable_git_integration: true
+  enable_jira_integration: false
+  enable_slack_integration: false
+  
+  kubernetes:
+    enable_namespace_isolation: true
+    enable_resource_quotas: true
+    enable_pod_security_policies: true
+    enable_network_policies: true
+  
+  docker:
+    enable_image_scanning: true
+    enable_image_signing: false
+    enable_registry_mirroring: false
+    enable_layer_caching: true
+
+# Data Management
+data_management:
+  enable_data_versioning: true
+  enable_data_lineage: true
+  enable_data_quality_monitoring: true
+  enable_data_privacy: true
+  
+  data_storage:
+    enable_data_caching: true
+    enable_data_compression: true
+    enable_data_encryption: false
+    data_retention_days: 365
+  
+  data_processing:
+    enable_batch_processing: true
+    enable_stream_processing: false
+    enable_real_time_processing: false
+    enable_data_transformation: true
+
+# Advanced Features
+advanced_features:
+  enable_ml_pipelines: true
+  enable_feature_stores: false
+  enable_model_serving: true
+  enable_batch_inference: true
+  enable_real_time_inference: false
+  
+  ml_pipelines:
+    enable_automated_pipeline_creation: true
+    enable_pipeline_versioning: true
+    enable_pipeline_monitoring: true
+    enable_pipeline_optimization: true
+  
+  model_serving:
+    enable_grpc_serving: true
+    enable_rest_serving: true
+    enable_graphql_serving: false
+    enable_batch_serving: true
+    enable_edge_serving: false
+
+# Experimental Features
+experimental_features:
+  enable_auto_ml_integration: true
+  enable_federated_learning_integration: true
+  enable_quantum_computing_integration: false
+  enable_edge_computing_integration: false
+  enable_federated_mlops: false
+  
+  auto_ml:
+    enable_neural_architecture_search: true
+    enable_hyperparameter_optimization: true
+    enable_feature_engineering: true
+    enable_model_selection: true
+  
+  federated_learning:
+    enable_federated_training: true
+    enable_federated_evaluation: true
+    enable_secure_aggregation: true
+    enable_privacy_preserving_ml: true
+
+# Deployment and Operations
+deployment_operations:
+  enable_blueprint_deployment: true
+  enable_infrastructure_as_code: true
+  enable_environment_management: true
+  enable_configuration_management: true
+  
+  infrastructure:
+    enable_terraform_integration: false
+    enable_ansible_integration: false
+    enable_helm_integration: true
+    enable_operator_integration: false
+  
+  configuration:
+    enable_config_validation: true
+    enable_config_versioning: true
+    enable_config_rollback: true
+    enable_config_templating: true
+
+# Backup and Disaster Recovery
+backup_disaster_recovery:
+  enable_automated_backups: true
+  enable_backup_encryption: false
+  enable_backup_compression: true
+  backup_schedule: "0 1 * * *"  # Daily at 1 AM
+  
+  backup_retention:
+    daily_backups: 7
+    weekly_backups: 4
+    monthly_backups: 12
+    yearly_backups: 5
+  
+  disaster_recovery:
+    enable_cross_region_backup: false
+    enable_point_in_time_recovery: true
+    recovery_time_objective_minutes: 60
+    recovery_point_objective_minutes: 15
+
+# Cost Optimization
+cost_optimization:
+  enable_cost_monitoring: true
+  enable_cost_alerting: true
+  enable_cost_optimization: true
+  enable_resource_scheduling: true
+  
+  cost_thresholds:
+    monthly_budget_limit: 1000
+    cost_alert_threshold: 0.8
+    cost_critical_threshold: 0.95
+  
+  optimization_strategies:
+    enable_spot_instance_usage: false
+    enable_auto_scaling: true
+    enable_resource_rightsizing: true
+    enable_idle_resource_cleanup: true

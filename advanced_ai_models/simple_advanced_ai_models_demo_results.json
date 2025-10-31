@@ -1,0 +1,289 @@
+{
+  "transformer_results": {
+    "transformer_forward": {
+      "success": true,
+      "input_shape": [
+        2,
+        10
+      ],
+      "output_shape": [
+        2,
+        10,
+        1000
+      ],
+      "execution_time": 0.11527013778686523,
+      "vocab_size": 1000
+    },
+    "transformer_generation": {
+      "success": true,
+      "generated_length": 20,
+      "execution_time": 0.00011992454528808594,
+      "sample_tokens": [
+        202,
+        365,
+        878,
+        569,
+        399
+      ]
+    }
+  },
+  "vision_results": {
+    "vision_forward": {
+      "success": true,
+      "input_shape": [
+        2,
+        3,
+        32,
+        32
+      ],
+      "output_shape": [
+        2,
+        10
+      ],
+      "execution_time": 0.058461666107177734,
+      "num_classes": 10
+    },
+    "image_classification": {
+      "success": true,
+      "top_predictions": [
+        2,
+        3,
+        5
+      ],
+      "probabilities": [
+        0.10920622199773788,
+        0.10784654319286346,
+        0.10658268630504608
+      ],
+      "execution_time": 0.0058612823486328125
+    }
+  },
+  "diffusion_results": {
+    "diffusion_forward": {},
+    "noise_generation": {},
+    "error": "Given groups=1, weight of size [64, 3, 3, 3], expected input[1, 4, 32, 32] to have 3 channels, but got 4 channels instead"
+  },
+  "llm_results": {
+    "llm_forward": {
+      "success": true,
+      "input_shape": [
+        1,
+        10
+      ],
+      "output_shape": [
+        1,
+        10,
+        1000
+      ],
+      "execution_time": 0.07836508750915527,
+      "vocab_size": 1000
+    },
+    "text_generation": {
+      "success": true,
+      "input_prompt": "Hello",
+      "generated_text": "Hello\u000e&jjjjjjjjjjjjjjjjjj",
+      "execution_time": 0.12609076499938965,
+      "text_length": 25
+    }
+  },
+  "performance_results": {
+    "memory_usage": {
+      "note": "GPU not available"
+    },
+    "inference_speed": {
+      "batch_1": {
+        "avg_inference_time_ms": 0.16396284103393555,
+        "throughput_samples_per_sec": 6098.94286836021,
+        "batch_size": 1
+      },
+      "batch_4": {
+        "avg_inference_time_ms": 0.2804851531982422,
+        "throughput_samples_per_sec": 14261.004386114038,
+        "batch_size": 4
+      },
+      "batch_8": {
+        "avg_inference_time_ms": 0.5997443199157715,
+        "throughput_samples_per_sec": 13339.017535211546,
+        "batch_size": 8
+      }
+    },
+    "model_sizes": {
+      "transformer": {
+        "total_parameters": 3697640,
+        "trainable_parameters": 3697640,
+        "size_mb": 14.105377197265625
+      },
+      "vision": {
+        "total_parameters": 102154,
+        "trainable_parameters": 102154,
+        "size_mb": 0.38968658447265625
+      },
+      "diffusion": {
+        "total_parameters": 204547,
+        "trainable_parameters": 204547,
+        "size_mb": 0.7802848815917969
+      },
+      "llm": {
+        "total_parameters": 1565672,
+        "trainable_parameters": 1565672,
+        "size_mb": 5.972564697265625
+      }
+    }
+  },
+  "comprehensive_report": {
+    "demo_summary": {
+      "total_models": 4,
+      "available_models": [
+        "transformer",
+        "vision",
+        "diffusion",
+        "llm"
+      ],
+      "device": "cpu",
+      "timestamp": "2025-07-02 23:07:13"
+    },
+    "model_results": {
+      "transformer": {
+        "transformer_forward": {
+          "success": true,
+          "input_shape": [
+            2,
+            10
+          ],
+          "output_shape": [
+            2,
+            10,
+            1000
+          ],
+          "execution_time": 0.11527013778686523,
+          "vocab_size": 1000
+        },
+        "transformer_generation": {
+          "success": true,
+          "generated_length": 20,
+          "execution_time": 0.00011992454528808594,
+          "sample_tokens": [
+            202,
+            365,
+            878,
+            569,
+            399
+          ]
+        }
+      },
+      "vision": {
+        "vision_forward": {
+          "success": true,
+          "input_shape": [
+            2,
+            3,
+            32,
+            32
+          ],
+          "output_shape": [
+            2,
+            10
+          ],
+          "execution_time": 0.058461666107177734,
+          "num_classes": 10
+        },
+        "image_classification": {
+          "success": true,
+          "top_predictions": [
+            2,
+            3,
+            5
+          ],
+          "probabilities": [
+            0.10920622199773788,
+            0.10784654319286346,
+            0.10658268630504608
+          ],
+          "execution_time": 0.0058612823486328125
+        }
+      },
+      "diffusion": {
+        "diffusion_forward": {},
+        "noise_generation": {},
+        "error": "Given groups=1, weight of size [64, 3, 3, 3], expected input[1, 4, 32, 32] to have 3 channels, but got 4 channels instead"
+      },
+      "llm": {
+        "llm_forward": {
+          "success": true,
+          "input_shape": [
+            1,
+            10
+          ],
+          "output_shape": [
+            1,
+            10,
+            1000
+          ],
+          "execution_time": 0.07836508750915527,
+          "vocab_size": 1000
+        },
+        "text_generation": {
+          "success": true,
+          "input_prompt": "Hello",
+          "generated_text": "Hello\u000e&jjjjjjjjjjjjjjjjjj",
+          "execution_time": 0.12609076499938965,
+          "text_length": 25
+        }
+      }
+    },
+    "performance_metrics": {
+      "memory_usage": {
+        "note": "GPU not available"
+      },
+      "inference_speed": {
+        "batch_1": {
+          "avg_inference_time_ms": 0.16396284103393555,
+          "throughput_samples_per_sec": 6098.94286836021,
+          "batch_size": 1
+        },
+        "batch_4": {
+          "avg_inference_time_ms": 0.2804851531982422,
+          "throughput_samples_per_sec": 14261.004386114038,
+          "batch_size": 4
+        },
+        "batch_8": {
+          "avg_inference_time_ms": 0.5997443199157715,
+          "throughput_samples_per_sec": 13339.017535211546,
+          "batch_size": 8
+        }
+      },
+      "model_sizes": {
+        "transformer": {
+          "total_parameters": 3697640,
+          "trainable_parameters": 3697640,
+          "size_mb": 14.105377197265625
+        },
+        "vision": {
+          "total_parameters": 102154,
+          "trainable_parameters": 102154,
+          "size_mb": 0.38968658447265625
+        },
+        "diffusion": {
+          "total_parameters": 204547,
+          "trainable_parameters": 204547,
+          "size_mb": 0.7802848815917969
+        },
+        "llm": {
+          "total_parameters": 1565672,
+          "trainable_parameters": 1565672,
+          "size_mb": 5.972564697265625
+        }
+      }
+    },
+    "recommendations": [
+      "\u26a0\ufe0f Some models failed to load. Consider using smaller models or checking GPU memory.",
+      "\u26a1 Excellent inference speed! Consider increasing batch size for better throughput."
+    ],
+    "system_info": {
+      "torch_version": "2.7.1+cpu",
+      "cuda_available": false,
+      "cuda_version": "N/A",
+      "device_count": 0
+    }
+  }
+}

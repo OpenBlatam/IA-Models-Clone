@@ -1,0 +1,278 @@
+# Blaze AI Configuration Example
+# This file demonstrates all available configuration options for the refactored Blaze AI module
+
+# System Configuration
+system_mode: "production"  # development, staging, production, testing
+log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_file: "./logs/blaze_ai.log"
+data_dir: "./data"
+models_dir: "./models"
+checkpoints_dir: "./checkpoints"
+
+# Database Configuration
+database:
+  url: "sqlite:///blaze_ai.db"
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  pool_recycle: 3600
+  echo: false
+
+# Cache Configuration
+cache:
+  redis_url: "redis://localhost:6379"
+  ttl: 3600
+  max_size: 10000
+  enable_local_cache: true
+  enable_distributed_cache: false
+
+# Security Configuration
+security:
+  enable_encryption: false
+  encryption_key: null
+  enable_rate_limiting: true
+  rate_limit_per_minute: 100
+  enable_audit_logging: true
+  allowed_origins:
+    - "*"
+    - "http://localhost:3000"
+    - "https://yourdomain.com"
+
+# Monitoring Configuration
+monitoring:
+  enable_metrics: true
+  enable_tracing: false
+  enable_profiling: false
+  metrics_port: 9090
+  prometheus_endpoint: "/metrics"
+  health_check_interval: 30
+  enable_alerting: true
+
+# Model Configuration
+model:
+  device: "auto"  # auto, cpu, cuda, mps
+  precision: "float16"  # float32, float16, bfloat16
+  enable_amp: true
+  max_batch_size: 32
+  model_cache_dir: "./model_cache"
+  enable_model_compilation: false
+  enable_quantization: false
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  enable_cors: true
+  enable_docs: true
+  api_prefix: "/api/v1"
+  timeout: 30
+  max_request_size: 10485760  # 10MB
+
+# Gradio Configuration
+gradio:
+  enable_gradio: true
+  gradio_port: 7860
+  gradio_host: "0.0.0.0"
+  enable_auth: false
+  auth_username: null
+  auth_password: null
+  theme: "default"
+
+# LLM Engine Configuration
+llm_engine:
+  model_name: "gpt2"
+  cache_capacity: 128
+  generation_overrides:
+    max_length: 100
+    temperature: 0.7
+    top_p: 0.9
+    do_sample: true
+  circuit_breaker:
+    failure_threshold: 5
+    recovery_timeout: 60.0
+    monitor_interval: 10.0
+
+# Diffusion Engine Configuration
+diffusion_engine:
+  model_id: "runwayml/stable-diffusion-v1-5"
+  enable_xformers: true
+  attention_slicing: "auto"
+  vae_slicing: true
+  cpu_offload: false
+  circuit_breaker:
+    failure_threshold: 3
+    recovery_timeout: 120.0
+    monitor_interval: 15.0
+
+# Router Engine Configuration
+router_engine:
+  enable_caching: true
+  cache_ttl: 1800
+  max_concurrent_requests: 50
+  circuit_breaker:
+    failure_threshold: 10
+    recovery_timeout: 30.0
+    monitor_interval: 5.0
+
+# SEO Service Configuration
+seo_service:
+  enable_yake: true
+  enable_textstat: true
+  keyword_extraction_language: "en"
+  max_keywords: 10
+  readability_formula: "flesch_reading_ease"
+
+# Brand Voice Service Configuration
+brand_service:
+  enable_learning: true
+  max_samples: 100
+  similarity_threshold: 0.8
+  enable_caching: true
+  cache_ttl: 3600
+
+# Content Generation Service Configuration
+generation_service:
+  enable_templates: true
+  max_content_length: 2000
+  enable_plagiarism_check: false
+  enable_sentiment_analysis: true
+
+# Analytics Service Configuration
+analytics_service:
+  enable_textstat: true
+  enable_sentiment_analysis: true
+  enable_keyword_extraction: true
+  enable_readability_analysis: true
+
+# Planner Service Configuration
+planner_service:
+  enable_scheduling: true
+  max_plans: 1000
+  enable_notifications: false
+  notification_email: null
+
+# Performance and Optimization
+enable_async: true
+max_concurrent_requests: 100
+request_timeout: 60
+enable_circuit_breaker: true
+
+# Development and Debugging
+enable_debug: false
+enable_hot_reload: false
+enable_testing: false
+
+# Advanced Features
+features:
+  enable_batch_processing: true
+  enable_streaming: false
+  enable_websockets: false
+  enable_grpc: false
+  
+# External Integrations
+integrations:
+  openai:
+    api_key: null
+    organization: null
+    base_url: "https://api.openai.com/v1"
+  
+  anthropic:
+    api_key: null
+    base_url: "https://api.anthropic.com"
+  
+  huggingface:
+    token: null
+    inference_endpoint: null
+  
+  elasticsearch:
+    url: "http://localhost:9200"
+    index_prefix: "blaze_ai"
+  
+  redis:
+    url: "redis://localhost:6379"
+    db: 0
+  
+  prometheus:
+    enabled: true
+    port: 9090
+    path: "/metrics"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    console:
+      enabled: true
+      level: "INFO"
+    file:
+      enabled: true
+      level: "DEBUG"
+      filename: "./logs/blaze_ai.log"
+      max_bytes: 10485760  # 10MB
+      backup_count: 5
+    json:
+      enabled: false
+      filename: "./logs/blaze_ai.json"
+
+# Training Configuration
+training:
+  enable_tensorboard: true
+  enable_wandb: false
+  wandb_project: "blaze_ai"
+  checkpoint_interval: 1000
+  validation_interval: 500
+  early_stopping_patience: 10
+  learning_rate_scheduler: "cosine"
+  gradient_clipping: 1.0
+  mixed_precision: true
+
+# Model Fine-tuning
+fine_tuning:
+  enable_lora: true
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.1
+  enable_qlora: false
+  enable_adalora: false
+
+# Data Processing
+data_processing:
+  max_sequence_length: 512
+  batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2
+  persistent_workers: true
+
+# Evaluation
+evaluation:
+  enable_cross_validation: true
+  cv_folds: 5
+  evaluation_metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+    - "roc_auc"
+  enable_confusion_matrix: true
+  enable_classification_report: true
+
+# Deployment
+deployment:
+  environment: "production"
+  version: "2.0.0"
+  docker_image: "blaze-ai:latest"
+  kubernetes:
+    enabled: false
+    namespace: "blaze-ai"
+    replicas: 3
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "1Gi"
+      limits:
+        cpu: "2"
+        memory: "4Gi"
+

@@ -1,0 +1,422 @@
+# HeyGen AI Enterprise - Advanced Edge AI & IoT System Configuration
+general:
+  enabled: true
+  log_level: "INFO"
+  enable_debug_mode: false
+  enable_audit_logging: true
+
+core_components:
+  edge_computing:
+    enabled: true
+    enable_auto_optimization: true
+    enable_load_balancing: true
+    enable_failover: true
+  
+  iot_management:
+    enabled: true
+    enable_auto_discovery: true
+    enable_auto_provisioning: true
+    enable_device_monitoring: true
+  
+  real_time_inference:
+    enabled: true
+    enable_streaming: true
+    enable_batch_processing: true
+    enable_hybrid_modes: true
+  
+  edge_cloud_orchestration:
+    enabled: true
+    enable_workload_placement: true
+    enable_data_sync: true
+    enable_service_discovery: true
+
+edge_computing_settings:
+  optimization:
+    enable_model_compression: true
+    enable_quantization: true
+    enable_pruning: true
+    enable_edge_caching: true
+    compression_ratio: 0.7
+    quantization_bits: 8
+  
+  resource_management:
+    max_cpu_usage: 0.9
+    max_memory_usage: 0.85
+    max_storage_usage: 0.8
+    max_network_usage: 0.9
+    enable_resource_monitoring: true
+    resource_check_interval: 5
+  
+  load_balancing:
+    algorithm: "weighted_round_robin"
+    health_check_interval: 10
+    max_retries: 3
+    enable_sticky_sessions: true
+  
+  failover:
+    enable_automatic_failover: true
+    failover_threshold: 3
+    recovery_timeout: 300
+    enable_graceful_degradation: true
+
+iot_device_settings:
+  device_types:
+    sensor:
+      max_models: 5
+      memory_limit_mb: 1024
+      storage_limit_gb: 32
+      network_limit_mbps: 100
+    
+    camera:
+      max_models: 10
+      memory_limit_mb: 8192
+      storage_limit_gb: 256
+      network_limit_mbps: 1000
+    
+    gateway:
+      max_models: 20
+      memory_limit_mb: 16384
+      storage_limit_gb: 512
+      network_limit_mbps: 10000
+    
+    edge_server:
+      max_models: 50
+      memory_limit_mb: 32768
+      storage_limit_gb: 1024
+      network_limit_mbps: 25000
+    
+    mobile_device:
+      max_models: 8
+      memory_limit_mb: 4096
+      storage_limit_gb: 128
+      network_limit_mbps: 5000
+    
+    embedded:
+      max_models: 3
+      memory_limit_mb: 512
+      storage_limit_gb: 16
+      network_limit_mbps: 50
+  
+  auto_provisioning:
+    enable_model_auto_install: true
+    enable_config_auto_update: true
+    enable_firmware_auto_update: true
+    update_check_interval: 3600
+  
+  device_monitoring:
+    heartbeat_interval: 30
+    health_check_interval: 60
+    resource_monitoring_interval: 10
+    enable_alerting: true
+    alert_thresholds:
+      cpu_usage: 0.9
+      memory_usage: 0.85
+      storage_usage: 0.8
+      network_usage: 0.9
+
+real_time_inference_settings:
+  inference_modes:
+    real_time:
+      enabled: true
+      max_latency_ms: 50
+      batch_size: 1
+      enable_streaming: true
+    
+    batch:
+      enabled: true
+      max_latency_ms: 1000
+      batch_size: 32
+      enable_dynamic_batching: true
+    
+    streaming:
+      enabled: true
+      max_latency_ms: 100
+      stream_buffer_size: 1000
+      enable_backpressure: true
+    
+    hybrid:
+      enabled: true
+      mode_selection: "adaptive"
+      enable_mode_switching: true
+  
+  performance_optimization:
+    inference_latency_target_ms: 100
+    enable_model_caching: true
+    enable_result_caching: true
+    cache_ttl_seconds: 3600
+    enable_parallel_inference: true
+    max_parallel_requests: 10
+  
+  model_management:
+    enable_model_auto_loading: true
+    enable_model_versioning: true
+    enable_model_rollback: true
+    model_validation_enabled: true
+    enable_model_metrics: true
+
+edge_cloud_orchestration_settings:
+  workload_placement:
+    placement_strategy: "latency_aware"
+    enable_cost_optimization: true
+    enable_energy_efficiency: true
+    placement_weights:
+      latency: 0.4
+      cost: 0.3
+      energy: 0.2
+      security: 0.1
+  
+  edge_tiers:
+    tier_1:
+      name: "ultra_low_latency"
+      max_latency_ms: 50
+      target_devices: ["camera", "gateway"]
+      priority: "high"
+    
+    tier_2:
+      name: "low_latency"
+      max_latency_ms: 200
+      target_devices: ["edge_server", "mobile_device"]
+      priority: "medium"
+    
+    tier_3:
+      name: "standard"
+      max_latency_ms: 1000
+      target_devices: ["gateway", "edge_server"]
+      priority: "normal"
+    
+    tier_4:
+      name: "batch_processing"
+      max_latency_ms: 5000
+      target_devices: ["cloud"]
+      priority: "low"
+  
+  data_synchronization:
+    sync_strategy: "real_time"
+    sync_interval: 5
+    enable_incremental_sync: true
+    enable_conflict_resolution: true
+    max_sync_retries: 3
+  
+  service_discovery:
+    enable_service_registry: true
+    service_health_check_interval: 30
+    enable_service_load_balancing: true
+    service_discovery_timeout: 10
+
+security_compliance:
+  edge_security:
+    enabled: true
+    enable_device_authentication: true
+    enable_data_encryption: true
+    enable_secure_communication: true
+  
+  device_authentication:
+    auth_method: "certificate_based"
+    enable_mfa: true
+    session_timeout: 3600
+    max_failed_attempts: 5
+  
+  data_encryption:
+    encryption_algorithm: "AES-256"
+    enable_transit_encryption: true
+    enable_at_rest_encryption: true
+    key_rotation_interval: 86400
+  
+  compliance:
+    enable_gdpr_compliance: true
+    enable_hipaa_compliance: false
+    enable_soc2_compliance: true
+    enable_audit_logging: true
+    data_retention_days: 2555
+
+monitoring_observability:
+  metrics_collection:
+    enable_performance_metrics: true
+    enable_resource_metrics: true
+    enable_business_metrics: true
+    metrics_collection_interval: 10
+  
+  logging:
+    log_level: "INFO"
+    enable_structured_logging: true
+    enable_log_aggregation: true
+    log_retention_days: 30
+  
+  alerting:
+    enable_alerting: true
+    alert_channels: ["email", "slack", "webhook"]
+    enable_escalation: true
+    escalation_timeout: 300
+  
+  tracing:
+    enable_distributed_tracing: true
+    trace_sampling_rate: 0.1
+    enable_trace_export: true
+    trace_retention_hours: 24
+
+performance_scalability:
+  horizontal_scaling:
+    enable_auto_scaling: true
+    min_instances: 2
+    max_instances: 100
+    scale_up_threshold: 0.8
+    scale_down_threshold: 0.3
+  
+  vertical_scaling:
+    enable_resource_auto_adjustment: true
+    enable_dynamic_resource_allocation: true
+    resource_adjustment_interval: 300
+  
+  caching:
+    enable_multi_level_caching: true
+    enable_cache_invalidation: true
+    cache_size_limit_mb: 1024
+    enable_cache_compression: true
+  
+  optimization:
+    enable_auto_optimization: true
+    optimization_interval: 3600
+    enable_performance_profiling: true
+    enable_bottleneck_detection: true
+
+integration_settings:
+  protocols:
+    mqtt:
+      enabled: true
+      broker_url: "mqtt://localhost:1883"
+      qos_level: 1
+      enable_ssl: true
+    
+    http:
+      enabled: true
+      port: 8080
+      enable_ssl: true
+      max_connections: 1000
+    
+    coap:
+      enabled: true
+      port: 5683
+      enable_dtls: true
+    
+    websocket:
+      enabled: true
+      port: 8081
+      enable_ssl: true
+  
+  cloud_services:
+    aws:
+      enabled: false
+      region: "us-east-1"
+      enable_lambda: false
+      enable_s3: false
+    
+    azure:
+      enabled: false
+      region: "eastus"
+      enable_functions: false
+      enable_blob_storage: false
+    
+    gcp:
+      enabled: false
+      region: "us-central1"
+      enable_cloud_functions: false
+      enable_cloud_storage: false
+
+data_management:
+  storage:
+    enable_local_storage: true
+    enable_distributed_storage: true
+    storage_replication_factor: 3
+    enable_data_compression: true
+  
+  streaming:
+    enable_real_time_streaming: true
+    enable_batch_processing: true
+    stream_buffer_size: 10000
+    enable_backpressure_handling: true
+  
+  analytics:
+    enable_real_time_analytics: true
+    enable_batch_analytics: true
+    analytics_window_size: 300
+    enable_predictive_analytics: true
+
+advanced_features:
+  machine_learning:
+    enable_federated_learning: true
+    enable_transfer_learning: true
+    enable_meta_learning: false
+    enable_auto_ml: false
+  
+  edge_intelligence:
+    enable_edge_training: true
+    enable_model_adaptation: true
+    enable_knowledge_distillation: true
+    enable_ensemble_methods: true
+  
+  autonomous_operations:
+    enable_auto_recovery: true
+    enable_auto_optimization: true
+    enable_predictive_maintenance: true
+    enable_self_healing: true
+
+experimental_features:
+  quantum_computing:
+    enabled: false
+    enable_quantum_optimization: false
+    enable_hybrid_quantum_classical: false
+  
+  neuromorphic_computing:
+    enabled: false
+    enable_spiking_neural_networks: false
+    enable_brain_inspired_computing: false
+  
+  edge_ai_chip_optimization:
+    enabled: false
+    enable_hardware_acceleration: false
+    enable_custom_instructions: false
+
+deployment_operations:
+  deployment:
+    enable_blue_green_deployment: true
+    enable_canary_deployment: true
+    enable_rolling_updates: true
+    deployment_timeout: 1800
+  
+  rollback:
+    enable_automatic_rollback: true
+    rollback_threshold: 0.1
+    rollback_timeout: 600
+    enable_rollback_verification: true
+  
+  health_checks:
+    enable_liveness_probes: true
+    enable_readiness_probes: true
+    enable_startup_probes: true
+    probe_timeout: 30
+
+backup_disaster_recovery:
+  backup:
+    enable_automatic_backup: true
+    backup_interval: 86400
+    backup_retention_days: 30
+    enable_incremental_backup: true
+  
+  disaster_recovery:
+    enable_disaster_recovery: true
+    recovery_time_objective: 3600
+    recovery_point_objective: 300
+    enable_geo_replication: false
+
+cost_optimization:
+  resource_optimization:
+    enable_cost_monitoring: true
+    enable_resource_rightsizing: true
+    enable_spot_instance_usage: false
+    cost_alert_threshold: 1000
+  
+  energy_efficiency:
+    enable_energy_monitoring: true
+    enable_power_optimization: true
+    enable_sleep_modes: true
+    energy_savings_target: 0.2

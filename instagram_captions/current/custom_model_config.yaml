@@ -1,0 +1,462 @@
+# =============================================================================
+# CUSTOM MODEL ARCHITECTURES CONFIGURATION
+# =============================================================================
+# Configuration file for custom nn.Module model architectures
+# This file contains configurations for various model types and architectures
+
+# =============================================================================
+# TRANSFORMER MODEL CONFIGURATIONS
+# =============================================================================
+
+transformer_models:
+  # Small transformer for quick experiments
+  small:
+    type: "transformer"
+    vocab_size: 10000
+    d_model: 256
+    n_heads: 4
+    n_layers: 4
+    d_ff: 1024
+    max_seq_len: 256
+    dropout: 0.1
+    activation: "gelu"
+    norm_first: true
+    use_relative_position: false
+    tie_weights: true
+    
+  # Medium transformer for standard tasks
+  medium:
+    type: "transformer"
+    vocab_size: 30000
+    d_model: 512
+    n_heads: 8
+    n_layers: 6
+    d_ff: 2048
+    max_seq_len: 512
+    dropout: 0.1
+    activation: "gelu"
+    norm_first: true
+    use_relative_position: false
+    tie_weights: true
+    
+  # Large transformer for complex tasks
+  large:
+    type: "transformer"
+    vocab_size: 50000
+    d_model: 768
+    n_heads: 12
+    n_layers: 12
+    d_ff: 3072
+    max_seq_len: 512
+    dropout: 0.1
+    activation: "gelu"
+    norm_first: true
+    use_relative_position: true
+    tie_weights: true
+    
+  # XL transformer for very complex tasks
+  xl:
+    type: "transformer"
+    vocab_size: 100000
+    d_model: 1024
+    n_heads: 16
+    n_layers: 24
+    d_ff: 4096
+    max_seq_len: 1024
+    dropout: 0.1
+    activation: "gelu"
+    norm_first: true
+    use_relative_position: true
+    tie_weights: true
+
+# =============================================================================
+# CNN MODEL CONFIGURATIONS
+# =============================================================================
+
+cnn_models:
+  # Lightweight CNN for mobile/edge devices
+  lightweight:
+    type: "cnn"
+    input_channels: 3
+    num_classes: 1000
+    base_channels: 32
+    num_layers: 4
+    use_batch_norm: true
+    use_dropout: true
+    activation: "relu"
+    architecture: "standard"
+    
+  # Standard CNN for general computer vision
+  standard:
+    type: "cnn"
+    input_channels: 3
+    num_classes: 1000
+    base_channels: 64
+    num_layers: 5
+    use_batch_norm: true
+    use_dropout: true
+    activation: "relu"
+    architecture: "standard"
+    
+  # ResNet-style CNN for better performance
+  resnet:
+    type: "cnn"
+    input_channels: 3
+    num_classes: 1000
+    base_channels: 64
+    num_layers: 5
+    use_batch_norm: true
+    use_dropout: true
+    activation: "relu"
+    architecture: "resnet"
+    
+  # Deep CNN for complex vision tasks
+  deep:
+    type: "cnn"
+    input_channels: 3
+    num_classes: 1000
+    base_channels: 128
+    num_layers: 7
+    use_batch_norm: true
+    use_dropout: true
+    activation: "gelu"
+    architecture: "resnet"
+
+# =============================================================================
+# RNN MODEL CONFIGURATIONS
+# =============================================================================
+
+rnn_models:
+  # Simple RNN for basic sequence tasks
+  simple:
+    type: "rnn"
+    input_size: 256
+    hidden_size: 128
+    num_layers: 2
+    num_classes: 10
+    dropout: 0.1
+    bidirectional: false
+    rnn_type: "lstm"
+    use_layer_norm: false
+    
+  # Standard RNN for sequence classification
+  standard:
+    type: "rnn"
+    input_size: 512
+    hidden_size: 256
+    num_layers: 3
+    num_classes: 10
+    dropout: 0.1
+    bidirectional: true
+    rnn_type: "lstm"
+    use_layer_norm: true
+    
+  # Deep RNN for complex sequence tasks
+  deep:
+    type: "rnn"
+    input_size: 768
+    hidden_size: 512
+    num_layers: 5
+    num_classes: 100
+    dropout: 0.2
+    bidirectional: true
+    rnn_type: "gru"
+    use_layer_norm: true
+    
+  # Transformer-style RNN with attention
+  attention_rnn:
+    type: "rnn"
+    input_size: 512
+    hidden_size: 256
+    num_layers: 4
+    num_classes: 50
+    dropout: 0.1
+    bidirectional: true
+    rnn_type: "lstm"
+    use_layer_norm: true
+
+# =============================================================================
+# HYBRID MODEL CONFIGURATIONS
+# =============================================================================
+
+hybrid_models:
+  # CNN + Transformer for image captioning
+  image_captioning:
+    type: "hybrid"
+    input_channels: 3
+    num_classes: 1000
+    cnn_channels: 64
+    cnn_layers: 4
+    d_model: 512
+    n_heads: 8
+    n_layers: 6
+    d_ff: 2048
+    max_seq_len: 256
+    dropout: 0.1
+    
+  # Vision-Language hybrid
+  vision_language:
+    type: "hybrid"
+    input_channels: 3
+    num_classes: 5000
+    cnn_channels: 128
+    cnn_layers: 5
+    d_model: 768
+    n_heads: 12
+    n_layers: 8
+    d_ff: 3072
+    max_seq_len: 512
+    dropout: 0.1
+    
+  # Multi-modal hybrid
+  multimodal:
+    type: "hybrid"
+    input_channels: 3
+    num_classes: 10000
+    cnn_channels: 256
+    cnn_layers: 6
+    d_model: 1024
+    n_heads: 16
+    n_layers: 12
+    d_ff: 4096
+    max_seq_len: 1024
+    dropout: 0.1
+
+# =============================================================================
+# TASK-SPECIFIC CONFIGURATIONS
+# =============================================================================
+
+task_specific:
+  # Instagram caption generation
+  instagram_caption:
+    model_type: "transformer"
+    config: "medium"
+    customizations:
+      vocab_size: 25000
+      max_seq_len: 128
+      dropout: 0.15
+      activation: "gelu"
+      
+  # Image classification
+  image_classification:
+    model_type: "cnn"
+    config: "resnet"
+    customizations:
+      num_classes: 1000
+      use_dropout: true
+      activation: "relu"
+      
+  # Text classification
+  text_classification:
+    model_type: "rnn"
+    config: "standard"
+    customizations:
+      bidirectional: true
+      rnn_type: "lstm"
+      use_layer_norm: true
+      
+  # Multi-task learning
+  multitask:
+    model_type: "hybrid"
+    config: "image_captioning"
+    customizations:
+      num_classes: 5000
+      cnn_layers: 5
+      n_layers: 8
+
+# =============================================================================
+# PERFORMANCE OPTIMIZATION CONFIGURATIONS
+# =============================================================================
+
+performance_optimizations:
+  # Memory optimization
+  memory_efficient:
+    use_gradient_checkpointing: true
+    use_mixed_precision: true
+    use_channels_last: false
+    batch_size_multiplier: 0.5
+    
+  # Speed optimization
+  speed_optimized:
+    use_gradient_checkpointing: false
+    use_mixed_precision: true
+    use_channels_last: true
+    batch_size_multiplier: 1.0
+    
+  # Balanced optimization
+  balanced:
+    use_gradient_checkpointing: true
+    use_mixed_precision: true
+    use_channels_last: false
+    batch_size_multiplier: 0.75
+
+# =============================================================================
+# TRAINING CONFIGURATIONS
+# =============================================================================
+
+training_configs:
+  # Small model training
+  small_model:
+    batch_size: 32
+    learning_rate: 1e-4
+    weight_decay: 1e-5
+    warmup_steps: 1000
+    max_epochs: 50
+    
+  # Medium model training
+  medium_model:
+    batch_size: 16
+    learning_rate: 5e-5
+    weight_decay: 1e-5
+    warmup_steps: 2000
+    max_epochs: 100
+    
+  # Large model training
+  large_model:
+    batch_size: 8
+    learning_rate: 1e-5
+    weight_decay: 1e-4
+    warmup_steps: 5000
+    max_epochs: 200
+    
+  # XL model training
+  xl_model:
+    batch_size: 4
+    learning_rate: 5e-6
+    weight_decay: 1e-4
+    warmup_steps: 10000
+    max_epochs: 300
+
+# =============================================================================
+# MODEL COMPARISON CONFIGURATIONS
+# =============================================================================
+
+model_comparison:
+  # Benchmark configurations
+  benchmark:
+    input_sizes:
+      transformer: [1, 128]
+      cnn: [1, 3, 224, 224]
+      rnn: [1, 100, 512]
+      hybrid: [1, 3, 224, 224]
+    
+    num_runs: 100
+    warmup_runs: 10
+    
+  # Memory profiling
+  memory_profiling:
+    track_memory: true
+    profile_layers: true
+    memory_threshold_gb: 8.0
+    
+  # Performance metrics
+  performance_metrics:
+    measure_inference_time: true
+    measure_training_time: true
+    measure_memory_usage: true
+    measure_throughput: true
+
+# =============================================================================
+# EXPORT CONFIGURATIONS
+# =============================================================================
+
+export_configs:
+  # TorchScript export
+  torchscript:
+    use_trace: true
+    use_script: false
+    optimize_for_mobile: false
+    
+  # ONNX export
+  onnx:
+    opset_version: 11
+    do_constant_folding: true
+    dynamic_axes: true
+    export_params: true
+    
+  # TensorRT export
+  tensorrt:
+    use_fp16: true
+    max_batch_size: 32
+    max_workspace_size: 1
+
+# =============================================================================
+# VALIDATION RULES
+# =============================================================================
+
+validation:
+  # Configuration validation
+  validate_config: true
+  
+  # Required fields for each model type
+  required_fields:
+    transformer:
+      - "vocab_size"
+      - "d_model"
+      - "n_heads"
+      - "n_layers"
+      - "d_ff"
+      - "max_seq_len"
+    cnn:
+      - "input_channels"
+      - "num_classes"
+      - "base_channels"
+      - "num_layers"
+    rnn:
+      - "input_size"
+      - "hidden_size"
+      - "num_layers"
+      - "num_classes"
+    hybrid:
+      - "input_channels"
+      - "num_classes"
+      - "cnn_channels"
+      - "cnn_layers"
+      - "d_model"
+      - "n_heads"
+      - "n_layers"
+      - "d_ff"
+      - "max_seq_len"
+  
+  # Value ranges
+  value_ranges:
+    vocab_size:
+      min: 1000
+      max: 1000000
+    d_model:
+      min: 64
+      max: 8192
+    n_heads:
+      min: 1
+      max: 128
+    n_layers:
+      min: 1
+      max: 100
+    max_seq_len:
+      min: 64
+      max: 8192
+    dropout:
+      min: 0.0
+      max: 0.5
+
+# =============================================================================
+# NOTES AND COMMENTS
+# =============================================================================
+
+# This configuration file provides comprehensive settings for custom model architectures
+# 
+# Key features:
+# - Multiple model types: Transformer, CNN, RNN, Hybrid
+# - Task-specific configurations
+# - Performance optimization settings
+# - Training configurations
+# - Export and deployment options
+# 
+# Usage:
+# 1. Load this configuration in your custom model system
+# 2. Select appropriate model type and configuration
+# 3. Apply customizations as needed
+# 4. Validate configuration before model creation
+# 5. Use with the create_model_from_config function
+
+

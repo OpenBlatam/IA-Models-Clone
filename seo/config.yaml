@@ -1,0 +1,17 @@
+models:
+  cache_enabled: true
+  cache_ttl: 3600
+  default_model: microsoft/DialoGPT-medium
+monitoring:
+  alerting_enabled: true
+  metrics_enabled: true
+  profiling_enabled: false
+performance:
+  batch_size: 4
+  enable_compilation: true
+  enable_mixed_precision: true
+  max_memory_usage: 0.8
+system:
+  debug: false
+  log_level: INFO
+  max_workers: 12

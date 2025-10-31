@@ -1,0 +1,210 @@
+# NotebookLM AI - Production Requirements
+# Optimized for production deployment with latest libraries
+
+# ===== CORE AI & ML (Production Optimized) =====
+torch==2.1.1                        # PyTorch core
+torchvision==0.16.1                 # Computer vision
+torchaudio==2.1.1                   # Audio processing
+transformers==4.36.0                # Hugging Face Transformers
+diffusers==0.25.0                   # Diffusion models
+accelerate==0.25.0                  # Distributed training
+peft==0.7.1                         # Parameter efficient fine-tuning
+bitsandbytes==0.41.3                # Quantization
+flash-attn==2.5.0                   # Flash attention
+xformers==0.0.23.post1              # Memory efficient attention
+optimum==1.16.1                     # Model optimization
+onnxruntime-gpu==1.16.3             # ONNX runtime for GPU
+
+# ===== DOCUMENT PROCESSING (Production) =====
+pypdf2==3.0.1                       # PDF processing
+python-docx==1.1.0                  # DOCX processing
+markdown==3.5.1                     # Markdown processing
+beautifulsoup4==4.12.2              # HTML parsing
+pandas==2.1.3                       # CSV/Excel processing
+openpyxl==3.1.2                     # Excel processing
+pillow==10.1.0                      # Image processing
+pytesseract==0.3.10                 # OCR processing
+unstructured==0.11.2                # Document parsing
+pymupdf==1.23.8                     # PDF processing
+pdfplumber==0.10.2                  # PDF text extraction
+tabula-py==2.8.2                    # PDF table extraction
+camelot-py==0.11.0                  # PDF table extraction
+pdf2image==1.16.3                   # PDF to image conversion
+
+# ===== NLP & TEXT ANALYSIS (Production) =====
+spacy==3.7.2                        # Advanced NLP
+textstat==0.7.3                     # Text statistics
+vaderSentiment==3.3.2               # Sentiment analysis
+keybert==0.8.3                      # Keyword extraction
+sentence-transformers==2.2.2        # Sentence embeddings
+gensim==4.3.2                       # Topic modeling
+nltk==3.8.1                         # NLP toolkit
+language-tool-python==2.7.1         # Grammar checking
+textblob==0.17.1                    # Text processing
+wordcloud==1.9.2                    # Word cloud generation
+textrank==0.1.0                     # Text ranking
+sumy==0.11.0                        # Text summarization
+
+# ===== CITATION & REFERENCE (Production) =====
+scholarly==1.7.11                   # Google Scholar integration
+arxiv==2.1.0                        # ArXiv integration
+crossref-commons==0.0.13            # Crossref integration
+doi2bib==1.0.0                      # DOI to BibTeX
+bibtexparser==1.4.0                 # BibTeX parsing
+citeproc-py==0.5.1                  # Citation processing
+refextract==1.1.1                   # Reference extraction
+
+# ===== VECTOR DATABASES (Production) =====
+chromadb==0.4.18                    # Vector database
+faiss-cpu==1.7.4                    # Vector similarity search
+qdrant-client==1.7.0                # Qdrant vector database
+pinecone-client==2.2.4              # Pinecone vector database
+weaviate-client==3.25.3             # Weaviate vector database
+milvus==2.3.4                       # Milvus vector database
+
+# ===== WEB SCRAPING & DATA (Production) =====
+requests==2.31.0                    # HTTP requests
+selenium==4.15.2                    # Web automation
+scrapy==2.11.0                      # Web scraping
+newspaper3k==0.2.8                  # Article extraction
+readability-lxml==0.8.1             # Content extraction
+feedparser==6.0.10                  # RSS feed parsing
+tweepy==4.14.0                      # Twitter API
+reddit-api==1.0.0                   # Reddit API
+
+# ===== DATABASE & STORAGE (Production) =====
+sqlalchemy[asyncio]==2.0.23         # Database ORM
+redis[hiredis]==5.0.1               # Redis client
+pymongo==4.6.0                      # MongoDB client
+elasticsearch==8.11.0               # Elasticsearch client
+minio==7.2.0                        # S3-compatible storage
+boto3==1.34.0                       # AWS SDK
+google-cloud-storage==2.10.0        # Google Cloud
+azure-storage-blob==12.19.0         # Azure Storage
+influxdb-client==1.38.0             # InfluxDB client
+cassandra-driver==3.28.0            # Cassandra driver
+
+# ===== API & WEB FRAMEWORKS (Production) =====
+fastapi==0.104.1                    # Fast API framework
+uvicorn[standard]==0.24.0           # ASGI server
+pydantic==2.5.0                     # Data validation
+pydantic-settings==2.1.0            # Settings management
+httpx==0.25.2                       # Async HTTP client
+aiofiles==23.2.1                    # Async file operations
+python-multipart==0.0.6             # File uploads
+websockets==12.0                    # WebSocket support
+
+# ===== MONITORING & LOGGING (Production) =====
+prometheus-client==0.19.0           # Metrics
+opentelemetry-api==1.21.0           # Tracing
+opentelemetry-sdk==1.21.0           # Tracing SDK
+opentelemetry-instrumentation-fastapi==0.42b0  # FastAPI instrumentation
+structlog==23.2.0                   # Structured logging
+rich==13.7.0                        # Rich text output
+sentry-sdk[fastapi]==1.38.0         # Error tracking
+datadog==0.44.0                     # Datadog integration
+newrelic==9.1.0                     # New Relic integration
+
+# ===== UTILITIES (Production) =====
+click==8.1.7                        # CLI framework
+typer==0.9.0                        # CLI with type hints
+pyyaml==6.0.1                       # YAML parsing
+python-dotenv==1.0.0                # Environment variables
+tqdm==4.66.1                        # Progress bars
+psutil==5.9.6                        # System monitoring
+schedule==1.2.0                     # Task scheduling
+celery==5.3.4                       # Task queue
+flower==2.0.1                       # Celery monitoring
+
+# ===== TESTING & DEVELOPMENT (Production) =====
+pytest==7.4.3                       # Testing framework
+pytest-asyncio==0.21.1              # Async testing
+pytest-cov==4.1.0                   # Coverage testing
+pytest-mock==3.12.0                 # Mocking
+pytest-benchmark==4.0.0             # Performance testing
+black==23.11.0                      # Code formatting
+isort==5.12.0                       # Import sorting
+flake8==6.1.0                       # Linting
+mypy==1.7.1                         # Type checking
+bandit==1.7.5                       # Security linting
+
+# ===== SECURITY (Production) =====
+cryptography==41.0.7                # Encryption
+python-jose[cryptography]==3.3.0    # JWT handling
+passlib[bcrypt]==1.7.4              # Password hashing
+python-multipart==0.0.6             # File uploads
+bcrypt==4.1.2                       # Password hashing
+argon2-cffi==23.1.0                 # Modern password hashing
+certifi==2023.11.17                 # SSL certificates
+urllib3==2.1.0                      # HTTP client
+
+# ===== CLOUD & DEPLOYMENT (Production) =====
+docker==6.1.3                       # Docker SDK
+kubernetes==28.1.0                  # Kubernetes client
+helm==0.1.0                         # Helm charts
+terraform==0.1.0                    # Infrastructure as code
+ansible==9.1.0                      # Configuration management
+jenkins==0.1.0                      # CI/CD
+gitlab==0.1.0                       # GitLab integration
+github==0.1.0                       # GitHub integration
+
+# ===== OPTIMIZATION (Production) =====
+numba==0.58.1                       # JIT compilation
+cython==3.0.6                       # Performance optimization
+joblib==1.3.2                       # Parallel computing
+ray[tune]==2.7.1                    # Distributed computing
+dask==2023.11.0                     # Parallel computing
+vaex==4.17.0                        # Big data processing
+modin==0.23.0                       # Pandas acceleration
+rapids-cudf==23.12.0                # GPU dataframes
+
+# ===== EXPERIMENT TRACKING (Production) =====
+wandb==0.16.1                       # Weights & Biases
+mlflow==2.8.1                       # ML lifecycle
+tensorboard==2.15.0                 # Training visualization
+neptune==1.10.0                     # Experiment tracking
+comet-ml==3.42.0                    # Experiment tracking
+tensorboardX==2.6.2                 # TensorBoard extension
+
+# ===== ADDITIONAL AI LIBRARIES (Production) =====
+langchain==0.0.350                  # LangChain framework
+langchain-community==0.0.10         # LangChain community
+openai==1.3.7                       # OpenAI API
+anthropic==0.7.8                    # Anthropic API
+cohere==4.37                        # Cohere API
+huggingface-hub==0.19.4             # Hugging Face Hub
+datasets==2.15.0                    # Hugging Face datasets
+tokenizers==0.15.0                  # Fast tokenization
+
+# ===== IMAGE & AUDIO PROCESSING (Production) =====
+opencv-python==4.8.1.78             # Computer vision
+librosa==0.10.1                     # Audio analysis
+soundfile==0.12.1                   # Audio I/O
+pydub==0.25.1                       # Audio manipulation
+whisper==1.1.10                     # Speech recognition
+moviepy==1.0.3                      # Video processing
+imageio==2.33.0                     # Image I/O
+scikit-image==0.22.0                # Image processing
+
+# ===== GRADIO & INTERFACES (Production) =====
+gradio==4.7.1                       # Web interfaces
+streamlit==1.28.1                   # Data apps
+dash==2.14.2                        # Web dashboards
+plotly==5.17.0                      # Interactive plots
+matplotlib==3.8.2                   # Plotting
+seaborn==0.13.0                     # Statistical visualization
+bokeh==3.3.0                        # Interactive visualization
+altair==5.2.0                       # Declarative visualization
+
+# ===== PRODUCTION SPECIFIC =====
+gunicorn==21.2.0                    # WSGI server
+supervisor==4.2.5                    # Process management
+nginx==0.1.0                        # Web server
+haproxy==0.1.0                      # Load balancer
+consul==0.1.0                       # Service discovery
+etcd==0.1.0                         # Key-value store
+zookeeper==0.1.0                    # Distributed coordination
+kafka-python==2.0.2                 # Message broker
+pika==1.3.2                         # RabbitMQ client
+redis-py-cluster==2.1.3             # Redis cluster
+pymemcache==4.0.0                   # Memcached client 

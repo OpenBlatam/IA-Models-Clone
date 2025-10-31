@@ -1,0 +1,115 @@
+version: '3.8'
+
+services:
+  quantum-heygen-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile.quantum
+    container_name: quantum-heygen-ai
+    ports:
+      - "8000:8000"
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128
+      - TOKENIZERS_PARALLELISM=false
+      - TORCH_CUDNN_V8_API_ENABLED=1
+      - TORCH_CUDNN_V8_API_DISABLED=0
+      - PYTORCH_NO_CUDA_MEMORY_CACHING=1
+      - QUANTUM_OPTIMIZATION_ENABLED=1
+      - MIXED_PRECISION_TRAINING=1
+      - GPU_OPTIMIZATION_LEVEL=quantum
+      - MODEL_CACHE_DIR=/app/models
+      - TEMP_DIR=/app/temp
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./models:/app/models
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./temp:/app/temp
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  quantum-redis-cache:
+    image: redis:7-alpine
+    container_name: quantum-redis-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - quantum_redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 2gb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  quantum-postgres-db:
+    image: postgres:15-alpine
+    container_name: quantum-postgres-db
+    environment:
+      POSTGRES_DB: quantum_heygen
+      POSTGRES_USER: quantum_user
+      POSTGRES_PASSWORD: quantum_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - quantum_postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quantum_user -d quantum_heygen"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  quantum-monitoring:
+    image: prom/prometheus:latest
+    container_name: quantum-monitoring
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - quantum_prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+
+  quantum-grafana:
+    image: grafana/grafana:latest
+    container_name: quantum-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: quantum_admin
+    volumes:
+      - quantum_grafana_data:/var/lib/grafana
+    restart: unless-stopped
+    depends_on:
+      - quantum-monitoring
+
+volumes:
+  quantum_redis_data:
+  quantum_postgres_data:
+  quantum_prometheus_data:
+  quantum_grafana_data:
+
+networks:
+  default:
+    name: quantum-heygen-network 

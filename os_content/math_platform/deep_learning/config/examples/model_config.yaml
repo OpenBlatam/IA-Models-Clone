@@ -1,0 +1,137 @@
+# Model Configuration Example
+# This file contains all model-related hyperparameters and settings
+
+# Model identification
+model_name: "transformer_classifier"
+model_type: "transformer"  # mlp, cnn, rnn, transformer, diffusion
+model_version: "1.0.0"
+
+# Architecture parameters
+input_size: 784  # Can be int or tuple for multi-dimensional input
+output_size: 10
+hidden_sizes: [512, 256, 128]  # For MLP models
+num_layers: 6  # For transformer models
+
+# Layer-specific parameters
+activation: "gelu"  # relu, tanh, sigmoid, gelu, swish
+dropout_rate: 0.1
+batch_norm: true
+layer_norm: true
+
+# Initialization parameters
+weight_init: "xavier"  # xavier, kaiming, normal, uniform
+bias_init: "zeros"
+
+# Transformer-specific parameters
+num_heads: 8
+embedding_dim: 512
+max_seq_length: 512
+vocab_size: 30000
+positional_encoding: "sinusoidal"  # sinusoidal, learned, rotary
+attention_dropout: 0.1
+ff_dropout: 0.1
+ff_multiplier: 4  # Hidden dimension multiplier for feed-forward layers
+
+# CNN-specific parameters
+conv_channels: [64, 128, 256, 512]
+kernel_sizes: [3, 3, 3, 3]
+pool_sizes: [2, 2, 2, 2]
+stride: 1
+padding: 1
+dilation: 1
+groups: 1
+
+# RNN-specific parameters
+hidden_dim: 256
+num_lstm_layers: 2
+bidirectional: false
+lstm_dropout: 0.1
+lstm_batch_first: true
+
+# Diffusion-specific parameters
+noise_steps: 1000
+beta_start: 0.0001
+beta_end: 0.02
+beta_schedule: "linear"  # linear, cosine, sigmoid
+guidance_scale: 7.5
+classifier_free_guidance: true
+
+# Advanced model parameters
+use_residual_connections: true
+use_skip_connections: true
+use_attention: true
+attention_type: "scaled_dot_product"  # scaled_dot_product, additive, local
+local_attention_window: 128
+use_relative_position_encoding: false
+relative_position_max_distance: 128
+
+# Model optimization
+use_mixed_precision: true
+use_gradient_checkpointing: false
+use_flash_attention: true
+use_xformers: true
+compile_model: true  # Use torch.compile for optimization
+
+# Model-specific hyperparameters
+# For vision transformers
+patch_size: 16
+image_size: 224
+in_channels: 3
+embed_dim: 768
+depth: 12
+num_heads: 12
+mlp_ratio: 4.0
+qkv_bias: true
+representation_size: null
+distilled: false
+drop_rate: 0.0
+attn_drop_rate: 0.0
+drop_path_rate: 0.0
+norm_layer: "LayerNorm"
+act_layer: "GELU"
+
+# For language models
+max_position_embeddings: 512
+type_vocab_size: 2
+initializer_range: 0.02
+layer_norm_eps: 1e-12
+pad_token_id: 0
+bos_token_id: 1
+eos_token_id: 2
+tie_word_embeddings: true
+use_cache: true
+
+# For generative models
+latent_dim: 100
+generator_hidden_dims: [256, 512, 1024]
+discriminator_hidden_dims: [1024, 512, 256]
+use_spectral_norm: true
+use_instance_norm: true
+
+# Model ensemble parameters
+ensemble_size: 1
+ensemble_method: "average"  # average, voting, stacking
+ensemble_diversity: 0.1
+
+# Model interpretability
+use_attention_visualization: false
+use_grad_cam: false
+use_lime: false
+use_shap: false
+
+# Model deployment
+model_format: "pytorch"  # pytorch, onnx, tensorrt, torchscript
+quantization: false
+quantization_type: "int8"  # int8, fp16, dynamic
+pruning: false
+pruning_ratio: 0.3
+pruning_method: "magnitude"  # magnitude, structured, unstructured
+
+# Model metadata
+description: "A transformer-based classifier for image classification"
+author: "Deep Learning Team"
+created_date: "2024-01-01"
+tags: ["transformer", "classification", "vision"]
+license: "MIT"
+repository: "https://github.com/example/model-repo"
+paper: "https://arxiv.org/abs/example" 

@@ -1,0 +1,596 @@
+# Master Configuration for Export IA - Refactored System
+# Advanced configuration with PyTorch best practices and optimizations
+
+# System Configuration
+system:
+  name: "Export IA - Advanced AI Document Processing"
+  version: "2.0.0"
+  description: "State-of-the-art AI system for professional document export and processing"
+  
+  # Device Configuration
+  device:
+    primary: "cuda"  # cuda, cpu, auto
+    fallback: "cpu"
+    mixed_precision: true
+    gradient_checkpointing: true
+    
+  # Performance Settings
+  performance:
+    num_workers: 4
+    pin_memory: true
+    prefetch_factor: 2
+    persistent_workers: true
+    multiprocessing_context: "spawn"
+    
+  # Memory Management
+  memory:
+    max_memory_usage: 0.8  # 80% of available memory
+    gradient_accumulation_steps: 1
+    batch_size_auto_scaling: true
+    memory_efficient_attention: true
+
+# Model Configurations
+models:
+  # Document Transformer Configuration
+  document_transformer:
+    model_name: "document_transformer_v2"
+    model_type: "document_transformer"
+    
+    # Architecture Parameters
+    input_dim: 512
+    output_dim: 256
+    hidden_dim: 768
+    num_layers: 12
+    num_heads: 12
+    dropout: 0.1
+    activation: "gelu"
+    layer_norm_eps: 1e-6
+    
+    # Positional Encoding
+    max_position_embeddings: 2048
+    vocab_size: 50000
+    
+    # Attention Configuration
+    attention:
+      use_flash_attention: true
+      attention_dropout: 0.1
+      cross_attention_dim: 768
+      
+    # Optimization
+    weight_initialization: "xavier_uniform"
+    use_bias: true
+    gradient_checkpointing: true
+    
+  # Multi-Modal Fusion Configuration
+  multi_modal_fusion:
+    model_name: "multi_modal_fusion_v2"
+    model_type: "multi_modal_fusion"
+    
+    # Modality Dimensions
+    text_dim: 768
+    image_dim: 2048
+    audio_dim: 1024
+    
+    # Fusion Architecture
+    hidden_dim: 1024
+    num_layers: 8
+    num_heads: 16
+    cross_modal_attention: true
+    
+    # Fusion Strategy
+    fusion_method: "attention"  # attention, concatenation, gating
+    attention_temperature: 1.0
+    
+  # Diffusion Model Configuration
+  diffusion:
+    model_name: "diffusion_engine_v2"
+    model_type: "stable_diffusion"
+    
+    # Architecture
+    in_channels: 3
+    out_channels: 3
+    down_block_types: ["DownBlock2D", "DownBlock2D", "DownBlock2D", "DownBlock2D"]
+    up_block_types: ["UpBlock2D", "UpBlock2D", "UpBlock2D", "UpBlock2D"]
+    block_out_channels: [128, 256, 512, 512]
+    layers_per_block: 2
+    
+    # Training Parameters
+    num_train_timesteps: 1000
+    beta_start: 0.0001
+    beta_end: 0.02
+    beta_schedule: "cosine"
+    prediction_type: "epsilon"
+    
+    # Sampling Parameters
+    num_inference_steps: 50
+    guidance_scale: 7.5
+    eta: 0.0
+    
+    # LoRA Configuration
+    use_lora: true
+    lora_rank: 4
+    lora_alpha: 32.0
+    lora_dropout: 0.0
+    
+    # ControlNet Configuration
+    use_controlnet: false
+    controlnet_conditioning_scale: 1.0
+
+# Training Configuration
+training:
+  # General Training Parameters
+  batch_size: 32
+  learning_rate: 1e-4
+  weight_decay: 1e-5
+  num_epochs: 100
+  warmup_steps: 1000
+  max_grad_norm: 1.0
+  
+  # Optimization
+  optimizer: "adamw"
+  scheduler: "cosine_with_warmup"
+  mixed_precision: true
+  gradient_accumulation_steps: 1
+  
+  # Early Stopping
+  early_stopping:
+    enabled: true
+    patience: 10
+    min_delta: 1e-4
+    monitor: "val_loss"
+    mode: "min"
+    
+  # Checkpointing
+  checkpointing:
+    save_every_n_epochs: 5
+    save_best_model: true
+    checkpoint_dir: "./checkpoints"
+    max_checkpoints: 5
+    
+  # Logging and Monitoring
+  logging:
+    log_every_n_steps: 100
+    use_tensorboard: true
+    use_wandb: false
+    wandb_project: "export-ia"
+    wandb_entity: null
+    
+  # Distributed Training
+  distributed:
+    enabled: false
+    backend: "nccl"
+    world_size: 1
+    local_rank: 0
+
+# Data Configuration
+data:
+  # Data Paths
+  data_dir: "./data"
+  train_dir: "./data/train"
+  val_dir: "./data/val"
+  test_dir: "./data/test"
+  
+  # Data Loading
+  batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  shuffle: true
+  drop_last: true
+  
+  # Image Processing
+  image:
+    size: [224, 224]
+    channels: 3
+    normalize_mean: [0.485, 0.456, 0.406]
+    normalize_std: [0.229, 0.224, 0.225]
+    
+  # Text Processing
+  text:
+    max_seq_length: 512
+    vocab_size: 50000
+    tokenizer_name: "bert-base-uncased"
+    padding: "max_length"
+    truncation: true
+    
+  # Audio Processing
+  audio:
+    sample_rate: 16000
+    n_mels: 80
+    n_fft: 1024
+    hop_length: 256
+    max_length: 10  # seconds
+    
+  # Augmentation
+  augmentation:
+    enabled: true
+    probability: 0.5
+    
+    # Image Augmentation
+    image_augmentation:
+      horizontal_flip: 0.5
+      vertical_flip: 0.2
+      rotation: 15
+      brightness_contrast: 0.2
+      hue_saturation: 0.1
+      gaussian_noise: 0.1
+      blur: 0.1
+      
+    # Text Augmentation
+    text_augmentation:
+      synonym_replacement: 0.1
+      random_insertion: 0.1
+      random_swap: 0.1
+      random_deletion: 0.1
+      
+    # Audio Augmentation
+    audio_augmentation:
+      time_masking: 0.1
+      frequency_masking: 0.1
+      pitch_shift: 0.1
+      time_stretch: 0.1
+      
+  # Data Splits
+  splits:
+    train: 0.8
+    val: 0.1
+    test: 0.1
+    random_seed: 42
+
+# Export Configuration
+export:
+  # Supported Formats
+  formats:
+    pdf:
+      enabled: true
+      quality: "high"
+      compression: "lossless"
+      metadata: true
+      
+    docx:
+      enabled: true
+      compatibility: "latest"
+      styles: true
+      images: true
+      
+    html:
+      enabled: true
+      css_inline: true
+      responsive: true
+      minify: false
+      
+    markdown:
+      enabled: true
+      extensions: ["tables", "fenced_code", "toc"]
+      syntax_highlighting: true
+      
+    json:
+      enabled: true
+      pretty_print: true
+      schema_validation: true
+      
+    xml:
+      enabled: true
+      pretty_print: true
+      schema_validation: true
+      
+  # Quality Settings
+  quality:
+    typography:
+      font_family: "Arial"
+      font_size: 12
+      line_spacing: 1.5
+      paragraph_spacing: 6
+      
+    formatting:
+      margins: [1.0, 1.0, 1.0, 1.0]  # top, right, bottom, left (inches)
+      page_size: "A4"
+      orientation: "portrait"
+      
+    accessibility:
+      alt_text: true
+      heading_structure: true
+      color_contrast: "AA"
+      screen_reader: true
+      
+  # Professional Features
+  professional:
+    branding:
+      logo: true
+      company_info: true
+      contact_details: true
+      
+    templates:
+      business: true
+      academic: true
+      technical: true
+      creative: true
+      
+    automation:
+      auto_formatting: true
+      smart_layout: true
+      content_optimization: true
+      quality_validation: true
+
+# AI Enhancement Configuration
+ai_enhancement:
+  # Content Analysis
+  content_analysis:
+    enabled: true
+    sentiment_analysis: true
+    topic_modeling: true
+    keyword_extraction: true
+    readability_score: true
+    language_detection: true
+    
+  # Style Generation
+  style_generation:
+    enabled: true
+    color_palettes: true
+    typography_optimization: true
+    layout_suggestions: true
+    visual_hierarchy: true
+    
+  # Quality Assessment
+  quality_assessment:
+    enabled: true
+    grammar_check: true
+    style_consistency: true
+    formatting_validation: true
+    accessibility_check: true
+    
+  # Optimization
+  optimization:
+    content_compression: true
+    redundancy_removal: true
+    intelligent_summarization: true
+    adaptive_formatting: true
+
+# Advanced Features Configuration
+advanced_features:
+  # Swarm Intelligence
+  swarm_intelligence:
+    enabled: true
+    population_size: 100
+    max_iterations: 1000
+    convergence_threshold: 1e-6
+    algorithms: ["pso", "aco", "abc"]
+    
+  # Meta Learning
+  meta_learning:
+    enabled: true
+    few_shot_learning: true
+    zero_shot_learning: true
+    continuous_learning: true
+    adaptation_strategies: ["ewc", "progressive_networks", "packnet"]
+    
+  # Quantum Processing
+  quantum_processing:
+    enabled: false
+    simulation_mode: true
+    quantum_circuits: true
+    quantum_optimization: true
+    
+  # Blockchain Integration
+  blockchain:
+    enabled: false
+    document_verification: true
+    immutable_logging: true
+    smart_contracts: true
+    
+  # Cosmic Transcendence
+  cosmic_transcendence:
+    enabled: false
+    multidimensional_processing: true
+    cosmic_energy_flow: true
+    harmonic_resonance: true
+
+# API Configuration
+api:
+  # FastAPI Settings
+  fastapi:
+    host: "0.0.0.0"
+    port: 8000
+    workers: 4
+    reload: false
+    debug: false
+    
+  # Authentication
+  authentication:
+    enabled: true
+    jwt_secret: "your-secret-key"
+    jwt_algorithm: "HS256"
+    token_expiry: 3600  # seconds
+    
+  # Rate Limiting
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    burst_limit: 200
+    
+  # Caching
+  caching:
+    enabled: true
+    redis_url: "redis://localhost:6379"
+    cache_ttl: 3600  # seconds
+    
+  # Monitoring
+  monitoring:
+    prometheus: true
+    health_checks: true
+    metrics_endpoint: "/metrics"
+
+# Gradio Interface Configuration
+gradio:
+  # Interface Settings
+  interface:
+    title: "Export IA - Advanced AI Document Processing"
+    description: "State-of-the-art AI system for document processing and export"
+    theme: "soft"
+    css_custom: true
+    
+  # Server Configuration
+  server:
+    host: "0.0.0.0"
+    port: 7860
+    share: true
+    debug: false
+    
+  # Features
+  features:
+    model_inference: true
+    training_interface: true
+    diffusion_generation: true
+    analytics_dashboard: true
+    configuration_management: true
+    
+  # Security
+  security:
+    authentication: true
+    rate_limiting: true
+    input_validation: true
+    output_sanitization: true
+
+# Logging Configuration
+logging:
+  # Log Levels
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  
+  # Log Format
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  
+  # Log Handlers
+  handlers:
+    console:
+      enabled: true
+      level: "INFO"
+      
+    file:
+      enabled: true
+      level: "DEBUG"
+      filename: "./logs/export_ia.log"
+      max_bytes: 10485760  # 10MB
+      backup_count: 5
+      
+    tensorboard:
+      enabled: true
+      log_dir: "./logs/tensorboard"
+      
+  # Loggers
+  loggers:
+    export_ia: "INFO"
+    torch: "WARNING"
+    transformers: "WARNING"
+    diffusers: "WARNING"
+
+# Security Configuration
+security:
+  # Data Protection
+  data_protection:
+    encryption_at_rest: true
+    encryption_in_transit: true
+    data_anonymization: true
+    gdpr_compliance: true
+    
+  # Access Control
+  access_control:
+    role_based_access: true
+    api_key_authentication: true
+    ip_whitelisting: false
+    session_management: true
+    
+  # Input Validation
+  input_validation:
+    file_size_limit: 104857600  # 100MB
+    file_type_validation: true
+    content_scanning: true
+    malicious_code_detection: true
+    
+  # Output Sanitization
+  output_sanitization:
+    html_sanitization: true
+    script_removal: true
+    xss_protection: true
+    content_filtering: true
+
+# Performance Configuration
+performance:
+  # Caching
+  caching:
+    model_cache: true
+    data_cache: true
+    result_cache: true
+    cache_size: 1073741824  # 1GB
+    
+  # Optimization
+  optimization:
+    model_quantization: false
+    graph_optimization: true
+    operator_fusion: true
+    memory_pooling: true
+    
+  # Monitoring
+  monitoring:
+    performance_metrics: true
+    memory_usage: true
+    gpu_utilization: true
+    throughput_monitoring: true
+    
+  # Scaling
+  scaling:
+    horizontal_scaling: true
+    load_balancing: true
+    auto_scaling: false
+    max_instances: 10
+
+# Development Configuration
+development:
+  # Debug Settings
+  debug:
+    enabled: false
+    verbose_logging: false
+    model_debugging: false
+    gradient_checking: false
+    
+  # Testing
+  testing:
+    unit_tests: true
+    integration_tests: true
+    performance_tests: true
+    test_coverage: 80
+    
+  # Code Quality
+  code_quality:
+    linting: true
+    type_checking: true
+    code_formatting: true
+    security_scanning: true
+    
+  # Documentation
+  documentation:
+    auto_generation: true
+    api_documentation: true
+    user_guides: true
+    developer_docs: true
+
+# Environment Configuration
+environment:
+  # Development
+  development:
+    debug: true
+    hot_reload: true
+    mock_services: true
+    
+  # Staging
+  staging:
+    debug: false
+    hot_reload: false
+    mock_services: false
+    
+  # Production
+  production:
+    debug: false
+    hot_reload: false
+    mock_services: false
+    optimization: true
+    security: true

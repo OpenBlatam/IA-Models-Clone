@@ -1,0 +1,31 @@
+# Security Requirements for Video-OpusClip
+# Core security dependencies
+cryptography==41.0.8
+PyJWT==2.8.0
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+bcrypt==4.1.2
+
+# Rate limiting and security middleware
+slowapi==0.1.9
+limits==3.7.0
+
+# Input validation and sanitization
+bleach==6.1.0
+validators==0.22.0
+
+# Security headers and middleware
+secure==0.3.1
+python-multipart==0.0.6
+
+# Monitoring and logging
+structlog==23.2.0
+prometheus-client==0.19.0
+
+# Testing security
+bandit==1.7.5
+safety==2.3.5
+
+# Additional security tools
+argon2-cffi==23.1.0
+python-dotenv==1.0.0 

@@ -1,0 +1,159 @@
+- name: "Standard Contract"
+  document_type: "contract"
+  sections:
+    - name: "Header"
+      required: true
+      description: "Contract title and identification"
+    - name: "Parties"
+      required: true
+      description: "Names and addresses of contracting parties"
+    - name: "Recitals"
+      required: true
+      description: "Background and purpose of the contract"
+    - name: "Terms and Conditions"
+      required: true
+      description: "Main contractual terms and obligations"
+    - name: "Payment Terms"
+      required: true
+      description: "Payment schedule and methods"
+    - name: "Termination"
+      required: true
+      description: "Conditions for contract termination"
+    - name: "Dispute Resolution"
+      required: true
+      description: "Process for resolving disputes"
+    - name: "Signatures"
+      required: true
+      description: "Signature blocks for all parties"
+  formatting:
+    font: "Arial"
+    size: 11
+    line_spacing: 1.2
+    margins:
+      top: 1
+      bottom: 1
+      left: 1
+      right: 1
+    page_numbers: true
+    headers: true
+  metadata:
+    legal_format: true
+    page_numbers: true
+    binding: true
+    jurisdiction: "general"
+
+- name: "Service Agreement"
+  document_type: "contract"
+  sections:
+    - name: "Header"
+      required: true
+    - name: "Parties"
+      required: true
+    - name: "Service Description"
+      required: true
+      description: "Detailed description of services to be provided"
+    - name: "Scope of Work"
+      required: true
+      description: "Specific tasks and deliverables"
+    - name: "Timeline"
+      required: true
+      description: "Project schedule and milestones"
+    - name: "Compensation"
+      required: true
+      description: "Payment terms and rates"
+    - name: "Intellectual Property"
+      required: true
+      description: "Ownership of work products"
+    - name: "Confidentiality"
+      required: true
+      description: "Non-disclosure obligations"
+    - name: "Termination"
+      required: true
+    - name: "Signatures"
+      required: true
+  formatting:
+    font: "Arial"
+    size: 11
+    line_spacing: 1.2
+    margins:
+      top: 1
+      bottom: 1
+      left: 1
+      right: 1
+  metadata:
+    legal_format: true
+    service_based: true
+    ip_protection: true
+    confidentiality: true
+
+- name: "Employment Contract"
+  document_type: "contract"
+  sections:
+    - name: "Header"
+      required: true
+    - name: "Parties"
+      required: true
+    - name: "Position Description"
+      required: true
+      description: "Job title, duties, and responsibilities"
+    - name: "Compensation"
+      required: true
+      description: "Salary, benefits, and bonuses"
+    - name: "Work Schedule"
+      required: true
+      description: "Hours, location, and schedule"
+    - name: "Benefits"
+      required: true
+      description: "Health insurance, vacation, etc."
+    - name: "Non-Compete"
+      required: false
+      description: "Restrictions on future employment"
+    - name: "Confidentiality"
+      required: true
+      description: "Protection of company information"
+    - name: "Termination"
+      required: true
+      description: "Conditions for employment termination"
+    - name: "Signatures"
+      required: true
+  formatting:
+    font: "Arial"
+    size: 11
+    line_spacing: 1.2
+    margins:
+      top: 1
+      bottom: 1
+      left: 1
+      right: 1
+  metadata:
+    legal_format: true
+    employment_specific: true
+    benefits_included: true
+    termination_clauses: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

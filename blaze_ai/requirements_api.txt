@@ -1,0 +1,30 @@
+# Blaze AI REST API Module Dependencies
+# Version: 7.3.0
+
+# FastAPI and web framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# HTTP client for testing
+httpx>=0.25.0
+
+# Data validation and serialization
+pydantic>=2.5.0
+
+# CORS middleware
+python-multipart>=0.0.6
+
+# Optional: Additional dependencies for enhanced features
+# python-jose[cryptography]>=3.3.0  # For JWT authentication
+# passlib[bcrypt]>=1.7.4  # For password hashing
+# python-dotenv>=1.0.0  # For environment variables
+
+# Development and testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-httpx>=0.25.0
+
+# Code quality
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.7.0

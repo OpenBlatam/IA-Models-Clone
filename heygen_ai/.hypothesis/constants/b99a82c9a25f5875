@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\core\swarm_features.py
+# hypothesis_version: 6.135.23
+
+[-1000000000.0, 0.01, 0.1, 0.2, 0.3, 0.5, 0.9, 1.0, 2.0, 100, 'ant_path_lengths', 'ant_paths', 'ant_positions', 'best_fitness', 'best_intensity', 'best_path', 'best_path_length', 'best_position', 'elite_fitness', 'global_best_fitness', 'global_best_position', 'inf', 'intensities', 'onlooker_fitness', 'r1', 'r2', 'scout_fitness']

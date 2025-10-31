@@ -1,0 +1,10 @@
+# Requirements for Ultimate Breakthrough Test Case Generation System
+numpy>=1.21.0
+pytest>=6.0.0
+pytest-asyncio>=0.18.0
+pytest-cov>=2.12.0
+pytest-mock>=3.6.0
+pytest-benchmark>=3.4.0
+pytest-xdist>=2.4.0
+pytest-html>=3.1.0
+pytest-json-report>=1.5.0

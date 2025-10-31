@@ -1,0 +1,43 @@
+# BUL - Business Unlimited Environment Configuration
+# ==================================================
+
+# OpenRouter Configuration
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# BUL System Configuration
+BUL_DEBUG=false
+BUL_LOG_LEVEL=INFO
+BUL_API_HOST=0.0.0.0
+BUL_API_PORT=8000
+BUL_API_WORKERS=4
+
+# Database Configuration
+BUL_DATABASE_URL=sqlite:///bul.db
+
+# Cache Configuration
+BUL_CACHE_ENABLED=true
+BUL_CACHE_TTL=3600
+
+# Security Configuration
+BUL_API_KEY_REQUIRED=false
+BUL_API_KEY=your_api_key_here
+
+# Rate Limiting
+BUL_RATE_LIMIT_ENABLED=true
+BUL_RATE_LIMIT_REQUESTS=100
+BUL_RATE_LIMIT_WINDOW=3600
+
+# Processing Configuration
+BUL_MAX_CONCURRENT_TASKS=5
+BUL_TASK_TIMEOUT=300
+BUL_RETRY_ATTEMPTS=3
+BUL_RETRY_DELAY=5
+BUL_CONTINUOUS_MODE=true
+BUL_AUTO_SAVE_INTERVAL=60
+
+# Document Configuration
+BUL_OUTPUT_DIRECTORY=generated_documents
+BUL_MAX_DOCUMENT_SIZE=1048576
+BUL_BACKUP_ENABLED=true
+BUL_COMPRESSION_ENABLED=true
+

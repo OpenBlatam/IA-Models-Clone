@@ -1,0 +1,230 @@
+# 🚀 ENHANCED LINKEDIN OPTIMIZER v4.0 - SIMPLIFIED DEPENDENCIES
+# =============================================================
+# Core dependencies for the v4.0 system
+
+# Core Python packages
+python-dateutil>=2.8.2
+pytz>=2023.3
+typing-extensions>=4.5.0
+dataclasses-json>=0.6.1
+
+# AI/ML Core Libraries
+torch>=2.0.0
+transformers>=4.30.0
+sentence-transformers>=2.2.2
+spacy>=3.6.0
+textblob>=0.17.1
+vaderSentiment>=3.3.2
+
+# Data Science & Analytics
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+scipy>=1.10.0
+
+# Web Framework & Dashboard
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+python-multipart>=0.0.6
+aiofiles>=23.1.0
+websockets>=11.0.0
+
+# Security & Authentication
+cryptography>=41.0.0
+PyJWT>=2.8.0
+passlib[bcrypt]>=1.7.4
+python-jose[cryptography]>=3.3.0
+
+# Database & Caching
+redis>=4.6.0
+aioredis>=2.0.0
+sqlalchemy>=2.0.0
+alembic>=1.11.0
+psycopg2-binary>=2.9.6
+
+# Monitoring & Performance
+psutil>=5.9.0
+prometheus-client>=0.17.0
+structlog>=23.1.0
+sentry-sdk[fastapi]>=1.28.0
+
+# HTTP & API
+httpx>=0.24.0
+aiohttp>=3.8.0
+requests>=2.31.0
+urllib3>=2.0.0
+
+# Async & Concurrency
+asyncio-mqtt>=0.13.0
+aio-pika>=9.0.0
+celery>=5.3.0
+
+# Configuration & Environment
+python-dotenv>=1.0.0
+pydantic-settings>=2.0.0
+click>=8.1.0
+rich>=13.4.0
+
+# Testing & Development
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+black>=23.7.0
+flake8>=6.0.0
+mypy>=1.5.0
+
+# Production & Deployment
+gunicorn>=21.2.0
+supervisor>=4.2.5
+fabric>=2.7.0
+invoke>=2.0.0
+
+# Documentation & Utilities
+mkdocs>=1.5.0
+mkdocs-material>=9.2.0
+sphinx>=7.1.0
+sphinx-rtd-theme>=1.3.0
+
+# Additional AI/ML Tools
+openai>=1.0.0
+anthropic>=0.7.0
+cohere>=4.20.0
+langchain>=0.0.200
+
+# Image & Media Processing
+Pillow>=10.0.0
+opencv-python>=4.8.0
+moviepy>=1.0.3
+
+# Natural Language Processing
+nltk>=3.8.1
+gensim>=4.3.0
+wordcloud>=1.9.2
+textstat>=0.7.3
+
+# Time Series & Forecasting
+prophet>=1.1.4
+statsmodels>=0.14.0
+arch>=6.2.0
+
+# Visualization & Reporting
+plotly>=5.15.0
+bokeh>=3.2.0
+dash>=2.11.0
+streamlit>=1.25.0
+
+# Cloud & Infrastructure
+boto3>=1.28.0
+google-cloud-storage>=2.10.0
+azure-storage-blob>=12.17.0
+docker>=6.1.0
+
+# Monitoring & Observability
+jaeger-client>=4.8.0
+opentelemetry-api>=1.20.0
+opentelemetry-sdk>=1.20.0
+opentelemetry-instrumentation-fastapi>=0.40b0
+
+# Performance & Optimization
+numba>=0.57.0
+cython>=3.0.0
+mypy-extensions>=1.0.0
+
+# Development Tools
+pre-commit>=3.3.0
+tox>=4.6.0
+coverage>=7.2.0
+bandit>=1.7.0
+
+# System Integration
+systemd-python>=235
+pywin32>=306; sys_platform == "win32"
+psutil>=5.9.0
+
+# Background Tasks
+celery[redis]>=5.3.0
+dramatiq>=1.14.0
+
+# Configuration Management
+hydra-core>=1.3.0
+omegaconf>=2.3.0
+
+# Logging & Debugging
+loguru>=0.7.0
+ipdb>=0.13.0
+debugpy>=1.6.0
+
+# Data Validation & Serialization
+marshmallow>=3.20.0
+cerberus>=1.3.4
+jsonschema>=4.19.0
+
+# API Documentation
+drf-spectacular>=0.26.0
+apispec>=6.3.0
+
+# Rate Limiting & Caching
+slowapi>=0.1.8
+cachetools>=5.3.0
+
+# Error Handling & Monitoring
+sentry-sdk[fastapi]>=1.28.0
+rollbar>=0.16.0
+
+# Development Environment
+ipython>=8.14.0
+jupyter>=1.0.0
+notebook>=7.0.0
+
+# Code Quality
+prospector>=1.10.0
+radon>=6.0.0
+mccabe>=0.7.0
+
+# Performance Profiling
+py-spy>=0.3.14
+memory-profiler>=0.61.0
+line-profiler>=4.1.0
+
+# Security Scanning
+safety>=2.3.0
+bandit>=1.7.0
+semgrep>=1.40.0
+
+# Database Migrations
+alembic>=1.11.0
+yoyo-migrations>=8.2.0
+
+# API Testing
+pytest-asyncio>=0.21.0
+httpx>=0.24.0
+responses>=0.23.0
+
+# Load Testing
+locust>=2.15.0
+pytest-benchmark>=4.0.0
+
+# Documentation Generation
+sphinx-autodoc-typehints>=1.24.0
+sphinx-rtd-theme>=1.3.0
+
+# Code Coverage
+coverage>=7.2.0
+pytest-cov>=4.1.0
+
+# Type Checking
+mypy>=1.5.0
+types-requests>=2.31.0
+types-PyYAML>=6.0.0
+
+# Environment Management
+virtualenv>=20.24.0
+pip-tools>=7.3.0
+
+# Package Management
+pip>=23.0.0
+setuptools>=68.0.0
+wheel>=0.41.0

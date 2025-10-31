@@ -1,0 +1,194 @@
+# Ultimate TruthGPT Docker Compose
+# =================================
+# 
+# Docker Compose para la aplicación definitiva de TruthGPT con todas
+# las características ultra avanzadas integradas.
+
+version: '3.8'
+
+services:
+  # Redis service
+  redis:
+    image: redis:7-alpine
+    container_name: ultimate_truthgpt_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - ultimate_truthgpt_network
+
+  # Ultimate TruthGPT application
+  ultimate_truthgpt:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: ultimate_truthgpt_app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # API Configuration
+      - HOST=0.0.0.0
+      - PORT=8000
+      - WORKERS=1
+      - LOG_LEVEL=info
+      
+      # Redis Configuration
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      
+      # AI Configuration
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - DEFAULT_MODEL=gpt-3.5-turbo
+      - TEMPERATURE=0.7
+      - MAX_TOKENS=4000
+      
+      # Performance Configuration
+      - MAX_DOCUMENTS_PER_REQUEST=1000
+      - MAX_CONCURRENT_REQUESTS=50
+      - CACHE_TTL=3600
+      - BATCH_SIZE=10
+      
+      # Feature Flags
+      - ENABLE_ANALYTICS=true
+      - ENABLE_CLUSTERING=true
+      - ENABLE_SENTIMENT_ANALYSIS=true
+      - ENABLE_CONTENT_METRICS=true
+      - ENABLE_AI_HISTORY=true
+      - ENABLE_PROMPT_EVOLUTION=true
+      - ENABLE_WORKFLOW=true
+      - ENABLE_REDUNDANCY_DETECTION=true
+      
+      # Environment
+      - ENVIRONMENT=production
+      - DEBUG=false
+    volumes:
+      - app_logs:/app/logs
+      - app_data:/app/data
+      - app_cache:/app/cache
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - ultimate_truthgpt_network
+
+  # Nginx reverse proxy (optional)
+  nginx:
+    image: nginx:alpine
+    container_name: ultimate_truthgpt_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - ultimate_truthgpt
+    networks:
+      - ultimate_truthgpt_network
+    profiles:
+      - production
+
+  # Prometheus monitoring (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ultimate_truthgpt_prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - ultimate_truthgpt_network
+    profiles:
+      - monitoring
+
+  # Grafana dashboard (optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ultimate_truthgpt_grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    depends_on:
+      - prometheus
+    networks:
+      - ultimate_truthgpt_network
+    profiles:
+      - monitoring
+
+volumes:
+  redis_data:
+    driver: local
+  app_logs:
+    driver: local
+  app_data:
+    driver: local
+  app_cache:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  ultimate_truthgpt_network:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

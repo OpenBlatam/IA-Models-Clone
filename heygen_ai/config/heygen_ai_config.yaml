@@ -1,0 +1,195 @@
+# HeyGen AI - Unified Configuration
+# This file contains all configuration settings for the HeyGen AI system
+
+# =============================================================================
+# System Configuration
+# =============================================================================
+system:
+  name: "HeyGen AI"
+  version: "2.0.0"
+  environment: "development"  # development, staging, production
+  debug: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  
+# =============================================================================
+# Plugin System Configuration
+# =============================================================================
+plugins:
+  enabled: true
+  auto_load: true
+  hot_reload: false
+  hot_reload_interval: 30.0
+  directories:
+    - "plugins"
+    - "extensions"
+    - "custom_models"
+    - "optimizations"
+    - "features"
+  validation:
+    enabled: true
+    allow_unsafe: false
+    check_dependencies: true
+  cache:
+    enabled: true
+    size: 100
+    ttl: 3600
+
+# =============================================================================
+# Model Configuration
+# =============================================================================
+models:
+  default_device: "auto"  # auto, cpu, cuda, mps
+  default_precision: "fp32"  # fp16, fp32, bf16
+  optimization:
+    quantization: true
+    pruning: true
+    compilation: true
+    mixed_precision: true
+  cache:
+    enabled: true
+    directory: "models/cache"
+    max_size_gb: 10
+
+# =============================================================================
+# Performance Configuration
+# =============================================================================
+performance:
+  optimization_level: "balanced"  # minimal, balanced, aggressive
+  memory_management:
+    enable_garbage_collection: true
+    gc_threshold: 0.8
+    memory_pool: true
+  threading:
+    max_workers: 4
+    thread_pool_size: 8
+  gpu:
+    memory_fraction: 0.9
+    allow_growth: true
+    enable_mixed_precision: true
+
+# =============================================================================
+# API Configuration
+# =============================================================================
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  timeout: 30
+  cors:
+    enabled: true
+    origins: ["*"]
+    methods: ["GET", "POST", "PUT", "DELETE"]
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    burst_size: 20
+
+# =============================================================================
+# Database Configuration
+# =============================================================================
+database:
+  type: "sqlite"  # sqlite, postgresql, mysql
+  url: "sqlite:///heygen_ai.db"
+  pool_size: 10
+  max_overflow: 20
+  echo: false
+
+# =============================================================================
+# Cache Configuration
+# =============================================================================
+cache:
+  type: "memory"  # memory, redis, memcached
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    password: null
+  memory:
+    max_size_mb: 512
+    ttl: 3600
+
+# =============================================================================
+# Logging Configuration
+# =============================================================================
+logging:
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    console:
+      enabled: true
+      level: "INFO"
+    file:
+      enabled: true
+      level: "DEBUG"
+      filename: "logs/heygen_ai.log"
+      max_bytes: 10485760  # 10MB
+      backup_count: 5
+    syslog:
+      enabled: false
+      host: "localhost"
+      port: 514
+
+# =============================================================================
+# Security Configuration
+# =============================================================================
+security:
+  authentication:
+    enabled: false
+    type: "jwt"  # jwt, oauth, basic
+    secret_key: "your-secret-key-here"
+    token_expiry: 3600
+  encryption:
+    enabled: false
+    algorithm: "AES-256-GCM"
+  ssl:
+    enabled: false
+    cert_file: "certs/cert.pem"
+    key_file: "certs/key.pem"
+
+# =============================================================================
+# Monitoring Configuration
+# =============================================================================
+monitoring:
+  enabled: true
+  metrics:
+    prometheus: true
+    grafana: false
+  health_checks:
+    enabled: true
+    interval: 30
+  profiling:
+    enabled: false
+    sampling_rate: 0.1
+
+# =============================================================================
+# External Services Configuration
+# =============================================================================
+external_services:
+  openai:
+    enabled: false
+    api_key: ""
+    base_url: "https://api.openai.com/v1"
+  elevenlabs:
+    enabled: false
+    api_key: ""
+    base_url: "https://api.elevenlabs.io/v1"
+  cloud_storage:
+    type: "local"  # local, s3, azure, gcp
+    local:
+      directory: "storage"
+    s3:
+      bucket: ""
+      region: ""
+      access_key: ""
+      secret_key: ""
+
+# =============================================================================
+# Development Configuration
+# =============================================================================
+development:
+  hot_reload: true
+  debug_toolbar: true
+  profiling: false
+  testing:
+    enabled: true
+    coverage: true
+    parallel: true

@@ -1,0 +1,51 @@
+{
+  "network_scanner": {
+    "scan_type": "tcp",
+    "port_range": "22,80,443,8080,3306,5432,27017",
+    "common_ports": true,
+    "banner_grab": true,
+    "ssl_check": true,
+    "use_nmap": true,
+    "nmap_arguments": "-sS -sV -O --version-intensity 3"
+  },
+  "performance": {
+    "timeout": 10.0,
+    "max_workers": 50,
+    "retry_count": 2,
+    "connection_pool_size": 20
+  },
+  "output": {
+    "format": "json",
+    "include_timestamps": true,
+    "compress_output": false,
+    "output_directory": "network_reports"
+  },
+  "targets": {
+    "default_ports": [22, 80, 443, 8080, 3306, 5432, 27017],
+    "common_services": {
+      "21": "ftp",
+      "22": "ssh",
+      "23": "telnet",
+      "25": "smtp",
+      "53": "dns",
+      "80": "http",
+      "110": "pop3",
+      "143": "imap",
+      "443": "https",
+      "993": "imaps",
+      "995": "pop3s",
+      "3306": "mysql",
+      "5432": "postgresql",
+      "27017": "mongodb",
+      "6379": "redis",
+      "8080": "http-proxy",
+      "8443": "https-alt"
+    }
+  },
+  "validation": {
+    "validate_ip_addresses": true,
+    "validate_port_ranges": true,
+    "check_common_services": true,
+    "verify_ssl_certificates": true
+  }
+} 

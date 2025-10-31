@@ -1,0 +1,40 @@
+# Requirements for Noise Schedulers and Sampling Methods
+# =====================================================
+
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+Pillow>=9.0.0
+
+# Diffusers library for advanced schedulers and sampling
+diffusers>=0.21.0
+transformers>=4.30.0
+
+# Visualization and plotting
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Testing and development
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+
+# Performance monitoring
+psutil>=5.9.0
+
+# Type checking
+typing-extensions>=4.5.0
+
+# Optional: GPU acceleration
+# cuda-python>=12.0.0  # Uncomment if using CUDA
+
+# Optional: Advanced features
+# accelerate>=0.20.0  # For distributed training
+# safetensors>=0.3.0  # For model loading
+# xformers>=0.0.20  # For memory efficient attention
+
+# Development tools
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0 

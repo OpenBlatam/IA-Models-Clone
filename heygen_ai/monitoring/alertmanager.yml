@@ -1,0 +1,310 @@
+# =============================================================================
+# AlertManager Configuration for Next-Level HeyGen AI FastAPI
+# Comprehensive alert routing, grouping, and notification management
+# =============================================================================
+
+global:
+  resolve_timeout: 5m
+  slack_api_url: 'https://hooks.slack.com/services/YOUR_SLACK_WEBHOOK'
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'alerts@heygen.local'
+  smtp_auth_username: 'alerts@heygen.local'
+  smtp_auth_password: 'YOUR_SMTP_PASSWORD'
+
+# Route configuration
+route:
+  group_by: ['alertname', 'service', 'category']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+  receiver: 'slack-notifications'
+  routes:
+    # Critical alerts - immediate notification
+    - match:
+        severity: critical
+      receiver: 'pager-duty-critical'
+      group_wait: 0s
+      group_interval: 1m
+      repeat_interval: 1h
+      continue: true
+    
+    # AI/ML specific alerts
+    - match:
+        category: ai-performance
+      receiver: 'ai-team-slack'
+      group_wait: 1m
+      group_interval: 5m
+      repeat_interval: 2h
+      continue: true
+    
+    # Business metrics alerts
+    - match:
+        category: business
+      receiver: 'business-team-slack'
+      group_wait: 2m
+      group_interval: 10m
+      repeat_interval: 1h
+      continue: true
+    
+    # Infrastructure alerts
+    - match:
+        category: infrastructure
+      receiver: 'ops-team-slack'
+      group_wait: 1m
+      group_interval: 5m
+      repeat_interval: 30m
+      continue: true
+
+# Inhibition rules
+inhibit_rules:
+  # Don't alert on warnings if critical alerts are firing
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'service', 'instance']
+  
+  # Don't alert on performance issues if the service is down
+  - source_match:
+      alertname: 'HeyGenAIDown'
+    target_match_re:
+      category: 'performance|ai-performance'
+    equal: ['service', 'instance']
+
+# Time-based routing
+time_intervals:
+  - name: workdays
+    time_intervals:
+      - weekdays: ['monday:friday']
+        times:
+          - start_time: 09:00
+            end_time: 17:00
+        location: 'America/New_York'
+  
+  - name: weekends
+    time_intervals:
+      - weekdays: ['saturday', 'sunday']
+  
+  - name: off-hours
+    time_intervals:
+      - weekdays: ['monday:friday']
+        times:
+          - start_time: 17:00
+            end_time: 09:00
+        location: 'America/New_York'
+      - weekdays: ['saturday', 'sunday']
+
+# Receiver configurations
+receivers:
+  # Slack notifications for general alerts
+  - name: 'slack-notifications'
+    slack_configs:
+      - channel: '#heygen-alerts'
+        title: '{{ template "slack.heygen.title" . }}'
+        text: '{{ template "slack.heygen.text" . }}'
+        actions:
+          - type: button
+            text: 'View Dashboard'
+            url: '{{ template "slack.heygen.dashboard" . }}'
+          - type: button
+            text: 'View Runbook'
+            url: '{{ template "slack.heygen.runbook" . }}'
+        send_resolved: true
+        icon_url: 'https://avatars3.githubusercontent.com/u/3380462'
+        username: 'HeyGen AI Alerts'
+
+  # PagerDuty for critical alerts
+  - name: 'pager-duty-critical'
+    pagerduty_configs:
+      - routing_key: 'YOUR_PAGERDUTY_ROUTING_KEY'
+        description: '{{ template "pagerduty.heygen.description" . }}'
+        severity: '{{ if eq .CommonLabels.severity "critical" }}critical{{ else }}warning{{ end }}'
+        client: 'HeyGen AI AlertManager'
+        client_url: '{{ template "pagerduty.heygen.clientURL" . }}'
+        details:
+          firing: '{{ template "pagerduty.heygen.firing" . }}'
+          num_firing: '{{ .Alerts.Firing | len }}'
+          num_resolved: '{{ .Alerts.Resolved | len }}'
+          resolved: '{{ template "pagerduty.heygen.resolved" . }}'
+
+  # AI team specific notifications
+  - name: 'ai-team-slack'
+    slack_configs:
+      - channel: '#ai-team-alerts'
+        title: '🤖 AI Performance Alert: {{ .GroupLabels.alertname }}'
+        text: '{{ template "slack.heygen.ai.text" . }}'
+        actions:
+          - type: button
+            text: 'AI Dashboard'
+            url: 'https://grafana.heygen.local/d/heygen-ai-performance'
+          - type: button
+            text: 'AI Runbook'
+            url: '{{ template "slack.heygen.runbook" . }}'
+        send_resolved: true
+        icon_emoji: ':robot_face:'
+        username: 'HeyGen AI Alerts'
+
+  # Business team notifications
+  - name: 'business-team-slack'
+    slack_configs:
+      - channel: '#business-alerts'
+        title: '📊 Business Alert: {{ .GroupLabels.alertname }}'
+        text: '{{ template "slack.heygen.business.text" . }}'
+        actions:
+          - type: button
+            text: 'Business Dashboard'
+            url: 'https://grafana.heygen.local/d/heygen-business'
+          - type: button
+            text: 'Business Runbook'
+            url: '{{ template "slack.heygen.runbook" . }}'
+        send_resolved: true
+        icon_emoji: ':chart_with_upwards_trend:'
+        username: 'HeyGen Business Alerts'
+
+  # Ops team notifications
+  - name: 'ops-team-slack'
+    slack_configs:
+      - channel: '#ops-alerts'
+        title: '🔧 Infrastructure Alert: {{ .GroupLabels.alertname }}'
+        text: '{{ template "slack.heygen.ops.text" . }}'
+        actions:
+          - type: button
+            text: 'Infrastructure Dashboard'
+            url: 'https://grafana.heygen.local/d/heygen-infrastructure'
+          - type: button
+            text: 'Ops Runbook'
+            url: '{{ template "slack.heygen.runbook" . }}'
+        send_resolved: true
+        icon_emoji: ':wrench:'
+        username: 'HeyGen Ops Alerts'
+
+  # Email notifications for off-hours
+  - name: 'email-off-hours'
+    email_configs:
+      - to: 'oncall@heygen.local'
+        headers:
+          subject: 'HeyGen AI Alert: {{ .GroupLabels.alertname }}'
+        html: '{{ template "email.heygen.html" . }}'
+        send_resolved: true
+
+  # Webhook for custom integrations
+  - name: 'webhook-integrations'
+    webhook_configs:
+      - url: 'https://api.heygen.local/webhooks/alerts'
+        send_resolved: true
+        http_config:
+          basic_auth:
+            username: 'alertmanager'
+            password: 'YOUR_WEBHOOK_PASSWORD'
+        max_alerts: 0
+
+# Template configurations
+templates:
+  - '/etc/alertmanager/template/*.tmpl'
+
+# Template definitions (inline for simplicity)
+templates:
+  - |
+    {{ define "slack.heygen.title" }}
+    [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }}
+    {{ end }}
+
+    {{ define "slack.heygen.text" }}
+    {{ range .Alerts }}
+    *Alert:* {{ .Annotations.summary }}
+    *Description:* {{ .Annotations.description }}
+    *Severity:* {{ .Labels.severity }}
+    *Service:* {{ .Labels.service }}
+    *Instance:* {{ .Labels.instance }}
+    *Started:* {{ .StartsAt | since }}
+    {{ if .EndsAt }}*Resolved:* {{ .EndsAt | since }}{{ end }}
+    {{ end }}
+    {{ end }}
+
+    {{ define "slack.heygen.dashboard" }}
+    {{ if .Alerts }}{{ (index .Alerts 0).Annotations.dashboard }}{{ end }}
+    {{ end }}
+
+    {{ define "slack.heygen.runbook" }}
+    {{ if .Alerts }}{{ (index .Alerts 0).Annotations.runbook }}{{ end }}
+    {{ end }}
+
+    {{ define "slack.heygen.ai.text" }}
+    {{ range .Alerts }}
+    🤖 *AI Performance Issue Detected*
+    *Alert:* {{ .Annotations.summary }}
+    *Description:* {{ .Annotations.description }}
+    *GPU Utilization:* {{ .Labels.gpu_utilization | default "N/A" }}
+    *Model:* {{ .Labels.model | default "N/A" }}
+    *Started:* {{ .StartsAt | since }}
+    {{ end }}
+    {{ end }}
+
+    {{ define "slack.heygen.business.text" }}
+    {{ range .Alerts }}
+    📊 *Business Impact Alert*
+    *Alert:* {{ .Annotations.summary }}
+    *Description:* {{ .Annotations.description }}
+    *Impact:* {{ .Labels.impact | default "Unknown" }}
+    *Started:* {{ .StartsAt | since }}
+    {{ end }}
+    {{ end }}
+
+    {{ define "slack.heygen.ops.text" }}
+    {{ range .Alerts }}
+    🔧 *Infrastructure Issue Detected*
+    *Alert:* {{ .Annotations.summary }}
+    *Description:* {{ .Annotations.description }}
+    *Component:* {{ .Labels.component | default "Unknown" }}
+    *Started:* {{ .StartsAt | since }}
+    {{ end }}
+    {{ end }}
+
+    {{ define "pagerduty.heygen.description" }}
+    {{ if .Alerts }}{{ (index .Alerts 0).Annotations.summary }}{{ end }}
+    {{ end }}
+
+    {{ define "pagerduty.heygen.clientURL" }}
+    {{ if .Alerts }}{{ (index .Alerts 0).Annotations.dashboard }}{{ end }}
+    {{ end }}
+
+    {{ define "pagerduty.heygen.firing" }}
+    {{ range .Alerts.Firing }}
+    - {{ .Annotations.summary }}
+    {{ end }}
+    {{ end }}
+
+    {{ define "pagerduty.heygen.resolved" }}
+    {{ range .Alerts.Resolved }}
+    - {{ .Annotations.summary }}
+    {{ end }}
+    {{ end }}
+
+    {{ define "email.heygen.html" }}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>HeyGen AI Alert</title>
+        <style>
+            body { font-family: Arial, sans-serif; }
+            .alert { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+            .critical { border-color: #ff0000; background-color: #ffe6e6; }
+            .warning { border-color: #ff9900; background-color: #fff2e6; }
+        </style>
+    </head>
+    <body>
+        <h2>HeyGen AI Alert Notification</h2>
+        {{ range .Alerts }}
+        <div class="alert {{ .Labels.severity }}">
+            <h3>{{ .Annotations.summary }}</h3>
+            <p><strong>Description:</strong> {{ .Annotations.description }}</p>
+            <p><strong>Severity:</strong> {{ .Labels.severity }}</p>
+            <p><strong>Service:</strong> {{ .Labels.service }}</p>
+            <p><strong>Instance:</strong> {{ .Labels.instance }}</p>
+            <p><strong>Started:</strong> {{ .StartsAt | since }}</p>
+            {{ if .EndsAt }}<p><strong>Resolved:</strong> {{ .EndsAt | since }}</p>{{ end }}
+        </div>
+        {{ end }}
+    </body>
+    </html>
+    {{ end }} 

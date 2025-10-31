@@ -1,0 +1,133 @@
+name: small_model
+version: "1.0.0"
+description: "Small model for quick experiments"
+created_at: "2024-01-01T00:00:00"
+updated_at: "2024-01-01T00:00:00"
+
+model:
+  model_type: "transformer"
+  input_dim: 256
+  hidden_dim: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  activation: "gelu"
+  vocab_size: 10000
+  max_seq_length: 256
+  embedding_dim: 256
+  layer_norm_eps: 1e-12
+  attention_dropout: 0.1
+  hidden_dropout: 0.1
+  initializer_range: 0.02
+  use_bias: true
+  use_relative_position: false
+  use_absolute_position: true
+  position_embedding_type: "learned"
+
+training:
+  batch_size: 16
+  learning_rate: 1e-3
+  weight_decay: 1e-4
+  num_epochs: 10
+  warmup_steps: 100
+  max_grad_norm: 1.0
+  optimizer: "adamw"
+  scheduler: "cosine"
+  momentum: 0.9
+  beta1: 0.9
+  beta2: 0.999
+  epsilon: 1e-8
+  lr_scheduler_type: "cosine"
+  lr_warmup_ratio: 0.1
+  lr_decay_ratio: 0.1
+  min_lr: 1e-6
+  gradient_accumulation_steps: 1
+  gradient_checkpointing: false
+  fp16: false
+  bf16: false
+  dataloader_pin_memory: false
+  dataloader_num_workers: 2
+
+data:
+  dataset_name: "facebook_posts"
+  dataset_size: 1000
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  max_length: 256
+  truncation: true
+  padding: "max_length"
+  return_tensors: "pt"
+  use_augmentation: false
+  augmentation_prob: 0.5
+  augmentation_methods:
+    - "random_mask"
+    - "synonym_replacement"
+  batch_size: 16
+  shuffle: true
+  num_workers: 2
+  pin_memory: false
+  drop_last: true
+  cache_dir: "cache"
+  use_cache: true
+  cache_size: 100
+
+performance:
+  use_mixed_precision: false
+  dtype: "float32"
+  scaler_enabled: false
+  memory_efficient_attention: false
+  gradient_checkpointing: false
+  memory_pool: false
+  num_workers: 2
+  pin_memory: false
+  persistent_workers: false
+  prefetch_factor: 2
+  compile_model: false
+  use_torch_compile: false
+  optimize_for_inference: false
+  use_distributed: false
+  world_size: 1
+  rank: 0
+  backend: "nccl"
+
+logging:
+  log_level: "INFO"
+  log_file: "logs/small_model_training.log"
+  log_interval: 5
+  use_tensorboard: false
+  use_wandb: false
+  tensorboard_dir: "runs"
+  wandb_project: "facebook-posts-ai"
+  wandb_entity: ""
+  save_dir: "checkpoints/small_model"
+  save_interval: 50
+  save_best_only: true
+  save_last: true
+  max_checkpoints: 3
+  eval_interval: 50
+  log_metrics:
+    - "loss"
+    - "accuracy"
+    - "learning_rate"
+
+system:
+  device: "auto"
+  seed: 42
+  deterministic: false
+  base_dir: "."
+  data_dir: "data"
+  models_dir: "models"
+  logs_dir: "logs"
+  cache_dir: "cache"
+  num_threads: 2
+  use_multiprocessing: false
+  max_workers: 2
+  debug: true
+  verbose: true
+  profile: false
+
+custom:
+  experiment_type: "quick_test"
+  model_size: "small"
+  expected_training_time: "5-10 minutes" 

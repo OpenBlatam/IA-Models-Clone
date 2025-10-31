@@ -1,0 +1,95 @@
+{
+  "unit_tests": {
+    "total_tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "errors": [],
+    "execution_time": 0.03883528709411621,
+    "performance_metrics": {
+      "duration": 0.03883528709411621,
+      "memory_delta_mb": 0.05859375,
+      "operations_per_second": 25.74977745308097
+    }
+  },
+  "integration_tests": {
+    "total_tests": 2,
+    "passed": 2,
+    "failed": 0,
+    "errors": [],
+    "execution_time": 0.0003504753112792969,
+    "performance_metrics": {
+      "duration": 0.0003504753112792969,
+      "memory_delta_mb": 0.0,
+      "operations_per_second": 2853.268027210884
+    }
+  },
+  "load_tests": {
+    "load_scenarios": {
+      "low_load": {
+        "duration": 5.023033380508423,
+        "total_requests": 46,
+        "successful_requests": 46,
+        "failed_requests": 0,
+        "success_rate": 1.0,
+        "requests_per_second": 9.15781292206821,
+        "avg_response_time": 0.016426314478335174,
+        "p50_response_time": 0.015569806098937988,
+        "p95_response_time": 0.025667870044708253,
+        "error_rate": 0.0
+      },
+      "medium_load": {
+        "duration": 8.033927917480469,
+        "total_requests": 181,
+        "successful_requests": 181,
+        "failed_requests": 0,
+        "success_rate": 1.0,
+        "requests_per_second": 22.52945282296778,
+        "avg_response_time": 0.01611743710976279,
+        "p50_response_time": 0.015597820281982422,
+        "p95_response_time": 0.0263669490814209,
+        "error_rate": 0.0
+      }
+    },
+    "total_scenarios": 2,
+    "passed": 2,
+    "failed": 0,
+    "errors": [],
+    "execution_time": 13.058259010314941,
+    "performance_metrics": {
+      "duration": 13.058259010314941,
+      "memory_delta_mb": 0.1171875,
+      "operations_per_second": 0.07657988704390707
+    }
+  },
+  "performance_metrics": {
+    "test_suite_performance": {
+      "unit_tests": {
+        "execution_time": 0.03883528709411621,
+        "tests_per_second": 102.99910981232388,
+        "success_rate": 1.0
+      },
+      "integration_tests": {
+        "execution_time": 0.0003504753112792969,
+        "tests_per_second": 5706.536054421768,
+        "success_rate": 1.0
+      },
+      "load_tests": {
+        "execution_time": 13.058259010314941,
+        "tests_per_second": 0.0,
+        "success_rate": 0
+      }
+    },
+    "overall_metrics": {
+      "total_tests": 6,
+      "total_passed": 6,
+      "total_failed": 0,
+      "success_rate": 1.0,
+      "total_execution_time": 0.03918576240539551,
+      "tests_per_second": 153.11683712893276
+    },
+    "recommendations": []
+  },
+  "summary": {},
+  "timestamp": 1751511293.2805905,
+  "total_execution_time": 13.099024295806885
+}

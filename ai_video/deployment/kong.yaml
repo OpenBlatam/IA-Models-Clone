@@ -1,0 +1,24 @@
+_format_version: "2.1"
+services:
+  - name: ai-video
+    url: http://ai-video-api:8000
+    routes:
+      - name: video
+        paths:
+          - /v1/video
+        methods:
+          - POST
+      - name: health
+        paths:
+          - /health
+        methods:
+          - GET
+plugins:
+  - name: rate-limiting
+    config:
+      minute: 60
+  - name: jwt
+  - name: cors
+  - name: file-log
+    config:
+      path: /tmp/kong.log 

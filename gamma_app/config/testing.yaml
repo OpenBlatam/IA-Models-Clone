@@ -1,0 +1,212 @@
+# Gamma App - Testing Configuration
+# This file contains testing-specific settings
+
+# Application Settings
+app:
+  name: "Gamma App (Test)"
+  version: "1.0.0-test"
+  environment: "testing"
+  debug: false
+  host: "127.0.0.1"
+  port: 8001  # Different port for testing
+  workers: 1
+  reload: false
+
+# Database Configuration
+database:
+  url: "postgresql://gamma_user:gamma_password@localhost:5432/gamma_db_test"
+  pool_size: 2
+  max_overflow: 5
+  pool_timeout: 10
+  pool_recycle: 3600
+  echo: false
+
+# Redis Configuration
+redis:
+  url: "redis://localhost:6379/2"  # Use database 2 for testing
+  max_connections: 5
+  socket_timeout: 5
+  socket_connect_timeout: 5
+  retry_on_timeout: true
+
+# AI Configuration
+ai:
+  openai:
+    api_key: "test-key"
+    model: "gpt-3.5-turbo"
+    max_tokens: 1000
+    temperature: 0.5
+  
+  anthropic:
+    api_key: "test-key"
+    model: "claude-3-haiku-20240307"
+    max_tokens: 1000
+  
+  local_models:
+    enabled: true
+    models_dir: "./test_models"
+    default_model: "gpt2-small"
+    quantization: false
+    device: "cpu"
+
+# Security Configuration
+security:
+  secret_key: "test-secret-key"
+  algorithm: "HS256"
+  access_token_expire_minutes: 5  # Short for testing
+  refresh_token_expire_days: 1
+  
+  rate_limiting:
+    enabled: false  # Disable for testing
+    requests_per_minute: 10000
+    burst_size: 1000
+  
+  password_policy:
+    min_length: 4  # Very relaxed for testing
+    require_uppercase: false
+    require_lowercase: false
+    require_numbers: false
+    require_special_chars: false
+
+# Cache Configuration
+cache:
+  local:
+    enabled: true
+    max_size: "16MB"
+    ttl: 60  # Very short for testing
+  
+  redis:
+    enabled: true
+    ttl: 120
+    key_prefix: "gamma:test:"
+  
+  cdn:
+    enabled: false
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: false  # Disable for testing
+    port: 9091
+    path: "/metrics"
+  
+  logging:
+    level: "WARNING"  # Less verbose for testing
+    format: "json"
+    file: "./logs/gamma_test.log"
+    max_size: "1MB"
+    backup_count: 1
+  
+  health_checks:
+    enabled: true
+    interval: 120
+    timeout: 60
+
+# Export Configuration
+export:
+  max_file_size: "1MB"  # Very small for testing
+  supported_formats:
+    - "json"
+    - "html"
+    - "markdown"
+  
+  quality:
+    default: "low"  # Lowest quality for testing
+    options: ["low"]
+  
+  templates:
+    enabled: true
+    directory: "./test_templates"
+
+# Collaboration Configuration
+collaboration:
+  websockets:
+    enabled: true
+    max_connections: 10  # Very low for testing
+    ping_interval: 120
+    ping_timeout: 60
+  
+  real_time:
+    enabled: true
+    sync_interval: 1000  # Very slow for testing
+    conflict_resolution: "last_write_wins"
+
+# Performance Configuration
+performance:
+  profiling:
+    enabled: false  # Disable for testing
+    sample_rate: 0.0
+  
+  optimization:
+    enabled: false
+    auto_gc: false
+    gc_threshold: 0.95
+  
+  limits:
+    max_content_size: "1MB"
+    max_concurrent_requests: 5
+    request_timeout: 30
+
+# Email Configuration
+email:
+  smtp:
+    host: "localhost"
+    port: 1025
+    username: ""
+    password: ""
+    use_tls: false
+  
+  templates:
+    directory: "./test_email_templates"
+  
+  notifications:
+    enabled: false
+    from_email: "test@gamma.app"
+
+# File Storage Configuration
+storage:
+  local:
+    enabled: true
+    upload_dir: "./test_uploads"
+    max_file_size: "1MB"
+  
+  s3:
+    enabled: false
+
+# Feature Flags
+features:
+  ai_generation: true
+  real_time_collaboration: true
+  advanced_export: false  # Disable for testing
+  analytics: false
+  user_management: true
+  content_templates: true
+  multimedia_support: false
+  custom_themes: false
+  api_access: true
+  webhooks: false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

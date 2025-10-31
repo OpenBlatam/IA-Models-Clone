@@ -1,0 +1,424 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Instagram Captions API v14.0 - Optimized",
+    "description": "Ultra-fast Instagram captions generation with advanced AI capabilities",
+    "version": "14.0.0",
+    "contact": {
+      "name": "API Support",
+      "email": "support@instagram-captions-api.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8140",
+      "description": "Development server"
+    },
+    {
+      "url": "https://api.instagram-captions.com/v14",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/v14/generate": {
+      "post": {
+        "tags": ["Caption Generation"],
+        "summary": "Generate single caption",
+        "description": "Ultra-fast single caption generation with AI",
+        "security": [{"HTTPBearer": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizedRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful caption generation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimizedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v14/batch": {
+      "post": {
+        "tags": ["Caption Generation"],
+        "summary": "Batch caption generation",
+        "description": "Optimized batch processing for multiple caption requests",
+        "security": [{"HTTPBearer": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful batch processing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/performance/health": {
+      "get": {
+        "tags": ["Performance Monitoring"],
+        "summary": "Health check",
+        "description": "System health status",
+        "responses": {
+          "200": {
+            "description": "System health information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthCheckResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/performance/metrics": {
+      "get": {
+        "tags": ["Performance Monitoring"],
+        "summary": "Performance metrics",
+        "description": "Real-time performance metrics",
+        "responses": {
+          "200": {
+            "description": "Performance metrics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "engine_stats": {
+                      "$ref": "#/components/schemas/PerformanceStats"
+                    },
+                    "performance_summary": {
+                      "$ref": "#/components/schemas/PerformanceSummary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "OptimizedRequest": {
+        "type": "object",
+        "required": ["content_description"],
+        "properties": {
+          "content_description": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 1000,
+            "description": "Content description for caption generation"
+          },
+          "style": {
+            "type": "string",
+            "enum": ["casual", "professional", "inspirational", "playful"],
+            "default": "casual",
+            "description": "Caption style preference"
+          },
+          "hashtag_count": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 30,
+            "default": 15,
+            "description": "Number of hashtags to generate"
+          },
+          "optimization_level": {
+            "type": "string",
+            "enum": ["ultra_fast", "balanced", "quality"],
+            "default": "ultra_fast",
+            "description": "Performance optimization level"
+          },
+          "client_id": {
+            "type": "string",
+            "default": "optimized-v14",
+            "description": "Client identifier for tracking"
+          }
+        }
+      },
+      "OptimizedResponse": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "description": "Unique request identifier"
+          },
+          "caption": {
+            "type": "string",
+            "description": "Generated Instagram caption"
+          },
+          "hashtags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Generated hashtags"
+          },
+          "quality_score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "description": "Caption quality score"
+          },
+          "processing_time": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Processing time in seconds"
+          },
+          "cache_hit": {
+            "type": "boolean",
+            "description": "Whether response was served from cache"
+          },
+          "optimization_level": {
+            "type": "string",
+            "description": "Optimization level used"
+          },
+          "api_version": {
+            "type": "string",
+            "default": "14.0.0",
+            "description": "API version"
+          }
+        }
+      },
+      "BatchRequest": {
+        "type": "object",
+        "required": ["requests"],
+        "properties": {
+          "requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizedRequest"
+            },
+            "minItems": 1,
+            "maxItems": 100,
+            "description": "List of caption generation requests"
+          }
+        }
+      },
+      "BatchResponse": {
+        "type": "object",
+        "properties": {
+          "batch_id": {
+            "type": "string",
+            "description": "Unique batch identifier"
+          },
+          "total_requests": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Total number of requests"
+          },
+          "successful_requests": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of successful requests"
+          },
+          "processing_time": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Total processing time"
+          },
+          "responses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizedResponse"
+            },
+            "description": "Generated responses"
+          }
+        }
+      },
+      "HealthCheckResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["healthy", "degraded", "unhealthy"],
+            "description": "System health status"
+          },
+          "version": {
+            "type": "string",
+            "description": "API version"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Current timestamp"
+          },
+          "optimizations": {
+            "type": "object",
+            "description": "Enabled optimizations"
+          }
+        }
+      },
+      "PerformanceStats": {
+        "type": "object",
+        "properties": {
+          "total_requests": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total requests processed"
+          },
+          "cache_hits": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of cache hits"
+          },
+          "cache_hit_rate": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "description": "Cache hit rate percentage"
+          },
+          "average_processing_time": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Average processing time"
+          },
+          "cache_size": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Current cache size"
+          },
+          "device": {
+            "type": "string",
+            "description": "Processing device (CPU/GPU)"
+          },
+          "optimizations_enabled": {
+            "type": "object",
+            "description": "Enabled optimizations"
+          }
+        }
+      },
+      "PerformanceSummary": {
+        "type": "object",
+        "properties": {
+          "uptime": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "System uptime in seconds"
+          },
+          "total_requests": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total requests handled"
+          },
+          "success_rate": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "description": "Success rate percentage"
+          },
+          "avg_response_time": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Average response time"
+          },
+          "p95_response_time": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "95th percentile response time"
+          },
+          "min_response_time": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Minimum response time"
+          },
+          "max_response_time": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Maximum response time"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Detailed error information"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Error timestamp"
+          },
+          "request_id": {
+            "type": "string",
+            "description": "Request identifier if available"
+          }
+        }
+      }
+    }
+  }
+} 

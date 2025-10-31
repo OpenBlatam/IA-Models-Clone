@@ -1,0 +1,56 @@
+# Export IA - Refactored Requirements
+# ===================================
+
+# Core Dependencies
+fastapi>=0.100.0
+uvicorn>=0.22.0
+pydantic>=2.0.0
+
+# Document Processing Libraries
+reportlab>=4.0.0
+python-docx>=0.8.11
+markdown>=3.4.0
+jinja2>=3.1.0
+
+# Configuration and Utilities
+pyyaml>=6.0
+python-dotenv>=1.0.0
+click>=8.1.0
+rich>=13.0.0
+
+# Async and Concurrency
+asyncio
+aiofiles>=23.0.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Web and HTTP
+requests>=2.31.0
+httpx>=0.24.0
+
+# Development and Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.4.0
+
+# Optional: Advanced Features
+# torch>=2.0.0  # Uncomment for AI features
+# transformers>=4.30.0  # Uncomment for AI features
+# diffusers>=0.20.0  # Uncomment for AI features
+
+# Optional: Monitoring and Logging
+# wandb>=0.15.0  # Uncomment for experiment tracking
+# tensorboard>=2.13.0  # Uncomment for monitoring
+
+# Optional: Additional Document Formats
+# openpyxl>=3.1.0  # Uncomment for Excel support
+# xlrd>=2.0.0  # Uncomment for Excel support
+# pillow>=10.0.0  # Uncomment for image processing
+
+
+
+

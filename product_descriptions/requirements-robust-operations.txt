@@ -1,0 +1,112 @@
+# Robust Operations Requirements
+# Comprehensive error handling for cybersecurity ML operations
+
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+
+# Error handling and logging
+structlog>=22.1.0
+psutil>=5.9.0
+traceback-with-variables>=2.0.0
+rich>=12.0.0
+
+# Data processing and validation
+pydantic>=1.10.0
+marshmallow>=3.19.0
+cerberus>=1.3.0
+
+# File operations and compression
+aiofiles>=0.8.0
+gzip
+pickle5>=0.0.11; python_version < "3.8"
+
+# Network operations
+aiohttp>=3.8.0
+requests>=2.28.0
+urllib3>=1.26.0
+
+# Memory and performance monitoring
+memory-profiler>=0.60.0
+psutil>=5.9.0
+GPUtil>=1.4.0
+
+# Security and validation
+cryptography>=3.4.0
+ipaddress
+validators>=0.20.0
+
+# Testing and debugging
+pytest>=7.0.0
+pytest-asyncio>=0.20.0
+pytest-mock>=3.8.0
+pytest-cov>=4.0.0
+
+# Development tools
+black>=22.0.0
+flake8>=4.0.0
+mypy>=0.950
+isort>=5.10.0
+
+# Monitoring and metrics
+prometheus-client>=0.14.0
+statsd>=3.3.0
+
+# Configuration management
+pyyaml>=6.0
+python-dotenv>=0.19.0
+configparser
+
+# Async support
+asyncio
+aiofiles>=0.8.0
+aiodns>=3.0.0
+
+# Data validation and cleaning
+great-expectations>=0.15.0
+pandas-profiling>=3.2.0
+
+# Model management
+joblib>=1.1.0
+pickle-mixin>=1.0.2
+
+# Error recovery and resilience
+tenacity>=8.0.0
+circuitbreaker>=1.3.0
+
+# Performance optimization
+numba>=0.56.0
+cython>=0.29.0
+
+# Security-focused dependencies
+bandit>=1.7.0
+safety>=1.10.0
+
+# Documentation
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+
+# Optional: GPU support
+# cuda-python>=11.7.0; platform_system != "Windows"
+# cupy-cuda11x>=11.0.0; platform_system != "Windows"
+
+# Optional: Advanced monitoring
+# datadog>=0.44.0
+# newrelic>=7.0.0
+
+# Optional: Database support
+# sqlalchemy>=1.4.0
+# alembic>=1.8.0
+# redis>=4.0.0
+
+# Optional: Message queues
+# celery>=5.2.0
+# kafka-python>=2.0.0
+
+# Optional: Cloud storage
+# boto3>=1.24.0
+# google-cloud-storage>=2.0.0
+# azure-storage-blob>=12.0.0 

@@ -1,0 +1,63 @@
+# Requirements for Advanced Noise Scheduler and Sampling System
+# Core deep learning and diffusion model libraries
+
+# PyTorch ecosystem
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Core dependencies
+numpy>=1.24.0
+tqdm>=4.65.0
+
+# Configuration and serialization
+pyyaml>=6.0
+pydantic>=2.0.0
+
+# Optional dependencies for enhanced functionality
+# Uncomment as needed
+
+# For advanced mathematical operations
+# scipy>=1.10.0
+
+# For visualization and plotting
+# matplotlib>=3.7.0
+# seaborn>=0.12.0
+# plotly>=5.15.0
+
+# For performance profiling
+# psutil>=5.9.0
+# memory-profiler>=0.61.0
+
+# For testing
+# pytest>=7.4.0
+# pytest-asyncio>=0.21.0
+
+# For development and linting
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.3.0
+
+# For documentation
+# sphinx>=6.0.0
+# sphinx-rtd-theme>=1.2.0
+
+# For Jupyter notebooks (optional)
+# jupyter>=1.0.0
+# ipykernel>=6.20.0
+
+# For GPU monitoring (optional)
+# nvidia-ml-py>=11.0.0
+
+# For advanced logging (optional)
+# structlog>=23.1.0
+# colorama>=0.4.6
+
+# For configuration validation (optional)
+# jsonschema>=4.17.0
+
+# For performance benchmarking (optional)
+# asv>=0.6.0
+# pytest-benchmark>=4.0.0
+
+

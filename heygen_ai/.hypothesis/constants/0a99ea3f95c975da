@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\security_config.py
+# hypothesis_version: 6.137.3
+
+[100, 365, 2555, '\nRecommendations:', '.', 'aes-256-gcm', 'allowed_ip_ranges', 'audit_logging', 'authentication', 'blocked_ip_ranges', 'chacha20-poly1305', 'compliance_settings', 'compliance_status', 'critical', 'current_settings', 'data_anonymization', 'data_protection', 'data_retention_days', 'encryption', 'encryption_at_rest', 'encryption_settings', 'feature_status', 'firewall', 'high', 'intrusion_detection', 'is_firewall_enabled', 'is_gdpr_compliant', 'is_hipaa_compliant', 'is_pci_dss_compliant', 'is_sox_compliant', 'key_rotation_days', 'low', 'max_login_attempts', 'medium', 'network_security', 'password_complexity', 'password_expiry_days', 'r', 'rate_limiting', 'recommendations', 'report_generated_at', 'rsa-2048', 'rsa-4096', 'security_config.json', 'security_score', 'utf-8', 'validation_errors', 'w']

@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\core\logging_service.py
+# hypothesis_version: 6.135.23
+
+[1.0, 1024, '%Y-%m-%d %H:%M:%S', 'INFO', 'config', 'critical', 'debug', 'duration', 'error', 'event', 'events', 'exception', 'extra_fields', 'handlers', 'info', 'level', 'logger', 'loggers', 'logs/heygen_ai.log', 'message', 'midnight', 'operation', 'performance', 'propagate', 'stack_trace', 'threshold', 'timestamp', 'warning']

@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\core\transformer_config.py
+# hypothesis_version: 6.135.23
+
+[1e-12, 0.0001, 0.01, 0.02, 0.1, 0.5, 1.0, 32.0, 768, 1000, 1024, 3072, 50257, 'TransformerConfig', 'activation_function', 'activation_memory_mb', 'balanced', 'dropout', 'enable_lora', 'enable_torch_compile', 'gelu', 'gelu_new', 'gradient_memory_mb', 'hidden_size', 'initializer_range', 'intermediate_size', 'layer_norm_eps', 'learning_rate', 'lora_alpha', 'lora_dropout', 'lora_rank', 'max_grad_norm', 'maximum', 'memory', 'mixed_precision', 'model_memory_mb', 'num_attention_heads', 'num_layers', 'optimizer_memory_mb', 'performance_mode', 'relu', 'speed', 'swish', 'total_memory_mb', 'vocab_size', 'warmup_steps', 'weight_decay']

@@ -1,0 +1,102 @@
+# Optimized Requirements for BUL API
+# =================================
+# Enhanced libraries with performance optimizations
+
+# Core Web Framework (Optimized)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+gunicorn==21.2.0
+pydantic==2.5.2
+python-multipart==0.0.6
+
+# Enhanced HTTP & Networking
+httpx==0.25.2
+aiohttp==3.9.1
+websockets==12.0
+orjson==3.9.10
+ujson==5.8.0
+
+# Enhanced Database
+sqlalchemy==2.0.25
+alembic==1.13.1
+asyncpg==0.29.0
+aioredis==2.0.1
+redis==5.0.1
+hiredis==2.2.3
+
+# Enhanced Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+cryptography==41.0.8
+bcrypt==4.1.2
+argon2-cffi==23.1.0
+
+# Enhanced Logging
+structlog==23.2.0
+loguru==0.7.2
+
+# Enhanced Validation
+marshmallow==3.20.2
+email-validator==2.1.0
+jsonschema==4.20.0
+
+# Enhanced Performance
+prometheus-client==0.19.0
+psutil==5.9.6
+memory-profiler==0.61.0
+uvloop==0.19.0
+
+# Enhanced AI/ML
+openai==1.6.1
+langchain==0.1.0
+langchain-openai==0.0.5
+langchain-community==0.0.10
+
+# Enhanced Data Processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Enhanced Async
+asyncio-mqtt==0.16.1
+aioboto3==12.3.0
+tenacity==8.2.3
+
+# Enhanced Configuration
+python-dotenv==1.0.0
+pydantic-settings==2.1.0
+
+# Enhanced Testing
+pytest==7.4.4
+pytest-asyncio==0.23.2
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+pytest-xdist==3.5.0
+
+# Enhanced Development
+black==23.12.1
+isort==5.13.2
+flake8==6.1.0
+mypy==1.8.0
+pre-commit==3.6.0
+
+# Enhanced Monitoring
+sentry-sdk[fastapi]==1.39.2
+newrelic==9.2.0
+
+# Enhanced Utilities
+rich==13.7.0
+typer==0.9.0
+python-dateutil==2.8.2
+pytz==2023.3
+
+
+
+
+
+
+
+
+
+
+
+

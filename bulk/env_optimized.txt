@@ -1,0 +1,36 @@
+# BUL - Business Universal Language (Optimized)
+# Environment Configuration
+# ============================================
+
+# API Configuration
+BUL_API_HOST=0.0.0.0
+BUL_API_PORT=8000
+BUL_DEBUG=false
+
+# AI Configuration (Optional)
+# OPENAI_API_KEY=your_openai_api_key_here
+# OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# Processing Configuration
+BUL_MAX_CONCURRENT_TASKS=5
+BUL_TASK_TIMEOUT=300
+BUL_MAX_RETRIES=3
+
+# Document Configuration
+BUL_OUTPUT_DIR=generated_documents
+BUL_MAX_DOCUMENT_SIZE=10485760
+
+# Logging Configuration
+BUL_LOG_LEVEL=INFO
+BUL_LOG_FILE=bul.log
+
+# Security Configuration
+BUL_SECRET_KEY=your-secret-key-here
+BUL_CORS_ORIGINS=*
+
+# Performance Configuration
+BUL_CACHE_TTL=3600
+BUL_RATE_LIMIT=100
+
+# Business Areas (comma-separated)
+BUL_ENABLED_AREAS=marketing,sales,operations,hr,finance

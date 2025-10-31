@@ -1,0 +1,377 @@
+# Complete Deep Learning Configuration
+# This file contains all configuration sections for a comprehensive deep learning project
+
+# System Configuration
+system:
+  project_name: "transformer_classification_project"
+  project_root: "./"
+  experiment_dir: "./experiments"
+  
+  # Logging settings
+  log_level: "INFO"
+  log_file: "./logs/app.log"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Random seeds for reproducibility
+  random_seed: 42
+  deterministic: true
+  
+  # Performance settings
+  num_threads: -1  # -1 for auto
+  memory_fraction: 0.8
+  
+  # Security settings
+  enable_encryption: false
+  encryption_key: ""
+
+# Model Configuration
+model:
+  # Model identification
+  model_name: "vision_transformer"
+  model_type: "transformer"
+  model_version: "1.0.0"
+  
+  # Architecture parameters
+  input_size: 784
+  output_size: 10
+  hidden_sizes: [512, 256, 128]
+  num_layers: 6
+  
+  # Layer-specific parameters
+  activation: "gelu"
+  dropout_rate: 0.1
+  batch_norm: true
+  layer_norm: true
+  
+  # Initialization parameters
+  weight_init: "xavier"
+  bias_init: "zeros"
+  
+  # Transformer-specific parameters
+  num_heads: 8
+  embedding_dim: 512
+  max_seq_length: 512
+  vocab_size: 30000
+  positional_encoding: "sinusoidal"
+  attention_dropout: 0.1
+  ff_dropout: 0.1
+  ff_multiplier: 4
+  
+  # Vision transformer specific
+  patch_size: 16
+  image_size: 224
+  in_channels: 3
+  embed_dim: 768
+  depth: 12
+  mlp_ratio: 4.0
+  qkv_bias: true
+  drop_rate: 0.0
+  attn_drop_rate: 0.0
+  drop_path_rate: 0.0
+  
+  # Model optimization
+  use_mixed_precision: true
+  use_gradient_checkpointing: false
+  use_flash_attention: true
+  compile_model: true
+
+# Data Configuration
+data:
+  # Dataset identification
+  dataset_name: "cifar10"
+  dataset_type: "classification"
+  data_path: "./data/cifar10"
+  
+  # Data parameters
+  input_size: [224, 224]
+  num_classes: 10
+  num_channels: 3
+  num_samples: -1  # -1 for all samples
+  
+  # Data splitting
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+  
+  # Data loading
+  batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  shuffle: true
+  drop_last: false
+  
+  # Preprocessing
+  normalize: true
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+  
+  # Augmentation
+  augmentation: true
+  horizontal_flip: true
+  vertical_flip: false
+  rotation: 15.0
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  hue: 0.1
+  scale: [0.8, 1.2]
+  crop_size: [224, 224]
+  
+  # Data format
+  data_format: "image"
+  file_extensions: [".jpg", ".png", ".jpeg"]
+  
+  # Caching
+  cache_data: false
+  cache_dir: "./cache"
+
+# Training Configuration
+training:
+  # Training identification
+  experiment_name: "vision_transformer_cifar10"
+  run_name: "run_001"
+  description: "Training Vision Transformer on CIFAR-10 dataset"
+  
+  # Training parameters
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 1e-5
+  gradient_clipping: true
+  max_grad_norm: 1.0
+  
+  # Optimization
+  optimizer: "adamw"
+  optimizer_params:
+    betas: [0.9, 0.999]
+    eps: 1e-8
+    amsgrad: false
+    foreach: true
+    maximize: false
+    capturable: false
+    differentiable: false
+    fused: true
+  
+  # Learning rate scheduler
+  scheduler: "cosine"
+  scheduler_params:
+    T_max: 100
+    eta_min: 1e-6
+    warmup_steps: 1000
+    warmup_ratio: 0.1
+  
+  # Loss function
+  loss_function: "cross_entropy"
+  loss_params:
+    label_smoothing: 0.1
+  
+  # Device and performance
+  device: "auto"
+  mixed_precision: true
+  num_workers: 4
+  pin_memory: true
+  
+  # Logging and monitoring
+  log_interval: 10
+  save_interval: 10
+  eval_interval: 1
+  tensorboard: true
+  wandb: false
+  wandb_project: "vision_transformer_project"
+  wandb_entity: ""
+  
+  # Checkpointing
+  save_dir: "./checkpoints"
+  resume_from: null
+  save_best_only: true
+  save_last: true
+  save_top_k: 3
+  
+  # Early stopping
+  early_stopping: true
+  patience: 10
+  min_delta: 1e-4
+  monitor: "val_loss"
+  mode: "min"
+  
+  # Validation
+  validation_split: 0.2
+  validation_metrics: ["accuracy", "loss", "precision", "recall", "f1"]
+  
+  # Advanced training
+  gradient_accumulation_steps: 1
+  warmup_steps: 1000
+  max_steps: null
+
+# Evaluation Configuration
+evaluation:
+  # Evaluation identification
+  evaluation_name: "vision_transformer_evaluation"
+  
+  # Evaluation parameters
+  batch_size: 32
+  num_workers: 4
+  device: "auto"
+  
+  # Metrics
+  metrics: ["accuracy", "precision", "recall", "f1", "confusion_matrix"]
+  average: "weighted"
+  zero_division: 0
+  
+  # Output
+  save_predictions: true
+  save_plots: true
+  save_report: true
+  output_dir: "./evaluation_results"
+  
+  # Visualization
+  plot_confusion_matrix: true
+  plot_roc_curve: true
+  plot_precision_recall: true
+  plot_learning_curves: true
+  plot_prediction_distribution: true
+  
+  # Analysis
+  error_analysis: true
+  feature_importance: false
+  model_interpretation: false
+  confidence_analysis: true
+  
+  # Export formats
+  export_formats: ["json", "csv", "html"]
+
+# Hyperparameter Search Configuration
+hyperparameter_search:
+  enabled: false
+  search_method: "grid"  # grid, random, bayesian, optuna
+  num_trials: 10
+  timeout_hours: 24
+  
+  # Search space
+  search_space:
+    learning_rate:
+      type: "log_uniform"
+      min: 1e-5
+      max: 1e-2
+    batch_size:
+      type: "categorical"
+      choices: [16, 32, 64, 128]
+    num_layers:
+      type: "int"
+      min: 4
+      max: 12
+    hidden_size:
+      type: "categorical"
+      choices: [256, 512, 768, 1024]
+    dropout_rate:
+      type: "uniform"
+      min: 0.0
+      max: 0.5
+  
+  # Optimization metric
+  optimization_metric: "val_accuracy"
+  optimization_direction: "maximize"  # maximize, minimize
+
+# Deployment Configuration
+deployment:
+  # Model serving
+  model_format: "pytorch"  # pytorch, onnx, tensorrt, torchscript
+  quantization: false
+  quantization_type: "int8"
+  
+  # API settings
+  api_host: "0.0.0.0"
+  api_port: 8000
+  api_workers: 4
+  
+  # Docker settings
+  docker_image: "vision-transformer:latest"
+  docker_port: 8000
+  
+  # Cloud deployment
+  cloud_provider: "aws"  # aws, gcp, azure
+  instance_type: "g4dn.xlarge"
+  auto_scaling: true
+  min_instances: 1
+  max_instances: 10
+
+# Monitoring Configuration
+monitoring:
+  # Metrics collection
+  collect_metrics: true
+  metrics_interval: 60  # seconds
+  
+  # Prometheus settings
+  prometheus_enabled: true
+  prometheus_port: 9090
+  
+  # Grafana settings
+  grafana_enabled: true
+  grafana_port: 3000
+  
+  # Alerting
+  alerts_enabled: true
+  alert_rules:
+    - name: "high_error_rate"
+      condition: "error_rate > 0.05"
+      duration: "5m"
+    - name: "high_latency"
+      condition: "avg_latency > 1000ms"
+      duration: "2m"
+
+# Security Configuration
+security:
+  # Authentication
+  require_auth: false
+  auth_method: "jwt"  # jwt, oauth, api_key
+  
+  # Encryption
+  encrypt_model: false
+  encrypt_data: false
+  
+  # Access control
+  allowed_ips: []
+  rate_limiting: true
+  max_requests_per_minute: 100
+
+# Backup Configuration
+backup:
+  # Model backups
+  backup_models: true
+  backup_interval: "daily"
+  backup_retention_days: 30
+  
+  # Data backups
+  backup_data: false
+  backup_data_interval: "weekly"
+  
+  # Storage
+  backup_storage: "s3"  # local, s3, gcs, azure
+  backup_bucket: "model-backups"
+
+# Documentation Configuration
+documentation:
+  # Auto-documentation
+  generate_docs: true
+  docs_format: "markdown"  # markdown, html, pdf
+  
+  # API documentation
+  generate_api_docs: true
+  api_docs_format: "openapi"  # openapi, swagger
+  
+  # Model cards
+  generate_model_cards: true
+  model_card_template: "default"
+
+# Metadata
+metadata:
+  created_by: "Deep Learning Team"
+  created_date: "2024-01-01"
+  version: "1.0.0"
+  description: "Complete configuration for Vision Transformer classification project"
+  tags: ["transformer", "classification", "vision", "cifar10"]
+  license: "MIT"
+  repository: "https://github.com/example/vision-transformer"
+  paper: "https://arxiv.org/abs/2010.11929"
+  contact: "team@example.com" 

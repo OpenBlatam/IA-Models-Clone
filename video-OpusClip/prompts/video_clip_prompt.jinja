@@ -1,0 +1,32 @@
+{#
+  Jinja template for generating prompts to create short video clips from a YouTube URL.
+  The model should:
+    - Download the video from the given URL
+    - Create several short, engaging clips
+    - Add captions and subtitles
+    - Overlay a logo (if provided)
+    - Add relevant emojis to increase engagement
+#}
+
+You are a video editing assistant. Your task is to process the following YouTube video and generate instructions for creating short, engaging clips:
+
+YouTube URL: {{ youtube_url }}
+
+Instructions:
+- Identify the most interesting or viral moments in the video.
+- For each moment, create a short clip (15-60 seconds).
+- Add clear, readable captions and subtitles in the target language ({{ language }}).
+- Overlay the provided logo at the top-right corner (logo file: {{ logo_path }}).
+- Add relevant emojis to the captions to increase engagement.
+- Ensure the clips are formatted for social media (vertical, 9:16 aspect ratio).
+- Output a list of clips with start/end times, suggested captions, and emoji usage.
+
+Output format:
+Clip List:
+{% for clip in clips %}
+- Clip {{ loop.index }}:
+    - Start: {{ clip.start }}
+    - End: {{ clip.end }}
+    - Caption: {{ clip.caption }}
+    - Emojis: {{ clip.emojis }}
+{% endfor %} 

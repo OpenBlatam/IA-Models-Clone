@@ -1,0 +1,180 @@
+# Optimized Requirements - Ultimate Opus Clip System
+# Lightweight and performance-optimized libraries
+
+# Core Framework (Optimized)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Async and Concurrency (High Performance)
+asyncio-mqtt==0.16.1
+aiofiles==23.2.1
+aiohttp==3.9.1
+aioredis==2.0.1
+asyncpg==0.29.0
+aiosqlite==0.19.0
+
+# Database (Optimized)
+sqlalchemy==2.0.23
+alembic==1.13.1
+sqlite-utils==3.35.2
+psycopg2-binary==2.9.9
+
+# Machine Learning (GPU Optimized)
+torch==2.1.1+cu121
+torchvision==0.16.1+cu121
+torchaudio==2.1.1+cu121
+transformers==4.36.2
+accelerate==0.25.0
+bitsandbytes==0.41.3
+
+# Computer Vision (Optimized)
+opencv-python==4.8.1.78
+mediapipe==0.10.8
+ultralytics==8.0.220
+facenet-pytorch==2.5.3
+insightface==0.7.3
+
+# Audio Processing (Optimized)
+librosa==0.10.1
+pydub==0.25.1
+whisper==20231117
+soundfile==0.12.1
+noisereduce==3.0.0
+
+# Video Processing (Optimized)
+moviepy==1.0.3
+ffmpeg-python==0.2.0
+imageio==2.33.1
+pillow==10.1.0
+scikit-image==0.22.0
+
+# Data Processing (Optimized)
+numpy==1.25.2
+pandas==2.1.4
+scipy==1.11.4
+scikit-learn==1.3.2
+numba==0.58.1
+
+# Web and API (Optimized)
+requests==2.31.0
+httpx==0.25.2
+websockets==12.0
+python-multipart==0.0.6
+
+# Monitoring and Logging (Optimized)
+structlog==23.2.0
+loguru==0.7.2
+prometheus-client==0.19.0
+
+# Performance and Optimization (Essential)
+psutil==5.9.6
+memory-profiler==0.61.0
+py-spy==0.3.14
+
+# Testing (Essential)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+pytest-benchmark==4.0.0
+
+# Development Tools (Essential)
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Configuration (Essential)
+python-dotenv==1.0.0
+pyyaml==6.0.1
+click==8.1.7
+
+# Caching and Queuing (Essential)
+redis==5.0.1
+celery==5.3.4
+rq==1.15.1
+
+# File and Storage (Essential)
+boto3==1.34.0
+azure-storage-blob==12.19.0
+minio==7.2.0
+
+# Security (Essential)
+cryptography==41.0.8
+bcrypt==4.1.2
+pyjwt==2.8.0
+
+# Social Media APIs (Essential)
+tweepy==4.14.0
+facebook-sdk==3.1.0
+youtube-data-api==0.1.0
+
+# Scheduling (Essential)
+croniter==2.0.1
+apscheduler==3.10.4
+
+# Data Visualization (Essential)
+matplotlib==3.8.2
+plotly==5.17.0
+
+# Natural Language Processing (Essential)
+openai==1.3.7
+langchain==0.0.350
+sentence-transformers==2.2.2
+
+# Utilities (Essential)
+tqdm==4.66.1
+rich==13.7.0
+python-dateutil==2.8.2
+pytz==2023.3
+
+# System Integration (Essential)
+psutil==5.9.6
+nvidia-ml-py==12.535.133
+
+# Performance Monitoring (Essential)
+py-spy==0.3.14
+memory-profiler==0.61.0
+scalene==1.5.36
+
+# Security and Compliance (Essential)
+bandit==1.7.5
+safety==2.3.5
+
+# Data Validation (Essential)
+pydantic==2.5.0
+jsonschema==4.20.0
+
+# WebSocket (Essential)
+python-socketio==5.10.0
+
+# Message Queues (Essential)
+pika==1.3.2
+rq==1.15.1
+
+# Caching (Essential)
+diskcache==5.6.3
+
+# File Processing (Essential)
+python-magic==0.4.27
+filetype==1.2.0
+chardet==5.2.0
+
+# Compression (Essential)
+lz4==4.3.2
+brotli==1.1.0
+
+# Encryption (Essential)
+cryptography==41.0.8
+pynacl==1.5.0
+
+# Internationalization (Essential)
+babel==2.13.1
+pycountry==22.3.10
+
+# Additional Utilities (Essential)
+more-itertools==10.1.0
+toolz==0.12.0
+
+

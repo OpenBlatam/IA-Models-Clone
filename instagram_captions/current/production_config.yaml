@@ -1,0 +1,261 @@
+# Production Configuration for Diffusion System
+# Environment and Deployment
+environment: "production"  # production, staging, development
+log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_file: "/var/log/diffusion_system/diffusion_system.log"
+log_max_size: 104857600  # 100MB in bytes
+log_backup_count: 10
+
+# Monitoring and Metrics
+enable_metrics: true
+metrics_port: 8000
+enable_mlflow: true
+mlflow_tracking_uri: "http://mlflow-server:5000"
+
+# Performance Profiling
+enable_profiling: true
+profile_memory: true
+profile_cpu: true
+profile_gpu: true
+
+# Error Handling and Resilience
+max_retries: 5
+retry_delay: 2.0
+enable_circuit_breaker: true
+circuit_breaker_threshold: 10
+circuit_breaker_timeout: 60.0
+
+# Security and Input Validation
+enable_input_validation: true
+max_input_size: 10485760  # 10MB in bytes
+allowed_file_types: ["png", "jpg", "jpeg", "bmp", "tiff", "webp"]
+enable_rate_limiting: true
+rate_limit_requests: 100
+rate_limit_window: 60
+
+# File and Directory Management
+model_cache_dir: "/var/cache/diffusion_system/models"
+checkpoint_dir: "/var/checkpoints/diffusion_system"
+temp_dir: "/tmp/diffusion_system"
+cleanup_temp_files: true
+cleanup_interval_hours: 24
+max_cache_age_days: 30
+
+# Database Configuration
+database:
+  url: "postgresql://user:password@localhost:5432/diffusion_db"
+  pool_size: 20
+  max_overflow: 30
+  pool_timeout: 30
+  pool_recycle: 3600
+
+# Redis Configuration
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  password: null
+  max_connections: 100
+  connection_timeout: 5
+
+# GPU Configuration
+gpu:
+  enable_mixed_precision: true
+  enable_gradient_checkpointing: true
+  enable_xformers: true
+  memory_fraction: 0.9
+  allow_growth: true
+
+# Training Configuration
+training:
+  enable_distributed: true
+  enable_horovod: false
+  enable_ray: true
+  checkpoint_interval: 10
+  validation_interval: 5
+  early_stopping_patience: 20
+  learning_rate_scheduling: true
+  gradient_accumulation_steps: 4
+
+# Inference Configuration
+inference:
+  batch_size: 8
+  max_concurrent_requests: 50
+  timeout_seconds: 300
+  enable_batching: true
+  enable_caching: true
+  cache_ttl_seconds: 3600
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8080
+  workers: 4
+  max_requests: 1000
+  max_requests_jitter: 100
+  timeout: 30
+  keepalive: 2
+
+# Health Check Configuration
+health_check:
+  enabled: true
+  interval_seconds: 30
+  timeout_seconds: 10
+  failure_threshold: 3
+  success_threshold: 1
+
+# Alerting Configuration
+alerting:
+  enabled: true
+  slack_webhook_url: "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+  email_smtp_server: "smtp.gmail.com"
+  email_smtp_port: 587
+  email_username: "alerts@yourcompany.com"
+  email_password: "your_password"
+
+# Backup Configuration
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention_days: 30
+  backup_dir: "/var/backups/diffusion_system"
+  include_models: true
+  include_checkpoints: true
+  include_logs: true
+
+# Scaling Configuration
+scaling:
+  enable_auto_scaling: true
+  min_instances: 2
+  max_instances: 10
+  target_cpu_utilization: 70
+  target_memory_utilization: 80
+  scale_up_cooldown: 300
+  scale_down_cooldown: 600
+
+# Security Configuration
+security:
+  enable_ssl: true
+  ssl_cert_file: "/etc/ssl/certs/diffusion_system.crt"
+  ssl_key_file: "/etc/ssl/private/diffusion_system.key"
+  enable_authentication: true
+  jwt_secret: "your_jwt_secret_here"
+  jwt_expiration_hours: 24
+  enable_cors: true
+  allowed_origins: ["https://yourdomain.com"]
+
+# Logging Configuration
+logging:
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  enable_json_logging: true
+  enable_structured_logging: true
+  log_to_stdout: true
+  log_to_file: true
+  log_to_syslog: false
+  syslog_address: "/dev/log"
+
+# Metrics Configuration
+metrics:
+  enable_prometheus: true
+  enable_statsd: false
+  statsd_host: "localhost"
+  statsd_port: 8125
+  statsd_prefix: "diffusion_system"
+  enable_custom_metrics: true
+  metrics_retention_days: 90
+
+# MLflow Configuration
+mlflow:
+  tracking_uri: "http://mlflow-server:5000"
+  registry_uri: "http://mlflow-server:5000"
+  experiment_name: "diffusion_system_production"
+  enable_model_registry: true
+  model_registry_name: "diffusion_models"
+  enable_experiment_tracking: true
+  log_artifacts: true
+  log_parameters: true
+  log_metrics: true
+
+# Model Registry Configuration
+model_registry:
+  enabled: true
+  registry_type: "mlflow"  # mlflow, custom
+  model_staging_path: "/var/models/staging"
+  model_production_path: "/var/models/production"
+  model_archive_path: "/var/models/archive"
+  enable_model_versioning: true
+  enable_model_rollback: true
+  max_model_versions: 10
+
+# Deployment Configuration
+deployment:
+  strategy: "rolling"  # rolling, blue-green, canary
+  max_surge: 1
+  max_unavailable: 0
+  progress_deadline_seconds: 600
+  revision_history_limit: 10
+  enable_health_checks: true
+  enable_readiness_probe: true
+  enable_liveness_probe: true
+
+# Monitoring Configuration
+monitoring:
+  enable_prometheus: true
+  enable_grafana: true
+  enable_alertmanager: true
+  enable_node_exporter: true
+  enable_cadvisor: true
+  scrape_interval: "15s"
+  evaluation_interval: "15s"
+
+# Tracing Configuration
+tracing:
+  enabled: true
+  tracer_type: "jaeger"  # jaeger, zipkin, custom
+  jaeger_host: "localhost"
+  jaeger_port: 6831
+  sampling_rate: 0.1
+  enable_distributed_tracing: true
+
+# Cache Configuration
+cache:
+  enable_redis: true
+  enable_memory_cache: true
+  memory_cache_size: 1000
+  cache_ttl_seconds: 3600
+  enable_cache_compression: true
+  compression_level: 6
+
+# Queue Configuration
+queue:
+  enable_redis_queue: true
+  enable_celery: false
+  max_queue_size: 1000
+  worker_processes: 4
+  task_timeout_seconds: 300
+  enable_priority_queues: true
+
+# Storage Configuration
+storage:
+  type: "local"  # local, s3, gcs, azure
+  local_path: "/var/storage/diffusion_system"
+  s3_bucket: "your-s3-bucket"
+  s3_region: "us-west-2"
+  gcs_bucket: "your-gcs-bucket"
+  azure_container: "your-azure-container"
+  enable_compression: true
+  enable_encryption: true
+
+# Network Configuration
+network:
+  enable_http2: true
+  enable_websockets: false
+  max_connections: 1000
+  connection_timeout: 30
+  read_timeout: 30
+  write_timeout: 30
+  enable_keepalive: true
+  keepalive_timeout: 65
+
+

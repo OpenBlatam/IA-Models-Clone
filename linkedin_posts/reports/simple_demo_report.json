@@ -1,0 +1,141 @@
+{
+  "demo_info": {
+    "start_time": "2025-07-02T18:47:59.106872",
+    "end_time": "2025-07-02T18:48:03.398754",
+    "total_duration": 4.291881799697876,
+    "features_demonstrated": 7
+  },
+  "results": {
+    "faker": {
+      "text_length": 136,
+      "email": "jasonstewart@example.com",
+      "uuid": "7015b039-4704-4d16-9594-6f2a0e561043",
+      "english_name": "Kristina Vargas",
+      "spanish_name": "Teodoro Guzman-Farr\u00e9"
+    },
+    "factory_boy": {
+      "single_post": {
+        "content": "Tv nor claim treatment safe TV. Ask cup stand follow state age around plant. Could focus condition.\nModern activity article visit. Million middle go write security on.\nFor tax manage amount who. Land religious within answer about various.\nWait environment these tonight himself. Approach customer southern class history. Local language executive tree firm message.\nSubject avoid choose loss. Degree whole inside voice capital maintain.\nOfficer weight stuff past.\nMemory specific area up parent.",
+        "post_type": "announcement",
+        "tone": "professional",
+        "target_audience": "tech professionals",
+        "industry": "technology"
+      },
+      "batch_posts": 5,
+      "sample_batch": {
+        "content": "Grow help particularly four onto see. Amount whom economic bar feeling two value star. Strong family focus him adult list forget.\nLong too purpose bed quickly either sign. Give nothing inside race season.\nVote economy travel maybe skin return news. Here far region report face suffer assume. Life compare wrong leave edge summer.\nGrow relate probably. Drop money focus rich.\nNational to direction term could movie. One one boy despite writer building.",
+        "post_type": "educational",
+        "tone": "professional",
+        "target_audience": "marketers",
+        "industry": "healthcare"
+      }
+    },
+    "performance_benchmarking": {
+      "fast_function": {
+        "avg_time": 7.534027099609375e-05,
+        "min_time": 0.0,
+        "max_time": 0.006990194320678711,
+        "std_dev": 0.0007000966095039515
+      },
+      "slow_function": {
+        "avg_time": 0.011059935092926026,
+        "min_time": 0.01005697250366211,
+        "max_time": 0.04546046257019043,
+        "std_dev": 0.0038750177882237833
+      },
+      "speed_ratio": 146.79977848101268
+    },
+    "memory_profiling": {
+      "error": "division by zero"
+    },
+    "load_testing": {
+      "10": {
+        "duration": 0.10840749740600586,
+        "requests_per_second": 92.24454248351638,
+        "success_count": 10
+      },
+      "50": {
+        "duration": 0.5308957099914551,
+        "requests_per_second": 94.1804558955746,
+        "success_count": 50
+      },
+      "100": {
+        "duration": 1.040292501449585,
+        "requests_per_second": 96.12681035444938,
+        "success_count": 100
+      }
+    },
+    "system_monitoring": {
+      "process_cpu_percent": 0.0,
+      "process_memory_mb": 53.24609375,
+      "process_memory_percent": 0.16564161914895376,
+      "system_memory_percent": 57.0,
+      "system_cpu_percent": 27.5,
+      "available_memory_mb": 13812.9453125
+    },
+    "test_data_generation": {
+      "posts_generated": 5,
+      "analytics_data": {
+        "sentiment_score": 0.698,
+        "readability_score": 93.824144981634,
+        "keywords": [
+          "consumer",
+          "billion",
+          "necessary",
+          "decision",
+          "most",
+          "window",
+          "through",
+          "window",
+          "sound",
+          "response"
+        ],
+        "entities": [
+          "note",
+          "keep",
+          "watch",
+          "every",
+          "especially"
+        ],
+        "processing_time": 0.344612,
+        "cached": true,
+        "async_optimized": true,
+        "language": "sw",
+        "confidence_score": 0.4711185170129
+      },
+      "performance_metrics": {
+        "fast_nlp_metrics": {
+          "avg_processing_time": 0.4438406461295039,
+          "cache_hit_rate": 0.8,
+          "throughput": 124.2,
+          "error_rate": 0.025776933750606856,
+          "memory_usage_mb": 352,
+          "cpu_usage_percent": 47.4600124657
+        },
+        "async_nlp_metrics": {
+          "avg_processing_time": 0.21694,
+          "cache_hit_rate": 0.82079132938114,
+          "throughput": 793.1660744685,
+          "error_rate": 0.012703482857660542,
+          "memory_usage_mb": 249,
+          "cpu_usage_percent": 6.711
+        },
+        "system_metrics": {
+          "active_requests": 54,
+          "total_requests": 32812,
+          "cache_hit_rate": 0.5636875638387251,
+          "memory_usage_mb": 829,
+          "cpu_usage_percent": 48.65196416,
+          "disk_usage_percent": 93.5353,
+          "network_io_mbps": 306.734
+        },
+        "timestamp": "2025-07-02T18:48:03.398753"
+      }
+    }
+  },
+  "summary": {
+    "total_features": 7,
+    "successful_features": 7,
+    "demo_duration": 4.291881799697876
+  }
+}

@@ -1,0 +1,242 @@
+# Development Environment Configuration
+# This file overrides the main config.yaml for development settings
+
+# Override app settings for development
+app:
+  environment: "development"
+  debug: true
+
+# Development-specific model configurations
+models:
+  gpt2:
+    max_length: 256  # Shorter for faster development
+    temperature: 0.8
+    device: "cpu"  # Use CPU for development
+    
+  gpt2_medium:
+    max_length: 256
+    device: "cpu"
+    
+  gpt2_large:
+    max_length: 256
+    device: "cpu"
+
+# Development training settings
+training:
+  default:
+    batch_size: 4  # Smaller batch size for development
+    learning_rate: 2.0e-4  # Higher learning rate for faster convergence
+    num_epochs: 2  # Fewer epochs for quick iteration
+    warmup_steps: 50  # Shorter warmup
+    gradient_accumulation_steps: 2
+    use_mixed_precision: false  # Disable for development
+    use_wandb: false  # Disable W&B for development
+    use_tensorboard: false  # Disable TensorBoard for development
+    experiment_name: "key_messages_dev"
+    save_steps: 100  # Save more frequently
+    eval_steps: 50
+    save_total_limit: 2
+    
+  fast:
+    batch_size: 2
+    num_epochs: 1
+    warmup_steps: 10
+    gradient_accumulation_steps: 1
+    use_mixed_precision: false
+    use_tensorboard: false
+    use_wandb: false
+    experiment_name: "key_messages_dev_fast"
+    save_steps: 50
+    eval_steps: 25
+
+# Development data settings
+data:
+  default:
+    batch_size: 8  # Smaller batches
+    num_workers: 2  # Fewer workers
+    pin_memory: false  # Disable for CPU
+    cache_dir: "./cache_dev"
+    
+  high_performance:
+    batch_size: 16
+    num_workers: 4
+    pin_memory: false
+    
+  memory_efficient:
+    batch_size: 4
+    num_workers: 1
+    pin_memory: false
+    
+  preprocessing:
+    min_text_length: 5  # Shorter minimum for development
+    max_text_length: 500  # Shorter maximum for development
+
+# Development evaluation settings
+evaluation:
+  default:
+    batch_size: 8
+    num_workers: 2
+    device: "cpu"
+    output_dir: "./evaluation_results_dev"
+    save_predictions: false  # Don't save predictions in development
+    save_metrics: true
+    generate_plots: false  # Disable plots for faster evaluation
+    generate_report: true
+    
+  fast:
+    batch_size: 4
+    num_workers: 1
+    device: "cpu"
+    output_dir: "./evaluation_results_dev_fast"
+    save_predictions: false
+    save_metrics: true
+    generate_plots: false
+    generate_report: true
+
+# Development performance settings
+performance:
+  gpu:
+    device: "cpu"  # Use CPU for development
+    memory_fraction: 0.5
+    allow_growth: false
+    mixed_precision: false
+    
+  memory:
+    gradient_checkpointing: false
+    gradient_accumulation: true
+    batch_size_auto_tune: false  # Disable auto-tuning for development
+    max_memory_usage: 0.5
+    
+  data_loading:
+    num_workers: 2  # Fewer workers for development
+    pin_memory: false
+    prefetch_factor: 1
+    persistent_workers: false
+    drop_last: false
+
+# Development logging settings
+logging:
+  level: "DEBUG"  # More verbose logging for development
+  format: "simple"  # Simpler format for development
+  handlers:
+    console:
+      enabled: true
+      level: "DEBUG"
+    file:
+      enabled: true
+      level: "DEBUG"
+      filename: "./logs/ml_pipeline_dev.log"
+      max_bytes: 5242880  # 5MB for development
+      backup_count: 3
+    tensorboard:
+      enabled: false  # Disable TensorBoard for development
+      
+  structured:
+    include_timestamp: true
+    include_process_id: true
+    include_thread_id: false  # Disable for simpler logs
+    custom_fields:
+      component: "ml_pipeline"
+      version: "1.0.0"
+      environment: "development"
+
+# Development validation settings
+validation:
+  model:
+    validate_config: true
+    check_model_weights: false  # Disable for faster startup
+    verify_device_placement: false
+    
+  data:
+    validate_schema: true
+    check_data_types: true
+    verify_required_columns: true
+    sample_size: 100  # Smaller sample for development
+    
+  training:
+    validate_batch_size: true
+    check_memory_usage: false  # Disable for development
+    verify_gradient_flow: false
+    early_stopping_patience: 3  # Shorter patience for development
+    early_stopping_min_delta: 0.01
+
+# Development security settings (relaxed)
+security:
+  model:
+    validate_inputs: false  # Disable for faster development
+    sanitize_outputs: false
+    max_input_length: 500  # Shorter for development
+    max_output_length: 500
+    
+  data:
+    anonymize_pii: false  # Disable for development
+    remove_sensitive_patterns: false
+    encryption_enabled: false
+    data_retention_days: 7  # Shorter retention for development
+    
+  api:
+    rate_limiting: false  # Disable for development
+    max_requests_per_minute: 1000
+    authentication_required: false
+    input_validation: false
+
+# Development experiment tracking (minimal)
+experiment_tracking:
+  tensorboard:
+    enabled: false  # Disable for development
+    log_dir: "./logs_dev"
+    update_freq: 100
+    flush_secs: 60
+    
+  wandb:
+    enabled: false  # Disable for development
+    project: "key_messages_dev"
+    entity: null
+    tags: ["development"]
+    notes: "Development run"
+    config_exclude_keys: []
+    
+  mlflow:
+    enabled: false  # Disable for development
+    tracking_uri: "sqlite:///mlflow_dev.db"
+    experiment_name: "key_messages_dev"
+    log_models: false
+
+# Development ensemble settings (simplified)
+ensemble:
+  default:
+    models:
+      - name: "gpt2"
+        weight: 1.0  # Single model for development
+        config: "gpt2"
+    method: "weighted_average"
+
+# Development deployment settings (minimal)
+deployment:
+  serving:
+    model_format: "torchscript"
+    optimization_level: "O0"  # No optimization for development
+    quantization: false
+    dynamic_batching: false
+    max_batch_size: 8
+    timeout_seconds: 60
+    
+  container:
+    base_image: "pytorch/pytorch:2.0.0-cpu"  # CPU-only for development
+    python_version: "3.9"
+    requirements_file: "requirements_dev.txt"
+    health_check_enabled: false
+    resource_limits:
+      cpu: "2"
+      memory: "4Gi"
+      gpu: "0"
+      
+  monitoring:
+    enabled: false  # Disable monitoring for development
+    metrics_interval: 300
+    health_check_interval: 60
+    alerting:
+      enabled: false
+      cpu_threshold: 100
+      memory_threshold: 100
+      gpu_threshold: 100 

@@ -1,0 +1,92 @@
+# Instagram Captions API v7.0 - Optimized Dependencies
+# Ultra-fast performance with specialized libraries
+
+# Core Framework
+fastapi==0.104.1
+uvicorn[standard]==0.23.2
+uvloop==0.19.0  # High-performance event loop
+
+# Data Validation & Models
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# HTTP & Async
+httpx==0.25.2  # Modern async HTTP client
+aiohttp==3.9.1  # Alternative async HTTP
+aiofiles==23.2.0  # Async file operations
+
+# Caching & Performance
+redis==5.0.1  # Advanced caching with Redis
+hiredis==2.3.2  # Faster Redis client
+cachetools==5.3.2  # Advanced caching utilities
+diskcache==5.6.3  # Disk-based caching
+
+# Database & ORM
+sqlalchemy==2.0.23  # Powerful ORM
+alembic==1.13.1  # Database migrations
+asyncpg==0.29.0  # Fast PostgreSQL driver
+
+# Queue & Background Tasks
+celery==5.3.4  # Distributed task queue
+redis==5.0.1  # Message broker for Celery
+flower==2.0.1  # Celery monitoring
+
+# Configuration Management
+dynaconf==3.2.4  # Advanced configuration
+python-dotenv==1.0.0  # Environment variables
+
+# Logging & Monitoring
+structlog==23.2.0  # Structured logging
+loguru==0.7.2  # Advanced logging
+prometheus-client==0.19.0  # Metrics collection
+opentelemetry-api==1.21.0  # Distributed tracing
+
+# Security & Authentication
+cryptography==41.0.8  # Cryptographic operations
+python-jose[cryptography]==3.3.0  # JWT handling
+passlib[bcrypt]==1.7.4  # Password hashing
+
+# Text Processing & AI
+nltk==3.8.1  # Natural language processing
+spacy==3.7.2  # Advanced NLP
+transformers==4.36.2  # Hugging Face transformers
+torch==2.1.1  # PyTorch for ML models
+sentence-transformers==2.2.2  # Semantic embeddings
+
+# Data Processing
+pandas==2.1.4  # Data manipulation
+numpy==1.26.2  # Numerical computing
+scipy==1.11.4  # Scientific computing
+
+# Testing & Development
+pytest==7.4.3  # Testing framework
+pytest-asyncio==0.21.1  # Async testing
+pytest-cov==4.1.0  # Coverage reporting
+httpx==0.25.2  # Testing HTTP requests
+faker==20.1.0  # Test data generation
+
+# Performance Profiling
+py-spy==0.3.14  # Performance profiler
+memory-profiler==0.61.0  # Memory usage profiler
+line-profiler==4.1.1  # Line-by-line profiler
+
+# Serialization & Formats
+orjson==3.9.10  # Ultra-fast JSON
+msgpack==1.0.7  # Binary serialization
+pyyaml==6.0.1  # YAML support
+
+# Utilities
+rich==13.7.0  # Beautiful terminal output
+click==8.1.7  # Command line interface
+typer==0.9.0  # Modern CLI framework
+schedule==1.2.1  # Job scheduling
+
+# Development Tools
+black==23.11.0  # Code formatter
+isort==5.12.0  # Import sorter
+flake8==6.1.0  # Linting
+mypy==1.7.1  # Type checking
+
+# Documentation
+mkdocs==1.5.3  # Documentation generator
+mkdocs-material==9.4.14  # Material theme 

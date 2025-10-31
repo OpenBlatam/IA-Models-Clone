@@ -1,0 +1,344 @@
+# AI History Comparison System - GPU/CUDA Requirements
+# Sistema de Comparación de Historial de IA - Requisitos de GPU/CUDA
+# GPU-Accelerated Dependencies for High-Performance Computing
+
+# Include base requirements
+-r requirements-optimized.txt
+
+# =============================================================================
+# CUDA & GPU COMPUTING - Core GPU Libraries
+# =============================================================================
+# CUDA Toolkit (if available)
+# cuda-toolkit>=12.0.0              # CUDA Toolkit (install separately)
+
+# PyTorch with CUDA Support
+torch>=2.1.1+cu121                  # PyTorch with CUDA 12.1 support
+torchvision>=0.16.1+cu121           # Computer vision for PyTorch with CUDA
+torchaudio>=2.1.1+cu121             # Audio processing for PyTorch with CUDA
+torchtext>=0.16.1+cu121             # Text processing for PyTorch with CUDA
+
+# TensorFlow with GPU Support
+tensorflow[and-cuda]>=2.15.0        # TensorFlow with CUDA support
+tensorflow-gpu>=2.15.0              # TensorFlow GPU version
+
+# JAX with GPU Support
+jax[cuda12_pip]>=0.4.20             # JAX with CUDA 12 support
+jaxlib>=0.4.20                      # JAX library with GPU support
+
+# =============================================================================
+# GPU-ACCELERATED DATA PROCESSING - GPU Data Libraries
+# =============================================================================
+# RAPIDS Ecosystem (NVIDIA GPU)
+cupy-cuda12x>=12.2.0                # NumPy-like array library for GPU
+rapids-cudf>=23.12.0                # GPU-accelerated DataFrames
+rapids-cuml>=23.12.0                # GPU-accelerated ML algorithms
+rapids-cugraph>=23.12.0             # GPU-accelerated graph algorithms
+rapids-cuspatial>=23.12.0           # GPU-accelerated spatial algorithms
+rapids-cusignal>=23.12.0            # GPU-accelerated signal processing
+rapids-cuxfilter>=23.12.0           # GPU-accelerated data visualization
+
+# Alternative GPU Data Processing
+cudf>=23.12.0                       # GPU DataFrames
+cuml>=23.12.0                       # GPU ML algorithms
+cugraph>=23.12.0                    # GPU graph algorithms
+cuspatial>=23.12.0                  # GPU spatial algorithms
+cusignal>=23.12.0                   # GPU signal processing
+
+# =============================================================================
+# GPU-ACCELERATED MACHINE LEARNING - GPU ML Libraries
+# =============================================================================
+# GPU-Accelerated ML
+xgboost[gpu]>=2.0.2                 # XGBoost with GPU support
+lightgbm[gpu]>=4.1.0                # LightGBM with GPU support
+catboost[gpu]>=1.2.2                # CatBoost with GPU support
+
+# GPU-Accelerated Deep Learning
+pytorch-lightning>=2.1.0            # PyTorch Lightning with GPU support
+lightning>=2.1.0                    # Lightning framework with GPU support
+horovod>=0.28.1                     # Distributed training with GPU support
+deepspeed>=0.12.0                   # Deep learning optimization with GPU
+
+# =============================================================================
+# GPU-ACCELERATED COMPUTER VISION - GPU Vision Libraries
+# =============================================================================
+# GPU-Accelerated Computer Vision
+opencv-python>=4.8.1.78             # Computer vision (CPU fallback)
+opencv-contrib-python>=4.8.1.78     # OpenCV with contrib modules
+kornia>=0.7.0                       # Computer vision library for PyTorch
+albumentations>=1.3.1               # Image augmentation with GPU support
+
+# GPU-Accelerated Image Processing
+pillow>=10.1.0                      # Image processing (CPU fallback)
+scikit-image>=0.22.0                # Image processing (CPU fallback)
+imageio>=2.33.0                     # Image and video I/O
+
+# =============================================================================
+# GPU-ACCELERATED NATURAL LANGUAGE PROCESSING - GPU NLP
+# =============================================================================
+# GPU-Accelerated NLP
+transformers>=4.36.2                # State-of-the-art NLP models (GPU support)
+sentence-transformers>=2.2.2        # Sentence embeddings (GPU support)
+huggingface-hub>=0.19.4             # Hugging Face Hub client
+tokenizers>=0.15.0                  # Fast tokenizers (GPU support)
+accelerate>=0.25.0                  # Model acceleration (GPU support)
+
+# GPU-Accelerated Text Processing
+spacy>=3.7.2                        # Industrial-strength NLP (GPU support)
+nltk>=3.8.1                         # Natural Language Toolkit
+textblob>=0.17.1                    # Simple NLP library
+gensim>=4.3.2                       # Topic modeling and document similarity
+
+# =============================================================================
+# GPU-ACCELERATED AUDIO PROCESSING - GPU Audio Libraries
+# =============================================================================
+# GPU-Accelerated Audio Processing
+torchaudio>=2.1.1+cu121             # Audio processing for PyTorch with CUDA
+librosa>=0.10.1                     # Audio analysis (CPU fallback)
+soundfile>=0.12.1                   # Audio file I/O
+pydub>=0.25.1                       # Audio manipulation
+ffmpeg-python>=0.2.0                # FFmpeg wrapper
+
+# =============================================================================
+# GPU-ACCELERATED SCIENTIFIC COMPUTING - GPU Scientific Libraries
+# =============================================================================
+# GPU-Accelerated Scientific Computing
+numpy>=1.24.3                       # Numerical computing (CPU fallback)
+scipy>=1.11.4                       # Scientific computing (CPU fallback)
+scikit-learn>=1.3.2                 # Machine learning library (CPU fallback)
+
+# GPU-Accelerated Linear Algebra
+cupy-cuda12x>=12.2.0                # NumPy-like array library for GPU
+numba>=0.58.1                       # JIT compiler with GPU support
+cupy>=12.2.0                        # NumPy-like array library for GPU
+
+# =============================================================================
+# GPU-ACCELERATED GRAPH PROCESSING - GPU Graph Libraries
+# =============================================================================
+# GPU-Accelerated Graph Processing
+rapids-cugraph>=23.12.0             # GPU-accelerated graph algorithms
+cugraph>=23.12.0                    # GPU graph algorithms
+torch-geometric>=2.4.0              # Geometric deep learning (GPU support)
+dgl>=1.1.3                          # Deep graph library (GPU support)
+
+# =============================================================================
+# GPU-ACCELERATED TIME SERIES - GPU Time Series Libraries
+# =============================================================================
+# GPU-Accelerated Time Series
+prophet>=1.1.5                      # Forecasting (CPU fallback)
+arch>=6.2.0                         # ARCH models (CPU fallback)
+tslearn>=0.6.2                      # Time series machine learning (CPU fallback)
+sktime>=0.24.1                      # Time series machine learning (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED MODEL OPTIMIZATION - GPU Model Optimization
+# =============================================================================
+# GPU-Accelerated Model Optimization
+onnx>=1.15.0                        # Open Neural Network Exchange
+onnxruntime-gpu>=1.16.3             # ONNX Runtime with GPU support
+tensorrt>=8.6.0                     # TensorRT optimization
+openvino>=2023.2.0                  # OpenVINO toolkit (CPU fallback)
+
+# Model Compression with GPU Support
+torch-pruning>=1.3.0                # Model pruning (GPU support)
+torch-quantization>=0.1.0           # Model quantization (GPU support)
+distiller>=0.3.0                    # Model compression (GPU support)
+
+# =============================================================================
+# GPU-ACCELERATED DISTRIBUTED COMPUTING - GPU Distributed Libraries
+# =============================================================================
+# GPU-Accelerated Distributed Computing
+ray>=2.8.1                          # Distributed computing with GPU support
+dask>=2023.12.1                     # Parallel computing with GPU support
+horovod>=0.28.1                     # Distributed training with GPU support
+deepspeed>=0.12.0                   # Deep learning optimization with GPU
+fairscale>=0.4.13                   # PyTorch scaling with GPU support
+
+# =============================================================================
+# GPU MONITORING & PROFILING - GPU Monitoring Tools
+# =============================================================================
+# GPU Monitoring
+nvidia-ml-py3>=7.352.0              # NVIDIA monitoring
+GPUtil>=1.4.0                       # GPU monitoring
+pynvml>=11.5.0                      # NVIDIA Management Library
+py3nvml>=0.2.7                      # NVIDIA Management Library wrapper
+
+# GPU Profiling
+nsight-compute>=2023.1.0            # NVIDIA Nsight Compute (install separately)
+nsight-systems>=2023.1.0            # NVIDIA Nsight Systems (install separately)
+py-spy>=0.3.14                      # Python profiler (CPU fallback)
+memory-profiler>=0.61.0             # Memory profiling (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED VISUALIZATION - GPU Visualization Libraries
+# =============================================================================
+# GPU-Accelerated Visualization
+matplotlib>=3.8.2                   # Plotting library (CPU fallback)
+seaborn>=0.13.0                     # Statistical data visualization (CPU fallback)
+plotly>=5.17.0                      # Interactive plotting (CPU fallback)
+bokeh>=3.3.2                        # Interactive visualization (CPU fallback)
+altair>=5.2.0                       # Grammar of graphics (CPU fallback)
+
+# GPU-Accelerated Web Visualization
+dash>=2.14.2                        # Web applications for Python
+streamlit>=1.28.2                   # Data app framework
+gradio>=4.7.1                       # ML model interfaces
+panel>=1.3.0                        # Data apps and dashboards
+
+# =============================================================================
+# GPU-ACCELERATED CACHING - GPU Caching Libraries
+# =============================================================================
+# GPU-Accelerated Caching
+diskcache>=5.6.3                    # Disk-based caching (CPU fallback)
+joblib>=1.3.2                       # Parallel computing with GPU support
+lru-dict>=1.3.0                     # LRU cache implementation (CPU fallback)
+cachetools>=5.3.2                   # Caching utilities (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED SECURITY - GPU Security Libraries
+# =============================================================================
+# GPU-Accelerated Security
+cryptography>=41.0.8                # Cryptographic recipes (CPU fallback)
+pycryptodome>=3.19.0                # Cryptographic library (CPU fallback)
+bcrypt>=4.1.2                       # Password hashing (CPU fallback)
+argon2-cffi>=23.1.0                 # Argon2 password hashing (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED FILE PROCESSING - GPU File Processing
+# =============================================================================
+# GPU-Accelerated File Processing
+python-docx>=1.1.0                  # Word document processing (CPU fallback)
+PyPDF2>=3.0.1                       # PDF processing (CPU fallback)
+openpyxl>=3.1.2                     # Excel file processing (CPU fallback)
+pillow>=10.1.0                      # Image processing (CPU fallback)
+python-magic>=0.4.27                # File type detection (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED NETWORKING - GPU Networking Libraries
+# =============================================================================
+# GPU-Accelerated Networking
+aiohttp>=3.9.1                      # Async HTTP client/server (CPU fallback)
+httpx>=0.25.2                       # Modern async HTTP client (CPU fallback)
+websockets>=12.0                    # WebSocket implementation (CPU fallback)
+requests>=2.31.0                    # HTTP library (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED DATABASE - GPU Database Libraries
+# =============================================================================
+# GPU-Accelerated Database
+sqlalchemy>=2.0.23                  # SQL toolkit and ORM (CPU fallback)
+alembic>=1.13.1                     # Database migration tool (CPU fallback)
+asyncpg>=0.29.0                     # Async PostgreSQL driver (CPU fallback)
+redis>=5.0.1                        # Redis client (CPU fallback)
+pymongo>=4.6.0                      # MongoDB driver (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED CONFIGURATION - GPU Configuration Libraries
+# =============================================================================
+# GPU-Accelerated Configuration
+pydantic>=2.5.0                     # Data validation and settings management
+pydantic-settings>=2.1.0            # Settings management for Pydantic v2
+python-dotenv>=1.0.0                # Environment variables
+pyyaml>=6.0.1                       # YAML parser
+click>=8.1.7                        # Command line interface
+
+# =============================================================================
+# GPU-ACCELERATED MONITORING - GPU Monitoring Libraries
+# =============================================================================
+# GPU-Accelerated Monitoring
+prometheus-client>=0.19.0           # Prometheus metrics (CPU fallback)
+structlog>=23.2.0                   # Structured logging (CPU fallback)
+loguru>=0.7.2                       # Logging library (CPU fallback)
+sentry-sdk>=1.38.0                  # Error tracking (CPU fallback)
+psutil>=5.9.6                       # System monitoring (CPU fallback)
+
+# =============================================================================
+# GPU-ACCELERATED TESTING - GPU Testing Libraries
+# =============================================================================
+# GPU-Accelerated Testing
+pytest>=7.4.3                       # Testing framework (CPU fallback)
+pytest-asyncio>=0.21.1              # Async testing support (CPU fallback)
+pytest-cov>=4.1.0                   # Coverage plugin (CPU fallback)
+pytest-mock>=3.12.0                 # Mocking plugin (CPU fallback)
+pytest-benchmark>=4.0.0             # Benchmarking (CPU fallback)
+
+# =============================================================================
+# OPTIONAL GPU LIBRARIES - Advanced GPU Libraries
+# =============================================================================
+# Uncomment for advanced GPU capabilities
+
+# Advanced GPU Computing
+# cuda-toolkit>=12.0.0              # CUDA Toolkit (install separately)
+# cudnn>=8.9.0                      # cuDNN (install separately)
+# nccl>=2.18.0                      # NCCL (install separately)
+
+# Advanced GPU ML
+# rapids-cuml>=23.12.0              # GPU-accelerated ML algorithms
+# cuml>=23.12.0                     # GPU ML algorithms
+# xgboost[gpu]>=2.0.2               # XGBoost with GPU support
+# lightgbm[gpu]>=4.1.0              # LightGBM with GPU support
+
+# Advanced GPU Deep Learning
+# pytorch-lightning>=2.1.0          # PyTorch Lightning with GPU support
+# horovod>=0.28.1                   # Distributed training with GPU support
+# deepspeed>=0.12.0                 # Deep learning optimization with GPU
+
+# Advanced GPU Computer Vision
+# detectron2>=0.6.0                 # Object detection (GPU support)
+# mmdetection>=3.1.0                # Object detection (GPU support)
+# mmcv>=2.1.0                       # Computer vision foundation (GPU support)
+
+# Advanced GPU NLP
+# transformers>=4.36.2              # State-of-the-art NLP models (GPU support)
+# sentence-transformers>=2.2.2      # Sentence embeddings (GPU support)
+# spacy>=3.7.2                      # Industrial-strength NLP (GPU support)
+
+# Advanced GPU Audio
+# torchaudio>=2.1.1+cu121           # Audio processing for PyTorch with CUDA
+# whisper>=1.1.10                   # OpenAI Whisper (GPU support)
+# speechbrain>=0.5.16               # Speech processing toolkit (GPU support)
+
+# Advanced GPU Graph Processing
+# rapids-cugraph>=23.12.0           # GPU-accelerated graph algorithms
+# cugraph>=23.12.0                  # GPU graph algorithms
+# torch-geometric>=2.4.0            # Geometric deep learning (GPU support)
+
+# Advanced GPU Model Optimization
+# onnxruntime-gpu>=1.16.3           # ONNX Runtime with GPU support
+# tensorrt>=8.6.0                   # TensorRT optimization
+# openvino>=2023.2.0                # OpenVINO toolkit (CPU fallback)
+
+# Advanced GPU Monitoring
+# nvidia-ml-py3>=7.352.0            # NVIDIA monitoring
+# GPUtil>=1.4.0                     # GPU monitoring
+# pynvml>=11.5.0                    # NVIDIA Management Library
+
+# Advanced GPU Profiling
+# nsight-compute>=2023.1.0          # NVIDIA Nsight Compute (install separately)
+# nsight-systems>=2023.1.0          # NVIDIA Nsight Systems (install separately)
+# py-spy>=0.3.14                    # Python profiler (CPU fallback)
+
+# Advanced GPU Distributed Computing
+# ray>=2.8.1                        # Distributed computing with GPU support
+# dask>=2023.12.1                   # Parallel computing with GPU support
+# horovod>=0.28.1                   # Distributed training with GPU support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

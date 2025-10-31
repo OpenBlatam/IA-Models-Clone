@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\core\biological_features.py
+# hypothesis_version: 6.135.23
+
+[-1000000000.0, 1e-08, 0.001, 0.01, 0.1, 0.3, 0.5, 0.7, 0.95, 1.0, 2.0, 10.0, 20.0, 100.0, 100, 1000, 'activity_history', 'firing_count', 'firing_rate', 'history_index', 'last_spike_time', 'memory_buffer', 'memory_count', 'memory_importance', 'memory_index', 'post_trace', 'pre_trace', 'threshold_history', 'total_steps']

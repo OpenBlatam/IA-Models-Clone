@@ -1,0 +1,170 @@
+# 🚀 HeyGen AI - Training Configuration
+# =====================================
+# Comprehensive configuration for training with ultra-performance optimizations
+
+# 🧠 Model Configuration
+model:
+  name: "gpt2-medium"  # Model to train/fine-tune
+  type: "transformer"   # Model type: transformer, diffusion, llm
+  pretrained: true      # Use pretrained weights
+  cache_dir: "./models" # Directory to cache models
+  
+# 🚀 Training Configuration
+training:
+  # Basic Training Parameters
+  batch_size: 16                    # Training batch size
+  eval_batch_size: 32               # Evaluation batch size
+  learning_rate: 1e-4               # Learning rate
+  weight_decay: 0.01                # Weight decay
+  max_epochs: 10                    # Maximum training epochs
+  warmup_steps: 100                 # Learning rate warmup steps
+  gradient_accumulation_steps: 4    # Gradient accumulation for larger effective batch
+  
+  # Advanced Training
+  max_grad_norm: 1.0                # Gradient clipping norm
+  lr_scheduler: "cosine"            # Learning rate scheduler: linear, cosine, cosine_with_restarts
+  save_steps: 500                   # Save checkpoint every N steps
+  eval_steps: 500                   # Evaluate every N steps
+  logging_steps: 100                # Log every N steps
+  
+  # Early Stopping
+  early_stopping_patience: 3        # Early stopping patience
+  early_stopping_threshold: 0.001   # Early stopping threshold
+  
+# ⚡ Performance Optimization
+optimization:
+  # Flash Attention 2.0 (2-4x speedup, 30-50% memory reduction)
+  use_flash_attention: true         # Enable Flash Attention 2.0
+  flash_attention_mode: "auto"      # auto, forward, backward, or both
+  
+  # xFormers (1.5-2x speedup, 30-50% memory reduction)
+  use_xformers: true                # Enable xFormers memory-efficient attention
+  xformers_config:
+    enable_flash: true              # Enable Flash Attention in xFormers
+    enable_mem_efficient: true      # Enable memory-efficient attention
+    enable_math: false              # Disable math attention (use optimized versions)
+  
+  # Triton Kernels (1.2-1.5x speedup, 10-20% memory reduction)
+  use_triton: true                  # Enable Triton optimized kernels
+  triton_config:
+    enable_autotune: true           # Enable automatic kernel tuning
+    enable_cudagraphs: true         # Enable CUDA graphs for repeated operations
+  
+  # Mixed Precision Training (1.5-2x speedup, 20-30% memory reduction)
+  use_mixed_precision: true         # Enable automatic mixed precision
+  mixed_precision_mode: "fp16"      # fp16 or bf16
+  mixed_precision_config:
+    autocast: true                  # Enable autocast
+    scaler: true                    # Enable gradient scaler
+  
+  # Memory Optimization
+  gradient_checkpointing: true      # Enable gradient checkpointing (50-70% memory reduction)
+  memory_efficient_attention: true  # Use memory-efficient attention variants
+  dynamic_batching: true            # Enable dynamic batch sizing
+  
+  # Advanced Optimizations
+  use_compile: true                 # Enable PyTorch 2.0 torch.compile
+  compile_mode: "max-autotune"      # Compilation mode: default, reduce-overhead, max-autotune
+  use_fused_adamw: true            # Use fused AdamW optimizer
+  use_fused_lamb: false            # Use fused LAMB optimizer
+  
+# 🖥️ Hardware Configuration
+hardware:
+  # GPU Configuration
+  gpu_ids: [0, 1]                  # GPU IDs to use (empty for CPU)
+  distributed_training: true        # Enable distributed training
+  distributed_backend: "nccl"       # Distributed backend: nccl, gloo, mpi
+  
+  # Memory Management
+  max_memory_usage: "90%"           # Maximum GPU memory usage
+  memory_pinning: true              # Pin memory for faster CPU-GPU transfer
+  prefetch_factor: 2                # DataLoader prefetch factor
+  
+  # CPU Configuration
+  num_workers: 4                    # Number of DataLoader workers
+  pin_memory: true                  # Pin memory in DataLoader
+  
+# 📊 Data Configuration
+data:
+  # Dataset Configuration
+  train_file: "./data/train.jsonl"  # Training data file
+  eval_file: "./data/eval.jsonl"    # Evaluation data file
+  test_file: "./data/test.jsonl"    # Test data file
+  
+  # Data Processing
+  max_length: 512                   # Maximum sequence length
+  truncation: true                  # Enable truncation
+  padding: "max_length"             # Padding strategy
+  return_tensors: "pt"              # Return tensor type
+  
+  # Data Augmentation
+  augmentation: false                # Enable data augmentation
+  augmentation_config:
+    random_mask: 0.15               # Random masking probability
+    random_swap: 0.1                # Random token swap probability
+  
+# 📈 Monitoring & Logging
+monitoring:
+  # Logging Configuration
+  log_level: "INFO"                 # Logging level: DEBUG, INFO, WARNING, ERROR
+  log_format: "detailed"            # Log format: simple, detailed, json
+  
+  # Experiment Tracking
+  use_wandb: true                   # Enable Weights & Biases logging
+  use_tensorboard: true             # Enable TensorBoard logging
+  project_name: "heygen-ai"         # Project name for experiment tracking
+  
+  # Performance Monitoring
+  gpu_monitoring: true              # Monitor GPU usage and memory
+  memory_tracking: true             # Track memory usage
+  performance_profiling: true       # Enable performance profiling
+  
+  # Metrics
+  metrics:
+    - "loss"                        # Training loss
+    - "accuracy"                    # Accuracy (if applicable)
+    - "perplexity"                  # Perplexity (for language models)
+    - "bleu"                        # BLEU score (for generation tasks)
+    - "rouge"                       # ROUGE score (for summarization)
+  
+# 💾 Checkpointing & Saving
+checkpointing:
+  # Save Configuration
+  save_dir: "./checkpoints"         # Directory to save checkpoints
+  save_total_limit: 3               # Maximum number of checkpoints to keep
+  save_strategy: "steps"            # Save strategy: steps, epoch, no
+  
+  # Load Configuration
+  load_best_model_at_end: true     # Load best model at end of training
+  metric_for_best_model: "eval_loss" # Metric to determine best model
+  greater_is_better: false          # Whether higher metric is better
+  
+  # Model Export
+  export_format: ["pytorch", "onnx"] # Export formats
+  export_config:
+    onnx:
+      opset_version: 17             # ONNX opset version
+      dynamic_axes: true            # Enable dynamic axes
+      optimize: true                # Enable ONNX optimization
+  
+# 🔧 Advanced Configuration
+advanced:
+  # Seed Configuration
+  seed: 42                          # Random seed for reproducibility
+  
+  # Debugging
+  debug: false                      # Enable debug mode
+  detect_anomaly: false             # Enable gradient anomaly detection
+  
+  # Custom Configuration
+  custom_config:
+    use_custom_loss: false          # Use custom loss function
+    use_custom_optimizer: false     # Use custom optimizer
+    use_custom_scheduler: false     # Use custom scheduler
+  
+  # Experimental Features
+  experimental:
+    use_8bit_optimizer: false       # Use 8-bit optimizers (bitsandbytes)
+    use_4bit_quantization: false   # Use 4-bit quantization
+    use_lora: false                 # Use LoRA for efficient fine-tuning
+    use_qlora: false                # Use QLoRA for quantized LoRA

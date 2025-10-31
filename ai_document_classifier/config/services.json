@@ -1,0 +1,128 @@
+{
+  "services": [
+    {
+      "name": "openai_gpt",
+      "service_type": "ai_classification",
+      "base_url": "https://api.openai.com/v1",
+      "timeout": 30,
+      "retry_attempts": 3,
+      "rate_limit": 60,
+      "enabled": false,
+      "metadata": {
+        "description": "OpenAI GPT models for document classification",
+        "models": ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo"],
+        "cost_per_request": "varies",
+        "max_tokens": 4000
+      }
+    },
+    {
+      "name": "huggingface",
+      "service_type": "ai_classification",
+      "base_url": "https://api-inference.huggingface.co",
+      "timeout": 30,
+      "retry_attempts": 3,
+      "rate_limit": 1000,
+      "enabled": false,
+      "metadata": {
+        "description": "Hugging Face inference API for document classification",
+        "models": ["microsoft/DialoGPT-medium", "distilbert-base-uncased"],
+        "cost_per_request": "free_tier_available",
+        "max_tokens": 512
+      }
+    },
+    {
+      "name": "google_translate",
+      "service_type": "translation",
+      "base_url": "https://translation.googleapis.com",
+      "timeout": 30,
+      "retry_attempts": 3,
+      "rate_limit": 100,
+      "enabled": false,
+      "metadata": {
+        "description": "Google Translate API for document translation",
+        "supported_languages": ["en", "es", "fr", "de", "it", "pt", "ru", "zh", "ja", "ko"],
+        "cost_per_request": "per_character",
+        "max_characters": 100000
+      }
+    },
+    {
+      "name": "grammarly",
+      "service_type": "grammar_check",
+      "base_url": "https://api.grammarly.com",
+      "timeout": 30,
+      "retry_attempts": 3,
+      "rate_limit": 50,
+      "enabled": false,
+      "metadata": {
+        "description": "Grammarly API for grammar and style checking",
+        "features": ["grammar", "style", "tone", "clarity"],
+        "cost_per_request": "subscription_based",
+        "max_text_length": 100000
+      }
+    },
+    {
+      "name": "copyscape",
+      "service_type": "plagiarism_check",
+      "base_url": "https://www.copyscape.com/api",
+      "timeout": 30,
+      "retry_attempts": 3,
+      "rate_limit": 20,
+      "enabled": false,
+      "metadata": {
+        "description": "Copyscape API for plagiarism detection",
+        "features": ["plagiarism_detection", "similarity_score", "source_urls"],
+        "cost_per_request": "per_search",
+        "max_text_length": 50000
+      }
+    },
+    {
+      "name": "readability",
+      "service_type": "content_analysis",
+      "base_url": "https://readability.com/api",
+      "timeout": 30,
+      "retry_attempts": 3,
+      "rate_limit": 100,
+      "enabled": false,
+      "metadata": {
+        "description": "Readability analysis API for content assessment",
+        "features": ["readability_score", "grade_level", "sentence_analysis"],
+        "cost_per_request": "per_analysis",
+        "max_text_length": 100000
+      }
+    }
+  ],
+  "default_config": {
+    "cache_ttl_hours": 24,
+    "max_batch_size": 1000,
+    "default_timeout": 30,
+    "retry_attempts": 3,
+    "rate_limit_window": 3600
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

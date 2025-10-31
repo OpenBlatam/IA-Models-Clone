@@ -1,0 +1,220 @@
+# Gamma App - Production Configuration
+# This file contains production-specific settings
+
+# Application Settings
+app:
+  name: "Gamma App"
+  version: "1.0.0"
+  environment: "production"
+  debug: false
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+
+# Database Configuration
+database:
+  url: "${DATABASE_URL}"
+  pool_size: 20
+  max_overflow: 30
+  pool_timeout: 30
+  pool_recycle: 3600
+  echo: false
+
+# Redis Configuration
+redis:
+  url: "${REDIS_URL}"
+  max_connections: 20
+  socket_timeout: 5
+  socket_connect_timeout: 5
+  retry_on_timeout: true
+
+# AI Configuration
+ai:
+  openai:
+    api_key: "${OPENAI_API_KEY}"
+    model: "gpt-4"
+    max_tokens: 4000
+    temperature: 0.7
+  
+  anthropic:
+    api_key: "${ANTHROPIC_API_KEY}"
+    model: "claude-3-sonnet-20240229"
+    max_tokens: 4000
+  
+  local_models:
+    enabled: true
+    models_dir: "/app/models"
+    default_model: "gpt2-medium"
+    quantization: true
+    device: "cuda"
+
+# Security Configuration
+security:
+  secret_key: "${SECRET_KEY}"
+  algorithm: "HS256"
+  access_token_expire_minutes: 30
+  refresh_token_expire_days: 7
+  
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    burst_size: 20
+  
+  password_policy:
+    min_length: 8
+    require_uppercase: true
+    require_lowercase: true
+    require_numbers: true
+    require_special_chars: true
+
+# Cache Configuration
+cache:
+  local:
+    enabled: true
+    max_size: "256MB"
+    ttl: 3600
+  
+  redis:
+    enabled: true
+    ttl: 7200
+    key_prefix: "gamma:"
+  
+  cdn:
+    enabled: true
+    ttl: 86400
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+    path: "/metrics"
+  
+  logging:
+    level: "INFO"
+    format: "json"
+    file: "/app/logs/gamma.log"
+    max_size: "100MB"
+    backup_count: 5
+  
+  health_checks:
+    enabled: true
+    interval: 30
+    timeout: 10
+
+# Export Configuration
+export:
+  max_file_size: "100MB"
+  supported_formats:
+    - "pdf"
+    - "pptx"
+    - "html"
+    - "markdown"
+    - "json"
+    - "png"
+    - "zip"
+  
+  quality:
+    default: "high"
+    options: ["low", "medium", "high", "ultra"]
+  
+  templates:
+    enabled: true
+    directory: "/app/templates"
+
+# Collaboration Configuration
+collaboration:
+  websockets:
+    enabled: true
+    max_connections: 1000
+    ping_interval: 30
+    ping_timeout: 10
+  
+  real_time:
+    enabled: true
+    sync_interval: 100
+    conflict_resolution: "last_write_wins"
+
+# Performance Configuration
+performance:
+  profiling:
+    enabled: false  # Disabled in production
+    sample_rate: 0.1
+  
+  optimization:
+    enabled: true
+    auto_gc: true
+    gc_threshold: 0.8
+  
+  limits:
+    max_content_size: "50MB"
+    max_concurrent_requests: 100
+    request_timeout: 300
+
+# Email Configuration
+email:
+  smtp:
+    host: "${SMTP_HOST}"
+    port: 587
+    username: "${SMTP_USERNAME}"
+    password: "${SMTP_PASSWORD}"
+    use_tls: true
+  
+  templates:
+    directory: "/app/email_templates"
+  
+  notifications:
+    enabled: true
+    from_email: "noreply@gamma.app"
+
+# File Storage Configuration
+storage:
+  local:
+    enabled: true
+    upload_dir: "/app/uploads"
+    max_file_size: "100MB"
+  
+  s3:
+    enabled: false
+    bucket: "${S3_BUCKET}"
+    region: "${S3_REGION}"
+    access_key: "${S3_ACCESS_KEY}"
+    secret_key: "${S3_SECRET_KEY}"
+
+# Feature Flags
+features:
+  ai_generation: true
+  real_time_collaboration: true
+  advanced_export: true
+  analytics: true
+  user_management: true
+  content_templates: true
+  multimedia_support: true
+  custom_themes: true
+  api_access: true
+  webhooks: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

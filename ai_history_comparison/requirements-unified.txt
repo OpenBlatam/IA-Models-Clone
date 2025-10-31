@@ -1,0 +1,315 @@
+# Unified AI History Comparison System Requirements
+# This file contains all dependencies for the refactored unified system
+
+# Core FastAPI and Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.25.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Database and ORM
+sqlalchemy==2.0.23
+alembic==1.13.1
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# Redis and Caching
+redis==5.0.1
+aioredis==2.0.1
+
+# HTTP and API
+httpx==0.25.2
+aiohttp==3.9.1
+requests==2.31.0
+
+# Authentication and Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+cryptography==41.0.8
+
+# Configuration and Environment
+python-dotenv==1.0.0
+pyyaml==6.0.1
+toml==0.10.2
+
+# Logging and Monitoring
+structlog==23.2.0
+prometheus-client==0.19.0
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-instrumentation-fastapi==0.42b0
+
+# Data Processing and Analysis
+numpy==1.24.4
+pandas==2.1.4
+scipy==1.11.4
+scikit-learn==1.3.2
+
+# AI and Machine Learning
+openai==1.3.7
+anthropic==0.7.8
+google-generativeai==0.3.2
+transformers==4.36.2
+torch==2.1.2
+tensorflow==2.15.0
+
+# Quantum Computing
+qiskit==0.45.3
+qiskit-aer==0.13.3
+qiskit-optimization==0.6.0
+qiskit-machine-learning==0.7.1
+cirq==1.2.0
+pennylane==0.34.0
+
+# Blockchain Integration
+web3==6.11.4
+bitcoin==1.1.42
+solana==0.30.2
+eth-account==0.9.0
+eth-typing==3.5.2
+eth-utils==2.3.0
+
+# IoT Protocols
+paho-mqtt==1.6.1
+aiocoap==0.4.4
+asyncio-mqtt==0.16.1
+pymodbus==3.5.2
+opcua==0.98.13
+
+# AR/VR and 3D Graphics
+pygame==2.5.2
+pyglet==2.0.10
+moderngl==5.8.2
+PyOpenGL==3.1.7
+PyOpenGL-accelerate==3.1.7
+trimesh==4.0.5
+open3d==0.18.0
+
+# Edge Computing and Distributed Systems
+celery==5.3.4
+kombu==5.3.4
+flower==2.0.1
+dask==2023.12.0
+distributed==2023.12.0
+
+# Performance Optimization
+numba==0.58.1
+cython==3.0.6
+pypy==7.3.12
+memory-profiler==0.61.0
+line-profiler==4.1.1
+
+# Testing and Quality Assurance
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+pytest-benchmark==4.0.0
+coverage==7.3.2
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+isort==5.12.0
+
+# Development and Debugging
+ipython==8.18.1
+jupyter==1.0.0
+notebook==7.0.6
+debugpy==1.8.0
+rich==13.7.0
+click==8.1.7
+
+# Documentation
+mkdocs==1.5.3
+mkdocs-material==9.4.8
+sphinx==7.2.6
+sphinx-rtd-theme==1.3.0
+
+# Utilities
+python-dateutil==2.8.2
+pytz==2023.3
+tqdm==4.66.1
+colorama==0.4.6
+termcolor==2.3.0
+tabulate==0.9.0
+
+# System and Process Management
+psutil==5.9.6
+GPUtil==1.4.0
+nvidia-ml-py==12.535.133
+
+# Networking and Communication
+websockets==12.0
+socketio==5.10.0
+grpcio==1.59.3
+grpcio-tools==1.59.3
+
+# File and Data Formats
+openpyxl==3.1.2
+xlsxwriter==3.1.9
+python-docx==1.1.0
+PyPDF2==3.0.1
+pillow==10.1.0
+imageio==2.33.1
+
+# Serialization and Compression
+msgpack==1.0.7
+orjson==3.9.10
+lz4==4.3.2
+zstandard==0.22.0
+
+# Time Series and Analytics
+influxdb-client==1.38.0
+timescaledb==0.1.0
+plotly==5.17.0
+bokeh==3.3.2
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# Cloud and Container Support
+docker==6.1.3
+kubernetes==28.1.0
+boto3==1.34.0
+azure-storage-blob==12.19.0
+google-cloud-storage==2.10.0
+
+# Security and Compliance
+bandit==1.7.5
+safety==2.3.5
+semgrep==1.45.0
+cryptography==41.0.8
+pycryptodome==3.19.0
+
+# Monitoring and Observability
+grafana-api==1.0.3
+elasticsearch==8.11.0
+kibana==8.11.0
+jaeger-client==4.8.0
+zipkin==1.0.0
+
+# Configuration Management
+consul==1.1.0
+etcd3==0.12.0
+vault==1.0.0
+
+# Message Queues and Event Streaming
+kafka-python==2.0.2
+pika==1.3.2
+nats-py==2.4.0
+pulsar-client==3.4.0
+
+# Workflow and Task Management
+prefect==2.14.11
+airflow==2.7.3
+luigi==3.4.0
+dagster==1.5.6
+
+# Data Validation and Serialization
+marshmallow==3.20.1
+cerberus==1.3.5
+jsonschema==4.20.0
+voluptuous==0.13.1
+
+# Internationalization and Localization
+babel==2.13.1
+gettext==0.1.0
+
+# Geographic and Spatial Data
+geopandas==0.14.1
+shapely==2.0.2
+folium==0.15.0
+cartopy==0.22.0
+
+# Financial and Economic Data
+yfinance==0.2.28
+alpha-vantage==2.3.1
+quandl==3.7.0
+ccxt==4.1.77
+
+# Natural Language Processing
+spacy==3.7.2
+nltk==3.8.1
+textblob==0.17.1
+gensim==4.3.2
+
+# Computer Vision and Image Processing
+opencv-python==4.8.1.78
+scikit-image==0.22.0
+face-recognition==1.3.0
+mediapipe==0.10.7
+
+# Audio and Speech Processing
+librosa==0.10.1
+soundfile==0.12.1
+speechrecognition==3.10.0
+pyaudio==0.2.11
+
+# Web Scraping and Automation
+beautifulsoup4==4.12.2
+selenium==4.15.2
+scrapy==2.11.0
+playwright==1.40.0
+
+# Email and Communication
+smtplib==0.1.0
+imaplib==0.1.0
+twilio==8.10.3
+sendgrid==6.10.0
+
+# Backup and Recovery
+bup==0.33
+duplicity==2.2.3
+borgbackup==1.2.7
+
+# Performance and Profiling
+py-spy==0.3.14
+pyflame==1.6.7
+scalene==1.5.40
+
+# Machine Learning MLOps
+mlflow==2.8.1
+wandb==0.16.1
+neptune==1.8.15
+dvc==3.27.0
+
+# API Documentation and Testing
+swagger-ui-bundle==0.1.0
+redoc==0.1.0
+postman-collection==0.1.0
+
+# Database Migration and Management
+yoyo-migrations==8.2.0
+migrate==0.1.0
+
+# Environment and Deployment
+gunicorn==21.2.0
+supervisor==4.2.5
+systemd==0.1.0
+
+# Additional Utilities
+humanize==4.8.0
+faker==20.1.0
+freezegun==1.2.2
+responses==0.24.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,274 @@
+# 🚀 HeyGen AI - System Configuration
+# ====================================
+# Comprehensive system-level configuration for the HeyGen AI platform
+
+# 🌐 System Information
+system:
+  name: "HeyGen AI"
+  version: "2.0.0"
+  environment: "production"  # production, development, testing
+  debug_mode: false
+  
+# 🖥️ Platform Configuration
+platform:
+  # Operating System
+  os:
+    type: "auto"                    # auto, linux, windows, macos
+    version: "auto"                 # auto or specific version
+    architecture: "auto"            # auto, x86_64, arm64
+  
+  # Python Environment
+  python:
+    version: "3.11"                 # Python version requirement
+    virtual_env: "heygen-ai"        # Virtual environment name
+    path: "auto"                    # Python executable path (auto for detection)
+  
+  # CUDA Configuration
+  cuda:
+    version: "12.1"                 # CUDA version requirement
+    enable: true                    # Enable CUDA support
+    memory_fraction: 0.95           # GPU memory fraction to use
+    allow_growth: true              # Allow GPU memory growth
+
+# 🗂️ Directory Structure
+directories:
+  # Base Directories
+  base: "./"
+  models: "./models"                # Model storage directory
+  data: "./data"                    # Data storage directory
+  checkpoints: "./checkpoints"      # Checkpoint storage directory
+  logs: "./logs"                    # Log storage directory
+  configs: "./configs"              # Configuration files directory
+  outputs: "./outputs"              # Output files directory
+  temp: "./temp"                    # Temporary files directory
+  
+  # Subdirectories
+  subdirs:
+    models:
+      - "pretrained"                # Pretrained models
+      - "fine_tuned"                # Fine-tuned models
+      - "quantized"                 # Quantized models
+      - "exported"                  # Exported models (ONNX, etc.)
+    
+    data:
+      - "raw"                       # Raw data files
+      - "processed"                 # Processed data files
+      - "cached"                    # Cached data files
+      - "augmented"                 # Augmented data files
+    
+    logs:
+      - "training"                  # Training logs
+      - "inference"                 # Inference logs
+      - "performance"               # Performance logs
+      - "errors"                    # Error logs
+
+# 📊 Logging Configuration
+logging:
+  # General Logging
+  level: "INFO"                     # Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "detailed"                # Log format: simple, detailed, json
+  date_format: "%Y-%m-%d %H:%M:%S" # Date format for logs
+  
+  # File Logging
+  file_logging: true
+  file_config:
+    max_size: 104857600             # Maximum log file size (100MB)
+    backup_count: 5                 # Number of backup files to keep
+    encoding: "utf-8"               # File encoding
+  
+  # Console Logging
+  console_logging: true
+  console_config:
+    colored: true                   # Enable colored console output
+    show_timestamp: true            # Show timestamps in console
+  
+  # Remote Logging
+  remote_logging: false
+  remote_config:
+    host: "localhost"               # Remote logging host
+    port: 514                       # Remote logging port
+    protocol: "udp"                 # Protocol: udp, tcp
+
+# 🔐 Security Configuration
+security:
+  # API Security
+  api:
+    enable_auth: false              # Enable API authentication
+    auth_type: "token"              # Authentication type: token, oauth, api_key
+    rate_limit: 1000                # Rate limit per minute
+    cors_enabled: true              # Enable CORS
+  
+  # Data Security
+  data:
+    encryption: false               # Enable data encryption
+    encryption_key: ""              # Encryption key (if enabled)
+    secure_storage: false           # Enable secure storage
+  
+  # Network Security
+  network:
+    ssl_enabled: false              # Enable SSL/TLS
+    ssl_cert: ""                    # SSL certificate path
+    ssl_key: ""                     # SSL private key path
+    allowed_hosts: ["*"]            # Allowed hostnames
+
+# 🌐 Network Configuration
+network:
+  # Server Configuration
+  server:
+    host: "0.0.0.0"                # Server host
+    port: 8000                     # Server port
+    workers: 4                     # Number of worker processes
+  
+  # Database Configuration
+  database:
+    type: "sqlite"                  # Database type: sqlite, postgresql, mysql
+    host: "localhost"               # Database host
+    port: 5432                      # Database port
+    name: "heygen_ai"              # Database name
+    user: ""                        # Database user
+    password: ""                    # Database password
+  
+  # Cache Configuration
+  cache:
+    type: "memory"                  # Cache type: memory, redis, memcached
+    host: "localhost"               # Cache host
+    port: 6379                      # Cache port
+    password: ""                    # Cache password
+    db: 0                          # Cache database number
+
+# 📱 External Services
+external_services:
+  # Weights & Biases
+  wandb:
+    enabled: true                   # Enable Weights & Biases
+    project: "heygen-ai"           # Project name
+    entity: ""                      # Entity/username
+    api_key: ""                     # API key (set via environment variable)
+  
+  # TensorBoard
+  tensorboard:
+    enabled: true                   # Enable TensorBoard
+    port: 6006                      # TensorBoard port
+    host: "localhost"               # TensorBoard host
+  
+  # MLflow
+  mlflow:
+    enabled: true                   # Enable MLflow
+    tracking_uri: "file:./mlruns"   # MLflow tracking URI
+    experiment_name: "heygen-ai"    # Default experiment name
+  
+  # Hugging Face Hub
+  huggingface:
+    enabled: true                   # Enable Hugging Face Hub
+    token: ""                       # Access token (set via environment variable)
+    cache_dir: "./models/huggingface" # Cache directory
+
+# 🔧 Performance Tuning
+performance_tuning:
+  # Process Configuration
+  process:
+    max_workers: 4                  # Maximum number of worker processes
+    worker_timeout: 300             # Worker timeout in seconds
+    max_memory: "8GB"              # Maximum memory per process
+  
+  # Thread Configuration
+  thread:
+    max_threads: 8                  # Maximum number of threads
+    thread_timeout: 60              # Thread timeout in seconds
+  
+  # Async Configuration
+  async:
+    max_concurrent: 100             # Maximum concurrent async operations
+    queue_size: 1000                # Async queue size
+    timeout: 30                     # Async operation timeout
+
+# 🧪 Testing Configuration
+testing:
+  # Test Environment
+  environment: "test"               # Test environment: test, staging, production
+  parallel: true                    # Enable parallel test execution
+  coverage: true                    # Enable test coverage
+  
+  # Test Data
+  data:
+    use_mock: true                  # Use mock data for testing
+    mock_size: 1000                 # Mock dataset size
+    preserve_data: false            # Preserve test data after tests
+  
+  # Performance Testing
+  performance:
+    benchmark: true                 # Enable performance benchmarking
+    stress_test: false              # Enable stress testing
+    load_test: false                # Enable load testing
+
+# 🔍 Monitoring Configuration
+monitoring:
+  # System Monitoring
+  system:
+    enabled: true                   # Enable system monitoring
+    interval: 60                    # Monitoring interval in seconds
+    metrics: ["cpu", "memory", "disk", "network"]
+  
+  # Application Monitoring
+  application:
+    enabled: true                   # Enable application monitoring
+    interval: 30                    # Monitoring interval in seconds
+    metrics: ["requests", "response_time", "errors", "throughput"]
+  
+  # Health Checks
+  health_checks:
+    enabled: true                   # Enable health checks
+    interval: 30                    # Health check interval in seconds
+    timeout: 10                     # Health check timeout in seconds
+  
+  # Alerting
+  alerting:
+    enabled: false                  # Enable alerting
+    channels: ["email", "slack"]    # Alert channels
+    thresholds:
+      cpu_usage: 90                # CPU usage threshold
+      memory_usage: 90             # Memory usage threshold
+      disk_usage: 90               # Disk usage threshold
+
+# 🚀 Deployment Configuration
+deployment:
+  # Container Configuration
+  container:
+    type: "docker"                  # Container type: docker, kubernetes, none
+    image: "heygen-ai:latest"       # Container image
+    registry: ""                    # Container registry
+  
+  # Scaling Configuration
+  scaling:
+    auto_scaling: false             # Enable auto-scaling
+    min_instances: 1                # Minimum number of instances
+    max_instances: 10               # Maximum number of instances
+    target_cpu_usage: 70            # Target CPU usage for scaling
+  
+  # Load Balancing
+  load_balancing:
+    enabled: false                  # Enable load balancing
+    algorithm: "round_robin"        # Load balancing algorithm
+    health_check_path: "/health"    # Health check endpoint
+
+# 🔧 Maintenance Configuration
+maintenance:
+  # Backup Configuration
+  backup:
+    enabled: true                   # Enable automatic backups
+    interval: "daily"               # Backup interval: hourly, daily, weekly
+    retention: 30                   # Backup retention in days
+    compression: true               # Enable backup compression
+  
+  # Cleanup Configuration
+  cleanup:
+    enabled: true                   # Enable automatic cleanup
+    interval: "daily"               # Cleanup interval
+    retention: 7                    # File retention in days
+    temp_files: true                # Clean up temporary files
+  
+  # Updates Configuration
+  updates:
+    auto_update: false              # Enable automatic updates
+    check_interval: "weekly"        # Update check interval
+    notify: true                    # Notify about available updates

@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\core\langchain_manager.py
+# hypothesis_version: 6.137.1
+
+[0.7, 0.8, 70.0, 150.0, 100, 200, 1000, '2 minutes', 'Analyzing script...', 'Optimizing script...', 'chat_history', 'claude-3', 'complexity', 'confidence', 'content_agent', 'content_analysis', 'content_analyzer', 'context', 'conversation_history', 'default', 'duration', 'emotions', 'en', 'es', 'estimated_duration', 'gemini', 'general', 'google/gemini-pro', 'gpt-3.5-turbo', 'gpt-4', 'intermediate', 'language', 'llama-2', 'medium', 'moderate', 'neutral', 'overall', 'overall_complexity', 'preserve_style', 'professional', 'readability_score', 'script', 'script_generation', 'script_generator', 'script_optimization', 'script_optimizer', 'sentence_complexity', 'sentiment', 'source_language', 'style', 'suggestions', 'target_language', 'topic', 'translation', 'translation_history', 'translator', 'vocabulary_level', 'word_count']

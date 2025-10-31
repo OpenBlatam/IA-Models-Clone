@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\core\quantum_features.py
+# hypothesis_version: 6.135.23
+
+[-1000000000.0, 0.0001, 0.1, 1.0, '1', 'cnot_matrix', 'computational', 'hadamard', 'hadamard_matrix', 'measurement_ops', 'pauli_x', 'pauli_y', 'pauli_z']

@@ -1,0 +1,453 @@
+# Key Messages ML Pipeline Configuration
+# Main configuration file with all settings
+
+app:
+  name: "Key Messages ML Pipeline"
+  version: "1.0.0"
+  description: "Machine Learning Pipeline for Key Messages Generation"
+  environment: "development"
+  debug: true
+  log_level: "INFO"
+
+# Model configurations
+models:
+  gpt2:
+    name: "gpt2"
+    architecture: "gpt2"
+    model_size: "base"  # base, medium, large, xl
+    max_length: 512
+    temperature: 0.7
+    top_p: 0.9
+    top_k: 50
+    repetition_penalty: 1.1
+    do_sample: true
+    num_return_sequences: 1
+    pad_token_id: 50256
+    eos_token_id: 50256
+    device: "auto"  # auto, cpu, cuda, mps
+    dtype: "auto"   # auto, float32, float16, bfloat16
+    
+  bert:
+    name: "bert"
+    architecture: "bert"
+    model_size: "base"  # base, large
+    max_length: 512
+    temperature: 0.7
+    top_p: 0.9
+    top_k: 50
+    do_sample: true
+    num_return_sequences: 1
+    device: "auto"
+    dtype: "auto"
+    
+  custom_transformer:
+    name: "custom_transformer"
+    architecture: "transformer"
+    vocab_size: 50257
+    hidden_size: 768
+    num_layers: 12
+    num_attention_heads: 12
+    intermediate_size: 3072
+    max_position_embeddings: 512
+    dropout: 0.1
+    activation: "gelu"
+    layer_norm_eps: 1e-12
+    device: "auto"
+    dtype: "auto"
+
+# Training configurations
+training:
+  # General training settings
+  batch_size: 16
+  learning_rate: 1e-4
+  weight_decay: 0.01
+  num_epochs: 10
+  warmup_steps: 1000
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 1
+  save_steps: 1000
+  eval_steps: 1000
+  logging_steps: 100
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  greater_is_better: false
+  
+  # Optimizer settings
+  optimizer:
+    type: "adamw"  # adamw, adam, sgd
+    beta1: 0.9
+    beta2: 0.999
+    epsilon: 1e-8
+    
+  # Scheduler settings
+  scheduler:
+    type: "linear"  # linear, cosine, cosine_with_restarts, polynomial
+    num_warmup_steps: 1000
+    num_training_steps: 10000
+    
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 3
+    min_delta: 0.001
+    
+  # Mixed precision training
+  fp16:
+    enabled: true
+    opt_level: "O1"
+    loss_scale: 0
+    dynamic_loss_scale: true
+    
+  # Gradient checkpointing
+  gradient_checkpointing:
+    enabled: false
+    
+  # Data parallel training
+  dataloader:
+    num_workers: 4
+    pin_memory: true
+    drop_last: false
+
+# Data loading configurations
+data_loading:
+  # Dataset settings
+  dataset:
+    name: "key_messages_dataset"
+    version: "1.0.0"
+    train_file: "data/train.json"
+    validation_file: "data/validation.json"
+    test_file: "data/test.json"
+    cache_dir: "./cache"
+    
+  # Text processing
+  text_processing:
+    max_length: 512
+    truncation: true
+    padding: "max_length"
+    return_tensors: "pt"
+    add_special_tokens: true
+    
+  # Data augmentation
+  augmentation:
+    enabled: true
+    techniques:
+      - "synonym_replacement"
+      - "back_translation"
+      - "random_insertion"
+      - "random_deletion"
+    probability: 0.3
+    
+  # Data validation
+  validation:
+    enabled: true
+    min_length: 10
+    max_length: 512
+    required_fields: ["text", "label"]
+    optional_fields: ["metadata"]
+
+# Evaluation configurations
+evaluation:
+  # Metrics
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+    - "bleu"
+    - "rouge"
+    - "perplexity"
+    
+  # Evaluation settings
+  batch_size: 32
+  num_samples: 1000
+  max_length: 512
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 50
+  
+  # Human evaluation
+  human_evaluation:
+    enabled: false
+    num_evaluators: 3
+    evaluation_criteria:
+      - "relevance"
+      - "coherence"
+      - "fluency"
+      - "creativity"
+
+# Ensemble configurations
+ensemble:
+  enabled: false
+  methods:
+    - "voting"
+    - "averaging"
+    - "stacking"
+  weights:
+    gpt2: 0.4
+    bert: 0.3
+    custom_transformer: 0.3
+
+# Experiment tracking
+experiment_tracking:
+  enabled: true
+  backend: "composite"  # tensorboard, wandb, mlflow, composite
+  
+  # TensorBoard settings
+  tensorboard:
+    enabled: true
+    log_dir: "./logs/tensorboard"
+    update_freq: 100
+    
+  # Weights & Biases settings
+  wandb:
+    enabled: false
+    project: "key-messages-ml"
+    entity: "your-entity"
+    api_key: "${WANDB_API_KEY}"
+    
+  # MLflow settings
+  mlflow:
+    enabled: false
+    tracking_uri: "http://localhost:5000"
+    experiment_name: "key-messages-ml"
+    
+  # Metrics logging
+  metrics:
+    log_interval: 100
+    log_histograms: true
+    log_text_samples: true
+    log_images: false
+
+# Checkpointing
+checkpointing:
+  enabled: true
+  strategy: "best_model"  # best_model, all_models, interval
+  save_dir: "./checkpoints"
+  max_checkpoints: 5
+  save_optimizer: true
+  save_scheduler: true
+  save_metadata: true
+  
+  # Compression
+  compression:
+    enabled: true
+    algorithm: "gzip"
+    level: 6
+    
+  # Cleanup
+  cleanup:
+    enabled: true
+    max_age_days: 30
+    min_accuracy: 0.8
+
+# Performance optimization
+performance:
+  # GPU optimization
+  gpu:
+    mixed_precision: true
+    gradient_checkpointing: false
+    memory_efficient_attention: true
+    
+  # CPU optimization
+  cpu:
+    num_threads: 4
+    pin_memory: true
+    
+  # Memory optimization
+  memory:
+    max_memory_usage: "8GB"
+    gradient_accumulation: 1
+    batch_size_auto_adjust: true
+    
+  # Caching
+  caching:
+    enabled: true
+    cache_dir: "./cache"
+    max_cache_size: "2GB"
+    cache_ttl: 3600
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    - type: "file"
+      filename: "./logs/ml_pipeline.log"
+      max_bytes: 10485760  # 10MB
+      backup_count: 5
+    - type: "console"
+      level: "INFO"
+      
+  # Structured logging
+  structured:
+    enabled: true
+    include_timestamp: true
+    include_process_id: true
+    include_thread_id: true
+
+# Validation
+validation:
+  # Input validation
+  input:
+    enabled: true
+    max_text_length: 1000
+    min_text_length: 10
+    allowed_characters: "utf-8"
+    
+  # Model validation
+  model:
+    enabled: true
+    check_model_size: true
+    max_model_size_mb: 1000
+    validate_architecture: true
+    
+  # Configuration validation
+  config:
+    enabled: true
+    strict_mode: false
+    allow_unknown_fields: true
+
+# Security
+security:
+  # API security
+  api:
+    rate_limiting: true
+    max_requests_per_minute: 100
+    authentication: false
+    authorization: false
+    
+  # Data security
+  data:
+    encryption: false
+    anonymization: false
+    data_retention_days: 365
+    
+  # Model security
+  model:
+    model_watermarking: false
+    adversarial_testing: false
+    privacy_preserving: false
+
+# Deployment
+deployment:
+  # Model serving
+  serving:
+    framework: "torchserve"  # torchserve, triton, custom
+    port: 8080
+    host: "0.0.0.0"
+    workers: 4
+    
+  # Containerization
+  container:
+    base_image: "pytorch/pytorch:2.0.0-cuda11.8-cudnn8-runtime"
+    requirements_file: "requirements.txt"
+    dockerfile: "Dockerfile"
+    
+  # Monitoring
+  monitoring:
+    enabled: true
+    metrics_endpoint: "/metrics"
+    health_check: "/health"
+    prometheus: true
+
+# Version Control
+version_control:
+  # Git integration
+  git:
+    repo_path: "./ml_pipeline"
+    user_name: "ML Pipeline"
+    user_email: "ml-pipeline@example.com"
+    auto_commit: true
+    auto_push: false
+    commit_message_template: "Auto-commit: {change_type} - {description}"
+    branch: "main"
+    remote: "origin"
+    
+  # Configuration versioning
+  config_versioning:
+    config_dir: "./config_versions"
+    auto_snapshot: true
+    max_history: 50
+    compression: true
+    
+  # Model versioning
+  model_versioning:
+    registry_path: "./model_registry"
+    auto_version: true
+    version_scheme: "semantic"  # semantic, timestamp, hash
+    compression: true
+    metadata_schema:
+      required_fields: ["architecture", "dataset", "accuracy"]
+      optional_fields: ["training_time", "parameters", "description"]
+    
+  # Change tracking
+  change_tracking:
+    log_file: "./change_log.json"
+    auto_log: true
+    include_metadata: true
+    max_entries: 1000
+
+# Environment-specific overrides
+environments:
+  development:
+    app:
+      debug: true
+      log_level: "DEBUG"
+    training:
+      batch_size: 8
+      num_epochs: 2
+    data_loading:
+      dataset:
+        train_file: "data/train_small.json"
+        validation_file: "data/validation_small.json"
+    experiment_tracking:
+      enabled: false
+    version_control:
+      git:
+        auto_push: false
+      config_versioning:
+        max_history: 20
+      change_tracking:
+        max_entries: 500
+        
+  production:
+    app:
+      debug: false
+      log_level: "WARNING"
+    training:
+      batch_size: 32
+      num_epochs: 20
+    experiment_tracking:
+      enabled: true
+      wandb:
+        enabled: true
+    version_control:
+      git:
+        auto_push: true
+      config_versioning:
+        max_history: 100
+      change_tracking:
+        max_entries: 2000
+        
+  testing:
+    app:
+      debug: true
+      log_level: "DEBUG"
+    training:
+      batch_size: 4
+      num_epochs: 1
+    data_loading:
+      dataset:
+        train_file: "data/test_train.json"
+        validation_file: "data/test_validation.json"
+    experiment_tracking:
+      enabled: false
+    version_control:
+      git:
+        auto_commit: false
+        auto_push: false
+      config_versioning:
+        auto_snapshot: false
+      change_tracking:
+        auto_log: false 

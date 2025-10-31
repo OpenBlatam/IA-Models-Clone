@@ -1,0 +1,21 @@
+# Core ML libraries
+torch>=2.0.0
+torchvision>=0.15.0
+diffusers>=0.21.0
+transformers>=4.30.0
+accelerate>=0.20.0
+
+# Image processing
+Pillow>=9.0.0
+numpy>=1.21.0
+
+# Utilities
+tqdm>=4.64.0
+pathlib2>=2.3.7
+
+# Optional: For advanced features
+# xformers>=0.0.20  # For memory-efficient attention
+# safetensors>=0.3.0  # For safe model loading
+# ftfy>=6.0.0  # For text cleaning
+
+

@@ -1,0 +1,91 @@
+# Ultra-Fast Modular TruthGPT Requirements
+# Following deep learning best practices
+
+# Core PyTorch (latest for maximum speed)
+torch>=2.1.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+
+# Transformers and tokenization
+transformers>=4.35.0
+tokenizers>=0.15.0
+accelerate>=0.24.0
+
+# Ultra-fast optimization libraries
+flash-attn>=2.4.0  # Flash attention for speed
+triton>=2.1.0      # Custom CUDA kernels
+optimum>=1.14.0    # Optimization library
+bitsandbytes>=0.41.0  # Quantization
+
+# Data processing (ultra-fast)
+numpy>=1.24.0
+pandas>=2.1.0
+scikit-learn>=1.3.0
+datasets>=2.14.0
+
+# Interface (ultra-fast)
+gradio>=4.0.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+streamlit>=1.28.0
+
+# Configuration (ultra-fast)
+hydra-core>=1.3.0
+omegaconf>=2.3.0
+pydantic>=2.5.0
+
+# Logging and monitoring (ultra-fast)
+loguru>=0.7.0
+rich>=13.6.0
+wandb>=0.16.0
+tensorboard>=2.15.0
+
+# Performance optimization
+psutil>=5.9.0
+GPUtil>=1.4.0
+nvidia-ml-py3>=7.352.0
+
+# Testing (ultra-fast)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-xdist>=3.3.0
+pytest-benchmark>=4.0.0
+
+# Code quality (ultra-fast)
+black>=23.9.0
+flake8>=6.1.0
+mypy>=1.6.0
+isort>=5.12.0
+
+# Development tools (ultra-fast)
+jupyter>=1.0.0
+ipykernel>=6.25.0
+notebook>=7.0.0
+
+# Security (ultra-fast)
+cryptography>=41.0.0
+python-jose>=3.3.0
+
+# File handling (ultra-fast)
+pyyaml>=6.0.0
+toml>=0.10.0
+jsonlines>=3.1.0
+
+# Cloud and deployment (ultra-fast)
+boto3>=1.34.0
+google-cloud-storage>=2.10.0
+docker>=6.1.0
+
+# Additional ultra-fast utilities
+click>=8.1.0
+typer>=0.9.0
+python-dotenv>=1.0.0
+pathlib2>=2.3.0
+
+# Optional: Advanced features for maximum speed
+# ray>=2.8.0  # Distributed computing
+# dask>=2023.10.0  # Parallel computing
+# xgboost>=2.0.0  # Gradient boosting
+# lightgbm>=4.1.0  # Gradient boosting
+
+

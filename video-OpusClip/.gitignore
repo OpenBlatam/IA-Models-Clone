@@ -1,0 +1,61 @@
+# Modelos y checkpoints
+*.pt
+*.ckpt
+*.pth
+*.bin
+*.safetensors
+
+# Directorios de salida
+outputs/
+runs/
+checkpoints/
+models/
+
+# Logs y experiment tracking
+wandb/
+tensorboard_logs/
+*.log
+
+# Cache y archivos temporales
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+.env
+
+# Datos
+data/
+datasets/
+*.csv
+*.json
+*.parquet
+
+# Configuración local
+.env
+.env.local
+config_local.yaml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Distribución
+dist/
+build/
+*.egg-info/ 

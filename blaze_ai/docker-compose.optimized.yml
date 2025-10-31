@@ -1,0 +1,409 @@
+# 🚀 OPTIMIZED Blaze AI Docker Compose
+# Performance-optimized multi-service deployment
+
+version: '3.8'
+
+services:
+  # 🚀 Main Blaze AI Application
+  blaze-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile.optimized
+      target: production
+    container_name: blaze-ai-optimized
+    restart: unless-stopped
+    ports:
+      - "8000:8000"      # Main API
+      - "9090:9090"      # Prometheus metrics
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - PYTHONPATH=/app
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=postgres
+      - ELASTICSEARCH_HOST=elasticsearch
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./config-optimized.yaml:/app/config.yaml
+    depends_on:
+      - redis
+      - postgres
+      - elasticsearch
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+        reservations:
+          memory: 4G
+          cpus: '2.0'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # 🚀 Blaze AI Development (Optional)
+  blaze-ai-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.optimized
+      target: development
+    container_name: blaze-ai-dev-optimized
+    restart: unless-stopped
+    ports:
+      - "8001:8000"      # Development API
+    environment:
+      - ENVIRONMENT=development
+      - DEBUG=true
+      - PYTHONPATH=/app
+      - RELOAD=true
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - blaze-ai-network
+    profiles:
+      - development
+
+  # 🚀 Blaze AI GPU (Optional)
+  blaze-ai-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile.optimized
+      target: gpu
+    container_name: blaze-ai-gpu-optimized
+    restart: unless-stopped
+    ports:
+      - "8002:8000"      # GPU API
+      - "9091:9090"      # GPU metrics
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - PYTHONPATH=/app
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./config-optimized.yaml:/app/config.yaml
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    profiles:
+      - gpu
+
+  # 🚀 Redis - High Performance Caching & Rate Limiting
+  redis:
+    image: redis:7.2-alpine
+    container_name: blaze-ai-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: >
+      redis-server
+      --maxmemory 2gb
+      --maxmemory-policy allkeys-lru
+      --save 900 1
+      --save 300 10
+      --save 60 10000
+      --appendonly yes
+      --appendfsync everysec
+      --tcp-keepalive 300
+      --timeout 0
+      --tcp-backlog 511
+    volumes:
+      - redis-data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🚀 PostgreSQL - High Performance Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: blaze-ai-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=blaze_ai
+      - POSTGRES_USER=blazeai
+      - POSTGRES_PASSWORD=blazeai_password_change_in_production
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U blazeai -d blaze_ai"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🚀 Elasticsearch - High Performance Search & Logging
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: blaze-ai-elasticsearch
+    restart: unless-stopped
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - cluster.name=blaze-ai-cluster
+      - node.name=blaze-ai-node
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🚀 Prometheus - High Performance Metrics Collection
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: blaze-ai-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+    volumes:
+      - prometheus-data:/prometheus
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🚀 Grafana - High Performance Metrics Visualization
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: blaze-ai-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin_change_in_production
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - blaze-ai-network
+    depends_on:
+      - prometheus
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🚀 Nginx - High Performance Reverse Proxy & Load Balancer
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: blaze-ai-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - nginx-logs:/var/log/nginx
+    networks:
+      - blaze-ai-network
+    depends_on:
+      - blaze-ai
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🚀 Celery - High Performance Task Queue
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile.optimized
+      target: production
+    container_name: blaze-ai-celery
+    restart: unless-stopped
+    command: ["celery", "-A", "core.celery_app", "worker", "--loglevel=info", "--concurrency=4"]
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - PYTHONPATH=/app
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=postgres
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./models:/app/models
+      - ./data:/app/data
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+    profiles:
+      - full
+
+  # 🚀 Celery Beat - Scheduled Tasks
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile.optimized
+      target: production
+    container_name: blaze-ai-celery-beat
+    restart: unless-stopped
+    command: ["celery", "-A", "core.celery_app", "beat", "--loglevel=info"]
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - PYTHONPATH=/app
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=postgres
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    profiles:
+      - full
+
+# 🚀 Named Volumes for Data Persistence
+volumes:
+  redis-data:
+    driver: local
+  postgres-data:
+    driver: local
+  elasticsearch-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  nginx-logs:
+    driver: local
+
+# 🚀 Custom Network for Service Communication
+networks:
+  blaze-ai-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+    driver_opts:
+      com.docker.network.bridge.name: blaze-ai-br0
+

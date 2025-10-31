@@ -1,0 +1,1044 @@
+"""
+Final Ultimate AI Document Processor Application
+A comprehensive, real, working FastAPI application with ALL final ultimate features
+"""
+
+import logging
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
+from fastapi.responses import JSONResponse
+import uvicorn
+import time
+
+from real_working_processor import initialize_real_working_processor
+from advanced_real_processor import initialize_advanced_real_processor
+from document_upload_processor import document_upload_processor
+from monitoring_system import monitoring_system
+from security_system import security_system
+from notification_system import notification_system
+from analytics_system import analytics_system
+from backup_system import backup_system
+from workflow_system import workflow_system
+from config_system import config_system
+from api_gateway_system import api_gateway_system
+from microservices_system import microservices_system
+from machine_learning_system import ml_system
+from ai_intelligence_system import ai_intelligence_system
+from improved_real_routes import router as basic_router
+from advanced_real_routes import router as advanced_router
+from upload_routes import router as upload_router
+from monitoring_routes import router as monitoring_router
+from security_routes import router as security_router
+from notification_routes import router as notification_router
+from analytics_routes import router as analytics_router
+from backup_routes import router as backup_router
+from workflow_routes import router as workflow_router
+from config_routes import router as config_router
+from api_gateway_routes import router as api_gateway_router
+from microservices_routes import router as microservices_router
+from ml_routes import router as ml_router
+from ai_intelligence_routes import router as ai_intelligence_router
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Application lifespan manager"""
+    # Startup
+    logger.info("Starting Final Ultimate AI Document Processor...")
+    
+    try:
+        # Initialize basic AI processor
+        await initialize_real_working_processor()
+        logger.info("Basic AI processor initialized")
+        
+        # Initialize advanced AI processor
+        await initialize_advanced_real_processor()
+        logger.info("Advanced AI processor initialized")
+        
+        # Initialize monitoring system
+        logger.info("Monitoring system initialized")
+        
+        # Initialize security system
+        logger.info("Security system initialized")
+        
+        # Initialize notification system
+        logger.info("Notification system initialized")
+        
+        # Initialize analytics system
+        logger.info("Analytics system initialized")
+        
+        # Initialize backup system
+        logger.info("Backup system initialized")
+        
+        # Initialize workflow system
+        logger.info("Workflow system initialized")
+        
+        # Initialize configuration system
+        logger.info("Configuration system initialized")
+        
+        # Initialize API gateway system
+        logger.info("API gateway system initialized")
+        
+        # Initialize microservices system
+        logger.info("Microservices system initialized")
+        
+        # Initialize machine learning system
+        logger.info("Machine learning system initialized")
+        
+        # Initialize AI intelligence system
+        logger.info("AI intelligence system initialized")
+        
+        logger.info("Final Ultimate AI Document Processor started successfully")
+    except Exception as e:
+        logger.error(f"Failed to start Final Ultimate AI Document Processor: {e}")
+        raise
+    
+    yield
+    
+    # Shutdown
+    logger.info("Shutting down Final Ultimate AI Document Processor...")
+
+# Create FastAPI app
+app = FastAPI(
+    title="Final Ultimate AI Document Processor",
+    description="A comprehensive, real, working AI document processing system with ALL final ultimate features",
+    version="8.0.0",
+    lifespan=lifespan
+)
+
+# Add middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Add compression middleware
+app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+# Add request timing middleware
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time.time()
+    response = await call_next(request)
+    process_time = time.time() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    return response
+
+# Include all routers
+app.include_router(basic_router)
+app.include_router(advanced_router)
+app.include_router(upload_router)
+app.include_router(monitoring_router)
+app.include_router(security_router)
+app.include_router(notification_router)
+app.include_router(analytics_router)
+app.include_router(backup_router)
+app.include_router(workflow_router)
+app.include_router(config_router)
+app.include_router(api_gateway_router)
+app.include_router(microservices_router)
+app.include_router(ml_router)
+app.include_router(ai_intelligence_router)
+
+@app.get("/")
+async def root():
+    """Root endpoint"""
+    return {
+        "message": "Final Ultimate AI Document Processor",
+        "version": "8.0.0",
+        "status": "running",
+        "description": "A comprehensive, real, working AI document processing system with ALL final ultimate features",
+        "features": [
+            "Basic AI Processing",
+            "Advanced AI Analysis",
+            "Document Upload & Processing",
+            "Real-time Monitoring",
+            "Security System",
+            "Notification System",
+            "Analytics & Reporting",
+            "Backup & Recovery",
+            "Workflow Automation",
+            "Configuration Management",
+            "API Gateway",
+            "Microservices Orchestration",
+            "Machine Learning",
+            "AI Intelligence",
+            "Complexity Analysis",
+            "Readability Analysis",
+            "Language Pattern Analysis",
+            "Quality Metrics",
+            "Advanced Keyword Analysis",
+            "Similarity Analysis",
+            "Topic Analysis",
+            "Batch Processing",
+            "Caching",
+            "Performance Monitoring",
+            "System Monitoring",
+            "Alert System",
+            "Dashboard",
+            "API Key Management",
+            "Rate Limiting",
+            "IP Blocking",
+            "Security Logging",
+            "Email Notifications",
+            "Webhook Notifications",
+            "Analytics Dashboard",
+            "Trend Analysis",
+            "Performance Benchmarks",
+            "Content Insights",
+            "Backup Creation",
+            "Backup Restoration",
+            "Backup Verification",
+            "Workflow Creation",
+            "Workflow Execution",
+            "Workflow Monitoring",
+            "Custom Workflows",
+            "Configuration Management",
+            "Configuration Validation",
+            "Configuration Backup",
+            "Environment Configuration",
+            "API Gateway Management",
+            "Service Discovery",
+            "Load Balancing",
+            "Circuit Breaker",
+            "Microservices Orchestration",
+            "Service Health Monitoring",
+            "Dependency Management",
+            "Service Topology",
+            "Model Training",
+            "Model Prediction",
+            "Batch Prediction",
+            "Auto ML",
+            "Model Saving",
+            "Model Loading",
+            "Text Intelligence Analysis",
+            "Semantic Analysis",
+            "Pattern Recognition",
+            "Reasoning Analysis",
+            "Creativity Analysis",
+            "Learning from Data",
+            "Cognitive Modeling",
+            "Knowledge Base"
+        ],
+        "endpoints": {
+            "basic": "/api/v1/real",
+            "advanced": "/api/v1/advanced-real",
+            "upload": "/api/v1/upload",
+            "monitoring": "/api/v1/monitoring",
+            "security": "/api/v1/security",
+            "notifications": "/api/v1/notifications",
+            "analytics": "/api/v1/analytics",
+            "backup": "/api/v1/backup",
+            "workflow": "/api/v1/workflow",
+            "config": "/api/v1/config",
+            "gateway": "/api/v1/gateway",
+            "microservices": "/api/v1/microservices",
+            "ml": "/api/v1/ml",
+            "ai_intelligence": "/api/v1/ai-intelligence",
+            "docs": "/docs",
+            "health": "/health"
+        }
+    }
+
+@app.get("/health")
+async def health():
+    """Basic health check"""
+    return {
+        "status": "healthy",
+        "service": "Final Ultimate AI Document Processor",
+        "version": "8.0.0",
+        "timestamp": time.time()
+    }
+
+@app.get("/status")
+async def status():
+    """Detailed status endpoint"""
+    try:
+        from real_working_processor import real_working_processor
+        from advanced_real_processor import advanced_real_processor
+        from document_upload_processor import document_upload_processor
+        from security_system import security_system
+        from notification_system import notification_system
+        from analytics_system import analytics_system
+        from backup_system import backup_system
+        from workflow_system import workflow_system
+        from config_system import config_system
+        from api_gateway_system import api_gateway_system
+        from microservices_system import microservices_system
+        from machine_learning_system import ml_system
+        from ai_intelligence_system import ai_intelligence_system
+        
+        basic_stats = real_working_processor.get_stats()
+        advanced_stats = advanced_real_processor.get_stats()
+        upload_stats = document_upload_processor.get_stats()
+        security_stats = security_system.get_security_stats()
+        notification_stats = notification_system.get_stats()
+        analytics_stats = analytics_system.get_stats()
+        backup_stats = backup_system.get_backup_stats()
+        workflow_stats = workflow_system.get_workflow_stats()
+        config_stats = config_system.get_config_stats()
+        gateway_stats = api_gateway_system.get_gateway_stats()
+        microservices_stats = microservices_system.get_microservices_stats()
+        ml_stats = ml_system.get_ml_stats()
+        ai_intelligence_stats = ai_intelligence_system.get_ai_intelligence_stats()
+        
+        basic_capabilities = real_working_processor.get_capabilities()
+        advanced_capabilities = advanced_real_processor.get_capabilities()
+        security_config = security_system.get_security_config()
+        notification_config = notification_system.get_config()
+        backup_config = backup_system.get_backup_config()
+        workflow_templates = workflow_system.get_workflow_templates()
+        current_config = await config_system.get_config()
+        gateway_routes = api_gateway_system.get_routes()
+        microservices_services = microservices_system.get_all_services()
+        ml_models = ml_system.get_models()
+        cognitive_models = ai_intelligence_system.get_cognitive_models()
+        
+        return {
+            "status": "healthy",
+            "version": "8.0.0",
+            "uptime": time.time(),
+            "processors": {
+                "basic_processor": {
+                    "stats": basic_stats["stats"],
+                    "capabilities": basic_capabilities
+                },
+                "advanced_processor": {
+                    "stats": advanced_stats["stats"],
+                    "capabilities": advanced_capabilities
+                },
+                "upload_processor": {
+                    "stats": upload_stats["stats"],
+                    "supported_formats": upload_stats["supported_formats"]
+                },
+                "security_system": {
+                    "stats": security_stats["stats"],
+                    "config": security_config
+                },
+                "notification_system": {
+                    "stats": notification_stats["stats"],
+                    "config": notification_config
+                },
+                "analytics_system": {
+                    "stats": analytics_stats["stats"]
+                },
+                "backup_system": {
+                    "stats": backup_stats["stats"],
+                    "config": backup_config
+                },
+                "workflow_system": {
+                    "stats": workflow_stats["stats"],
+                    "templates": workflow_templates
+                },
+                "config_system": {
+                    "stats": config_stats,
+                    "current_config": current_config
+                },
+                "api_gateway_system": {
+                    "stats": gateway_stats["stats"],
+                    "routes": gateway_routes
+                },
+                "microservices_system": {
+                    "stats": microservices_stats["stats"],
+                    "services": microservices_services
+                },
+                "ml_system": {
+                    "stats": ml_stats["stats"],
+                    "models": ml_models
+                },
+                "ai_intelligence_system": {
+                    "stats": ai_intelligence_stats["stats"],
+                    "cognitive_models": cognitive_models
+                }
+            },
+            "features_available": {
+                "basic_ai": True,
+                "advanced_ai": True,
+                "document_upload": True,
+                "real_time_monitoring": True,
+                "security_system": True,
+                "notification_system": True,
+                "analytics_system": True,
+                "backup_system": True,
+                "workflow_system": True,
+                "config_system": True,
+                "api_gateway_system": True,
+                "microservices_system": True,
+                "ml_system": True,
+                "ai_intelligence_system": True,
+                "complexity_analysis": True,
+                "readability_analysis": True,
+                "language_patterns": True,
+                "quality_metrics": True,
+                "keyword_analysis": True,
+                "similarity_analysis": advanced_capabilities["similarity_analysis"],
+                "topic_analysis": advanced_capabilities["topic_analysis"],
+                "caching": True,
+                "batch_processing": True,
+                "system_monitoring": True,
+                "alert_system": True,
+                "dashboard": True,
+                "api_key_management": True,
+                "rate_limiting": True,
+                "ip_blocking": True,
+                "security_logging": True,
+                "email_notifications": notification_config["features"]["email_notifications"],
+                "webhook_notifications": notification_config["features"]["webhook_notifications"],
+                "analytics_dashboard": True,
+                "trend_analysis": True,
+                "performance_benchmarks": True,
+                "content_insights": True,
+                "backup_creation": True,
+                "backup_restoration": True,
+                "backup_verification": True,
+                "workflow_creation": True,
+                "workflow_execution": True,
+                "workflow_monitoring": True,
+                "custom_workflows": True,
+                "config_management": True,
+                "config_validation": True,
+                "config_backup": True,
+                "environment_config": True,
+                "api_gateway_management": True,
+                "service_discovery": True,
+                "load_balancing": True,
+                "circuit_breaker": True,
+                "microservices_orchestration": True,
+                "service_health_monitoring": True,
+                "dependency_management": True,
+                "service_topology": True,
+                "model_training": True,
+                "model_prediction": True,
+                "batch_prediction": True,
+                "auto_ml": True,
+                "model_saving": True,
+                "model_loading": True,
+                "text_intelligence_analysis": True,
+                "semantic_analysis": True,
+                "pattern_recognition": True,
+                "reasoning_analysis": True,
+                "creativity_analysis": True,
+                "learning_from_data": True,
+                "cognitive_modeling": True,
+                "knowledge_base": True
+            }
+        }
+    except Exception as e:
+        logger.error(f"Error getting status: {e}")
+        return {
+            "status": "error",
+            "error": str(e)
+        }
+
+@app.get("/metrics")
+async def metrics():
+    """Prometheus-style metrics endpoint"""
+    try:
+        from real_working_processor import real_working_processor
+        from advanced_real_processor import advanced_real_processor
+        from document_upload_processor import document_upload_processor
+        from security_system import security_system
+        from notification_system import notification_system
+        from analytics_system import analytics_system
+        from backup_system import backup_system
+        from workflow_system import workflow_system
+        from config_system import config_system
+        from api_gateway_system import api_gateway_system
+        from microservices_system import microservices_system
+        from machine_learning_system import ml_system
+        from ai_intelligence_system import ai_intelligence_system
+        
+        basic_stats = real_working_processor.get_stats()
+        advanced_stats = advanced_real_processor.get_stats()
+        upload_stats = document_upload_processor.get_stats()
+        security_stats = security_system.get_security_stats()
+        notification_stats = notification_system.get_stats()
+        analytics_stats = analytics_system.get_stats()
+        backup_stats = backup_system.get_backup_stats()
+        workflow_stats = workflow_system.get_workflow_stats()
+        config_stats = config_system.get_config_stats()
+        gateway_stats = api_gateway_system.get_gateway_stats()
+        microservices_stats = microservices_system.get_microservices_stats()
+        ml_stats = ml_system.get_ml_stats()
+        ai_intelligence_stats = ai_intelligence_system.get_ai_intelligence_stats()
+        
+        basic_capabilities = real_working_processor.get_capabilities()
+        advanced_capabilities = advanced_real_processor.get_capabilities()
+        
+        metrics_data = {
+            "ai_requests_total": basic_stats["stats"]["total_requests"] + advanced_stats["stats"]["total_requests"],
+            "ai_successful_requests_total": basic_stats["stats"]["successful_requests"] + advanced_stats["stats"]["successful_requests"],
+            "ai_failed_requests_total": basic_stats["stats"]["failed_requests"] + advanced_stats["stats"]["failed_requests"],
+            "ai_processing_time_seconds": (basic_stats["stats"]["average_processing_time"] + advanced_stats["stats"]["average_processing_time"]) / 2,
+            "ai_uptime_seconds": basic_stats["uptime_seconds"],
+            "ai_success_rate_percent": (basic_stats["success_rate"] + advanced_stats["success_rate"]) / 2,
+            "ai_cache_hit_rate_percent": advanced_stats["cache_hit_rate"],
+            "upload_total": upload_stats["stats"]["total_uploads"],
+            "upload_successful_total": upload_stats["stats"]["successful_uploads"],
+            "upload_failed_total": upload_stats["stats"]["failed_uploads"],
+            "upload_success_rate_percent": upload_stats["success_rate"],
+            "security_requests_total": security_stats["stats"]["total_requests"],
+            "security_blocked_requests_total": security_stats["stats"]["blocked_requests"],
+            "security_rate_limited_requests_total": security_stats["stats"]["rate_limited_requests"],
+            "security_violations_total": security_stats["stats"]["security_violations"],
+            "notifications_total": notification_stats["stats"]["total_notifications"],
+            "notifications_email_total": notification_stats["stats"]["email_notifications"],
+            "notifications_webhook_total": notification_stats["stats"]["webhook_notifications"],
+            "notifications_failed_total": notification_stats["stats"]["failed_notifications"],
+            "analytics_requests_total": analytics_stats["stats"]["total_analytics_requests"],
+            "analytics_reports_generated_total": analytics_stats["stats"]["reports_generated"],
+            "analytics_insights_generated_total": analytics_stats["stats"]["insights_generated"],
+            "backup_total": backup_stats["stats"]["total_backups"],
+            "backup_successful_total": backup_stats["stats"]["successful_backups"],
+            "backup_failed_total": backup_stats["stats"]["failed_backups"],
+            "workflow_total": workflow_stats["stats"]["total_workflows"],
+            "workflow_completed_total": workflow_stats["stats"]["completed_workflows"],
+            "workflow_failed_total": workflow_stats["stats"]["failed_workflows"],
+            "workflow_cancelled_total": workflow_stats["stats"]["cancelled_workflows"],
+            "config_history_entries_total": config_stats["history_entries"],
+            "gateway_requests_total": gateway_stats["stats"]["total_requests"],
+            "gateway_successful_requests_total": gateway_stats["stats"]["successful_requests"],
+            "gateway_failed_requests_total": gateway_stats["stats"]["failed_requests"],
+            "gateway_rate_limited_requests_total": gateway_stats["stats"]["rate_limited_requests"],
+            "gateway_circuit_breaker_trips_total": gateway_stats["stats"]["circuit_breaker_trips"],
+            "microservices_total": microservices_stats["stats"]["total_services"],
+            "microservices_running_total": microservices_stats["stats"]["running_services"],
+            "microservices_stopped_total": microservices_stats["stats"]["stopped_services"],
+            "microservices_failed_total": microservices_stats["stats"]["failed_services"],
+            "microservices_restarts_total": microservices_stats["stats"]["service_restarts"],
+            "ml_models_total": ml_stats["stats"]["total_models"],
+            "ml_trained_models_total": ml_stats["stats"]["trained_models"],
+            "ml_failed_models_total": ml_stats["stats"]["failed_models"],
+            "ml_predictions_made_total": ml_stats["stats"]["predictions_made"],
+            "ai_intelligence_analyses_total": ai_intelligence_stats["stats"]["total_analyses"],
+            "ai_intelligence_successful_analyses_total": ai_intelligence_stats["stats"]["successful_analyses"],
+            "ai_intelligence_failed_analyses_total": ai_intelligence_stats["stats"]["failed_analyses"],
+            "ai_intelligence_learning_cycles_total": ai_intelligence_stats["stats"]["learning_cycles"],
+            "ai_intelligence_pattern_discoveries_total": ai_intelligence_stats["stats"]["pattern_discoveries"],
+            "ai_spacy_available": 1 if basic_capabilities["nlp_analysis"] else 0,
+            "ai_nltk_available": 1 if basic_capabilities["sentiment_analysis"] else 0,
+            "ai_transformers_classifier_available": 1 if basic_capabilities["text_classification"] else 0,
+            "ai_transformers_summarizer_available": 1 if basic_capabilities["text_summarization"] else 0,
+            "ai_tfidf_vectorizer_available": 1 if advanced_capabilities["similarity_analysis"] else 0,
+            "upload_pdf_available": 1 if upload_stats["supported_formats"]["pdf"] else 0,
+            "upload_docx_available": 1 if upload_stats["supported_formats"]["docx"] else 0,
+            "upload_excel_available": 1 if upload_stats["supported_formats"]["xlsx"] else 0,
+            "upload_pptx_available": 1 if upload_stats["supported_formats"]["pptx"] else 0,
+            "upload_ocr_available": 1 if upload_stats["supported_formats"]["image"] else 0,
+            "security_enabled": 1,
+            "notifications_enabled": 1,
+            "analytics_enabled": 1,
+            "backup_enabled": 1,
+            "workflow_enabled": 1,
+            "config_enabled": 1,
+            "gateway_enabled": 1,
+            "microservices_enabled": 1,
+            "ml_enabled": 1,
+            "ai_intelligence_enabled": 1,
+            "email_notifications_enabled": 1 if notification_stats["email_enabled"] else 0
+        }
+        
+        # Format as Prometheus metrics
+        metrics_text = ""
+        for key, value in metrics_data.items():
+            metrics_text += f"# HELP {key} Final Ultimate AI Document Processor Metrics\n"
+            metrics_text += f"# TYPE {key} gauge\n"
+            metrics_text += f"{key} {value}\n"
+        
+        return metrics_text
+        
+    except Exception as e:
+        logger.error(f"Error getting metrics: {e}")
+        return f"# Error getting metrics: {e}"
+
+@app.get("/dashboard")
+async def dashboard():
+    """Get comprehensive dashboard data"""
+    try:
+        from real_working_processor import real_working_processor
+        from advanced_real_processor import advanced_real_processor
+        from document_upload_processor import document_upload_processor
+        from security_system import security_system
+        from notification_system import notification_system
+        from analytics_system import analytics_system
+        from backup_system import backup_system
+        from workflow_system import workflow_system
+        from config_system import config_system
+        from api_gateway_system import api_gateway_system
+        from microservices_system import microservices_system
+        from machine_learning_system import ml_system
+        from ai_intelligence_system import ai_intelligence_system
+        
+        # Get monitoring dashboard
+        dashboard_data = await monitoring_system.get_comprehensive_metrics(
+            real_working_processor, advanced_real_processor, document_upload_processor
+        )
+        
+        # Add all system data
+        security_stats = security_system.get_security_stats()
+        notification_stats = notification_system.get_stats()
+        analytics_stats = analytics_system.get_stats()
+        backup_stats = backup_system.get_backup_stats()
+        workflow_stats = workflow_system.get_workflow_stats()
+        config_stats = config_system.get_config_stats()
+        gateway_stats = api_gateway_system.get_gateway_stats()
+        microservices_stats = microservices_system.get_microservices_stats()
+        ml_stats = ml_system.get_ml_stats()
+        ai_intelligence_stats = ai_intelligence_system.get_ai_intelligence_stats()
+        
+        dashboard_data.update({
+            "security": {
+                "total_requests": security_stats["stats"]["total_requests"],
+                "blocked_requests": security_stats["stats"]["blocked_requests"],
+                "rate_limited_requests": security_stats["stats"]["rate_limited_requests"],
+                "security_violations": security_stats["stats"]["security_violations"],
+                "blocked_ips_count": security_stats["blocked_ips_count"]
+            },
+            "notifications": {
+                "total_notifications": notification_stats["stats"]["total_notifications"],
+                "email_notifications": notification_stats["stats"]["email_notifications"],
+                "webhook_notifications": notification_stats["stats"]["webhook_notifications"],
+                "failed_notifications": notification_stats["stats"]["failed_notifications"],
+                "total_subscribers": notification_stats["total_subscribers"],
+                "active_subscribers": notification_stats["active_subscribers"]
+            },
+            "analytics": {
+                "total_analytics_requests": analytics_stats["stats"]["total_analytics_requests"],
+                "reports_generated": analytics_stats["stats"]["reports_generated"],
+                "insights_generated": analytics_stats["stats"]["insights_generated"],
+                "total_reports": analytics_stats["total_reports"],
+                "total_insights": analytics_stats["total_insights"]
+            },
+            "backup": {
+                "total_backups": backup_stats["stats"]["total_backups"],
+                "successful_backups": backup_stats["stats"]["successful_backups"],
+                "failed_backups": backup_stats["stats"]["failed_backups"],
+                "last_backup_time": backup_stats["stats"]["last_backup_time"]
+            },
+            "workflow": {
+                "total_workflows": workflow_stats["stats"]["total_workflows"],
+                "completed_workflows": workflow_stats["stats"]["completed_workflows"],
+                "failed_workflows": workflow_stats["stats"]["failed_workflows"],
+                "cancelled_workflows": workflow_stats["stats"]["cancelled_workflows"],
+                "active_workflows": workflow_stats["active_workflows"],
+                "pending_workflows": workflow_stats["pending_workflows"]
+            },
+            "config": {
+                "config_sections": config_stats["sections"],
+                "history_entries": config_stats["history_entries"],
+                "last_modified": config_stats["last_modified"]
+            },
+            "gateway": {
+                "total_requests": gateway_stats["stats"]["total_requests"],
+                "successful_requests": gateway_stats["stats"]["successful_requests"],
+                "failed_requests": gateway_stats["stats"]["failed_requests"],
+                "rate_limited_requests": gateway_stats["stats"]["rate_limited_requests"],
+                "circuit_breaker_trips": gateway_stats["stats"]["circuit_breaker_trips"],
+                "routes_count": gateway_stats["routes_count"]
+            },
+            "microservices": {
+                "total_services": microservices_stats["stats"]["total_services"],
+                "running_services": microservices_stats["stats"]["running_services"],
+                "stopped_services": microservices_stats["stats"]["stopped_services"],
+                "failed_services": microservices_stats["stats"]["failed_services"],
+                "service_restarts": microservices_stats["stats"]["service_restarts"]
+            },
+            "ml": {
+                "total_models": ml_stats["stats"]["total_models"],
+                "trained_models": ml_stats["stats"]["trained_models"],
+                "failed_models": ml_stats["stats"]["failed_models"],
+                "predictions_made": ml_stats["stats"]["predictions_made"]
+            },
+            "ai_intelligence": {
+                "total_analyses": ai_intelligence_stats["stats"]["total_analyses"],
+                "successful_analyses": ai_intelligence_stats["stats"]["successful_analyses"],
+                "failed_analyses": ai_intelligence_stats["stats"]["failed_analyses"],
+                "learning_cycles": ai_intelligence_stats["stats"]["learning_cycles"],
+                "pattern_discoveries": ai_intelligence_stats["stats"]["pattern_discoveries"]
+            }
+        })
+        
+        return JSONResponse(content=dashboard_data)
+        
+    except Exception as e:
+        logger.error(f"Error getting dashboard: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)}
+        )
+
+@app.get("/comparison")
+async def comparison():
+    """Compare all processors and systems"""
+    try:
+        from real_working_processor import real_working_processor
+        from advanced_real_processor import advanced_real_processor
+        from document_upload_processor import document_upload_processor
+        from security_system import security_system
+        from notification_system import notification_system
+        from analytics_system import analytics_system
+        from backup_system import backup_system
+        from workflow_system import workflow_system
+        from config_system import config_system
+        from api_gateway_system import api_gateway_system
+        from microservices_system import microservices_system
+        from machine_learning_system import ml_system
+        from ai_intelligence_system import ai_intelligence_system
+        
+        basic_stats = real_working_processor.get_stats()
+        advanced_stats = advanced_real_processor.get_stats()
+        upload_stats = document_upload_processor.get_stats()
+        security_stats = security_system.get_security_stats()
+        notification_stats = notification_system.get_stats()
+        analytics_stats = analytics_system.get_stats()
+        backup_stats = backup_system.get_backup_stats()
+        workflow_stats = workflow_system.get_workflow_stats()
+        config_stats = config_system.get_config_stats()
+        gateway_stats = api_gateway_system.get_gateway_stats()
+        microservices_stats = microservices_system.get_microservices_stats()
+        ml_stats = ml_system.get_ml_stats()
+        ai_intelligence_stats = ai_intelligence_system.get_ai_intelligence_stats()
+        
+        basic_capabilities = real_working_processor.get_capabilities()
+        advanced_capabilities = advanced_real_processor.get_capabilities()
+        security_config = security_system.get_security_config()
+        notification_config = notification_system.get_config()
+        backup_config = backup_system.get_backup_config()
+        workflow_templates = workflow_system.get_workflow_templates()
+        current_config = await config_system.get_config()
+        gateway_routes = api_gateway_system.get_routes()
+        microservices_services = microservices_system.get_all_services()
+        ml_models = ml_system.get_models()
+        cognitive_models = ai_intelligence_system.get_cognitive_models()
+        
+        return {
+            "comparison": {
+                "basic_processor": {
+                    "capabilities": basic_capabilities,
+                    "stats": basic_stats["stats"],
+                    "success_rate": basic_stats["success_rate"]
+                },
+                "advanced_processor": {
+                    "capabilities": advanced_capabilities,
+                    "stats": advanced_stats["stats"],
+                    "success_rate": advanced_stats["success_rate"],
+                    "cache_hit_rate": advanced_stats["cache_hit_rate"]
+                },
+                "upload_processor": {
+                    "capabilities": upload_stats["supported_formats"],
+                    "stats": upload_stats["stats"],
+                    "success_rate": upload_stats["success_rate"]
+                },
+                "security_system": {
+                    "capabilities": {
+                        "request_validation": True,
+                        "file_validation": True,
+                        "rate_limiting": True,
+                        "ip_blocking": True,
+                        "api_key_management": True,
+                        "security_logging": True
+                    },
+                    "stats": security_stats["stats"],
+                    "config": security_config
+                },
+                "notification_system": {
+                    "capabilities": notification_config["features"],
+                    "stats": notification_stats["stats"],
+                    "config": notification_config
+                },
+                "analytics_system": {
+                    "capabilities": {
+                        "processing_analytics": True,
+                        "user_analytics": True,
+                        "performance_analytics": True,
+                        "content_analytics": True,
+                        "trend_analytics": True,
+                        "insight_generation": True,
+                        "report_generation": True
+                    },
+                    "stats": analytics_stats["stats"]
+                },
+                "backup_system": {
+                    "capabilities": backup_config["features"],
+                    "stats": backup_stats["stats"],
+                    "config": backup_config
+                },
+                "workflow_system": {
+                    "capabilities": {
+                        "workflow_creation": True,
+                        "workflow_execution": True,
+                        "workflow_monitoring": True,
+                        "workflow_cancellation": True,
+                        "custom_workflows": True,
+                        "workflow_templates": True,
+                        "execution_history": True,
+                        "performance_metrics": True
+                    },
+                    "stats": workflow_stats["stats"],
+                    "templates": workflow_templates
+                },
+                "config_system": {
+                    "capabilities": {
+                        "config_management": True,
+                        "config_validation": True,
+                        "config_backup": True,
+                        "config_export": True,
+                        "config_import": True,
+                        "config_history": True,
+                        "environment_config": True,
+                        "config_templates": True
+                    },
+                    "stats": config_stats,
+                    "current_config": current_config
+                },
+                "api_gateway_system": {
+                    "capabilities": {
+                        "route_registration": True,
+                        "rate_limiting": True,
+                        "api_key_management": True,
+                        "circuit_breaker": True,
+                        "request_logging": True,
+                        "middleware_support": True,
+                        "service_discovery": True,
+                        "load_balancing": True
+                    },
+                    "stats": gateway_stats["stats"],
+                    "routes": gateway_routes
+                },
+                "microservices_system": {
+                    "capabilities": {
+                        "service_orchestration": True,
+                        "dependency_management": True,
+                        "health_monitoring": True,
+                        "auto_restart": True,
+                        "service_discovery": True,
+                        "load_balancing": True,
+                        "circuit_breaker": True,
+                        "service_mesh": True
+                    },
+                    "stats": microservices_stats["stats"],
+                    "services": microservices_services
+                },
+                "ml_system": {
+                    "capabilities": {
+                        "model_training": True,
+                        "model_prediction": True,
+                        "batch_prediction": True,
+                        "auto_ml": True,
+                        "model_saving": True,
+                        "model_loading": True,
+                        "model_metrics": True,
+                        "performance_analysis": True
+                    },
+                    "stats": ml_stats["stats"],
+                    "models": ml_models
+                },
+                "ai_intelligence_system": {
+                    "capabilities": {
+                        "text_intelligence_analysis": True,
+                        "semantic_analysis": True,
+                        "pattern_recognition": True,
+                        "reasoning_analysis": True,
+                        "creativity_analysis": True,
+                        "learning_from_data": True,
+                        "cognitive_modeling": True,
+                        "knowledge_base": True
+                    },
+                    "stats": ai_intelligence_stats["stats"],
+                    "cognitive_models": cognitive_models
+                },
+                "monitoring_system": {
+                    "features": [
+                        "system_monitoring",
+                        "ai_monitoring",
+                        "upload_monitoring",
+                        "performance_monitoring",
+                        "alert_system",
+                        "dashboard"
+                    ]
+                },
+                "differences": {
+                    "basic_features": [
+                        "text_analysis",
+                        "sentiment_analysis",
+                        "text_classification",
+                        "text_summarization",
+                        "keyword_extraction",
+                        "language_detection"
+                    ],
+                    "advanced_features": [
+                        "complexity_analysis",
+                        "readability_analysis",
+                        "language_patterns",
+                        "quality_metrics",
+                        "similarity_analysis",
+                        "topic_analysis",
+                        "caching",
+                        "batch_processing"
+                    ],
+                    "upload_features": [
+                        "pdf_processing",
+                        "docx_processing",
+                        "excel_processing",
+                        "powerpoint_processing",
+                        "text_processing",
+                        "ocr_processing"
+                    ],
+                    "security_features": [
+                        "request_validation",
+                        "file_validation",
+                        "rate_limiting",
+                        "ip_blocking",
+                        "api_key_management",
+                        "security_logging",
+                        "malicious_content_detection"
+                    ],
+                    "notification_features": [
+                        "email_notifications",
+                        "webhook_notifications",
+                        "processing_notifications",
+                        "error_notifications",
+                        "security_notifications",
+                        "performance_notifications"
+                    ],
+                    "analytics_features": [
+                        "processing_analytics",
+                        "user_analytics",
+                        "performance_analytics",
+                        "content_analytics",
+                        "trend_analytics",
+                        "insight_generation",
+                        "report_generation"
+                    ],
+                    "backup_features": [
+                        "full_backup",
+                        "data_backup",
+                        "config_backup",
+                        "app_backup",
+                        "doc_backup",
+                        "install_backup",
+                        "automatic_cleanup"
+                    ],
+                    "workflow_features": [
+                        "workflow_creation",
+                        "workflow_execution",
+                        "workflow_monitoring",
+                        "workflow_cancellation",
+                        "custom_workflows",
+                        "workflow_templates",
+                        "execution_history",
+                        "performance_metrics"
+                    ],
+                    "config_features": [
+                        "config_management",
+                        "config_validation",
+                        "config_backup",
+                        "config_export",
+                        "config_import",
+                        "config_history",
+                        "environment_config",
+                        "config_templates"
+                    ],
+                    "gateway_features": [
+                        "route_registration",
+                        "rate_limiting",
+                        "api_key_management",
+                        "circuit_breaker",
+                        "request_logging",
+                        "middleware_support",
+                        "service_discovery",
+                        "load_balancing"
+                    ],
+                    "microservices_features": [
+                        "service_orchestration",
+                        "dependency_management",
+                        "health_monitoring",
+                        "auto_restart",
+                        "service_discovery",
+                        "load_balancing",
+                        "circuit_breaker",
+                        "service_mesh"
+                    ],
+                    "ml_features": [
+                        "model_training",
+                        "model_prediction",
+                        "batch_prediction",
+                        "auto_ml",
+                        "model_saving",
+                        "model_loading",
+                        "model_metrics",
+                        "performance_analysis"
+                    ],
+                    "ai_intelligence_features": [
+                        "text_intelligence_analysis",
+                        "semantic_analysis",
+                        "pattern_recognition",
+                        "reasoning_analysis",
+                        "creativity_analysis",
+                        "learning_from_data",
+                        "cognitive_modeling",
+                        "knowledge_base"
+                    ],
+                    "monitoring_features": [
+                        "system_monitoring",
+                        "ai_monitoring",
+                        "upload_monitoring",
+                        "performance_monitoring",
+                        "alert_system",
+                        "dashboard"
+                    ]
+                }
+            }
+        }
+    except Exception as e:
+        logger.error(f"Error getting comparison: {e}")
+        return {
+            "error": str(e)
+        }
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Global exception handler"""
+    logger.error(f"Unhandled exception: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": "Internal server error",
+            "detail": str(exc),
+            "path": str(request.url),
+            "method": request.method
+        }
+    )
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "final_ultimate_app:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+        log_level="info"
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+

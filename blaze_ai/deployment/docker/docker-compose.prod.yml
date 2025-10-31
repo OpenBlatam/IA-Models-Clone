@@ -1,0 +1,117 @@
+version: '3.8'
+
+services:
+  blaze-ai:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile
+    container_name: blaze-ai-prod
+    restart: unless-stopped
+    ports:
+      - "8000:8000"  # API
+      - "8001:8001"  # Gradio
+      - "8002:8002"  # Metrics
+    environment:
+      - BLAZE_AI_SYSTEM_MODE=production
+      - BLAZE_AI_LOG_LEVEL=INFO
+      - BLAZE_AI_API_HOST=0.0.0.0
+      - BLAZE_AI_API_PORT=8000
+      - BLAZE_AI_GRADIO_HOST=0.0.0.0
+      - BLAZE_AI_GRADIO_PORT=8001
+      - BLAZE_AI_METRICS_HOST=0.0.0.0
+      - BLAZE_AI_METRICS_PORT=8002
+      - BLAZE_AI_DATABASE_URL=postgresql://blazeai:${DB_PASSWORD}@postgres:5432/blazeai
+      - BLAZE_AI_REDIS_URL=redis://redis:6379/0
+      - BLAZE_AI_MODEL_CACHE_DIR=/app/models
+      - BLAZE_AI_LOG_DIR=/app/logs
+      - BLAZE_AI_TEMP_DIR=/app/temp
+    volumes:
+      - model_cache:/app/models
+      - logs:/app/logs
+      - temp:/app/temp
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+        reservations:
+          memory: 4G
+          cpus: '2.0'
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: blaze-ai-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=blazeai
+      - POSTGRES_USER=blazeai
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+
+  redis:
+    image: redis:7-alpine
+    container_name: blaze-ai-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  nginx:
+    image: nginx:alpine
+    container_name: blaze-ai-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - logs:/var/log/nginx
+    depends_on:
+      - blaze-ai
+    networks:
+      - blaze-ai-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+
+volumes:
+  model_cache:
+    driver: local
+  logs:
+    driver: local
+  temp:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  blaze-ai-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

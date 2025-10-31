@@ -1,0 +1,4 @@
+# file: C:\Users\USER\blatam-academy\agents\backend\onyx\server\features\heygen_ai\network_utils.py
+# hypothesis_version: 6.137.3
+
+[0.0, 1.0, 5.0, 10.0, 100.0, 100, 253, 443, '%b %d %H:%M:%S %Y %Z', '-', '-c', '-n', '.', 'A', 'AES', 'CHACHA20', 'Connection timeout', '__module__', 'address', 'certificate_expiry', 'certificate_issuer', 'certificate_subject', 'certificate_verified', 'cipher_suite', 'content-type', 'content_type', 'error_message', 'expiry_date', 'get_extra_info', 'google.com', 'has_strong_cipher', 'hostname', 'is_accessible', 'is_certificate_valid', 'is_host_reachable', 'is_hostname_matching', 'issuer', 'max_response_time', 'min_response_time', 'notAfter', 'packets_received', 'packets_sent', 'ping', 'resolve', 'response_time', 'response_times', 'rrset', 'server', 'server_header', 'ssl_object', 'ssl_version', 'status_code', 'subject', 'ttl', 'unittest.mock', 'unresolved', 'url', 'validation_errors', 'wait_closed', 'windows']

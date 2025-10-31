@@ -1,0 +1,326 @@
+# AI-Enhanced Export IA Configuration
+# ===================================
+
+# Model Configuration
+models:
+  content_optimizer:
+    name: "microsoft/DialoGPT-medium"
+    max_length: 512
+    num_classes: 5
+    cache_dir: "./models/content_optimizer"
+  
+  quality_assessor:
+    input_dim: 768
+    hidden_dim: 256
+    num_classes: 5
+    cache_dir: "./models/quality_assessor"
+  
+  diffusion_styler:
+    model_id: "stabilityai/stable-diffusion-xl-base-1.0"
+    scheduler: "DPMSolverMultistepScheduler"
+    num_inference_steps: 20
+    guidance_scale: 7.5
+    cache_dir: "./models/diffusion"
+
+# Training Configuration
+training:
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  learning_rate: 1e-4
+  weight_decay: 0.01
+  warmup_steps: 100
+  num_epochs: 10
+  max_grad_norm: 1.0
+  
+  # Advanced Training Options
+  use_mixed_precision: true
+  use_lora: true
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.1
+  
+  # Data Configuration
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  augmentation: true
+  
+  # Early Stopping
+  early_stopping_patience: 3
+  early_stopping_threshold: 0.001
+
+# Experiment Tracking
+experiment_tracking:
+  use_wandb: true
+  use_tensorboard: true
+  project_name: "export-ia-training"
+  experiment_name: "default"
+  
+  # Checkpointing
+  save_steps: 500
+  eval_steps: 250
+  save_total_limit: 3
+
+# Device Configuration
+device:
+  primary: "cuda"  # Options: cuda, cpu, auto
+  num_workers: 4
+  pin_memory: true
+  mixed_precision: true
+
+# AI Enhancement Levels
+enhancement_levels:
+  basic:
+    use_transformer_models: false
+    use_diffusion_styling: false
+    use_ml_quality_assessment: false
+  
+  standard:
+    use_transformer_models: true
+    use_diffusion_styling: false
+    use_ml_quality_assessment: true
+  
+  advanced:
+    use_transformer_models: true
+    use_diffusion_styling: true
+    use_ml_quality_assessment: true
+  
+  premium:
+    use_transformer_models: true
+    use_diffusion_styling: true
+    use_ml_quality_assessment: true
+    use_custom_models: true
+  
+  enterprise:
+    use_transformer_models: true
+    use_diffusion_styling: true
+    use_ml_quality_assessment: true
+    use_custom_models: true
+    use_distributed_training: true
+
+# Content Optimization
+content_optimization:
+  grammar_correction:
+    enabled: true
+    model: "grammar-checker"
+    confidence_threshold: 0.8
+  
+  style_enhancement:
+    enabled: true
+    model: "style-enhancer"
+    target_style: "professional"
+  
+  readability_improvement:
+    enabled: true
+    target_level: "college"
+    max_sentence_length: 20
+  
+  professional_tone:
+    enabled: true
+    tone_weights:
+      formal: 0.7
+      confident: 0.6
+      clear: 0.8
+
+# Quality Assessment
+quality_assessment:
+  metrics:
+    - readability_score
+    - professional_tone_score
+    - grammar_score
+    - style_score
+    - sentiment_score
+    - complexity_score
+  
+  thresholds:
+    excellent: 0.9
+    good: 0.7
+    fair: 0.5
+    poor: 0.3
+  
+  validation_levels:
+    basic:
+      rules: ["grammar", "structure"]
+    standard:
+      rules: ["grammar", "structure", "style", "accessibility"]
+    strict:
+      rules: ["grammar", "structure", "style", "accessibility", "professional_appearance"]
+    enterprise:
+      rules: ["all"]
+
+# Visual Styling
+visual_styling:
+  diffusion_models:
+    enabled: true
+    model_id: "stabilityai/stable-diffusion-xl-base-1.0"
+    image_size: 1024
+    num_inference_steps: 20
+  
+  color_generation:
+    num_colors: 5
+    color_space: "hex"
+    accessibility_check: true
+  
+  layout_optimization:
+    enabled: true
+    max_iterations: 10
+    optimization_metric: "professional_appearance"
+
+# Performance Optimization
+performance:
+  caching:
+    enabled: true
+    cache_dir: "./cache"
+    max_size: "1GB"
+  
+  parallel_processing:
+    enabled: true
+    max_workers: 4
+  
+  memory_optimization:
+    gradient_checkpointing: true
+    model_offloading: true
+    mixed_precision: true
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  timeout: 300
+  
+  # Rate Limiting
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+  
+  # Authentication
+  auth:
+    enabled: false
+    secret_key: "your-secret-key-here"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./logs/export_ia.log"
+  max_size: "10MB"
+  backup_count: 5
+
+# Security Configuration
+security:
+  # Input Validation
+  input_validation:
+    max_content_length: 100000
+    allowed_formats: ["txt", "md", "html", "json"]
+  
+  # Output Sanitization
+  output_sanitization:
+    enabled: true
+    remove_scripts: true
+    escape_html: true
+  
+  # File Upload
+  file_upload:
+    max_size: "10MB"
+    allowed_extensions: [".txt", ".md", ".html", ".json", ".pdf", ".docx"]
+    scan_for_malware: true
+
+# Monitoring and Metrics
+monitoring:
+  enabled: true
+  
+  # Performance Metrics
+  performance:
+    track_latency: true
+    track_throughput: true
+    track_memory_usage: true
+    track_gpu_usage: true
+  
+  # Quality Metrics
+  quality:
+    track_quality_scores: true
+    track_improvement_rates: true
+    track_user_satisfaction: true
+  
+  # Business Metrics
+  business:
+    track_usage: true
+    track_export_formats: true
+    track_enhancement_levels: true
+
+# Integration Configuration
+integrations:
+  # External APIs
+  external_apis:
+    openai:
+      enabled: false
+      api_key: "your-openai-api-key"
+      model: "gpt-3.5-turbo"
+    
+    anthropic:
+      enabled: false
+      api_key: "your-anthropic-api-key"
+      model: "claude-3-sonnet"
+  
+  # Cloud Storage
+  cloud_storage:
+    aws_s3:
+      enabled: false
+      bucket: "your-bucket-name"
+      region: "us-east-1"
+    
+    google_cloud:
+      enabled: false
+      bucket: "your-bucket-name"
+      project: "your-project-id"
+  
+  # Database
+  database:
+    postgresql:
+      enabled: false
+      host: "localhost"
+      port: 5432
+      database: "export_ia"
+      username: "user"
+      password: "password"
+
+# Feature Flags
+feature_flags:
+  ai_enhancement: true
+  diffusion_styling: true
+  advanced_training: true
+  gradio_interface: true
+  quality_validation: true
+  professional_styling: true
+  batch_processing: true
+  real_time_processing: true
+  custom_models: false
+  distributed_training: false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

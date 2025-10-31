@@ -1,0 +1,147 @@
+# NotebookLM AI - Advanced Document Intelligence Requirements
+# Latest libraries for AI-powered document analysis and citation
+
+# ===== CORE AI & ML =====
+torch==2.1.1                        # PyTorch core
+transformers==4.36.0                # Hugging Face Transformers
+diffusers==0.25.0                   # Diffusion models
+accelerate==0.25.0                  # Distributed training
+peft==0.7.1                         # Parameter efficient fine-tuning
+bitsandbytes==0.41.3                # Quantization
+flash-attn==2.5.0                   # Flash attention
+xformers==0.0.23.post1              # Memory efficient attention
+
+# ===== DOCUMENT PROCESSING =====
+pypdf2==3.0.1                       # PDF processing
+python-docx==1.1.0                  # DOCX processing
+markdown==3.5.1                     # Markdown processing
+beautifulsoup4==4.12.2              # HTML parsing
+pandas==2.1.3                       # CSV/Excel processing
+openpyxl==3.1.2                     # Excel processing
+pillow==10.1.0                      # Image processing
+pytesseract==0.3.10                 # OCR processing
+
+# ===== NLP & TEXT ANALYSIS =====
+spacy==3.7.2                        # Advanced NLP
+textstat==0.7.3                     # Text statistics
+vaderSentiment==3.3.2               # Sentiment analysis
+keybert==0.8.3                      # Keyword extraction
+sentence-transformers==2.2.2        # Sentence embeddings
+gensim==4.3.2                       # Topic modeling
+nltk==3.8.1                         # NLP toolkit
+language-tool-python==2.7.1         # Grammar checking
+
+# ===== CITATION & REFERENCE =====
+scholarly==1.7.11                   # Google Scholar integration
+arxiv==2.1.0                        # ArXiv integration
+crossref-commons==0.0.13            # Crossref integration
+doi2bib==1.0.0                      # DOI to BibTeX
+bibtexparser==1.4.0                 # BibTeX parsing
+citeproc-py==0.5.1                  # Citation processing
+
+# ===== VECTOR DATABASES =====
+chromadb==0.4.18                    # Vector database
+faiss-cpu==1.7.4                    # Vector similarity search
+sentence-transformers==2.2.2        # Embeddings
+numpy==1.25.2                       # Numerical computing
+
+# ===== WEB SCRAPING & DATA =====
+requests==2.31.0                    # HTTP requests
+selenium==4.15.2                    # Web automation
+scrapy==2.11.0                      # Web scraping
+newspaper3k==0.2.8                  # Article extraction
+readability-lxml==0.8.1             # Content extraction
+
+# ===== DATABASE & STORAGE =====
+sqlalchemy[asyncio]==2.0.23         # Database ORM
+redis[hiredis]==5.0.1               # Redis client
+pymongo==4.6.0                      # MongoDB client
+elasticsearch==8.11.0               # Elasticsearch client
+minio==7.2.0                        # S3-compatible storage
+
+# ===== API & WEB FRAMEWORKS =====
+fastapi==0.104.1                    # Fast API framework
+uvicorn[standard]==0.24.0           # ASGI server
+pydantic==2.5.0                     # Data validation
+pydantic-settings==2.1.0            # Settings management
+httpx==0.25.2                       # Async HTTP client
+
+# ===== MONITORING & LOGGING =====
+prometheus-client==0.19.0           # Metrics
+opentelemetry-api==1.21.0           # Tracing
+opentelemetry-sdk==1.21.0           # Tracing SDK
+structlog==23.2.0                   # Structured logging
+rich==13.7.0                        # Rich text output
+
+# ===== UTILITIES =====
+click==8.1.7                        # CLI framework
+typer==0.9.0                        # CLI with type hints
+pyyaml==6.0.1                       # YAML parsing
+python-dotenv==1.0.0                # Environment variables
+tqdm==4.66.1                        # Progress bars
+psutil==5.9.6                        # System monitoring
+
+# ===== TESTING & DEVELOPMENT =====
+pytest==7.4.3                       # Testing framework
+pytest-asyncio==0.21.1              # Async testing
+pytest-cov==4.1.0                   # Coverage testing
+black==23.11.0                      # Code formatting
+isort==5.12.0                       # Import sorting
+flake8==6.1.0                       # Linting
+
+# ===== SECURITY =====
+cryptography==41.0.7                # Encryption
+python-jose[cryptography]==3.3.0    # JWT handling
+passlib[bcrypt]==1.7.4              # Password hashing
+python-multipart==0.0.6             # File uploads
+
+# ===== CLOUD & DEPLOYMENT =====
+boto3==1.34.0                       # AWS SDK
+google-cloud-storage==2.10.0        # Google Cloud
+azure-storage-blob==12.19.0         # Azure Storage
+docker==6.1.3                       # Docker SDK
+kubernetes==28.1.0                  # Kubernetes client
+
+# ===== OPTIMIZATION =====
+numba==0.58.1                       # JIT compilation
+cython==3.0.6                       # Performance optimization
+joblib==1.3.2                       # Parallel computing
+ray[tune]==2.7.1                    # Distributed computing
+
+# ===== EXPERIMENT TRACKING =====
+wandb==0.16.1                       # Weights & Biases
+mlflow==2.8.1                       # ML lifecycle
+tensorboard==2.15.0                 # Training visualization
+neptune==1.10.0                     # Experiment tracking
+
+# ===== ADDITIONAL AI LIBRARIES =====
+langchain==0.0.350                  # LangChain framework
+langchain-community==0.0.10         # LangChain community
+openai==1.3.7                       # OpenAI API
+anthropic==0.7.8                    # Anthropic API
+cohere==4.37                        # Cohere API
+huggingface-hub==0.19.4             # Hugging Face Hub
+datasets==2.15.0                    # Hugging Face datasets
+
+# ===== DOCUMENT INTELLIGENCE =====
+unstructured==0.11.2                # Document parsing
+pymupdf==1.23.8                     # PDF processing
+pdfplumber==0.10.2                  # PDF text extraction
+tabula-py==2.8.2                    # PDF table extraction
+camelot-py==0.11.0                  # PDF table extraction
+pdf2image==1.16.3                   # PDF to image conversion
+
+# ===== IMAGE & AUDIO PROCESSING =====
+opencv-python==4.8.1.78             # Computer vision
+librosa==0.10.1                     # Audio analysis
+soundfile==0.12.1                   # Audio I/O
+pydub==0.25.1                       # Audio manipulation
+whisper==1.1.10                     # Speech recognition
+
+# ===== GRADIO & INTERFACES =====
+gradio==4.7.1                       # Web interfaces
+streamlit==1.28.1                   # Data apps
+dash==2.14.2                        # Web dashboards
+plotly==5.17.0                      # Interactive plots
+matplotlib==3.8.2                   # Plotting
+seaborn==0.13.0                     # Statistical visualization 

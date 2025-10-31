@@ -1,0 +1,503 @@
+# Loss Functions and Optimization Algorithms Configuration
+# This file configures loss functions, optimizers, and learning rate schedulers
+
+loss_functions:
+  # Global loss settings
+  global:
+    default_loss: "cross_entropy"
+    enable_analysis: true
+    loss_monitoring: true
+    gradient_clipping: false
+    max_grad_norm: 1.0
+  
+  # Classification losses
+  classification:
+    cross_entropy:
+      enabled: true
+      label_smoothing: 0.0
+      weight: null
+      description: "Standard cross-entropy loss for classification"
+    
+    focal_loss:
+      enabled: true
+      alpha: 1.0
+      gamma: 2.0
+      reduction: "mean"
+      description: "Focal loss for handling class imbalance"
+    
+    label_smoothing:
+      enabled: false
+      smoothing: 0.1
+      description: "Label smoothing for regularization"
+  
+  # Regression losses
+  regression:
+    mse_loss:
+      enabled: true
+      reduction: "mean"
+      description: "Mean squared error loss"
+    
+    mae_loss:
+      enabled: true
+      reduction: "mean"
+      description: "Mean absolute error loss"
+    
+    huber_loss:
+      enabled: true
+      delta: 1.0
+      reduction: "mean"
+      description: "Huber loss for robust regression"
+    
+    smooth_l1_loss:
+      enabled: true
+      beta: 1.0
+      reduction: "mean"
+      description: "Smooth L1 loss for regression"
+  
+  # Specialized losses
+  specialized:
+    dice_loss:
+      enabled: true
+      smooth: 1e-6
+      description: "Dice loss for segmentation tasks"
+    
+    kl_divergence:
+      enabled: true
+      reduction: "mean"
+      description: "KL divergence for distribution matching"
+    
+    cosine_embedding:
+      enabled: true
+      margin: 0.0
+      reduction: "mean"
+      description: "Cosine embedding loss for similarity learning"
+    
+    triplet_loss:
+      enabled: true
+      margin: 1.0
+      p: 2
+      description: "Triplet loss for metric learning"
+    
+    contrastive_loss:
+      enabled: true
+      margin: 1.0
+      description: "Contrastive loss for similarity learning"
+
+optimization_algorithms:
+  # Global optimizer settings
+  global:
+    default_optimizer: "adam"
+    enable_gradient_clipping: false
+    max_grad_norm: 1.0
+    weight_decay: 0.0
+  
+  # First-order optimizers
+  first_order:
+    sgd:
+      enabled: true
+      lr: 0.01
+      momentum: 0.0
+      weight_decay: 0.0
+      nesterov: false
+      description: "Stochastic Gradient Descent"
+    
+    sgd_momentum:
+      enabled: true
+      lr: 0.01
+      momentum: 0.9
+      weight_decay: 0.0
+      nesterov: false
+      description: "SGD with momentum"
+    
+    sgd_nesterov:
+      enabled: true
+      lr: 0.01
+      momentum: 0.9
+      weight_decay: 0.0
+      nesterov: true
+      description: "SGD with Nesterov momentum"
+  
+  # Adaptive optimizers
+  adaptive:
+    adam:
+      enabled: true
+      lr: 0.001
+      betas: [0.9, 0.999]
+      eps: 1e-8
+      weight_decay: 0.0
+      amsgrad: false
+      description: "Adam optimizer"
+    
+    adamw:
+      enabled: true
+      lr: 0.001
+      betas: [0.9, 0.999]
+      eps: 1e-8
+      weight_decay: 0.01
+      description: "AdamW with decoupled weight decay"
+    
+    rmsprop:
+      enabled: true
+      lr: 0.01
+      alpha: 0.99
+      eps: 1e-8
+      weight_decay: 0.0
+      momentum: 0.0
+      centered: false
+      description: "RMSprop optimizer"
+    
+    adagrad:
+      enabled: true
+      lr: 0.01
+      lr_decay: 0.0
+      weight_decay: 0.0
+      eps: 1e-10
+      description: "Adagrad optimizer"
+    
+    adadelta:
+      enabled: true
+      lr: 1.0
+      rho: 0.9
+      eps: 1e-6
+      weight_decay: 0.0
+      description: "Adadelta optimizer"
+    
+    lion:
+      enabled: false
+      lr: 1e-4
+      betas: [0.9, 0.99]
+      weight_decay: 0.0
+      description: "Lion optimizer (requires lion-pytorch)"
+
+learning_rate_schedulers:
+  # Global scheduler settings
+  global:
+    default_scheduler: "step"
+    enable_monitoring: true
+    save_scheduler_state: true
+  
+  # Step-based schedulers
+  step_based:
+    step_lr:
+      enabled: true
+      step_size: 30
+      gamma: 0.1
+      description: "Step learning rate scheduler"
+    
+    exponential_lr:
+      enabled: true
+      gamma: 0.95
+      description: "Exponential learning rate scheduler"
+  
+  # Cosine-based schedulers
+  cosine_based:
+    cosine_annealing:
+      enabled: true
+      T_max: 100
+      eta_min: 0.0
+      description: "Cosine annealing scheduler"
+    
+    cosine_warm_restart:
+      enabled: true
+      T_0: 10
+      T_mult: 1
+      eta_min: 0.0
+      description: "Cosine annealing with warm restarts"
+  
+  # Adaptive schedulers
+  adaptive:
+    reduce_lr_on_plateau:
+      enabled: true
+      mode: "min"
+      factor: 0.1
+      patience: 10
+      verbose: false
+      threshold: 1e-4
+      threshold_mode: "rel"
+      cooldown: 0
+      min_lr: 0.0
+      description: "Reduce LR on plateau"
+  
+  # Advanced schedulers
+  advanced:
+    one_cycle:
+      enabled: true
+      max_lr: 0.01
+      epochs: 100
+      steps_per_epoch: 100
+      pct_start: 0.3
+      anneal_strategy: "cos"
+      cycle_momentum: true
+      base_momentum: 0.85
+      max_momentum: 0.95
+      div_factor: 25.0
+      final_div_factor: 1e4
+      description: "One cycle learning rate scheduler"
+
+task_specific_schemes:
+  # Classification schemes
+  classification:
+    enabled: true
+    default_loss: "cross_entropy"
+    default_optimizer: "adam"
+    default_scheduler: "step"
+    
+    # Class imbalance handling
+    class_imbalance:
+      enabled: false
+      method: "focal_loss"  # focal_loss, class_weights, label_smoothing
+      focal_alpha: 1.0
+      focal_gamma: 2.0
+      label_smoothing: 0.1
+    
+    # Optimizer settings
+    optimizer_settings:
+      lr: 0.001
+      weight_decay: 0.0
+      betas: [0.9, 0.999]
+    
+    # Scheduler settings
+    scheduler_settings:
+      step_size: 30
+      gamma: 0.1
+      patience: 10
+  
+  # Regression schemes
+  regression:
+    enabled: true
+    default_loss: "mse"
+    default_optimizer: "adam"
+    default_scheduler: "step"
+    
+    # Loss options
+    loss_options:
+      mse: true
+      mae: true
+      huber: true
+      smooth_l1: true
+    
+    # Optimizer settings
+    optimizer_settings:
+      lr: 0.001
+      weight_decay: 0.0
+      betas: [0.9, 0.999]
+    
+    # Scheduler settings
+    scheduler_settings:
+      step_size: 30
+      gamma: 0.1
+      patience: 10
+  
+  # Segmentation schemes
+  segmentation:
+    enabled: true
+    default_loss: "combined"
+    default_optimizer: "adam"
+    default_scheduler: "cosine"
+    
+    # Combined loss weights
+    loss_weights:
+      dice: 0.5
+      cross_entropy: 0.5
+      focal: 0.0
+    
+    # Optimizer settings
+    optimizer_settings:
+      lr: 0.001
+      weight_decay: 0.0
+      betas: [0.9, 0.999]
+    
+    # Scheduler settings
+    scheduler_settings:
+      T_max: 100
+      eta_min: 0.0
+  
+  # Metric learning schemes
+  metric_learning:
+    enabled: true
+    default_loss: "contrastive"
+    default_optimizer: "adam"
+    default_scheduler: "step"
+    
+    # Loss options
+    loss_options:
+      contrastive: true
+      triplet: true
+      cosine_embedding: true
+    
+    # Loss parameters
+    loss_parameters:
+      margin: 1.0
+      p: 2
+    
+    # Optimizer settings
+    optimizer_settings:
+      lr: 0.001
+      weight_decay: 0.0
+      betas: [0.9, 0.999]
+    
+    # Scheduler settings
+    scheduler_settings:
+      step_size: 30
+      gamma: 0.1
+
+analysis_and_monitoring:
+  # Loss analysis
+  loss_analysis:
+    enabled: true
+    analyze_loss_landscape: true
+    num_landscape_points: 100
+    save_loss_history: true
+    plot_loss_curves: true
+  
+  # Gradient analysis
+  gradient_analysis:
+    enabled: true
+    analyze_gradient_flow: true
+    gradient_clipping: false
+    max_grad_norm: 1.0
+    save_gradient_stats: true
+  
+  # Optimization analysis
+  optimization_analysis:
+    enabled: true
+    check_convergence: true
+    convergence_patience: 10
+    convergence_tolerance: 1e-6
+    save_optimization_history: true
+  
+  # Performance monitoring
+  performance_monitoring:
+    enabled: true
+    monitor_training_time: true
+    monitor_memory_usage: true
+    save_performance_metrics: true
+    log_learning_rates: true
+
+integration_settings:
+  # Model integration
+  model_integration:
+    auto_select_loss: true
+    auto_select_optimizer: true
+    auto_select_scheduler: true
+    validate_combinations: true
+  
+  # Framework integration
+  framework_integration:
+    pytorch_native: true
+    custom_models: true
+    pretrained_models: false
+    distributed_training: false
+  
+  # Training integration
+  training_integration:
+    pre_training_setup: true
+    during_training_monitoring: true
+    post_training_analysis: true
+    checkpoint_loading: true
+
+performance_settings:
+  # Memory optimization
+  memory:
+    efficient_loss_computation: true
+    gradient_checkpointing: false
+    mixed_precision: false
+  
+  # Speed optimization
+  speed:
+    parallel_loss_computation: true
+    gpu_acceleration: true
+    async_processing: false
+  
+  # Quality vs speed trade-off
+  trade_off:
+    quality_priority: true
+    speed_priority: false
+    balanced: false
+
+debugging_and_validation:
+  # Debug settings
+  debug:
+    verbose_logging: false
+    loss_tracking: true
+    optimizer_tracking: true
+    scheduler_tracking: true
+  
+  # Error handling
+  error_handling:
+    strict_mode: false
+    continue_on_error: true
+    error_reporting: true
+  
+  # Validation
+  validation:
+    input_validation: true
+    output_validation: true
+    parameter_validation: true
+    loss_validation: true
+
+export_and_deployment:
+  # Model export
+  model_export:
+    save_loss_function: true
+    save_optimizer_state: true
+    save_scheduler_state: true
+    save_training_history: false
+  
+  # Configuration export
+  config_export:
+    save_config: true
+    save_custom_schemes: true
+    save_analysis_results: false
+  
+  # Documentation
+  documentation:
+    generate_docs: true
+    save_examples: true
+    save_tutorials: false
+
+examples_and_demonstrations:
+  # Basic examples
+  basic:
+    simple_classification: true
+    simple_regression: true
+    loss_function_comparison: true
+    optimizer_comparison: true
+  
+  # Advanced examples
+  advanced:
+    custom_loss_functions: true
+    custom_optimizers: true
+    loss_landscape_analysis: true
+    gradient_flow_analysis: true
+  
+  # Integration examples
+  integration:
+    with_custom_models: true
+    with_training_loops: true
+    with_validation: true
+    with_testing: true
+
+validation_rules:
+  # Input validation
+  input_validation:
+    check_model_structure: true
+    check_data_format: true
+    check_target_format: true
+    check_device_consistency: true
+  
+  # Output validation
+  output_validation:
+    check_loss_values: true
+    check_gradient_values: true
+    check_optimizer_state: true
+    check_scheduler_state: true
+  
+  # Model validation
+  model_validation:
+    check_training_stability: true
+    check_convergence: true
+    check_overfitting: true
+    check_underfitting: true
+
+

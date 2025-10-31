@@ -1,0 +1,472 @@
+version: '3.8'
+
+services:
+  # Servicio SEO Principal Ultra-Optimizado
+  seo-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.optimized
+    container_name: seo-service-optimized
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+      - "9090:9090"  # Métricas Prometheus
+    environment:
+      - ENVIRONMENT=production
+      - HOST=0.0.0.0
+      - PORT=8000
+      - WORKERS=8
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=json
+      - ENABLE_METRICS=true
+      - ENABLE_PROMETHEUS=true
+      - HEALTH_CHECK_ENABLED=true
+      - RATE_LIMIT_PER_MINUTE=200
+      - RATE_LIMIT_BURST=50
+      - MAX_CONCURRENT_REQUESTS=200
+      - REQUEST_TIMEOUT=30
+      - CACHE_TTL=3600
+      - CACHE_MAX_SIZE=10000
+      - CACHE_COMPRESSION=true
+      - SELENIUM_HEADLESS=true
+      - SELENIUM_TIMEOUT=30
+      - AI_MODEL=gpt-3.5-turbo
+      - AI_TEMPERATURE=0.1
+      - AI_MAX_RETRIES=3
+      - AI_TIMEOUT=30
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here}
+      - ALLOWED_HOSTS=localhost,127.0.0.1,${DOMAIN:-localhost}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_POOL_SIZE=50
+      - REDIS_MAX_CONNECTIONS=100
+      - SENTRY_DSN=${SENTRY_DSN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - HTTP_TIMEOUT=30.0
+      - HTTP_MAX_CONNECTIONS=200
+      - HTTP_MAX_KEEPALIVE=50
+      - CONNECTION_POOL_SIZE=100
+      - KEEPALIVE_TIMEOUT=60
+      - BACKGROUND_TASKS_ENABLED=true
+      - TASK_QUEUE_SIZE=1000
+      - TASK_WORKERS=4
+      - METRICS_INTERVAL=15
+      - LOG_BUFFER_SIZE=1000
+      - LOG_FLUSH_INTERVAL=5
+      - CIRCUIT_BREAKER_ENABLED=true
+      - CIRCUIT_BREAKER_FAILURE_THRESHOLD=5
+      - CIRCUIT_BREAKER_RECOVERY_TIMEOUT=60
+      - CIRCUIT_BREAKER_SUCCESS_THRESHOLD=3
+      - GRACEFUL_TIMEOUT=30
+      - SHUTDOWN_TIMEOUT=10
+    depends_on:
+      - redis
+      - prometheus
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./temp:/app/temp
+    networks:
+      - seo-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 4G
+        reservations:
+          cpus: '2.0'
+          memory: 2G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    tmpfs:
+      - /tmp:size=1G
+      - /var/cache:size=500M
+
+  # Redis Ultra-Optimizado
+  redis:
+    image: redis:7-alpine
+    container_name: seo-redis-optimized
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./redis.optimized.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - seo-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 1G
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    security_opt:
+      - no-new-privileges:true
+
+  # Prometheus Ultra-Optimizado
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: seo-prometheus-optimized
+    restart: unless-stopped
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./prometheus.optimized.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+      - '--storage.tsdb.no-lockfile'
+      - '--web.enable-admin-api'
+      - '--web.enable-remote-write-receiver'
+      - '--enable-feature=agent'
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  # Grafana Ultra-Optimizado
+  grafana:
+    image: grafana/grafana:latest
+    container_name: seo-grafana-optimized
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ENABLE_GZIP=true
+      - GF_SERVER_COMPRESS=true
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_ANALYTICS_CHECK_FOR_UPDATES=false
+      - GF_SECURITY_DISABLE_GRAVATAR=true
+      - GF_SECURITY_COOKIE_SECURE=true
+      - GF_SECURITY_STRICT_TRANSPORT_SECURITY=true
+      - GF_LOG_MODE=console
+      - GF_LOG_LEVEL=info
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  # Nginx Ultra-Optimizado
+  nginx:
+    image: nginx:alpine
+    container_name: seo-nginx-optimized
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.optimized.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+      - ./logs/nginx:/var/log/nginx
+      - nginx-cache:/var/cache/nginx
+    depends_on:
+      - seo-service
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    security_opt:
+      - no-new-privileges:true
+
+  # Elasticsearch Ultra-Optimizado
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: seo-elasticsearch-optimized
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g -XX:+UseG1GC -XX:G1HeapRegionSize=32m -XX:+UseStringDeduplication"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - cluster.routing.allocation.disk.watermark.low=93%
+      - cluster.routing.allocation.disk.watermark.high=95%
+      - cluster.routing.allocation.disk.watermark.flood_stage=97%
+      - indices.memory.index_buffer_size=30%
+      - indices.queries.cache.size=20%
+      - indices.fielddata.cache.size=20%
+      - thread_pool.write.size=8
+      - thread_pool.write.queue_size=1000
+      - thread_pool.search.size=8
+      - thread_pool.search.queue_size=1000
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 3G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    security_opt:
+      - no-new-privileges:true
+
+  # Kibana Ultra-Optimizado
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: seo-kibana-optimized
+    restart: unless-stopped
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - SERVER_NAME=kibana
+      - SERVER_HOST=0.0.0.0
+      - ELASTICSEARCH_REQUEST_TIMEOUT=30000
+      - ELASTICSEARCH_SHARD_TIMEOUT=30000
+      - KIBANA_INDEX=.kibana
+      - TELEMETRY_ENABLED=false
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  # Filebeat Ultra-Optimizado
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.8.0
+    container_name: seo-filebeat-optimized
+    restart: unless-stopped
+    volumes:
+      - ./filebeat.optimized.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./logs:/var/log/seo:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    depends_on:
+      - elasticsearch
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    security_opt:
+      - no-new-privileges:true
+
+  # Redis Cluster para Alta Disponibilidad (Opcional)
+  redis-cluster:
+    image: redis:7-alpine
+    container_name: seo-redis-cluster
+    restart: unless-stopped
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes
+    ports:
+      - "7000-7005:7000-7005"
+    volumes:
+      - redis-cluster-data:/data
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    profiles:
+      - ha
+
+  # Load Balancer (HAProxy)
+  haproxy:
+    image: haproxy:2.8-alpine
+    container_name: seo-haproxy
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "8404:8404"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - seo-service
+    networks:
+      - seo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    profiles:
+      - ha
+
+  # Monitoring Stack (Opcional)
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: seo-node-exporter
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    networks:
+      - seo-network
+    profiles:
+      - monitoring
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: seo-cadvisor
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    networks:
+      - seo-network
+    profiles:
+      - monitoring
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: seo-alertmanager
+    restart: unless-stopped
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager-data:/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+    networks:
+      - seo-network
+    profiles:
+      - monitoring
+
+volumes:
+  redis-data:
+    driver: local
+  redis-cluster-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  elasticsearch-data:
+    driver: local
+  alertmanager-data:
+    driver: local
+  nginx-cache:
+    driver: local
+
+networks:
+  seo-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: seo-bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16 
