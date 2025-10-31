@@ -54,6 +54,8 @@ El **Sistema Integrado Blatam Academy** es una plataforma completa que integra m
 - Docker y Docker Compose
 - Python 3.8+
 - Git
+- 16GB+ RAM recomendado (8GB mínimo)
+- GPU NVIDIA (opcional, recomendado para KV Cache y modelos de IA)
 
 ### Instalación Rápida
 
@@ -64,7 +66,15 @@ cd blatam-academy/agents/backend/onyx/server/features
 
 # Iniciar el sistema completo
 python start_system.py start
+
+# Ver estado
+python start_system.py status
 ```
+
+> 📖 **Guías Disponibles**: 
+> - **[Guía de Inicio Rápido](QUICK_START_GUIDE.md)** - Para empezar en 5 minutos
+> - **[Guía de Arquitectura](ARCHITECTURE_GUIDE.md)** - Arquitectura completa
+> - **[Índice de Documentación](DOCUMENTATION_INDEX.md)** - Navegación completa
 
 ### Instalación Manual
 
@@ -218,21 +228,100 @@ curl http://localhost:8001/health
 
 ```
 features/
-├── integration_system/          # Sistema principal
+├── integration_system/          # Sistema principal de integración
 │   ├── core/                   # Lógica central
 │   ├── api/                    # Endpoints
 │   ├── config/                 # Configuración
 │   └── middleware/             # Middleware
-├── content_redundancy_detector/ # Detector de redundancia
-├── bulk/                       # BUL - Generación de documentos
-├── gamma_app/                  # Gamma App
-├── business_agents/            # Agentes de negocio
-├── export_ia/                  # Export IA
+├── content_redundancy_detector/ # Detector de redundancia de contenido
+├── bulk/                       # BUL - Generación de documentos empresariales
+├── bulk_truthgpt/              # Sistema Bulk TruthGPT
+├── gamma_app/                  # Gamma App - Generación de contenido
+├── business_agents/            # Agentes de negocio automatizados
+├── export_ia/                  # Export IA - Exportación avanzada
+├── ads/                        # Sistema de generación de anuncios con IA
+├── advanced_ai_models/         # Modelos avanzados de IA
+├── ai_document_classifier/     # Clasificador de documentos con IA
+├── ai_document_processor/      # Procesador de documentos con IA
+├── ai_history_comparison/      # Comparación de historiales con IA
+├── ai_integration_system/      # Sistema de integración de IA
+├── ai_video/                   # Procesamiento de video con IA
+├── blatam_ai/                  # Motor Blatam AI
+├── blaze_ai/                   # Sistema Blaze AI
+├── blog_posts/                 # Generación de posts para blog
+├── brand_voice/                # Sistema de voz de marca
+├── copywriting/                # Generación de copywriting
+├── document_set/                # Gestión de conjuntos de documentos
+├── document_workflow_chain/    # Cadena de flujo de trabajo documental
+├── email_sequence/             # Secuencias de email automatizadas
+├── enterprise/                 # Módulos empresariales
+├── facebook_posts/             # Generación de posts para Facebook
+├── folder/                     # Gestión de carpetas
+├── heygen_ai/                  # Integración HeyGen AI
+├── image_process/              # Procesamiento de imágenes
+├── instagram_captions/         # Generación de captions para Instagram
+├── input_prompt/               # Gestión de prompts de entrada
+├── key_messages/               # Gestión de mensajes clave
+├── linkedin_posts/             # Generación de posts para LinkedIn
+├── notebooklm_ai/              # Integración NotebookLM AI
+├── notifications/              # Sistema de notificaciones
+├── os_content/                 # Contenido del sistema operativo
+├── password/                   # Gestión de contraseñas
+├── pdf_variantes/              # Procesamiento de variantes de PDF
+├── persona/                    # Gestión de personas/perfiles
+├── product_descriptions/       # Generación de descripciones de productos
+├── professional_documents/     # Generación de documentos profesionales
+├── seo/                        # Optimización SEO
+├── tool/                       # Herramientas generales
+├── ultra_extreme_v18/          # Versión ultra extrema v18
+├── utils/                      # Utilidades compartidas
+├── video-OpusClip/             # Procesamiento de video OpusClip
+├── voice_coaching_ai/           # Coaching de voz con IA
+├── Frontier-Model-run/         # Ejecución de modelos frontier
+├── content_modules/             # Módulos de contenido
+├── core/                       # Núcleo del sistema
+├── docs/                       # Documentación
+├── integrated/                 # Módulos integrados
+├── microservices_framework/    # Framework de microservicios
 ├── nginx/                      # Configuración Nginx
-├── monitoring/                 # Configuración monitoreo
+├── production/                 # Configuraciones de producción
 ├── docker-compose.yml          # Orquestación Docker
+├── docker-compose-all.yml     # Orquestación Docker completa
 └── start_system.py             # Script de inicio
 ```
+
+### Servicios y Módulos Principales
+
+- **ads/**: Sistema avanzado para generación de anuncios usando modelos de difusión y transformers
+- **advanced_ai_models/**: Modelos de IA avanzados con capacidades de inferencia y entrenamiento
+- **ai_document_processor/**: Procesador completo de documentos con capacidades NLP y visión
+- **ai_history_comparison/**: Sistema de comparación y análisis de historiales con IA
+- **ai_video/**: Sistema completo de procesamiento de video con optimizaciones avanzadas
+- **blatam_ai/**: Motor principal de IA con soporte para transformers, LLMs y fine-tuning
+- **blaze_ai/**: Sistema Blaze AI con arquitectura modular y optimizaciones de rendimiento
+- **blog_posts/**: Generación avanzada de posts para blogs con múltiples modelos
+- **bulk/**: Sistema BUL para generación masiva de documentos empresariales con Ultra Adaptive KV Cache Engine
+- **business_agents/**: Agentes de negocio con capacidades NLP y ML avanzadas
+- **export_ia/**: Sistema de exportación con múltiples formatos y optimizaciones
+- **gamma_app/**: Aplicación Gamma para generación de contenido multimedia
+- **integration_system/**: Sistema principal de integración y API Gateway
+
+### Componentes Técnicos Avanzados
+
+#### Ultra Adaptive KV Cache Engine
+
+El sistema **bulk/** incluye un **Ultra Adaptive KV Cache Engine** de nivel empresarial que proporciona:
+
+- ✅ **Multi-GPU Support**: Detección automática y balanceo inteligente de carga
+- ✅ **Adaptive Caching**: Múltiples políticas de evicción (LRU, LFU, FIFO, Adaptive)
+- ✅ **Persistence**: Persistencia de caché en disco y checkpointing automático
+- ✅ **Performance Monitoring**: Latencias P50, P95, P99, seguimiento de throughput
+- ✅ **Security**: Sanitización de requests, rate limiting, control de acceso
+- ✅ **Real-time Monitoring**: Dashboard en tiempo real con métricas y alertas
+- ✅ **Self-Healing**: Recuperación automática de errores
+- ✅ **Advanced Features**: Prefetching, deduplicación, streaming, priority queue
+
+Para más información, consulta: [`bulk/core/README_ULTRA_ADAPTIVE_KV_CACHE.md`](bulk/core/README_ULTRA_ADAPTIVE_KV_CACHE.md)
 
 ### Agregar Nuevo Servicio
 
@@ -313,18 +402,27 @@ ufw allow 8000:8005
 
 ### Optimizaciones
 
-- Cache Redis
-- Compresión Gzip
-- Balanceador de carga Nginx
-- Pool de conexiones DB
-- Async/await en todas las operaciones
+- **Ultra Adaptive KV Cache**: Sistema de caché de alto rendimiento con multi-GPU
+- **Cache Redis**: Caché distribuido para sesiones y datos frecuentes
+- **Compresión Gzip**: Compresión de respuestas HTTP
+- **Balanceador de carga Nginx**: Distribución inteligente de carga
+- **Pool de conexiones DB**: Gestión optimizada de conexiones a base de datos
+- **Async/await**: Operaciones asíncronas en toda la arquitectura
+- **Batch Processing**: Procesamiento por lotes optimizado
+- **Request Prefetching**: Prefetching inteligente basado en patrones
 
 ### Benchmarks
 
-- **Throughput**: 1000+ requests/segundo
-- **Latencia**: <100ms promedio
+- **Throughput General**: 1000+ requests/segundo
+- **KV Cache (Cached)**: 
+  - P50: <100ms
+  - P95: <500ms
+  - P99: <1s
+- **KV Cache (Uncached)**: 1-5s
+- **Batch Processing**: 100-500 req/s
+- **Concurrent Requests**: 50-200 req/s
 - **Disponibilidad**: 99.9%
-- **Escalabilidad**: Horizontal
+- **Escalabilidad**: Horizontal con auto-scaling
 
 ## 🆘 Troubleshooting
 
@@ -334,18 +432,76 @@ ufw allow 8000:8005
    ```bash
    docker-compose logs [service-name]
    docker-compose restart [service-name]
+   
+   # Verificar recursos
+   docker stats
    ```
 
 2. **Error de conexión a DB**
    ```bash
    docker-compose restart postgres
    docker-compose exec postgres psql -U postgres -c "SELECT 1;"
+   
+   # Verificar variables de entorno
+   docker-compose exec postgres env | grep DATABASE
    ```
 
 3. **Memoria insuficiente**
    ```bash
    docker system prune -a
    docker-compose down && docker-compose up -d
+   
+   # Limpiar caché del KV Cache
+   python bulk/core/ultra_adaptive_kv_cache_cli.py clear-cache
+   ```
+
+4. **KV Cache - Alto uso de memoria**
+   ```python
+   from bulk.core.ultra_adaptive_kv_cache_config_manager import ConfigManager
+   
+   # Reducir tamaño de caché
+   config_manager = ConfigManager(engine)
+   await config_manager.update_config('cache_size', 8192)
+   
+   # O usar preset memory_efficient
+   from bulk.core.ultra_adaptive_kv_cache_config_manager import ConfigPreset
+   ConfigPreset.apply_preset(engine, 'memory_efficient')
+   ```
+
+5. **KV Cache - Bajo rendimiento**
+   ```python
+   # Verificar estadísticas
+   stats = engine.get_stats()
+   print(f"Hit rate: {stats['hit_rate']}")
+   
+   # Aumentar workers
+   await config_manager.update_config('num_workers', 16)
+   
+   # Habilitar prefetching
+   await config_manager.update_config('enable_prefetch', True)
+   ```
+
+6. **Servicios lentos**
+   ```bash
+   # Verificar logs
+   docker-compose logs --tail=100 [service-name]
+   
+   # Verificar métricas
+   curl http://localhost:9090/metrics | grep [service-name]
+   
+   # Reiniciar con más recursos
+   docker-compose up -d --scale [service-name]=2
+   ```
+
+7. **Error de GPU en KV Cache**
+   ```python
+   # Verificar disponibilidad
+   import torch
+   print(f"CUDA available: {torch.cuda.is_available()}")
+   print(f"GPU count: {torch.cuda.device_count()}")
+   
+   # Usar CPU si no hay GPU
+   config.use_cuda = False
    ```
 
 ### Logs y Debugging
@@ -359,6 +515,30 @@ docker-compose exec [service-name] bash
 
 # Verificar recursos
 docker stats
+
+# Logs del KV Cache
+python bulk/core/ultra_adaptive_kv_cache_cli.py monitor --verbose
+
+# Profiling del KV Cache
+python bulk/core/ultra_adaptive_kv_cache_cli.py benchmark --duration 60
+```
+
+### Herramientas de Diagnóstico
+
+```python
+# Diagnóstico completo del KV Cache
+from bulk.core.ultra_adaptive_kv_cache_health_checker import HealthChecker
+
+health_checker = HealthChecker(engine)
+diagnostic = await health_checker.run_full_diagnostic()
+print(diagnostic)
+
+# Analytics detallados
+from bulk.core.ultra_adaptive_kv_cache_analytics import Analytics
+
+analytics = Analytics(engine)
+report = analytics.generate_detailed_report()
+print(report)
 ```
 
 ## 📞 Soporte
@@ -368,6 +548,35 @@ docker stats
 - **API Docs**: http://localhost:8000/docs
 - **Swagger UI**: http://localhost:8000/redoc
 - **Health Status**: http://localhost:8000/health
+
+### Guías Disponibles
+
+- 📖 **[Guía de Inicio Rápido](QUICK_START_GUIDE.md)**: Para empezar rápidamente
+- 🏗️ **[Guía de Arquitectura](ARCHITECTURE_GUIDE.md)**: Arquitectura completa del sistema
+- 🚀 **[Guía de Uso Avanzado BUL](bulk/ADVANCED_USAGE_GUIDE.md)**: Uso avanzado del sistema BUL
+- 📚 **[Índice de Documentación](DOCUMENTATION_INDEX.md)**: Navegación completa de toda la documentación
+
+### Documentación Adicional
+
+- **BUL KV Cache**: [`bulk/core/README_ULTRA_ADAPTIVE_KV_CACHE.md`](bulk/core/README_ULTRA_ADAPTIVE_KV_CACHE.md)
+- **BUL KV Cache Features**: [`bulk/core/ULTRA_ADAPTIVE_KV_CACHE_COMPLETE_FEATURES.md`](bulk/core/ULTRA_ADAPTIVE_KV_CACHE_COMPLETE_FEATURES.md)
+- **BUL README**: [`bulk/README.md`](bulk/README.md)
+- **Content Redundancy**: [`content_redundancy_detector/README.md`](content_redundancy_detector/README.md)
+- **Business Agents**: [`business_agents/README.md`](business_agents/README.md)
+- **Export IA**: [`export_ia/README.md`](export_ia/README.md)
+
+### Herramientas CLI
+
+```bash
+# Monitorear KV Cache
+python bulk/core/ultra_adaptive_kv_cache_cli.py monitor --dashboard
+
+# Estadísticas del sistema
+python bulk/core/ultra_adaptive_kv_cache_cli.py stats
+
+# Health check completo
+python bulk/core/ultra_adaptive_kv_cache_cli.py health
+```
 
 ### Contacto
 
@@ -382,5 +591,6 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](L
 ---
 
 **Blatam Academy** - Transformando la automatización empresarial con IA 🚀
-#   I A - M o d e l s - C l o n e  
+#   I A - M o d e l s - C l o n e 
+ 
  
