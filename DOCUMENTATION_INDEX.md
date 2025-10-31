@@ -9,6 +9,12 @@
   - Uso básico
   - Troubleshooting
 
+- **[SUMMARY.md](SUMMARY.md)** - Resumen ejecutivo
+  - Estadísticas del proyecto
+  - Métricas de rendimiento
+  - Capacidades clave
+  - Roadmap
+
 - **[QUICK_START_GUIDE.md](QUICK_START_GUIDE.md)** - Guía de inicio rápido
   - Setup en 5 minutos
   - Verificación rápida
@@ -73,11 +79,20 @@
   - Procesamiento en tiempo real
   - Automatización de flujos
   - Integración empresarial
+  - Multi-tenant SaaS
+
+- **[bulk/EXAMPLES.md](bulk/EXAMPLES.md)** - Ejemplos prácticos completos
+  - Ejemplos básicos (7 ejemplos)
+  - Ejemplos intermedios (7 ejemplos)
+  - Ejemplos avanzados (7 ejemplos)
+  - Ejemplos de integración (3 ejemplos)
+  - Ejemplos de producción (5 ejemplos)
+  - Total: 20+ ejemplos de código
 
 ### Desarrollo
 - **[README.md - Sección Desarrollo](README.md#-desarrollo)** - Guía de desarrollo
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Guía completa de contribución
 - **Testing**: Ver sección Testing en README principal
-- **Contribución**: Ver sección Contributing en módulos individuales
 
 ### Deployment
 - **[README.md - Sección Despliegue](README.md#-despliegue)** - Guía de despliegue
@@ -199,7 +214,23 @@ features/
 
 ---
 
+## 📝 Documentos Adicionales
+
+- **[CHANGELOG.md](CHANGELOG.md)** - Historial de cambios
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Guía de contribución
+- **[API_REFERENCE.md](API_REFERENCE.md)** - Referencia completa de API
+
+---
+
 **Última actualización**: Documentación completa del ecosistema Blatam Academy Features
 
-Para sugerencias o mejoras en la documentación, por favor crear un issue.
+**Estadísticas de Documentación:**
+- ✅ 40+ módulos con README
+- ✅ 10+ guías técnicas completas
+- ✅ 20+ ejemplos prácticos
+- ✅ 5+ casos de uso reales
+- ✅ Documentación completa de KV Cache
+- ✅ Referencia completa de API
+
+Para sugerencias o mejoras en la documentación, por favor crear un issue o consultar [CONTRIBUTING.md](CONTRIBUTING.md).
 
