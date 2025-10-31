@@ -512,6 +512,9 @@ For support and questions:
 
 - [Guía de Arquitectura](../ARCHITECTURE_GUIDE.md)
 - [Guía de Inicio Rápido](../QUICK_START_GUIDE.md)
+- [Mejores Prácticas](../BEST_PRACTICES.md)
+- [Casos de Uso Reales](USE_CASES.md)
+- [Guía de Troubleshooting](../TROUBLESHOOTING_GUIDE.md)
 - [README Principal del Sistema](../README.md)
 
 ---
