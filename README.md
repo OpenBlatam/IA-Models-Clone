@@ -562,6 +562,7 @@ print(report)
 - 💡 **[Ejemplos Prácticos](bulk/EXAMPLES.md)**: Colección completa de ejemplos de código
 - 📡 **[Referencia de API](API_REFERENCE.md)**: Documentación completa de APIs
 - 📚 **[Índice de Documentación](DOCUMENTATION_INDEX.md)**: Navegación completa de toda la documentación
+- 📊 **[Resumen Ejecutivo](SUMMARY.md)**: Resumen completo y estadísticas del sistema
 
 ### Documentación Adicional
 
