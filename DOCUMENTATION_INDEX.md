@@ -55,6 +55,25 @@
 
 ## 🔧 Guías Técnicas
 
+- **[BEST_PRACTICES.md](BEST_PRACTICES.md)** - Mejores prácticas completas
+  - Optimización del KV Cache
+  - Seguridad
+  - Rendimiento
+  - Desarrollo
+  - Escalabilidad
+
+- **[TROUBLESHOOTING_GUIDE.md](TROUBLESHOOTING_GUIDE.md)** - Guía completa de troubleshooting
+  - Problemas comunes
+  - Problemas del KV Cache
+  - Problemas de rendimiento
+  - Diagnóstico avanzado
+
+- **[bulk/USE_CASES.md](bulk/USE_CASES.md)** - Casos de uso reales
+  - Generación masiva de documentos
+  - Procesamiento en tiempo real
+  - Automatización de flujos
+  - Integración empresarial
+
 ### Desarrollo
 - **[README.md - Sección Desarrollo](README.md#-desarrollo)** - Guía de desarrollo
 - **Testing**: Ver sección Testing en README principal
@@ -71,6 +90,13 @@
 - **KV Cache Metrics**: Ver [bulk/core/README_ULTRA_ADAPTIVE_KV_CACHE.md](bulk/core/README_ULTRA_ADAPTIVE_KV_CACHE.md#monitoring--observability)
 
 ## 🛠️ Referencia de API
+
+- **[API_REFERENCE.md](API_REFERENCE.md)** - Referencia completa de API
+  - Endpoints principales
+  - Schemas
+  - Autenticación
+  - Métricas
+  - Clientes Python
 
 ### API Principal
 - **Swagger UI**: http://localhost:8000/docs
