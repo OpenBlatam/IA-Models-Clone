@@ -2,10 +2,16 @@ from typing import Any, Dict, List
 
 from build import build_components
 from factories.callbacks import CALLBACKS
-from trainers.trainer import GenericTrainer, TrainerConfig
+from trainers.trainer import GenericTrainer
+from trainers.config import TrainerConfig
 
 
-def build_trainer(cfg: TrainerConfig, raw_cfg: Dict[str, Any], train_texts: List[str], val_texts: List[str], max_seq_len: int) -> GenericTrainer:
+def build_trainer(
+    raw_cfg: Dict[str, Any],
+    train_texts: List[str],
+    val_texts: List[str],
+    max_seq_len: int
+) -> GenericTrainer:
     comps = build_components(raw_cfg)
     memory_manager = comps.get("memory_manager")
     if memory_manager is not None:
@@ -44,6 +50,9 @@ def build_trainer(cfg: TrainerConfig, raw_cfg: Dict[str, Any], train_texts: List
         else:
             train_texts, val_texts = comps["datasets"].get("webdataset")(data_cfg.get("path", ""), text_field, None)
 
+    # Create TrainerConfig from dictionary
+    cfg = TrainerConfig.from_dict(raw_cfg)
+    
     # Package data options for trainer (collate, bucketing)
     data_options = {
         "collate": str(raw_cfg.get("data", {}).get("collate", "lm")),
@@ -59,19 +68,5 @@ def build_trainer(cfg: TrainerConfig, raw_cfg: Dict[str, Any], train_texts: List
         callbacks=callbacks,
         data_options=data_options,
     )
-    # Apply eval selection from YAML if present
-    eval_cfg = raw_cfg.get("eval", {})
-    select_by = str(eval_cfg.get("select_best_by", getattr(cfg, "select_best_by", "loss")))
-    trainer.cfg.select_best_by = select_by
-    # Map checkpoint/ema/resume YAML to cfg
-    ckpt_cfg = raw_cfg.get("checkpoint", {})
-    ema_cfg = raw_cfg.get("ema", {})
-    resume_cfg = raw_cfg.get("resume", {})
-    trainer.cfg.ckpt_interval_steps = int(ckpt_cfg.get("interval_steps", trainer.cfg.ckpt_interval_steps))
-    trainer.cfg.ckpt_keep_last = int(ckpt_cfg.get("keep_last", trainer.cfg.ckpt_keep_last))
-    trainer.cfg.ema_enabled = bool(ema_cfg.get("enabled", trainer.cfg.ema_enabled))
-    trainer.cfg.ema_decay = float(ema_cfg.get("decay", trainer.cfg.ema_decay))
-    trainer.cfg.resume_enabled = bool(resume_cfg.get("enabled", trainer.cfg.resume_enabled))
-    resume_dir = resume_cfg.get("checkpoint_dir")
-    trainer.cfg.resume_checkpoint_dir = str(resume_dir) if resume_dir else None
+    
     return trainer

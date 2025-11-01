@@ -342,6 +342,234 @@ features/
   - Ejemplos básicos, intermedios y avanzados
   - Patrones comunes
   - Recetas de integración
+  
+- **[ANTI_PATTERNS.md](ANTI_PATTERNS.md)** - Anti-patrones y qué evitar
+  - Anti-patrones de cache y configuración
+  - Anti-patrones de performance y seguridad
+  - Anti-patrones de código
+  - Mejores prácticas
+  
+- **[SECURITY_CHECKLIST.md](SECURITY_CHECKLIST.md)** - Checklist de seguridad
+  - Pre-deployment security
+  - Production hardening
+  - Security audit
+  - Incident response
+  
+- **[PERFORMANCE_CHECKLIST.md](PERFORMANCE_CHECKLIST.md)** - Checklist de rendimiento
+  - Pre-deployment performance
+  - Métricas a monitorear
+  - Performance tuning
+  - Targets y objetivos
+  
+- **[TROUBLESHOOTING_BY_SYMPTOM.md](TROUBLESHOOTING_BY_SYMPTOM.md)** - Troubleshooting por síntomas
+  - Diagnóstico por síntomas comunes
+  - Soluciones rápidas
+  - Flujo de diagnóstico
+  - Cuando buscar más ayuda
+  
+- **[QUICK_SETUP_GUIDES.md](QUICK_SETUP_GUIDES.md)** - Guías de setup rápido
+  - Setup por caso de uso (desarrollo, producción, testing, etc.)
+  - Presets de configuración
+  - Scripts de setup automático
+  - Verificación post-setup
+  
+- **[QUICK_WINS.md](QUICK_WINS.md)** - Quick Wins de rendimiento
+  - Mejoras en 5 minutos
+  - Mejoras en 15 minutos
+  - Mejoras en 30 minutos
+  - Impacto esperado por mejora
+  - Combinaciones de quick wins
+  - Scripts de aplicación automática
+  
+- **[BEST_PRACTICES_SUMMARY.md](BEST_PRACTICES_SUMMARY.md)** - Resumen de mejores prácticas
+  - Principios fundamentales
+  - Checklist por categoría
+  - Mejores prácticas por escenario
+  - Patrones recomendados
+  - Qué NO hacer (resumen)
+  - Métricas de éxito
+  
+- **[COMMON_WORKFLOWS.md](COMMON_WORKFLOWS.md)** - Workflows comunes
+  - Desarrollo diario
+  - Deployment
+  - Troubleshooting
+  - Optimización
+  - Mantenimiento
+  - Monitoreo
+  
+- **[DOCUMENTATION_MAP.md](DOCUMENTATION_MAP.md)** - Mapa de documentación
+  - Navegación por nivel de experiencia
+  - Navegación por tarea
+  - Navegación por componente
+  - Rutas de aprendizaje
+  - Matriz de documentación
+  - Enlaces rápidos por situación
+  
+- **[CONFIGURATION_DECISION_TREE.md](CONFIGURATION_DECISION_TREE.md)** - Árbol de decisión de configuración
+  - Decision tree visual
+  - Presets por caso de uso
+  - Configuración por prioridad
+  - Configuración por recurso
+  - Matriz de decisión rápida
+  
+- **[COST_OPTIMIZATION.md](COST_OPTIMIZATION.md)** - Optimización de costos
+  - Análisis de componentes de costo
+  - Estrategias de reducción
+  - ROI de optimizaciones
+  - Presupuesto por escenario
+  - Monitoring de costos
+  
+- **[SCALING_GUIDE.md](SCALING_GUIDE.md)** - Guía de escalabilidad
+  - Escalado vertical vs horizontal
+  - Planificación por fase
+  - Auto-scaling inteligente
+  - Escalado multi-región
+  - Monitoreo de escalado
+  - Estrategias por escenario
+  
+- **[ERROR_CODES_REFERENCE.md](ERROR_CODES_REFERENCE.md)** - Referencia de códigos de error
+  - Errores KV Cache Engine (E001-E005)
+  - Errores del Sistema (S001-S004)
+  - Errores de API (A001-A003)
+  - Búsqueda rápida por error
+  - Herramientas de diagnóstico automático
+  - Tabla de referencia rápida
+  
+- **[QUICK_DIAGNOSTICS.md](QUICK_DIAGNOSTICS.md)** - Diagnóstico rápido
+  - Health check completo
+  - Performance snapshot
+  - Configuration validator
+  - Resource usage check
+  - Diagnóstico por categoría
+  - Checklists de diagnóstico
+  
+- **[API_VERSIONING.md](API_VERSIONING.md)** - Versionado de API
+  - Estrategias de versionado (URL, Header, Query)
+  - Implementación recomendada
+  - Semantic versioning
+  - Migración entre versiones
+  - Deprecation policy
+  - Changelog de API
+  
+- **[GETTING_HELP.md](GETTING_HELP.md)** - Cómo obtener ayuda
+  - Ruta de ayuda por situación
+  - Cómo buscar en documentación
+  - Recursos por nivel
+  - Cuando necesitas más ayuda
+  - Recopilar información para soporte
+  
+- **[DISASTER_RECOVERY.md](DISASTER_RECOVERY.md)** - Disaster Recovery
+  - Plan de recuperación ante desastres
+  - Estrategias de backup
+  - Procedimientos de restore
+  - Backup encriptado
+  - RTO y RPO objetivos
+  - Test de disaster recovery
+  
+- **[ONBOARDING_GUIDE.md](ONBOARDING_GUIDE.md)** - Guía de onboarding
+  - Primer día (30 min)
+  - Primera semana
+  - Primer mes
+  - Checklist de onboarding
+  - Recursos por rol
+  - Objetivos de aprendizaje
+  - Notas para mentores
+  
+- **[OPERATIONAL_RUNBOOK.md](OPERATIONAL_RUNBOOK.md)** - Runbook operacional
+  - Incidentes críticos y procedimientos
+  - Operaciones diarias (morning/evening routine)
+  - Mantenimiento regular (diario, semanal, mensual)
+  - Escalación
+  - Métricas de monitoreo
+  
+- **[QUICK_LINKS.md](QUICK_LINKS.md)** - Quick Links
+  - Links más usados
+  - Por situación común
+  - Búsqueda rápida
+  
+- **[CONFIGURATION_RECIPES.md](CONFIGURATION_RECIPES.md)** - Recetas de configuración
+  - Configuraciones listas para usar (8+ recetas)
+  - Recetas de integración (FastAPI, Django, Celery)
+  - Recetas de .env
+  - Recetas por objetivo
+  
+- **[ALERTING_CONFIGURATION.md](ALERTING_CONFIGURATION.md)** - Configuración de alertas
+  - Alertas críticas (severidad alta)
+  - Alertas importantes (severidad media)
+  - Alertas informativas (severidad baja)
+  - Configuración Prometheus
+  - Notificaciones (Slack, Email, PagerDuty)
+  - Dashboard de alertas
+  
+- **[LOGGING_BEST_PRACTICES.md](LOGGING_BEST_PRACTICES.md)** - Mejores prácticas de logging
+  - Estructura de logs
+  - Logging estructurado (JSON)
+  - Niveles de logging
+  - Logging seguro (redacción)
+  - Logging de auditoría
+  - Logging de performance
+  - Configuración por entorno
+  - ELK Stack integration
+  
+- **[CI_CD_SETUP.md](CI_CD_SETUP.md)** - Setup de CI/CD
+  - GitHub Actions workflow
+  - Pre-commit hooks
+  - Dockerfile para CI/CD
+  - Pipeline completo (lint, test, build, deploy)
+  - Checklist de CI/CD
+  
+- **[ADVANCED_DEBUGGING.md](ADVANCED_DEBUGGING.md)** - Debugging avanzado
+  - Estrategias de debugging
+  - Debugging interactivo (IPython)
+  - Debugging asíncrono
+  - Memory leak debugging
+  - GPU memory debugging
+  - Distributed systems debugging
+  - Network debugging
+  - Performance debugging
+  
+- **[PROFILING_GUIDE.md](PROFILING_GUIDE.md)** - Guía de profiling
+  - Tipos de profiling (CPU, memory, I/O, GPU)
+  - Herramientas (py-spy, cProfile, line_profiler)
+  - Memory profiling avanzado
+  - GPU profiling (CUDA)
+  - KV Cache profiling
+  - Análisis de resultados
+  - Flame graphs
+  
+- **[NETWORKING_GUIDE.md](NETWORKING_GUIDE.md)** - Guía de networking
+  - Configuración de red Docker
+  - Network policies (Kubernetes)
+  - Comunicación REST/gRPC/WebSocket
+  - Security (TLS/SSL)
+  - Load balancing
+  - Network monitoring
+  - Health checks
+  
+- **[E2E_TESTING.md](E2E_TESTING.md)** - Testing end-to-end
+  - Estrategia de E2E testing
+  - Setup y configuración
+  - Tests de flujos completos
+  - Tests de integración
+  - Performance testing E2E
+  - Stress testing
+  
+- **[ERROR_HANDLING_PATTERNS.md](ERROR_HANDLING_PATTERNS.md)** - Patrones de error handling
+  - Principios de error handling
+  - Patrones de retry (exponential backoff)
+  - Circuit breaker pattern
+  - Error wrapping y jerarquía
+  - Error logging estructurado
+  - Graceful degradation
+  - Partial success handling
+  
+- **[SECURITY_AUDITING.md](SECURITY_AUDITING.md)** - Auditoría de seguridad
+  - Checklist completo de seguridad
+  - Auditoría automatizada
+  - Security scanning tools
+  - Security testing
+  - Security metrics y monitoring
+  - Checklist por componente
 
 ## 🛠️ Scripts y Utilidades
 

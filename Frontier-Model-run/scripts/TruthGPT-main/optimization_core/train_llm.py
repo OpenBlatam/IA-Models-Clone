@@ -7,7 +7,7 @@ import torch
 import yaml
 from datasets import load_dataset
 
-from trainers.trainer import TrainerConfig
+from trainers.config import TrainerConfig
 from build_trainer import build_trainer
 from utils.logging_utils import setup_logger
 
@@ -31,54 +31,6 @@ def read_yaml(path: str) -> dict:
     except Exception as e:
         logger.error(f"Error reading config file {path}: {e}", exc_info=True)
         raise
-
-
-def to_cfg(config: dict) -> TrainerConfig:
-    model = config.get("model", {})
-    training = config.get("training", {})
-    hardware = config.get("hardware", {})
-    optimizer_cfg = config.get("optimizer", {})
-    eval_cfg = config.get("eval", {})
-
-    return TrainerConfig(
-        seed=config.get("seed", 42),
-        run_name=config.get("run_name", "run"),
-        output_dir=config.get("output_dir", "runs/run"),
-        model_name=model.get("name_or_path", "gpt2"),
-        gradient_checkpointing=bool(model.get("gradient_checkpointing", True)),
-        lora_enabled=bool(model.get("lora", {}).get("enabled", False)),
-        lora_r=int(model.get("lora", {}).get("r", 16)),
-        lora_alpha=int(model.get("lora", {}).get("alpha", 32)),
-        lora_dropout=float(model.get("lora", {}).get("dropout", 0.05)),
-        epochs=int(training.get("epochs", 3)),
-        train_batch_size=int(training.get("train_batch_size", 8)),
-        eval_batch_size=int(training.get("eval_batch_size", 8)),
-        grad_accum_steps=int(training.get("grad_accum_steps", 2)),
-        max_grad_norm=float(training.get("max_grad_norm", 1.0)),
-        learning_rate=float(training.get("learning_rate", 5e-5)),
-        weight_decay=float(training.get("weight_decay", 0.01)),
-        warmup_ratio=float(training.get("warmup_ratio", 0.06)),
-        scheduler=str(training.get("scheduler", "cosine")),
-        mixed_precision=str(training.get("mixed_precision", "bf16")),
-        early_stopping_patience=int(training.get("early_stopping_patience", 2)),
-        log_interval=int(training.get("log_interval", 50)),
-        eval_interval=int(training.get("eval_interval", 500)),
-        device=str(hardware.get("device", "auto")),
-        allow_tf32=bool(training.get("allow_tf32", True)),
-        torch_compile=bool(training.get("torch_compile", False)),
-        compile_mode=str(training.get("compile_mode", "default")),
-        fused_adamw=bool(training.get("fused_adamw", True)),
-        detect_anomaly=bool(training.get("detect_anomaly", False)),
-        use_profiler=bool(training.get("use_profiler", False)),
-        save_safetensors=bool(training.get("save_safetensors", True)),
-        optimizer_type=str(optimizer_cfg.get("type", "adamw")),
-        # store selected metric in cfg for trainer usage
-        # (trainer will still log both loss and ppl)
-        
-        num_workers=int(config.get("data", {}).get("num_workers", 4)),
-        prefetch_factor=int(config.get("data", {}).get("prefetch_factor", 2)),
-        persistent_workers=bool(config.get("data", {}).get("persistent_workers", True)),
-    )
 
 
 def load_text_splits(
@@ -173,7 +125,7 @@ def main() -> None:
 
         # Load configuration
         cfg_dict = read_yaml(args.config)
-        cfg = to_cfg(cfg_dict)
+        cfg = TrainerConfig.from_dict(cfg_dict)
 
         # Extract data configuration
         data_cfg = cfg_dict.get("data", {})
@@ -188,18 +140,17 @@ def main() -> None:
 
         # Log configuration summary
         logger.info("Training Configuration:")
-        logger.info(f"  Device: {cfg.device}")
-        logger.info(f"  Model: {cfg.model_name}")
+        logger.info(f"  Device: {cfg.hardware.device}")
+        logger.info(f"  Model: {cfg.model.name_or_path}")
         logger.info(f"  Output Directory: {cfg.output_dir}")
-        logger.info(f"  Epochs: {cfg.epochs}")
-        logger.info(f"  Batch Size: {cfg.train_batch_size}")
-        logger.info(f"  Learning Rate: {cfg.learning_rate}")
-        logger.info(f"  Mixed Precision: {cfg.mixed_precision}")
-        logger.info(f"  Gradient Accumulation Steps: {cfg.grad_accum_steps}")
+        logger.info(f"  Epochs: {cfg.training.epochs}")
+        logger.info(f"  Batch Size: {cfg.training.train_batch_size}")
+        logger.info(f"  Learning Rate: {cfg.training.learning_rate}")
+        logger.info(f"  Mixed Precision: {cfg.training.mixed_precision}")
+        logger.info(f"  Gradient Accumulation Steps: {cfg.training.grad_accum_steps}")
 
         # Build and train
         trainer = build_trainer(
-            cfg=cfg,
             raw_cfg=cfg_dict,
             train_texts=train_texts,
             val_texts=val_texts,

@@ -216,6 +216,36 @@
 - ✅ **Changelog Detallado**
 - ✅ **Cheatsheet de Comandos**
 - ✅ **Cookbook de Ejemplos**
+- ✅ **Guía de Anti-Patrones**
+- ✅ **Security Checklist Completo**
+- ✅ **Performance Checklist Completo**
+- ✅ **Troubleshooting por Síntomas**
+- ✅ **Guías de Setup Rápido por Caso de Uso**
+- ✅ **Quick Wins de Rendimiento**
+- ✅ **Resumen Ejecutivo de Mejores Prácticas**
+- ✅ **Workflows Comunes del Día a Día**
+- ✅ **Mapa Visual de Documentación**
+- ✅ **Árbol de Decisión de Configuración**
+- ✅ **Optimización de Costos**
+- ✅ **Guía de Escalabilidad**
+- ✅ **Referencia de Códigos de Error**
+- ✅ **Herramientas de Diagnóstico Rápido**
+- ✅ **Guía de Versionado de API**
+- ✅ **Guía Completa de Obtener Ayuda**
+- ✅ **Plan Completo de Disaster Recovery**
+- ✅ **Guía de Onboarding Completa**
+- ✅ **Runbook Operacional**
+- ✅ **Quick Links para Acceso Rápido**
+- ✅ **Recetas de Configuración Listas para Usar**
+- ✅ **Configuración Completa de Alertas**
+- ✅ **Mejores Prácticas de Logging**
+- ✅ **Setup Completo de CI/CD**
+- ✅ **Guía Avanzada de Debugging**
+- ✅ **Guía Completa de Profiling**
+- ✅ **Guía Completa de Networking**
+- ✅ **Testing End-to-End Completo**
+- ✅ **Patrones de Error Handling**
+- ✅ **Auditoría Completa de Seguridad**
 
 ---
 

@@ -616,6 +616,27 @@ print(report)
 - ✅ **[Resumen de Mejores Prácticas](BEST_PRACTICES_SUMMARY.md)**: Resumen ejecutivo de mejores prácticas
 - 🔄 **[Workflows Comunes](COMMON_WORKFLOWS.md)**: Flujos de trabajo diarios
 - 🗺️ **[Mapa de Documentación](DOCUMENTATION_MAP.md)**: Navegación visual de la documentación
+- 🌳 **[Árbol de Decisión de Configuración](CONFIGURATION_DECISION_TREE.md)**: Guía visual para configurar
+- 💰 **[Optimización de Costos](COST_OPTIMIZATION.md)**: Estrategias para reducir costos
+- 📈 **[Guía de Escalabilidad](SCALING_GUIDE.md)**: Estrategias de escalado vertical y horizontal
+- 🚨 **[Referencia de Códigos de Error](ERROR_CODES_REFERENCE.md)**: Errores comunes y soluciones
+- 🔍 **[Diagnóstico Rápido](QUICK_DIAGNOSTICS.md)**: Herramientas de diagnóstico rápido
+- 🔄 **[Versionado de API](API_VERSIONING.md)**: Estrategias y mejores prácticas de versionado
+- 🆘 **[Cómo Obtener Ayuda](GETTING_HELP.md)**: Guía completa para encontrar ayuda
+- 🚨 **[Disaster Recovery](DISASTER_RECOVERY.md)**: Plan completo de recuperación ante desastres
+- 👋 **[Guía de Onboarding](ONBOARDING_GUIDE.md)**: Onboarding para nuevos miembros del equipo
+- 📖 **[Runbook Operacional](OPERATIONAL_RUNBOOK.md)**: Procedimientos operacionales diarios
+- 🔗 **[Quick Links](QUICK_LINKS.md)**: Acceso rápido a documentación más usada
+- 🍳 **[Recetas de Configuración](CONFIGURATION_RECIPES.md)**: Configuraciones listas para copiar
+- 🔔 **[Configuración de Alertas](ALERTING_CONFIGURATION.md)**: Setup completo de alertas
+- 📝 **[Mejores Prácticas de Logging](LOGGING_BEST_PRACTICES.md)**: Logging estructurado y seguro
+- 🔄 **[Setup de CI/CD](CI_CD_SETUP.md)**: Pipeline completo de CI/CD
+- 🐛 **[Debugging Avanzado](ADVANCED_DEBUGGING.md)**: Técnicas avanzadas de debugging
+- ⚡ **[Guía de Profiling](PROFILING_GUIDE.md)**: Profiling completo de performance
+- 🌐 **[Guía de Networking](NETWORKING_GUIDE.md)**: Configuración y comunicación de red
+- 🧪 **[Testing E2E](E2E_TESTING.md)**: Testing end-to-end completo
+- ⚠️ **[Patrones de Error Handling](ERROR_HANDLING_PATTERNS.md)**: Manejo robusto de errores
+- 🔒 **[Auditoría de Seguridad](SECURITY_AUDITING.md)**: Checklist y herramientas de seguridad
 
 ### 🛠️ Documentación para Desarrolladores (KV Cache Engine)
 

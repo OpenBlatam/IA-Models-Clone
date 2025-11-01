@@ -1,0 +1,51 @@
+"""
+Constants for KV Cache.
+
+Centralizes magic numbers and configuration constants.
+"""
+from enum import Enum
+
+# Default values
+DEFAULT_MAX_TOKENS = 4096
+DEFAULT_NUM_HEADS = 8
+DEFAULT_HEAD_DIM = 64
+DEFAULT_BLOCK_SIZE = 128
+DEFAULT_COMPRESSION_RATIO = 0.3
+DEFAULT_GC_THRESHOLD = 0.8
+DEFAULT_HISTORY_SIZE = 1000
+DEFAULT_MAX_RETRIES = 3
+DEFAULT_WINDOW_SIZE = 1000
+DEFAULT_WARMUP_SAMPLES = 100
+
+# Quantization constants
+QUANTIZATION_BITS_SUPPORTED = [4, 8, 16]
+INT8_MAX_VALUE = 127
+INT8_MIN_VALUE = -128
+INT4_MAX_VALUE = 7
+INT4_MIN_VALUE = -8
+
+# Compression constants
+COMPRESSION_RATIO_MIN = 0.1
+COMPRESSION_RATIO_MAX = 1.0
+
+# Memory constants
+MB_TO_BYTES = 1024 * 1024
+BYTES_TO_MB = 1.0 / MB_TO_BYTES
+
+# Cache operation constants
+EVICTION_FRACTION = 0.25  # Evict 25% of cache
+MIN_EVICTIONS = 1
+GC_INTERVAL = 10  # Collect garbage every 10 evictions
+
+# Profiling constants
+PROFILE_ENABLED_DEFAULT = False
+
+# Alert thresholds
+DEFAULT_LOW_HIT_RATE_THRESHOLD = 0.3
+DEFAULT_HIGH_MEMORY_MB_THRESHOLD = 8000
+
+# Performance thresholds
+LOW_HIT_RATE_WARNING = 0.3
+HIGH_HIT_RATE_RELAX = 0.8
+HIGH_MEMORY_WARNING = 0.8
+
