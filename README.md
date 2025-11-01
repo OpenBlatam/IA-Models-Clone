@@ -607,6 +607,15 @@ print(report)
 - 📝 **[Changelog Detallado](CHANGELOG_DETAILED.md)**: Historial completo de cambios
 - 🚀 **[Cheatsheet de Comandos](COMMANDS_CHEATSHEET.md)**: Referencia rápida de comandos
 - 🍳 **[Cookbook de Ejemplos](EXAMPLES_COOKBOOK.md)**: Colección de ejemplos prácticos
+- ⚠️ **[Anti-Patrones](ANTI_PATTERNS.md)**: Qué NO hacer - Mejores prácticas
+- 🔒 **[Security Checklist](SECURITY_CHECKLIST.md)**: Checklist completo de seguridad
+- ⚡ **[Performance Checklist](PERFORMANCE_CHECKLIST.md)**: Checklist de rendimiento
+- 🔍 **[Troubleshooting por Síntomas](TROUBLESHOOTING_BY_SYMPTOM.md)**: Diagnóstico por síntomas
+- ⚡ **[Guías de Setup Rápido](QUICK_SETUP_GUIDES.md)**: Setup por caso de uso
+- 🚀 **[Quick Wins](QUICK_WINS.md)**: Mejoras rápidas de rendimiento
+- ✅ **[Resumen de Mejores Prácticas](BEST_PRACTICES_SUMMARY.md)**: Resumen ejecutivo de mejores prácticas
+- 🔄 **[Workflows Comunes](COMMON_WORKFLOWS.md)**: Flujos de trabajo diarios
+- 🗺️ **[Mapa de Documentación](DOCUMENTATION_MAP.md)**: Navegación visual de la documentación
 
 ### 🛠️ Documentación para Desarrolladores (KV Cache Engine)
 
