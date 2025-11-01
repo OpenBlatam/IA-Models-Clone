@@ -508,11 +508,29 @@ For support and questions:
 - Use CLI tool: `python core/ultra_adaptive_kv_cache_cli.py --help`
 - Consult [Advanced Usage Guide](ADVANCED_USAGE_GUIDE.md) for advanced use cases
 
+## ⚡ Referencia Rápida
+
+Para una referencia rápida de comandos y código, consulta [QUICK_REFERENCE.md](QUICK_REFERENCE.md).
+
+## 📊 Comparación de Estrategias
+
+Para comparar diferentes estrategias y configuraciones del KV Cache, consulta [COMPARISON.md](COMPARISON.md).
+
+## 🔍 Troubleshooting Avanzado
+
+Para troubleshooting detallado de problemas específicos del KV Cache, consulta [ADVANCED_TROUBLESHOOTING.md](ADVANCED_TROUBLESHOOTING.md).
+
+## 🚀 Producción
+
+Para configurar el sistema para producción, consulta [PRODUCTION_READY.md](PRODUCTION_READY.md).
+
 ## 🔗 Recursos Relacionados
 
 - [Guía de Arquitectura](../ARCHITECTURE_GUIDE.md)
 - [Guía de Inicio Rápido](../QUICK_START_GUIDE.md)
 - [Mejores Prácticas](../BEST_PRACTICES.md)
+- [Tuning de Rendimiento](../PERFORMANCE_TUNING.md)
+- [Guía de Seguridad](../SECURITY_GUIDE.md)
 - [Casos de Uso Reales](USE_CASES.md)
 - [Guía de Troubleshooting](../TROUBLESHOOTING_GUIDE.md)
 - [README Principal del Sistema](../README.md)

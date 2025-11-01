@@ -235,6 +235,14 @@ features/
 │   └── middleware/             # Middleware
 ├── content_redundancy_detector/ # Detector de redundancia de contenido
 ├── bulk/                       # BUL - Generación de documentos empresariales
+│   ├── core/                   # Núcleo del sistema
+│   │   └── ultra_adaptive_kv_cache_engine.py  # KV Cache Engine ⚡
+│   ├── api/                    # Endpoints API
+│   ├── config/                 # Configuraciones
+│   ├── ADVANCED_USAGE_GUIDE.md # Guía avanzada
+│   ├── USE_CASES.md            # Casos de uso
+│   ├── EXAMPLES.md             # Ejemplos prácticos
+│   └── QUICK_REFERENCE.md      # Referencia rápida
 ├── bulk_truthgpt/              # Sistema Bulk TruthGPT
 ├── gamma_app/                  # Gamma App - Generación de contenido
 ├── business_agents/            # Agentes de negocio automatizados
@@ -285,9 +293,30 @@ features/
 ├── microservices_framework/    # Framework de microservicios
 ├── nginx/                      # Configuración Nginx
 ├── production/                 # Configuraciones de producción
+├── scripts/                    # Scripts de utilidad
+│   ├── setup_complete.sh      # Setup completo
+│   ├── health_check.sh         # Health check
+│   └── benchmark.sh            # Benchmarking
+├── config/                     # Configuraciones
+│   └── templates/              # Plantillas de configuración
+│       ├── production.env.template
+│       └── kv_cache_production.yaml
 ├── docker-compose.yml          # Orquestación Docker
 ├── docker-compose-all.yml     # Orquestación Docker completa
-└── start_system.py             # Script de inicio
+├── start_system.py             # Script de inicio
+├── README.md                   # Documentación principal
+├── QUICK_START_GUIDE.md        # Guía de inicio rápido
+├── ARCHITECTURE_GUIDE.md       # Guía de arquitectura
+├── BEST_PRACTICES.md           # Mejores prácticas
+├── TROUBLESHOOTING_GUIDE.md    # Guía de troubleshooting
+├── PERFORMANCE_TUNING.md       # Tuning de rendimiento
+├── SECURITY_GUIDE.md           # Guía de seguridad
+├── API_REFERENCE.md            # Referencia de API
+├── DEPLOYMENT_CHECKLIST.md     # Checklist de despliegue
+├── DOCUMENTATION_INDEX.md      # Índice de documentación
+├── SUMMARY.md                  # Resumen ejecutivo
+├── CONTRIBUTING.md             # Guía de contribución
+└── CHANGELOG.md                # Historial de cambios
 ```
 
 ### Servicios y Módulos Principales
@@ -561,8 +590,29 @@ print(report)
 - 💼 **[Casos de Uso Reales](bulk/USE_CASES.md)**: Ejemplos prácticos de implementación
 - 💡 **[Ejemplos Prácticos](bulk/EXAMPLES.md)**: Colección completa de ejemplos de código
 - 📡 **[Referencia de API](API_REFERENCE.md)**: Documentación completa de APIs
+- ⚡ **[Tuning de Rendimiento](PERFORMANCE_TUNING.md)**: Guía de optimización de rendimiento
+- 🔒 **[Guía de Seguridad](SECURITY_GUIDE.md)**: Mejores prácticas de seguridad
+- 🔄 **[Guía de Migración](MIGRATION_GUIDE.md)**: Migración entre versiones
+- 📊 **[Diagramas del Sistema](DIAGRAMS.md)**: Diagramas visuales de arquitectura y flujos
+- ❓ **[Preguntas Frecuentes](FAQ.md)**: FAQ completo con respuestas comunes
+- 🗺️ **[Roadmap](ROADMAP.md)**: Planificación y visión futura del proyecto
+- 🔗 **[Guía de Integración](INTEGRATION_GUIDE.md)**: Integración con FastAPI, Celery, Django, Flask, etc.
+- 📊 **[Guía de Benchmarking](BENCHMARKING_GUIDE.md)**: Benchmarking completo del sistema
+- 🎯 **[Estrategias de Optimización](OPTIMIZATION_STRATEGIES.md)**: Optimizaciones avanzadas
 - 📚 **[Índice de Documentación](DOCUMENTATION_INDEX.md)**: Navegación completa de toda la documentación
 - 📊 **[Resumen Ejecutivo](SUMMARY.md)**: Resumen completo y estadísticas del sistema
+- ✅ **[Checklist de Despliegue](DEPLOYMENT_CHECKLIST.md)**: Checklist completo para deployment
+- 🔧 **[Troubleshooting Quick Reference](TROUBLESHOOTING_QUICK_REFERENCE.md)**: Referencia rápida de troubleshooting
+- 📚 **[Glosario](GLOSSARY.md)**: Términos y conceptos del sistema
+- 📝 **[Changelog Detallado](CHANGELOG_DETAILED.md)**: Historial completo de cambios
+- 🚀 **[Cheatsheet de Comandos](COMMANDS_CHEATSHEET.md)**: Referencia rápida de comandos
+- 🍳 **[Cookbook de Ejemplos](EXAMPLES_COOKBOOK.md)**: Colección de ejemplos prácticos
+
+### 🛠️ Documentación para Desarrolladores (KV Cache Engine)
+
+- 🛠️ **[Guía de Desarrollo KV Cache](bulk/core/DEVELOPMENT_GUIDE.md)**: Desarrollo y extensión del KV Cache
+- 🧪 **[Guía de Testing KV Cache](bulk/core/TESTING_GUIDE.md)**: Testing completo del KV Cache
+- 📚 **[API Reference KV Cache](bulk/core/API_REFERENCE_COMPLETE.md)**: Referencia completa de API del KV Cache
 
 ### Documentación Adicional
 

@@ -219,6 +219,140 @@ features/
 - **[CHANGELOG.md](CHANGELOG.md)** - Historial de cambios
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Guía de contribución
 - **[API_REFERENCE.md](API_REFERENCE.md)** - Referencia completa de API
+- **[PERFORMANCE_TUNING.md](PERFORMANCE_TUNING.md)** - Guía de tuning de rendimiento
+- **[SECURITY_GUIDE.md](SECURITY_GUIDE.md)** - Guía completa de seguridad
+- **[DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)** - Checklist de despliegue
+- **[MIGRATION_GUIDE.md](MIGRATION_GUIDE.md)** - Guía de migración entre versiones
+- **[bulk/QUICK_REFERENCE.md](bulk/QUICK_REFERENCE.md)** - Referencia rápida BUL
+
+## 🛠️ Documentación de Desarrollo (KV Cache)
+
+- **[bulk/core/DEVELOPMENT_GUIDE.md](bulk/core/DEVELOPMENT_GUIDE.md)** - Guía completa de desarrollo del KV Cache
+  - Arquitectura del código
+  - Extender el KV Cache
+  - Crear nuevas estrategias
+  - Debugging y profiling
+  
+- **[bulk/core/TESTING_GUIDE.md](bulk/core/TESTING_GUIDE.md)** - Guía completa de testing
+  - Setup de testing
+  - Tests unitarios
+  - Tests de integración
+  - Tests de performance
+  - CI/CD integration
+  
+- **[bulk/core/API_REFERENCE_COMPLETE.md](bulk/core/API_REFERENCE_COMPLETE.md)** - Referencia completa de API del KV Cache
+  - Todas las clases y métodos
+  - Parámetros y retornos
+  - Ejemplos de uso
+  - Advanced features
+
+## 📊 Recursos Visuales y Comparativos
+
+- **[DIAGRAMS.md](DIAGRAMS.md)** - Diagramas visuales del sistema
+  - Arquitectura completa
+  - Flujos de datos
+  - Estrategias de cache
+  - Sistemas de monitoreo
+  - Escalabilidad
+  
+- **[FAQ.md](FAQ.md)** - Preguntas frecuentes
+  - General
+  - KV Cache Engine
+  - Configuración
+  - Rendimiento
+  - Troubleshooting
+  - Deployment
+  - Desarrollo
+  
+- **[ROADMAP.md](ROADMAP.md)** - Roadmap del proyecto
+  - Versiones futuras
+  - Objetivos a largo plazo
+  - Prioridades
+  - Contribuciones deseadas
+  
+- **[bulk/COMPARISON.md](bulk/COMPARISON.md)** - Comparación de estrategias BUL
+  - LRU vs LFU vs Adaptive
+  - Configuraciones preset
+  - Modos de operación
+  - Técnicas de optimización
+  - Casos de uso
+  
+- **[INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md)** - Guía de integración
+  - FastAPI, Celery, Django, Flask
+  - Redis, PostgreSQL
+  - Prometheus, Grafana
+  - REST, WebSocket, gRPC
+  
+- **[bulk/ADVANCED_TROUBLESHOOTING.md](bulk/ADVANCED_TROUBLESHOOTING.md)** - Troubleshooting avanzado BUL
+  - Problemas de rendimiento
+  - Problemas de memoria
+  - Problemas de GPU
+  - Problemas de cache
+  - Debugging avanzado
+  
+- **[bulk/PRODUCTION_READY.md](bulk/PRODUCTION_READY.md)** - Guía de producción BUL
+  - Checklist de producción
+  - Configuración óptima
+  - Seguridad
+  - Monitoreo
+  - Backup y disaster recovery
+  - Incident response
+  
+- **[BENCHMARKING_GUIDE.md](BENCHMARKING_GUIDE.md)** - Guía completa de benchmarking
+  - Setup de benchmarking
+  - Benchmarks de latencia, throughput, memoria
+  - Benchmarks de cache
+  - Análisis y visualización de resultados
+  
+- **[OPTIMIZATION_STRATEGIES.md](OPTIMIZATION_STRATEGIES.md)** - Estrategias de optimización avanzada
+  - Optimización de cache (warming, partitioning, prefetching)
+  - Optimización de memoria (pools, compresión adaptativa)
+  - Optimización de GPU (mixed precision, memory management)
+  - Optimización de red y base de datos
+  - Optimización combinada
+
+## 📚 Referencias y Recursos
+
+- **[TROUBLESHOOTING_QUICK_REFERENCE.md](TROUBLESHOOTING_QUICK_REFERENCE.md)** - Referencia rápida de troubleshooting
+  - Problemas comunes y soluciones rápidas
+  - Comandos de diagnóstico
+  - Presets de configuración
+  - Checklist de verificación
+  
+- **[GLOSSARY.md](GLOSSARY.md)** - Glosario completo de términos
+  - Definiciones de conceptos clave
+  - Términos técnicos
+  - Acrónimos y abreviaciones
+  
+- **[CHANGELOG_DETAILED.md](CHANGELOG_DETAILED.md)** - Changelog detallado
+  - Historial completo de versiones
+  - Features por categoría
+  - Estadísticas de desarrollo
+  - Roadmap de versiones
+  
+- **[COMMANDS_CHEATSHEET.md](COMMANDS_CHEATSHEET.md)** - Cheatsheet de comandos
+  - Docker commands
+  - Python/KV Cache CLI
+  - Configuración
+  - Monitoreo y debugging
+  - Backup y restore
+  - Deployment
+  
+- **[EXAMPLES_COOKBOOK.md](EXAMPLES_COOKBOOK.md)** - Cookbook de ejemplos
+  - Ejemplos básicos, intermedios y avanzados
+  - Patrones comunes
+  - Recetas de integración
+
+## 🛠️ Scripts y Utilidades
+
+- **[scripts/setup_complete.sh](scripts/setup_complete.sh)** - Script de setup completo
+- **[scripts/health_check.sh](scripts/health_check.sh)** - Health check del sistema
+- **[scripts/benchmark.sh](scripts/benchmark.sh)** - Script de benchmarking
+
+## 📋 Plantillas de Configuración
+
+- **[config/templates/production.env.template](config/templates/production.env.template)** - Template .env para producción
+- **[config/templates/kv_cache_production.yaml](config/templates/kv_cache_production.yaml)** - Config KV Cache producción
 
 ---
 

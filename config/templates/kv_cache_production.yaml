@@ -1,0 +1,59 @@
+# Ultra Adaptive KV Cache - Production Configuration Template
+# Configuración optimizada para producción
+
+kv_cache:
+  # Configuración Core
+  num_heads: 16
+  head_dim: 128
+  max_tokens: 16384
+  block_size: 256
+  
+  # Estrategia
+  cache_strategy: "adaptive"  # lru, lfu, adaptive, paged
+  cache_mode: "inference"
+  
+  # Optimización
+  use_compression: true
+  compression_ratio: 0.3
+  use_quantization: false
+  quantization_bits: 8
+  
+  # Memoria
+  max_memory_mb: 8192
+  enable_gc: true
+  gc_threshold: 0.8
+  
+  # Performance
+  pin_memory: true
+  non_blocking: true
+  dtype: "float16"  # float32, float16, bfloat16
+  
+  # Adaptive Settings
+  adaptive_compression: true
+  adaptive_quantization: false
+  monitor_memory: true
+  
+  # Advanced Features
+  enable_persistence: true
+  persistence_path: "/data/kv_cache"
+  enable_prefetch: true
+  prefetch_size: 8
+  enable_profiling: false  # Desactivar en producción
+  
+  # Distributed
+  enable_distributed: false
+  distributed_backend: "nccl"  # nccl, gloo, mpi
+  
+  # Multi-tenant
+  multi_tenant: false
+  tenant_isolation: true
+
+# Presets disponibles:
+# - development: Configuración para desarrollo
+# - production: Configuración optimizada para producción
+# - high_performance: Máximo rendimiento
+# - memory_efficient: Optimizado para memoria
+# - bulk_processing: Para procesamiento masivo
+
+preset: "production"
+
