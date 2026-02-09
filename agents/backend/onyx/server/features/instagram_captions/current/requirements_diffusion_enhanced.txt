@@ -1,0 +1,38 @@
+# Enhanced Diffusion Models System Requirements
+# Core PyTorch and deep learning
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Advanced diffusion capabilities
+diffusers>=0.21.0
+transformers>=4.30.0
+accelerate>=0.20.0
+
+# Data handling and utilities
+numpy>=1.21.0
+tqdm>=4.64.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Configuration and serialization
+pyyaml>=6.0
+dataclasses-json>=0.5.0
+
+# Optional performance optimizations
+xformers>=0.0.16  # For memory-efficient attention
+apex>=0.1.0  # For mixed precision training
+
+# Development and testing
+pytest>=7.0.0
+black>=22.0.0
+flake8>=5.0.0
+
+# Visualization and monitoring
+tensorboard>=2.10.0
+wandb>=0.13.0  # Optional: Weights & Biases integration
+
+# Additional utilities
+pillow>=9.0.0  # For image processing
+scipy>=1.9.0  # For scientific computing
+scikit-learn>=1.1.0  # For evaluation metrics

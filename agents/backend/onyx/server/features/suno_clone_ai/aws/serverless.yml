@@ -1,0 +1,179 @@
+service: suno-clone-ai
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
+  memorySize: 3008  # Para modelos de ML
+  timeout: 900  # 15 minutos
+  environment:
+    STAGE: ${self:provider.stage}
+    AWS_REGION: ${self:provider.region}
+    DEBUG: 'false'
+    ENABLE_TRACING: 'true'
+    CIRCUIT_BREAKER_ENABLED: 'true'
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: 
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.dynamodbTable}"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.dynamodbTable}/*"
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource:
+        - "arn:aws:s3:::${self:custom.s3Bucket}"
+        - "arn:aws:s3:::${self:custom.s3Bucket}/*"
+    - Effect: Allow
+      Action:
+        - sqs:*
+      Resource:
+        - "arn:aws:sqs:${self:provider.region}:*:${self:custom.sqsQueue}"
+    - Effect: Allow
+      Action:
+        - logs:*
+        - cloudwatch:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - xray:PutTraceSegments
+        - xray:PutTelemetryRecords
+      Resource: "*"
+
+custom:
+  dynamodbTable: ${self:service}-${self:provider.stage}
+  s3Bucket: ${self:service}-${self:provider.stage}-audio
+  sqsQueue: ${self:service}-${self:provider.stage}-queue
+  pythonRequirements:
+    dockerizePip: true
+    layer: true
+    slim: true
+    strip: false
+
+functions:
+  api:
+    handler: aws/lambda_handler.lambda_handler
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+      - httpApi:
+          path: /
+          method: ANY
+          cors: true
+    environment:
+      DYNAMODB_TABLE_NAME: ${self:custom.dynamodbTable}
+      S3_BUCKET_NAME: ${self:custom.s3Bucket}
+      SQS_QUEUE_NAME: ${self:custom.sqsQueue}
+      CLOUDWATCH_LOG_GROUP: ${self:service}-${self:provider.stage}
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
+    reservedConcurrentExecutions: 10  # Limitar concurrencia para controlar costos
+
+  sqsProcessor:
+    handler: aws/lambda_handler.sqs_handler
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - SQSQueue
+              - Arn
+          batchSize: 10
+    timeout: 900
+    memorySize: 3008
+
+  s3Processor:
+    handler: aws/lambda_handler.s3_handler
+    events:
+      - s3:
+          bucket: ${self:custom.s3Bucket}
+          event: s3:ObjectCreated:*
+          existing: false
+    timeout: 300
+    memorySize: 1024
+
+resources:
+  Resources:
+    # DynamoDB Table
+    SongsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.dynamodbTable}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: user_id
+            AttributeType: S
+          - AttributeName: created_at
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: user_id-created_at-index
+            KeySchema:
+              - AttributeName: user_id
+                KeyType: HASH
+              - AttributeName: created_at
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+    # S3 Bucket
+    S3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.s3Bucket}
+        VersioningConfiguration:
+          Status: Enabled
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        LifecycleConfiguration:
+          Rules:
+            - Id: DeleteOldVersions
+              Status: Enabled
+              NoncurrentVersionExpirationInDays: 30
+
+    # SQS Queue
+    SQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:custom.sqsQueue}
+        VisibilityTimeout: 900
+        MessageRetentionPeriod: 1209600  # 14 días
+        ReceiveMessageWaitTimeSeconds: 20  # Long polling
+
+    # CloudWatch Log Group
+    LogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}
+        RetentionInDays: 14
+
+plugins:
+  - serverless-python-requirements
+  - serverless-offline  # Para desarrollo local
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

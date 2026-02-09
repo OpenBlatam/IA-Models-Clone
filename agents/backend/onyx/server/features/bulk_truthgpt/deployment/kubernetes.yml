@@ -1,0 +1,571 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bulk-truthgpt
+  labels:
+    name: bulk-truthgpt
+    app: bulk-truthgpt
+    version: v1.0.0
+    environment: production
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bulk-truthgpt-config
+  namespace: bulk-truthgpt
+data:
+  FLASK_ENV: "production"
+  DATABASE_URL: "postgresql://postgres:password@postgresql-service:5432/bulk_truthgpt"
+  REDIS_URL: "redis://redis-service:6379/0"
+  SECRET_KEY: "your-secret-key-here"
+  JWT_SECRET_KEY: "your-jwt-secret-key-here"
+  LOG_LEVEL: "INFO"
+  MONITORING_ENABLED: "true"
+  OPTIMIZATION_ENABLED: "true"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bulk-truthgpt-secrets
+  namespace: bulk-truthgpt
+type: Opaque
+data:
+  database-password: cGFzc3dvcmQ=  # base64 encoded password
+  redis-password: cGFzc3dvcmQ=     # base64 encoded password
+  jwt-secret: eW91ci1qd3Qtc2VjcmV0LWtleS1oZXJl  # base64 encoded JWT secret
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulk-truthgpt-app
+  namespace: bulk-truthgpt
+  labels:
+    app: bulk-truthgpt
+    component: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bulk-truthgpt
+      component: app
+  template:
+    metadata:
+      labels:
+        app: bulk-truthgpt
+        component: app
+    spec:
+      containers:
+      - name: bulk-truthgpt-app
+        image: bulk-truthgpt:latest
+        ports:
+        - containerPort: 8000
+          name: http
+        env:
+        - name: FLASK_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: FLASK_ENV
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: REDIS_URL
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: SECRET_KEY
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: JWT_SECRET_KEY
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: LOG_LEVEL
+        - name: MONITORING_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: MONITORING_ENABLED
+        - name: OPTIMIZATION_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: OPTIMIZATION_ENABLED
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        volumeMounts:
+        - name: logs
+          mountPath: /app/logs
+        - name: cache
+          mountPath: /app/cache
+      volumes:
+      - name: logs
+        emptyDir: {}
+      - name: cache
+        emptyDir: {}
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulk-truthgpt-celery-worker
+  namespace: bulk-truthgpt
+  labels:
+    app: bulk-truthgpt
+    component: celery-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bulk-truthgpt
+      component: celery-worker
+  template:
+    metadata:
+      labels:
+        app: bulk-truthgpt
+        component: celery-worker
+    spec:
+      containers:
+      - name: bulk-truthgpt-celery-worker
+        image: bulk-truthgpt:latest
+        command: ["celery", "-A", "app.celery", "worker", "--loglevel=info"]
+        env:
+        - name: FLASK_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: FLASK_ENV
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: REDIS_URL
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: SECRET_KEY
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: JWT_SECRET_KEY
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        volumeMounts:
+        - name: logs
+          mountPath: /app/logs
+      volumes:
+      - name: logs
+        emptyDir: {}
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulk-truthgpt-celery-beat
+  namespace: bulk-truthgpt
+  labels:
+    app: bulk-truthgpt
+    component: celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bulk-truthgpt
+      component: celery-beat
+  template:
+    metadata:
+      labels:
+        app: bulk-truthgpt
+        component: celery-beat
+    spec:
+      containers:
+      - name: bulk-truthgpt-celery-beat
+        image: bulk-truthgpt:latest
+        command: ["celery", "-A", "app.celery", "beat", "--loglevel=info"]
+        env:
+        - name: FLASK_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: FLASK_ENV
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: REDIS_URL
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: SECRET_KEY
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: JWT_SECRET_KEY
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        volumeMounts:
+        - name: logs
+          mountPath: /app/logs
+      volumes:
+      - name: logs
+        emptyDir: {}
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulk-truthgpt-flower
+  namespace: bulk-truthgpt
+  labels:
+    app: bulk-truthgpt
+    component: flower
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bulk-truthgpt
+      component: flower
+  template:
+    metadata:
+      labels:
+        app: bulk-truthgpt
+        component: flower
+    spec:
+      containers:
+      - name: bulk-truthgpt-flower
+        image: bulk-truthgpt:latest
+        command: ["celery", "-A", "app.celery", "flower", "--port=5555"]
+        ports:
+        - containerPort: 5555
+          name: http
+        env:
+        - name: FLASK_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: FLASK_ENV
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: REDIS_URL
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: SECRET_KEY
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: bulk-truthgpt-config
+              key: JWT_SECRET_KEY
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5555
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5555
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bulk-truthgpt-app-service
+  namespace: bulk-truthgpt
+  labels:
+    app: bulk-truthgpt
+    component: app
+spec:
+  selector:
+    app: bulk-truthgpt
+    component: app
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bulk-truthgpt-flower-service
+  namespace: bulk-truthgpt
+  labels:
+    app: bulk-truthgpt
+    component: flower
+spec:
+  selector:
+    app: bulk-truthgpt
+    component: flower
+  ports:
+  - name: http
+    port: 5555
+    targetPort: 5555
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bulk-truthgpt-ingress
+  namespace: bulk-truthgpt
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - bulk-truthgpt.example.com
+    secretName: bulk-truthgpt-tls
+  rules:
+  - host: bulk-truthgpt.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bulk-truthgpt-app-service
+            port:
+              number: 8000
+      - path: /flower
+        pathType: Prefix
+        backend:
+          service:
+            name: bulk-truthgpt-flower-service
+            port:
+              number: 5555
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: bulk-truthgpt-app-hpa
+  namespace: bulk-truthgpt
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: bulk-truthgpt-app
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: bulk-truthgpt-celery-worker-hpa
+  namespace: bulk-truthgpt
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: bulk-truthgpt-celery-worker
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: bulk-truthgpt-app-pdb
+  namespace: bulk-truthgpt
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: bulk-truthgpt
+      component: app
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: bulk-truthgpt-celery-worker-pdb
+  namespace: bulk-truthgpt
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: bulk-truthgpt
+      component: celery-worker
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bulk-truthgpt-postgresql-pvc
+  namespace: bulk-truthgpt
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: fast-ssd
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bulk-truthgpt-redis-pvc
+  namespace: bulk-truthgpt
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: fast-ssd
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bulk-truthgpt-logs-pvc
+  namespace: bulk-truthgpt
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: nfs
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bulk-truthgpt-cache-pvc
+  namespace: bulk-truthgpt
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: nfs
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,996 @@
+"""
+Cursor Agent 24/7
+=================
+
+Agente persistente que escucha comandos desde Cursor y los ejecuta
+continuamente, incluso cuando la computadora está apagada (como servicio).
+
+Características:
+- Escucha comandos desde la ventana de Cursor
+- Ejecuta tareas de forma continua sin parar
+- Control simple con botón de start/stop
+- Servicio persistente que puede correr en background
+"""
+
+__version__ = "1.0.0"
+__author__ = "Blatam Academy"
+__license__ = "Proprietary"
+__description__ = "Persistent agent that listens to commands from Cursor and executes them continuously"
+
+from .core.agent import CursorAgent
+from .core.task_executor import TaskExecutor
+from .api.agent_api import AgentAPI
+from .core.exceptions import (
+    CursorAgentException,
+    TaskExecutionException,
+    TaskTimeoutException,
+    TaskValidationException,
+    AgentNotRunningException,
+    RateLimitExceededException,
+    StorageException,
+    ConfigurationException
+)
+from .core.performance import (
+    cached_async,
+    rate_limit,
+    retry_async,
+    PerformanceMonitor,
+    timed_async
+)
+from .core.resource_manager import ResourceManager
+from .core.security import SecurityValidator
+from .core.logging_config import setup_logging, get_logger, LogContext
+from .core.signal_handler import SignalHandler
+from .core.health_check import HealthChecker, HealthStatus
+from .core.circuit_breaker import CircuitBreaker, CircuitState
+from .core.retry_strategy import (
+    retry_with_strategy,
+    RetryStrategy,
+    calculate_backoff,
+    AdaptiveRetryStrategy
+)
+from .core.observability import (
+    observe_async,
+    observe_sync,
+    observe_context,
+    OperationTracker
+)
+from .core.batch_processor import (
+    BatchProcessor,
+    BatchItem,
+    BatchStats,
+    BatchResult,
+    process_batch
+)
+from .core.diagnostics import (
+    SystemDiagnostics,
+    DiagnosticInfo,
+    TimeoutManager
+)
+from .core.throttle import (
+    Throttler,
+    ThrottleStrategy,
+    ThrottleStats,
+    throttle_async,
+    OperationThrottler
+)
+from .core.validation_utils import (
+    AdvancedValidator,
+    ValidationRule,
+    validate_url,
+    validate_email,
+    validate_json_string,
+    sanitize_filename,
+    validate_and_sanitize_command
+)
+from .core.serialization import (
+    serialize_json,
+    deserialize_json,
+    serialize_msgpack,
+    deserialize_msgpack,
+    serialize_to_file,
+    deserialize_from_file,
+    safe_serialize,
+    safe_deserialize,
+    JSONEncoder
+)
+from .core.debug_utils import (
+    debug_async,
+    debug_sync,
+    print_call_stack,
+    get_function_info,
+    DebugContext,
+    log_memory_usage,
+    log_async_tasks
+)
+from .core.api_versioning import (
+    APIVersion,
+    APIVersionManager,
+    VersionInfo,
+    extract_api_version
+)
+from .core.request_tracing import (
+    RequestTracer,
+    TraceInfo,
+    get_request_id,
+    set_request_id
+)
+from .core.auth import (
+    AuthManager,
+    User,
+    Token,
+    Role,
+    Permission
+)
+from .core.encryption import (
+    hash_string,
+    hash_file,
+    generate_salt,
+    hash_with_salt,
+    verify_hash,
+    Encryptor,
+    generate_api_key,
+    generate_secure_token
+)
+from .core.security_audit import (
+    SecurityAuditor,
+    AuditEvent,
+    AuditEventType
+)
+from .core.security_middleware import (
+    SecurityMiddleware,
+    require_permission
+)
+from .core.notifications import (
+    NotificationManager,
+    Notification,
+    NotificationPriority,
+    NotificationChannel
+)
+from .core.formatters import (
+    format_bytes,
+    format_duration,
+    format_number,
+    format_percentage,
+    format_timestamp,
+    format_relative_time,
+    format_table,
+    format_json_pretty,
+    format_error_message,
+    format_task_status
+)
+from .core.templates import (
+    TemplateManager,
+    ResponseTemplate,
+    get_template,
+    render_template,
+    register_template
+)
+from .core.metrics_export import (
+    MetricsExporter,
+    MetricExport,
+    format_prometheus,
+    format_statsd,
+    export_to_prometheus,
+    export_to_statsd
+)
+from .core.alerts import (
+    AlertManager,
+    Alert,
+    AlertSeverity,
+    AlertCondition
+)
+from .core.test_utils import (
+    MockAgent,
+    MockMetrics,
+    MockEventBus,
+    mock_time,
+    mock_datetime,
+    create_mock_request,
+    create_mock_response,
+    run_async_test,
+    assert_metric_incremented,
+    assert_event_published
+)
+from .core.feature_flags import (
+    FeatureFlagManager,
+    FeatureFlag,
+    FeatureFlagType
+)
+from .core.api_docs import (
+    APIDocumentationGenerator,
+    APIDocumentation
+)
+from .core.performance_analysis import (
+    PerformanceAnalyzer,
+    PerformanceProfile
+)
+from .core.reports import (
+    ReportGenerator,
+    Report
+)
+from .core.dynamic_config import (
+    DynamicConfigManager,
+    ConfigItem,
+    ConfigType
+)
+from .core.data_transform import (
+    normalize_string,
+    normalize_number,
+    normalize_boolean,
+    transform_dict,
+    flatten_dict,
+    unflatten_dict,
+    filter_dict,
+    merge_dicts,
+    sanitize_for_json
+)
+from .core.distributed_cache import (
+    DistributedCache,
+    CacheBackend,
+    MemoryCacheBackend
+)
+from .core.workflow import (
+    Workflow,
+    WorkflowStep,
+    StepStatus
+)
+from .core.compression import (
+    compress_gzip,
+    decompress_gzip,
+    compress_zlib,
+    decompress_zlib,
+    compress_bz2,
+    decompress_bz2,
+    compress_lzma,
+    decompress_lzma,
+    compress_to_base64,
+    decompress_from_base64,
+    compress_file,
+    decompress_file
+)
+from .core.distributed_lock import (
+    DistributedLock,
+    LockBackend,
+    MemoryLockBackend,
+    Lock
+)
+from .core.migrations import (
+    MigrationManager,
+    Migration,
+    MigrationStatus
+)
+from .core.schema_validator import (
+    Schema,
+    FieldSchema,
+    FieldType,
+    ValidationError
+)
+from .core.user_rate_limiter import (
+    UserRateLimiter,
+    RateLimitRule,
+    UserRateLimit
+)
+from .core.time_utils import (
+    parse_datetime,
+    to_utc,
+    to_timezone,
+    add_time,
+    time_ago,
+    is_business_day,
+    next_business_day,
+    get_time_range,
+    format_duration,
+    get_week_range,
+    get_month_range
+)
+from .core.search_utils import (
+    search_in_list,
+    filter_by_predicate,
+    filter_by_field,
+    filter_by_date_range,
+    sort_by_field,
+    paginate,
+    fuzzy_search,
+    regex_search
+)
+from .core.network_utils import (
+    is_port_open,
+    is_port_open_async,
+    get_local_ip,
+    is_valid_ip,
+    is_valid_url,
+    parse_url,
+    check_connectivity,
+    get_hostname,
+    resolve_hostname,
+    get_network_interfaces,
+    build_url
+)
+from .core.file_utils import (
+    ensure_dir,
+    safe_delete,
+    get_file_hash,
+    get_file_hash_async,
+    get_file_size,
+    get_directory_size,
+    find_files,
+    find_files_by_extension,
+    copy_file_safe,
+    move_file_safe,
+    get_file_info,
+    clean_directory
+)
+from .core.advanced_queue import (
+    AdvancedQueue,
+    QueueItem,
+    QueuePriority
+)
+from .core.timed_events import (
+    TimedEventManager,
+    TimedEvent,
+    EventStatus
+)
+from .core.statistics import (
+    calculate_statistics,
+    calculate_trend,
+    calculate_frequency,
+    calculate_correlation,
+    group_by,
+    aggregate_by,
+    calculate_rate,
+    calculate_growth_rate
+)
+from .core.comparison_utils import (
+    compare_dicts,
+    compare_lists,
+    compare_strings,
+    deep_compare,
+    calculate_similarity,
+    DiffResult
+)
+from .core.data_validator import (
+    DataValidator,
+    ValidationRule,
+    ValidationResult,
+    validate_not_empty,
+    validate_length,
+    validate_range,
+    validate_pattern,
+    validate_email,
+    validate_url,
+    validate_datetime_string,
+    validate_in_list,
+    validate_type,
+    validate_dict_structure
+)
+from .core.text_utils import (
+    slugify,
+    truncate,
+    truncate_words,
+    extract_words,
+    count_words,
+    count_characters,
+    remove_accents,
+    normalize_whitespace,
+    extract_emails,
+    extract_urls,
+    extract_hashtags,
+    extract_mentions,
+    mask_sensitive_data,
+    highlight_keywords,
+    calculate_readability,
+    find_most_common_words,
+    remove_html_tags,
+    extract_text_from_html
+)
+from .core.id_generator import (
+    generate_uuid,
+    generate_short_uuid,
+    generate_timestamp_id,
+    generate_nanoid,
+    generate_sequential_id,
+    generate_random_string,
+    generate_hex_id,
+    generate_base62_id,
+    generate_snowflake_id,
+    generate_ulid,
+    IDGenerator
+)
+from .core.collection_utils import (
+    chunk_list,
+    flatten_list,
+    unique_list,
+    group_by_key,
+    group_by_function,
+    sort_by_key,
+    sort_by_function,
+    filter_dict,
+    exclude_keys,
+    invert_dict,
+    merge_dicts,
+    get_nested_value,
+    set_nested_value,
+    partition_list,
+    zip_dicts,
+    count_by_key,
+    find_duplicates,
+    remove_duplicates,
+    batch_process
+)
+from .core.error_handler import (
+    ErrorHandler,
+    ErrorInfo,
+    handle_errors
+)
+from .core.context_utils import (
+    timer_context,
+    async_timer_context,
+    suppress_exceptions,
+    async_suppress_exceptions,
+    context_variables,
+    async_context_variables,
+    retry_context,
+    async_retry_context,
+    timeout_context,
+    async_timeout_context,
+    ContextManager,
+    AsyncContextManager
+)
+from .core.decorator_utils import (
+    memoize,
+    singleton,
+    deprecated,
+    rate_limit,
+    validate_args,
+    log_calls,
+    retry_on_exception,
+    async_retry_on_exception,
+    timeout,
+    async_timeout
+)
+from .core.encoding_utils import (
+    encode_base64,
+    decode_base64,
+    encode_base64_to_string,
+    encode_url,
+    decode_url,
+    encode_url_plus,
+    decode_url_plus,
+    encode_hex,
+    decode_hex,
+    encode_hex_to_string,
+    encode_base64url,
+    decode_base64url,
+    encode_html,
+    decode_html,
+    encode_unicode_escape,
+    decode_unicode_escape
+)
+from .core.async_utils import (
+    gather_with_limit,
+    gather_with_timeout,
+    race,
+    retry_async,
+    AsyncQueue,
+    AsyncPool,
+    batch_process_async,
+    wait_for_first
+)
+from .core.regex_utils import (
+    find_all_matches,
+    find_first_match,
+    extract_groups,
+    replace_with_callback,
+    split_keep_delimiter,
+    validate_pattern,
+    escape_regex,
+    compile_pattern,
+    RegexMatcher,
+    get_common_pattern,
+    extract_by_pattern,
+    COMMON_PATTERNS
+)
+from .core.path_utils import (
+    normalize_path,
+    relative_path,
+    safe_relative_path,
+    join_paths,
+    ensure_extension,
+    change_extension,
+    remove_extension,
+    get_common_path,
+    expand_user,
+    expand_vars,
+    expand_all,
+    is_absolute,
+    is_relative,
+    get_path_depth,
+    get_path_components,
+    sanitize_filename,
+    make_unique_path,
+    get_temp_path,
+    is_subpath,
+    get_relative_depth
+)
+from .core.config_utils import (
+    get_env,
+    get_env_bool,
+    get_env_int,
+    get_env_float,
+    get_env_list,
+    load_config_from_file,
+    save_config_to_file,
+    merge_configs,
+    validate_config,
+    get_nested_config,
+    set_nested_config,
+    flatten_config,
+    unflatten_config
+)
+from .core.testing_utils import (
+    FixtureFactory,
+    DataGenerator,
+    AsyncTestHelper,
+    AssertionHelper,
+    MockHelper,
+    TestTimer
+)
+from .core.profiling_utils import (
+    benchmark,
+    benchmark_async,
+    profile_context,
+    profile_function,
+    PerformanceTracker,
+    MemoryProfiler,
+    compare_functions,
+    BenchmarkResult
+)
+from .core.http_client import (
+    HTTPClient,
+    HTTPResponse
+)
+from .core.logging_utils import (
+    StructuredLogger,
+    LogFilter,
+    LogFormatter,
+    log_function_call,
+    log_async_function_call,
+    log_execution_time,
+    setup_file_logging,
+    setup_console_logging
+)
+
+__all__ = [
+    "CursorAgent",
+    "TaskExecutor",
+    "AgentAPI",
+    "CursorAgentException",
+    "TaskExecutionException",
+    "TaskTimeoutException",
+    "TaskValidationException",
+    "AgentNotRunningException",
+    "RateLimitExceededException",
+    "StorageException",
+    "ConfigurationException",
+    "cached_async",
+    "rate_limit",
+    "retry_async",
+    "PerformanceMonitor",
+    "timed_async",
+    "ResourceManager",
+    "SecurityValidator",
+    "setup_logging",
+    "get_logger",
+    "LogContext",
+    "SignalHandler",
+    "HealthChecker",
+    "HealthStatus",
+    "CircuitBreaker",
+    "CircuitState",
+    "retry_with_strategy",
+    "RetryStrategy",
+    "calculate_backoff",
+    "AdaptiveRetryStrategy",
+    "observe_async",
+    "observe_sync",
+    "observe_context",
+    "OperationTracker",
+    "BatchProcessor",
+    "BatchItem",
+    "BatchStats",
+    "BatchResult",
+    "process_batch",
+    "SystemDiagnostics",
+    "DiagnosticInfo",
+    "TimeoutManager",
+    "Throttler",
+    "ThrottleStrategy",
+    "ThrottleStats",
+    "throttle_async",
+    "OperationThrottler",
+    "AdvancedValidator",
+    "ValidationRule",
+    "validate_url",
+    "validate_email",
+    "validate_json_string",
+    "sanitize_filename",
+    "validate_and_sanitize_command",
+    "serialize_json",
+    "deserialize_json",
+    "serialize_msgpack",
+    "deserialize_msgpack",
+    "serialize_to_file",
+    "deserialize_from_file",
+    "safe_serialize",
+    "safe_deserialize",
+    "JSONEncoder",
+    "debug_async",
+    "debug_sync",
+    "print_call_stack",
+    "get_function_info",
+    "DebugContext",
+    "log_memory_usage",
+    "log_async_tasks",
+    "APIVersion",
+    "APIVersionManager",
+    "VersionInfo",
+    "extract_api_version",
+    "RequestTracer",
+    "TraceInfo",
+    "get_request_id",
+    "set_request_id",
+    "AuthManager",
+    "User",
+    "Token",
+    "Role",
+    "Permission",
+    "hash_string",
+    "hash_file",
+    "generate_salt",
+    "hash_with_salt",
+    "verify_hash",
+    "Encryptor",
+    "generate_api_key",
+    "generate_secure_token",
+    "SecurityAuditor",
+    "AuditEvent",
+    "AuditEventType",
+    "SecurityMiddleware",
+    "require_permission",
+    "NotificationManager",
+    "Notification",
+    "NotificationPriority",
+    "NotificationChannel",
+    "format_bytes",
+    "format_duration",
+    "format_number",
+    "format_percentage",
+    "format_timestamp",
+    "format_relative_time",
+    "format_table",
+    "format_json_pretty",
+    "format_error_message",
+    "format_task_status",
+    "TemplateManager",
+    "ResponseTemplate",
+    "get_template",
+    "render_template",
+    "register_template",
+    "MetricsExporter",
+    "MetricExport",
+    "format_prometheus",
+    "format_statsd",
+    "export_to_prometheus",
+    "export_to_statsd",
+    "AlertManager",
+    "Alert",
+    "AlertSeverity",
+    "AlertCondition",
+    "MockAgent",
+    "MockMetrics",
+    "MockEventBus",
+    "mock_time",
+    "mock_datetime",
+    "create_mock_request",
+    "create_mock_response",
+    "run_async_test",
+    "assert_metric_incremented",
+    "assert_event_published",
+    "FeatureFlagManager",
+    "FeatureFlag",
+    "FeatureFlagType",
+    "APIDocumentationGenerator",
+    "APIDocumentation",
+    "PerformanceAnalyzer",
+    "PerformanceProfile",
+    "ReportGenerator",
+    "Report",
+    "DynamicConfigManager",
+    "ConfigItem",
+    "ConfigType",
+    "normalize_string",
+    "normalize_number",
+    "normalize_boolean",
+    "transform_dict",
+    "flatten_dict",
+    "unflatten_dict",
+    "filter_dict",
+    "merge_dicts",
+    "sanitize_for_json",
+    "DistributedCache",
+    "CacheBackend",
+    "MemoryCacheBackend",
+    "Workflow",
+    "WorkflowStep",
+    "StepStatus",
+    "compress_gzip",
+    "decompress_gzip",
+    "compress_zlib",
+    "decompress_zlib",
+    "compress_bz2",
+    "decompress_bz2",
+    "compress_lzma",
+    "decompress_lzma",
+    "compress_to_base64",
+    "decompress_from_base64",
+    "compress_file",
+    "decompress_file",
+    "DistributedLock",
+    "LockBackend",
+    "MemoryLockBackend",
+    "Lock",
+    "MigrationManager",
+    "Migration",
+    "MigrationStatus",
+    "Schema",
+    "FieldSchema",
+    "FieldType",
+    "ValidationError",
+    "UserRateLimiter",
+    "RateLimitRule",
+    "UserRateLimit",
+    "parse_datetime",
+    "to_utc",
+    "to_timezone",
+    "add_time",
+    "time_ago",
+    "is_business_day",
+    "next_business_day",
+    "get_time_range",
+    "format_duration",
+    "get_week_range",
+    "get_month_range",
+    "search_in_list",
+    "filter_by_predicate",
+    "filter_by_field",
+    "filter_by_date_range",
+    "sort_by_field",
+    "paginate",
+    "fuzzy_search",
+    "regex_search",
+    "is_port_open",
+    "is_port_open_async",
+    "get_local_ip",
+    "is_valid_ip",
+    "is_valid_url",
+    "parse_url",
+    "check_connectivity",
+    "get_hostname",
+    "resolve_hostname",
+    "get_network_interfaces",
+    "build_url",
+    "ensure_dir",
+    "safe_delete",
+    "get_file_hash",
+    "get_file_hash_async",
+    "get_file_size",
+    "get_directory_size",
+    "find_files",
+    "find_files_by_extension",
+    "copy_file_safe",
+    "move_file_safe",
+    "get_file_info",
+    "clean_directory",
+    "AdvancedQueue",
+    "QueueItem",
+    "QueuePriority",
+    "TimedEventManager",
+    "TimedEvent",
+    "EventStatus",
+    "calculate_statistics",
+    "calculate_trend",
+    "calculate_frequency",
+    "calculate_correlation",
+    "group_by",
+    "aggregate_by",
+    "calculate_rate",
+    "calculate_growth_rate",
+    "compare_dicts",
+    "compare_lists",
+    "compare_strings",
+    "deep_compare",
+    "calculate_similarity",
+    "DiffResult",
+    "DataValidator",
+    "ValidationRule",
+    "ValidationResult",
+    "validate_not_empty",
+    "validate_length",
+    "validate_range",
+    "validate_pattern",
+    "validate_email",
+    "validate_url",
+    "validate_datetime_string",
+    "validate_in_list",
+    "validate_type",
+    "validate_dict_structure",
+    "slugify",
+    "truncate",
+    "truncate_words",
+    "extract_words",
+    "count_words",
+    "count_characters",
+    "remove_accents",
+    "normalize_whitespace",
+    "extract_emails",
+    "extract_urls",
+    "extract_hashtags",
+    "extract_mentions",
+    "mask_sensitive_data",
+    "highlight_keywords",
+    "calculate_readability",
+    "find_most_common_words",
+    "remove_html_tags",
+    "extract_text_from_html",
+    "generate_uuid",
+    "generate_short_uuid",
+    "generate_timestamp_id",
+    "generate_nanoid",
+    "generate_sequential_id",
+    "generate_random_string",
+    "generate_hex_id",
+    "generate_base62_id",
+    "generate_snowflake_id",
+    "generate_ulid",
+    "IDGenerator",
+    "chunk_list",
+    "flatten_list",
+    "unique_list",
+    "group_by_key",
+    "group_by_function",
+    "sort_by_key",
+    "sort_by_function",
+    "filter_dict",
+    "exclude_keys",
+    "invert_dict",
+    "merge_dicts",
+    "get_nested_value",
+    "set_nested_value",
+    "partition_list",
+    "zip_dicts",
+    "count_by_key",
+    "find_duplicates",
+    "remove_duplicates",
+    "batch_process",
+    "ErrorHandler",
+    "ErrorInfo",
+    "handle_errors",
+    "timer_context",
+    "async_timer_context",
+    "suppress_exceptions",
+    "async_suppress_exceptions",
+    "context_variables",
+    "async_context_variables",
+    "retry_context",
+    "async_retry_context",
+    "timeout_context",
+    "async_timeout_context",
+    "ContextManager",
+    "AsyncContextManager",
+    "memoize",
+    "singleton",
+    "deprecated",
+    "rate_limit",
+    "validate_args",
+    "log_calls",
+    "retry_on_exception",
+    "async_retry_on_exception",
+    "timeout",
+    "async_timeout",
+    "encode_base64",
+    "decode_base64",
+    "encode_base64_to_string",
+    "encode_url",
+    "decode_url",
+    "encode_url_plus",
+    "decode_url_plus",
+    "encode_hex",
+    "decode_hex",
+    "encode_hex_to_string",
+    "encode_base64url",
+    "decode_base64url",
+    "encode_html",
+    "decode_html",
+    "encode_unicode_escape",
+    "decode_unicode_escape",
+    "gather_with_limit",
+    "gather_with_timeout",
+    "race",
+    "retry_async",
+    "AsyncQueue",
+    "AsyncPool",
+    "batch_process_async",
+    "wait_for_first",
+    "find_all_matches",
+    "find_first_match",
+    "extract_groups",
+    "replace_with_callback",
+    "split_keep_delimiter",
+    "validate_pattern",
+    "escape_regex",
+    "compile_pattern",
+    "RegexMatcher",
+    "get_common_pattern",
+    "extract_by_pattern",
+    "COMMON_PATTERNS",
+    "normalize_path",
+    "relative_path",
+    "safe_relative_path",
+    "join_paths",
+    "ensure_extension",
+    "change_extension",
+    "remove_extension",
+    "get_common_path",
+    "expand_user",
+    "expand_vars",
+    "expand_all",
+    "is_absolute",
+    "is_relative",
+    "get_path_depth",
+    "get_path_components",
+    "sanitize_filename",
+    "make_unique_path",
+    "get_temp_path",
+    "is_subpath",
+    "get_relative_depth",
+    "get_env",
+    "get_env_bool",
+    "get_env_int",
+    "get_env_float",
+    "get_env_list",
+    "load_config_from_file",
+    "save_config_to_file",
+    "merge_configs",
+    "validate_config",
+    "get_nested_config",
+    "set_nested_config",
+    "flatten_config",
+    "unflatten_config",
+    "FixtureFactory",
+    "DataGenerator",
+    "AsyncTestHelper",
+    "AssertionHelper",
+    "MockHelper",
+    "TestTimer",
+    "benchmark",
+    "benchmark_async",
+    "profile_context",
+    "profile_function",
+    "PerformanceTracker",
+    "MemoryProfiler",
+    "compare_functions",
+    "BenchmarkResult",
+    "HTTPClient",
+    "HTTPResponse",
+    "StructuredLogger",
+    "LogFilter",
+    "LogFormatter",
+    "log_function_call",
+    "log_async_function_call",
+    "log_execution_time",
+    "setup_file_logging",
+    "setup_console_logging",
+]
+
+

@@ -1,0 +1,23 @@
+[Unit]
+Description=AI Project Generator FastAPI Application
+After=network.target redis.service
+
+[Service]
+Type=simple
+User={{ app_user | default('ubuntu') }}
+WorkingDirectory={{ app_dir | default('/opt/ai-project-generator') }}
+EnvironmentFile={{ app_dir | default('/opt/ai-project-generator') }}/.env
+ExecStart=/opt/venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port {{ app_port | default(8020) }}
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-project-generator
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target
+

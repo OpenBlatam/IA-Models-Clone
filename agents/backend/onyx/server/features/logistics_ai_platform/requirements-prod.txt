@@ -1,0 +1,32 @@
+# Production dependencies - minimal set
+-r requirements.txt
+
+# Remove development tools
+# (black, ruff, mypy, pre-commit are not needed in production)
+
+# Production-specific optimizations
+gunicorn==23.0.0  # Production WSGI server
+uvloop==0.20.0  # Fast event loop (Linux/macOS only)
+
+# Monitoring (production)
+sentry-sdk==2.17.0  # Error tracking
+opentelemetry-api==1.27.0  # Observability
+opentelemetry-sdk==1.27.0
+opentelemetry-instrumentation-fastapi==0.46b0
+
+# Performance
+orjson==3.10.7  # Fast JSON (already in requirements.txt)
+ujson==5.10.0  # Alternative fast JSON (already in requirements.txt)
+
+
+
+
+
+
+
+
+
+
+
+
+

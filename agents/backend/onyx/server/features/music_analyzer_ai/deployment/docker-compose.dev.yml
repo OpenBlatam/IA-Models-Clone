@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+  music-analyzer-ai:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+      target: builder  # Use builder stage for development
+    container_name: music-analyzer-ai-dev
+    ports:
+      - "8010:8010"
+    environment:
+      - ENVIRONMENT=development
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - CACHE_ENABLED=true
+      - LOG_LEVEL=DEBUG
+      - DATABASE_URL=sqlite:///./music_analyzer.db
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - ../:/app
+      - ../data:/app/data
+      - ../checkpoints:/app/checkpoints
+      - pip-cache:/home/appuser/.cache/pip
+    depends_on:
+      - redis
+      - postgres
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8010/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+    command: python -m uvicorn main:app --host 0.0.0.0 --port 8010 --reload
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: music-analyzer-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+
+  # PostgreSQL (optional, for production-like development)
+  postgres:
+    image: postgres:15-alpine
+    container_name: music-analyzer-postgres-dev
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=music_analyzer
+      - POSTGRES_PASSWORD=dev_password
+      - POSTGRES_DB=music_analyzer_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U music_analyzer"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Nginx reverse proxy (optional, for production-like setup)
+  nginx:
+    image: nginx:alpine
+    container_name: music-analyzer-nginx-dev
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - music-analyzer-ai
+    restart: unless-stopped
+
+  # Prometheus for metrics (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: music-analyzer-prometheus-dev
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: unless-stopped
+
+  # Grafana for visualization (optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: music-analyzer-grafana-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+  postgres-data:
+  prometheus-data:
+  grafana-data:
+  pip-cache:
+
+networks:
+  default:
+    name: music-analyzer-network
+
+
+
+

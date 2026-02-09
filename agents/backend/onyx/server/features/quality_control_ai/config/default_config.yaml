@@ -1,0 +1,52 @@
+# Default Configuration for Quality Control AI Training
+
+model:
+  model_type: "autoencoder"  # "autoencoder", "vit", "diffusion"
+  input_channels: 3
+  input_size: [224, 224]
+  latent_dim: 128
+  num_classes: 10
+  pretrained: true
+  model_name: "google/vit-base-patch16-224"
+
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  gradient_accumulation_steps: 1
+  clip_grad_norm: 1.0
+  use_mixed_precision: true
+  num_workers: 4
+  pin_memory: true
+
+optimizer:
+  optimizer_type: "adam"  # "adam", "adamw", "sgd"
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  momentum: 0.9
+  betas: [0.9, 0.999]
+
+scheduler:
+  scheduler_type: "cosine"  # "cosine", "step", "plateau", "none"
+  step_size: 30
+  gamma: 0.1
+  T_max: 100
+  eta_min: 0.0
+
+data:
+  train_data_path: "./data/train"
+  val_data_path: "./data/val"
+  test_data_path: null
+  image_size: [224, 224]
+  normalize: true
+  augmentation: true
+
+experiment:
+  log_dir: "./logs"
+  save_dir: "./checkpoints"
+  use_wandb: false
+  wandb_project: "quality-control-ai"
+  wandb_entity: null
+  use_tensorboard: true
+

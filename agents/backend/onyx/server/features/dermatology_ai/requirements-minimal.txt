@@ -1,0 +1,43 @@
+# ============================================================================
+# Minimal Dependencies for Serverless/Lightweight Deployments
+# Only essential packages for minimal cold start time
+# ============================================================================
+
+# Core FastAPI (minimal)
+fastapi>=0.115.0
+uvicorn>=0.32.0
+pydantic>=2.9.0
+python-multipart>=0.0.12
+
+# Security (essential)
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# HTTP Client (minimal)
+httpx>=0.27.2
+
+# Configuration
+python-dotenv>=1.0.1
+
+# Serverless Adapter
+mangum>=0.18.1
+
+# ============================================================================
+# Note: Add other dependencies only as needed
+# This is optimized for AWS Lambda / Azure Functions cold start
+# ============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

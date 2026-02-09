@@ -1,0 +1,33 @@
+# Development dependencies
+-r requirements.txt
+
+# Development tools
+ipython>=8.14.0
+ipdb>=0.13.13
+black>=23.7.0
+flake8>=6.1.0
+mypy>=1.5.0
+isort>=5.12.0
+pytest-xdist>=3.3.0  # Parallel test execution
+pytest-timeout>=2.2.0  # Test timeouts
+pytest-benchmark>=4.0.0  # Performance benchmarking
+pre-commit>=3.3.0
+bandit>=1.7.5  # Security linting
+safety>=2.3.0  # Dependency vulnerability scanning
+
+# Documentation
+mkdocs>=1.5.0
+mkdocs-material>=9.2.0
+sphinx>=7.1.0  # Documentation generator
+
+# Profiling & Debugging
+py-spy>=0.3.14
+memory-profiler>=0.61.0
+line-profiler>=4.1.0  # Line-by-line profiling
+pyinstrument>=5.4.0  # Profiler
+
+# Development utilities
+watchdog>=3.0.0  # File system events
+python-dotenv>=1.0.0  # Already in requirements, but for dev
+rich>=13.5.0  # Already in requirements, but useful for dev
+

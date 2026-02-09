@@ -1,0 +1,153 @@
+# 📦 ARCHIVO DE REQUISITOS v5.0
+# ================================
+# Dependencias completas para el sistema v5.0
+# Incluye todas las funcionalidades: AI, Microservicios, Analytics, Seguridad, Web, Cloud, Testing
+
+# 🤖 INTELIGENCIA ARTIFICIAL AVANZADA
+torch>=2.0.0
+transformers>=4.30.0
+sentence-transformers>=2.2.0
+spacy>=3.6.0
+textblob>=0.17.1
+vaderSentiment>=3.3.2
+optuna>=3.2.0
+mlflow>=2.5.0
+joblib>=1.3.0
+
+# 🔧 MICROSERVICIOS Y ARQUITECTURA
+aiohttp>=3.8.0
+asyncio-mqtt>=0.13.0
+aioredis>=2.0.0
+prometheus-client>=0.17.0
+structlog>=23.1.0
+
+# 📊 ANALÍTICAS EN TIEMPO REAL
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 🛡️ SEGURIDAD EMPRESARIAL
+cryptography>=41.0.0
+PyJWT>=2.8.0
+secrets
+hashlib
+hmac
+
+# 🌐 INTERFAZ WEB Y API
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+python-multipart>=0.0.6
+aiofiles>=23.1.0
+websockets>=11.0.0
+
+# ☁️ INFRAESTRUCTURA CLOUD-NATIVE
+kubernetes>=28.1.0
+boto3>=1.28.0
+azure-mgmt-compute>=30.0.0
+google-cloud-compute>=1.14.0
+docker>=6.1.0
+
+# 🧪 TESTING Y CALIDAD
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.0
+unittest
+asyncio
+
+# 🚀 UTILIDADES Y RENDIMIENTO
+psutil>=5.9.0
+asyncio
+uuid
+json
+yaml
+subprocess
+os
+time
+logging
+datetime
+timedelta
+collections
+typing
+dataclasses
+enum
+
+# 📋 NOTAS DE INSTALACIÓN
+# ========================
+# 
+# 1. INSTALACIÓN BÁSICA:
+#    pip install -r requirements_v5.txt
+#
+# 2. INSTALACIÓN POR CATEGORÍAS:
+#    # Solo AI
+#    pip install torch transformers sentence-transformers spacy textblob vaderSentiment optuna mlflow joblib
+#
+#    # Solo Microservicios
+#    pip install aiohttp asyncio-mqtt aioredis prometheus-client structlog
+#
+#    # Solo Analytics
+#    pip install numpy pandas scikit-learn matplotlib seaborn
+#
+#    # Solo Seguridad
+#    pip install cryptography PyJWT
+#
+#    # Solo Web
+#    pip install fastapi uvicorn[standard] pydantic python-multipart aiofiles websockets
+#
+#    # Solo Cloud
+#    pip install kubernetes boto3 azure-mgmt-compute google-cloud-compute docker
+#
+#    # Solo Testing
+#    pip install pytest pytest-asyncio pytest-cov pytest-mock
+#
+# 3. REQUISITOS DEL SISTEMA:
+#    - Python 3.9+
+#    - 8GB+ RAM
+#    - 4+ CPU cores
+#    - 10GB+ espacio en disco
+#    - Conexión a internet para descargar modelos AI
+#
+# 4. INSTALACIÓN DE MODELOS AI:
+#    python -m spacy download en_core_web_sm
+#    python -m spacy download en_core_web_md
+#
+# 5. CONFIGURACIÓN DE ENTORNO:
+#    export PYTHONPATH="${PYTHONPATH}:/path/to/project"
+#    export CUDA_VISIBLE_DEVICES=0  # Para GPU
+#
+# 6. SOLUCIÓN DE PROBLEMAS:
+#    # Si hay problemas con torch
+#    pip install torch --index-url https://download.pytorch.org/whl/cpu
+#
+#    # Si hay problemas con spacy
+#    pip install spacy[transformers]
+#
+#    # Si hay problemas con fastapi
+#    pip install "fastapi[all]"
+#
+#    # Si hay problemas con kubernetes
+#    pip install kubernetes[client]
+#
+# 7. VERIFICACIÓN DE INSTALACIÓN:
+#    python -c "import torch; print(f'PyTorch {torch.__version__}')"
+#    python -c "import transformers; print(f'Transformers {transformers.__version__}')"
+#    python -c "import fastapi; print(f'FastAPI {fastapi.__version__}')"
+#
+# 8. ACTUALIZACIONES:
+#    pip install --upgrade -r requirements_v5.txt
+#
+# 9. DESINSTALACIÓN:
+#    pip uninstall -r requirements_v5.txt -y
+#
+# 10. ENTORNO VIRTUAL RECOMENDADO:
+#     python -m venv venv_v5
+#     source venv_v5/bin/activate  # Linux/Mac
+#     venv_v5\Scripts\activate     # Windows
+#     pip install -r requirements_v5.txt
+#
+# ================================
+# 🎯 SISTEMA v5.0 - COMPLETO Y LISTO PARA PRODUCCIÓN
+# ================================

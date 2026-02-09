@@ -1,0 +1,73 @@
+# Dockerfile Optimizado para Serverless y Cloud-Native
+# ====================================================
+
+# Multi-stage build para reducir tamaño final
+FROM python:3.11-slim as builder
+
+# Variables de entorno
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Instalar dependencias del sistema necesarias para compilación
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    make \
+    libffi-dev \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crear directorio de trabajo
+WORKDIR /app
+
+# Copiar requirements
+COPY requirements.txt .
+
+# Instalar dependencias Python
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+# Stage 2: Runtime image (ultra ligero)
+FROM python:3.11-slim
+
+# Variables de entorno
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PATH="/home/appuser/.local/bin:$PATH"
+
+# Crear usuario no-root
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Instalar solo runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar dependencias instaladas desde builder
+COPY --from=builder /root/.local /home/appuser/.local
+
+# Crear directorios necesarios
+WORKDIR /app
+RUN mkdir -p /app/storage /app/logs && \
+    chown -R appuser:appuser /app
+
+# Copiar código de la aplicación
+COPY --chown=appuser:appuser . .
+
+# Cambiar a usuario no-root
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8030/health || exit 1
+
+# Exponer puerto
+EXPOSE 8030
+
+# Comando de inicio optimizado
+CMD ["python", "-m", "uvicorn", "api.prototype_api:app", "--host", "0.0.0.0", "--port", "8030", "--workers", "1", "--no-access-log"]
+
+
+
+

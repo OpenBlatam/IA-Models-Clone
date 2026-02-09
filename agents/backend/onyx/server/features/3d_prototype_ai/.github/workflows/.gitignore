@@ -1,0 +1,10 @@
+# Workflow artifacts
+*.log
+*.sarif
+*.json
+
+# Temporary files
+*.tmp
+*.temp
+
+

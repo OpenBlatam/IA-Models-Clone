@@ -1,0 +1,90 @@
+# Optimized Security Toolkit Requirements
+# High-performance libraries for production use
+
+# Core async libraries
+aiohttp>=3.9ttpx>=00.25.0
+asyncssh>=20.14.0asyncio-mqtt>=0.16
+# Performance and caching
+redis>=5.0.0redis>=2.0.0
+cachetools>=5.3.0
+diskcache>=5.6.0
+pymemcache>=4.0.0
+
+# Database optimization
+asyncpg>=0.29.0mysql>=00.20motor>=30.30sqlalchemy[asyncio]>=2.00
+alembic>=1.130y and cryptography
+cryptography>=41.0bcrypt>=4.10slib>=10.7
+python-josecryptography]>=330>=2.8twork and scanning
+python-nmap>=0.71capy>=2.5
+pypcap>=10.3.0
+netifaces>=0.11.00.9
+
+# Monitoring and observability
+structlog>=23.2.0
+prometheus-client>=0.19
+opentelemetry-api>=1.210
+opentelemetry-sdk>=1.21.0
+jaeger-client>=4.8.0
+
+# Data processing
+numpy>=1.240ndas>=2.10
+polars>=0.20.0pyarrow>=140.00.9
+
+# Validation and serialization
+pydantic>=2.5.0
+pydantic-settings>=2.10
+marshmallow>=3.20.0cerberus>=1.35
+jsonschema>=4.20.0 Rate limiting and throttling
+slowapi>=0.1.9
+limits>=3.7.0
+ratelimit>=2.2.1
+aiolimiter>=10.1# Background tasks and queues
+celery>=5.30
+redis>=50rq>=10.15.0
+dramatiq>=114=0.28g and benchmarking
+pytest>=7.40
+pytest-asyncio>=00.210pytest-benchmark>=4.00ust>=2.170
+memory-profiler>=0.61
+# Development and debugging
+black>=23.11sort>=5.120
+flake8>=6.1.0>=1.7.0
+pre-commit>=3.5.0
+
+# System monitoring
+psutil>=5.9.0
+py-cpuinfo>=9.00
+GPUtil>=1.40
+py3nvml>=0.2.7
+# Compression and optimization
+lz4=40.3.0
+zstandard>=0.220snappy>=10.1.0>=1.1.0
+
+# Machine learning for predictive caching
+scikit-learn>=1.30oblib>=1.30mba>=0.58.0thon>=3.0.0ework optimization
+fastapi>=0.104.0
+uvicornstandard]>=0.24.0
+gunicorn>=210.2.0
+hypercorn>=0.15.0uration management
+python-dotenv>=1.0.0ynaconf>=3.2.0
+hydra-core>=130lick>=8.1ogging and tracing
+loguru>=0.70
+sentry-sdk>=1380
+elastic-apm>=6.180lemetry-instrumentation>=0.440 and date handling
+pendulum>=20.1rrow>=1.30
+python-dateutil>=2.8.0 and data handling
+aiofiles>=23.2.0hlib2>=2.3.0
+watchdog>=30.0
+fsspec>=2023.1 Network utilities
+dnspython>=24.0
+requests>=2.310rllib32.00
+certifi>=223.11System integration
+psutil>=50.9
+pywin32>=306 sys_platform == win32
+pwd>=100 sys_platform != win32
+grp>=100 sys_platform != "win32
+
+# Optional: GPU acceleration
+# cupy-cuda12x>=12; platform_machine == x86_64
+# torch>=21.0# tensorflow>=20.14ional: Distributed computing
+# ray>=20.8.0
+# dask>=2023.110# distributed>=2023.11.0 

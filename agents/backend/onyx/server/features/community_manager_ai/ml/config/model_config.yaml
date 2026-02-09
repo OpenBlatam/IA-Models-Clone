@@ -1,0 +1,69 @@
+# Model Configuration
+# ===================
+
+# Content Analyzer
+content_analyzer:
+  model_name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
+  device: "cuda"  # auto, cuda, cpu
+  batch_size: 32
+  max_length: 512
+
+# Text Generator
+text_generator:
+  model_name: "gpt2"  # o "gpt2-medium", "gpt2-large"
+  use_lora: true
+  lora_r: 8
+  lora_alpha: 32
+  lora_dropout: 0.1
+  load_in_8bit: true
+  device: "cuda"
+  max_length: 100
+  temperature: 0.7
+  top_p: 0.9
+
+# Image Generator
+image_generator:
+  model_name: "runwayml/stable-diffusion-v1-5"
+  use_xl: false
+  device: "cuda"
+  dtype: "float16"  # float32, float16
+  num_inference_steps: 30
+  guidance_scale: 7.5
+  width: 512
+  height: 512
+  enable_attention_slicing: true
+  enable_vae_slicing: true
+
+# Training
+training:
+  batch_size: 16
+  gradient_accumulation_steps: 4
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  num_epochs: 10
+  warmup_steps: 100
+  max_grad_norm: 1.0
+  use_amp: true
+  use_wandb: true
+  save_dir: "checkpoints"
+
+# Optimization
+optimization:
+  use_compile: true
+  compile_mode: "reduce-overhead"  # default, reduce-overhead, max-autotune
+  use_quantization: false
+  quantization_type: "dynamic"  # dynamic, static, int8
+  use_onnx: false
+  onnx_opset_version: 14
+
+# Fast Inference
+fast_inference:
+  batch_size: 8
+  use_cache: true
+  cache_size: 1000
+  num_workers: 4
+  pin_memory: true
+
+
+
+

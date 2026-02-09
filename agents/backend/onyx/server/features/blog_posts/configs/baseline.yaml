@@ -1,0 +1,84 @@
+# Baseline Configuration for NLP Training Pipeline
+# ===============================================
+
+model_type: transformer
+training_mode: fine_tune
+model_name: distilbert-base-uncased
+dataset_path: data/sentiment_dataset.csv
+output_dir: models
+
+# Training Parameters
+batch_size: 16
+learning_rate: 2e-5
+num_epochs: 10
+warmup_steps: 100
+max_grad_norm: 1.0
+weight_decay: 0.01
+
+# Advanced Training
+mixed_precision: true
+gradient_accumulation_steps: 1
+effective_batch_size: -1
+gradient_accumulation_scheduling: false
+gradient_accumulation_warmup_steps: 0
+gradient_accumulation_max_steps: 16
+early_stopping_patience: 5
+save_steps: 500
+eval_steps: 500
+
+# Multi-GPU Training
+distributed: false
+distributed_backend: nccl
+distributed_init_method: env://
+world_size: -1
+rank: -1
+local_rank: -1
+num_gpus: 1
+use_data_parallel: false
+use_distributed_data_parallel: false
+find_unused_parameters: false
+gradient_as_bucket_view: true
+broadcast_buffers: true
+bucket_cap_mb: 25
+static_graph: false
+
+# Hyperparameter Optimization
+enable_hpo: false
+hpo_trials: 50
+
+# Evaluation
+eval_split: 0.2
+test_split: 0.1
+cross_validation_folds: 5
+
+# Logging
+log_to_tensorboard: true
+log_to_wandb: false
+log_to_mlflow: false
+
+# Debugging and Monitoring
+debug_mode: false
+detect_anomaly: false
+gradient_checking: false
+memory_profiling: false
+performance_profiling: false
+
+# Performance Optimization
+enable_gpu_optimization: true
+enable_memory_optimization: true
+enable_batch_optimization: true
+enable_compilation: false
+enable_amp: true
+enable_gradient_checkpointing: false
+enable_dynamic_batching: true
+enable_pin_memory: true
+enable_persistent_workers: true
+num_workers: 4
+prefetch_factor: 2
+
+# Advanced Performance
+enable_cudnn_benchmark: true
+enable_cudnn_deterministic: false
+enable_tf32: true
+enable_channels_last: false
+enable_compile_mode: default 

@@ -1,0 +1,26 @@
+# Optimized Testing Requirements
+# Only essential dependencies for fast, clean testing
+
+# Core testing framework
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+
+# Test data generation (essential)
+Faker>=18.0.0
+factory-boy>=3.2.0
+
+# Performance monitoring (essential)
+psutil>=5.9.0
+memory-profiler>=0.60.0
+
+# Async support
+asyncio-mqtt>=0.11.0
+
+# Optional: For better performance (if available)
+# uvloop>=0.17.0  # Unix only
+# orjson>=3.8.0   # Faster JSON
+
+# Development tools (optional)
+# pytest-cov>=4.0.0
+# pytest-html>=3.1.0
+# pytest-xdist>=3.0.0 

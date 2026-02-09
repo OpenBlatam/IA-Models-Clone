@@ -1,0 +1,31 @@
+# ============================================================================
+# MCP Server Dependencies - Dependencias mínimas para servidor MCP
+# ============================================================================
+
+# Core Framework (Requerido)
+fastapi>=0.115.0                    # Framework web para servidor MCP
+uvicorn[standard]>=0.32.0           # ASGI server
+pydantic>=2.9.0                     # Validación de datos
+starlette>=0.37.0                   # Framework ASGI base
+
+# HTTP Client (Opcional - para webhooks)
+httpx>=0.27.0                       # Cliente HTTP async para webhooks
+
+# JSON Processing (Opcional - para mejor rendimiento)
+orjson>=3.10.7                      # JSON ultra-rápido (recomendado)
+
+# Logging (Opcional - para logging estructurado)
+structlog>=24.2.0                   # Logging estructurado avanzado
+
+# Security (Opcional - si se usa autenticación)
+cryptography>=43.0.0                # Criptografía avanzada
+PyJWT>=2.9.0                        # JSON Web Tokens
+bcrypt>=4.2.0                       # Hashing de passwords
+
+# Monitoring (Opcional - para métricas avanzadas)
+prometheus-client>=0.20.0           # Métricas Prometheus
+
+# Testing (Opcional - para desarrollo)
+pytest>=8.3.0                       # Testing framework
+pytest-asyncio>=0.23.7             # Async testing
+

@@ -1,0 +1,50 @@
+FROM rust:1.75 as builder
+
+# Install Python and maturin
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install maturin
+
+WORKDIR /app
+
+# Copy dependency files
+COPY Cargo.toml Cargo.lock* ./
+COPY pyproject.toml ./
+
+# Copy source code
+COPY src ./src
+COPY benches ./benches
+COPY tests ./tests
+
+# Build the extension
+RUN maturin develop --release
+
+# Development image
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy the built extension
+COPY --from=builder /app/target/release/libfaceless_video_enhanced*.so /usr/local/lib/
+
+# Install Python dependencies if needed
+COPY requirements.txt* ./
+RUN if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+CMD ["python3"]
+
+
+
+
+
+
+
+
+
+
+
+

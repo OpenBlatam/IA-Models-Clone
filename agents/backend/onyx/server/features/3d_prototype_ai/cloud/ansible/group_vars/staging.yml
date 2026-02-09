@@ -1,0 +1,35 @@
+---
+# Staging environment variables
+# Inherits from all.yml and overrides for staging
+
+# Environment identifier
+environment: staging
+
+# Instance configuration
+instance_type: t3.medium
+min_instances: 1
+max_instances: 2
+
+# Security - more permissive for staging
+ssh_allowed_cidr_blocks:
+  - "0.0.0.0/0"
+
+# Monitoring - less aggressive for staging
+monitoring_interval: 60
+log_retention_days: 14
+enable_alerts: false
+
+# Backup - less frequent for staging
+backup_schedule: "0 3 * * 0"  # Weekly on Sunday at 3 AM
+backup_retention_days: 30
+
+# Application settings
+debug_mode: true
+log_level: "DEBUG"
+
+# High availability
+enable_health_checks: true
+health_check_interval: 30
+health_check_timeout: 10
+health_check_retries: 2
+

@@ -1,0 +1,111 @@
+# Blaze AI Edge Computing Module Dependencies
+# Version: 7.6.0
+
+# Core system monitoring
+psutil>=5.9.0
+
+# Async file operations
+aiofiles>=23.0.0
+
+# Async MQTT for IoT communication
+asyncio-mqtt>=0.11.0
+
+# Redis for distributed caching
+aioredis>=2.0.0
+
+# Platform and system information
+platform-info>=0.1.0
+
+# Data serialization and encryption
+cryptography>=41.0.0
+hashlib  # Built-in Python module
+
+# Async networking
+aiohttp>=3.8.0
+websockets>=11.0.0
+
+# Data processing and analysis
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Machine learning (for local inference)
+scikit-learn>=1.3.0
+joblib>=1.3.0
+
+# IoT and sensor data handling
+paho-mqtt>=1.6.1
+pyserial>=3.5
+
+# Edge device management
+docker>=6.1.0  # For containerized edge deployments
+kubernetes>=26.1.0  # For Kubernetes edge clusters
+
+# Performance monitoring
+prometheus-client>=0.17.0
+psutil>=5.9.0
+
+# Development and testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.0
+
+# Code quality
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.7.0
+bandit>=1.7.0
+
+# Documentation
+sphinx>=7.0.0
+sphinx-rtd-theme>=1.3.0
+
+# Performance testing
+locust>=2.15.0  # For load testing edge nodes
+
+# Edge-specific tools
+edgex-foundry-client>=0.1.0  # For EdgeX Foundry integration
+opcua>=0.98.0  # For OPC UA communication
+modbus-tk>=1.1.0  # For Modbus communication
+
+# Container orchestration
+docker-compose>=1.29.0
+helm>=3.12.0  # For Kubernetes deployments
+
+# Monitoring and observability
+grafana-api>=1.0.3
+prometheus-api-client>=0.5.0
+jaeger-client>=4.8.0  # For distributed tracing
+
+# Security and authentication
+PyJWT>=2.8.0
+bcrypt>=4.0.0
+passlib>=1.7.4
+
+# Configuration management
+pyyaml>=6.0
+configparser  # Built-in Python module
+environs>=9.5.0  # Environment variable management
+
+# Logging and debugging
+structlog>=23.1.0
+colorama>=0.4.6  # For colored terminal output
+
+# Data validation
+pydantic>=2.0.0
+marshmallow>=3.20.0
+
+# Time and date handling
+python-dateutil>=2.8.2
+pytz>=2023.3
+
+# Network utilities
+netifaces>=0.11.0  # For network interface information
+ping3>=4.0.4  # For network connectivity testing
+
+# System utilities
+shutil  # Built-in Python module
+subprocess  # Built-in Python module
+os  # Built-in Python module
+pathlib  # Built-in Python module
+

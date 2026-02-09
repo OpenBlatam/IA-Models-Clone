@@ -1,0 +1,83 @@
+# Universal Model Benchmark AI - Configuration Example
+
+# Models to benchmark
+models:
+  - name: llama2-7b
+    path: meta-llama/Llama-2-7b-hf
+    type: causal_lm
+    quantization: fp16
+    
+  - name: llama2-13b
+    path: meta-llama/Llama-2-13b-hf
+    type: causal_lm
+    quantization: fp16
+    
+  - name: mistral-7b
+    path: mistralai/Mistral-7B-v0.1
+    type: causal_lm
+    quantization: fp16
+    
+  - name: mixtral-8x7b
+    path: mistralai/Mixtral-8x7B-v0.1
+    type: causal_lm
+    quantization: fp16
+    
+  - name: qwen-7b
+    path: Qwen/Qwen-7B
+    type: causal_lm
+    quantization: fp16
+
+# Benchmarks to run
+benchmarks:
+  - name: mmlu
+    shots: 5
+    max_samples: 1000
+    
+  - name: hellaswag
+    shots: 0
+    max_samples: 1000
+    
+  - name: truthfulqa
+    shots: 0
+    max_samples: 500
+    
+  - name: gsm8k
+    shots: 5
+    max_samples: 1000
+    
+  - name: humaneval
+    shots: 0
+    max_samples: 164
+
+# Execution configuration
+execution:
+  workers: 4
+  batch_size: 1
+  device: cuda  # cuda or cpu
+  max_samples: null  # null for all samples
+  timeout: 3600  # seconds
+  
+# Output configuration
+output:
+  results_dir: results
+  save_intermediate: true
+  format: json  # json or csv
+  
+# Monitoring
+monitoring:
+  enable_wandb: false
+  wandb_project: "universal-benchmark"
+  enable_tensorboard: false
+  log_level: INFO
+
+
+
+
+
+
+
+
+
+
+
+

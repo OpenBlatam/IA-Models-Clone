@@ -1,0 +1,35 @@
+---
+- name: Initial Server Setup for AI Project Generator
+  hosts: app_servers
+  become: yes
+  gather_facts: yes
+
+  vars:
+    app_user: ubuntu
+    app_dir: /opt/ai-project-generator
+
+  roles:
+    - role: common
+    - role: docker
+    - role: python
+    - role: redis
+
+  tasks:
+    - name: Create application directory
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: '0755'
+
+    - name: Set up application user
+      user:
+        name: "{{ app_user }}"
+        groups: docker
+        append: yes
+
+    - name: Display setup completion
+      debug:
+        msg: "✅ Server setup completed. Ready for application deployment."
+

@@ -1,0 +1,40 @@
+---
+# Group variables for all hosts
+# Common configuration for all environments
+
+# Application configuration
+app_user: ubuntu
+app_dir: /opt/3d-prototype-ai
+app_port: 8030
+app_host: "0.0.0.0"
+project_name: "3d-prototype-ai"
+
+# Deployment configuration
+use_docker: true
+cloudwatch_enabled: true
+
+# System configuration
+timezone: "UTC"
+locale: "en_US.UTF-8"
+
+# Security configuration
+ssh_port: 22
+fail2ban_enabled: true
+ufw_enabled: true
+
+# Monitoring configuration
+monitoring_interval: 60
+log_retention_days: 14
+
+# Backup configuration
+backup_enabled: true
+backup_retention_days: 30
+
+# Nginx configuration
+nginx_client_max_body_size: "100M"
+nginx_proxy_read_timeout: 300
+nginx_proxy_connect_timeout: 75
+
+# Docker configuration
+docker_compose_version: "latest"
+

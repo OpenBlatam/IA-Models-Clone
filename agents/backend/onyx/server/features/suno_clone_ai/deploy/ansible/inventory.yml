@@ -1,0 +1,31 @@
+---
+# Ansible Inventory for EC2 Instances
+# Use ansible-vault to encrypt sensitive information
+
+all:
+  children:
+    ec2_instances:
+      hosts:
+        suno-clone-ai-prod:
+          ansible_host: "{{ ec2_host | default('your-ec2-host.com') }}"
+          ansible_user: "{{ ec2_user | default('ubuntu') }}"
+          ansible_ssh_private_key_file: "{{ ec2_ssh_key_path | default('~/.ssh/id_rsa') }}"
+          ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+          app_environment: production
+          
+        suno-clone-ai-staging:
+          ansible_host: "{{ ec2_staging_host | default('your-staging-ec2-host.com') }}"
+          ansible_user: "{{ ec2_user | default('ubuntu') }}"
+          ansible_ssh_private_key_file: "{{ ec2_ssh_key_path | default('~/.ssh/id_rsa') }}"
+          ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+          app_environment: staging
+
+  vars:
+    # Common variables
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_ssh_pipelining: true
+    ansible_ssh_retries: 3
+
+
+
+

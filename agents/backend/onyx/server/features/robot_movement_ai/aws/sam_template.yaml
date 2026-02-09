@@ -1,0 +1,156 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Robot Movement AI - Serverless API on AWS Lambda
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 3008
+    Runtime: python3.11
+    Environment:
+      Variables:
+        ROBOT_BRAND: !Ref RobotBrand
+        ROS_ENABLED: !Ref RosEnabled
+        FEEDBACK_FREQUENCY: !Ref FeedbackFrequency
+        LOG_LEVEL: INFO
+        AWS_REGION: !Ref AWS::Region
+
+Parameters:
+  RobotBrand:
+    Type: String
+    Default: generic
+    AllowedValues: [kuka, abb, fanuc, universal_robots, generic]
+    Description: Robot brand
+  
+  RosEnabled:
+    Type: String
+    Default: "true"
+    AllowedValues: ["true", "false"]
+    Description: Enable ROS integration
+  
+  FeedbackFrequency:
+    Type: Number
+    Default: 1000
+    Description: Feedback frequency in Hz
+
+Resources:
+  # API Gateway
+  RobotMovementApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+      Auth:
+        DefaultAuthorizer: AWS_IAM
+      DefinitionBody:
+        swagger: "2.0"
+        info:
+          title: Robot Movement AI API
+          version: "1.0.0"
+        paths:
+          /{proxy+}:
+            x-amazon-apigateway-any-method:
+              x-amazon-apigateway-integration:
+                type: aws_proxy
+                httpMethod: POST
+                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${RobotMovementFunction.Arn}/invocations
+
+  # Lambda Function
+  RobotMovementFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../lambda_handler.py
+      Handler: lambda_handler.lambda_handler
+      Runtime: python3.11
+      Timeout: 30
+      MemorySize: 3008
+      Environment:
+        Variables:
+          ROBOT_IP: !Ref RobotIPSecret
+          ROBOT_PORT: "30001"
+          OPENAI_API_KEY: !Ref OpenAIApiKeySecret
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref RobotMovementApi
+            Path: /{proxy+}
+            Method: ANY
+      Policies:
+        - SecretsManagerReadWrite:
+            SecretArn: !Ref RobotSecrets
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+                - s3:PutObject
+              Resource: !Sub '${ModelsBucket}/*'
+
+  # Secrets Manager
+  RobotSecrets:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: robot-movement-ai/secrets
+      SecretString: !Sub |
+        {
+          "openai_api_key": "${OpenAIApiKeySecret}",
+          "robot_ip": "${RobotIPSecret}"
+        }
+
+  # S3 Bucket for Models
+  ModelsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${AWS::StackName}-models-${AWS::AccountId}'
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # CloudWatch Log Group
+  RobotMovementLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${RobotMovementFunction}'
+      RetentionInDays: 14
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${RobotMovementApi}.execute-api.${AWS::Region}.amazonaws.com/prod'
+  
+  LambdaFunctionArn:
+    Description: Lambda Function ARN
+    Value: !GetAtt RobotMovementFunction.Arn
+  
+  ModelsBucketName:
+    Description: S3 Bucket for ML models
+    Value: !Ref ModelsBucket
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

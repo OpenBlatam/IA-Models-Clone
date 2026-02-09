@@ -1,0 +1,44 @@
+# Training Configuration for Addition Removal AI
+
+model:
+  model_type: "transformer"
+  model_name: "bert-base-uncased"
+  num_classes: 3
+  use_lora: false
+  lora_r: 8
+  lora_alpha: 16
+
+training:
+  batch_size: 32
+  num_epochs: 10
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  gradient_accumulation_steps: 1
+  clip_grad_norm: 1.0
+  use_mixed_precision: true
+  num_workers: 4
+  pin_memory: true
+
+optimizer:
+  optimizer_type: "adamw"
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+
+scheduler:
+  scheduler_type: "linear"
+  warmup_steps: 100
+  num_training_steps: 1000
+
+data:
+  train_data_path: "./data/train"
+  val_data_path: "./data/val"
+  test_data_path: null
+
+experiment:
+  log_dir: "./logs"
+  save_dir: "./checkpoints"
+  use_wandb: false
+  wandb_project: "addition-removal-ai"
+  use_tensorboard: true
+

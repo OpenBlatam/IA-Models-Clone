@@ -1,0 +1,105 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: music-analyzer-ai
+  namespace: production
+spec:
+  hosts:
+    - music-analyzer-ai.example.com
+  gateways:
+    - music-analyzer-ai-gateway
+  http:
+    # Canary deployment route
+    - match:
+        - headers:
+            canary:
+              exact: "true"
+      route:
+        - destination:
+            host: music-analyzer-ai-backend
+            subset: canary
+          weight: 100
+    # Main route with traffic splitting
+    - route:
+        - destination:
+            host: music-analyzer-ai-backend
+            subset: stable
+          weight: 90
+        - destination:
+            host: music-analyzer-ai-backend
+            subset: canary
+          weight: 10
+      fault:
+        delay:
+          percentage:
+            value: 0.1
+          fixedDelay: 5s
+      timeout: 30s
+      retries:
+        attempts: 3
+        perTryTimeout: 10s
+        retryOn: 5xx,gateway-error,connect-failure,refused-stream
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: music-analyzer-ai-backend
+  namespace: production
+spec:
+  host: music-analyzer-ai-backend
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_CONN
+    connectionPool:
+      tcp:
+        maxConnections: 100
+      http:
+        http1MaxPendingRequests: 10
+        http2MaxRequests: 100
+        maxRequestsPerConnection: 2
+        maxRetries: 3
+    outlierDetection:
+      consecutiveErrors: 5
+      interval: 30s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 50
+  subsets:
+    - name: stable
+      labels:
+        version: stable
+    - name: canary
+      labels:
+        version: canary
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: music-analyzer-ai-gateway
+  namespace: production
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - music-analyzer-ai.example.com
+      tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - music-analyzer-ai.example.com
+      tls:
+        mode: SIMPLE
+        credentialName: music-analyzer-ai-tls
+
+
+
+

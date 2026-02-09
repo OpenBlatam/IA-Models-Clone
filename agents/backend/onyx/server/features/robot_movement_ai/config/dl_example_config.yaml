@@ -1,0 +1,57 @@
+# Deep Learning Configuration Example
+# ===================================
+
+# Model Configuration
+model:
+  model_type: trajectory_predictor  # trajectory_predictor, motion_controller, obstacle_detector
+  input_size: 6                      # x, y, z, vx, vy, vz
+  output_size: 3                     # predicted x, y, z
+  hidden_sizes: [128, 64, 32]        # Hidden layer sizes
+  activation: relu                   # relu, tanh, sigmoid, gelu, leaky_relu
+  dropout: 0.1
+  use_batch_norm: false
+  bidirectional: false               # For LSTM models
+  use_attention: false               # For LSTM models
+  metadata:
+    description: "Trajectory prediction model for robot movement"
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  early_stopping_patience: 10
+  validation_split: 0.2
+  use_mixed_precision: true          # Use FP16 on GPU
+  use_gradient_accumulation: false
+  gradient_accumulation_steps: 1
+  optimizer_type: adam               # adam, sgd, adamw, rmsprop, adagrad
+  scheduler_type: plateau            # plateau, cosine, step, exponential, none
+  checkpoint_frequency: 10           # Save checkpoint every N epochs
+  device: auto                       # auto, cpu, cuda
+  num_workers: 0                     # DataLoader workers
+  pin_memory: true                   # Pin memory for GPU
+  metadata:
+    experiment_name: "trajectory_prediction_v1"
+    description: "Training trajectory predictor model"
+
+# Data Configuration
+data:
+  normalize: true
+  augmentation:
+    enabled: false
+    noise_std: 0.01
+    scale_range: [0.95, 1.05]
+    apply_probability: 0.5
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - MSE
+    - MAE
+  save_predictions: false
+  output_dir: "./results"
+
+

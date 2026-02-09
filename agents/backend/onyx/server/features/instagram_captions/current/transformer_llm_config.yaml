@@ -1,0 +1,386 @@
+# Transformer and Large Language Model (LLM) Configuration
+# This file configures Transformer architectures and LLM capabilities
+
+transformer_llm_system:
+  # Global settings
+  global:
+    default_model_type: "encoder_decoder"
+    enable_attention_analysis: true
+    enable_generation: true
+    enable_prompt_engineering: true
+    device: "auto"  # auto, cpu, cuda, mps
+
+  # Hugging Face Transformers integration
+  transformers_integration:
+    enabled: true
+    auto_download: true
+    cache_dir: "./model_cache"
+    trust_remote_code: false
+    use_auth_token: false
+    
+    # Pre-trained model settings
+    pre_trained_models:
+      default_task_type: "auto"
+      enable_model_info: true
+      enable_embeddings: true
+      enable_fine_tuning: true
+      
+      # Popular models by task
+      text_generation:
+        default_model: "gpt2"
+        available_models:
+          - "gpt2"
+          - "gpt2-medium"
+          - "gpt2-large"
+          - "gpt2-xl"
+          - "EleutherAI/gpt-neo-125M"
+          - "EleutherAI/gpt-neo-1.3B"
+          - "microsoft/DialoGPT-medium"
+          - "microsoft/DialoGPT-large"
+      
+      text_classification:
+        default_model: "bert-base-uncased"
+        available_models:
+          - "bert-base-uncased"
+          - "bert-base-cased"
+          - "distilbert-base-uncased"
+          - "roberta-base"
+          - "albert-base-v2"
+          - "xlnet-base-cased"
+      
+      question_answering:
+        default_model: "bert-base-uncased"
+        available_models:
+          - "bert-base-uncased"
+          - "distilbert-base-uncased"
+          - "deepset/roberta-base-squad2"
+          - "microsoft/DialoGPT-medium"
+      
+      summarization:
+        default_model: "facebook/bart-base"
+        available_models:
+          - "facebook/bart-base"
+          - "facebook/bart-large"
+          - "t5-base"
+          - "t5-small"
+          - "google/pegasus-large"
+      
+      translation:
+        default_model: "Helsinki-NLP/opus-mt-en-fr"
+        available_models:
+          - "Helsinki-NLP/opus-mt-en-fr"
+          - "Helsinki-NLP/opus-mt-fr-en"
+          - "t5-base"
+          - "facebook/mbart-large-50-many-to-many-mmt"
+      
+      token_classification:
+        default_model: "bert-base-uncased"
+        available_models:
+          - "bert-base-uncased"
+          - "distilbert-base-uncased"
+          - "dbmdz/bert-large-cased-finetuned-conll03-english"
+    
+    # Tokenizer settings
+    tokenizer:
+      default_max_length: 512
+      padding: true
+      truncation: true
+      return_tensors: "pt"
+      add_special_tokens: true
+    
+    # Fine-tuning settings
+    fine_tuning:
+      default_output_dir: "./fine_tuned_models"
+      default_num_epochs: 3
+      default_batch_size: 8
+      default_learning_rate: 2e-5
+      default_warmup_steps: 500
+      save_steps: 1000
+      eval_steps: 1000
+      logging_steps: 100
+      save_total_limit: 2
+      load_best_model_at_end: true
+      metric_for_best_model: "eval_loss"
+      greater_is_better: false
+    
+    # Pipeline settings
+    pipelines:
+      enable_high_level_interface: true
+      default_device: "auto"
+      batch_size: 1
+      timeout: 30
+
+  # Transformer architectures
+  architectures:
+    encoder_decoder:
+      enabled: true
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      max_len: 5000
+      dropout: 0.1
+      description: "Standard Transformer encoder-decoder architecture"
+
+    encoder_only:
+      enabled: true
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      max_len: 5000
+      dropout: 0.1
+      description: "Transformer encoder-only for classification/regression"
+
+    decoder_only:
+      enabled: true
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      max_len: 5000
+      dropout: 0.1
+      description: "Transformer decoder-only for language modeling"
+
+  # Attention mechanisms
+  attention:
+    multi_head:
+      enabled: true
+      default_heads: 8
+      dropout: 0.1
+      description: "Standard multi-head attention"
+
+    scaled_dot_product:
+      enabled: true
+      scale_factor: "sqrt_d_k"
+      description: "Scaled dot-product attention"
+
+    relative_positional:
+      enabled: false
+      max_relative_position: 32
+      description: "Relative positional attention"
+
+    sparse_attention:
+      enabled: false
+      sparsity_factor: 0.1
+      description: "Sparse attention for efficiency"
+
+  # Positional encoding
+  positional_encoding:
+    sinusoidal:
+      enabled: true
+      max_len: 5000
+      dropout: 0.1
+      description: "Sinusoidal positional encoding"
+
+    learned:
+      enabled: false
+      max_len: 5000
+      dropout: 0.1
+      description: "Learned positional encoding"
+
+    rotary:
+      enabled: false
+      max_len: 5000
+      description: "Rotary positional encoding (RoPE)"
+
+  # LLM generation settings
+  generation:
+    default_max_length: 100
+    default_temperature: 1.0
+    default_top_k: 50
+    default_top_p: 0.9
+    default_do_sample: true
+    beam_search:
+      enabled: true
+      beam_size: 5
+      length_penalty: 1.0
+    nucleus_sampling:
+      enabled: true
+      threshold: 0.9
+    greedy_search:
+      enabled: true
+
+  # Prompt engineering
+  prompt_engineering:
+    templates:
+      zero_shot: "{instruction}"
+      few_shot: "{examples}\n{instruction}"
+      chain_of_thought: "Let's approach this step by step:\n{instruction}"
+      role_playing: "You are {role}. {instruction}"
+      formatting: "Please format your response as {format}.\n{instruction}"
+    
+    default_template: "zero_shot"
+    enable_custom_templates: true
+
+  # Model sizes and configurations
+  model_configs:
+    small:
+      d_model: 256
+      n_layers: 4
+      n_heads: 8
+      d_ff: 1024
+      description: "Small model for quick experiments"
+
+    medium:
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      description: "Medium model for standard tasks"
+
+    large:
+      d_model: 768
+      n_layers: 12
+      n_heads: 12
+      d_ff: 3072
+      description: "Large model for complex tasks"
+
+    xl:
+      d_model: 1024
+      n_layers: 24
+      n_heads: 16
+      d_ff: 4096
+      description: "Extra large model for advanced tasks"
+
+  # Task-specific configurations
+  task_specific:
+    machine_translation:
+      model_type: "encoder_decoder"
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      description: "Configuration for machine translation tasks"
+
+    text_classification:
+      model_type: "encoder_only"
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      description: "Configuration for text classification tasks"
+
+    language_modeling:
+      model_type: "decoder_only"
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      description: "Configuration for language modeling tasks"
+
+    summarization:
+      model_type: "encoder_decoder"
+      d_model: 512
+      n_layers: 6
+      n_heads: 8
+      d_ff: 2048
+      description: "Configuration for text summarization tasks"
+
+  # Performance optimizations
+  performance:
+    mixed_precision:
+      enabled: false
+      dtype: "float16"
+      description: "Use mixed precision training"
+
+    gradient_checkpointing:
+      enabled: false
+      description: "Enable gradient checkpointing for memory efficiency"
+
+    torch_compile:
+      enabled: false
+      mode: "default"
+      description: "Use torch.compile for optimization"
+
+    attention_optimization:
+      flash_attention: false
+      xformers: false
+      description: "Use optimized attention implementations"
+
+  # Analysis and monitoring
+  analysis:
+    attention_weights:
+      enabled: true
+      save_weights: true
+      visualize: true
+      description: "Analyze and visualize attention weights"
+
+    perplexity:
+      enabled: true
+      compute_on_validation: true
+      description: "Compute model perplexity"
+
+    generation_diversity:
+      enabled: true
+      n_samples: 10
+      metrics: ["bleu", "rouge", "diversity_score"]
+      description: "Analyze generation diversity"
+
+    model_size:
+      enabled: true
+      count_parameters: true
+      estimate_memory: true
+      description: "Analyze model size and memory usage"
+
+  # Integration settings
+  integration:
+    with_custom_models: true
+    with_autograd: true
+    with_weight_init: true
+    with_loss_optimization: true
+    description: "Integration with other framework components"
+
+  # Export and deployment
+  export:
+    torchscript:
+      enabled: true
+      optimize: true
+      description: "Export to TorchScript format"
+
+    onnx:
+      enabled: true
+      opset_version: 11
+      description: "Export to ONNX format"
+
+    quantization:
+      enabled: false
+      dtype: "int8"
+      description: "Quantize model for deployment"
+
+  # Examples and demonstrations
+  examples:
+    basic_transformer: true
+    attention_visualization: true
+    text_generation: true
+    prompt_engineering: true
+    model_comparison: true
+    performance_benchmarking: true
+    pre_trained_models: true
+    fine_tuning: true
+    pipelines: true
+
+  # Validation rules
+  validation:
+    model_creation:
+      - "All required parameters must be provided"
+      - "d_model must be divisible by n_heads"
+      - "vocab_size must be positive"
+      - "n_layers must be positive"
+    
+    generation:
+      - "max_length must be positive"
+      - "temperature must be positive"
+      - "top_k must be positive"
+      - "top_p must be between 0 and 1"
+    
+    attention:
+      - "n_heads must divide d_model evenly"
+      - "dropout must be between 0 and 1"
+      - "max_len must be positive"
+    
+    transformers:
+      - "Model name must be valid Hugging Face model identifier"
+      - "Task type must be supported"
+      - "Device must be valid (cpu, cuda, auto)"
+      - "Fine-tuning parameters must be positive"

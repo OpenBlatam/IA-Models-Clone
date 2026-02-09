@@ -1,0 +1,75 @@
+# Final Optimized Copywriting Service Requirements
+# Production-ready dependencies with performance optimizations
+
+# === CORE FRAMEWORK ===
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# === HIGH-PERFORMANCE JSON ===
+orjson==3.9.10              # 5x faster JSON processing
+msgspec==0.18.4             # Ultra-fast serialization
+
+# === ASYNC & EVENT LOOP ===
+uvloop==0.19.0              # 4x faster event loop (Unix only)
+asyncio-mqtt==0.16.1        # Async MQTT client
+aiofiles==23.2.1            # Async file operations
+aioredis==2.0.1             # Async Redis client
+
+# === CACHING & STORAGE ===
+redis==5.0.1                # Redis client
+hiredis==2.2.3              # Faster Redis parsing
+diskcache==5.6.3            # Disk-based cache
+
+# === DATA PROCESSING ===
+polars==0.20.0              # 10x faster DataFrame operations
+pyarrow==14.0.1             # Columnar data processing
+numpy==1.24.4               # Numerical computing
+
+# === COMPRESSION ===
+lz4==4.3.2                  # Ultra-fast compression
+zstandard==0.22.0           # High-ratio compression
+cramjam==2.7.0              # Multi-algorithm compression
+
+# === HASHING ===
+xxhash==3.4.1               # Fast non-cryptographic hashing
+blake3==0.4.1               # Cryptographic hashing
+
+# === MONITORING & METRICS ===
+prometheus-fastapi-instrumentator==6.1.0  # Prometheus metrics
+structlog==23.2.0           # Structured logging
+psutil==5.9.6               # System monitoring
+
+# === SECURITY ===
+cryptography==41.0.7        # Cryptographic operations
+bcrypt==4.1.1               # Password hashing
+
+# === MIDDLEWARE ===
+slowapi==0.1.9              # Rate limiting
+python-multipart==0.0.6    # Form data parsing
+
+# === DEVELOPMENT ===
+pytest==7.4.3              # Testing framework
+pytest-asyncio==0.21.1     # Async testing
+httpx==0.25.2               # HTTP client for testing
+black==23.11.0              # Code formatting
+ruff==0.1.6                 # Fast linting
+
+# === OPTIONAL OPTIMIZATIONS ===
+# Uncomment if needed:
+# numba==0.58.1             # JIT compilation
+# cython==3.0.5             # C extensions
+# simdjson==5.0.2           # SIMD JSON parsing
+# ujson==5.8.0              # Ultra JSON (alternative)
+# mmh3==4.0.1               # MurmurHash3
+
+# === DEPLOYMENT ===
+gunicorn==21.2.0            # WSGI server
+supervisor==4.2.5           # Process management
+
+# === SYSTEM DEPENDENCIES ===
+# These may need to be installed at system level:
+# - Redis server
+# - PostgreSQL (if using database)
+# - System build tools for native extensions 

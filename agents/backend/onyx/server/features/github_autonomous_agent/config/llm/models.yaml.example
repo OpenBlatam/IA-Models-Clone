@@ -1,0 +1,43 @@
+# Configuración de Modelos LLM
+# Copia este archivo a models.yaml y personaliza según tus necesidades
+
+default_models:
+  - "openai/gpt-4o-mini"
+  - "anthropic/claude-3.5-sonnet"
+  - "google/gemini-pro-1.5"
+
+model_settings:
+  "openai/gpt-4o-mini":
+    temperature: 0.7
+    max_tokens: 2000
+    top_p: 1.0
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+    recommended_for:
+      - "code_analysis"
+      - "documentation"
+      - "general"
+  
+  "anthropic/claude-3.5-sonnet":
+    temperature: 0.7
+    max_tokens: 4000
+    top_p: 0.9
+    recommended_for:
+      - "code_analysis"
+      - "refactoring"
+      - "complex_reasoning"
+  
+  "google/gemini-pro-1.5":
+    temperature: 0.7
+    max_tokens: 8000
+    recommended_for:
+      - "large_codebase_analysis"
+      - "documentation"
+      - "long_context"
+
+cost_limits:
+  daily_limit: 10.0  # Límite diario en dólares
+  per_request_limit: 0.10  # Límite por request
+
+
+

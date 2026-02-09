@@ -1,0 +1,165 @@
+LISTA DE LIBRERÍAS PARA USAR
+============================
+
+CORE (Básicas)
+--------------
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+
+PERFORMANCE (Rápidas)
+---------------------
+orjson              # JSON 2-3x más rápido
+simdjson            # JSON parsing ultra-rápido
+polars              # DataFrame 5-10x más rápido
+duckdb              # SQL 100x más rápido
+redis[hiredis]      # Redis optimizado
+
+ASYNC
+-----
+httpx               # HTTP async
+aiohttp             # HTTP async avanzado
+aioredis            # Redis async
+aiocache            # Cache async
+aiofiles            # Archivos async
+
+LLM
+---
+openai              # OpenAI API
+anthropic           # Claude API
+google-generativeai # Gemini API
+litellm             # Unified LLM
+tiktoken            # Token counting
+
+DATABASE
+--------
+sqlalchemy          # ORM
+asyncpg             # PostgreSQL async
+alembic             # Migrations
+sqlmodel            # ORM (Pydantic+SQLAlchemy)
+
+CACHE
+-----
+redis[hiredis]      # Redis
+diskcache           # Cache disco
+cachetools          # Cache memoria
+pymemcache          # Memcached
+
+MONITORING
+----------
+prometheus-client   # Métricas
+opentelemetry-api   # Observability
+sentry-sdk          # Error tracking
+structlog           # Logging
+py-spy              # Profiler
+
+SECURITY
+--------
+cryptography        # Crypto
+PyJWT               # JWT
+python-jose         # JWT completo
+passlib[bcrypt]     # Password hashing
+argon2-cffi         # Argon2
+
+TESTING
+-------
+pytest              # Testing
+pytest-asyncio      # Async testing
+pytest-cov          # Coverage
+hypothesis          # Property-based
+faker               # Test data
+
+CODE QUALITY
+------------
+mypy                # Type checker
+ruff                # Linter (Rust, rápido)
+black               # Formatter
+isort               # Import sorter
+bandit              # Security linter
+
+DEV TOOLS
+---------
+ipython             # Shell mejorado
+debugpy             # Debugger VS Code
+pre-commit          # Git hooks
+rich                # Terminal formatting
+
+MESSAGE QUEUES
+--------------
+celery              # Task queue
+dramatiq            # Task queue simple
+arq                 # Async task queue
+aio-pika            # RabbitMQ async
+aiokafka            # Kafka async
+
+WEB
+---
+websockets          # WebSocket async
+sse-starlette       # Server-Sent Events
+swagger-ui-bundle   # Swagger UI
+redoc               # ReDoc
+
+SCHEDULING
+----------
+apscheduler         # Scheduler avanzado
+croniter            # Cron parser
+
+SERIALIZATION
+-------------
+msgpack             # Binario
+cloudpickle         # Pickle funciones
+pyyaml              # YAML
+
+DATA
+----
+pandas              # DataFrames
+numpy               # Arrays
+scipy               # Ciencia
+joblib              # Parallel
+
+ML/AI
+-----
+scikit-learn        # ML
+sentence-transformers # Embeddings
+faiss-cpu           # Vector search
+qdrant-client       # Vector DB
+
+CONFIG
+------
+python-dotenv       # .env
+dynaconf            # Dynamic config
+omegaconf           # Structured config
+
+COMPRESSION
+-----------
+lz4                 # Compresión rápida
+zstandard           # Compresión mejor
+
+DISTRIBUTED
+-----------
+etcd3               # etcd
+consul              # Consul
+grpcio              # gRPC
+protobuf            # Protocol Buffers
+
+INSTALACIÓN RÁPIDA
+==================
+
+Solo esencial:
+pip install fastapi uvicorn pydantic pydantic-settings
+
+Alto rendimiento:
+pip install fastapi uvicorn pydantic orjson polars redis[hiredis]
+
+Desarrollo:
+pip install fastapi uvicorn pydantic pytest pytest-asyncio mypy ruff black
+
+Todo:
+pip install -r requirements.txt
+
+Con UV (más rápido):
+pip install uv
+uv pip install -r requirements.txt
+
+

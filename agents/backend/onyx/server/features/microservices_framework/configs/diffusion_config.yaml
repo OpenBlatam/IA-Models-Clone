@@ -1,0 +1,35 @@
+# Diffusion Service Configuration
+
+service:
+  name: "diffusion_service"
+  port: 8002
+  host: "0.0.0.0"
+
+model:
+  default_model: "runwayml/stable-diffusion-v1-5"
+  use_fp16: true
+  device: "cuda"
+  cache_size: 3
+  variant: "fp16"  # or "fp32"
+
+generation:
+  default_num_inference_steps: 50
+  default_guidance_scale: 7.5
+  default_scheduler: "DPMSolverMultistep"  # or "Euler", "PNDM"
+  default_width: 512
+  default_height: 512
+  default_strength: 0.8
+  max_width: 1024
+  max_height: 1024
+
+performance:
+  enable_xformers: true
+  enable_attention_slicing: false
+  enable_vae_slicing: false
+
+logging:
+  level: "INFO"
+  format: "json"
+
+
+

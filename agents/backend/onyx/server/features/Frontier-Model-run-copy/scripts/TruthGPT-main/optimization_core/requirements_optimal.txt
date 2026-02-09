@@ -1,0 +1,88 @@
+# 🎯 OPTIMAL REQUIREMENTS - MÁXIMA OPTIMIZACIÓN
+# Versión: 2024.1.0 - Ultra Optimizado
+
+# ===========================================
+# CORE FRAMEWORK - Versiones optimizadas
+# ===========================================
+torch==2.1.0+cu118           # CUDA 11.8 optimizada
+torchvision==0.16.0+cu118
+torchaudio==2.1.0+cu118
+
+transformers==4.35.0
+accelerate==0.25.0
+bitsandbytes==0.41.0
+
+# ===========================================
+# GPU OPTIMIZATION - Máximo rendimiento
+# ===========================================
+flash-attn==2.4.0            # Atención optimizada 3x
+xformers==0.0.23             # Operaciones 2x
+triton==3.0.0                # Compilación JIT
+cupy-cuda11x==12.3.0         # NumPy GPU
+numba==0.59.0                # JIT CPU/GPU
+
+# ===========================================
+# EFFICIENT FINE-TUNING
+# ===========================================
+peft==0.6.0                  # LoRA, QLoRA, P-tuning
+deepspeed==0.12.0            # ZeRO, gradient checkpointing
+fairscale==0.4.13            # Sharded DDP
+
+# ===========================================
+# SCIENTIFIC COMPUTING - Optimizado
+# ===========================================
+numpy==1.26.0                # SIMD optimizado
+pandas==2.1.0                # Vectorized operations
+scipy==1.11.0                # Numerical algorithms
+
+# ===========================================
+# INTERACTIVE UI - Rápida
+# ===========================================
+gradio==4.7.0                # Interfaces
+streamlit==1.28.0            # Dashboards (opcional)
+
+# ===========================================
+# TRACKING - Mínimo overhead
+# ===========================================
+wandb==0.16.0                # Experiment tracking
+tensorboard==2.15.0          # Visualización
+mlflow==2.9.0                # ML lifecycle (opcional)
+
+# ===========================================
+# MONITORING - Rendimiento
+# ===========================================
+psutil==5.9.6                # System metrics
+nvidia-ml-py==12.0           # GPU monitoring
+gpustat==1.1.0              # GPU status
+
+# ===========================================
+# PREFETCH & CACHING
+# ===========================================
+datasets==2.16.0             # Data loading
+cachetools==5.3.0           # Python caching
+joblib==1.3.0               # Parallel computing
+
+# ===========================================
+# UTILITIES
+# ===========================================
+tqdm==4.66.0                # Progress bars
+rich==13.7.0                # Terminal formatting
+pyyaml==6.0.1               # Configuration
+python-dotenv==1.0.0        # Env vars
+
+# ===========================================
+# TESTING & QUALITY
+# ===========================================
+pytest==7.4.3               # Testing
+pytest-benchmark==4.0.0     # Benchmarking
+black==23.12.0              # Code formatting
+ruff==0.1.6                 # Fast linting
+
+# ===========================================
+# OPTIONAL - Solo si necesitas
+# ===========================================
+# langchain==0.1.0            # LLM apps (opcional)
+# openai==1.6.0               # OpenAI API (opcional)
+# anthropic==0.7.0            # Claude API (opcional)
+# diffusers==0.25.0           # Diffusion (opcional)
+

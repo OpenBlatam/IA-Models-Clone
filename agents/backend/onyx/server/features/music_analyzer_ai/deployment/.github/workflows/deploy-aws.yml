@@ -1,0 +1,120 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main
+      - production
+    paths:
+      - 'deployment/aws/**'
+      - 'main.py'
+      - 'requirements.txt'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+env:
+  AWS_REGION: us-east-1
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  deploy-lambda:
+    name: Deploy Lambda Function
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r deployment/requirements-serverless.txt
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Create deployment package
+        run: |
+          mkdir -p package
+          pip install -r requirements.txt -t ./package
+          pip install -r deployment/requirements-serverless.txt -t ./package
+          cd package
+          zip -r ../lambda-deployment.zip .
+          cd ..
+          zip -r lambda-deployment.zip . -x "*.git*" -x "*__pycache__*" -x "*.pyc" -x "*tests*" -x "*.md" -x "*deployment/azure*" -x "*.github*"
+      
+      - name: Deploy to Lambda
+        run: |
+          FUNCTION_NAME="music-analyzer-ai-${{ github.event.inputs.environment || 'production' }}"
+          aws lambda update-function-code \
+            --function-name $FUNCTION_NAME \
+            --zip-file fileb://lambda-deployment.zip \
+            --region ${{ env.AWS_REGION }}
+      
+      - name: Update Lambda environment variables
+        run: |
+          FUNCTION_NAME="music-analyzer-ai-${{ github.event.inputs.environment || 'production' }}"
+          aws lambda update-function-configuration \
+            --function-name $FUNCTION_NAME \
+            --environment Variables="{ENVIRONMENT=${{ github.event.inputs.environment || 'production' }},CACHE_ENABLED=true,LOG_LEVEL=INFO}" \
+            --region ${{ env.AWS_REGION }}
+
+  deploy-ecs:
+    name: Deploy ECS Service
+    runs-on: ubuntu-latest
+    if: github.event.inputs.deployment_type == 'ecs' || contains(github.event.head_commit.message, '[deploy:ecs]')
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: music-analyzer-ai
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -f deployment/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+      
+      - name: Update ECS service
+        run: |
+          aws ecs update-service \
+            --cluster music-analyzer-cluster \
+            --service music-analyzer-service \
+            --force-new-deployment \
+            --region ${{ env.AWS_REGION }}
+
+
+
+

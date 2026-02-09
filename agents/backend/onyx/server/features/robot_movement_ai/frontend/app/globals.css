@@ -1,0 +1,1058 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Tesla Color Palette - Exact Values */
+  --tesla-black: 23 26 32;
+  --tesla-gray-dark: 57 60 65;
+  --tesla-gray-medium: 92 94 98;
+  --tesla-gray-light: 181 181 181;
+  --tesla-gray-lighter: 229 231 235;
+  --tesla-white: 255 255 255;
+  --tesla-blue: 0 98 204;
+  --tesla-blue-hover: 0 82 163;
+  --tesla-blue-light: 230 242 255;
+  
+  /* Legacy colors for compatibility */
+  --primary: 0 98 204;
+  --background: 255 255 255;
+  --foreground: 57 60 65;
+  
+  /* Tesla Opacity Values */
+  --tesla-opacity-5: 0.05;
+  --tesla-opacity-10: 0.1;
+  --tesla-opacity-20: 0.2;
+  --tesla-opacity-30: 0.3;
+  --tesla-opacity-40: 0.4;
+  --tesla-opacity-50: 0.5;
+  --tesla-opacity-60: 0.6;
+  --tesla-opacity-70: 0.7;
+  --tesla-opacity-80: 0.8;
+  --tesla-opacity-90: 0.9;
+  --tesla-opacity-95: 0.95;
+  
+  /* Tesla Blur Values */
+  --tesla-blur-sm: 4px;
+  --tesla-blur-base: 8px;
+  --tesla-blur-md: 12px;
+  --tesla-blur-lg: 16px;
+  --tesla-blur-xl: 20px;
+  --tesla-blur-2xl: 24px;
+  --tesla-blur-3xl: 40px;
+  
+  /* Tesla Transform Values */
+  --tesla-scale-95: 0.95;
+  --tesla-scale-98: 0.98;
+  --tesla-scale-102: 1.02;
+  --tesla-scale-105: 1.05;
+  --tesla-scale-110: 1.1;
+  
+  /* Tesla Transition Values */
+  --tesla-transition-fast: 150ms;
+  --tesla-transition-base: 200ms;
+  --tesla-transition-slow: 300ms;
+  --tesla-transition-slower: 400ms;
+  
+  /* Tesla Easing Curves */
+  --tesla-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --tesla-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --tesla-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --tesla-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Tesla Exact Spacing Values */
+  --tesla-spacing-xs: 8px;
+  --tesla-spacing-sm: 12px;
+  --tesla-spacing-md: 16px;
+  --tesla-spacing-lg: 24px;
+  --tesla-spacing-xl: 32px;
+  --tesla-spacing-2xl: 48px;
+  --tesla-spacing-3xl: 64px;
+  --tesla-spacing-4xl: 96px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 17 24 39;
+    --foreground: 255 255 255;
+  }
+}
+
+body {
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 600;
+  color: rgb(23, 26, 32);
+  letter-spacing: -0.02em;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  --background: 0 0 0;
+  --foreground: 255 255 255;
+}
+
+.high-contrast * {
+  border-color: rgb(255 255 255) !important;
+}
+
+/* Reduced Motion */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Custom Scrollbar - Tesla Style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(255 255 255);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(181 181 181);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(57 60 65);
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(181 181 181) transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-hide::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background-color: rgb(181 181 181);
+  border-radius: 3px;
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(57 60 65);
+}
+
+/* Focus Styles for Accessibility - Tesla Style */
+*:focus-visible {
+  outline: 2px solid rgb(0 98 204);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Tesla-inspired button styles */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Tesla-inspired link styles */
+a {
+  color: rgb(57, 60, 65);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: rgb(0, 98, 204);
+}
+
+/* Tesla-inspired input styles */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  color: rgb(23, 26, 32);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgb(181, 181, 181);
+}
+
+/* Tesla-inspired Card Style */
+.card-tesla {
+  @apply bg-white rounded-lg p-6 border border-gray-200 shadow-sm transition-all duration-200 ease-in-out;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  padding: var(--tesla-spacing-lg);
+  gap: var(--tesla-spacing-md);
+}
+
+.card-tesla:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Tesla-inspired Button Styles */
+.btn-tesla-primary {
+  @apply bg-tesla-blue text-white font-medium rounded-md px-6 py-3 transition-colors duration-200 ease-in-out;
+  @apply hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-tesla-blue focus:ring-opacity-50;
+  padding-left: var(--tesla-spacing-lg);
+  padding-right: var(--tesla-spacing-lg);
+  padding-top: var(--tesla-spacing-sm);
+  padding-bottom: var(--tesla-spacing-sm);
+}
+
+.btn-tesla-secondary {
+  @apply bg-tesla-gray-light text-tesla-black font-medium rounded-md px-6 py-3 transition-colors duration-200 ease-in-out;
+  @apply hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-tesla-blue focus:ring-opacity-50;
+  padding-left: var(--tesla-spacing-lg);
+  padding-right: var(--tesla-spacing-lg);
+  padding-top: var(--tesla-spacing-sm);
+  padding-bottom: var(--tesla-spacing-sm);
+}
+
+.btn-tesla-tertiary {
+  @apply bg-transparent text-tesla-gray-dark font-medium rounded-md px-4 py-2 transition-colors duration-200 ease-in-out;
+  @apply hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-tesla-blue focus:ring-opacity-50;
+  padding-left: var(--tesla-spacing-md);
+  padding-right: var(--tesla-spacing-md);
+  padding-top: var(--tesla-spacing-sm);
+  padding-bottom: var(--tesla-spacing-sm);
+}
+
+/* Input field styles */
+.input-tesla {
+  @apply w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-tesla-black focus:outline-none focus:ring-2 focus:ring-tesla-blue focus:border-transparent;
+  padding-left: var(--tesla-spacing-md);
+  padding-right: var(--tesla-spacing-md);
+  padding-top: var(--tesla-spacing-sm);
+  padding-bottom: var(--tesla-spacing-sm);
+}
+
+/* Link styles */
+a {
+  @apply text-tesla-blue hover:underline;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Tesla-inspired animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Tesla-inspired spacing utilities */
+.space-tesla {
+  letter-spacing: -0.02em;
+}
+
+/* Tesla-inspired border radius */
+.rounded-tesla {
+  border-radius: 4px;
+}
+
+.rounded-tesla-lg {
+  border-radius: 8px;
+}
+
+/* Tesla-inspired transitions */
+.transition-tesla {
+  transition: all 0.2s ease;
+}
+
+/* Custom Checkbox/Radio */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: rgb(0 98 204);
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.5em;
+  border: 1px solid rgb(181 181 181);
+  border-radius: 0.25em;
+  vertical-align: middle;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: rgb(0 98 204);
+  border-color: rgb(0 98 204);
+}
+
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 2px solid rgb(0 98 204);
+  outline-offset: 2px;
+}
+
+/* Custom Select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23393c41' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+}
+
+/* Accordion Animations */
+@keyframes accordionOpen {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+
+@keyframes accordionClose {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+
+/* Tooltip Styles */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+  --scale: 0;
+  --tooltip-color: rgb(23 26 32);
+  --arrow-size: 6px;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  background: var(--tooltip-color);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+[data-tooltip]::after {
+  content: '';
+  border: var(--arrow-size) solid transparent;
+  border-top-color: var(--tooltip-color);
+  transform-origin: top;
+  top: calc(-0.25rem + var(--arrow-size));
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::before,
+[data-tooltip]:focus-visible::after {
+  --scale: 1;
+  --translate-y: -0.5rem;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Tesla-inspired large typography */
+.text-hero {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.text-display {
+  font-size: clamp(1.875rem, 5vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Tesla-inspired gradient overlays */
+.gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.gradient-overlay-light {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+}
+
+/* Parallax effect utility */
+.parallax {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Tesla-inspired card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-dark {
+  background: rgba(23, 26, 32, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tesla-inspired section spacing */
+.section-padding {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* Tesla-inspired container max-widths */
+.container-tesla {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-tesla {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-tesla {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Tesla-inspired button large */
+.btn-tesla-large {
+  @apply px-8 py-4 text-base font-medium rounded-md transition-all min-h-[52px];
+  @apply bg-tesla-blue text-white hover:bg-opacity-90;
+  @apply focus:outline-none focus:ring-2 focus:ring-tesla-blue focus:ring-offset-2;
+  padding-left: var(--tesla-spacing-xl);
+  padding-right: var(--tesla-spacing-xl);
+  padding-top: var(--tesla-spacing-md);
+  padding-bottom: var(--tesla-spacing-md);
+}
+
+/* Tesla-inspired text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, rgb(0, 98, 204) 0%, rgb(0, 78, 163) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scroll reveal animation */
+@keyframes scrollReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  animation: scrollReveal 0.6s ease-out forwards;
+}
+
+/* Tesla-inspired divider */
+.divider-tesla {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(181, 181, 181) 50%,
+    transparent 100%
+  );
+}
+
+/* Backdrop blur utility */
+.backdrop-blur-tesla {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Tesla-inspired range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #e5e7eb;
+  height: 8px;
+  border-radius: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  background-color: rgb(0, 98, 204);
+  border-radius: 50%;
+  margin-top: -6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: rgb(0, 78, 163);
+  transform: scale(1.05);
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 2px solid rgb(0, 98, 204);
+  outline-offset: 3px;
+}
+
+input[type="range"]::-moz-range-track {
+  background: #e5e7eb;
+  height: 8px;
+  border-radius: 4px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  background-color: rgb(0, 98, 204);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background-color: rgb(0, 78, 163);
+  transform: scale(1.05);
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  outline: 2px solid rgb(0, 98 204);
+  outline-offset: 3px;
+}
+
+/* Shimmer animation for SkeletonLoader */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Tesla exact gradient animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Tesla exact float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Tesla exact glow pulse */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(0, 98, 204, 0.5));
+  }
+  50% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 20px rgba(0, 98, 204, 0.8));
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Tesla exact shimmer text */
+@keyframes shimmer-text {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-text 2s linear infinite;
+}
+
+/* Tesla exact magnetic effect */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.magnetic:hover {
+  transform: translate(var(--magnetic-x, 0), var(--magnetic-y, 0));
+}
+
+/* Tesla exact parallax container */
+.parallax-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.parallax-element {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Tesla exact scroll snap */
+.scroll-snap {
+  scroll-snap-type: y mandatory;
+}
+
+.scroll-snap-item {
+  scroll-snap-align: start;
+}
+
+/* Tesla exact smooth reveal */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tesla exact hover lift */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Tesla exact scale on hover */
+.hover-scale {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Tesla exact rotate on hover */
+.hover-rotate {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+/* Tesla exact border glow */
+.border-glow {
+  position: relative;
+}
+
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #0062cc, #0052a3);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.border-glow:hover::before {
+  opacity: 1;
+}
+
+/* Tesla exact ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 98, 204, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Tesla exact loading dots */
+@keyframes loading-dots {
+  0%, 20% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.loading-dots span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #0062cc;
+  animation: loading-dots 1.4s infinite;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Tesla exact wave animation */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-wave {
+  animation: wave 1s ease-in-out infinite;
+}
+
+.animate-wave:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.animate-wave:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.animate-wave:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+/* Tesla exact morphing blob */
+@keyframes morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.animate-morph {
+  animation: morph 8s ease-in-out infinite;
+}
+
+/* Tesla exact text gradient animation */
+@keyframes text-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(90deg, #0062cc, #0052a3, #0062cc);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-gradient 3s linear infinite;
+}
+
+/* Tesla Exact Spacing Utilities - Using CSS Variables */
+.p-tesla-xs { padding: var(--tesla-spacing-xs); }
+.p-tesla-sm { padding: var(--tesla-spacing-sm); }
+.p-tesla-md { padding: var(--tesla-spacing-md); }
+.p-tesla-lg { padding: var(--tesla-spacing-lg); }
+.p-tesla-xl { padding: var(--tesla-spacing-xl); }
+.p-tesla-2xl { padding: var(--tesla-spacing-2xl); }
+.p-tesla-3xl { padding: var(--tesla-spacing-3xl); }
+.p-tesla-4xl { padding: var(--tesla-spacing-4xl); }
+
+.px-tesla-xs { padding-left: var(--tesla-spacing-xs); padding-right: var(--tesla-spacing-xs); }
+.px-tesla-sm { padding-left: var(--tesla-spacing-sm); padding-right: var(--tesla-spacing-sm); }
+.px-tesla-md { padding-left: var(--tesla-spacing-md); padding-right: var(--tesla-spacing-md); }
+.px-tesla-lg { padding-left: var(--tesla-spacing-lg); padding-right: var(--tesla-spacing-lg); }
+.px-tesla-xl { padding-left: var(--tesla-spacing-xl); padding-right: var(--tesla-spacing-xl); }
+.px-tesla-2xl { padding-left: var(--tesla-spacing-2xl); padding-right: var(--tesla-spacing-2xl); }
+
+.py-tesla-xs { padding-top: var(--tesla-spacing-xs); padding-bottom: var(--tesla-spacing-xs); }
+.py-tesla-sm { padding-top: var(--tesla-spacing-sm); padding-bottom: var(--tesla-spacing-sm); }
+.py-tesla-md { padding-top: var(--tesla-spacing-md); padding-bottom: var(--tesla-spacing-md); }
+.py-tesla-lg { padding-top: var(--tesla-spacing-lg); padding-bottom: var(--tesla-spacing-lg); }
+.py-tesla-xl { padding-top: var(--tesla-spacing-xl); padding-bottom: var(--tesla-spacing-xl); }
+.py-tesla-2xl { padding-top: var(--tesla-spacing-2xl); padding-bottom: var(--tesla-spacing-2xl); }
+.py-tesla-3xl { padding-top: var(--tesla-spacing-3xl); padding-bottom: var(--tesla-spacing-3xl); }
+
+.pt-tesla-xs { padding-top: var(--tesla-spacing-xs); }
+.pt-tesla-sm { padding-top: var(--tesla-spacing-sm); }
+.pt-tesla-md { padding-top: var(--tesla-spacing-md); }
+.pt-tesla-lg { padding-top: var(--tesla-spacing-lg); }
+.pt-tesla-xl { padding-top: var(--tesla-spacing-xl); }
+
+.pb-tesla-xs { padding-bottom: var(--tesla-spacing-xs); }
+.pb-tesla-sm { padding-bottom: var(--tesla-spacing-sm); }
+.pb-tesla-md { padding-bottom: var(--tesla-spacing-md); }
+.pb-tesla-lg { padding-bottom: var(--tesla-spacing-lg); }
+.pb-tesla-xl { padding-bottom: var(--tesla-spacing-xl); }
+
+.pl-tesla-xs { padding-left: var(--tesla-spacing-xs); }
+.pl-tesla-sm { padding-left: var(--tesla-spacing-sm); }
+.pl-tesla-md { padding-left: var(--tesla-spacing-md); }
+.pl-tesla-lg { padding-left: var(--tesla-spacing-lg); }
+.pl-tesla-xl { padding-left: var(--tesla-spacing-xl); }
+
+.pr-tesla-xs { padding-right: var(--tesla-spacing-xs); }
+.pr-tesla-sm { padding-right: var(--tesla-spacing-sm); }
+.pr-tesla-md { padding-right: var(--tesla-spacing-md); }
+.pr-tesla-lg { padding-right: var(--tesla-spacing-lg); }
+.pr-tesla-xl { padding-right: var(--tesla-spacing-xl); }
+
+.m-tesla-xs { margin: var(--tesla-spacing-xs); }
+.m-tesla-sm { margin: var(--tesla-spacing-sm); }
+.m-tesla-md { margin: var(--tesla-spacing-md); }
+.m-tesla-lg { margin: var(--tesla-spacing-lg); }
+.m-tesla-xl { margin: var(--tesla-spacing-xl); }
+.m-tesla-2xl { margin: var(--tesla-spacing-2xl); }
+.m-tesla-3xl { margin: var(--tesla-spacing-3xl); }
+
+.mx-tesla-xs { margin-left: var(--tesla-spacing-xs); margin-right: var(--tesla-spacing-xs); }
+.mx-tesla-sm { margin-left: var(--tesla-spacing-sm); margin-right: var(--tesla-spacing-sm); }
+.mx-tesla-md { margin-left: var(--tesla-spacing-md); margin-right: var(--tesla-spacing-md); }
+.mx-tesla-lg { margin-left: var(--tesla-spacing-lg); margin-right: var(--tesla-spacing-lg); }
+.mx-tesla-xl { margin-left: var(--tesla-spacing-xl); margin-right: var(--tesla-spacing-xl); }
+
+.my-tesla-xs { margin-top: var(--tesla-spacing-xs); margin-bottom: var(--tesla-spacing-xs); }
+.my-tesla-sm { margin-top: var(--tesla-spacing-sm); margin-bottom: var(--tesla-spacing-sm); }
+.my-tesla-md { margin-top: var(--tesla-spacing-md); margin-bottom: var(--tesla-spacing-md); }
+.my-tesla-lg { margin-top: var(--tesla-spacing-lg); margin-bottom: var(--tesla-spacing-lg); }
+.my-tesla-xl { margin-top: var(--tesla-spacing-xl); margin-bottom: var(--tesla-spacing-xl); }
+.my-tesla-2xl { margin-top: var(--tesla-spacing-2xl); margin-bottom: var(--tesla-spacing-2xl); }
+
+.mt-tesla-xs { margin-top: var(--tesla-spacing-xs); }
+.mt-tesla-sm { margin-top: var(--tesla-spacing-sm); }
+.mt-tesla-md { margin-top: var(--tesla-spacing-md); }
+.mt-tesla-lg { margin-top: var(--tesla-spacing-lg); }
+.mt-tesla-xl { margin-top: var(--tesla-spacing-xl); }
+
+.mb-tesla-xs { margin-bottom: var(--tesla-spacing-xs); }
+.mb-tesla-sm { margin-bottom: var(--tesla-spacing-sm); }
+.mb-tesla-md { margin-bottom: var(--tesla-spacing-md); }
+.mb-tesla-lg { margin-bottom: var(--tesla-spacing-lg); }
+.mb-tesla-xl { margin-bottom: var(--tesla-spacing-xl); }
+
+.ml-tesla-xs { margin-left: var(--tesla-spacing-xs); }
+.ml-tesla-sm { margin-left: var(--tesla-spacing-sm); }
+.ml-tesla-md { margin-left: var(--tesla-spacing-md); }
+.ml-tesla-lg { margin-left: var(--tesla-spacing-lg); }
+.ml-tesla-xl { margin-left: var(--tesla-spacing-xl); }
+
+.mr-tesla-xs { margin-right: var(--tesla-spacing-xs); }
+.mr-tesla-sm { margin-right: var(--tesla-spacing-sm); }
+.mr-tesla-md { margin-right: var(--tesla-spacing-md); }
+.mr-tesla-lg { margin-right: var(--tesla-spacing-lg); }
+.mr-tesla-xl { margin-right: var(--tesla-spacing-xl); }
+
+.gap-tesla-xs { gap: var(--tesla-spacing-xs); }
+.gap-tesla-sm { gap: var(--tesla-spacing-sm); }
+.gap-tesla-md { gap: var(--tesla-spacing-md); }
+.gap-tesla-lg { gap: var(--tesla-spacing-lg); }
+.gap-tesla-xl { gap: var(--tesla-spacing-xl); }
+.gap-tesla-2xl { gap: var(--tesla-spacing-2xl); }
+
+.space-y-tesla-xs > * + * { margin-top: var(--tesla-spacing-xs); }
+.space-y-tesla-sm > * + * { margin-top: var(--tesla-spacing-sm); }
+.space-y-tesla-md > * + * { margin-top: var(--tesla-spacing-md); }
+.space-y-tesla-lg > * + * { margin-top: var(--tesla-spacing-lg); }
+.space-y-tesla-xl > * + * { margin-top: var(--tesla-spacing-xl); }
+
+.space-x-tesla-xs > * + * { margin-left: var(--tesla-spacing-xs); }
+.space-x-tesla-sm > * + * { margin-left: var(--tesla-spacing-sm); }
+.space-x-tesla-md > * + * { margin-left: var(--tesla-spacing-md); }
+.space-x-tesla-lg > * + * { margin-left: var(--tesla-spacing-lg); }
+.space-x-tesla-xl > * + * { margin-left: var(--tesla-spacing-xl); }

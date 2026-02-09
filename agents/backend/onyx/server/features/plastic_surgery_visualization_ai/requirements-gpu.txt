@@ -1,0 +1,19 @@
+# GPU-accelerated dependencies
+# Install only if you have CUDA-capable GPU
+
+-r requirements.txt
+
+# GPU-accelerated PyTorch
+torch>=2.0.0+cu118  # CUDA 11.8 version
+torchvision>=0.15.0+cu118
+torchaudio>=2.0.0+cu118
+
+# GPU-accelerated TensorFlow
+tensorflow[and-cuda]>=2.13.0
+
+# GPU-accelerated OpenCV (if available)
+# opencv-contrib-python-headless>=4.8.0
+
+# CUDA utilities
+nvidia-ml-py>=12.535.0  # NVIDIA GPU monitoring
+

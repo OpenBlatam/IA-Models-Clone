@@ -1,0 +1,54 @@
+apiVersion: 2018-10-01
+location: eastus
+name: music-analyzer-ai
+properties:
+  containers:
+  - name: music-analyzer-ai
+    properties:
+      image: musicanalyzerai.azurecr.io/music-analyzer-ai:latest
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGb: 2.0
+      ports:
+      - port: 8010
+        protocol: TCP
+      environmentVariables:
+      - name: ENVIRONMENT
+        value: production
+      - name: CACHE_ENABLED
+        value: "true"
+      - name: LOG_LEVEL
+        value: INFO
+      - name: SPOTIFY_CLIENT_ID
+        secureValue: ""
+      - name: SPOTIFY_CLIENT_SECRET
+        secureValue: ""
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 8010
+        initialDelaySeconds: 60
+        periodSeconds: 30
+        timeoutSeconds: 5
+        failureThreshold: 3
+      readinessProbe:
+        httpGet:
+          path: /health
+          port: 8010
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 3
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: TCP
+      port: 8010
+    dnsNameLabel: music-analyzer-ai
+  restartPolicy: Always
+
+
+
+

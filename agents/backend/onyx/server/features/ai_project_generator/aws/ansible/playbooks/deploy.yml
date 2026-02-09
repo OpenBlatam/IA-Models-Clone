@@ -1,0 +1,56 @@
+---
+- name: Deploy AI Project Generator to EC2
+  hosts: app_servers
+  become: yes
+  gather_facts: yes
+
+  vars:
+    app_user: ubuntu
+    app_dir: /opt/ai-project-generator
+    python_version: "3.11"
+    app_port: "{{ app_port | default(8020) }}"
+
+  pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+
+  roles:
+    - role: common
+    - role: docker
+    - role: python
+    - role: redis
+    - role: nginx
+    - role: app
+
+  post_tasks:
+    - name: Wait for application to start
+      wait_for:
+        port: "{{ app_port }}"
+        host: localhost
+        delay: 10
+        timeout: 60
+      ignore_errors: yes
+
+    - name: Verify application health
+      uri:
+        url: "http://localhost:{{ app_port }}/health"
+        method: GET
+        status_code: [200, 301, 302]
+      register: health_check
+      retries: 5
+      delay: 10
+      until: health_check.status == 200
+      ignore_errors: yes
+
+    - name: Display deployment information
+      debug:
+        msg:
+          - "✅ Application deployed successfully!"
+          - "📁 Application directory: {{ app_dir }}"
+          - "🌐 Application URL: http://{{ ansible_default_ipv4.address }}:{{ app_port }}"
+          - "🏥 Health check: http://{{ ansible_default_ipv4.address }}/health"
+          - "📊 Metrics: http://{{ ansible_default_ipv4.address }}/metrics"
+

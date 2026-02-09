@@ -1,0 +1,268 @@
+# Training Configuration Example
+# This file contains all training-related hyperparameters and settings
+
+# Training identification
+experiment_name: "transformer_classification_experiment"
+run_name: "run_001"
+description: "Training transformer model for image classification"
+
+# Training parameters
+epochs: 100
+batch_size: 32
+learning_rate: 0.001
+weight_decay: 1e-5
+gradient_clipping: true
+max_grad_norm: 1.0
+
+# Optimization settings
+optimizer: "adamw"  # adam, sgd, adamw, rmsprop, lion, adafactor
+optimizer_params:
+  betas: [0.9, 0.999]
+  eps: 1e-8
+  amsgrad: false
+  foreach: true
+  maximize: false
+  capturable: false
+  differentiable: false
+  fused: true
+
+# Learning rate scheduler
+scheduler: "cosine"  # cosine, step, exponential, plateau, one_cycle, warmup_cosine
+scheduler_params:
+  # Cosine annealing
+  T_max: 100
+  eta_min: 1e-6
+  
+  # Step scheduler
+  step_size: 30
+  gamma: 0.1
+  
+  # Exponential scheduler
+  gamma: 0.95
+  
+  # Plateau scheduler
+  mode: "min"
+  factor: 0.5
+  patience: 10
+  threshold: 1e-4
+  threshold_mode: "rel"
+  cooldown: 0
+  min_lr: 0
+  
+  # One cycle scheduler
+  max_lr: 0.01
+  pct_start: 0.3
+  anneal_strategy: "cos"
+  cycle_momentum: true
+  base_momentum: 0.85
+  max_momentum: 0.95
+  div_factor: 25.0
+  final_div_factor: 1000.0
+  
+  # Warmup
+  warmup_steps: 1000
+  warmup_ratio: 0.1
+
+# Loss function configuration
+loss_function: "cross_entropy"  # cross_entropy, mse, bce, focal, label_smoothing
+loss_params:
+  # Focal loss
+  alpha: 1.0
+  gamma: 2.0
+  
+  # Label smoothing
+  smoothing: 0.1
+  
+  # Custom loss weights
+  class_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+# Device and performance settings
+device: "auto"  # auto, cpu, cuda, mps
+mixed_precision: true
+num_workers: 4
+pin_memory: true
+prefetch_factor: 2
+persistent_workers: true
+
+# Advanced training techniques
+gradient_accumulation_steps: 1
+gradient_scaling: true
+automatic_mixed_precision: true
+bf16_mixed_precision: false
+fp16_mixed_precision: true
+
+# Distributed training
+distributed_training: false
+backend: "nccl"  # nccl, gloo, mpi
+init_method: "env://"
+world_size: -1
+rank: -1
+local_rank: -1
+
+# DataParallel settings
+data_parallel: false
+find_unused_parameters: false
+broadcast_buffers: true
+bucket_cap_mb: 25
+static_graph: true
+
+# FSDP settings
+fsdp: false
+fsdp_state_dict_type: "FULL_STATE_DICT"
+fsdp_auto_wrap_policy: "transformer"
+fsdp_mixed_precision: true
+fsdp_activation_checkpointing: true
+
+# Logging and monitoring
+log_interval: 10
+save_interval: 10
+eval_interval: 1
+log_gradients: false
+log_learning_rate: true
+log_memory_usage: true
+
+# TensorBoard settings
+tensorboard: true
+tensorboard_log_dir: "./logs/tensorboard"
+tensorboard_flush_secs: 120
+tensorboard_purge_orphaned_data: true
+
+# Weights & Biases settings
+wandb: false
+wandb_project: "deep_learning_project"
+wandb_entity: ""
+wandb_group: ""
+wandb_tags: ["transformer", "classification"]
+wandb_notes: ""
+wandb_config: {}
+
+# MLflow settings
+mlflow: false
+mlflow_tracking_uri: "http://localhost:5000"
+mlflow_experiment_name: "transformer_experiment"
+mlflow_run_name: "run_001"
+
+# Neptune settings
+neptune: false
+neptune_project: ""
+neptune_api_token: ""
+
+# Checkpointing settings
+save_dir: "./checkpoints"
+resume_from: null
+save_best_only: true
+save_last: true
+save_top_k: 3
+save_every_n_epochs: 10
+save_every_n_steps: 1000
+
+# Model checkpointing
+save_model_state: true
+save_optimizer_state: true
+save_scheduler_state: true
+save_scaler_state: true
+save_metadata: true
+
+# Early stopping
+early_stopping: true
+patience: 10
+min_delta: 1e-4
+monitor: "val_loss"  # val_loss, val_accuracy, train_loss
+mode: "min"  # min, max
+restore_best_weights: true
+verbose: true
+
+# Validation settings
+validation_split: 0.2
+validation_metrics: ["accuracy", "loss", "precision", "recall", "f1"]
+validation_frequency: 1  # Validate every N epochs
+validation_batch_size: null  # Use training batch size if null
+
+# Cross-validation
+cross_validation: false
+cv_folds: 5
+cv_strategy: "stratified"  # stratified, kfold, time_series_split
+
+# Regularization
+l1_regularization: 0.0
+l2_regularization: 1e-5
+dropout: 0.1
+label_smoothing: 0.0
+
+# Data augmentation during training
+augmentation:
+  enabled: true
+  horizontal_flip: true
+  vertical_flip: false
+  random_rotation: 10
+  random_crop: true
+  color_jitter: true
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  hue: 0.1
+  random_erasing: true
+  mixup: false
+  cutmix: false
+  cutout: false
+
+# Learning rate finder
+lr_finder: false
+lr_finder_start_lr: 1e-7
+lr_finder_end_lr: 1.0
+lr_finder_num_iter: 100
+lr_finder_step_mode: "exp"
+
+# Model pruning
+pruning: false
+pruning_method: "magnitude"  # magnitude, structured, unstructured
+pruning_ratio: 0.3
+pruning_frequency: 10
+
+# Knowledge distillation
+knowledge_distillation: false
+teacher_model_path: ""
+temperature: 4.0
+alpha: 0.7
+
+# Adversarial training
+adversarial_training: false
+adversarial_method: "fgsm"  # fgsm, pgd, free
+epsilon: 0.3
+alpha: 0.375
+steps: 7
+
+# Curriculum learning
+curriculum_learning: false
+curriculum_schedule: "linear"
+curriculum_metric: "difficulty"
+curriculum_threshold: 0.8
+
+# Meta-learning
+meta_learning: false
+meta_learning_rate: 0.001
+inner_learning_rate: 0.01
+inner_steps: 5
+
+# Training hooks and callbacks
+callbacks:
+  - "ModelCheckpoint"
+  - "EarlyStopping"
+  - "LearningRateMonitor"
+  - "ProgressBar"
+  - "ModelSummary"
+
+# Custom training parameters
+custom_params:
+  gradient_noise: 0.0
+  weight_decay_schedule: "cosine"
+  warmup_epochs: 5
+  max_grad_norm_schedule: "constant"
+  
+# Training metadata
+metadata:
+  created_by: "Deep Learning Team"
+  created_date: "2024-01-01"
+  git_commit: "abc123"
+  environment: "production"
+  notes: "Training configuration for transformer classification model" 

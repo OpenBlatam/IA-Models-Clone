@@ -1,0 +1,284 @@
+# Docker Compose - Cursor Agent 24/7
+# ===================================
+# Stack completo con API, Workers, Redis, y servicios opcionales
+
+version: '3.8'
+
+services:
+  # Redis - Cache y Broker para Celery
+  redis:
+    image: redis:7-alpine
+    container_name: cursor-agent-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cursor-agent-network
+
+  # API - FastAPI Application
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cursor-agent-api
+    ports:
+      - "8024:8024"
+    environment:
+      # API
+      - API_HOST=0.0.0.0
+      - API_PORT=8024
+      
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_ENDPOINT=redis
+      - CACHE_TYPE=elasticache
+      
+      # Celery
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      
+      # AWS (opcional)
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - DYNAMODB_TABLE_NAME=${DYNAMODB_TABLE_NAME:-cursor-agent-state}
+      
+      # Observability
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      - OTEL_LOG_EXPORTER=${OTEL_LOG_EXPORTER:-false}
+      
+      # Elasticsearch
+      - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
+      
+      # Service Discovery
+      - SERVICE_DISCOVERY_BACKEND=${SERVICE_DISCOVERY_BACKEND:-static}
+      - CONSUL_HOST=${CONSUL_HOST:-}
+      - CONSUL_PORT=${CONSUL_PORT:-8500}
+      
+      # Config Center
+      - CONFIG_CENTER_BACKEND=${CONFIG_CENTER_BACKEND:-file}
+      
+      # Security
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-change-me-in-production}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      
+      # Agent
+      - AGENT_PERSISTENT_STORAGE=true
+      - AGENT_AUTO_RESTART=true
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8024/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+
+  # Celery Worker - Procesar tareas en background
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cursor-agent-worker
+    command: celery -A core.celery_worker.celery_app worker --loglevel=info --concurrency=4 --queues=default,tasks,heavy,notifications
+    environment:
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      
+      # Celery
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      
+      # AWS (opcional)
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - DYNAMODB_TABLE_NAME=${DYNAMODB_TABLE_NAME:-cursor-agent-state}
+      
+      # Observability
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      
+      # Agent
+      - AGENT_PERSISTENT_STORAGE=true
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+
+  # Celery Beat - Scheduler para tareas programadas
+  beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cursor-agent-beat
+    command: celery -A core.celery_worker.celery_app beat --loglevel=info
+    environment:
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      
+      # Celery
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      
+      # AWS
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+
+  # Flower - Monitor de Celery (opcional)
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cursor-agent-flower
+    command: celery -A core.celery_worker.celery_app flower --port=5555
+    ports:
+      - "5555:5555"
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - redis
+      - worker
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Prometheus - Métricas (opcional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: cursor-agent-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Grafana - Dashboards (opcional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: cursor-agent-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./docker/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./docker/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Elasticsearch - Búsqueda avanzada (opcional)
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: cursor-agent-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+    profiles:
+      - search
+
+  # RabbitMQ - Message Broker (opcional)
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: cursor-agent-rabbitmq
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # Management UI
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER:-admin}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS:-admin}
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+    profiles:
+      - message-broker
+
+  # Nginx - Reverse Proxy (opcional)
+  nginx:
+    image: nginx:alpine
+    container_name: cursor-agent-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - api
+    networks:
+      - cursor-agent-network
+    restart: unless-stopped
+    profiles:
+      - reverse-proxy
+
+volumes:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+  rabbitmq-data:
+  elasticsearch-data:
+
+networks:
+  cursor-agent-network:
+    driver: bridge
+

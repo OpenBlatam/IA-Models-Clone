@@ -1,0 +1,60 @@
+# Docker Compose para desarrollo local con servicios AWS simulados
+# =================================================================
+# Usa LocalStack para simular servicios AWS localmente
+
+version: '3.8'
+
+services:
+  # LocalStack para simular AWS
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=dynamodb,elasticache,logs,ecs,ecr,lambda
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "./localstack-data:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  # Redis local (simula ElastiCache)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+
+  # Cursor Agent
+  cursor-agent:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8024:8024"
+    environment:
+      - AWS_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://localstack:4566
+      - DYNAMODB_TABLE_NAME=cursor-agent-state
+      - CACHE_TYPE=elasticache
+      - REDIS_ENDPOINT=redis
+      - REDIS_PORT=6379
+      - API_PORT=8024
+      - AGENT_PERSISTENT_STORAGE=true
+    depends_on:
+      - localstack
+      - redis
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+
+volumes:
+  redis-data:
+
+
+
+

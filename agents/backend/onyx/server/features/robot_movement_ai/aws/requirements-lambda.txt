@@ -1,0 +1,20 @@
+# Lambda-specific requirements (minimal dependencies)
+# These are in addition to the main requirements.txt
+
+mangum>=0.17.0  # ASGI to Lambda adapter
+aws-lambda-powertools>=2.40.0  # AWS Lambda utilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

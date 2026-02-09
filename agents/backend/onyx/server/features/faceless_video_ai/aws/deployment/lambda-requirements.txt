@@ -1,0 +1,21 @@
+# Lambda-specific requirements (minimal for cold start optimization)
+mangum>=0.17.0
+fastapi>=0.104.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Core dependencies (minimal set)
+httpx>=0.25.0
+python-multipart>=0.0.6
+
+# AWS SDK (already available in Lambda runtime)
+# boto3 is included in Lambda runtime
+
+# Note: For Lambda, we use external services for:
+# - Video processing: Use AWS MediaConvert or external API
+# - Image generation: Use external APIs (OpenAI, Stability AI)
+# - Audio generation: Use external APIs (ElevenLabs, OpenAI TTS)
+
+
+
+

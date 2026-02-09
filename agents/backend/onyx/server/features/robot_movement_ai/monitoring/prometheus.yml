@@ -1,0 +1,52 @@
+# Configuración de Prometheus para Robot Movement AI v2.0
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'robot-movement-ai'
+    environment: 'production'
+
+# Configuración de alertas
+rule_files:
+  - "alerts.yml"
+
+# Configuración de scraping
+scrape_configs:
+  # Métricas de la aplicación
+  - job_name: 'robot-movement-ai'
+    static_configs:
+      - targets: ['robot-api:8010']
+        labels:
+          service: 'robot-api'
+          version: '2.0.0'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Métricas de PostgreSQL
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+        labels:
+          service: 'postgres'
+    scrape_interval: 30s
+
+  # Métricas de Redis
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+        labels:
+          service: 'redis'
+    scrape_interval: 30s
+
+  # Métricas del sistema (node exporter)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          service: 'node'
+    scrape_interval: 30s
+
+
+
+

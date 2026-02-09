@@ -1,0 +1,125 @@
+[package]
+name = "transcriber_core"
+version = "1.0.0"
+edition = "2021"
+authors = ["Social Video Transcriber AI Team"]
+description = "High-performance Rust core for Social Video Transcriber AI"
+license = "MIT"
+
+[lib]
+name = "transcriber_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Python bindings
+pyo3 = { version = "0.21", features = ["extension-module", "abi3-py310"] }
+
+# Async runtime
+tokio = { version = "1.35", features = ["full", "rt-multi-thread", "sync"] }
+futures = "0.3"
+async-trait = "0.1"
+
+# Serialization - SIMD optimized
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+simd-json = "0.13"
+rmp-serde = "1.1"
+bincode = "1.3"
+
+# Compression - Ultra-fast
+lz4 = "1.24"
+lz4-flex = "0.11"
+zstd = "0.13"
+snap = "1.1"
+flate2 = "1.0"
+brotli = "3.4"
+
+# Text processing
+regex = "1.10"
+unicode-segmentation = "1.10"
+whatlang = "0.16"
+rust-stemmers = "1.2"
+memchr = "2.7"
+
+# String similarity and search
+strsim = "0.11"
+aho-corasick = "1.1"
+tantivy = "0.21"
+
+# Cryptography & hashing - Ultra-fast
+sha2 = "0.10"
+sha3 = "0.10"
+blake3 = "1.5"
+xxhash-rust = { version = "0.8", features = ["xxh3", "xxh64"] }
+
+# Cache - Lock-free
+lru = "0.12"
+dashmap = "5.5"
+parking_lot = "0.12"
+
+# Parallel processing
+rayon = "1.8"
+crossbeam = "0.8"
+crossbeam-channel = "0.5"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+tracing = "0.1"
+
+# ID generation
+uuid = { version = "1.6", features = ["v4", "v7", "fast-rng", "serde"] }
+ulid = "1.1"
+nanoid = "0.4"
+
+# Memory efficiency
+bytes = "1.5"
+smallvec = "1.13"
+
+# Base64 encoding
+base64 = "0.22"
+data-encoding = "2.5"
+
+# System info
+num_cpus = "1.16"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+tempfile = "3.10"
+proptest = "1.4"
+
+[features]
+default = []
+simd = ["simd-json"]
+full-compression = ["lz4", "zstd", "snap", "brotli"]
+
+[[bench]]
+name = "benchmarks"
+harness = false
+
+[[bench]]
+name = "compression_bench"
+harness = false
+
+[[bench]]
+name = "simd_bench"
+harness = false
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+opt-level = 3
+panic = "abort"
+strip = true
+
+[profile.bench]
+lto = "thin"
+opt-level = 3
+

@@ -1,0 +1,232 @@
+# Ultimate Opus Clip Configuration
+# Comprehensive configuration for all Opus Clip features
+
+# System Configuration
+system:
+  name: "Ultimate Opus Clip"
+  version: "2.0.0"
+  debug: false
+  log_level: "INFO"
+  max_workers: 4
+  timeout: 300  # seconds
+
+# Content Curation Engine (ClipGenius™)
+content_curation:
+  enabled: true
+  analysis_depth: "high"  # low, medium, high
+  target_duration: 12.0  # seconds
+  min_duration: 5.0
+  max_duration: 20.0
+  engagement_threshold: 0.7
+  coherence_threshold: 0.8
+  viral_potential_weight: 0.6
+  content_quality_weight: 0.4
+  frame_analysis_interval: 0.5  # seconds
+  audio_analysis_enabled: true
+  visual_analysis_enabled: true
+
+# Speaker Tracking System
+speaker_tracking:
+  enabled: true
+  min_face_size: 50
+  max_face_size: 500
+  confidence_threshold: 0.7
+  tracking_threshold: 0.6
+  max_tracking_distance: 100
+  smoothing_factor: 0.7
+  zoom_smoothing: 0.8
+  pan_smoothing: 0.8
+  auto_framing: true
+  target_resolution: [1080, 1920]
+  tracking_quality: "high"  # low, medium, high
+
+# B-roll Integration System
+broll_integration:
+  enabled: true
+  max_broll_duration: 5.0
+  min_broll_duration: 1.0
+  max_suggestions_per_opportunity: 3
+  confidence_threshold: 0.7
+  enable_ai_generation: true
+  enable_stock_footage: true
+  broll_types: ["stock_footage", "ai_generated", "graphics", "text_overlay"]
+  stock_footage_api_key: null  # Set your API key
+  ai_generation_api_key: null  # Set your API key
+
+# Advanced Viral Scoring
+viral_scoring:
+  enabled: true
+  trend_analysis_enabled: true
+  historical_analysis_enabled: true
+  audience_analysis_enabled: true
+  cross_platform_scoring: true
+  real_time_trends: true
+  engagement_prediction: true
+  viral_threshold: 0.75
+
+# Audio Processing System
+audio_processing:
+  enabled: true
+  background_music: true
+  audio_enhancement: true
+  noise_reduction: true
+  level_balancing: true
+  sound_effects: true
+  music_library_size: 1000
+  copyright_checking: true
+  audio_quality: "high"  # low, medium, high
+
+# Professional Export System
+professional_export:
+  enabled: true
+  formats:
+    - "mp4"
+    - "mov"
+    - "avi"
+  professional_formats:
+    - "premiere_pro"
+    - "final_cut_pro"
+    - "davinci_resolve"
+  cloud_storage: true
+  batch_export: true
+  quality_presets:
+    high: "1080p"
+    medium: "720p"
+    low: "480p"
+
+# Advanced Analytics System
+analytics:
+  enabled: true
+  performance_tracking: true
+  audience_insights: true
+  content_analysis: true
+  report_generation: true
+  real_time_analytics: true
+  cross_platform_comparison: true
+  roi_tracking: true
+
+# Platform-Specific Settings
+platforms:
+  tiktok:
+    aspect_ratio: "9:16"
+    resolution: [1080, 1920]
+    duration_range: [8, 15]
+    format: "mp4"
+    optimization: "high"
+  
+  youtube_shorts:
+    aspect_ratio: "9:16"
+    resolution: [1080, 1920]
+    duration_range: [8, 60]
+    format: "mp4"
+    optimization: "high"
+  
+  instagram_reels:
+    aspect_ratio: "9:16"
+    resolution: [1080, 1920]
+    duration_range: [5, 30]
+    format: "mp4"
+    optimization: "high"
+  
+  instagram_posts:
+    aspect_ratio: "1:1"
+    resolution: [1080, 1080]
+    duration_range: [5, 30]
+    format: "mp4"
+    optimization: "medium"
+  
+  youtube:
+    aspect_ratio: "16:9"
+    resolution: [1920, 1080]
+    duration_range: [10, 60]
+    format: "mp4"
+    optimization: "high"
+
+# Performance Optimization
+performance:
+  gpu_acceleration: true
+  multi_threading: true
+  memory_optimization: true
+  cache_enabled: true
+  cache_size: "1GB"
+  processing_queue_size: 100
+  max_concurrent_jobs: 4
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_enabled: true
+  rate_limiting: true
+  max_requests_per_minute: 60
+  authentication: false
+  api_key_required: false
+
+# Database Configuration
+database:
+  type: "sqlite"  # sqlite, postgresql, mysql
+  url: "sqlite:///opus_clip.db"
+  pool_size: 10
+  max_overflow: 20
+  echo: false
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "json"
+  file: "opus_clip.log"
+  max_size: "10MB"
+  backup_count: 5
+  console_output: true
+
+# Monitoring and Health Checks
+monitoring:
+  health_check_interval: 30  # seconds
+  metrics_collection: true
+  alerting: false
+  performance_monitoring: true
+  error_tracking: true
+
+# Security Configuration
+security:
+  input_validation: true
+  file_type_validation: true
+  max_file_size: "500MB"
+  allowed_formats: ["mp4", "mov", "avi", "mkv"]
+  virus_scanning: false
+  encryption: false
+
+# External Services
+external_services:
+  openai:
+    enabled: false
+    api_key: null
+    model: "gpt-4"
+  
+  stability_ai:
+    enabled: false
+    api_key: null
+    model: "stable-diffusion-xl"
+  
+  elevenlabs:
+    enabled: false
+    api_key: null
+    voice: "default"
+  
+  youtube_api:
+    enabled: false
+    api_key: null
+  
+  instagram_api:
+    enabled: false
+    api_key: null
+
+# Development and Testing
+development:
+  test_mode: false
+  mock_services: false
+  debug_output: false
+  profiling: false
+  hot_reload: false
+
+

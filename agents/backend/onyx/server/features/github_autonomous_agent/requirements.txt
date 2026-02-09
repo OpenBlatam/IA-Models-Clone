@@ -1,0 +1,211 @@
+# ============================================================================
+# GitHub Autonomous Agent - Base Dependencies
+# ============================================================================
+# Versión mínima requerida: Python 3.10+
+# Última actualización: Diciembre 2024
+# 
+# Instalación:
+#   pip install -r requirements.txt
+# 
+# Para desarrollo:
+#   pip install -r requirements-dev.txt
+# 
+# Para producción:
+#   pip install -r requirements-prod.txt
+# 
+# Notas de seguridad:
+#   - Ejecuta 'pip list --outdated' regularmente para verificar actualizaciones
+#   - Revisa vulnerabilidades con: pip-audit o safety check
+#   - Usa 'pip-compile' para generar requirements-lock.txt con versiones exactas
+#   - Considera usar 'pip-tools' para gestión avanzada de dependencias
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Core Framework & API
+# ----------------------------------------------------------------------------
+fastapi>=0.115.0,<0.120.0          # FastAPI web framework (última estable)
+starlette>=0.37.0,<0.38.0           # Framework ASGI base (dependencia de FastAPI)
+uvicorn[standard]>=0.32.0,<0.35.0  # ASGI server con extras estándar
+pydantic>=2.9.0,<3.0.0             # Validación de datos y modelos
+pydantic-settings>=2.5.0,<3.0.0    # Configuración basada en Pydantic
+python-multipart>=0.0.12,<1.0.0    # Soporte para form-data
+
+# ----------------------------------------------------------------------------
+# GitHub Integration & Git Operations
+# ----------------------------------------------------------------------------
+PyGithub>=2.1.1,<3.0.0             # Cliente oficial de GitHub API
+gitpython>=3.1.40,<4.0.0           # Operaciones Git nativas
+dulwich>=0.22.0,<1.0.0             # Implementación Git pura en Python (opcional, más rápido)
+
+# Nota: Dulwich es opcional pero recomendado para mejor performance en operaciones Git
+
+# ----------------------------------------------------------------------------
+# Task Queue & Background Workers
+# ----------------------------------------------------------------------------
+celery>=5.3.4,<6.0.0               # Sistema de cola de tareas distribuido
+redis>=5.0.1,<6.0.0                # Broker y backend para Celery
+flower>=2.0.1,<3.0.0               # Monitor web para Celery (solo desarrollo/monitoreo)
+kombu>=5.3.4,<6.0.0                # Biblioteca de mensajería para Celery
+billiard>=4.2.0,<5.0.0             # Pool de procesos para Celery (fork de multiprocessing)
+
+# Nota: Flower es opcional en producción, solo necesario para monitoreo
+
+# ----------------------------------------------------------------------------
+# Database & ORM
+# ----------------------------------------------------------------------------
+sqlalchemy>=2.0.23,<3.0.0          # ORM y toolkit SQL
+alembic>=1.13.1,<2.0.0             # Migraciones de base de datos
+aiosqlite>=0.19.0,<1.0.0           # Driver async para SQLite
+asyncpg>=0.29.0,<1.0.0             # Driver async para PostgreSQL (opcional, mejor performance)
+greenlet>=3.0.0,<4.0.0             # Lightweight in-process threading (requerido por SQLAlchemy)
+
+# ----------------------------------------------------------------------------
+# HTTP Clients & Async Networking
+# ----------------------------------------------------------------------------
+httpx>=0.27.0,<0.28.0              # Cliente HTTP async (recomendado para FastAPI)
+httpcore>=1.0.0,<2.0.0             # Core HTTP client (dependencia de httpx)
+aiohttp>=3.9.1,<4.0.0              # Cliente HTTP async alternativo (opcional)
+aiofiles>=24.1.0,<25.0.0           # Operaciones de archivo async
+anyio>=4.3.0,<5.0.0                # Compatibilidad async multiplataforma
+sniffio>=1.3.0,<2.0.0              # Detección automática de async/await
+certifi>=2024.2.2                  # Certificados SSL CA bundle (actualizado regularmente)
+idna>=3.6,<4.0                     # Soporte para IDN (Internationalized Domain Names)
+charset-normalizer>=3.3.2,<4.0.0   # Detección automática de encoding
+urllib3>=2.2.0,<3.0.0              # HTTP library con connection pooling
+h11>=0.14.0,<1.0.0                 # HTTP/1.1 protocol implementation
+
+# Nota: httpx es suficiente para la mayoría de casos. aiohttp es opcional.
+
+# ----------------------------------------------------------------------------
+# Configuration & Environment
+# ----------------------------------------------------------------------------
+python-dotenv>=1.0.1,<2.0.0        # Carga de variables de entorno desde .env
+pyyaml>=6.0.1,<7.0.0               # Parsing de YAML para configuración
+toml>=0.10.2,<1.0.0                # Soporte para TOML (opcional)
+
+# ----------------------------------------------------------------------------
+# CLI & Terminal Utilities
+# ----------------------------------------------------------------------------
+click>=8.1.7,<9.0.0                # Framework CLI (dependencia de typer)
+rich>=13.7.0,<14.0.0               # Terminal formatting y progress bars
+typer>=0.12.0,<0.13.0              # CLI moderna basada en type hints
+prompt-toolkit>=3.0.0,<4.0.0       # Para interfaces CLI interactivas (opcional)
+
+# ----------------------------------------------------------------------------
+# Logging & Observability
+# ----------------------------------------------------------------------------
+structlog>=24.2.0,<25.0.0          # Logging estructurado (recomendado)
+python-json-logger>=2.0.7,<3.0.0   # Formatter JSON para logs (alternativa)
+prometheus-client>=0.20.0,<1.0.0   # Métricas Prometheus (opcional, solo si usas Prometheus)
+
+# Nota: Usa structlog o python-json-logger, no ambos necesariamente
+
+# ----------------------------------------------------------------------------
+# Authentication & Security
+# ----------------------------------------------------------------------------
+PyJWT>=2.9.0,<3.0.0                # JSON Web Tokens
+cryptography>=43.0.0,<44.0.0       # Criptografía y hashing (requerido por PyJWT)
+passlib[bcrypt]>=1.7.4,<2.0.0      # Hashing de contraseñas
+bcrypt>=4.1.2,<5.0.0               # Hashing de contraseñas (dependencia de passlib)
+slowapi>=0.1.9,<1.0.0              # Rate limiting para FastAPI
+
+# Nota: cryptography es una dependencia crítica de seguridad - mantener actualizado
+
+# ----------------------------------------------------------------------------
+# Code Analysis & Processing (Opcional)
+# ----------------------------------------------------------------------------
+# Nota: Estas dependencias son opcionales y pueden moverse a requirements-dev.txt
+# si no se usan en producción. Descomenta solo si las necesitas:
+# tree-sitter>=0.21.0,<1.0.0         # Parsing de código (opcional, para análisis avanzado)
+# tree-sitter-python>=0.21.0,<1.0.0  # Parser Python para tree-sitter
+
+# ----------------------------------------------------------------------------
+# Retry & Resilience
+# ----------------------------------------------------------------------------
+tenacity>=8.2.3,<9.0.0             # Retry logic con exponential backoff (recomendado)
+backoff>=2.2.1,<3.0.0              # Decoradores de retry alternativos (opcional)
+
+# Nota: Usa tenacity o backoff, no ambos necesariamente
+
+# ----------------------------------------------------------------------------
+# System & Process Management
+# ----------------------------------------------------------------------------
+psutil>=6.1.0,<7.0.0               # Información del sistema y procesos
+watchdog>=4.0.0,<5.0.0             # Monitoreo de cambios en archivos (opcional, desarrollo)
+
+# ----------------------------------------------------------------------------
+# Data Validation & Serialization
+# ----------------------------------------------------------------------------
+email-validator>=2.1.0,<3.0.0      # Validación de emails (usado por Pydantic)
+python-dateutil>=2.8.2,<3.0.0      # Utilidades para fechas
+typing-extensions>=4.9.0,<5.0.0    # Backport de typing features para Python < 3.11
+
+# ----------------------------------------------------------------------------
+# LLM & AI Integration (Opcional)
+# ----------------------------------------------------------------------------
+# Nota: Estas dependencias son opcionales y solo necesarias si usas LLMService
+# openai>=1.0.0,<2.0.0              # Cliente oficial de OpenAI (opcional, si usas OpenAI directamente)
+# anthropic>=0.18.0,<1.0.0          # Cliente oficial de Anthropic (opcional, si usas Claude directamente)
+# tiktoken>=0.5.0,<1.0.0            # Tokenizer para estimar tokens (opcional, útil para LLMs)
+
+# Nota: LLMService usa OpenRouter que se conecta vía HTTP, no requiere SDKs específicos
+
+# ----------------------------------------------------------------------------
+# Webhooks & Event Handling (Opcional)
+# ----------------------------------------------------------------------------
+# Nota: Descomenta solo si necesitas manejo de webhooks:
+# webhooks>=0.6.0,<1.0.0             # Manejo de webhooks (opcional, para GitHub webhooks)
+
+# ----------------------------------------------------------------------------
+# Dependencias de Sistema (implícitas pero importantes)
+# ----------------------------------------------------------------------------
+# Estas dependencias son normalmente instaladas automáticamente, pero se listan
+# para referencia y para casos de instalación en entornos aislados:
+# 
+# - setuptools>=69.0.0              # Build system (normalmente incluido)
+# - wheel>=0.43.0                   # Formato de paquetes (normalmente incluido)
+# - pip>=24.0                       # Package manager (normalmente incluido)
+
+# ============================================================================
+# Dependencias Adicionales Recomendadas (Descomentar si las necesitas)
+# ============================================================================
+# 
+# Para desarrollo y testing:
+# pytest>=8.0.0,<9.0.0              # Framework de testing
+# pytest-asyncio>=0.23.0,<1.0.0    # Soporte async para pytest
+# pytest-cov>=4.1.0,<5.0.0         # Coverage para pytest
+# black>=24.0.0,<25.0.0             # Formateador de código
+# ruff>=0.1.0,<1.0.0                # Linter rápido (alternativa a flake8)
+# mypy>=1.8.0,<2.0.0                # Type checker
+# 
+# Para seguridad:
+# pip-audit>=2.6.0,<3.0.0          # Auditoría de vulnerabilidades
+# safety>=3.0.0,<4.0.0             # Verificación de seguridad de dependencias
+# 
+# Para documentación:
+# mkdocs>=1.5.0,<2.0.0              # Generador de documentación
+# mkdocs-material>=9.4.0,<10.0.0   # Tema para MkDocs
+# 
+# Para CI/CD:
+# pre-commit>=3.5.0,<4.0.0         # Git hooks para validación pre-commit
+# 
+# ============================================================================
+# Notas Finales
+# ============================================================================
+# 
+# 1. Versionado: Este archivo usa versiones con rangos (>=X,<Y) para permitir
+#    actualizaciones de parches y menores, pero evitar breaking changes.
+# 
+# 2. Actualización: Ejecuta regularmente:
+#    - pip list --outdated
+#    - pip-audit
+#    - safety check
+# 
+# 3. Producción: Considera usar requirements-lock.txt con versiones exactas
+#    generadas con pip-compile para reproducibilidad.
+# 
+# 4. Seguridad: Revisa regularmente vulnerabilidades conocidas (CVE) en tus
+#    dependencias, especialmente en bibliotecas de seguridad.
+# 
+# ============================================================================
+

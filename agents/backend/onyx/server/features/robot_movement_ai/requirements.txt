@@ -1,0 +1,335 @@
+# Robot Movement AI - Plataforma IA de Movimiento Robótico
+# =========================================================
+# Mejores librerías modernas y optimizadas (2024-2025)
+# Actualizado para Deep Learning, Transformers, Diffusion Models y LLMs
+
+# ============================================================================
+# CORE DEEP LEARNING FRAMEWORKS - Frameworks principales
+# ============================================================================
+torch>=2.2.0                        # PyTorch - Deep Learning framework (última versión estable)
+torchvision>=0.17.0                  # Vision models para PyTorch
+torchaudio>=2.2.0                    # Audio processing para PyTorch
+torchmetrics>=1.3.0                  # Metrics for PyTorch
+pytorch-lightning>=2.2.0             # High-level PyTorch wrapper (simplifica entrenamiento)
+lightning[extra]>=2.2.0              # PyTorch Lightning con extras
+
+# ============================================================================
+# TRANSFORMERS & LLMs - Hugging Face y modelos de lenguaje
+# ============================================================================
+transformers>=4.40.0                 # Hugging Face Transformers (última versión)
+tokenizers>=0.19.0                   # Fast tokenizers (Rust-based)
+accelerate>=0.30.0                   # Aceleración de modelos Hugging Face
+peft>=0.10.0                         # Parameter-Efficient Fine-Tuning (LoRA, QLoRA, etc.)
+bitsandbytes>=0.43.0                 # Quantization de modelos (8-bit, 4-bit)
+trl>=0.8.0                           # Transformer Reinforcement Learning
+trlx>=0.9.0                          # TRL extended (RLHF avanzado)
+datasets>=2.18.0                     # Hugging Face datasets
+evaluate>=0.4.1                      # Evaluation metrics
+safetensors>=0.4.2                   # Safe tensor serialization (más rápido y seguro)
+sentence-transformers>=2.7.0         # Sentence embeddings (mejorado)
+huggingface-hub>=0.23.0              # Hugging Face Hub client
+
+# ============================================================================
+# DIFFUSION MODELS - Modelos de difusión avanzados
+# ============================================================================
+diffusers>=0.27.0                    # Hugging Face Diffusers (última versión)
+controlnet-aux>=0.4.0                # ControlNet auxiliaries
+invisible-watermark>=0.2.0           # Watermarking for images
+compel>=2.0.0                        # Prompt weighting para diffusion
+xformers>=0.0.23                     # Memory-efficient attention (para diffusion)
+# flash-attn>=2.5.0                  # Flash Attention (opcional, requiere CUDA 11.8+)
+
+# ============================================================================
+# LLM INFERENCE & SERVING - Inferencia rápida de LLMs
+# ============================================================================
+vllm>=0.4.0                          # Fast LLM inference and serving (muy rápido)
+text-generation-inference>=1.4.0     # Hugging Face TGI
+llama-cpp-python>=0.2.0             # LLaMA.cpp bindings (CPU inference)
+ctranslate2>=4.0.0                   # Fast inference engine
+llama-index>=0.10.0                  # LLM data framework
+llama-index-llms-openai>=0.1.0       # OpenAI integration
+llama-index-embeddings-openai>=0.1.0 # OpenAI embeddings
+
+# ============================================================================
+# LLM PROVIDERS & APIS - Proveedores de modelos de lenguaje
+# ============================================================================
+openai>=1.54.0                       # OpenAI API (GPT-4, GPT-4 Turbo, etc.)
+anthropic>=0.39.0                    # Anthropic Claude API
+google-generativeai>=0.8.0           # Google Gemini API
+cohere>=4.47                         # Cohere API
+tiktoken>=0.8.0                      # Token counting para OpenAI (rápido)
+litellm>=1.52.0                      # Unified LLM interface (mejor abstracción)
+
+# ============================================================================
+# LLM FRAMEWORKS - Frameworks para aplicaciones LLM
+# ============================================================================
+langchain>=0.3.0                     # Framework para LLM apps
+langchain-community>=0.3.0           # Integraciones LangChain
+langchain-core>=0.3.0                # Core de LangChain
+langsmith>=0.1.130                   # Monitoring de LLM
+chromadb>=0.4.22                     # Vector database (embeddings)
+pinecone-client>=3.0.0               # Pinecone vector DB
+weaviate-client>=4.4.0               # Weaviate vector DB
+qdrant-client>=1.7.0                 # Qdrant vector DB
+faiss-cpu>=1.7.4                     # Similarity search (CPU)
+# faiss-gpu>=1.7.4                   # Similarity search (GPU) - opcional
+
+# ============================================================================
+# GRADIO & INTERACTIVE UIS - Interfaces interactivas
+# ============================================================================
+gradio>=4.19.0                       # Interactive ML demos (última versión)
+gradio-client>=0.12.0                # Gradio client library
+streamlit>=1.31.0                    # Web apps for ML
+plotly>=5.18.0                       # Interactive visualizations
+dash>=2.17.0                         # Dash web apps
+
+# ============================================================================
+# EXPERIMENT TRACKING - Seguimiento de experimentos
+# ============================================================================
+wandb>=0.17.0                        # Weights & Biases (experiment tracking)
+tensorboard>=2.16.0                  # TensorBoard
+mlflow>=2.11.0                       # MLflow (model registry y tracking)
+neptune-client>=1.3.0                # Neptune.ai (opcional)
+comet-ml>=3.38.0                     # Comet.ml (opcional)
+clearml>=1.14.0                      # ClearML (opcional)
+
+# ============================================================================
+# MODEL OPTIMIZATION & QUANTIZATION - Optimización de modelos
+# ============================================================================
+onnx>=1.16.0                         # ONNX format
+onnxruntime>=1.17.0                 # ONNX runtime
+onnxruntime-gpu>=1.17.0              # ONNX runtime GPU
+torch2trt>=0.4.0                     # PyTorch to TensorRT
+# tensorrt>=8.6.0                    # TensorRT (NVIDIA) - requiere instalación manual
+openvino>=2024.0.0                   # OpenVINO (Intel)
+torch-ort>=1.16.0                    # PyTorch ONNX Runtime
+optimum>=1.18.0                      # Hugging Face optimization toolkit
+optimum-onnxruntime>=1.18.0          # ONNX Runtime optimization
+
+# ============================================================================
+# MODEL SERVING & DEPLOYMENT - Servicio y deployment de modelos
+# ============================================================================
+torchserve>=0.8.0                    # PyTorch model serving
+bentoml>=1.1.0                       # ML model serving
+mlserver>=1.4.0                      # ML model server
+sagemaker>=2.200.0                   # AWS SageMaker SDK
+ray[serve]>=2.10.0                   # Ray Serve (distributed serving)
+
+# ============================================================================
+# NUMERIC COMPUTING - Computación numérica optimizada
+# ============================================================================
+numpy>=2.1.0                         # Arrays numéricos optimizados
+scipy>=1.13.0                        # Computación científica avanzada
+numba>=0.60.0                        # JIT compiler para NumPy
+jax>=0.4.28                          # NumPy con aceleración GPU/TPU
+jaxlib>=0.4.28                       # Backend de JAX
+# cupy>=13.0.0                        # NumPy-compatible GPU array library (opcional)
+pandas>=2.2.0                        # Análisis de datos estructurados
+polars>=1.0.0                        # DataFrame ultra-rápido (Rust-based)
+pyarrow>=17.0.0                      # Apache Arrow
+
+# ============================================================================
+# DATA PROCESSING & AUGMENTATION - Procesamiento de datos
+# ============================================================================
+torchdata>=0.7.0                     # PyTorch data utilities
+webdataset>=0.2.0                    # WebDataset format
+fsspec>=2024.1.0                     # Filesystem interface
+h5py>=3.10.0                         # HDF5 files
+zarr>=2.17.0                          # Zarr arrays
+albumentations>=1.4.0                 # Data augmentation avanzada
+einops>=0.7.0                        # Tensor operations (elegant)
+
+# ============================================================================
+# COMPUTER VISION - Visión computacional
+# ============================================================================
+opencv-python>=4.9.0                 # OpenCV - Computer Vision
+opencv-contrib-python>=4.9.0         # OpenCV con módulos adicionales
+pillow>=10.3.0                       # Procesamiento de imágenes
+imageio>=2.34.0                      # I/O de imágenes
+scikit-image>=0.23.0                 # Image processing algorithms
+timm>=1.0.0                          # PyTorch Image Models
+ultralytics>=8.2.0                   # YOLO v8/v9/v10 (muy rápido)
+mmcv>=2.1.0                          # Computer Vision foundation library
+mmdet>=3.2.0                         # Object detection toolbox
+
+# ============================================================================
+# REINFORCEMENT LEARNING - RL frameworks
+# ============================================================================
+gymnasium>=0.29.0                     # OpenAI Gym (nueva versión)
+stable-baselines3>=2.3.0             # RL algorithms (PPO, DQN, etc.)
+ray[rllib]>=2.10.0                   # Distributed RL
+tianshou>=0.5.0                      # RL library modular
+sb3-contrib>=2.3.0                   # Contribuciones adicionales para SB3
+
+# ============================================================================
+# ROBOTICS & CONTROL - Librerías de robótica y control
+# ============================================================================
+pybullet>=3.2.6                      # Physics simulation para robots
+sympy>=1.13.0                        # Symbolic mathematics (cinemática)
+spatialmath-python>=0.9.0            # Spatial mathematics para robots
+roboticstoolbox-python>=1.1.0        # Robotics Toolbox
+ikpy>=3.3.3                          # Inverse kinematics
+
+# ============================================================================
+# SPEECH & AUDIO - Procesamiento de audio
+# ============================================================================
+openai-whisper>=20231117             # Speech recognition
+whisper-timestamped>=1.14.0          # Whisper with timestamps
+TTS>=0.22.0                          # Text-to-Speech
+torchaudio>=2.2.0                    # Audio processing (ya incluido arriba)
+
+# ============================================================================
+# GRAPH NEURAL NETWORKS - Redes neuronales de grafos
+# ============================================================================
+torch-geometric>=2.5.0               # PyTorch Geometric
+dgl>=1.1.0                           # Deep Graph Library
+networkx>=3.2.1                      # Network analysis
+
+# ============================================================================
+# ADVANCED NLP - NLP avanzado
+# ============================================================================
+spacy>=3.7.0                         # NLP library
+nltk>=3.8.1                          # Natural Language Toolkit
+sentencepiece>=0.1.99                # SentencePiece tokenizer
+protobuf>=4.25.0                     # Protocol buffers
+rouge-score>=0.1.2                   # ROUGE metric
+sacrebleu>=2.4.0                     # BLEU metric
+bert-score>=0.3.13                   # BERTScore metric
+
+# ============================================================================
+# HYPERPARAMETER OPTIMIZATION - Optimización de hiperparámetros
+# ============================================================================
+optuna>=3.6.0                        # Hyperparameter optimization
+ray[tune]>=2.10.0                    # Distributed hyperparameter tuning
+hyperopt>=0.2.7                      # Hyperparameter optimization
+scikit-optimize>=0.9.0               # Bayesian optimization
+
+# ============================================================================
+# CORE FRAMEWORK - Framework web
+# ============================================================================
+fastapi>=0.115.0                     # Framework web moderno y rápido
+uvicorn[standard]>=0.32.0            # ASGI server ultra-rápido
+pydantic>=2.9.0                      # Validación de datos con type hints
+pydantic-settings>=2.5.0              # Configuración type-safe
+starlette>=0.37.0                    # Framework ASGI base
+
+# ============================================================================
+# ASYNC & PERFORMANCE - Operaciones asíncronas
+# ============================================================================
+httpx>=0.27.0                        # Cliente HTTP async moderno
+aiohttp>=3.11.0                      # Cliente HTTP async avanzado
+aiofiles>=24.1.0                     # Operaciones de archivo async
+aioredis>=2.0.1                      # Redis async
+orjson>=3.10.7                       # JSON ultra-rápido (C++ optimizado)
+msgpack>=1.1.0                       # Serialización binaria rápida
+
+# ============================================================================
+# CACHING & STORAGE - Cache y almacenamiento
+# ============================================================================
+redis[hiredis]>=5.2.0                # Redis client con parser C optimizado
+diskcache>=5.6.3                     # Cache en disco rápido
+cachetools>=5.3.3                    # Cache en memoria eficiente
+lmdb>=1.4.1                          # Base de datos key-value en memoria
+
+# ============================================================================
+# MONITORING & METRICS - Monitoreo y métricas
+# ============================================================================
+prometheus-client>=0.20.0           # Métricas Prometheus
+opentelemetry-api>=1.27.0            # OpenTelemetry API
+opentelemetry-sdk>=1.27.0            # OpenTelemetry SDK
+structlog>=24.2.0                    # Logging estructurado avanzado
+sentry-sdk>=2.16.0                   # Error tracking y monitoring
+
+# ============================================================================
+# UTILITIES - Utilidades generales
+# ============================================================================
+python-dotenv>=1.0.0                 # Variables de entorno
+websockets>=12.0                     # WebSocket support
+tqdm>=4.66.0                         # Progress bars
+rich>=13.7.0                         # Beautiful terminal output
+click>=8.1.7                         # CLI framework
+typer>=0.12.0                        # Modern CLI con type hints
+pyyaml>=6.0.1                        # YAML parsing
+psutil>=5.9.0                        # System and process utilities
+python-dateutil>=2.9.0               # Date utilities
+pytz>=2024.1                         # Timezone handling
+
+# ============================================================================
+# VISUALIZATION - Visualización
+# ============================================================================
+matplotlib>=3.8.0                    # Plotting library
+seaborn>=0.13.0                      # Statistical visualizations
+bokeh>=3.3.0                         # Interactive visualizations
+ipywidgets>=8.1.0                    # Interactive widgets
+jupyter>=1.0.0                       # Jupyter notebook
+jupyterlab>=4.0.0                    # JupyterLab
+ipython>=8.18.0                      # Enhanced Python shell
+
+# ============================================================================
+# TESTING - Testing y calidad de código
+# ============================================================================
+pytest>=8.0.0                        # Testing framework
+pytest-asyncio>=0.23.0               # Async testing
+pytest-cov>=4.1.0                    # Coverage reporting
+pytest-xdist>=3.5.0                  # Parallel test execution
+pytest-mock>=3.14.0                  # Mocking
+hypothesis>=6.100.0                  # Property-based testing
+black>=24.4.0                        # Code formatter
+ruff>=0.4.0                          # Fast linter (reemplaza flake8)
+mypy>=1.9.0                          # Type checking
+
+# ============================================================================
+# SECURITY - Seguridad
+# ============================================================================
+cryptography>=43.0.0                 # Criptografía avanzada
+PyJWT>=2.9.0                         # JSON Web Tokens
+python-jose[cryptography]>=3.3.0     # JWT/JWS/JWE completo
+passlib[bcrypt]>=1.7.4               # Password hashing
+bcrypt>=4.2.0                        # Hashing de passwords seguro
+
+# ============================================================================
+# DATA VALIDATION - Validación de datos
+# ============================================================================
+marshmallow>=3.21.0                  # Serialization/deserialization
+jsonschema>=4.21.0                   # JSON schema validation
+
+# ============================================================================
+# PARALLEL PROCESSING - Procesamiento paralelo
+# ============================================================================
+joblib>=1.4.0                        # Parallel processing avanzado
+dask>=2024.11.0                      # Parallel computing escalable
+ray>=2.10.0                          # Distributed computing avanzado
+
+# ============================================================================
+# NATIVE LIBRARIES - Librerías nativas de alto rendimiento
+# ============================================================================
+# Robotics & Kinematics (opcional, requieren compilación)
+# pin>=2.6.0                         # Pinocchio - Cinemática/Dinámica de robots
+# python-fcl>=0.6.0                  # FCL - Flexible Collision Library
+# pyompl>=1.6.0                      # OMPL - Open Motion Planning Library
+
+# Optimization
+# casadi>=3.6.0                      # CasADi - Optimización no lineal
+# gtsam>=4.2.0                       # GTSAM - Factor graphs optimization
+
+# ============================================================================
+# OPTIONAL GPU ACCELERATION - Aceleración GPU (descomentar según necesidad)
+# ============================================================================
+# cupy-cuda11x>=13.0.0               # CuPy para CUDA 11.x
+# cupy-cuda12x>=13.0.0               # CuPy para CUDA 12.x
+# faiss-gpu>=1.7.4                  # FAISS GPU
+# flash-attn>=2.5.0                  # Flash Attention (requiere CUDA 11.8+)
+# tensorrt>=8.6.0                    # TensorRT (requiere instalación manual de NVIDIA)
+
+# ============================================================================
+# OPTIONAL ROS INTEGRATION - Integración ROS (descomentar si ROS2 disponible)
+# ============================================================================
+# rclpy>=3.0.0                       # ROS2 Python
+# ros2bag>=0.9.0                     # ROS2 bag tools
+
+# ============================================================================
+# OPTIONAL ROBOT COMMUNICATION - Comunicación con robots (descomentar según necesidad)
+# ============================================================================
+# ur-rtde>=1.5.0                     # Universal Robots RTDE
+# pymodbus>=3.6.0                    # Modbus communication
+# pyserial>=3.5                      # Serial communication

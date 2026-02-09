@@ -1,0 +1,105 @@
+# Research Paper Code Improver - Dependencies
+# ============================================
+
+# Core Web Framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+
+# HTTP & Networking
+httpx>=0.27.0  # Primary async HTTP client
+requests>=2.32.0  # Fallback for sync operations
+aiofiles>=24.1.0
+
+# PDF Processing (priority order: PyMuPDF > pdfplumber > PyPDF2)
+pymupdf>=1.24.0  # Fast PDF processing (primary)
+pdfplumber>=0.11.0  # Good table extraction (fallback)
+PyPDF2>=3.0.1  # Basic fallback
+
+# Authentication & Security
+PyJWT>=2.9.0
+cryptography>=43.0.0
+pyotp>=2.9.0
+qrcode[pil]>=8.0
+
+# Configuration & Environment
+python-dotenv>=1.0.1
+pyyaml>=6.0.1
+
+# Logging (structured logging)
+structlog>=24.1.0  # Structured logging for production
+
+# Vector Database & Embeddings
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+
+# Deep Learning Core (Required)
+torch>=2.5.0
+transformers>=4.46.0
+accelerate>=1.1.0
+peft>=0.12.0
+
+# Deep Learning Advanced (Optional)
+diffusers>=0.31.0
+bitsandbytes>=0.44.0
+torch-pruning>=0.3.0
+
+# Model Evaluation & Metrics
+scikit-learn>=1.5.0
+numpy>=2.1.0
+scipy>=1.14.0
+
+# Data Processing
+pandas>=2.2.0
+
+# Experiment Tracking & Visualization
+wandb>=0.18.0
+tensorboard>=2.18.0
+matplotlib>=3.9.0
+seaborn>=0.13.0
+torchviz>=0.0.2
+
+# Hyperparameter Optimization
+optuna>=4.0.0
+
+# Model Export & Inference
+onnx>=1.17.0
+onnxruntime>=1.20.0
+
+# Image Processing
+Pillow>=11.0.0
+
+# Progress & Utilities
+tqdm>=4.67.0
+psutil>=6.1.0
+
+# Interactive Demos
+gradio>=4.44.0
+
+# Real-time & WebSockets
+websockets>=14.0
+python-socketio>=5.11.0
+
+# Caching (Optional - for distributed cache)
+# redis>=5.0.0  # Uncomment if using Redis
+
+# Metrics (Optional - for Prometheus)
+# prometheus-client>=0.20.0  # Uncomment if using Prometheus
+
+# LLM Integration (Optional - uncomment as needed)
+# openai>=1.54.0
+# anthropic>=0.39.0
+
+# GraphQL (Optional)
+# strawberry-graphql>=0.218.0
+
+# Development Dependencies (install separately: pip install -r requirements-dev.txt)
+# pytest>=8.0.0
+# pytest-asyncio>=0.23.0
+# pytest-cov>=4.1.0
+# mypy>=1.8.0
+# black>=24.1.0
+# ruff>=0.3.0
+# isort>=5.13.0

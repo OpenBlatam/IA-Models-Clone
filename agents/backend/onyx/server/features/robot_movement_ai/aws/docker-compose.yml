@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  robot-movement-ai:
+    build:
+      context: ..
+      dockerfile: aws/Dockerfile
+    container_name: robot-movement-ai
+    ports:
+      - "8010:8010"
+    environment:
+      - ROBOT_IP=${ROBOT_IP:-192.168.1.100}
+      - ROBOT_PORT=${ROBOT_PORT:-30001}
+      - ROBOT_BRAND=${ROBOT_BRAND:-generic}
+      - ROS_ENABLED=${ROS_ENABLED:-true}
+      - FEEDBACK_FREQUENCY=${FEEDBACK_FREQUENCY:-1000}
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+    volumes:
+      - ../storage:/app/storage
+      - ../logs:/app/logs
+      - ../models:/app/models
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8010/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - robot-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: robot-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - robot-network
+    command: redis-server --appendonly yes
+
+networks:
+  robot-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

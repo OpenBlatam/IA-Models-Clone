@@ -1,0 +1,51 @@
+# Web3 Engine Dependencies
+# Motor Web3 y DeFi para criptomonedas
+
+# Web3 Core
+web3==6.11.3
+eth-account==0.9.0
+eth-utils==2.3.0
+eth-typing==3.5.2
+
+# Blockchain Libraries
+py-evm==0.7.0
+eth-abi==4.2.1
+eth-hash==0.5.2
+eth-keys==0.4.0
+
+# Cryptography
+cryptography==41.0.7
+pycryptodome==3.19.0
+secp256k1==0.14.0
+
+# HTTP and API
+aiohttp==3.9.1
+requests==2.31.0
+httpx==0.25.2
+
+# JSON and Data
+pydantic==2.5.2
+orjson==3.9.10
+
+# Async Support
+asyncio-throttle==1.0.2
+aiofiles==23.2.1
+
+# Utilities
+python-dotenv==1.0.0
+click==8.1.7
+rich==13.7.0
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-mock==3.12.0
+
+# Development
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+
+
+

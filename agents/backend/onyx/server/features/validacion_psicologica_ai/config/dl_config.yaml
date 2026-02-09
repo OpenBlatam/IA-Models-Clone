@@ -1,0 +1,107 @@
+# Deep Learning Configuration
+# ==========================
+
+# Model Configurations
+models:
+  embedding:
+    name: "sentence-transformers/all-MiniLM-L6-v2"
+    embedding_dim: 384
+    dropout: 0.1
+    max_length: 512
+  
+  personality:
+    name: "distilbert-base-uncased"
+    num_traits: 5
+    hidden_dim: 768
+    dropout: 0.1
+    max_length: 512
+  
+  sentiment:
+    name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
+    num_labels: 3
+    max_length: 512
+  
+  diffusion:
+    name: "runwayml/stable-diffusion-v1-5"
+    use_xl: false
+    height: 512
+    width: 512
+    num_inference_steps: 30
+    guidance_scale: 7.5
+
+# Training Configuration
+training:
+  batch_size: 16
+  learning_rate: 2e-5
+  num_epochs: 3
+  warmup_steps: 100
+  weight_decay: 0.01
+  gradient_accumulation_steps: 4
+  max_grad_norm: 1.0
+  save_steps: 500
+  eval_steps: 500
+  logging_steps: 10
+  save_total_limit: 3
+  
+  # Mixed Precision
+  fp16: true
+  fp16_opt_level: "O1"
+  
+  # Early Stopping
+  early_stopping:
+    enabled: true
+    patience: 3
+    min_delta: 0.001
+
+# LoRA Configuration
+lora:
+  enabled: true
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.1
+  target_modules:
+    - "q_lin"
+    - "v_lin"
+    - "k_lin"
+    - "out_lin"
+
+# Data Configuration
+data:
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  num_workers: 2
+  pin_memory: true
+  prefetch_factor: 2
+
+# Device Configuration
+device:
+  use_cuda: true
+  cuda_device: 0
+  allow_mps: false  # Apple Silicon
+
+# Experiment Tracking
+tracking:
+  use_wandb: true
+  use_tensorboard: true
+  project_name: "psychological-validation"
+  log_dir: "./logs"
+  wandb_entity: null  # Set your wandb entity
+
+# Distributed Training
+distributed:
+  enabled: false
+  backend: "nccl"
+  world_size: 1
+  rank: 0
+
+# Paths
+paths:
+  model_dir: "./models"
+  checkpoint_dir: "./checkpoints"
+  output_dir: "./outputs"
+  cache_dir: "./cache"
+
+
+
+

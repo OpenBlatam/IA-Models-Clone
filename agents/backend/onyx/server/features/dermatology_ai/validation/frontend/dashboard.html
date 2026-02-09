@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Métricas - Dermatology AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dashboard {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .metric-change {
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        .metric-change.positive {
+            color: #28a745;
+        }
+        .metric-change.negative {
+            color: #dc3545;
+        }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .funnel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .funnel-bar {
+            flex: 1;
+            height: 40px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            transition: width 0.5s ease;
+        }
+        .funnel-label {
+            min-width: 150px;
+            font-weight: 500;
+        }
+        .funnel-value {
+            min-width: 80px;
+            text-align: right;
+            font-weight: 600;
+        }
+        .health-score {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .health-score-value {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .health-score-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .refresh-btn:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <header class="header">
+                <h1>📊 Dashboard de Métricas</h1>
+                <p class="subtitle">Validación Dermatology AI</p>
+            </header>
+
+            <button class="refresh-btn" onclick="loadMetrics()">🔄 Actualizar Métricas</button>
+
+            <!-- Health Score -->
+            <div class="health-score">
+                <div class="health-score-label">Score de Salud del Producto</div>
+                <div class="health-score-value" id="health-score">0</div>
+                <div id="health-status">Cargando...</div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Visitas Totales</div>
+                    <div class="metric-value" id="visits">0</div>
+                    <div class="metric-change" id="visits-change">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Usuarios Únicos</div>
+                    <div class="metric-value" id="unique-users">0</div>
+                    <div class="metric-change" id="unique-users-change">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Subidas de Foto</div>
+                    <div class="metric-value" id="uploads">0</div>
+                    <div class="metric-change" id="uploads-change">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Análisis Completados</div>
+                    <div class="metric-value" id="completions">0</div>
+                    <div class="metric-change" id="completions-change">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Tasa de Conversión</div>
+                    <div class="metric-value" id="conversion-rate">0%</div>
+                    <div class="metric-change" id="conversion-rate-change">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Feedback Promedio</div>
+                    <div class="metric-value" id="avg-feedback">0</div>
+                    <div class="metric-change" id="avg-feedback-change">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">NPS</div>
+                    <div class="metric-value" id="nps">0</div>
+                    <div class="metric-change" id="nps-change">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">% que Pagarían</div>
+                    <div class="metric-value" id="payment-intent">0%</div>
+                    <div class="metric-change" id="payment-intent-change">-</div>
+                </div>
+            </div>
+
+            <!-- Funnel -->
+            <div class="chart-container">
+                <h2>📈 Funnel de Conversión</h2>
+                <div class="funnel" id="funnel"></div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="chart-container">
+                <h2>💡 Recomendaciones</h2>
+                <div id="recommendations"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load metrics from JSON file
+        async function loadMetrics() {
+            try {
+                const response = await fetch('results/metrics.json');
+                const metrics = await response.json();
+                updateDashboard(metrics);
+            } catch (error) {
+                console.error('Error loading metrics:', error);
+                // Try to load from parent directory
+                try {
+                    const response = await fetch('../results/metrics.json');
+                    const metrics = await response.json();
+                    updateDashboard(metrics);
+                } catch (e) {
+                    console.error('Could not load metrics:', e);
+                    document.getElementById('health-score').textContent = 'Error';
+                    document.getElementById('health-status').textContent = 'No se pudieron cargar las métricas';
+                }
+            }
+        }
+
+        function updateDashboard(metrics) {
+            // Update metric cards
+            document.getElementById('visits').textContent = metrics.visits || 0;
+            document.getElementById('unique-users').textContent = metrics.unique_users || 0;
+            document.getElementById('uploads').textContent = metrics.uploads || 0;
+            document.getElementById('completions').textContent = metrics.completions || 0;
+            
+            // Calculate conversion rate
+            const conversionRate = metrics.visits > 0 
+                ? ((metrics.uploads / metrics.visits) * 100).toFixed(1)
+                : 0;
+            document.getElementById('conversion-rate').textContent = conversionRate + '%';
+            
+            document.getElementById('avg-feedback').textContent = (metrics.avg_feedback || 0).toFixed(1);
+            document.getElementById('nps').textContent = metrics.nps || 0;
+            document.getElementById('payment-intent').textContent = (metrics.payment_intent || 0).toFixed(1) + '%';
+
+            // Calculate health score
+            const healthScore = calculateHealthScore(metrics);
+            document.getElementById('health-score').textContent = healthScore.toFixed(0);
+            
+            let healthStatus = '';
+            let healthClass = '';
+            if (healthScore >= 70) {
+                healthStatus = '✅ Excelente - Continúa!';
+                healthClass = 'positive';
+            } else if (healthScore >= 50) {
+                healthStatus = '⚠️ Bueno - Hay espacio para mejorar';
+                healthClass = 'positive';
+            } else {
+                healthStatus = '❌ Necesita mejora - Revisa estrategia';
+                healthClass = 'negative';
+            }
+            document.getElementById('health-status').textContent = healthStatus;
+            document.getElementById('health-status').className = healthClass;
+
+            // Update funnel
+            updateFunnel(metrics);
+
+            // Update recommendations
+            updateRecommendations(metrics);
+        }
+
+        function calculateHealthScore(metrics) {
+            const conversion = metrics.visits > 0 
+                ? (metrics.uploads / metrics.visits) * 100 
+                : 0;
+            const satisfaction = (metrics.avg_feedback || 0) * 20; // Convert 1-5 to 0-100
+            const retention = 50; // Placeholder, would need actual retention data
+            const payment = metrics.payment_intent || 0;
+
+            return (conversion * 0.3) + 
+                   (satisfaction * 0.3) + 
+                   (retention * 0.2) + 
+                   (payment * 0.2);
+        }
+
+        function updateFunnel(metrics) {
+            const visits = metrics.visits || 0;
+            const uploads = metrics.uploads || 0;
+            const completions = metrics.completions || 0;
+            const satisfied = Math.round(completions * 0.6); // Assume 60% satisfaction
+            const wouldPay = Math.round(satisfied * (metrics.payment_intent || 0) / 100);
+
+            const steps = [
+                { label: 'Visitas', value: visits, percentage: 100 },
+                { label: 'Subidas de Foto', value: uploads, percentage: visits > 0 ? (uploads / visits * 100) : 0 },
+                { label: 'Análisis Completados', value: completions, percentage: uploads > 0 ? (completions / uploads * 100) : 0 },
+                { label: 'Satisfechos', value: satisfied, percentage: completions > 0 ? (satisfied / completions * 100) : 0 },
+                { label: 'Pagarían', value: wouldPay, percentage: satisfied > 0 ? (wouldPay / satisfied * 100) : 0 }
+            ];
+
+            const funnelHtml = steps.map(step => `
+                <div class="funnel-step">
+                    <div class="funnel-label">${step.label}</div>
+                    <div class="funnel-bar" style="width: ${step.percentage}%">
+                        ${step.value} (${step.percentage.toFixed(1)}%)
+                    </div>
+                    <div class="funnel-value">${step.value}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('funnel').innerHTML = funnelHtml;
+        }
+
+        function updateRecommendations(metrics) {
+            const recommendations = [];
+            
+            const conversionRate = metrics.visits > 0 
+                ? (metrics.uploads / metrics.visits) * 100 
+                : 0;
+            
+            if (conversionRate < 20) {
+                recommendations.push('⚠️ Tasa de conversión baja. Revisa UX y propuesta de valor.');
+            }
+            
+            if (metrics.avg_feedback < 3.5) {
+                recommendations.push('⚠️ Feedback bajo. Revisa calidad de resultados.');
+            }
+            
+            if (metrics.payment_intent < 30) {
+                recommendations.push('⚠️ Baja intención de pago. Revisa propuesta de valor.');
+            }
+            
+            if (metrics.nps < 30) {
+                recommendations.push('⚠️ NPS bajo. Mejora experiencia del usuario.');
+            }
+            
+            if (recommendations.length === 0) {
+                recommendations.push('✅ Métricas en buen rango. Continúa iterando!');
+            }
+
+            document.getElementById('recommendations').innerHTML = 
+                recommendations.map(rec => `<p>${rec}</p>`).join('');
+        }
+
+        // Load metrics on page load
+        loadMetrics();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadMetrics, 30000);
+    </script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+openrouter:
+  api_key: "${OPENROUTER_API_KEY}"
+  base_url: "https://openrouter.ai/api/v1"
+  default_model: "openai/gpt-4-turbo"
+  timeout: 90
+  max_retries: 3
+  temperature: 0.7
+  max_tokens: 3000
+
+nlp:
+  language: "es"
+  use_spacy: true
+  use_transformers: true
+  model_name: "dccuchile/bert-base-spanish-wwm-uncased"
+  enable_ner: true
+  enable_sentiment: true
+  enable_keyword_extraction: true
+
+ml:
+  enable_predictive_maintenance: true
+  model_path: "ml_models"
+  use_tensorflow: false
+  use_pytorch: false
+  enable_anomaly_detection: true
+  training_data_path: "data/training"
+  retrain_interval_days: 30
+
+maintenance:
+  robot_types:
+    - "robots_industriales"
+    - "robots_medicos"
+    - "robots_servicio"
+    - "robots_agricolas"
+    - "maquinaria_cnc"
+    - "sistemas_automatizados"
+  
+  maintenance_categories:
+    - "preventivo"
+    - "correctivo"
+    - "predictivo"
+    - "diagnostico"
+    - "calibracion"
+    - "lubricacion"
+    - "reemplazo_piezas"
+    - "actualizacion_software"
+  
+  difficulty_levels:
+    - "principiante"
+    - "intermedio"
+    - "avanzado"
+    - "experto"
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  log_level: "INFO"
+  log_file: "logs/app.log"
+
+cache:
+  enabled: true
+  ttl: 3600
+  max_size: 1000
+
+rate_limit:
+  max_requests: 100
+  window_seconds: 60
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  artist-manager-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - LOG_LEVEL=INFO
+      - DATABASE_PATH=/app/data/artist_manager.db
+    volumes:
+      - ./data:/app/data
+      - ./backups:/app/backups
+      - ./exports:/app/exports
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Opcional: Base de datos PostgreSQL
+  # postgres:
+  #   image: postgres:15
+  #   environment:
+  #     - POSTGRES_DB=artist_manager
+  #     - POSTGRES_USER=artist_manager
+  #     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+# volumes:
+#   postgres_data:
+
+
+
+

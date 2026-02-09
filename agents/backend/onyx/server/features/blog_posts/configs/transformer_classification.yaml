@@ -1,0 +1,106 @@
+experiment_name: "transformer_text_classification"
+experiment_description: "BERT-based text classification for sentiment analysis"
+version: "1.0.0"
+tags:
+  - "nlp"
+  - "classification"
+  - "transformer"
+  - "sentiment-analysis"
+
+environment: "development"
+seed: 42
+debug: false
+
+model:
+  model_type: "transformer"
+  model_name: "bert-base-uncased"
+  num_classes: 3
+  hidden_dim: 512
+  num_layers: 12
+  num_heads: 12
+  dropout: 0.1
+  activation: "gelu"
+  pretrained: true
+  freeze_backbone: false
+  pretrained_path: null
+  model_params:
+    max_length: 512
+    truncation: true
+    padding: true
+    return_attention_mask: true
+
+data:
+  data_path: "data/sentiment_dataset.csv"
+  train_data_path: null
+  val_data_path: null
+  test_data_path: null
+  batch_size: 16
+  val_batch_size: 16
+  test_batch_size: 16
+  num_workers: 4
+  pin_memory: true
+  shuffle: true
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  target_column: "label"
+  feature_columns: null
+  text_column: "text"
+  image_column: null
+  preprocessing:
+    lowercase: true
+    remove_punctuation: false
+    remove_stopwords: false
+    max_length: 512
+  augmentations:
+    synonym_replacement: false
+    random_insertion: false
+    random_swap: false
+    random_deletion: false
+
+training:
+  epochs: 10
+  learning_rate: 2e-5
+  weight_decay: 1e-5
+  optimizer: "adamw"
+  optimizer_params:
+    betas: [0.9, 0.999]
+    eps: 1e-8
+  scheduler: "warmup_cosine"
+  scheduler_params:
+    warmup_steps: 100
+    num_training_steps: 1000
+  loss_function: "cross_entropy"
+  loss_params:
+    label_smoothing: 0.1
+  device: "auto"
+  mixed_precision: true
+  gradient_clipping: 1.0
+  early_stopping_patience: 5
+  save_best_model: true
+  save_checkpoints: true
+  checkpoint_frequency: 2
+  output_dir: "outputs"
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+  experiment_name: "transformer_text_classification"
+  use_wandb: true
+  use_tensorboard: true
+
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "confusion_matrix"
+  save_predictions: true
+  save_plots: true
+  output_dir: "evaluation_results"
+  results_file: "results.json"
+  threshold: 0.5
+  thresholds: [0.3, 0.5, 0.7, 0.9]
+  plot_config:
+    figsize: [10, 8]
+    dpi: 300
+    style: "seaborn-v0_8" 

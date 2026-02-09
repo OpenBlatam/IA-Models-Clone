@@ -1,0 +1,186 @@
+name: Nightly Build and Test
+
+on:
+  schedule:
+    # Run every day at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.11'
+  PROJECT_PATH: agents/backend/onyx/server/features/3d_prototype_ai
+
+jobs:
+  nightly-tests:
+    name: Nightly Test Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+      
+      - name: Install dependencies
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov pytest-asyncio pytest-mock pytest-xdist
+      
+      - name: Run comprehensive tests
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pytest tests/ -v \
+            --cov=. \
+            --cov-report=xml \
+            --cov-report=html \
+            --cov-report=term \
+            --tb=short \
+            -n auto \
+            --maxfail=10
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nightly-test-results-${{ matrix.python-version }}
+          path: |
+            htmlcov/
+            coverage.xml
+          retention-days: 7
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run Trivy comprehensive scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-nightly-results.sarif'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
+          exit-code: '0'
+      
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-nightly-results.sarif'
+      
+      - name: Run Bandit comprehensive scan
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install bandit[toml]
+          bandit -r . -f json -o bandit-nightly-report.json -ll || true
+      
+      - name: Run Safety check
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install safety
+          safety check --json --output safety-report.json || true
+        continue-on-error: true
+      
+      - name: Upload security reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nightly-security-reports
+          path: |
+            trivy-nightly-results.sarif
+            bandit-nightly-report.json
+            safety-report.json
+          retention-days: 30
+
+  dependency-check:
+    name: Dependency Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: Check for outdated dependencies
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install pip-audit pipdeptree
+          
+          echo "📦 Dependency tree:"
+          pipdeptree
+          
+          echo ""
+          echo "🔍 Checking for vulnerabilities:"
+          pip-audit --format json --output pip-audit-report.json || true
+      
+      - name: Check for updates
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install pip-check
+          pip list --outdated || true
+      
+      - name: Upload dependency reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dependency-reports
+          path: |
+            pip-audit-report.json
+          retention-days: 30
+
+  performance-test:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: Install dependencies
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install locust pytest-benchmark
+      
+      - name: Run performance tests
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pytest tests/ -v --benchmark-only || echo "No benchmark tests found"
+        continue-on-error: true
+      
+      - name: Upload performance results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-results
+          path: .benchmarks/
+          retention-days: 7
+        continue-on-error: true
+
+

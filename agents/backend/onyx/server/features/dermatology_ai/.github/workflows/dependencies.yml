@@ -1,0 +1,126 @@
+# ============================================================================
+# GitHub Actions - Dependency Management Workflow
+# Automatically checks and updates dependencies
+# ============================================================================
+
+name: Dependency Management
+
+on:
+  schedule:
+    # Run weekly on Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'requirements*.txt'
+      - 'pyproject.toml'
+      - '.github/workflows/dependencies.yml'
+
+jobs:
+  check-dependencies:
+    name: Check Dependencies
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install safety pip-audit
+      
+      - name: Check for security vulnerabilities
+        run: |
+          safety check -r requirements.txt --short-report || true
+          pip-audit -r requirements.txt --desc || true
+      
+      - name: Check for outdated packages
+        run: |
+          pip install -r requirements.txt
+          pip list --outdated || true
+      
+      - name: Validate requirements files
+        run: |
+          for file in requirements*.txt; do
+            if [ -f "$file" ] && [ "$file" != "requirements-lock.txt" ]; then
+              echo "Validating $file..."
+              pip install --dry-run -r "$file" || echo "Warning: Issues with $file"
+            fi
+          done
+      
+      - name: Check for duplicates
+        run: |
+          python scripts/analyze-dependencies.py || true
+
+  update-dependencies:
+    name: Update Dependencies
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Update dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade -r requirements.txt
+          pip freeze > requirements-updated.txt
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update dependencies'
+          title: 'Update Dependencies'
+          body: |
+            Automated dependency update.
+            
+            Please review and test before merging.
+          branch: update-dependencies
+
+  generate-report:
+    name: Generate Dependency Report
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Generate report
+        run: |
+          pip install -r requirements-dev.txt
+          python scripts/analyze-dependencies.py
+          ./scripts/generate-requirements-report.sh
+      
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency-report
+          path: |
+            REQUIREMENTS_REPORT.md
+            dependency-analysis.json
+            dependency-visualization.json
+
+
+

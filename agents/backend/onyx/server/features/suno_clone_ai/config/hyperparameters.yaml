@@ -1,0 +1,236 @@
+# Hyperparameters Configuration for Music Generation Models
+# This file contains all hyperparameters for training and inference
+
+# Model Architecture
+model:
+  vocab_size: 32000
+  d_model: 512
+  num_heads: 8
+  num_layers: 6
+  d_ff: 2048
+  max_seq_len: 2048
+  dropout: 0.1
+  activation: "gelu"  # Options: relu, gelu, swish
+  use_positional_encoding: true
+
+# LoRA Configuration (for efficient fine-tuning)
+lora:
+  enabled: false
+  rank: 8
+  alpha: 16.0
+  dropout: 0.0
+  target_modules:
+    - "attention.query"
+    - "attention.value"
+    - "attention.key"
+    - "feed_forward"
+
+# Training Configuration
+training:
+  batch_size: 4
+  num_epochs: 100
+  learning_rate: 1.0e-4
+  weight_decay: 0.01
+  warmup_steps: 1000
+  max_grad_norm: 1.0
+  
+  # Optimizer
+  optimizer: "adamw"  # Options: adam, adamw, sgd
+  optimizer_params:
+    betas: [0.9, 0.999]
+    eps: 1.0e-8
+  
+  # Learning Rate Scheduler
+  scheduler: "cosine"  # Options: cosine, step, exponential, reduce_on_plateau, onecycle
+  scheduler_params:
+    # For cosine annealing
+    T_max: 100
+    eta_min: 1.0e-6
+    # For step LR
+    step_size: 30
+    gamma: 0.1
+    # For reduce on plateau
+    factor: 0.5
+    patience: 5
+    min_lr: 1.0e-6
+  
+  # Early Stopping
+  early_stopping:
+    enabled: true
+    patience: 10
+    min_delta: 0.001
+    mode: "min"  # min or max
+    restore_best_weights: true
+  
+  # Mixed Precision Training
+  mixed_precision:
+    enabled: true
+    init_scale: 65536.0
+    growth_factor: 2.0
+    backoff_factor: 0.5
+    growth_interval: 2000
+  
+  # Gradient Accumulation
+  gradient_accumulation:
+    enabled: false
+    steps: 4
+  
+  # Data Loading
+  data_loader:
+    num_workers: 4
+    pin_memory: true
+    persistent_workers: true
+    prefetch_factor: 2
+
+# Inference Configuration
+inference:
+  # Generation Parameters
+  temperature: 1.0
+  top_k: 250
+  top_p: 0.0
+  guidance_scale: 3.0
+  
+  # Diffusion Parameters (if using diffusion models)
+  diffusion:
+    num_inference_steps: 50
+    scheduler_type: "ddpm"  # Options: ddpm, ddim, pndm, dpm, euler
+    eta: 0.0  # DDIM eta parameter
+  
+  # Mixed Precision Inference
+  mixed_precision: true
+  
+  # Model Compilation
+  compile:
+    enabled: true
+    mode: "reduce-overhead"  # Options: default, reduce-overhead, max-autotune
+
+# Data Configuration
+data:
+  sample_rate: 32000
+  max_duration: 300  # seconds
+  default_duration: 30  # seconds
+  
+  # Data Splits
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  
+  # Cross-Validation
+  cross_validation:
+    enabled: false
+    n_splits: 5
+    shuffle: true
+
+# Evaluation Metrics
+evaluation:
+  metrics:
+    - "loss"
+    - "mse"
+    - "mae"
+    - "rmse"
+    - "snr"  # Signal-to-Noise Ratio
+    - "spectral_convergence"
+  
+  # Audio-specific metrics
+  audio_metrics:
+    enabled: true
+    compute_spectral: true
+    compute_tempo: true
+    compute_key: true
+
+# Experiment Tracking
+experiment_tracking:
+  # Weights & Biases
+  wandb:
+    enabled: false
+    project: "music-generation"
+    entity: null
+    tags: []
+    notes: ""
+  
+  # TensorBoard
+  tensorboard:
+    enabled: true
+    log_dir: "./logs"
+    flush_secs: 30
+  
+  # Logging
+  logging:
+    level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Checkpointing
+checkpointing:
+  save_dir: "./checkpoints"
+  save_best: true
+  save_every_n_epochs: null  # null = only save best
+  keep_last_n: 5  # Keep last N checkpoints
+  
+  # Resume training
+  resume:
+    enabled: false
+    checkpoint_path: null
+
+# Multi-GPU Configuration
+multi_gpu:
+  enabled: false
+  strategy: "dataparallel"  # Options: dataparallel, distributeddataparallel
+  device_ids: null  # null = use all available GPUs
+  
+  # Distributed Training
+  distributed:
+    backend: "nccl"  # Options: nccl, gloo, mpi
+    init_method: null  # null = use environment variables
+    world_size: null
+    rank: null
+
+# Performance Optimization
+performance:
+  # GPU Optimizations
+  gpu:
+    cudnn_benchmark: true
+    cudnn_deterministic: false
+    allow_tf32: true  # TensorFloat-32 for Ampere GPUs
+  
+  # Memory Optimization
+  memory:
+    gradient_checkpointing: false
+    empty_cache_frequency: 100  # Clear cache every N batches
+  
+  # Profiling
+  profiling:
+    enabled: false
+    num_iterations: 10
+    output_dir: "./profiles"
+
+# Model Selection
+model_selection:
+  # Base Model
+  base_model: "facebook/musicgen-medium"  # Options: small, medium, large
+  
+  # Generator Type
+  generator_type: "standard"  # Options: standard, diffusion, audiocraft
+  
+  # Device
+  device: "auto"  # Options: auto, cuda, cpu
+
+# Advanced Features
+advanced:
+  # Autograd Anomaly Detection (for debugging)
+  autograd_anomaly:
+    enabled: false
+    mode: "warn"  # Options: warn, raise
+  
+  # Gradient Clipping
+  gradient_clipping:
+    enabled: true
+    max_norm: 1.0
+    norm_type: 2
+  
+  # NaN/Inf Detection
+  nan_detection:
+    enabled: true
+    check_frequency: 10  # Check every N batches
+
+
+

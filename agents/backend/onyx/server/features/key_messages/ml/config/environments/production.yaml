@@ -1,0 +1,297 @@
+# Production Environment Configuration
+# This file overrides the main config.yaml for production settings
+
+# Override app settings for production
+app:
+  environment: "production"
+  debug: false
+
+# Production-specific model configurations
+models:
+  gpt2:
+    max_length: 512
+    temperature: 0.7
+    device: "cuda"  # Use GPU for production
+    torch_dtype: "float16"  # Use mixed precision for production
+    
+  gpt2_medium:
+    max_length: 512
+    device: "cuda"
+    torch_dtype: "float16"
+    
+  gpt2_large:
+    max_length: 512
+    device: "cuda"
+    torch_dtype: "float16"
+
+# Production training settings
+training:
+  default:
+    batch_size: 32  # Larger batch size for production
+    learning_rate: 5.0e-5  # Lower learning rate for stability
+    num_epochs: 10  # More epochs for production
+    warmup_steps: 2000  # Longer warmup
+    gradient_accumulation_steps: 8
+    use_mixed_precision: true  # Enable for production
+    use_wandb: true  # Enable W&B for production
+    use_tensorboard: true  # Enable TensorBoard for production
+    experiment_name: "key_messages_production"
+    save_steps: 2000  # Save less frequently
+    eval_steps: 1000
+    save_total_limit: 5
+    
+  production:
+    batch_size: 64
+    learning_rate: 3.0e-5
+    num_epochs: 15
+    warmup_steps: 3000
+    gradient_accumulation_steps: 16
+    use_mixed_precision: true
+    use_tensorboard: true
+    use_wandb: true
+    experiment_name: "key_messages_production_full"
+    save_steps: 5000
+    eval_steps: 2500
+    save_total_limit: 10
+
+# Production data settings
+data:
+  default:
+    batch_size: 64  # Larger batches
+    num_workers: 8  # More workers
+    pin_memory: true  # Enable for GPU
+    cache_dir: "./cache_prod"
+    
+  high_performance:
+    batch_size: 128
+    num_workers: 16
+    pin_memory: true
+    prefetch_factor: 4
+    persistent_workers: true
+    
+  memory_efficient:
+    batch_size: 32
+    num_workers: 4
+    pin_memory: true
+    
+  preprocessing:
+    min_text_length: 10
+    max_text_length: 1000
+
+# Production evaluation settings
+evaluation:
+  default:
+    batch_size: 64
+    num_workers: 8
+    device: "cuda"
+    output_dir: "./evaluation_results_prod"
+    save_predictions: true  # Save predictions in production
+    save_metrics: true
+    generate_plots: true  # Enable plots for production
+    generate_report: true
+    
+  comprehensive:
+    batch_size: 128
+    num_workers: 16
+    device: "cuda"
+    output_dir: "./evaluation_results_prod_comprehensive"
+    save_predictions: true
+    save_metrics: true
+    generate_plots: true
+    generate_report: true
+    additional_metrics:
+      - "perplexity"
+      - "diversity"
+      - "coherence"
+      - "fluency"
+      - "toxicity"
+      - "bias"
+
+# Production performance settings
+performance:
+  gpu:
+    device: "cuda"  # Use GPU for production
+    memory_fraction: 0.95  # Use more GPU memory
+    allow_growth: false  # Pre-allocate memory
+    mixed_precision: true
+    
+  memory:
+    gradient_checkpointing: true  # Enable for large models
+    gradient_accumulation: true
+    batch_size_auto_tune: true  # Enable auto-tuning for production
+    max_memory_usage: 0.9  # Use more memory
+    
+  data_loading:
+    num_workers: 8  # More workers for production
+    pin_memory: true
+    prefetch_factor: 4
+    persistent_workers: true
+    drop_last: false
+
+# Production logging settings
+logging:
+  level: "WARNING"  # Less verbose logging for production
+  format: "structured"  # Structured format for production
+  handlers:
+    console:
+      enabled: true
+      level: "WARNING"
+    file:
+      enabled: true
+      level: "INFO"
+      filename: "./logs/ml_pipeline_prod.log"
+      max_bytes: 20971520  # 20MB for production
+      backup_count: 10
+    tensorboard:
+      enabled: true  # Enable TensorBoard for production
+      level: "INFO"
+      
+  structured:
+    include_timestamp: true
+    include_process_id: true
+    include_thread_id: true
+    custom_fields:
+      component: "ml_pipeline"
+      version: "1.0.0"
+      environment: "production"
+
+# Production validation settings
+validation:
+  model:
+    validate_config: true
+    check_model_weights: true  # Enable for production
+    verify_device_placement: true
+    
+  data:
+    validate_schema: true
+    check_data_types: true
+    verify_required_columns: true
+    sample_size: 5000  # Larger sample for production
+    
+  training:
+    validate_batch_size: true
+    check_memory_usage: true  # Enable for production
+    verify_gradient_flow: true
+    early_stopping_patience: 10  # Longer patience for production
+    early_stopping_min_delta: 0.0001
+
+# Production security settings (strict)
+security:
+  model:
+    validate_inputs: true  # Enable for production
+    sanitize_outputs: true
+    max_input_length: 1000
+    max_output_length: 1000
+    
+  data:
+    anonymize_pii: true  # Enable for production
+    remove_sensitive_patterns: true
+    encryption_enabled: true  # Enable encryption for production
+    data_retention_days: 90  # Longer retention for production
+    
+  api:
+    rate_limiting: true  # Enable for production
+    max_requests_per_minute: 100
+    authentication_required: true
+    input_validation: true
+
+# Production experiment tracking (full)
+experiment_tracking:
+  tensorboard:
+    enabled: true  # Enable for production
+    log_dir: "./logs_prod"
+    update_freq: 50  # More frequent updates
+    flush_secs: 30
+    
+  wandb:
+    enabled: true  # Enable for production
+    project: "key_messages_production"
+    entity: "your_entity"  # Set your W&B entity
+    tags: ["production", "key_messages"]
+    notes: "Production training run"
+    config_exclude_keys: ["security", "deployment"]
+    
+  mlflow:
+    enabled: true  # Enable for production
+    tracking_uri: "sqlite:///mlflow_prod.db"
+    experiment_name: "key_messages_production"
+    log_models: true
+
+# Production ensemble settings (full)
+ensemble:
+  default:
+    models:
+      - name: "gpt2"
+        weight: 0.4
+        config: "gpt2"
+      - name: "gpt2_medium"
+        weight: 0.4
+        config: "gpt2_medium"
+      - name: "gpt2_large"
+        weight: 0.2
+        config: "gpt2_large"
+    method: "weighted_average"
+    
+  large:
+    models:
+      - name: "gpt2"
+        weight: 0.3
+        config: "gpt2"
+      - name: "gpt2_medium"
+        weight: 0.3
+        config: "gpt2_medium"
+      - name: "gpt2_large"
+        weight: 0.4
+        config: "gpt2_large"
+    method: "weighted_average"
+
+# Production deployment settings (full)
+deployment:
+  serving:
+    model_format: "torchscript"  # Optimized format for production
+    optimization_level: "O2"  # High optimization for production
+    quantization: true  # Enable quantization for production
+    dynamic_batching: true
+    max_batch_size: 64
+    timeout_seconds: 30
+    
+  container:
+    base_image: "pytorch/pytorch:2.0.0-cuda11.7-cudnn8-runtime"
+    python_version: "3.9"
+    requirements_file: "requirements_prod.txt"
+    health_check_enabled: true
+    resource_limits:
+      cpu: "8"
+      memory: "16Gi"
+      gpu: "2"
+      
+  monitoring:
+    enabled: true  # Enable monitoring for production
+    metrics_interval: 30  # More frequent monitoring
+    health_check_interval: 15
+    alerting:
+      enabled: true
+      cpu_threshold: 80
+      memory_threshold: 85
+      gpu_threshold: 90
+      notification_channels:
+        - "email"
+        - "slack"
+        - "pagerduty"
+
+# Production-specific overrides
+production_overrides:
+  # Enable all optimizations
+  enable_all_optimizations: true
+  
+  # Strict error handling
+  strict_error_handling: true
+  
+  # Comprehensive monitoring
+  comprehensive_monitoring: true
+  
+  # Security-first approach
+  security_first: true
+  
+  # Performance optimization
+  performance_optimization: true 

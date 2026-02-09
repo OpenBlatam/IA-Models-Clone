@@ -1,0 +1,14 @@
+/opt/{{ project_name }}/logs/*.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 0640 {{ app_user }} {{ app_user }}
+    sharedscripts
+    postrotate
+        systemctl reload {{ project_name }} || true
+    endscript
+}
+

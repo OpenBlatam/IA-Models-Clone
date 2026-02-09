@@ -1,0 +1,211 @@
+[MASTER]
+# Python code to execute, usually for sys.path manipulation
+init-hook='import sys; sys.path.append(".")'
+
+# Use multiple processes to speed up Pylint
+jobs=4
+
+# Control the amount of potential inferred values when inferring a single
+# object
+limit-inference-results=100
+
+# List of plugins (as comma separated values of python modules names) to load,
+# usually to register additional checkers
+load-plugins=
+
+# Pickle collected data for later comparisons
+persistent=yes
+
+# Minimum Python version
+py-version=3.10
+
+# When enabled, pylint would attempt to guess common misconfiguration and emit
+# user-friendly hints instead of false-positive error messages
+suggestion-mode=yes
+
+[MESSAGES CONTROL]
+# Only show warnings with the listed confidence levels
+confidence=
+  HIGH,
+  INFERENCE,
+  INFERENCE_FAILURE,
+  UNDEFINED
+
+# Disable the message, report, category or checker with the given id(s)
+disable=
+  missing-docstring,
+  too-few-public-methods,
+  too-many-arguments,
+  too-many-instance-attributes,
+  too-many-locals,
+  too-many-public-methods,
+  too-many-return-statements,
+  too-many-branches,
+  too-many-statements,
+  import-error,
+  no-member,
+  broad-except,
+  bare-except
+
+# Enable the message, report, category or checker with the given id(s)
+enable=c-extension-no-member
+
+[FORMAT]
+# Expected format of line ending
+expected-line-ending-format=LF
+
+# Regexp for a line that is allowed to be longer than the limit
+ignore-long-lines=^\s*(# )?<?https?://\S+>?$
+
+# Number of spaces of indent required inside a hanging or continued line
+indent-after-paren=4
+
+# String used as indentation unit
+indent-string='    '
+
+# Maximum number of characters on a single line
+max-line-length=127
+
+# Maximum number of lines in a module
+max-module-lines=1000
+
+# Allow the body of a class to be on the same line as the declaration
+single-line-class-stmt=no
+
+# Allow the body of an if to be on the same line as the test if there is no
+# else
+single-line-if-stmt=no
+
+[BASIC]
+# Naming style matching correct argument names
+argument-naming-style=snake_case
+
+# Regular expression matching correct argument names
+argument-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# Naming style matching correct attribute names
+attr-naming-style=snake_case
+
+# Regular expression matching correct attribute names
+attr-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# Bad variable names which should always be refused, separated by a comma
+bad-names=foo,
+          bar,
+          baz,
+          toto,
+          tutu,
+          tata
+
+# Bad variable names regexes
+bad-names-rgx=
+
+# Naming style matching correct class attribute names
+class-attribute-naming-style=any
+
+# Regular expression matching correct class attribute names
+class-attribute-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# Naming style matching correct class constant names
+class-const-naming-style=UPPER_CASE
+
+# Regular expression matching correct class constant names
+class-const-rgx=[A-Z_][A-Z0-9_]{2,30}$
+
+# Naming style matching correct class names
+class-naming-style=PascalCase
+
+# Regular expression matching correct class names
+class-rgx=[A-Z][a-zA-Z0-9]+$
+
+# Naming style matching correct constant names
+const-naming-style=UPPER_CASE
+
+# Regular expression matching correct constant names
+const-rgx=[A-Z_][A-Z0-9_]{2,30}$
+
+# Minimum line length for functions/classes that require docstrings
+docstring-min-length=-1
+
+# Naming style matching correct function names
+function-naming-style=snake_case
+
+# Regular expression matching correct function names
+function-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# Good variable names which should always be accepted, separated by a comma
+good-names=i,
+           j,
+           k,
+           ex,
+           Run,
+           _,
+           id,
+           db,
+           n,
+           x,
+           y,
+           z
+
+# Include a hint for the correct naming format in invalid-name
+include-naming-hint=no
+
+# Naming style matching correct inline iteration names
+inlinevar-naming-style=any
+
+# Regular expression matching correct inline iteration names
+inlinevar-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# Naming style matching correct method names
+method-naming-style=snake_case
+
+# Regular expression matching correct method names
+method-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# Naming style matching correct module names
+module-naming-style=snake_case
+
+# Regular expression matching correct module names
+module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
+
+# Colon-delimited sets of names that determine each other's naming style when
+# the name regexes allow several styles
+name-group=
+
+# Regular expression which should only match function or class names that do
+# not require a docstring
+no-docstring-rgx=^_
+
+# List of decorators that produce properties, such as abc.abstractproperty
+property-classes=abc.abstractproperty
+
+# Naming style matching correct variable names
+variable-naming-style=snake_case
+
+# Regular expression matching correct variable names
+variable-rgx=[a-z_][a-z0-9_]{2,30}$
+
+[IMPORTS]
+# Allow wildcard imports from modules that define __all__
+allow-wildcard-with-all=no
+
+# Analyse import fallback blocks
+analyse-fallback-blocks=no
+
+# Force import order to recognize a module as part of the standard library
+known-standard-library=
+
+# Force import order to recognize a module as part of a third party library
+known-third-party=enchant
+
+# Couples of modules and preferred modules, separated by a comma
+preferred-modules=
+
+[EXCEPTIONS]
+# Exceptions that will emit a warning when being caught
+overgeneral-exceptions=BaseException,
+                       Exception
+
+
+
+

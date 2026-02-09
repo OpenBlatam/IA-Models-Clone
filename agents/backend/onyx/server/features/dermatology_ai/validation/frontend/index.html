@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermatology AI - Validación de Idea</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🧴 Dermatology AI</h1>
+            <p class="subtitle">Análisis de Piel con Inteligencia Artificial</p>
+        </header>
+
+        <!-- Status Indicator -->
+        <div id="status" class="status hidden">
+            <span id="status-text"></span>
+        </div>
+
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="upload-box" id="upload-box">
+                <input type="file" id="image-input" accept="image/*" hidden>
+                <div class="upload-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h3>Sube una foto de tu piel</h3>
+                    <p>Haz clic aquí o arrastra una imagen</p>
+                    <p class="hint">Formatos: JPG, PNG (máx. 10MB)</p>
+                </div>
+                <img id="preview" class="preview hidden" alt="Preview">
+            </div>
+        </section>
+
+        <!-- Options -->
+        <section class="options-section">
+            <div class="option-group">
+                <label>
+                    <input type="checkbox" id="enhance" checked>
+                    Mejorar imagen antes de análisis
+                </label>
+            </div>
+            <div class="option-group">
+                <label>
+                    <input type="checkbox" id="advanced" checked>
+                    Usar análisis avanzado
+                </label>
+            </div>
+        </section>
+
+        <!-- Action Button -->
+        <section class="action-section">
+            <button id="analyze-btn" class="btn btn-primary" disabled>
+                <span class="btn-text">Analizar Piel</span>
+                <span class="btn-loader hidden">⏳ Analizando...</span>
+            </button>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="results-section hidden">
+            <h2>📊 Resultados del Análisis</h2>
+            
+            <!-- Overall Score -->
+            <div class="score-card">
+                <div class="score-circle">
+                    <span id="overall-score">0</span>
+                    <small>/100</small>
+                </div>
+                <h3>Puntuación General</h3>
+            </div>
+
+            <!-- Detailed Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Textura</div>
+                    <div class="metric-value">
+                        <span id="texture-score">0</span>/100
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="texture-fill"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Hidratación</div>
+                    <div class="metric-value">
+                        <span id="hydration-score">0</span>/100
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="hydration-fill"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Elasticidad</div>
+                    <div class="metric-value">
+                        <span id="elasticity-score">0</span>/100
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="elasticity-fill"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Pigmentación</div>
+                    <div class="metric-value">
+                        <span id="pigmentation-score">0</span>/100
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="pigmentation-fill"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Poros</div>
+                    <div class="metric-value">
+                        <span id="pore-score">0</span>/100
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="pore-fill"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Arrugas</div>
+                    <div class="metric-value">
+                        <span id="wrinkles-score">0</span>/100
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="wrinkles-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skin Type -->
+            <div class="skin-type-card">
+                <h3>Tipo de Piel Detectado</h3>
+                <div class="skin-type-badge" id="skin-type">-</div>
+            </div>
+
+            <!-- Conditions -->
+            <div id="conditions-section" class="conditions-section hidden">
+                <h3>Condiciones Detectadas</h3>
+                <div id="conditions-list" class="conditions-list"></div>
+            </div>
+
+            <!-- Recommendations -->
+            <div id="recommendations-section" class="recommendations-section hidden">
+                <h3>💡 Recomendaciones</h3>
+                <div id="recommendations-list" class="recommendations-list"></div>
+            </div>
+
+            <!-- Feedback Section -->
+            <div class="feedback-section">
+                <h3>📝 Tu Feedback es Valioso</h3>
+                <p>¿Qué piensas de estos resultados?</p>
+                <div class="feedback-buttons">
+                    <button class="btn btn-secondary" onclick="window.open('https://forms.gle/YOUR_FORM_ID', '_blank')">
+                        Dar Feedback
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Section -->
+        <section id="error-section" class="error-section hidden">
+            <div class="error-card">
+                <h3>❌ Error</h3>
+                <p id="error-message"></p>
+                <button class="btn btn-secondary" onclick="resetForm()">Intentar de Nuevo</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+

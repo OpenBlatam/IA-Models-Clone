@@ -1,0 +1,77 @@
+stages:
+  - test
+  - coverage
+  - report
+
+variables:
+  PYTHON_VERSION: "3.10"
+
+test:python38:
+  stage: test
+  image: python:3.8
+  script:
+    - pip install --upgrade pip
+    - pip install torch numpy psutil coverage pytest
+    - cd agents/backend/onyx/server/features/Frontier-Model-run/scripts/TruthGPT-main
+    - python run_tests_advanced.py --coverage --html --metrics
+  artifacts:
+    when: always
+    paths:
+      - test_report.html
+      - htmlcov/
+      - coverage.xml
+    reports:
+      junit: test-results.xml
+
+test:python39:
+  stage: test
+  image: python:3.9
+  script:
+    - pip install --upgrade pip
+    - pip install torch numpy psutil coverage pytest
+    - cd agents/backend/onyx/server/features/Frontier-Model-run/scripts/TruthGPT-main
+    - python run_tests_advanced.py --coverage --html --metrics
+  artifacts:
+    when: always
+    paths:
+      - test_report.html
+      - htmlcov/
+      - coverage.xml
+
+test:python310:
+  stage: test
+  image: python:3.10
+  script:
+    - pip install --upgrade pip
+    - pip install torch numpy psutil coverage pytest
+    - cd agents/backend/onyx/server/features/Frontier-Model-run/scripts/TruthGPT-main
+    - python run_tests_advanced.py --coverage --html --metrics
+  artifacts:
+    when: always
+    paths:
+      - test_report.html
+      - htmlcov/
+      - coverage.xml
+
+coverage:
+  stage: coverage
+  image: python:3.10
+  script:
+    - pip install --upgrade pip
+    - pip install torch numpy psutil coverage
+    - cd agents/backend/onyx/server/features/Frontier-Model-run/scripts/TruthGPT-main
+    - coverage combine
+    - coverage report
+    - coverage xml
+  coverage: '/TOTAL.*\s+(\d+%)$/'
+  artifacts:
+    paths:
+      - coverage.xml
+      - htmlcov/
+
+
+
+
+
+
+

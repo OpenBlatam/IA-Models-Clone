@@ -1,0 +1,44 @@
+# Dockerfile para ejecutar tests en contenedor
+FROM python:3.10-slim
+
+# Metadatos
+LABEL maintainer="TruthGPT Team"
+LABEL description="Container para ejecutar tests de TruthGPT"
+
+# Variables de entorno
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crear directorio de trabajo
+WORKDIR /app
+
+# Copiar requirements
+COPY tests/requirements-test.txt /app/requirements-test.txt
+
+# Instalar dependencias de Python
+RUN pip install --upgrade pip && \
+    pip install -r requirements-test.txt
+
+# Copiar código de tests
+COPY tests/ /app/tests/
+COPY . /app/
+
+# Configurar pytest
+ENV PYTEST_CURRENT_TEST=""
+
+# Comando por defecto
+CMD ["pytest", "tests/core/", "-v"]
+
+# Ejecutar con:
+# docker build -f tests/Dockerfile.test -t truthgpt-tests .
+# docker run --rm truthgpt-tests
+# docker run --rm truthgpt-tests pytest tests/core/unit/ -v
+

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cambia la ropa de tus personajes con IA usando Flux2. Herramienta avanzada para modificar la vestimenta de personajes mediante inteligencia artificial.">
+    <meta name="keywords" content="IA, inteligencia artificial, Flux2, cambio de ropa, personajes, imagen, generación">
+    <meta name="author" content="Character Clothing Changer AI">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Character Clothing Changer AI - Avanzado">
+    <meta property="og:description" content="Cambia la ropa de tus personajes con IA usando Flux2">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Character Clothing Changer AI - Avanzado">
+    <meta name="twitter:description" content="Cambia la ropa de tus personajes con IA usando Flux2">
+
+    <title>Character Clothing Changer AI - Avanzado</title>
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+
+    <!-- Resource Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+    <!-- CSS Modules - Refactored Structure -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/components.css">
+    <link rel="stylesheet" href="static/css/themes.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Character Clothing Changer AI",
+        "description": "Herramienta para cambiar la ropa de personajes usando inteligencia artificial con Flux2",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Skip Navigation Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden" role="status" aria-live="polite" aria-label="Cargando">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <p class="loading-text">Cargando aplicación...</p>
+    </div>
+
+    <!-- Error Boundary -->
+    <div id="errorBoundary" class="error-boundary hidden" role="alert" aria-live="assertive">
+        <div class="error-content">
+            <h2>⚠️ Error en la aplicación</h2>
+            <p id="errorMessage">Ha ocurrido un error inesperado.</p>
+            <button type="button" class="btn btn-secondary" id="reloadBtn" aria-label="Recargar la página">
+                🔄 Recargar
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-main">
+                    <h1>👔 Character Clothing Changer AI</h1>
+                    <p class="header-subtitle">Cambia la ropa de tus personajes con IA usando Flux2</p>
+                </div>
+                <div class="header-actions">
+                    <button type="button" class="btn-icon" id="helpBtn" aria-label="Ayuda y documentación"
+                        data-action="show-help" title="Ayuda">
+                        ❓
+                    </button>
+                    <button type="button" class="btn-icon" id="settingsBtn" aria-label="Configuración"
+                        data-action="show-settings" title="Configuración">
+                        ⚙️
+                    </button>
+                </div>
+            </div>
+            <nav class="breadcrumbs" aria-label="Navegación de ruta">
+                <ol class="breadcrumb-list">
+                    <li><a href="#" aria-current="page">Inicio</a></li>
+                    <li aria-hidden="true">/</li>
+                    <li>Clothing Changer</li>
+                </ol>
+            </nav>
+        </header>
+
+        <main class="content" id="main-content" tabindex="-1">
+            <!-- Status Bar -->
+            <div class="status-bar" role="status" aria-live="polite" data-component="status-bar">
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot" aria-hidden="true" data-status="checking"></div>
+                    <span id="statusText">Verificando conexión...</span>
+                </div>
+                <div class="status-actions">
+                    <button class="toggle-advanced" id="toggleAdvancedBtn" type="button" aria-expanded="false"
+                        aria-controls="advancedOptions" data-action="toggle-advanced">
+                        <span class="btn-icon-text">⚙️</span>
+                        <span>Opciones Avanzadas</span>
+                    </button>
+                    <button class="btn-icon" id="quickPresetsBtn" type="button" aria-label="Presets rápidos"
+                        data-action="show-presets" title="Presets rápidos">
+                        ⚡
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Form -->
+            <form id="clothingForm" name="clothingForm" novalidate data-form-type="clothing-changer"
+                aria-label="Formulario para cambiar la ropa del personaje">
+                <!-- Image Upload Section -->
+                <section class="form-section" aria-labelledby="image-section-title">
+                    <header class="section-header">
+                        <h2 id="image-section-title">📸 Imagen del Personaje</h2>
+                        <button type="button" class="info-btn" aria-label="Información sobre la carga de imágenes"
+                            data-tooltip="Formato: PNG, JPG, JPEG. Tamaño máximo: 10MB"
+                            title="Formato: PNG, JPG, JPEG. Tamaño máximo: 10MB">
+                            ℹ️
+                        </button>
+                    </header>
+                    <fieldset class="form-fieldset">
+                        <legend class="sr-only">Configuración de imagen del personaje</legend>
+                        <div class="form-group">
+                            <div class="file-upload" data-component="file-upload">
+                                <input type="file" id="imageInput" name="image" accept="image/png,image/jpeg,image/jpg"
+                                    required aria-describedby="file-upload-hint file-upload-error" aria-invalid="false"
+                                    data-max-size="10485760" data-accepted-types="image/png,image/jpeg,image/jpg">
+                                <label for="imageInput" class="file-upload-label" id="fileLabel">
+                                    <div class="file-upload-icon" aria-hidden="true">📁</div>
+                                    <div>Haz clic o arrastra una imagen aquí</div>
+                                    <div class="file-upload-hint" id="file-upload-hint">PNG, JPG, JPEG (máx. 10MB)</div>
+                                </label>
+                                <div id="file-upload-error" class="error-message hidden" role="alert"
+                                    aria-live="polite">
+                                </div>
+                                <div id="file-upload-progress" class="upload-progress hidden" role="progressbar"
+                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+                            <img id="preview" class="preview-image hidden" alt="Vista previa de la imagen del personaje"
+                                loading="lazy" aria-hidden="true">
+                            <div id="imageAnalysis" class="image-analysis hidden" role="region"
+                                aria-label="Análisis de imagen" aria-live="polite">
+                            </div>
+                    </fieldset>
+                </section>
+
+                <!-- Clothing Description Section -->
+                <section class="form-section" aria-labelledby="clothing-section-title">
+                    <header class="section-header">
+                        <h2 id="clothing-section-title">👗 Descripción de la Ropa</h2>
+                        <button type="button" class="info-btn" aria-label="Información sobre la descripción de ropa"
+                            data-tooltip="Describe la ropa en inglés para mejores resultados. Ej: 'a red elegant dress'"
+                            title="Describe la ropa en inglés para mejores resultados">
+                            ℹ️
+                        </button>
+                    </header>
+                    <fieldset class="form-fieldset">
+                        <legend class="sr-only">Configuración de descripción de ropa</legend>
+                        <div class="form-group">
+                            <label for="clothingDescription">
+                                Describe la nueva ropa que quieres:
+                            </label>
+                            <textarea id="clothingDescription" name="clothingDescription"
+                                placeholder="Ej: a red elegant dress, a blue casual t-shirt, a black leather jacket"
+                                required rows="3" aria-describedby="clothing-description-hint">
+                        </textarea>
+                            <small id="clothing-description-hint" class="form-hint">
+                                Describe la ropa que deseas aplicar al personaje
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="characterName">
+                                Nombre del Personaje <span class="optional">(opcional)</span>:
+                            </label>
+                            <input type="text" id="characterName" name="characterName" placeholder="Ej: MyCharacter"
+                                aria-describedby="character-name-hint">
+                            <small id="character-name-hint" class="form-hint">
+                                Nombre para identificar el personaje en el historial
+                            </small>
+                        </div>
+                </section>
+
+                <!-- Advanced Options Section -->
+                <section class="advanced-options hidden" id="advancedOptions" aria-labelledby="advanced-options-title"
+                    aria-expanded="false" data-collapsible="true" data-default-state="collapsed">
+                    <header class="section-header">
+                        <h3 id="advanced-options-title">⚙️ Opciones Avanzadas</h3>
+                        <span class="badge badge-info" aria-label="Configuración avanzada">Avanzado</span>
+                    </header>
+                    <fieldset class="form-fieldset">
+                        <legend class="sr-only">Opciones avanzadas de configuración</legend>
+                        <div class="grid">
+                            <div class="form-group">
+                                <label for="prompt">
+                                    Prompt Completo <span class="optional">(opcional)</span>:
+                                </label>
+                                <textarea id="prompt" name="prompt" placeholder="Prompt personalizado" rows="3"
+                                    aria-describedby="prompt-hint">
+                            </textarea>
+                                <small id="prompt-hint" class="form-hint">
+                                    Prompt completo para la generación de la imagen
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="negativePrompt">
+                                    Prompt Negativo <span class="optional">(opcional)</span>:
+                                </label>
+                                <textarea id="negativePrompt" name="negativePrompt"
+                                    placeholder="Ej: blurry, low quality" rows="3"
+                                    aria-describedby="negative-prompt-hint">
+                            </textarea>
+                                <small id="negative-prompt-hint" class="form-hint">
+                                    Elementos a evitar en la generación
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="numSteps">
+                                    Pasos de Inferencia: <span class="value-display" id="numStepsValue">50</span>
+                                </label>
+                                <div class="slider-container">
+                                    <input type="range" id="numSteps" name="numSteps" min="1" max="100" value="50"
+                                        aria-describedby="num-steps-hint" data-input-type="range">
+                                    <input type="number" id="numStepsInput" min="1" max="100" value="50"
+                                        aria-label="Pasos de inferencia (número)" class="range-input">
+                                </div>
+                                <small id="num-steps-hint" class="form-hint">
+                                    Más pasos = mejor calidad pero más tiempo (1-100)
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="guidanceScale">
+                                    Guidance Scale: <span class="value-display" id="guidanceScaleValue">7.5</span>
+                                </label>
+                                <div class="slider-container">
+                                    <input type="range" id="guidanceScale" name="guidanceScale" min="1" max="20"
+                                        step="0.1" value="7.5" aria-describedby="guidance-scale-hint"
+                                        data-input-type="range">
+                                    <input type="number" id="guidanceScaleInput" min="1" max="20" step="0.1" value="7.5"
+                                        aria-label="Guidance scale (número)" class="range-input">
+                                </div>
+                                <small id="guidance-scale-hint" class="form-hint">
+                                    Control sobre la adherencia al prompt (1-20)
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="strength">
+                                    Fuerza de Inpainting: <span class="value-display" id="strengthValue">0.8</span>
+                                </label>
+                                <div class="slider-container">
+                                    <input type="range" id="strength" name="strength" min="0" max="1" step="0.1"
+                                        value="0.8" aria-describedby="strength-hint" data-input-type="range">
+                                    <input type="number" id="strengthInput" min="0" max="1" step="0.1" value="0.8"
+                                        aria-label="Fuerza de inpainting (número)" class="range-input">
+                                </div>
+                                <small id="strength-hint" class="form-hint">
+                                    Intensidad del cambio de ropa (0-1)
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="saveTensor">
+                                    Guardar Tensor:
+                                </label>
+                                <select id="saveTensor" name="saveTensor" aria-describedby="save-tensor-hint">
+                                    <option value="true">Sí</option>
+                                    <option value="false">No</option>
+                                </select>
+                                <small id="save-tensor-hint" class="form-hint">
+                                    Guardar tensor para uso en ComfyUI
+                                </small>
+                            </div>
+                    </fieldset>
+                </section>
+
+                <div class="form-actions" role="group" aria-label="Acciones del formulario">
+                    <button type="submit" class="btn btn-primary" id="submitBtn"
+                        aria-label="Cambiar la ropa del personaje" aria-busy="false" data-action="submit-form">
+                        <span class="btn-text">🚀 Cambiar Ropa</span>
+                        <span class="btn-loader hidden" aria-hidden="true">⏳</span>
+                    </button>
+                    <button type="reset" class="btn btn-secondary" id="resetBtn" aria-label="Limpiar formulario"
+                        data-action="reset-form">
+                        🗑️ Limpiar
+                    </button>
+                    <button type="button" class="btn btn-tertiary" id="savePresetBtn"
+                        aria-label="Guardar configuración como preset" data-action="save-preset">
+                        💾 Guardar Preset
+                    </button>
+                </div>
+
+                <!-- Form Validation Messages -->
+                <div id="formErrors" class="form-errors hidden" role="alert" aria-live="polite"></div>
+            </form>
+
+            <!-- Results Tabs Navigation -->
+            <nav class="tabs" role="tablist" aria-label="Navegación de resultados" data-component="tabs"
+                data-default-tab="result">
+                <button class="tab active" data-tab="result" role="tab" aria-selected="true" aria-controls="resultTab"
+                    id="tab-result">
+                    ✨ Resultado
+                </button>
+                <button class="tab" data-tab="comparison" role="tab" aria-selected="false" aria-controls="comparisonTab"
+                    id="tab-comparison">
+                    🔄 Comparación
+                </button>
+                <button class="tab" data-tab="gallery" role="tab" aria-selected="false" aria-controls="galleryTab"
+                    id="tab-gallery">
+                    🖼️ Galería
+                </button>
+                <button class="tab" data-tab="history" role="tab" aria-selected="false" aria-controls="historyTab"
+                    id="tab-history">
+                    📜 Historial
+                </button>
+                <button class="tab" data-tab="stats" role="tab" aria-selected="false" aria-controls="statsTab"
+                    id="tab-stats">
+                    📊 Estadísticas
+                </button>
+            </nav>
+
+            <!-- Results Content -->
+            <div class="results" id="results">
+                <section id="resultTab" class="tab-content active" role="tabpanel" aria-labelledby="tab-result">
+                    <header class="tab-header">
+                        <h2>✨ Resultado</h2>
+                        <div class="tab-actions">
+                            <button type="button" class="btn-icon" id="downloadResultBtn"
+                                aria-label="Descargar resultado" data-action="download-result" title="Descargar"
+                                disabled>
+                                ⬇️
+                            </button>
+                            <button type="button" class="btn-icon" id="shareResultBtn" aria-label="Compartir resultado"
+                                data-action="share-result" title="Compartir" disabled>
+                                🔗
+                            </button>
+                        </div>
+                    </header>
+                    <div id="resultContent" role="region" aria-live="polite">
+                        <div class="empty-state" id="resultEmptyState">
+                            <div class="empty-state-icon" aria-hidden="true">🖼️</div>
+                            <p>No hay resultados aún. Sube una imagen y describe la ropa que deseas cambiar.</p>
+                            <button type="button" class="btn btn-secondary" data-action="scroll-to-form">
+                                Ir al formulario
+                            </button>
+                        </div>
+                    </div>
+                    <div id="resultLoading" class="loading-state hidden" role="status" aria-live="polite">
+                        <div class="spinner" aria-hidden="true"></div>
+                        <p>Procesando imagen...</p>
+                        <progress class="progress-indeterminate" aria-label="Procesando"></progress>
+                    </div>
+                </section>
+
+                <section id="comparisonTab" class="tab-content" role="tabpanel" aria-labelledby="tab-comparison">
+                    <header class="tab-header">
+                        <h2>🔄 Comparación Antes/Después</h2>
+                        <div class="tab-actions">
+                            <button type="button" class="btn-icon" id="toggleComparisonMode"
+                                aria-label="Alternar modo de comparación" data-action="toggle-comparison-mode"
+                                title="Alternar modo">
+                                🔄
+                            </button>
+                            <button type="button" class="btn-icon" id="downloadComparisonBtn"
+                                aria-label="Descargar comparación" data-action="download-comparison" title="Descargar"
+                                disabled>
+                                ⬇️
+                            </button>
+                        </div>
+                    </header>
+                    <div id="comparisonContent" class="comparison-container" role="region">
+                        <div class="comparison-modes" data-comparison-mode="side-by-side">
+                            <div class="comparison-before">
+                                <h3>Antes</h3>
+                                <div class="comparison-image-placeholder">
+                                    <p>Imagen original</p>
+                                </div>
+                            </div>
+                            <div class="comparison-after">
+                                <h3>Después</h3>
+                                <div class="comparison-image-placeholder">
+                                    <p>Imagen procesada</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="galleryTab" class="tab-content" role="tabpanel" aria-labelledby="tab-gallery">
+                    <h2>🖼️ Galería de Resultados</h2>
+                    <div class="search-container">
+                        <label for="gallerySearch" class="sr-only">Buscar en galería</label>
+                        <input type="search" class="search-input" id="gallerySearch"
+                            placeholder="Buscar en galería... (Ctrl+K)" aria-label="Buscar en galería">
+                        <span class="search-icon" aria-hidden="true">🔍</span>
+                    </div>
+                    <div class="sort-controls" role="group" aria-label="Ordenar galería">
+                        <button class="sort-btn active" data-sort="desc" aria-pressed="true">
+                            📅 Más recientes
+                        </button>
+                        <button class="sort-btn" data-sort="asc" aria-pressed="false">
+                            📅 Más antiguos
+                        </button>
+                    </div>
+                    <div id="galleryContent" class="gallery" role="region" aria-live="polite"></div>
+                </section>
+
+                <section id="historyTab" class="tab-content" role="tabpanel" aria-labelledby="tab-history">
+                    <h2>📜 Historial de Procesamientos</h2>
+                    <div class="search-container">
+                        <label for="historySearch" class="sr-only">Buscar en historial</label>
+                        <input type="search" class="search-input" id="historySearch"
+                            placeholder="Buscar en historial... (Ctrl+K)" aria-label="Buscar en historial">
+                        <span class="search-icon" aria-hidden="true">🔍</span>
+                    </div>
+                    <div id="historyContent" class="history-panel" role="region" aria-live="polite"></div>
+                </section>
+
+                <section id="statsTab" class="tab-content" role="tabpanel" aria-labelledby="tab-stats">
+                    <header class="tab-header">
+                        <h2>📊 Estadísticas</h2>
+                        <div class="tab-actions">
+                            <button type="button" class="btn-icon" id="refreshStatsBtn"
+                                aria-label="Actualizar estadísticas" data-action="refresh-stats" title="Actualizar">
+                                🔄
+                            </button>
+                            <button type="button" class="btn-icon" id="exportStatsBtn"
+                                aria-label="Exportar estadísticas" data-action="export-stats" title="Exportar">
+                                📥
+                            </button>
+                        </div>
+                    </header>
+                    <div id="statsContent" role="region">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">📸</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="totalImages">0</div>
+                                    <div class="stat-label">Imágenes Procesadas</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">✅</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="successRate">0%</div>
+                                    <div class="stat-label">Tasa de Éxito</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">⏱️</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="avgTime">0s</div>
+                                    <div class="stat-label">Tiempo Promedio</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">💾</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="totalStorage">0 MB</div>
+                                    <div class="stat-label">Almacenamiento</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toastContainer" class="toast-container" role="region" aria-live="polite" aria-label="Notificaciones"></div>
+
+    <!-- Modal: Help -->
+    <div id="helpModal" class="modal hidden" role="dialog" aria-labelledby="helpModalTitle" aria-modal="true">
+        <div class="modal-overlay" data-action="close-modal"></div>
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 id="helpModalTitle">❓ Ayuda y Documentación</h2>
+                <button type="button" class="modal-close" aria-label="Cerrar" data-action="close-modal">×</button>
+            </header>
+            <div class="modal-body">
+                <section class="help-section">
+                    <h3>📸 Cargar Imagen</h3>
+                    <p>Sube una imagen de tu personaje en formato PNG, JPG o JPEG. El tamaño máximo es 10MB.</p>
+                </section>
+                <section class="help-section">
+                    <h3>👗 Descripción de Ropa</h3>
+                    <p>Describe la ropa que deseas aplicar al personaje. Es recomendable usar inglés para mejores
+                        resultados.</p>
+                    <p><strong>Ejemplos:</strong></p>
+                    <ul>
+                        <li>"a red elegant dress"</li>
+                        <li>"a blue casual t-shirt"</li>
+                        <li>"a black leather jacket"</li>
+                    </ul>
+                </section>
+                <section class="help-section">
+                    <h3>⚙️ Opciones Avanzadas</h3>
+                    <p>Configura parámetros avanzados para personalizar la generación:</p>
+                    <ul>
+                        <li><strong>Pasos de Inferencia:</strong> Más pasos = mejor calidad pero más tiempo</li>
+                        <li><strong>Guidance Scale:</strong> Control sobre la adherencia al prompt</li>
+                        <li><strong>Fuerza de Inpainting:</strong> Intensidad del cambio de ropa</li>
+                    </ul>
+                </section>
+            </div>
+            <footer class="modal-footer">
+                <button type="button" class="btn btn-primary" data-action="close-modal">Entendido</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal: Settings -->
+    <div id="settingsModal" class="modal hidden" role="dialog" aria-labelledby="settingsModalTitle" aria-modal="true">
+        <div class="modal-overlay" data-action="close-modal"></div>
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 id="settingsModalTitle">⚙️ Configuración</h2>
+                <button type="button" class="modal-close" aria-label="Cerrar" data-action="close-modal">×</button>
+            </header>
+            <div class="modal-body">
+                <form id="settingsForm" class="settings-form">
+                    <fieldset class="form-fieldset">
+                        <legend>Preferencias Generales</legend>
+                        <div class="form-group">
+                            <label for="autoSave">
+                                <input type="checkbox" id="autoSave" name="autoSave" checked>
+                                Guardar automáticamente los resultados
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="showNotifications">
+                                <input type="checkbox" id="showNotifications" name="showNotifications" checked>
+                                Mostrar notificaciones
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="defaultQuality">
+                                Calidad por defecto:
+                                <select id="defaultQuality" name="defaultQuality">
+                                    <option value="fast">Rápida</option>
+                                    <option value="balanced" selected>Balanceada</option>
+                                    <option value="high">Alta</option>
+                                </select>
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <footer class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-action="close-modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-action="save-settings">Guardar</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal: Presets -->
+    <div id="presetsModal" class="modal hidden" role="dialog" aria-labelledby="presetsModalTitle" aria-modal="true">
+        <div class="modal-overlay" data-action="close-modal"></div>
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 id="presetsModalTitle">⚡ Presets Rápidos</h2>
+                <button type="button" class="modal-close" aria-label="Cerrar" data-action="close-modal">×</button>
+            </header>
+            <div class="modal-body">
+                <div id="presetsList" class="presets-list" role="list">
+                    <div class="preset-item" role="listitem" data-preset="elegant-dress">
+                        <div class="preset-info">
+                            <h4>👗 Vestido Elegante</h4>
+                            <p>Vestido rojo elegante con detalles finos</p>
+                        </div>
+                        <button type="button" class="btn btn-sm" data-action="apply-preset">Aplicar</button>
+                    </div>
+                    <div class="preset-item" role="listitem" data-preset="casual-tshirt">
+                        <div class="preset-info">
+                            <h4>👕 Camiseta Casual</h4>
+                            <p>Camiseta azul casual y cómoda</p>
+                        </div>
+                        <button type="button" class="btn btn-sm" data-action="apply-preset">Aplicar</button>
+                    </div>
+                    <div class="preset-item" role="listitem" data-preset="leather-jacket">
+                        <div class="preset-info">
+                            <h4>🧥 Chaqueta de Cuero</h4>
+                            <p>Chaqueta negra de cuero estilo motociclista</p>
+                        </div>
+                        <button type="button" class="btn btn-sm" data-action="apply-preset">Aplicar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Selector -->
+    <aside class="theme-selector" aria-label="Selector de tema" data-component="theme-selector">
+        <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema" aria-expanded="false"
+            aria-controls="themeMenu" data-action="toggle-theme-menu">
+            🎨
+        </button>
+        <div class="theme-menu hidden" id="themeMenu" role="menu" aria-labelledby="themeBtn" data-menu="theme-options">
+            <button class="theme-option" data-theme="default" role="menuitem" type="button">
+                🌙 Claro
+            </button>
+            <button class="theme-option" data-theme="dark" role="menuitem" type="button">
+                🌚 Oscuro
+            </button>
+            <button class="theme-option" data-theme="purple" role="menuitem" type="button">
+                💜 Púrpura
+            </button>
+            <button class="theme-option" data-theme="blue" role="menuitem" type="button">
+                💙 Azul
+            </button>
+        </div>
+    </aside>
+
+    <!-- Core Scripts - Load in order -->
+    <script src="static/js/core/module-registry.js" defer></script>
+    <script src="static/js/core/module-loader-v2.js" defer></script>
+
+    <!-- Core Infrastructure - Load early -->
+    <script src="static/js/core/performance-monitor.js" defer></script>
+    <script src="static/js/core/resource-manager.js" defer></script>
+    <script src="static/js/core/validation-engine.js" defer></script>
+    <script src="static/js/core/cache-manager-v2.js" defer></script>
+    <script src="static/js/core/notification-manager.js" defer></script>
+    <script src="static/js/core/router.js" defer></script>
+    <script src="static/js/core/state-machine.js" defer></script>
+    <script src="static/js/core/event-store.js" defer></script>
+    <script src="static/js/core/command-pattern.js" defer></script>
+    <script src="static/js/core/websocket-manager.js" defer></script>
+    <script src="static/js/core/worker-manager.js" defer></script>
+    <script src="static/js/core/stream-manager.js" defer></script>
+    <script src="static/js/core/rate-limiter.js" defer></script>
+    <script src="static/js/core/translation-manager.js" defer></script>
+    <script src="static/js/core/accessibility-manager.js" defer></script>
+    <script src="static/js/core/theme-engine.js" defer></script>
+    <script src="static/js/core/animation-manager.js" defer></script>
+    <script src="static/js/core/image-processor-v2.js" defer></script>
+    <script src="static/js/core/form-validator-v2.js" defer></script>
+    <script src="static/js/core/storage-manager-v2.js" defer></script>
+    <script src="static/js/core/api-client-v2.js" defer></script>
+    <script src="static/js/core/drag-drop-manager.js" defer></script>
+    <script src="static/js/core/upload-manager.js" defer></script>
+    <script src="static/js/core/download-manager.js" defer></script>
+    <script src="static/js/core/clipboard-manager.js" defer></script>
+    <script src="static/js/core/modal-manager.js" defer></script>
+    <script src="static/js/core/tooltip-manager.js" defer></script>
+    <script src="static/js/core/popover-manager.js" defer></script>
+    <script src="static/js/core/dropdown-manager.js" defer></script>
+    <script src="static/js/core/tabs-manager.js" defer></script>
+    <script src="static/js/core/accordion-manager.js" defer></script>
+    <script src="static/js/core/carousel-manager.js" defer></script>
+    <script src="static/js/core/collapse-manager.js" defer></script>
+
+    <!-- Application Bootstrap - Handles initialization and error handling -->
+    <script src="static/js/core/app-bootstrap.js" defer></script>
+
+    <!-- Main Application -->
+    <script src="static/js/app.js" defer></script>
+</body>
+
+</html>

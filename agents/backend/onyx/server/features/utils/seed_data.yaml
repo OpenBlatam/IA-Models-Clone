@@ -1,0 +1,167 @@
+# Seed data for model initialization
+
+# Brand Voice examples
+brand_voices:
+  - name: "Professional"
+    tone: "formal"
+    style: "business"
+    keywords:
+      - "expertise"
+      - "reliability"
+      - "quality"
+    values:
+      - "excellence"
+      - "integrity"
+      - "innovation"
+    personality:
+      professionalism: 0.9
+      creativity: 0.6
+      friendliness: 0.4
+
+  - name: "Casual"
+    tone: "informal"
+    style: "conversational"
+    keywords:
+      - "friendly"
+      - "approachable"
+      - "fun"
+    values:
+      - "authenticity"
+      - "connection"
+      - "enjoyment"
+    personality:
+      professionalism: 0.4
+      creativity: 0.8
+      friendliness: 0.9
+
+# Audience Profile examples
+audience_profiles:
+  - name: "Young Professionals"
+    demographics:
+      age_range: "25-35"
+      gender: "all"
+      location: "urban"
+      occupation: "professional"
+      income_level: "middle-high"
+    interests:
+      - "technology"
+      - "career growth"
+      - "work-life balance"
+    pain_points:
+      - "time management"
+      - "work stress"
+      - "career advancement"
+    goals:
+      - "career success"
+      - "personal development"
+      - "financial stability"
+
+  - name: "Tech Enthusiasts"
+    demographics:
+      age_range: "18-45"
+      gender: "all"
+      location: "global"
+      occupation: "tech-related"
+      income_level: "middle"
+    interests:
+      - "new technology"
+      - "gadgets"
+      - "innovation"
+    pain_points:
+      - "tech complexity"
+      - "cost of new tech"
+      - "learning curve"
+    goals:
+      - "stay updated"
+      - "master new tech"
+      - "tech community"
+
+# Project Context examples
+project_contexts:
+  - name: "Tech Product Launch"
+    project_id: "TPL001"
+    project_type: "product_launch"
+    project_goals:
+      - "increase awareness"
+      - "generate leads"
+      - "drive sales"
+    project_constraints:
+      budget: "medium"
+      timeline: "3 months"
+      resources: "limited"
+    project_metrics:
+      awareness: 0.0
+      engagement: 0.0
+      conversion: 0.0
+
+  - name: "Brand Refresh"
+    project_id: "BRF001"
+    project_type: "brand_update"
+    project_goals:
+      - "modernize brand"
+      - "increase recognition"
+      - "improve perception"
+    project_constraints:
+      budget: "high"
+      timeline: "6 months"
+      resources: "full"
+    project_metrics:
+      recognition: 0.0
+      perception: 0.0
+      engagement: 0.0
+
+# Model Config examples
+model_configs:
+  - name: "Standard"
+    model_name: "gpt-4"
+    temperature: 0.7
+    max_tokens: 2000
+    top_p: 1.0
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+
+  - name: "Creative"
+    model_name: "gpt-4"
+    temperature: 0.9
+    max_tokens: 3000
+    top_p: 0.9
+    frequency_penalty: 0.5
+    presence_penalty: 0.5
+
+# Tool Definition examples
+tool_definitions:
+  - name: "Content Generator"
+    description: "Generates marketing content"
+    version: "1.0.0"
+    endpoints:
+      generate:
+        method: "POST"
+        path: "/generate"
+        parameters:
+          - name: "prompt"
+            type: "string"
+            required: true
+          - name: "style"
+            type: "string"
+            required: false
+    authentication:
+      type: "api_key"
+      required: true
+
+  - name: "Analytics Tool"
+    description: "Analyzes content performance"
+    version: "1.0.0"
+    endpoints:
+      analyze:
+        method: "POST"
+        path: "/analyze"
+        parameters:
+          - name: "content_id"
+            type: "string"
+            required: true
+          - name: "metrics"
+            type: "array"
+            required: false
+    authentication:
+      type: "oauth2"
+      required: true 

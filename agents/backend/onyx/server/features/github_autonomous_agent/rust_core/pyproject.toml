@@ -1,0 +1,68 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "agent-core"
+version = "0.1.0"
+description = "High-performance Rust core for GitHub Autonomous Agent"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "GitHub Autonomous Agent Team" }
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["rust", "performance", "batch-processing", "cache", "search"]
+
+[project.urls]
+Homepage = "https://github.com/your-org/github-autonomous-agent"
+Repository = "https://github.com/your-org/github-autonomous-agent"
+Documentation = "https://github.com/your-org/github-autonomous-agent#readme"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "pytest-benchmark>=4.0",
+]
+
+[tool.maturin]
+python-source = "python"
+module-name = "agent_core.agent_core"
+features = ["pyo3/extension-module"]
+strip = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+
+
+
+
+
+
+
+

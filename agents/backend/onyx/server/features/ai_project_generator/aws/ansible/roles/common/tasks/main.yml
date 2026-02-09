@@ -1,0 +1,73 @@
+---
+- name: Update system packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+    cache_valid_time: 3600
+  when: ansible_os_family == "Debian"
+
+- name: Install essential packages
+  apt:
+    name:
+      - curl
+      - wget
+      - git
+      - unzip
+      - software-properties-common
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - lsb-release
+      - build-essential
+      - python3.11
+      - python3.11-dev
+      - python3.11-venv
+      - python3-pip
+      - htop
+      - net-tools
+      - vim
+      - jq
+      - redis-server
+      - libpq-dev
+      - libssl-dev
+      - libffi-dev
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Configure timezone
+  timezone:
+    name: UTC
+
+- name: Set up automatic security updates
+  apt:
+    name: unattended-upgrades
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Configure unattended upgrades
+  copy:
+    content: |
+      APT::Periodic::Update-Package-Lists "1";
+      APT::Periodic::Unattended-Upgrade "1";
+      APT::Periodic::AutocleanInterval "7";
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+  when: ansible_os_family == "Debian"
+
+- name: Configure firewall (UFW)
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop:
+    - "22"
+    - "80"
+    - "443"
+    - "{{ app_port | default(8020) }}"
+  when: ansible_os_family == "Debian"
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+  when: ansible_os_family == "Debian"
+

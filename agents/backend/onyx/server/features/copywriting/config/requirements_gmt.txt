@@ -1,0 +1,82 @@
+# GMT Copywriting Agent Requirements
+# Time-zone aware copywriting with global scheduling capabilities
+
+# === CORE FRAMEWORK ===
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# === TIME & TIMEZONE MANAGEMENT ===
+pytz==2023.3                   # Comprehensive timezone database
+python-dateutil==2.8.2        # Advanced date parsing and manipulation
+croniter==1.4.1                # Cron expression parsing
+apscheduler==3.10.4            # Advanced Python scheduler
+pendulum==2.1.2                # Modern datetime library
+
+# === HIGH-PERFORMANCE LIBRARIES ===
+orjson==3.9.10                 # 5x faster JSON processing
+msgspec==0.18.4                # Ultra-fast serialization
+uvloop==0.19.0                 # 4x faster event loop (Unix only)
+
+# === ASYNC & CONCURRENCY ===
+asyncio-mqtt==0.16.1           # Async MQTT client
+aiofiles==23.2.1               # Async file operations
+aioredis==2.0.1                # Async Redis client
+aiocron==1.8                   # Async cron jobs
+
+# === CACHING & STORAGE ===
+redis==5.0.1                   # Redis client for scheduling
+hiredis==2.2.3                 # Faster Redis parsing
+diskcache==5.6.3               # Disk-based cache
+
+# === DATA PROCESSING ===
+polars==0.20.0                 # Fast DataFrame operations
+pyarrow==14.0.1                # Columnar data processing
+numpy==1.24.4                  # Numerical computing
+
+# === MONITORING & METRICS ===
+prometheus-fastapi-instrumentator==6.1.0  # Prometheus metrics
+structlog==23.2.0              # Structured logging
+psutil==5.9.6                  # System monitoring
+
+# === GEOGRAPHIC & LOCALIZATION ===
+babel==2.13.1                  # Internationalization utilities
+pycountry==22.3.5              # Country and language data
+geopy==2.4.0                   # Geographic calculations
+
+# === SECURITY ===
+cryptography==41.0.7           # Cryptographic operations
+bcrypt==4.1.1                  # Password hashing
+
+# === MIDDLEWARE ===
+slowapi==0.1.9                 # Rate limiting
+python-multipart==0.0.6       # Form data parsing
+
+# === DEVELOPMENT & TESTING ===
+pytest==7.4.3                  # Testing framework
+pytest-asyncio==0.21.1         # Async testing
+pytest-cov==4.1.0              # Coverage testing
+httpx==0.25.2                  # HTTP client for testing
+freezegun==1.2.2               # Time mocking for tests
+
+# === CODE QUALITY ===
+black==23.11.0                 # Code formatting
+ruff==0.1.6                    # Fast linting
+mypy==1.7.1                    # Type checking
+
+# === DEPLOYMENT ===
+gunicorn==21.2.0               # WSGI server
+supervisor==4.2.5              # Process management
+
+# === OPTIONAL OPTIMIZATIONS ===
+# Uncomment if needed:
+# numba==0.58.1                # JIT compilation for time calculations
+# cython==3.0.5                # C extensions
+# simdjson==5.0.2              # SIMD JSON parsing
+
+# === SYSTEM DEPENDENCIES ===
+# These may need to be installed at system level:
+# - Redis server (for scheduling and caching)
+# - System timezone data
+# - Build tools for native extensions 

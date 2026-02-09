@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cursor-agent-config
+  namespace: cursor-agent
+data:
+  API_HOST: "0.0.0.0"
+  API_PORT: "8024"
+  REDIS_URL: "redis://redis-service:6379/0"
+  REDIS_ENDPOINT: "redis-service"
+  CACHE_TYPE: "elasticache"
+  CELERY_BROKER_URL: "redis://redis-service:6379/0"
+  CELERY_RESULT_BACKEND: "redis://redis-service:6379/0"
+  AWS_REGION: "us-east-1"
+  DYNAMODB_TABLE_NAME: "cursor-agent-state"
+  OTEL_EXPORTER_OTLP_ENDPOINT: ""
+  OTEL_LOG_EXPORTER: "false"
+  AGENT_PERSISTENT_STORAGE: "true"
+  AGENT_AUTO_RESTART: "true"
+
+
+
+

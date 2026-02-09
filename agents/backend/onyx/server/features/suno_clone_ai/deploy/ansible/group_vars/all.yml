@@ -1,0 +1,31 @@
+---
+# Group variables for all hosts
+# Use ansible-vault to encrypt sensitive values
+
+# Application configuration
+app_name: suno-clone-ai
+app_port: 8020
+docker_image_name: suno-clone-ai
+docker_container_name: suno-clone-ai
+
+# Deployment configuration
+deployment_user: ubuntu
+app_directory: "/home/{{ deployment_user }}/suno-clone-ai"
+
+# Health check configuration
+health_check_url: "http://localhost:{{ app_port }}/health"
+health_check_retries: 10
+health_check_delay: 5
+
+# Docker configuration
+docker_compose_version: "2.23.0"
+docker_cleanup_old_images: true
+docker_keep_images: 2
+
+# Backup configuration
+enable_backups: true
+backup_retention_days: 7
+
+
+
+

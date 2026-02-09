@@ -1,0 +1,327 @@
+================================================================================
+REPORTE DETALLADO - ANTIGRAVITY.GOOGLE
+================================================================================
+
+## RESUMEN GENERAL
+--------------------------------------------------------------------------------
+URL: https://antigravity.google/
+Titulo: Google Antigravity
+Total de elementos extraidos: 204
+
+## ROLES ENCONTRADOS
+--------------------------------------------------------------------------------
+  generic             : 133 elementos
+  button              :  24 elementos
+  link                :  20 elementos
+  menuitem            :   6 elementos
+  section             :   6 elementos
+  listitem            :   5 elementos
+  menu                :   3 elementos
+  main                :   2 elementos
+  navigation          :   2 elementos
+  banner              :   1 elementos
+  list                :   1 elementos
+  contentinfo         :   1 elementos
+
+## ESTADISTICAS DETALLADAS
+--------------------------------------------------------------------------------
+Total de botones: 24
+Total de enlaces: 20
+Total de secciones: 6
+Total de items de navegacion: 2
+Total de items de menu: 6
+Total de items de lista: 5
+
+Profundidad maxima del DOM: 21
+Profundidad minima del DOM: 1
+Profundidad promedio: 13.39
+
+## BOTONES ENCONTRADOS
+--------------------------------------------------------------------------------
+ 1. Product
+    Ref: ref-q4203yu028g
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]/generic[0]/generic[0]
+
+ 2. Use Cases
+    Ref: ref-383eatrvg3c
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]/generic[0]/generic[0]
+
+ 3. Pricing
+    Ref: ref-vyj7d3r0bh
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]/generic[0]/generic[0]
+
+ 4. Blog
+    Ref: ref-y9is78ww96
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]/generic[0]/generic[0]
+
+ 5. Resources
+    Ref: ref-u9djlu09j4c
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]/generic[0]/generic[0]
+
+ 6. Download download
+    Ref: ref-znl279o4zb
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[1]/generic[0]
+
+ 7. menu
+    Ref: ref-0h3r00voy3qq
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]/generic[0]/generic[0]
+
+ 8. Product
+    Ref: ref-ph4zez3dqv
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[0]
+
+ 9. U e Ca e keyboard_arrow_down
+    Ref: ref-87zw60g9hjs
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[1]
+
+10. Pricing
+    Ref: ref-zjg76138xw
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[3]
+
+11. Blog
+    Ref: ref-bn66drm0rn
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[4]
+
+12. Re ource keyboard_arrow_down
+    Ref: ref-r3f2vtsgfpk
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[5]
+
+13. Download for Window
+    Ref: ref-1jkubuqiums
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[0]/generic[0]
+
+14. Explore u e ca e
+    Ref: ref-3crigswzubi
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[1]/generic[0]
+
+15. clo e
+    Ref: ref-czy58nm5kw9
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]
+
+16. keyboard_arrow_left
+    Ref: ref-omwtluyci9s
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]
+
+17. keyboard_arrow_right
+    Ref: ref-p5svgicjhj
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[1]
+
+18. Download
+    Ref: ref-chrsnmqsfe8
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]
+
+19. Notify me
+    Ref: ref-vsbqk81tdnt
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]
+
+20. View blog
+    Ref: ref-dxyzzowy0ow
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]
+
+21. keyboard_arrow_left
+    Ref: ref-73yqpxy3gid
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]
+
+22. keyboard_arrow_right
+    Ref: ref-ea3ja49nlg
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]
+
+23. Download for x64
+    Ref: ref-pmju6h6nh8
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]
+
+24. Download for ARM64
+    Ref: ref-idi3vlca0hj
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]
+
+## ENLACES ENCONTRADOS
+--------------------------------------------------------------------------------
+ 1. Google Antigravity
+    Ref: ref-m6iyfwbnez
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[0]
+
+ 2. See overview
+    Ref: ref-sty9fewk7z
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[2]/generic[0]
+
+ 3. Explore Product
+    Ref: ref-7xwrexe72pj
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]
+
+ 4. View ca e
+    Ref: ref-ik114aux1li
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]
+
+ 5. View ca e
+    Ref: ref-k6jabyvlab
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[2]
+
+ 6. View ca e
+    Ref: ref-hd0wmjl8frf
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[2]
+
+ 7. Nano Banana Pro in Google Antigravity Nov 20, 2025 Product Read blog
+    Ref: ref-vubhc62t93r
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]
+
+ 8. Introducing Google Antigravity Nov 18, 2025 Product Read blog
+    Ref: ref-7o0skwqhcik
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]
+
+ 9. Download
+    Ref: ref-rop5ii2pps
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]
+
+10. Product
+    Ref: ref-55n1ccsd815
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]
+
+11. Doc
+    Ref: ref-w0o4akfymz
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]
+
+12. Changelog
+    Ref: ref-d0hnxe9lhv6
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[4]
+
+13. Blog
+    Ref: ref-cl7utistf24
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]
+
+14. Pricing
+    Ref: ref-edmi71b2468
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[2]
+
+15. U e Ca e
+    Ref: ref-jyxa0ebhtjo
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]
+
+16. Google
+    Ref: ref-lqd92huiphc
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[0]/generic[0]
+
+17. About Google
+    Ref: ref-5sbf0yjcwqy
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[0]
+
+18. Google Product
+    Ref: ref-nvcd1zvw6ml
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[1]
+
+19. Privacy
+    Ref: ref-pdmm48cxc6k
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[2]
+
+20. Term
+    Ref: ref-2pn33nn58oe
+    Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[3]
+
+## SECCIONES ENCONTRADAS
+--------------------------------------------------------------------------------
+1. Sin nombre
+   Ref: ref-sgrzz4ggazr
+   Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]
+
+2. Sin nombre
+   Ref: ref-9xphziua4ts
+   Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]
+
+3. Sin nombre
+   Ref: ref-1glcqt2dm0z
+   Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]
+
+4. Sin nombre
+   Ref: ref-1yni8h5sc2a
+   Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]
+
+5. Sin nombre
+   Ref: ref-cfmcynmwv5
+   Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]
+
+6. Sin nombre
+   Ref: ref-io54vrrha09
+   Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]
+
+## DETALLES DEL HEADER
+--------------------------------------------------------------------------------
+Ref: ref-fzwtgndnhrs
+Path: [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]
+Numero de hijos: 57
+Botones en header: 12
+Enlaces en header: 2
+
+## DETALLES DEL HERO SECTION
+--------------------------------------------------------------------------------
+Ref: ref-604v2kr6tt2
+Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]
+Numero de hijos: 0
+Botones en hero: 0
+Enlaces en hero: 0
+
+## DETALLES DEL FOOTER
+--------------------------------------------------------------------------------
+Ref: ref-2gk3w55jzjp
+Path: [0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]
+Numero de hijos: 0
+Enlaces en footer: 0
+
+## BOTONES UNICOS (SIN DUPLICADOS)
+--------------------------------------------------------------------------------
+  - Blog
+  - Download
+  - Download download
+  - Download for ARM64
+  - Download for Window
+  - Download for x64
+  - Explore u e ca e
+  - Notify me
+  - Pricing
+  - Product
+  - Re ource keyboard_arrow_down
+  - Resources
+  - U e Ca e keyboard_arrow_down
+  - Use Cases
+  - View blog
+  - clo e
+  - keyboard_arrow_left
+  - keyboard_arrow_right
+  - menu
+
+## ENLACES UNICOS (SIN DUPLICADOS)
+--------------------------------------------------------------------------------
+  - About Google
+  - Blog
+  - Changelog
+  - Doc
+  - Download
+  - Explore Product
+  - Google
+  - Google Antigravity
+  - Google Product
+  - Introducing Google Antigravity Nov 18, 2025 Product Read blog
+  - Nano Banana Pro in Google Antigravity Nov 20, 2025 Product Read blog
+  - Pricing
+  - Privacy
+  - Product
+  - See overview
+  - Term
+  - U e Ca e
+  - View ca e
+
+## ESTRUCTURA DEL DOM
+--------------------------------------------------------------------------------
+Ejemplos de paths encontrados:
+  [0]
+  [0]/generic[0]
+  [0]/generic[0]/main[0]
+  [0]/generic[0]/main[0]/generic[0]
+  [0]/generic[0]/main[0]/generic[0]/generic[0]
+  [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]
+  [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]
+  [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]
+  [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[0]
+  [0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]
+
+================================================================================
+FIN DEL REPORTE
+================================================================================

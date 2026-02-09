@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web-extractor:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - ./.env:/app/.env
+    restart: unless-stopped
+
+
+
+
+
+
+
+

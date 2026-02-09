@@ -1,0 +1,22 @@
+torch
+transformers
+diffusers
+gradio
+Pillow
+numpy
+tqdm
+fastapi
+uvicorn
+pydantic>=2.0.0,<3.0.0
+structlog
+pytest
+pytest-asyncio
+psutil
+pytest-mock
+# Enhanced logging dependencies
+python-json-logger==2.0.7
+colorama==0.4.6
+rich==13.7.0
+asyncpg>=0.29.0
+aiomysql>=0.2.0
+SQLAlchemy>=2.0.0,<3.0.0 

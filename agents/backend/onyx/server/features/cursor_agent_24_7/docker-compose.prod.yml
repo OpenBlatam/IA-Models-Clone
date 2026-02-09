@@ -1,0 +1,111 @@
+# Docker Compose - Producción
+# ============================
+# Configuración optimizada para producción
+
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: cursor-agent-redis-prod
+    command: redis-server --appendonly yes --maxmemory 1gb --maxmemory-policy allkeys-lru --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    networks:
+      - cursor-agent-network
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cursor-agent-api-prod
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8024
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - DYNAMODB_TABLE_NAME=${DYNAMODB_TABLE_NAME}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+    depends_on:
+      - redis
+    networks:
+      - cursor-agent-network
+    restart: always
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A core.celery_worker.celery_app worker --loglevel=info --concurrency=8 --queues=default,tasks,heavy,notifications
+    environment:
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - AWS_REGION=${AWS_REGION}
+    depends_on:
+      - redis
+    networks:
+      - cursor-agent-network
+    restart: always
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A core.celery_worker.celery_app beat --loglevel=info
+    environment:
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD}@redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - cursor-agent-network
+    restart: always
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+volumes:
+  redis-data:
+
+networks:
+  cursor-agent-network:
+    driver: bridge
+
+
+
+

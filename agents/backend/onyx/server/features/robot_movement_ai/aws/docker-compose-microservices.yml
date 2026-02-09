@@ -1,0 +1,140 @@
+version: '3.8'
+
+services:
+  # API Gateway
+  api-gateway:
+    build:
+      context: ..
+      dockerfile: aws/Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - SERVICE_NAME=api-gateway
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - ENABLE_RATE_LIMITING=true
+      - ENABLE_CACHING=true
+    depends_on:
+      - redis
+    networks:
+      - robot-network
+    command: python -m aws.services.service_runner api-gateway 8000
+
+  # Movement Service
+  movement-service:
+    build:
+      context: ..
+      dockerfile: aws/Dockerfile
+    container_name: movement-service
+    ports:
+      - "8001:8001"
+    environment:
+      - SERVICE_NAME=movement-service
+      - REDIS_URL=redis://redis:6379/0
+      - MOVEMENT_SERVICE_TABLE=movement-table
+    depends_on:
+      - redis
+    networks:
+      - robot-network
+    command: python -m aws.services.service_runner movement-service 8001
+
+  # Trajectory Service
+  trajectory-service:
+    build:
+      context: ..
+      dockerfile: aws/Dockerfile
+    container_name: trajectory-service
+    ports:
+      - "8002:8002"
+    environment:
+      - SERVICE_NAME=trajectory-service
+      - REDIS_URL=redis://redis:6379/0
+      - TRAJECTORY_SERVICE_TABLE=trajectory-table
+    depends_on:
+      - redis
+    networks:
+      - robot-network
+    command: python -m aws.services.service_runner trajectory-service 8002
+
+  # Chat Service
+  chat-service:
+    build:
+      context: ..
+      dockerfile: aws/Dockerfile
+    container_name: chat-service
+    ports:
+      - "8003:8003"
+    environment:
+      - SERVICE_NAME=chat-service
+      - REDIS_URL=redis://redis:6379/0
+      - CHAT_SERVICE_TABLE=chat-table
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - redis
+    networks:
+      - robot-network
+    command: python -m aws.services.service_runner chat-service 8003
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: robot-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - robot-network
+    command: redis-server --appendonly yes
+
+  # Prometheus (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - robot-network
+    profiles:
+      - monitoring
+
+  # Grafana (optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - robot-network
+    profiles:
+      - monitoring
+
+networks:
+  robot-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  grafana-data:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

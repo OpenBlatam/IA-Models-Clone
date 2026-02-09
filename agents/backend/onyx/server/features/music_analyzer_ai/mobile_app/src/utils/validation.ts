@@ -1,0 +1,18 @@
+export {
+  trackSearchSchema,
+  analyzeTrackSchema,
+  compareTracksSchema,
+  contextualRecommendationSchema,
+  activityRecommendationSchema,
+  moodRecommendationSchema,
+  discoverySchema,
+  artistComparisonSchema,
+  type TrackSearchInput,
+  type AnalyzeTrackInput,
+  type CompareTracksInput,
+  type ContextualRecommendationInput,
+  type ActivityRecommendationInput,
+  type MoodRecommendationInput,
+  type DiscoveryInput,
+  type ArtistComparisonInput,
+} from '../types/validation';

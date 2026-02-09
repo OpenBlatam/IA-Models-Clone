@@ -1,0 +1,123 @@
+---
+- name: Update AI Project Generator Application
+  hosts: app_servers
+  become: yes
+  gather_facts: yes
+
+  vars:
+    app_dir: /opt/ai-project-generator
+    app_port: "{{ app_port | default(8020) }}"
+    git_branch: "{{ git_branch | default('main') }}"
+    git_commit: "{{ git_commit | default('latest') }}"
+    enable_rollback: "{{ enable_rollback | default(true) }}"
+    health_check_timeout: "{{ health_check_timeout | default(300) }}"
+
+  tasks:
+    - name: Create backup before update
+      block:
+        - name: Ensure backup directory exists
+          file:
+            path: /opt/backups
+            state: directory
+            mode: '0755'
+
+        - name: Create backup of current deployment
+          archive:
+            path: "{{ app_dir }}"
+            dest: "/opt/backups/backup-{{ ansible_date_time.epoch }}.tar.gz"
+            format: gz
+          when: enable_rollback | bool
+
+      rescue:
+        - name: Log backup failure
+          debug:
+            msg: "Backup failed, but continuing with deployment"
+
+    - name: Display deployment information
+      debug:
+        msg:
+          - "Deploying commit: {{ git_commit }}"
+          - "Branch: {{ git_branch }}"
+          - "App directory: {{ app_dir }}"
+          - "App port: {{ app_port }}"
+    - name: Pull latest code
+      git:
+        repo: "{{ git_repository_url }}"
+        dest: "{{ app_dir }}"
+        version: "{{ git_branch | default('main') }}"
+        update: yes
+      when: git_repository_url is defined
+
+    - name: Stop application containers
+      docker_compose:
+        project_src: "{{ app_dir }}"
+        state: stopped
+      ignore_errors: yes
+
+    - name: Build and start application containers
+      docker_compose:
+        project_src: "{{ app_dir }}"
+        state: present
+        build: yes
+        pull: yes
+        recreate: always
+
+    - name: Restart Nginx
+      systemd:
+        name: nginx
+        state: restarted
+        enabled: yes
+
+    - name: Wait for application to start
+      wait_for:
+        port: "{{ app_port }}"
+        host: localhost
+        delay: 10
+        timeout: 60
+      ignore_errors: yes
+
+    - name: Verify application is running
+      uri:
+        url: "http://localhost:{{ app_port }}/health"
+        method: GET
+        status_code: [200]
+      register: health_check
+      retries: 10
+      delay: 5
+      until: health_check.status == 200
+      timeout: "{{ health_check_timeout }}"
+
+    - name: Rollback on health check failure
+      block:
+        - name: Restore from backup
+          unarchive:
+            src: "/opt/backups/backup-{{ ansible_date_time.epoch }}.tar.gz"
+            dest: "/"
+            remote_src: yes
+          when: enable_rollback | bool and health_check.status != 200
+
+        - name: Restart application after rollback
+          systemd:
+            name: "{{ project_name | default('ai-project-generator') }}"
+            state: restarted
+          when: enable_rollback | bool and health_check.status != 200
+
+      rescue:
+        - name: Log rollback failure
+          debug:
+            msg: "Rollback failed. Manual intervention required."
+          failed_when: true
+      when: health_check.status != 200
+
+    - name: Display update completion
+      debug:
+        msg: "✅ Application updated successfully!"
+      when: health_check.status == 200
+
+    - name: Cleanup old backups
+      file:
+        path: "/opt/backups/backup-{{ item }}.tar.gz"
+        state: absent
+      loop: "{{ range(0, (backup_retention_count | default(10)) | int) | list }}"
+      when: enable_rollback | bool
+

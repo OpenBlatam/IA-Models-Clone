@@ -1,0 +1,71 @@
+# Performance Optimization Module Dependencies
+# Core Deep Learning Framework
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Transformers and Language Models
+transformers>=4.20.0
+tokenizers>=0.13.0
+
+# Diffusion Models
+diffusers>=0.18.0
+accelerate>=0.20.0
+
+# System Monitoring and Profiling
+psutil>=5.9.0
+memory-profiler>=0.60.0
+line-profiler>=3.5.0
+py-spy>=0.3.0
+
+# GPU Monitoring and Optimization
+nvidia-ml-py3>=7.352.0
+GPUtil>=1.4.0
+
+# Performance Profiling and Analysis
+torch-tb-profiler>=0.4.0
+tensorboard>=2.10.0
+
+# Experiment Tracking and Logging
+wandb>=0.15.0
+mlflow>=2.0.0
+
+# Data Processing and Optimization
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+
+# Progress Monitoring and Utilities
+tqdm>=4.64.0
+rich>=12.0.0
+
+# Asynchronous Processing
+asyncio-mqtt>=0.11.0
+aiofiles>=0.8.0
+
+# Web Interface and Visualization
+gradio>=3.40.0
+plotly>=5.10.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Additional Optimization Tools
+# Note: These are optional but recommended for maximum performance
+# flash-attn>=2.0.0  # For flash attention optimization
+# xformers>=0.0.16  # For memory efficient attention
+# triton>=2.0.0     # For advanced GPU optimizations
+
+# Development and Testing
+pytest>=6.0.0
+pytest-asyncio>=0.18.0
+black>=22.0.0
+flake8>=4.0.0
+mypy>=0.950
+
+# Documentation
+sphinx>=4.0.0
+sphinx-rtd-theme>=1.0.0
+
+# Optional: Jupyter for interactive development
+# jupyter>=1.0.0
+# ipywidgets>=7.6.0

@@ -1,0 +1,50 @@
+# Output de mirroring
+output/
+*.html
+*.css
+*.js
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Logs
+logs/
+*.log
+
+# Screenshots
+screenshots/
+*.png
+
+# Reportes (opcional - descomentar si no quieres versionar)
+# *.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+

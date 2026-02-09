@@ -1,0 +1,190 @@
+# AWS API Gateway Configuration
+# =============================
+# OpenAPI 3.0 specification para AWS API Gateway
+
+openapi: 3.0.0
+info:
+  title: Cursor Agent 24/7 API
+  version: 1.0.0
+  description: API para controlar el agente persistente de Cursor
+
+servers:
+  - url: https://{api_id}.execute-api.{region}.amazonaws.com/{stage}
+    variables:
+      api_id:
+        default: your-api-id
+      region:
+        default: us-east-1
+      stage:
+        default: prod
+
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  agent_status:
+                    type: string
+                    example: running
+  
+  /api/status:
+    get:
+      summary: Get agent status
+      operationId: getStatus
+      security:
+        - OAuth2: []
+      responses:
+        '200':
+          description: Agent status
+          content:
+            application/json:
+              schema:
+                type: object
+  
+  /api/tasks:
+    get:
+      summary: List tasks
+      operationId: listTasks
+      security:
+        - OAuth2: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of tasks
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+    
+    post:
+      summary: Create task
+      operationId: createTask
+      security:
+        - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - command
+              properties:
+                command:
+                  type: string
+                  example: "optimize code"
+      responses:
+        '201':
+          description: Task created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task_id:
+                    type: string
+  
+  /api/auth/token:
+    post:
+      summary: Get OAuth2 token
+      operationId: getToken
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: bearer
+
+  /metrics:
+    get:
+      summary: Prometheus metrics
+      operationId: getMetrics
+      responses:
+        '200':
+          description: Prometheus metrics
+          content:
+            text/plain:
+              schema:
+                type: string
+
+securitySchemes:
+  OAuth2:
+    type: oauth2
+    flows:
+      password:
+        tokenUrl: /api/auth/token
+        scopes:
+          read: Read access
+          write: Write access
+
+x-amazon-apigateway-request-validators:
+  validate-body:
+    validateRequestBody: true
+    validateRequestParameters: true
+
+x-amazon-apigateway-request-validator: validate-body
+
+x-amazon-apigateway-gateway-responses:
+  DEFAULT_4XX:
+    statusCode: 400
+    responseTemplates:
+      application/json: '{"message": "$context.error.message"}'
+  DEFAULT_5XX:
+    statusCode: 500
+    responseTemplates:
+      application/json: '{"message": "$context.error.message"}'
+
+
+
+

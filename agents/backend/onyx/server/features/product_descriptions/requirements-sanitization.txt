@@ -1,0 +1,105 @@
+# Input Sanitization Dependencies
+# Core sanitization libraries
+shlex>=1.0.0
+html>=1.0.0
+urllib3>=2.0.7
+
+# FastAPI and related dependencies
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Security and validation
+python-jsonschema>=4.17.3
+cerberus>=1.3.5
+marshmallow>=3.20.1
+validators>=0.22.0
+
+# HTML/XML processing
+beautifulsoup4>=4.12.2
+lxml>=4.9.3
+html5lib>=1.1
+
+# URL and network processing
+requests>=2.31.0
+httpx>=0.25.2
+aiohttp>=3.9.1
+
+# JSON processing
+orjson>=3.9.10
+ujson>=5.8.0
+
+# Command execution and subprocess
+asyncio-subprocess>=0.1.0
+async-timeout>=4.0.3
+
+# Testing dependencies
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+
+# Development dependencies
+black>=23.11.0
+isort>=5.12.0
+flake8>=6.1.0
+mypy>=1.7.1
+bandit>=1.7.5
+
+# Security scanning
+safety>=2.3.5
+pip-audit>=2.6.1
+
+# Optional: Advanced sanitization features
+# For advanced HTML sanitization
+bleach>=6.1.0
+markupsafe>=2.1.3
+
+# For advanced URL processing
+yarl>=1.9.2
+multidict>=6.0.4
+
+# For advanced command execution
+pexpect>=4.8.0
+ptyprocess>=0.7.0
+
+# For advanced pattern matching
+regex>=2023.10.3
+
+# For advanced text processing
+text-unidecode>=1.3
+
+# For advanced security features
+cryptography>=41.0.7
+passlib[bcrypt]>=1.7.4
+
+# For advanced logging
+structlog>=23.2.0
+python-json-logger>=2.0.7
+
+# For advanced monitoring
+prometheus-client>=0.19.0
+sentry-sdk[fastapi]>=1.40.0
+
+# For advanced validation
+pydantic[email]>=2.5.0
+email-validator>=2.1.0
+
+# For advanced sanitization rules
+pyyaml>=6.0.1
+toml>=0.10.2
+
+# For advanced command validation
+click>=8.1.7
+typer>=0.9.0
+
+# For advanced subprocess management
+psutil>=5.9.6
+
+# For advanced file operations
+pathlib2>=2.3.7
+
+# For advanced string processing
+python-slugify>=8.0.1
+unidecode>=1.3.7 

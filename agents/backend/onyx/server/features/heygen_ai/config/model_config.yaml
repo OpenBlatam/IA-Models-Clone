@@ -1,0 +1,150 @@
+# Model Configuration for HeyGen AI
+# ==================================
+# Centralized configuration for all AI models and hyperparameters
+
+# Diffusion Model Configuration
+diffusion:
+  # Default model settings
+  default_model: "runwayml/stable-diffusion-v1-5"
+  xl_model: "stabilityai/stable-diffusion-xl-base-1.0"
+  
+  # Device configuration
+  device: "auto"  # auto, cuda, cpu, mps
+  use_mixed_precision: true
+  torch_dtype: "float16"  # float16, float32, bfloat16
+  
+  # Memory optimizations
+  enable_attention_slicing: true
+  enable_vae_slicing: true
+  enable_model_cpu_offload: false
+  enable_sequential_cpu_offload: false
+  
+  # Performance settings
+  enable_torch_compile: true  # PyTorch 2.0+ only
+  enable_xformers: false  # Requires xformers package
+  
+  # Default generation parameters
+  default_inference_steps: 50
+  default_guidance_scale: 7.5
+  default_scheduler: "ddim"  # ddim, dpm_solver, euler
+  
+  # Quality-based inference steps
+  inference_steps:
+    low: 20
+    medium: 30
+    high: 50
+    ultra: 100
+
+# Avatar Configuration
+avatar:
+  # Supported styles
+  styles:
+    - realistic
+    - cartoon
+    - anime
+    - artistic
+  
+  # Resolution settings
+  resolutions:
+    720p:
+      width: 1280
+      height: 720
+    1080p:
+      width: 1920
+      height: 1080
+    4k:
+      width: 3840
+      height: 2160
+  
+  # Default settings
+  default_style: "realistic"
+  default_resolution: "1080p"
+  default_quality: "high"
+  
+  # Feature flags
+  enable_lip_sync: true
+  enable_expressions: true
+  enable_face_enhancement: true
+
+# Voice Configuration
+voice:
+  # TTS model settings
+  default_model: "tts_models/en/ljspeech/tacotron2-DDC"
+  sample_rate: 22050
+  bit_depth: 16
+  channels: 1
+  
+  # Quality settings
+  quality_levels:
+    low:
+      sample_rate: 16000
+      bitrate: 64
+    medium:
+      sample_rate: 22050
+      bitrate: 128
+    high:
+      sample_rate: 44100
+      bitrate: 192
+    ultra:
+      sample_rate: 48000
+      bitrate: 320
+
+# Video Configuration
+video:
+  # Default settings
+  default_fps: 30
+  default_codec: "h264"
+  default_format: "mp4"
+  
+  # Quality settings
+  quality_levels:
+    low:
+      bitrate: 1000
+      resolution: "720p"
+    medium:
+      bitrate: 2500
+      resolution: "1080p"
+    high:
+      bitrate: 5000
+      resolution: "1080p"
+    ultra:
+      bitrate: 10000
+      resolution: "4k"
+
+# Training Configuration (if needed)
+training:
+  # Basic parameters
+  batch_size: 16
+  learning_rate: 1e-4
+  weight_decay: 0.01
+  num_epochs: 10
+  
+  # Optimization
+  use_mixed_precision: true
+  gradient_accumulation_steps: 1
+  gradient_clip_norm: 1.0
+  
+  # Scheduler
+  scheduler: "cosine"
+  warmup_steps: 100
+  
+  # Evaluation
+  eval_steps: 500
+  save_steps: 1000
+  logging_steps: 100
+
+# LLM Configuration (for script generation)
+llm:
+  # Model settings
+  default_model: "gpt-3.5-turbo"
+  temperature: 0.7
+  max_tokens: 2000
+  top_p: 0.9
+  
+  # API settings
+  api_provider: "openrouter"  # openrouter, openai, anthropic
+  timeout: 30
+  max_retries: 3
+
+
+

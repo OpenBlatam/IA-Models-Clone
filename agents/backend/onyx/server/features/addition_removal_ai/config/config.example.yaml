@@ -1,0 +1,38 @@
+# Addition Removal AI - Configuración de Ejemplo
+# Copiar este archivo a config.yaml y ajustar según necesidades
+
+app:
+  name: "Addition Removal AI"
+  version: "1.0.0"
+
+editor:
+  max_content_length: 1000000
+  enable_validation: true
+  enable_history: true
+
+ai:
+  model: "gpt-3.5-turbo"
+  temperature: 0.7
+  max_tokens: 2000
+  api_key: "${OPENAI_API_KEY}"
+
+api:
+  host: "0.0.0.0"
+  port: 8010
+  cors_origins:
+    - "*"
+  # cors_origins:
+  #   - "http://localhost:3000"
+  #   - "https://yourdomain.com"
+
+logging:
+  level: "INFO"
+  file: "logs/addition_removal_ai.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+
+
+
+
+
+

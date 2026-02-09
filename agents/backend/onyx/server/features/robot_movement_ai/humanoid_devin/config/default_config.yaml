@@ -1,0 +1,197 @@
+# Configuración por Defecto - Humanoid Devin Robot
+# =================================================
+
+robot:
+  # Configuración básica del robot
+  ip: "192.168.1.100"
+  port: 30001
+  dof: 32
+  robot_type: "generic"  # Opciones: generic, poppy, icub
+  
+  # Nombres de articulaciones (32 DOF humanoide completo)
+  joint_names:
+    - "head_yaw"
+    - "head_pitch"
+    - "left_shoulder_pitch"
+    - "left_shoulder_roll"
+    - "left_shoulder_yaw"
+    - "left_elbow_pitch"
+    - "left_elbow_roll"
+    - "left_wrist_yaw"
+    - "left_wrist_pitch"
+    - "right_shoulder_pitch"
+    - "right_shoulder_roll"
+    - "right_shoulder_yaw"
+    - "right_elbow_pitch"
+    - "right_elbow_roll"
+    - "right_wrist_yaw"
+    - "right_wrist_pitch"
+    - "torso_yaw"
+    - "torso_pitch"
+    - "torso_roll"
+    - "left_hip_yaw"
+    - "left_hip_roll"
+    - "left_hip_pitch"
+    - "left_knee"
+    - "left_ankle_pitch"
+    - "left_ankle_roll"
+    - "right_hip_yaw"
+    - "right_hip_roll"
+    - "right_hip_pitch"
+    - "right_knee"
+    - "right_ankle_pitch"
+    - "right_ankle_roll"
+
+# Integraciones
+integrations:
+  # Deep Learning
+  use_ml: true
+  use_diffusion: true
+  
+  # ROS 2
+  use_ros2: true
+  ros2:
+    node_name: "humanoid_devin_node"
+    namespace: ""
+  
+  # MoveIt 2
+  use_moveit2: true
+  moveit2:
+    group_name: "arm"
+    planning_time: 5.0
+    num_planning_attempts: 10
+    goal_tolerance: 0.01
+  
+  # OpenCV / Visión
+  use_opencv: true
+  vision:
+    use_dl: true
+    face_detection:
+      scale_factor: 1.1
+      min_neighbors: 4
+      min_size: [30, 30]
+    edge_detection:
+      low_threshold: 50
+      high_threshold: 150
+  
+  # AI Models
+  use_ai: true
+  ai_models:
+    tensorflow:
+      enabled: true
+      default_input_shape: [32]
+      default_output_size: 32
+    pytorch:
+      enabled: true
+      default_input_size: 32
+      default_hidden_size: 128
+      default_output_size: 32
+      dropout_rate: 0.2
+  
+  # PCL / Point Cloud
+  use_pcl: true
+  point_cloud:
+    filter_method: "statistical"  # Opciones: statistical, radius
+    statistical:
+      nb_neighbors: 20
+      std_ratio: 2.0
+    radius:
+      nb_points: 16
+      radius: 0.05
+    obstacle_detection:
+      min_points: 10
+      max_distance: 0.1
+  
+  # Nav2
+  use_nav2: true
+  nav2:
+    default_frame_id: "map"
+    goal_tolerance: 0.1
+  
+  # Poppy / iCub
+  poppy:
+    config_path: null  # Ruta al archivo JSON de configuración
+  icub:
+    robot_name: "icub"
+
+# Control y Movimiento
+control:
+  # Velocidades por defecto
+  default_speed: 0.5
+  max_speed: 1.0
+  min_speed: 0.1
+  
+  # Trayectorias
+  trajectory:
+    default_steps: 20
+    smoothing_window: 5
+    interpolation_method: "linear"  # Opciones: linear, cubic
+  
+  # Límites de articulaciones (radianes)
+  joint_limits:
+    min: -3.14159  # -π
+    max: 3.14159   # π
+  
+  # Tolerancias
+  position_tolerance: 0.01  # metros
+  orientation_tolerance: 0.01  # radianes
+
+# Deep Learning
+deep_learning:
+  # Transformer
+  transformer:
+    input_size: 64  # dof * 2 (current + target)
+    output_size: 32
+    hidden_size: 128
+    num_layers: 4
+    num_heads: 8
+  
+  # Diffusion
+  diffusion:
+    num_steps: 50
+    noise_schedule: "linear"
+    guidance_scale: 1.0
+  
+  # Native Optimizations
+  native:
+    ik:
+      max_iterations: 100
+      tolerance: 0.001
+    trajectory_optimizer:
+      smoothness_weight: 0.5
+      accuracy_weight: 0.5
+
+# Logging
+logging:
+  level: "INFO"  # Opciones: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: null  # Ruta al archivo de log (null = solo consola)
+
+# Performance
+performance:
+  # Caché
+  cache:
+    enabled: true
+    gray_image_cache: true
+  
+  # Timeouts
+  connection_timeout: 10.0  # segundos
+  command_timeout: 5.0  # segundos
+  
+  # Retry
+  retry:
+    enabled: true
+    max_attempts: 3
+    delay: 1.0  # segundos
+
+# Seguridad
+security:
+  # Validaciones
+  strict_validation: true
+  validate_all_inputs: true
+  
+  # Límites de seguridad
+  max_joint_velocity: 2.0  # rad/s
+  max_cartesian_velocity: 1.0  # m/s
+  emergency_stop_enabled: true
+

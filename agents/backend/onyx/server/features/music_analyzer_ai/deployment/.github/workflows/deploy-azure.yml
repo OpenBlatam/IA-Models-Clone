@@ -1,0 +1,109 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches:
+      - main
+      - production
+    paths:
+      - 'deployment/azure/**'
+      - 'main.py'
+      - 'requirements.txt'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+env:
+  AZURE_LOCATION: eastus
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  deploy-functions:
+    name: Deploy Azure Functions
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install Azure Functions Core Tools
+        run: |
+          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main" > /etc/apt/sources.list.d/dotnetdev.list'
+          sudo apt-get update
+          sudo apt-get install azure-functions-core-tools-4
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r deployment/requirements-serverless.txt
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Deploy to Azure Functions
+        run: |
+          FUNCTION_APP_NAME="music-analyzer-ai-${{ github.event.inputs.environment || 'production' }}"
+          func azure functionapp publish $FUNCTION_APP_NAME --python
+
+  deploy-container:
+    name: Deploy Azure Container Instance
+    runs-on: ubuntu-latest
+    if: github.event.inputs.deployment_type == 'container' || contains(github.event.head_commit.message, '[deploy:container]')
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Build and push Docker image
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+          password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+      
+      - name: Build and push image
+        run: |
+          docker build -f deployment/Dockerfile -t ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/music-analyzer-ai:${{ github.sha }} .
+          docker push ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/music-analyzer-ai:${{ github.sha }}
+          docker tag ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/music-analyzer-ai:${{ github.sha }} ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/music-analyzer-ai:latest
+          docker push ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/music-analyzer-ai:latest
+      
+      - name: Deploy to Azure Container Instance
+        uses: azure/aci-deploy@v1
+        with:
+          resource-group: music-analyzer-rg
+          dns-name-label: music-analyzer-ai-${{ github.event.inputs.environment || 'production' }}
+          image: ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/music-analyzer-ai:${{ github.sha }}
+          registry-login-server: ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}
+          registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+          ports: 8010
+          environment-variables: |
+            ENVIRONMENT=${{ github.event.inputs.environment || 'production' }}
+            CACHE_ENABLED=true
+            LOG_LEVEL=INFO
+
+
+
+

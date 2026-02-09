@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  tutor-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENROUTER_BASE_URL=${OPENROUTER_BASE_URL:-https://openrouter.ai/api/v1}
+      - OPENROUTER_DEFAULT_MODEL=${OPENROUTER_DEFAULT_MODEL:-openai/gpt-4}
+    volumes:
+      - ./data:/app/data
+      - ./conversations:/app/conversations
+      - ./.cache:/app/.cache
+      - ./reports:/app/reports
+      - ./backups:/app/backups
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/tutor/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+# Terraform Variables Configuration
+# Copy this file to terraform.tfvars and update with your values
+
+# ============================================================================
+# Basic Configuration
+# ============================================================================
+aws_region   = "us-east-1"
+project_name = "3d-prototype-ai"
+environment  = "prod"
+
+# ============================================================================
+# EC2 Configuration
+# ============================================================================
+instance_type = "t3.large"
+key_name      = "your-key-pair-name"  # REQUIRED: Your AWS key pair name
+volume_size   = 30
+volume_iops   = 0      # 0 = use default, set for gp3 if needed
+volume_throughput = 0  # 0 = use default, set for gp3 if needed
+
+# ============================================================================
+# Application Configuration
+# ============================================================================
+app_port = 8030
+app_host = "0.0.0.0"
+
+# ============================================================================
+# Network Configuration
+# ============================================================================
+create_vpc = false
+vpc_id     = "vpc-xxxxxxxxx"      # Your existing VPC ID (if create_vpc = false)
+subnet_id  = "subnet-xxxxxxxxx"    # Your existing subnet ID (if create_vpc = false)
+
+# If creating new VPC
+vpc_cidr   = "10.0.0.0/16"
+subnet_cidr = "10.0.1.0/24"
+
+# ============================================================================
+# Security Configuration
+# ============================================================================
+# Restrict SSH access to your IP for production
+ssh_allowed_cidr_blocks = ["0.0.0.0/0"]  # TODO: Change to your IP, e.g., ["1.2.3.4/32"]
+allowed_cidr_blocks     = ["0.0.0.0/0"]  # Application access
+
+# ============================================================================
+# Optional Features
+# ============================================================================
+allocate_elastic_ip = false
+domain_name         = ""  # e.g., "api.yourdomain.com"
+
+# S3 Backups
+enable_s3_backup      = false
+backup_retention_days = 30
+
+# CloudWatch Monitoring
+enable_cloudwatch_alarms = true
+enable_memory_alarm      = false  # Requires CloudWatch agent
+cpu_threshold            = 80
+memory_threshold         = 85
+sns_topic_arn           = ""  # SNS topic for alarms
+
+# Instance Features
+enable_detailed_monitoring    = false
+enable_termination_protection = false
+
+# Additional EBS Volumes
+additional_volumes = []
+# Example:
+# additional_volumes = [
+#   {
+#     device_name = "/dev/sdf"
+#     volume_type = "gp3"
+#     volume_size = 100
+#     encrypted   = true
+#     iops        = 3000
+#     throughput  = 125
+#   }
+# ]
+
+# ============================================================================
+# Tags
+# ============================================================================
+tags = {
+  Team        = "DevOps"
+  CostCenter  = "Engineering"
+  Application = "3D-Prototype-AI"
+  Owner       = "your-team@example.com"
+}
+

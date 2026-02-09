@@ -1,0 +1,36 @@
+# ============================================================================
+# REQUIREMENTS DEV - Para desarrollo (incluye requirements.txt + herramientas dev)
+# ============================================================================
+
+# Incluir requirements base
+-r requirements.txt
+
+# Testing adicional
+pytest-xdist>=3.6.0                 # Parallel testing
+pytest-benchmark>=4.0.0              # Benchmarking en tests
+faker>=30.0.0                       # Datos de prueba
+hypothesis>=6.108.0                  # Property-based testing
+
+# Code Quality adicional
+pylint>=3.0.3                       # Linter completo
+bandit>=1.7.6                       # Security linter
+safety>=3.0.0                       # Dependency vulnerability scanner
+mypy-boto3>=1.34.0                  # Type stubs para boto3
+
+# Development Tools
+pre-commit>=3.6.0                    # Git hooks framework
+commitizen>=3.13.0                  # Conventional commits
+ipdb>=0.13.13                       # Debugger mejorado
+pudb>=2024.1                        # Debugger visual
+
+# Documentation
+mkdocs>=1.6.0                       # Documentación estática
+mkdocs-material>=9.5.0              # Tema Material para MkDocs
+mkdocstrings[python]>=0.24.0       # Auto-documentación
+
+# Performance Profiling
+pyinstrument>=5.0.0                 # Profiler alternativo
+line-profiler>=4.1.1                # Line-by-line profiler
+
+
+

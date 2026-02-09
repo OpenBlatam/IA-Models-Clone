@@ -1,0 +1,156 @@
+# Prompt templates for different use cases
+
+# Ads Generation Templates
+ads_generation:
+  social_media: |
+    Generate a social media post for {platform} with the following specifications:
+    Brand: {brand_name}
+    Target Audience: {audience}
+    Key Message: {message}
+    Tone: {tone}
+    Hashtags: {hashtags}
+    Call to Action: {cta}
+    Length: {length} characters
+
+  display_ad: |
+    Create a display ad with the following elements:
+    Headline: {headline}
+    Subheadline: {subheadline}
+    Body Copy: {body}
+    Call to Action: {cta}
+    Target Audience: {audience}
+    Brand Voice: {brand_voice}
+    Image Suggestions: {image_suggestions}
+
+  search_ad: |
+    Write a search ad with these components:
+    Headline 1: {headline1}
+    Headline 2: {headline2}
+    Description: {description}
+    Display URL: {display_url}
+    Keywords: {keywords}
+    Target Audience: {audience}
+
+# Content Optimization Templates
+content_optimization:
+  seo: |
+    Optimize the following content for SEO:
+    Original Content: {content}
+    Target Keywords: {keywords}
+    Meta Description: {meta_description}
+    Title Tag: {title}
+    URL Structure: {url}
+    Internal Links: {internal_links}
+
+  readability: |
+    Improve the readability of this content:
+    Original Content: {content}
+    Target Reading Level: {reading_level}
+    Target Audience: {audience}
+    Key Points to Emphasize: {key_points}
+    Style Guide: {style_guide}
+
+  engagement: |
+    Enhance content engagement:
+    Original Content: {content}
+    Target Platform: {platform}
+    Audience Interests: {interests}
+    Engagement Goals: {goals}
+    Call to Action: {cta}
+
+# Audience Analysis Templates
+audience_analysis:
+  demographic: |
+    Analyze the following demographic data:
+    Age Range: {age_range}
+    Gender: {gender}
+    Location: {location}
+    Income Level: {income}
+    Education: {education}
+    Occupation: {occupation}
+    Family Status: {family_status}
+
+  behavioral: |
+    Analyze audience behavior patterns:
+    Online Behavior: {online_behavior}
+    Purchase History: {purchase_history}
+    Content Consumption: {content_consumption}
+    Platform Usage: {platform_usage}
+    Time of Activity: {activity_time}
+    Device Usage: {device_usage}
+
+  psychographic: |
+    Analyze psychographic characteristics:
+    Interests: {interests}
+    Values: {values}
+    Lifestyle: {lifestyle}
+    Attitudes: {attitudes}
+    Pain Points: {pain_points}
+    Goals: {goals}
+
+# Brand Voice Templates
+brand_voice:
+  tone_analysis: |
+    Analyze the brand voice tone:
+    Brand Name: {brand_name}
+    Industry: {industry}
+    Target Audience: {audience}
+    Current Tone: {current_tone}
+    Desired Tone: {desired_tone}
+    Brand Values: {values}
+    Brand Personality: {personality}
+
+  voice_guidelines: |
+    Create brand voice guidelines:
+    Brand Name: {brand_name}
+    Tone: {tone}
+    Style: {style}
+    Do's: {dos}
+    Don'ts: {donts}
+    Examples: {examples}
+    Exceptions: {exceptions}
+
+# Project Context Templates
+project_context:
+  brief: |
+    Create a project brief:
+    Project Name: {project_name}
+    Objectives: {objectives}
+    Target Audience: {audience}
+    Timeline: {timeline}
+    Budget: {budget}
+    Constraints: {constraints}
+    Success Metrics: {metrics}
+
+  strategy: |
+    Develop a project strategy:
+    Project Goals: {goals}
+    Target Audience: {audience}
+    Key Messages: {messages}
+    Channels: {channels}
+    Timeline: {timeline}
+    Resources: {resources}
+    KPIs: {kpis}
+
+# Tool Configuration Templates
+tool_configuration:
+  setup: |
+    Configure the tool with these settings:
+    Tool Name: {tool_name}
+    Purpose: {purpose}
+    Target Users: {users}
+    Required Features: {features}
+    Integration Points: {integrations}
+    Security Requirements: {security}
+    Performance Requirements: {performance}
+
+  documentation: |
+    Create tool documentation:
+    Tool Name: {tool_name}
+    Version: {version}
+    Purpose: {purpose}
+    Features: {features}
+    Usage Instructions: {instructions}
+    API Endpoints: {endpoints}
+    Examples: {examples}
+    Troubleshooting: {troubleshooting} 

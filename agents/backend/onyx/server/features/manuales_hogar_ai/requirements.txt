@@ -1,0 +1,95 @@
+# ============================================================================
+# Core Dependencies - Required for basic functionality
+# ============================================================================
+
+# Web Framework
+fastapi>=0.115.0,<0.116.0
+uvicorn[standard]>=0.32.0,<0.33.0
+pydantic>=2.9.0,<3.0.0
+pydantic-settings>=2.5.0,<3.0.0
+python-multipart>=0.0.12,<0.1.0
+
+# HTTP Client (optimized)
+httpx>=0.27.0,<0.28.0
+httpcore>=1.0.5,<1.1.0
+
+# Database
+sqlalchemy>=2.0.36,<3.0.0
+alembic>=1.13.2,<2.0.0
+asyncpg>=0.29.0,<0.30.0
+psycopg2-binary>=2.9.10,<3.0.0
+
+# Image Processing
+pillow>=10.4.0,<11.0.0
+
+# Caching & Rate Limiting
+redis>=5.1.1,<6.0.0
+hiredis>=2.3.2,<3.0.0
+
+# Resilience & Retry
+tenacity>=9.0.0,<10.0.0
+
+# Templates
+jinja2>=3.1.4,<4.0.0
+
+# ============================================================================
+# Monitoring & Observability (Optional but recommended)
+# ============================================================================
+
+prometheus-client>=0.20.0,<0.21.0
+opentelemetry-api>=1.27.0,<2.0.0
+opentelemetry-sdk>=1.27.0,<2.0.0
+opentelemetry-instrumentation-fastapi>=0.47b0,<0.48.0
+opentelemetry-exporter-otlp-proto-grpc>=1.27.0,<2.0.0
+
+# ============================================================================
+# ML & AI Features (Optional - only if ML features are enabled)
+# ============================================================================
+
+# Core ML
+torch>=2.5.0,<3.0.0
+transformers>=4.46.0,<5.0.0
+accelerate>=1.1.0,<2.0.0
+
+# Model Optimization
+peft>=0.12.0,<0.13.0
+bitsandbytes>=0.44.0,<0.45.0
+
+# Embeddings & Search
+sentence-transformers>=3.1.0,<4.0.0
+faiss-cpu>=1.8.0,<2.0.0
+
+# Image Generation (if needed)
+diffusers>=0.33.0,<0.34.0
+
+# ML Utilities
+numpy>=1.26.4,<2.0.0
+scikit-learn>=1.5.2,<2.0.0
+tqdm>=4.66.5,<5.0.0
+
+# ML Evaluation Metrics
+nltk>=3.9.1,<4.0.0
+rouge-score>=0.1.2,<0.2.0
+bert-score>=0.3.13,<0.4.0
+
+# ML Experiment Tracking (optional)
+wandb>=0.18.0,<0.19.0
+tensorboard>=2.18.0,<3.0.0
+
+# ML UI (optional)
+gradio>=5.0.0,<6.0.0
+
+# ONNX Runtime (optional - for model optimization)
+# Use onnxruntime for CPU or onnxruntime-gpu for GPU
+# onnxruntime>=1.20.0,<2.0.0
+# onnxruntime-gpu>=1.20.0,<2.0.0
+
+# Advanced ML Optimizations (optional - requires CUDA)
+# flash-attn>=2.6.0,<3.0.0  # Requires CUDA
+# nvidia-tensorrt>=10.0.0,<11.0.0  # Requires CUDA
+
+# ============================================================================
+# System Utilities
+# ============================================================================
+
+psutil>=6.1.0,<7.0.0

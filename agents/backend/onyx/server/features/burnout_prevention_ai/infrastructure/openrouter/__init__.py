@@ -1,0 +1,6 @@
+"""OpenRouter infrastructure module."""
+
+from .openrouter_client import OpenRouterClient
+
+__all__ = ["OpenRouterClient"]
+

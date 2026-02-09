@@ -1,0 +1,57 @@
+# Routing AI Configuration Example
+# ==================================
+# Este archivo contiene un ejemplo de configuración YAML para el sistema de routing.
+# Copia este archivo y modifica según tus necesidades.
+
+model:
+  gnn:
+    input_dim: 10
+    hidden_dim: 128
+    output_dim: 64
+    num_layers: 3
+    num_heads: 8
+    dropout: 0.1
+  
+  transformer:
+    d_model: 128
+    nhead: 8
+    num_layers: 6
+    dim_feedforward: 512
+    dropout: 0.1
+  
+  deep_optimizer:
+    input_dim: 10
+    hidden_dims: [256, 128, 64]
+    dropout: 0.2
+
+training:
+  num_epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 1e-5
+  gradient_clip_norm: 1.0
+  early_stopping_patience: 10
+  early_stopping_min_delta: 1e-6
+  validation_split: 0.2
+  use_mixed_precision: true
+  gradient_accumulation_steps: 1
+
+routing:
+  cache_max_size: 10000
+  cache_ttl: 3600.0
+  precomputation_max_nodes: 100
+  enable_precomputation: false
+  batch_processing_enabled: true
+  enable_performance_monitoring: true
+
+hardware:
+  use_gpu: true
+  num_workers: 4
+  pin_memory: true
+
+experiment:
+  project_name: routing_ai
+  use_wandb: true
+  use_tensorboard: true
+  checkpoint_dir: checkpoints
+

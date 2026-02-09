@@ -1,0 +1,100 @@
+# Model Configuration Template
+# Use this as a template for model configurations
+
+model:
+  name: "vit_skin_analyzer"
+  type: "vision_transformer"
+  num_conditions: 6
+  num_metrics: 8
+  input_size: [224, 224]
+  
+  # Model-specific parameters
+  parameters:
+    embed_dim: 768
+    depth: 12
+    num_heads: 12
+    patch_size: 16
+    use_pretrained: true
+    pretrained_model: "google/vit-base-patch16-224"
+
+training:
+  batch_size: 32
+  num_epochs: 100
+  num_workers: 4
+  pin_memory: true
+  
+  # Mixed precision
+  use_mixed_precision: true
+  gradient_clip_val: 1.0
+  
+  # Gradient accumulation (for larger effective batch size)
+  gradient_accumulation_steps: 1  # Effective batch = batch_size * gradient_accumulation_steps
+  
+  # Distributed training
+  use_ddp: false  # Use DistributedDataParallel
+  find_unused_parameters: false  # For DDP
+  
+  # Profiling and debugging
+  enable_profiling: false  # Enable PyTorch Profiler
+  enable_anomaly_detection: false  # Detect NaN/Inf (slows down training)
+  
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 10
+    monitor: "val_loss"
+    mode: "min"
+  
+  # Optimizer
+  optimizer:
+    name: "adamw"
+    learning_rate: 1e-4
+    weight_decay: 1e-4
+    betas: [0.9, 0.999]
+  
+  # Scheduler
+  scheduler:
+    name: "cosine"
+    num_epochs: 100
+    warmup_epochs: 5
+  
+  # Loss function
+  loss:
+    type: "multi_task"
+    condition_weight: 1.0
+    metric_weight: 1.0
+    condition_loss_type: "bce"
+    metric_loss_type: "mse"
+
+data:
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  
+  # Augmentation
+  augmentation:
+    use_albumentations: true
+    strength: "medium"  # "light", "medium", "strong"
+  
+  # Preprocessing
+  preprocessing:
+    normalize: true
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+experiment_tracking:
+  use_wandb: false
+  use_tensorboard: true
+  wandb_project: "dermatology-ai"
+  experiments_dir: "./experiments"
+
+checkpointing:
+  save_dir: "./checkpoints"
+  save_best: true
+  save_frequency: 10  # Save every N epochs
+  max_checkpoints: 5  # Keep only last N checkpoints
+
+device:
+  type: "cuda"  # "cuda", "cpu", "mps"
+  device_id: 0  # GPU ID if using CUDA
+

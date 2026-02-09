@@ -1,0 +1,62 @@
+# MobileNet Configuration Example
+# Copy this file and modify as needed
+
+model:
+  variant: mobilenet_v2  # mobilenet_v2, mobilenet_v3_large, mobilenet_v3_small
+  num_classes: 1000
+  width_mult: 1.0
+  pretrained: true
+
+training:
+  learning_rate: 0.001
+  batch_size: 32
+  num_epochs: 50
+  weight_decay: 0.0001
+  momentum: 0.9
+  gradient_clip: 1.0
+  early_stopping_patience: 5
+  lr_scheduler_step: 30
+  lr_scheduler_gamma: 0.1
+  use_mixed_precision: true
+  num_workers: 4
+  pin_memory: true
+
+data:
+  image_size: 224
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  augmentation:
+    use_color_jitter: true
+    use_random_erasing: false
+    use_cutout: false
+
+callbacks:
+  early_stopping:
+    enabled: true
+    monitor: val_loss
+    patience: 5
+    min_delta: 0.0
+    mode: min
+    restore_best_weights: true
+  
+  checkpoint:
+    enabled: true
+    checkpoint_dir: ./checkpoints
+    monitor: val_loss
+    mode: min
+    save_best_only: true
+    save_freq: 1
+  
+  experiment_tracking:
+    enabled: true
+    tracker_type: wandb  # wandb or tensorboard
+    project_name: mobilenet_training
+    run_name: mobilenet_v2_experiment
+
+device:
+  use_gpu: true
+  use_mixed_precision: true
+
+
+

@@ -1,0 +1,207 @@
+---
+# Ansible Playbook for Suno Clone AI EC2 Deployment
+# Follows Infrastructure-as-Code principles and idempotent design
+
+- name: Deploy Suno Clone AI to EC2
+  hosts: ec2_instances
+  become: yes
+  vars:
+    app_name: suno-clone-ai
+    app_port: 8020
+    docker_image_name: suno-clone-ai
+    docker_container_name: suno-clone-ai
+    deployment_user: "{{ ansible_user }}"
+    app_directory: "/home/{{ deployment_user }}/suno-clone-ai"
+    
+  tasks:
+    - name: Ensure Docker is installed
+      block:
+        - name: Check if Docker is installed
+          command: docker --version
+          register: docker_version
+          changed_when: false
+          failed_when: false
+          
+        - name: Install Docker
+          when: docker_version.rc != 0
+          block:
+            - name: Update apt cache
+              apt:
+                update_cache: yes
+                cache_valid_time: 3600
+              when: ansible_os_family == "Debian"
+              
+            - name: Install Docker dependencies
+              apt:
+                name:
+                  - apt-transport-https
+                  - ca-certificates
+                  - curl
+                  - gnupg
+                  - lsb-release
+                state: present
+              when: ansible_os_family == "Debian"
+              
+            - name: Add Docker GPG key
+              apt_key:
+                url: https://download.docker.com/linux/ubuntu/gpg
+                state: present
+              when: ansible_os_family == "Debian"
+              
+            - name: Add Docker repository
+              apt_repository:
+                repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+                state: present
+              when: ansible_os_family == "Debian"
+              
+            - name: Install Docker
+              apt:
+                name:
+                  - docker-ce
+                  - docker-ce-cli
+                  - containerd.io
+                state: present
+                update_cache: yes
+              when: ansible_os_family == "Debian"
+              
+            - name: Install Docker (Amazon Linux)
+              yum:
+                name: docker
+                state: present
+              when: ansible_os_family == "RedHat"
+              
+            - name: Start and enable Docker service
+              systemd:
+                name: docker
+                state: started
+                enabled: yes
+                
+            - name: Add user to docker group
+              user:
+                name: "{{ deployment_user }}"
+                groups: docker
+                append: yes
+                
+      rescue:
+        - name: Display error message
+          debug:
+            msg: "Failed to install Docker"
+          fail: yes
+
+    - name: Ensure application directory exists
+      file:
+        path: "{{ app_directory }}"
+        state: directory
+        owner: "{{ deployment_user }}"
+        group: "{{ deployment_user }}"
+        mode: '0755'
+
+    - name: Copy Docker image to EC2
+      copy:
+        src: "{{ docker_image_name }}.tar.gz"
+        dest: "{{ app_directory }}/{{ docker_image_name }}.tar.gz"
+        mode: '0644'
+      when: docker_image_name is defined
+
+    - name: Copy environment file
+      copy:
+        src: ".env"
+        dest: "{{ app_directory }}/.env"
+        mode: '0600'
+        owner: "{{ deployment_user }}"
+        group: "{{ deployment_user }}"
+      when: ".env" is file
+      no_log: true
+
+    - name: Copy deployment script
+      copy:
+        src: "deploy.sh"
+        dest: "{{ app_directory }}/deploy.sh"
+        mode: '0755'
+        owner: "{{ deployment_user }}"
+        group: "{{ deployment_user }}"
+
+    - name: Load Docker image
+      command: docker load < {{ app_directory }}/{{ docker_image_name }}.tar.gz
+      become_user: "{{ deployment_user }}"
+      args:
+        chdir: "{{ app_directory }}"
+      register: docker_load_result
+      changed_when: "'Loaded image' in docker_load_result.stdout"
+
+    - name: Stop existing container
+      docker_container:
+        name: "{{ docker_container_name }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove old Docker images
+      shell: |
+        docker images {{ docker_image_name }} --format "{{.ID}}" | tail -n +3 | xargs -r docker rmi || true
+      become_user: "{{ deployment_user }}"
+      ignore_errors: yes
+
+    - name: Start application container
+      docker_container:
+        name: "{{ docker_container_name }}"
+        image: "{{ docker_image_name }}:latest"
+        state: started
+        restart_policy: unless-stopped
+        ports:
+          - "{{ app_port }}:{{ app_port }}"
+        env_file: "{{ app_directory }}/.env"
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:{{ app_port }}/health"]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+          start_period: 40s
+        volumes:
+          - "{{ app_directory }}/storage:/app/storage"
+      become_user: "{{ deployment_user }}"
+      register: container_result
+
+    - name: Wait for application to be healthy
+      uri:
+        url: "http://localhost:{{ app_port }}/health"
+        method: GET
+        status_code: 200
+      register: health_check_result
+      until: health_check_result.status == 200
+      retries: 10
+      delay: 5
+      ignore_errors: yes
+
+    - name: Verify deployment
+      block:
+        - name: Check container status
+          command: docker ps --filter "name={{ docker_container_name }}" --format "{{.Status}}"
+          register: container_status
+          changed_when: false
+          
+        - name: Display container status
+          debug:
+            msg: "Container status: {{ container_status.stdout }}"
+            
+        - name: Display container logs
+          command: docker logs {{ docker_container_name }} --tail 20
+          register: container_logs
+          changed_when: false
+          
+        - name: Show recent logs
+          debug:
+            var: container_logs.stdout_lines
+
+    - name: Notify deployment success
+      debug:
+        msg: "✅ Suno Clone AI deployed successfully to EC2"
+
+  handlers:
+    - name: restart docker
+      systemd:
+        name: docker
+        state: restarted
+
+
+
+
