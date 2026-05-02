@@ -356,3 +356,4 @@ if __name__ == "__main__":
     # Security audit
     audit_history = manager.auditor.get_audit_history()
     print(f"Audit log entries: {len(audit_history)}")
+

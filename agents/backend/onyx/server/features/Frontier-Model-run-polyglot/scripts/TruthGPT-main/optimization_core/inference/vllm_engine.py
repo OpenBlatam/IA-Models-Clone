@@ -160,27 +160,11 @@ class VLLMEngine(BaseInferenceEngine):
         stop: Optional[Union[str, List[str]]] = None,
         repetition_penalty: float = 1.0,
         **kwargs
-    ) -> Union[str, List[str]]:
+    ) -> Union[InferenceResult, List[InferenceResult]]:
         """
-        Generate text from prompts.
-        
-        Args:
-            prompts: Single prompt or list of prompts
-            max_tokens: Maximum tokens to generate (must be > 0)
-            temperature: Sampling temperature (must be > 0)
-            top_p: Nucleus sampling parameter (0.0-1.0)
-            top_k: Top-k sampling parameter (-1 to disable)
-            stop: Stop sequences
-            repetition_penalty: Repetition penalty (must be >= 1.0)
-            **kwargs: Additional generation parameters
-        
-        Returns:
-            Generated text(s)
-        
-        Raises:
-            ValueError: If parameters are invalid
-            RuntimeError: If generation fails
+        Generate text and return structured InferenceResult.
         """
+        import time
         # Validate generation parameters using shared validators
         validate_generation_params(
             max_tokens=max_tokens,
@@ -206,18 +190,26 @@ class VLLMEngine(BaseInferenceEngine):
             )
             
             # Generate
+            start_ts = time.monotonic()
             outputs = self.llm.generate(prompts_list, sampling_params)
+            latency_ms = (time.monotonic() - start_ts) * 1000
             
-            # Extract generated text using shared utilities
+            # Extract generated text and package into InferenceResult
             if not outputs:
                 logger.warning("No outputs generated from vLLM")
-                return handle_single_prompt([""], was_single)
+                res = [InferenceResult(text="", model_name=self.model_name, latency_ms=latency_ms)]
+                return handle_single_prompt(res, was_single)
             
-            results = extract_generated_text(
-                outputs,
-                output_attr="outputs[0].text",
-                fallback=""
-            )
+            results = []
+            for output in outputs:
+                results.append(InferenceResult(
+                    text=output.outputs[0].text,
+                    tokens_generated=len(output.outputs[0].token_ids),
+                    model_name=self.model_name,
+                    latency_ms=latency_ms / len(outputs),
+                    finish_reason=output.outputs[0].finish_reason,
+                    metadata={"prompt_tokens": len(output.prompt_token_ids)}
+                ))
             
             return handle_single_prompt(results, was_single)
             
@@ -327,24 +319,11 @@ class AsyncVLLMEngine:
         max_tokens: int = 64,
         temperature: float = 0.7,
         **kwargs
-    ) -> str:
+    ) -> InferenceResult:
         """
-        Generate text asynchronously.
-        
-        Args:
-            prompt: Input prompt (must be non-empty)
-            request_id: Unique request ID (must be non-empty)
-            max_tokens: Maximum tokens to generate (must be > 0)
-            temperature: Sampling temperature (must be > 0)
-            **kwargs: Additional parameters
-        
-        Returns:
-            Generated text
-        
-        Raises:
-            ValueError: If parameters are invalid
-            RuntimeError: If generation fails
+        Generate text asynchronously and return InferenceResult.
         """
+        import time
         # Validate parameters using shared validators
         validate_non_empty_string(prompt, "prompt")
         validate_non_empty_string(request_id, "request_id")
@@ -364,19 +343,28 @@ class AsyncVLLMEngine:
             )
             
             # Submit request
+            start_ts = time.monotonic()
             self.engine.add_request(request_id, prompt, sampling_params)
             
             # Wait for result
             async for request_output in self.engine.generate(prompt, sampling_params):
                 if request_output.finished:
+                    latency_ms = (time.monotonic() - start_ts) * 1000
                     if request_output.outputs and len(request_output.outputs) > 0:
-                        return request_output.outputs[0].text
+                        out = request_output.outputs[0]
+                        return InferenceResult(
+                            text=out.text,
+                            tokens_generated=len(out.token_ids),
+                            model_name=self.model_name,
+                            latency_ms=latency_ms,
+                            finish_reason=out.finish_reason
+                        )
                     else:
                         logger.warning(f"Empty output for request {request_id}")
-                        return ""
+                        return InferenceResult(text="", model_name=self.model_name, latency_ms=latency_ms)
             
             logger.warning(f"Request {request_id} did not complete")
-            return ""
+            return InferenceResult(text="", model_name=self.model_name)
             
         except Exception as e:
             logger.error(f"Async generation failed for request {request_id}: {e}", exc_info=True)
@@ -403,4 +391,5 @@ def create_vllm_engine(
     if use_async:
         return AsyncVLLMEngine(model, **kwargs)
     return VLLMEngine(model, **kwargs)
+
 

@@ -6,13 +6,14 @@ Provides utilities for automatic performance tuning.
 import logging
 import time
 from typing import Dict, Any, Optional, Callable, List
-from dataclasses import dataclass
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class TuningResult:
+from .base import BaseOptimizationModel
+
+
+class TuningResult(BaseOptimizationModel):
     """Result of performance tuning."""
     best_config: Dict[str, Any]
     best_performance: float
@@ -143,6 +144,7 @@ def auto_tune_performance(
     """
     tuner = PerformanceTuner(func, param_space, max_iterations)
     return tuner.tune(method=method)
+
 
 
 

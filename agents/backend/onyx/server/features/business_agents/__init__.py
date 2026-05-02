@@ -18,53 +18,47 @@ __author__ = "Blatam Academy"
 __license__ = "Proprietary"
 __description__ = "Comprehensive business agent system with workflow management and document generation"
 
-# Try to import components with error handling
+# Data Models
+try:
+    from .agent_models import BusinessAgent, BusinessArea, AgentCapability
+except Exception:
+    BusinessAgent = None
+    BusinessArea = None
+    AgentCapability = None
+
+# Core Components
 try:
     from .workflow_engine import WorkflowEngine
-except ImportError:
+except Exception:
     WorkflowEngine = None
 
 try:
     from .document_generator import DocumentGenerator
-except ImportError:
+except Exception:
     DocumentGenerator = None
 
+# Manager
 try:
-    from .business_agents import BusinessAgentManager
-except ImportError:
-    BusinessAgentManager = None
+    from .manager import BusinessAgentManager
+except Exception:
+    try:
+        from .business_agents import BusinessAgentManager
+    except Exception:
+        BusinessAgentManager = None
 
+# API
 try:
     from .api import BusinessAgentsAPI
-except ImportError:
+except Exception:
+    print("Failed to import API")
     BusinessAgentsAPI = None
 
 __all__ = [
+    'BusinessAgent',
+    'BusinessArea',
+    'AgentCapability',
     'WorkflowEngine',
     'DocumentGenerator', 
     'BusinessAgentManager',
     'BusinessAgentsAPI'
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

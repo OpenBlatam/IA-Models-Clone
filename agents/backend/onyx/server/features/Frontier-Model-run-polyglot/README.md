@@ -1,4 +1,15 @@
-# Frontier Model Training - Enhanced Documentation
+# Frontier Model Training - Polyglot Edition
+
+<div align="center">
+
+![Status](https://img.shields.io/badge/status-production--ready-success.svg)
+![Version](https://img.shields.io/badge/version-4.1.0-blue.svg)
+![ML](https://img.shields.io/badge/framework-Polyglot--Transformers-orange.svg)
+![Optimization](https://img.shields.io/badge/optimization-Multi--Lingual-blue.svg)
+
+</div>
+
+---
 
 ## Overview
 
@@ -796,9 +807,14 @@ pre-commit install
 
 ### Running Tests
 
-```bash
-# Run all tests
-python test_framework.py --run-tests --coverage
+---
+
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>
+ --coverage
 
 # Run specific test suite
 python test_framework.py --run-tests --test-suite unit_tests

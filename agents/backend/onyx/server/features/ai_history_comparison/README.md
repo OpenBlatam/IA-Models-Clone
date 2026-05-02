@@ -1,100 +1,102 @@
 # AI History Analyzer and Model Comparison System
 
-## 🚀 Sistema Avanzado de Análisis de Historial de IA
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Este módulo proporciona un sistema completo de análisis de historial de IA y comparación de modelos, permitiendo el seguimiento de rendimiento, análisis de tendencias y optimización automática de modelos de IA.
+## 🚀 Advanced AI History Analysis System
 
-## 📋 Características Principales
+This module provides a comprehensive system for AI history analysis and model comparison, allowing performance tracking, trend analysis, and automatic optimization of AI models.
 
-### 🔍 **Análisis de Rendimiento Histórico**
-- **Seguimiento Continuo**: Monitoreo en tiempo real del rendimiento de modelos
-- **Métricas Múltiples**: 8+ métricas de rendimiento (calidad, velocidad, costo, eficiencia)
-- **Análisis de Tendencias**: Detección de mejoras o degradación de rendimiento
-- **Detección de Anomalías**: Identificación automática de comportamientos inusuales
+## 📋 Key Features
 
-### 📊 **Comparación de Modelos**
-- **Benchmarking Automático**: Comparación objetiva entre modelos
-- **Análisis Estadístico**: Métricas de confianza y significancia
-- **Rankings Dinámicos**: Clasificación automática por métricas
-- **Recomendaciones Inteligentes**: Sugerencias basadas en datos históricos
+### 🔍 **Historical Performance Analysis**
+- **Continuous Tracking** — Real-time monitoring of model performance
+- **Multiple Metrics** — 8+ performance metrics (quality, speed, cost, efficiency)
+- **Trend Analysis** — Detection of performance improvements or degradation
+- **Anomaly Detection** — Automatic identification of unusual behaviors
 
-### 🎯 **Optimización Automática**
-- **Selección de Modelos**: Recomendaciones basadas en tareas específicas
-- **Análisis Predictivo**: Predicción de rendimiento futuro
-- **Alertas Proactivas**: Notificaciones de degradación de rendimiento
-- **Optimización de Costos**: Balance automático entre calidad y costo
+### 📊 **Model Comparison**
+- **Automatic Benchmarking** — Objective comparison between models
+- **Statistical Analysis** — Confidence and significance metrics
+- **Dynamic Rankings** — Automatic classification by metrics
+- **Smart Recommendations** — Suggestions based on historical data
 
-## 🏗️ Arquitectura del Sistema
+### 🎯 **Automatic Optimization**
+- **Model Selection** — Recommendations based on specific tasks
+- **Predictive Analysis** — Prediction of future performance
+- **Proactive Alerts** — Notifications of performance degradation
+- **Cost Optimization** — Automatic balance between quality and cost
 
-### **Componentes Principales**
+## 🏗️ System Architecture
+
+### **Main Components**
 
 #### 1. **AIHistoryAnalyzer** (`ai_history_analyzer.py`)
-- Motor principal de análisis de historial
-- Gestión de datos de rendimiento
-- Análisis de tendencias y predicciones
-- Detección de anomalías
+- Main history analysis engine
+- Performance data management
+- Trend analysis and predictions
+- Anomaly detection
 
 #### 2. **AIHistoryConfig** (`config.py`)
-- Configuración de modelos y métricas
-- Definiciones de benchmarks
-- Configuración de alertas
-- Gestión de exportación
+- Model and metrics configuration
+- Benchmark definitions
+- Alert configuration
+- Export management
 
-#### 3. **API REST** (`api_endpoints.py`)
-- Endpoints para integración externa
-- Documentación automática (Swagger)
-- Autenticación y seguridad
+#### 3. **REST API** (`api_endpoints.py`)
+- Endpoints for external integration
+- Automatic documentation (Swagger)
+- Authentication and security
 - Rate limiting
 
-#### 4. **Sistema de Integración** (`integration_system.py`)
-- Integración con Workflow Chain Engine
-- Optimización automática de selección de modelos
-- Seguimiento de rendimiento en tiempo real
-- Recomendaciones inteligentes
+#### 4. **Integration System** (`integration_system.py`)
+- Integration with Workflow Chain Engine
+- Automatic model selection optimization
+- Real-time performance tracking
+- Smart recommendations
 
-## 📈 Métricas de Rendimiento
+## 📈 Performance Metrics
 
-### **Métricas Principales**
+### **Core Metrics**
 
-| Métrica | Descripción | Rango | Peso |
-|---------|-------------|-------|------|
-| **Quality Score** | Calidad general del contenido | 0.0 - 1.0 | 30% |
-| **Response Time** | Tiempo de respuesta | 0.0 - 60.0s | 20% |
-| **Token Efficiency** | Eficiencia de uso de tokens | 0.0 - 1.0 | 20% |
-| **Cost Efficiency** | Eficiencia de costo | 0.0 - 1.0 | 15% |
-| **Accuracy** | Precisión del contenido | 0.0 - 1.0 | 15% |
-| **Coherence** | Coherencia y flujo lógico | 0.0 - 1.0 | 10% |
-| **Relevance** | Relevancia al prompt | 0.0 - 1.0 | 10% |
-| **Creativity** | Creatividad y originalidad | 0.0 - 1.0 | 5% |
+| Metric | Description | Range | Weight |
+|--------|-------------|-------|--------|
+| **Quality Score** | Overall content quality | 0.0 - 1.0 | 30% |
+| **Response Time** | Response time | 0.0 - 60.0s | 20% |
+| **Token Efficiency** | Token usage efficiency | 0.0 - 1.0 | 20% |
+| **Cost Efficiency** | Cost efficiency | 0.0 - 1.0 | 15% |
+| **Accuracy** | Content accuracy | 0.0 - 1.0 | 15% |
+| **Coherence** | Logic and flow coherence | 0.0 - 1.0 | 10% |
+| **Relevance** | Relevance to prompt | 0.0 - 1.0 | 10% |
+| **Creativity** | Creativity and originality | 0.0 - 1.0 | 5% |
 
-### **Modelos Soportados**
+### **Supported Models**
 
 #### **OpenAI**
-- **GPT-4**: Modelo más avanzado, alta calidad
-- **GPT-4 Turbo**: Versión optimizada con contexto extendido
-- **GPT-3.5 Turbo**: Modelo rápido y eficiente
+- **GPT-4** — Most advanced model, high quality
+- **GPT-4 Turbo** — Optimized version with extended context
+- **GPT-3.5 Turbo** — Fast and efficient model
 
 #### **Anthropic**
-- **Claude 3 Opus**: Máxima capacidad, análisis profundo
-- **Claude 3 Sonnet**: Balanceado, versátil
-- **Claude 3 Haiku**: Rápido y eficiente
+- **Claude 3 Opus** — Maximum capacity, deep analysis
+- **Claude 3 Sonnet** — Balanced, versatile
+- **Claude 3 Haiku** — Fast and efficient
 
 #### **Google**
-- **Gemini 1.5 Pro**: Modelo más capaz de Google
-- **Gemini 1.5 Flash**: Versión rápida y eficiente
-- **Gemini Pro**: Modelo estándar
+- **Gemini 1.5 Pro** — Google's most capable model
+- **Gemini 1.5 Flash** — Fast and efficient version
+- **Gemini Pro** — Standard model
 
-## 🔧 Configuración y Uso
+## 🔧 Configuration and Usage
 
-### **Inicialización Básica**
+### **Basic Initialization**
 
 ```python
 from ai_history_comparison import get_ai_history_analyzer, get_integration_system
 
-# Inicializar analizador
+# Initialize analyzer
 analyzer = get_ai_history_analyzer()
 
-# Registrar rendimiento
+# Record performance
 analyzer.record_performance(
     model_name="gpt-4",
     model_type=ModelType.TEXT_GENERATION,
@@ -102,14 +104,14 @@ analyzer.record_performance(
     value=0.85
 )
 
-# Obtener análisis de tendencias
+# Analyze trends
 trend = analyzer.analyze_trends("gpt-4", PerformanceMetric.QUALITY_SCORE, days=30)
 ```
 
-### **Comparación de Modelos**
+### **Model Comparison**
 
 ```python
-# Comparar dos modelos
+# Compare two models
 comparison = analyzer.compare_models(
     model_a="gpt-4",
     model_b="claude-3-sonnet",
@@ -117,14 +119,14 @@ comparison = analyzer.compare_models(
     days=30
 )
 
-print(f"Modelo ganador: {comparison.model_a if comparison.comparison_score > 0 else comparison.model_b}")
-print(f"Confianza: {comparison.confidence:.2f}")
+print(f"Winner: {comparison.model_a if comparison.comparison_score > 0 else comparison.model_b}")
+print(f"Confidence: {comparison.confidence:.2f}")
 ```
 
-### **Recomendaciones Inteligentes**
+### **Smart Recommendations**
 
 ```python
-# Obtener recomendación de modelo
+# Get model recommendation
 integration = get_integration_system()
 recommendation = await integration.get_model_recommendation(
     task_type="document_generation",
@@ -132,34 +134,34 @@ recommendation = await integration.get_model_recommendation(
     priority="balanced"
 )
 
-print(f"Modelo recomendado: {recommendation.recommended_model}")
-print(f"Razón: {recommendation.reasoning}")
+print(f"Recommended Model: {recommendation.recommended_model}")
+print(f"Reasoning: {recommendation.reasoning}")
 ```
 
-## 📊 API REST
+## 📊 REST API
 
-### **Endpoints Principales**
+### **Main Endpoints**
 
-#### **Seguimiento de Rendimiento**
-- `POST /performance/record` - Registrar datos de rendimiento
-- `GET /performance/{model_name}/{metric}` - Obtener datos históricos
+#### **Performance Tracking**
+- `POST /performance/record` — Record performance data
+- `GET /performance/{model_name}/{metric}` — Get historical data
 
-#### **Comparación de Modelos**
-- `POST /comparison/compare` - Comparar dos modelos
-- `POST /rankings/models` - Obtener rankings de modelos
+#### **Model Comparison**
+- `POST /comparison/compare` — Compare two models
+- `POST /rankings/models` — Get model rankings
 
-#### **Análisis de Tendencias**
-- `POST /trends/analyze` - Analizar tendencias de rendimiento
-- `POST /summary/model` - Resumen de rendimiento de modelo
+#### **Trend Analysis**
+- `POST /trends/analyze` — Analyze performance trends
+- `POST /summary/model` — Model performance summary
 
-#### **Reportes Comprehensivos**
-- `POST /reports/comprehensive` - Generar reporte completo
-- `GET /export/data` - Exportar todos los datos
+#### **Comprehensive Reports**
+- `POST /reports/comprehensive` — Generate full report
+- `GET /export/data` — Export all data
 
-### **Ejemplo de Uso de API**
+### **API Usage Example**
 
 ```bash
-# Registrar rendimiento
+# Record performance
 curl -X POST "http://localhost:8002/performance/record" \
   -H "Content-Type: application/json" \
   -d '{
@@ -169,7 +171,7 @@ curl -X POST "http://localhost:8002/performance/record" \
     "value": 0.85
   }'
 
-# Comparar modelos
+# Compare models
 curl -X POST "http://localhost:8002/comparison/compare" \
   -H "Content-Type: application/json" \
   -d '{
@@ -180,78 +182,78 @@ curl -X POST "http://localhost:8002/comparison/compare" \
   }'
 ```
 
-## 🎯 Casos de Uso
+## 🎯 Use Cases
 
-### **1. Optimización de Workflow Chains**
-- Seguimiento automático del rendimiento de modelos
-- Optimización de selección de modelos por tarea
-- Detección de degradación de rendimiento
-- Recomendaciones de mejora
+### **1. Workflow Chain Optimization**
+- Automatic model performance tracking
+- Model selection optimization per task
+- Performance degradation detection
+- Improvement recommendations
 
-### **2. Análisis de Costos**
-- Comparación de eficiencia de costo entre modelos
-- Optimización de presupuesto
-- Análisis de ROI por modelo
-- Predicción de costos futuros
+### **2. Cost Analysis**
+- Cost efficiency comparison between models
+- Budget optimization
+- ROI analysis per model
+- Future cost prediction
 
-### **3. Aseguramiento de Calidad**
-- Monitoreo continuo de calidad de salida
-- Detección de anomalías en rendimiento
-- Alertas proactivas de degradación
-- Análisis de tendencias de calidad
+### **3. Quality Assurance**
+- Continuous monitoring of output quality
+- Performance anomaly detection
+- Proactive degradation alerts
+- Quality trend analysis
 
-### **4. Investigación y Desarrollo**
-- Benchmarking de nuevos modelos
-- Análisis comparativo de capacidades
-- Identificación de fortalezas y debilidades
-- Optimización de parámetros
+### **4. Research and Development**
+- New model benchmarking
+- Comparative capability analysis
+- Strength and weakness identification
+- Parameter optimization
 
-## 📈 Análisis Avanzado
+## 📈 Advanced Analysis
 
-### **Análisis de Tendencias**
-- **Regresión Lineal**: Cálculo de tendencias de rendimiento
-- **Detección de Anomalías**: Identificación de valores atípicos
-- **Predicción**: Pronóstico de rendimiento futuro
-- **Confianza Estadística**: Medición de confiabilidad
+### **Trend Analysis**
+- **Linear Regression** — Performance trend calculation
+- **Anomaly Detection** — Outlier identification
+- **Prediction** — Future performance forecasting
+- **Statistical Confidence** — Reliability measurement
 
-### **Comparación Estadística**
-- **Pruebas de Significancia**: Validación estadística de diferencias
-- **Intervalos de Confianza**: Rangos de confianza para métricas
-- **Tamaño de Muestra**: Optimización de muestreo
-- **Correlaciones**: Análisis de relaciones entre métricas
+### **Statistical Comparison**
+- **Significance Testing** — Statistical validation of differences
+- **Confidence Intervals** — Confidence ranges for metrics
+- **Sample Size** — Sampling optimization
+- **Correlations** — Analysis of relationships between metrics
 
-### **Optimización Automática**
-- **Selección de Modelos**: Algoritmos de optimización
-- **Balance de Métricas**: Optimización multi-objetivo
-- **Restricciones**: Consideración de límites y presupuestos
-- **Adaptación**: Ajuste automático basado en feedback
+### **Automatic Optimization**
+- **Model Selection** — Optimization algorithms
+- **Metric Balancing** — Multi-objective optimization
+- **Constraints** — Limits and budget consideration
+- **Adaptation** — Automatic adjustment based on feedback
 
-## 🔔 Sistema de Alertas
+## 🔔 Alert System
 
-### **Tipos de Alertas**
+### **Alert Types**
 
-#### **Alertas de Rendimiento**
-- Degradación de calidad
-- Aumento de tiempo de respuesta
-- Reducción de eficiencia de costo
-- Detección de anomalías
+#### **Performance Alerts**
+- Quality degradation
+- Response time increase
+- Cost efficiency reduction
+- Anomaly detection
 
-#### **Alertas de Tendencias**
-- Tendencias declinantes
-- Cambios significativos en patrones
-- Predicciones de problemas futuros
-- Recomendaciones de acción
+#### **Trend Alerts**
+- Declining trends
+- Significant pattern changes
+- Future problem predictions
+- Action recommendations
 
-#### **Alertas de Sistema**
-- Errores de configuración
-- Problemas de conectividad
-- Límites de uso excedidos
-- Fallos de integración
+#### **System Alerts**
+- Configuration errors
+- Connectivity issues
+- Usage limits exceeded
+- Integration failures
 
-### **Configuración de Alertas**
+### **Alert Configuration**
 
 ```python
-# Configurar umbrales de alerta
+# Configure alert thresholds
 config = get_ai_history_config()
 config.update_metric("quality_score", {
     "alert_thresholds": {
@@ -261,42 +263,42 @@ config.update_metric("quality_score", {
 })
 ```
 
-## 📊 Reportes y Exportación
+## 📊 Reports and Export
 
-### **Tipos de Reportes**
+### **Report Types**
 
-#### **Reportes de Rendimiento**
-- Resumen de rendimiento por modelo
-- Comparación entre modelos
-- Análisis de tendencias
-- Identificación de problemas
+#### **Performance Reports**
+- Performance summary per model
+- Comparison between models
+- Trend analysis
+- Problem identification
 
-#### **Reportes de Optimización**
-- Recomendaciones de mejora
-- Análisis de costos
-- Optimización de selección
-- Predicciones de rendimiento
+#### **Optimization Reports**
+- Improvement recommendations
+- Cost analysis
+- Selection optimization
+- Performance predictions
 
-#### **Reportes Executivos**
-- Resumen ejecutivo
-- Métricas clave
-- Tendencias principales
-- Recomendaciones estratégicas
+#### **Executive Reports**
+- Executive summary
+- Key metrics
+- Main trends
+- Strategic recommendations
 
-### **Formatos de Exportación**
-- **JSON**: Datos estructurados
-- **CSV**: Análisis en hojas de cálculo
-- **Excel**: Reportes formateados
-- **PDF**: Reportes ejecutivos
+### **Export Formats**
+- **JSON** — Structured data
+- **CSV** — Spreadsheet analysis
+- **Excel** — Formatted reports
+- **PDF** — Executive reports
 
-## 🚀 Integración con Workflow Chain Engine
+## 🚀 Workflow Chain Engine Integration
 
-### **Seguimiento Automático**
+### **Automatic Tracking**
 ```python
-# Integración automática con workflow chains
+# Automatic integration with workflow chains
 integration = get_integration_system()
 
-# El sistema automáticamente rastrea el rendimiento
+# System automatically tracks performance
 await integration.track_workflow_performance(
     workflow_id="chain_123",
     model_name="gpt-4",
@@ -309,36 +311,36 @@ await integration.track_workflow_performance(
 )
 ```
 
-### **Optimización Automática**
+### **Automatic Optimization**
 ```python
-# Optimización automática de selección de modelos
+# Automatic model selection optimization
 optimization = await integration.optimize_model_selection(workflow_engine)
-print(f"Optimizaciones aplicadas: {optimization['optimizations_applied']}")
+print(f"Optimizations applied: {optimization['optimizations_applied']}")
 ```
 
-## 📈 Métricas y KPIs
+## 📈 Metrics and KPIs
 
-### **Métricas de Sistema**
-- **Uptime**: Disponibilidad del sistema
-- **Throughput**: Número de análisis por minuto
-- **Latencia**: Tiempo de respuesta de análisis
-- **Precisión**: Exactitud de predicciones
+### **System Metrics**
+- **Uptime** — System availability
+- **Throughput** — Analysis per minute
+- **Latency** — Analysis response time
+- **Accuracy** — Prediction accuracy
 
-### **Métricas de Negocio**
-- **ROI**: Retorno de inversión por modelo
-- **Costo por Calidad**: Eficiencia de costo
-- **Tiempo de Optimización**: Velocidad de mejora
-- **Satisfacción**: Calidad percibida
+### **Business Metrics**
+- **ROI** — Return on investment per model
+- **Cost per Quality** — Cost efficiency
+- **Optimization Time** — Improvement speed
+- **Satisfaction** — Perceived quality
 
-## 🔧 Configuración Avanzada
+## 🔧 Advanced Configuration
 
-### **Personalización de Métricas**
+### **Metric Customization**
 ```python
-# Agregar métrica personalizada
+# Add custom metric
 config = get_ai_history_config()
 custom_metric = MetricConfiguration(
     name="custom_metric",
-    description="Métrica personalizada",
+    description="Custom metric",
     unit="score",
     min_value=0.0,
     max_value=1.0,
@@ -348,9 +350,9 @@ custom_metric = MetricConfiguration(
 config.add_metric(custom_metric)
 ```
 
-### **Configuración de Modelos**
+### **Model Configuration**
 ```python
-# Agregar modelo personalizado
+# Add custom model
 custom_model = ModelDefinition(
     name="custom-model",
     provider=ModelProvider.CUSTOM,
@@ -359,66 +361,70 @@ custom_model = ModelDefinition(
     context_length=4000,
     parameters="Custom",
     release_date="2024-01-01",
-    description="Modelo personalizado"
+    description="Custom model"
 )
 config.add_model(custom_model)
 ```
 
-## 🎯 Beneficios del Sistema
+## 🎯 System Benefits
 
-### **Para Desarrolladores**
-- **Visibilidad Completa**: Monitoreo detallado de rendimiento
-- **Optimización Automática**: Mejora continua sin intervención manual
-- **Debugging Eficiente**: Identificación rápida de problemas
-- **Integración Fácil**: APIs simples y documentación completa
+### **For Developers**
+- **Full Visibility** — Detailed performance monitoring
+- **Automatic Optimization** — Continuous improvement without manual intervention
+- **Efficient Debugging** — Rapid problem identification
+- **Easy Integration** — Simple APIs and complete documentation
 
-### **Para Organizaciones**
-- **Reducción de Costos**: Optimización automática de selección de modelos
-- **Mejora de Calidad**: Monitoreo continuo y alertas proactivas
-- **Toma de Decisiones**: Datos objetivos para decisiones estratégicas
-- **Ventaja Competitiva**: Optimización continua y mejora automática
+### **For Organizations**
+- **Cost Reduction** — Automatic model selection optimization
+- **Quality Improvement** — Continuous monitoring and proactive alerts
+- **Decision Making** — Objective data for strategic decisions
+- **Competitive Advantage** — Continuous optimization and automatic improvement
 
-### **Para Investigadores**
-- **Análisis Comparativo**: Benchmarking objetivo entre modelos
-- **Datos Históricos**: Acceso a datos de rendimiento a largo plazo
-- **Análisis Estadístico**: Herramientas avanzadas de análisis
-- **Exportación Flexible**: Múltiples formatos para análisis
+### **For Researchers**
+- **Comparative Analysis** — Objective benchmarking between models
+- **Historical Data** — Access to long-term performance data
+- **Statistical Analysis** — Advanced analysis tools
+- **Flexible Export** — Multiple formats for analysis
 
-## 🚀 Próximas Mejoras
+## 🚀 Upcoming Improvements
 
-### **Funcionalidades Planificadas**
-1. **Machine Learning**: Modelos de predicción más avanzados
-2. **Análisis Multimodal**: Soporte para modelos de imagen y audio
-3. **Integración Cloud**: Sincronización con servicios en la nube
-4. **Dashboard Web**: Interfaz visual para monitoreo
-5. **Alertas Inteligentes**: IA para generación de alertas
+### **Planned Features**
+1. **Machine Learning** — More advanced prediction models
+2. **Multimodal Analysis** — Support for image and audio models
+3. **Cloud Integration** — Synchronization with cloud services
+4. **Web Dashboard** — Visual monitoring interface
+5. **Smart Alerts** — AI-generated alerts
 
-### **Optimizaciones Técnicas**
-1. **Caché Distribuido**: Mejora de rendimiento
-2. **Procesamiento Paralelo**: Análisis más rápido
-3. **Compresión de Datos**: Optimización de almacenamiento
-4. **API GraphQL**: Consultas más eficientes
+### **Technical Optimizations**
+1. **Distributed Cache** — Performance improvement
+2. **Parallel Processing** — Faster analysis
+3. **Data Compression** — Storage optimization
+4. **GraphQL API** — More efficient queries
 
-## 📚 Documentación Adicional
+## 📚 Additional Documentation
 
-### **Guías de Usuario**
-- [Guía de Inicio Rápido](docs/quick-start.md)
-- [Configuración Avanzada](docs/advanced-config.md)
+### **User Guides**
+- [Quick Start Guide](docs/quick-start.md)
+- [Advanced Configuration](docs/advanced-config.md)
 - [API Reference](docs/api-reference.md)
-- [Casos de Uso](docs/use-cases.md)
+- [Use Cases](docs/use-cases.md)
 
-### **Ejemplos de Código**
-- [Ejemplos Básicos](examples/basic-usage.py)
-- [Integración con Workflow](examples/workflow-integration.py)
-- [Análisis Personalizado](examples/custom-analysis.py)
-- [Optimización Avanzada](examples/advanced-optimization.py)
+### **Code Examples**
+- [Basic Examples](examples/basic-usage.py)
+- [Workflow Integration](examples/workflow-integration.py)
+- [Custom Analysis](examples/custom-analysis.py)
+- [Advanced Optimization](examples/advanced-optimization.py)
 
 ---
 
-## 🎉 Conclusión
+## 🎉 Conclusion
 
-El **AI History Analyzer and Model Comparison System** representa una solución completa y avanzada para el monitoreo, análisis y optimización de modelos de IA. Con capacidades de análisis histórico, comparación objetiva, y optimización automática, este sistema proporciona las herramientas necesarias para maximizar el rendimiento y minimizar los costos en el uso de modelos de IA.
+The **AI History Analyzer and Model Comparison System** represents a complete and advanced solution for monitoring, analyzing, and optimizing AI models. With capabilities for historical analysis, objective comparison, and automatic optimization, this system provides the necessary tools to maximize performance and minimize costs in AI model usage.
 
-La integración seamless con el Workflow Chain Engine y las APIs REST completas hacen que este sistema sea ideal tanto para desarrolladores individuales como para organizaciones que buscan optimizar su uso de IA.
+Seamless integration with the Workflow Chain Engine and comprehensive REST APIs make this system ideal for both individual developers and organizations looking to optimize their AI usage.
 
-**¡Un sistema de análisis de IA de clase mundial para la era de la inteligencia artificial!**
+**A world-class AI analysis system for the intelligence era!**
+
+---
+
+[← Back to Main README](../README.md)

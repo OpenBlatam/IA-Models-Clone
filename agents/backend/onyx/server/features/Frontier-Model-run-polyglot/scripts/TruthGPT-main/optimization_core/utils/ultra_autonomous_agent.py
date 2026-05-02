@@ -18,7 +18,7 @@ import copy
 import time
 import logging
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from enum import Enum
 import json
 import pickle
@@ -75,34 +75,31 @@ class DecisionStrategy(Enum):
     CONSERVATIVE = "conservative"
     AGGRESSIVE = "aggressive"
 
-@dataclass
-class Goal:
+class Goal(BaseModel):
     """Represents an agent goal."""
     goal_id: str
     description: str
     priority: GoalPriority
     deadline: Optional[float] = None
-    success_criteria: List[str] = field(default_factory=list)
+    success_criteria: List[str] = Field(default_factory=list)
     progress: float = 0.0
     status: str = "pending"
-    created_at: float = field(default_factory=time.time)
-    updated_at: float = field(default_factory=time.time)
+    created_at: float = Field(default_factory=time.time)
+    updated_at: float = Field(default_factory=time.time)
 
-@dataclass
-class Action:
+class Action(BaseModel):
     """Represents an agent action."""
     action_id: str
     action_type: ActionType
     description: str
-    parameters: Dict[str, Any] = field(default_factory=dict)
+    parameters: Dict[str, Any] = Field(default_factory=dict)
     expected_outcome: str = ""
     confidence: float = 0.5
     execution_time: float = 0.0
     status: str = "pending"
-    created_at: float = field(default_factory=time.time)
+    created_at: float = Field(default_factory=time.time)
 
-@dataclass
-class AgentConfig:
+class AgentConfig(BaseModel):
     """Configuration for autonomous AI agent."""
     agent_name: str = "TruthGPTAgent"
     max_concurrent_goals: int = 5
@@ -950,3 +947,4 @@ def example_autonomous_agent():
 if __name__ == "__main__":
     # Run example
     example_autonomous_agent()
+

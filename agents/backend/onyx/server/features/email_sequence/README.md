@@ -352,33 +352,13 @@ flake8 .
 mypy .
 ```
 
-## 📄 License
+---
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
-
-For support and questions:
-- Create an issue on GitHub
-- Check the documentation
-- Review the API documentation at `/docs`
-
-## 🔄 Changelog
-
-### Version 2.0.0
-- Complete FastAPI rewrite
-- Async/await architecture
-- Redis caching implementation
-- Comprehensive monitoring
-- Enhanced error handling
-- Performance optimizations
-
-### Version 1.0.0
-- Initial release
-- Basic email sequence functionality
-- LangChain integration
-- Simple analytics
-
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>
 
 
 

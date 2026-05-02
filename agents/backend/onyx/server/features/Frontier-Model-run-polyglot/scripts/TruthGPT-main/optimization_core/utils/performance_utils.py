@@ -2,7 +2,7 @@
 Performance utilities for TruthGPT Optimization Core
 Provides benchmarking, profiling, and optimization utilities
 
-This module re-exports functionality from core.performance_utils for backward compatibility.
+This module re-exports functionality from modules.base.core_system.core.performance_utils for backward compatibility.
 New code should import directly from optimization_core.core.performance_utils.
 """
 
@@ -26,15 +26,16 @@ except ImportError:
     import torch.nn as nn
     import logging
     from typing import Dict, Any, Optional, List, Tuple, Union, Callable
-    from dataclasses import dataclass
     from contextlib import contextmanager
     import psutil
     import gc
     
     logger = logging.getLogger(__name__)
 
-@dataclass
-class PerformanceMetrics:
+from .base import BaseOptimizationModel
+
+
+class PerformanceMetrics(BaseOptimizationModel):
     """Performance metrics container."""
     inference_time: float
     memory_usage: float
@@ -43,9 +44,10 @@ class PerformanceMetrics:
     gpu_utilization: Optional[float] = None
     cpu_utilization: Optional[float] = None
 
-@dataclass
-class BenchmarkResult:
+
+class BenchmarkResult(BaseOptimizationModel):
     """Benchmark result container."""
+
     model_name: str
     metrics: PerformanceMetrics
     configuration: Dict[str, Any]

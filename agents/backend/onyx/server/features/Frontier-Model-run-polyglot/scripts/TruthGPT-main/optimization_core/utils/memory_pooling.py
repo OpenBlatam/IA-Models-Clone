@@ -302,3 +302,4 @@ def get_global_activation_cache() -> ActivationCache:
     if _global_activation_cache is None:
         _global_activation_cache = ActivationCache()
     return _global_activation_cache
+

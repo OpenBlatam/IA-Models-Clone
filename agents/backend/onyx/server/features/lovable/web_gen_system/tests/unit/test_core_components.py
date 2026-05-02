@@ -1,6 +1,6 @@
 import unittest
-from agents.backend.onyx.server.features.lovable.web_gen_system.core.event_bus import EventBus
-from agents.backend.onyx.server.features.lovable.web_gen_system.core.memory import SharedMemory
+from ...core.event_bus import EventBus
+from ...core.memory import SharedMemory
 
 class TestCoreComponents(unittest.TestCase):
     def setUp(self):

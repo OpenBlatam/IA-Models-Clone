@@ -1,247 +1,252 @@
-# Addition Removal AI - Sistema IA de Adiciones y Eliminaciones
+# Addition Removal AI
 
-## 🚀 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema inteligente de IA especializado en gestionar adiciones y eliminaciones de contenido, datos o elementos. Utiliza modelos de lenguaje avanzados para entender el contexto y realizar modificaciones precisas y coherentes.
+## 🚀 Description
 
-## ✨ Características Principales
+Intelligent AI system specialized in managing content, data, or element additions and removals. It uses advanced language models to understand context and perform precise and coherent modifications.
 
-### Capacidades del Sistema
+## ✨ Key Features
 
-- **🤖 IA Integrada**: Integración con OpenAI y LangChain para análisis inteligente
-- **Análisis Inteligente de Contexto**: Comprende el contexto antes de realizar modificaciones usando modelos de IA
-- **Adiciones Contextuales**: Agrega contenido relevante y coherente con posicionamiento inteligente
-- **Eliminaciones Selectivas**: Identifica y elimina elementos específicos usando IA
-- **Validación Semántica**: Verifica coherencia semántica y temática con modelos de IA
-- **Múltiples Formatos**: Soporta Markdown, JSON, HTML, código y texto plano
-- **Operaciones Batch**: Procesa múltiples adiciones/eliminaciones en una sola operación
-- **Sistema de Cache**: Optimiza rendimiento con cache LRU para análisis repetitivos
-- **Historial de Cambios**: Mantiene un registro completo de todas las modificaciones
-- **Posicionamiento Inteligente**: Detecta automáticamente la mejor posición para agregar contenido
+### System Capabilities
 
-### Casos de Uso
+- **🤖 Integrated AI**: Integration with OpenAI and LangChain for intelligent analysis
+- **Context-Aware Analysis**: Understands context before making modifications using AI models
+- **Contextual Additions**: Adds relevant and coherent content with intelligent positioning
+- **Selective Removals**: Identifies and removes specific elements using AI
+- **Semantic Validation**: Verifies semantic and thematic coherence with AI models
+- **Multiple Formats**: Supports Markdown, JSON, HTML, code, and plain text
+- **Batch Operations**: Processes multiple additions/removals in a single operation
+- **Cache System**: Optimizes performance with LRU cache for repetitive analyses
+- **Change History**: Maintains a full record of all modifications
+- **Intelligent Positioning**: Automatically detects the best position to add content
 
-- Edición de documentos y contenido
-- Gestión de bases de datos
-- Modificación de código fuente
-- Actualización de configuraciones
-- Limpieza y optimización de datos
-- Gestión de listas y colecciones
+### Use Cases
 
-## 📦 Instalación
+- Document and content editing
+- Database management
+- Source code modification
+- Configuration updates
+- Data cleaning and optimization
+- List and collection management
 
-### Prerrequisitos
+## 📦 Installation
+
+### Prerequisites
 
 - Python 3.8+
 - pip
-- (Opcional) GPU NVIDIA para procesamiento acelerado
+- (Optional) NVIDIA GPU for accelerated processing
 
-### Instalación Rápida
+### Quick Install
 
 ```bash
 cd addition_removal_ai
 pip install -r requirements.txt
 ```
 
-### Configuración
+### Configuration
 
 ```bash
-# Copiar archivo de configuración
+# Copy configuration file
 cp config/config.example.yaml config/config.yaml
 
-# Editar configuración según necesidades
+# Edit configuration as needed
 nano config/config.yaml
 ```
 
-## 🚀 Uso
+## 🚀 Usage
 
-### Uso Básico
+### Basic Usage
 
 ```python
 from addition_removal_ai.core.editor import ContentEditor
 
 editor = ContentEditor()
 
-# Agregar contenido
+# Add content
 result = editor.add(
-    content="Texto original...",
-    addition="Nuevo párrafo a agregar",
+    content="Original text...",
+    addition="New paragraph to add",
     position="end"
 )
 
-# Eliminar contenido
+# Remove content
 result = editor.remove(
-    content="Texto con elementos a eliminar...",
-    pattern="elemento específico"
+    content="Text with elements to remove...",
+    pattern="specific element"
 )
 ```
 
-### API REST
+### REST API
 
 ```bash
-# Iniciar servidor
+# Start server
 python main.py --host 0.0.0.0 --port 8010
 
-# Agregar contenido
+# Add content
 curl -X POST http://localhost:8010/api/v1/add \
   -H "Content-Type: application/json" \
   -d '{
-    "content": "Texto original",
-    "addition": "Nuevo contenido",
+    "content": "Original text",
+    "addition": "New content",
     "position": "end"
   }'
 
-# Eliminar contenido
+# Remove content
 curl -X POST http://localhost:8010/api/v1/remove \
   -H "Content-Type: application/json" \
   -d '{
-    "content": "Texto con elementos",
-    "pattern": "elemento a eliminar"
+    "content": "Text with elements",
+    "pattern": "element to remove"
   }'
 
-# Operación batch - Agregar múltiples elementos
+# Batch operation - Add multiple elements
 curl -X POST http://localhost:8010/api/v1/batch/add \
   -H "Content-Type: application/json" \
   -d '{
-    "content": "Texto original",
+    "content": "Original text",
     "additions": [
-      {"addition": "Primer elemento", "position": "start"},
-      {"addition": "Segundo elemento", "position": "end"}
+      {"addition": "First element", "position": "start"},
+      {"addition": "Second element", "position": "end"}
     ]
   }'
 
-# Analizar contenido sin modificar
+# Analyze content without modifying
 curl -X POST http://localhost:8010/api/v1/analyze \
   -H "Content-Type: application/json" \
   -d '{
-    "content": "Texto a analizar"
+    "content": "Text to analyze"
   }'
 ```
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ```
 addition_removal_ai/
-├── core/                  # Módulos principales
-│   ├── editor.py          # Editor de contenido principal
-│   ├── analyzer.py        # Análisis de contexto con cache
-│   ├── validator.py       # Validación de cambios
-│   ├── history.py         # Gestión de historial
-│   ├── ai_engine.py       # Motor de IA (OpenAI/LangChain)
-│   ├── formatters.py      # Soporte para múltiples formatos
-│   └── cache.py           # Sistema de cache LRU
-├── api/                   # API REST
-│   ├── server.py          # Servidor FastAPI
-│   └── routes.py          # Endpoints (incluye batch)
-├── config/                # Configuración
-│   ├── config_manager.py  # Gestor de configuración
-│   └── config.yaml       # Archivo de configuración
-├── utils/                 # Utilidades
-└── tests/                 # Pruebas
+├── core/                  # Main modules
+│   ├── editor.py          # Main content editor
+│   ├── analyzer.py        # Context analysis with cache
+│   ├── validator.py       # Change validation
+│   ├── history.py         # History management
+│   ├── ai_engine.py       # AI Engine (OpenAI/LangChain)
+│   ├── formatters.py      # Multi-format support
+│   └── cache.py           # LRU Cache system
+├── api/                   # REST API
+│   ├── server.py          # FastAPI Server
+│   └── routes.py          # Endpoints (includes batch)
+├── config/                # Configuration
+│   ├── config_manager.py  # Configuration manager
+│   └── config.yaml       # Configuration file
+├── utils/                 # Utilities
+└── tests/                 # Tests
 ```
 
-### Nuevas Funcionalidades
+### New Features
 
-- **AI Engine**: Integración completa con OpenAI y LangChain
-- **Formatters**: Soporte nativo para Markdown, JSON, HTML
-- **Cache System**: Optimización de rendimiento con cache inteligente
-- **Batch Operations**: Procesamiento de múltiples operaciones
-- **Semantic Validation**: Validación de coherencia semántica con IA
-- **ML Learning**: Sistema de aprendizaje automático mejorado
-- **Sync Manager**: Sistema de sincronización entre sistemas
-- **Business Rules**: Validación de reglas de negocio personalizables
-- **Audit System**: Sistema de auditoría avanzado con reportes
-- **Advanced Comparison**: Comparación detallada de versiones con análisis
-- **Quality Analyzer**: Análisis completo de calidad de contenido
-- **Summarizer**: Generación automática de resúmenes
-- **Semantic Search**: Búsqueda semántica con TF-IDF
-- **Translator**: Traducción automática multiidioma
-- **Spell Checker**: Corrección ortográfica avanzada
-- **Content Validator**: Validación de contenido mejorada con niveles
-- **Sentiment Analyzer**: Análisis avanzado de sentimientos
-- **Entity Extractor**: Extracción de entidades nombradas
-- **Plagiarism Detector**: Detección de plagio con fingerprints
-- **Topic Modeler**: Modelado y extracción de temas
-- **Complexity Analyzer**: Análisis de complejidad de texto (léxica, sintáctica, semántica)
-- **Content Generator**: Generación automática de contenido (introducciones, conclusiones, expansión)
-- **Redundancy Analyzer**: Análisis de redundancia y repeticiones
-- **Structure Analyzer**: Análisis de estructura de documentos (secciones, headers, listas, links)
-- **Tone Analyzer**: Análisis de tono/voz (formal, informal, profesional, casual, amigable, autoritario)
-- **Coherence Analyzer**: Análisis de coherencia textual (transiciones, referencias, flujo temático)
-- **Accessibility Analyzer**: Análisis de accesibilidad (headers, imágenes, links, estructura)
-- **SEO Analyzer**: Análisis SEO (keywords, meta descripción, headers, links, densidad)
-- **Advanced Readability Analyzer**: Análisis avanzado de legibilidad (Flesch, Gunning Fog, SMOG, etc.)
-- **Fluency Analyzer**: Análisis de fluidez (variación, conectores, repetición, ritmo)
-- **Vocabulary Analyzer**: Análisis de vocabulario (diversidad, complejidad, frecuencia, palabras técnicas)
-- **Format Analyzer**: Análisis de formato (espacios, puntuación, mayúsculas, consistencia)
-- **Length Optimizer**: Análisis y optimización de longitud según tipo de contenido
-- **Improvement Recommender**: Sistema de recomendaciones de mejora inteligentes
-- **Engagement Analyzer**: Análisis de engagement (palabras de acción, emocionales, CTAs, preguntas)
-- **Content Metrics**: Sistema completo de métricas de contenido (básicas, estructura, legibilidad, formato)
-- **Performance Analyzer**: Análisis de performance de operaciones (tiempo de ejecución, memoria)
-- **Trend Analyzer**: Análisis de tendencias temporales y predicción de tendencias futuras
-- **Competitor Analyzer**: Análisis de competencia y comparación con competidores
-- **ROI Analyzer**: Análisis de ROI (Return on Investment) y recomendaciones basadas en ROI
-- **Audience Analyzer**: Análisis de ajuste de contenido a audiencia objetivo
-- **Conversion Analyzer**: Análisis de potencial de conversión del contenido
-- **A/B Testing**: Sistema completo de pruebas A/B con gestión de variantes y resultados
-- **Feedback Analyzer**: Sistema de análisis de feedback y comentarios de usuarios
-- **Personalization Engine**: Motor de personalización de contenido basado en perfil de usuario
-- **Satisfaction Analyzer**: Sistema de análisis de satisfacción y métricas de satisfacción
-- **Behavior Analyzer**: Sistema de análisis de comportamiento del usuario y patrones de uso
-- **Retention Analyzer**: Sistema de análisis de retención de usuarios y cohortes
-- **Virality Analyzer**: Sistema de análisis de viralidad y compartidos de contenido
-- **Predictive Content Analyzer**: Sistema de análisis predictivo de contenido y métricas futuras
-- **Multilanguage Analyzer**: Sistema de análisis de contenido multiidioma y detección de idiomas
-- **Generative Content Analyzer**: Sistema de análisis de contenido generativo y detección de contenido AI
-- **Realtime Analyzer**: Sistema de análisis de contenido en tiempo real con eventos y métricas
-- **Multimedia Analyzer**: Sistema de análisis de contenido multimedia (imágenes, videos, audio, links)
-- **Adaptive Content Analyzer**: Sistema de análisis de contenido adaptativo con reglas de adaptación
-- **Interactive Content Analyzer**: Sistema de análisis de contenido interactivo y potencial de engagement
-- **Contextual Analyzer**: Sistema de análisis contextual de contenido y relevancia
-- **Narrative Analyzer**: Sistema de análisis de contenido narrativo y flujo de historia
-- **Emotional Content Analyzer**: Sistema de análisis de contenido emocional y arco emocional
-- **Persuasive Content Analyzer**: Sistema de análisis de contenido persuasivo y técnicas de persuasión
-- **Educational Content Analyzer**: Sistema de análisis de contenido educativo y objetivos de aprendizaje
-- **Technical Content Analyzer**: Sistema de análisis de contenido técnico y complejidad técnica
-- **Creative Content Analyzer**: Sistema de análisis de contenido creativo y nivel de creatividad
-- **Scientific Content Analyzer**: Sistema de análisis de contenido científico y rigor científico
-- **Legal Content Analyzer**: Sistema de análisis de contenido legal y estructura legal
-- **Financial Content Analyzer**: Sistema de análisis de contenido financiero y precisión financiera
-- **Journalistic Content Analyzer**: Sistema de análisis de contenido periodístico y calidad periodística
-- **Medical Content Analyzer**: Sistema de análisis de contenido médico y seguridad médica
-- **Marketing Content Analyzer**: Sistema de análisis de contenido de marketing y efectividad
-- **Sales Content Analyzer**: Sistema de análisis de contenido de ventas y potencial de ventas
-- **HR Content Analyzer**: Sistema de análisis de contenido de recursos humanos y completitud
-- **Support Content Analyzer**: Sistema de análisis de contenido de soporte técnico y calidad
-- **Documentation Content Analyzer**: Sistema de análisis de contenido de documentación técnica y estructura
-- **Blog Content Analyzer**: Sistema de análisis de contenido de blog y engagement
-- **Email Marketing Analyzer**: Sistema de análisis de contenido de email marketing y efectividad
-- **Social Media Analyzer**: Sistema de análisis de contenido de redes sociales y viralidad
-- **E-Learning Content Analyzer**: Sistema de análisis de contenido de e-learning y calidad
-- **Podcast Content Analyzer**: Sistema de análisis de contenido de podcast/audio y estructura
-- **Video Content Analyzer**: Sistema de análisis de contenido de video/YouTube y optimización
-- **News Content Analyzer**: Sistema de análisis de contenido de noticias y credibilidad
-- **Review Content Analyzer**: Sistema de análisis de contenido de reseñas y utilidad
-- **Landing Page Analyzer**: Sistema de análisis de contenido de landing pages y conversión
-- **FAQ Content Analyzer**: Sistema de análisis de contenido de FAQ y completitud
-- **Newsletter Content Analyzer**: Sistema de análisis de contenido de newsletters y efectividad
-- **Whitepaper Content Analyzer**: Sistema de análisis de contenido de whitepapers y calidad
-- **Case Study Analyzer**: Sistema de análisis de contenido de casos de estudio y estructura
-- **Proposal Content Analyzer**: Sistema de análisis de contenido de propuestas y completitud
-- **Report Content Analyzer**: Sistema de análisis de contenido de informes y calidad
+- **AI Engine**: Full integration with OpenAI and LangChain
+- **Formatters**: Native support for Markdown, JSON, HTML
+- **Cache System**: Performance optimization with intelligent cache
+- **Batch Operations**: Multiple operations processing
+- **Semantic Validation**: Semantic coherence validation with AI
+- **ML Learning**: Enhanced machine learning system
+- **Sync Manager**: Synchronization system between systems
+- **Business Rules**: Customizable business rule validation
+- **Audit System**: Advanced audit system with reporting
+- **Advanced Comparison**: Detailed version comparison with analysis
+- **Quality Analyzer**: Complete content quality analysis
+- **Summarizer**: Automatic summary generation
+- **Semantic Search**: Semantic search with TF-IDF
+- **Translator**: Automatic multi-language translation
+- **Spell Checker**: Advanced spell correction
+- **Content Validator**: Enhanced content validation with levels
+- **Sentiment Analyzer**: Advanced sentiment analysis
+- **Entity Extractor**: Named entity extraction
+- **Plagiarism Detector**: Plagiarism detection with fingerprints
+- **Topic Modeler**: Topic modeling and extraction
+- **Complexity Analyzer**: Text complexity analysis (lexical, syntactic, semantic)
+- **Content Generator**: Automatic content generation (intros, conclusions, expansion)
+- **Redundancy Analyzer**: Redundancy and repetition analysis
+- **Structure Analyzer**: Document structure analysis (sections, headers, lists, links)
+- **Tone Analyzer**: Tone/voice analysis (formal, informal, professional, casual, friendly, authoritative)
+- **Coherence Analyzer**: Textual coherence analysis (transitions, references, thematic flow)
+- **Accessibility Analyzer**: Accessibility analysis (headers, images, links, structure)
+- **SEO Analyzer**: SEO analysis (keywords, meta description, headers, links, density)
+- **Advanced Readability Analyzer**: Advanced readability analysis (Flesch, Gunning Fog, SMOG, etc.)
+- **Fluency Analyzer**: Fluency analysis (variation, connectors, repetition, rhythm)
+- **Vocabulary Analyzer**: Vocabulary analysis (diversity, complexity, frequency, technical words)
+- **Format Analyzer**: Format analysis (spacing, punctuation, capitalization, consistency)
+- **Length Optimizer**: Length analysis and optimization by content type
+- **Improvement Recommender**: Intelligent improvement recommendation system
+- **Engagement Analyzer**: Engagement analysis (action words, emotional, CTAs, questions)
+- **Content Metrics**: Complete content metrics system (basic, structure, readability, format)
+- **Performance Analyzer**: Operation performance analysis (execution time, memory)
+- **Trend Analyzer**: Temporal trend analysis and future trend prediction
+- **Competitor Analyzer**: Competitor analysis and comparison
+- **ROI Analyzer**: ROI (Return on Investment) analysis and ROI-based recommendations
+- **Audience Analyzer**: Content adjustment analysis for target audience
+- **Conversion Analyzer**: Content conversion potential analysis
+- **A/B Testing**: Complete A/B testing system with variant management and results
+- **Feedback Analyzer**: User feedback and comment analysis system
+- **Personalization Engine**: Content personalization engine based on user profile
+- **Satisfaction Analyzer**: Satisfaction analysis system and satisfaction metrics
+- **Behavior Analyzer**: User behavior analysis system and usage patterns
+- **Retention Analyzer**: User retention analysis system and cohorts
+- **Virality Analyzer**: Virality analysis system and content shares
+- **Predictive Content Analyzer**: Predictive content analysis system and future metrics
+- **Multilanguage Analyzer**: Multi-language content analysis system and language detection
+- **Generative Content Analyzer**: Generative content analysis system and AI content detection
+- **Realtime Analyzer**: Real-time content analysis system with events and metrics
+- **Multimedia Analyzer**: Multimedia content analysis system (images, videos, audio, links)
+- **Adaptive Content Analyzer**: Adaptive content analysis system with adaptation rules
+- **Interactive Content Analyzer**: Interactive content analysis system and engagement potential
+- **Contextual Analyzer**: Contextual content analysis system and relevance
+- **Narrative Analyzer**: Narrative content analysis system and story flow
+- **Emotional Content Analyzer**: Emotional content analysis system and emotional arc
+- **Persuasive Content Analyzer**: Persuasive content analysis system and persuasion techniques
+- **Educational Content Analyzer**: Educational content analysis system and learning objectives
+- **Technical Content Analyzer**: Technical content analysis system and technical complexity
+- **Creative Content Analyzer**: Creative content analysis system and creativity level
+- **Scientific Content Analyzer**: Scientific content analysis system and scientific rigor
+- **Legal Content Analyzer**: Legal content analysis system and legal structure
+- **Financial Content Analyzer**: Financial content analysis system and financial accuracy
+- **Journalistic Content Analyzer**: Journalistic content analysis system and journalistic quality
+- **Medical Content Analyzer**: Medical content analysis system and medical safety
+- **Marketing Content Analyzer**: Marketing content analysis system and effectiveness
+- **Sales Content Analyzer**: Sales content analysis system and sales potential
+- **HR Content Analyzer**: Human resources content analysis system and completeness
+- **Support Content Analyzer**: Technical support content analysis system and quality
+- **Documentation Content Analyzer**: Technical documentation content analysis system and structure
+- **Blog Content Analyzer**: Blog content analysis system and engagement
+- **Email Marketing Analyzer**: Email marketing content analysis system and effectiveness
+- **Social Media Analyzer**: Social media content analysis system and virality
+- **E-Learning Content Analyzer**: E-learning content analysis system and quality
+- **Podcast Content Analyzer**: Podcast/audio content analysis system and structure
+- **Video Content Analyzer**: Video/YouTube content analysis system and optimization
+- **News Content Analyzer**: News content analysis system and credibility
+- **Review Content Analyzer**: Review content analysis system and utility
+- **Landing Page Analyzer**: Landing page content analysis system and conversion
+- **FAQ Content Analyzer**: FAQ content analysis system and completeness
+- **Newsletter Content Analyzer**: Newsletter content analysis system and effectiveness
+- **Whitepaper Content Analyzer**: Whitepaper content analysis system and quality
+- **Case Study Analyzer**: Case study content analysis system and structure
+- **Proposal Content Analyzer**: Proposal content analysis system and completeness
+- **Report Content Analyzer**: Report content analysis system and quality
 
-## 📖 Documentación
+## 📖 Documentation
 
-- [Guía de Inicio Rápido](docs/QUICK_START.md)
+- [Quick Start Guide](docs/QUICK_START.md)
 - [API Reference](docs/API_REFERENCE.md)
-- [Ejemplos](docs/EXAMPLES.md)
+- [Examples](docs/EXAMPLES.md)
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-Las contribuciones son bienvenidas. Por favor, lee [CONTRIBUTING.md](../CONTRIBUTING.md) para más detalles.
+Contributions are welcome. Please read [CONTRIBUTING.md](../CONTRIBUTING.md) for more details.
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto es parte de Blatam Academy.
+Proprietary - Blatam Academy
 
+---
+
+[← Back to Main README](../README.md)

@@ -23,7 +23,7 @@ import math
 # Import meta-learning optimization components
 import sys
 sys.path.append('..')
-from core.advanced_optimizations import (
+from modules.base.core_system.core.advanced_optimizations import (
     MetaLearningOptimizer, AdvancedOptimizationEngine, OptimizationTechnique,
     OptimizationMetrics, create_meta_learning_optimizer
 )
@@ -932,3 +932,4 @@ if __name__ == '__main__':
             print(f"  - {test}: {traceback}")
     
     print(f"\n{'='*60}")
+

@@ -1,167 +1,133 @@
 """
-Feed-Forward module for TruthGPT Optimization Core
-Contains feed-forward network implementations with various activation functions
+Feed-Forward Module for TruthGPT Optimization Core
+===================================================
+
+Unified architecture providing:
+- layers: Low-level FFN implementations (SwiGLU, GeGLU, ReGLU, etc.)
+- experts: Modular expert definitions (Base, Specialized)
+- routing: Token-level routing (BaseRouter, TokenLevelRouter)
+- blocks: High-level composable blocks (MoEBlock)
+- systems: Production PiMoE systems
+- next_generation_ai: Experimental NAS, Quantum AI
 """
 
 from __future__ import annotations
 import logging
+from optimization_core.utils.dependency_manager import resolve_lazy_import
 
 _logger = logging.getLogger(__name__)
 
-# Core feed-forward
-try:
-    from .feed_forward import (
-        FeedForward,
-        GatedFeedForward,
-        SwiGLU,
-        create_feed_forward
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import feed_forward: {e}")
+_LAZY_IMPORTS = {
+    # ── NEW UNIFIED ARCHITECTURE ─────────────────────────────────────
+    # Layers (GLU variants)
+    'FeedForwardBase': '.layers.ffn',
+    'FeedForward': '.layers.ffn',
+    'GatedFeedForward': '.layers.ffn',
+    'SwiGLU': '.swiglu',
+    'SwigluMLP': '.swiglu',
+    'ReGLU': '.layers.ffn',
+    'GeGLU': '.layers.ffn',
+    'create_feed_forward': '.layers.ffn',
 
-# PiMoE router
-try:
-    from .pimoe_router import (
-        PiMoESystem,
-        TokenLevelRouter,
-        PiMoEExpert,
-        ExpertType,
-        RoutingDecision,
-        create_pimoe_system
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import pimoe_router: {e}")
+    # Experts
+    'BaseExpert': '.experts.base',
+    'ExpertType': '.experts.base',
+    'SpecializedExpert': '.experts.specialized',
 
-# Enhanced PiMoE integration
-try:
-    from .enhanced_pimoe_integration import (
-        EnhancedPiMoEIntegration,
-        AdaptivePiMoE,
-        OptimizationMetrics,
-        create_enhanced_pimoe_integration
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import enhanced_pimoe_integration: {e}")
+    # Routing
+    'BaseRouter': '.routing.base',
+    'RoutingResult': '.routing.base',
+    'TokenLevelRouter': '.routing.token_router',
 
-# Advanced PiMoE routing
-try:
-    from .advanced_pimoe_routing import (
-        AdvancedPiMoESystem,
-        RoutingStrategy,
-        AdvancedRoutingConfig,
-        AttentionBasedRouter,
-        HierarchicalRouter,
-        DynamicExpertScaler,
-        CrossExpertCommunicator,
-        NeuralArchitectureSearchRouter,
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import advanced_pimoe_routing: {e}")
+    # Blocks
+    'MoEBlock': '.blocks.moe_block',
 
-# Performance optimizer
-try:
-    from .pimoe_performance_optimizer import (
-        PiMoEPerformanceOptimizer,
-        PerformanceConfig,
-        OptimizationLevel,
-        MemoryOptimizer,
-        ComputationalOptimizer,
-        ParallelProcessor,
-        CacheManager,
-        HardwareOptimizer,
-        create_performance_optimizer
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import pimoe_performance_optimizer: {e}")
+    # ── LEGACY / BACKWARD COMPAT (still functional) ─────────────────
+    # Core (legacy unified engine)
+    'ModularFeedForward': '.core.feed_forward',
+    'AdaptiveFeedForward': '.core.feed_forward',
+    'create_swiglu': '.core.feed_forward',
+    'create_gated_ffn': '.core.feed_forward',
 
-# Production PiMoE system
-try:
-    from .production_pimoe_system import (
-        ProductionPiMoESystem,
-        ProductionConfig,
-        ProductionMode,
-        ProductionLogger,
-        ProductionMonitor,
-        ProductionErrorHandler,
-        ProductionRequestQueue,
-        create_production_pimoe_system,
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import production_pimoe_system: {e}")
+    # Enhanced PiMoE integration
+    'EnhancedPiMoEIntegration': '.core.enhanced_pimoe_integration',
+    'AdaptivePiMoE': '.core.enhanced_pimoe_integration',
+    'OptimizationMetrics': '.core.enhanced_pimoe_integration',
+    'create_enhanced_pimoe_integration': '.core.enhanced_pimoe_integration',
 
-# Production API server
-try:
-    from .production_api_server import (
-        ProductionAPIServer,
-        PiMoERequest,
-        PiMoEResponse,
-        HealthResponse,
-        MetricsResponse,
-        WebSocketMessage,
-        create_production_api_server,
-        run_production_api_demo
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import production_api_server: {e}")
+    # Base/Core refactored protocols
+    'SystemConfig': '.core.refactored_pimoe_base',
+    'LoggerProtocol': '.core.refactored_pimoe_base',
+    'MonitorProtocol': '.core.refactored_pimoe_base',
+    'ErrorHandlerProtocol': '.core.refactored_pimoe_base',
+    'RequestQueueProtocol': '.core.refactored_pimoe_base',
+    'PiMoEProcessorProtocol': '.core.refactored_pimoe_base',
+    'BaseService': '.core.refactored_pimoe_base',
+    'BaseConfig': '.core.refactored_pimoe_base',
+    'ServiceFactory': '.core.refactored_pimoe_base',
+    'DIContainer': '.core.refactored_pimoe_base',
+    'EventBus': '.core.refactored_pimoe_base',
+    'ResourceManager': '.core.refactored_pimoe_base',
+    'MetricsCollector': '.core.refactored_pimoe_base',
+    'HealthChecker': '.core.refactored_pimoe_base',
+    'BasePiMoESystem': '.core.refactored_pimoe_base',
 
-# Production deployment
-try:
-    from .production_deployment import (
-        ProductionDeployment,
-        DeploymentEnvironment,
-        ScalingStrategy,
-        DockerConfig,
-        KubernetesConfig,
-        MonitoringConfig,
-        LoadBalancerConfig,
-        create_production_deployment,
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import production_deployment: {e}")
+    # Legacy routing
+    'PiMoESystem': '.routing.pimoe_router',
+    'PiMoEExpert': '.routing.pimoe_router',
+    'RoutingDecision': '.routing.pimoe_router',
+    'create_pimoe_system': '.routing.pimoe_router',
 
-# Refactored base
-try:
-    from .refactored_pimoe_base import (
-        SystemConfig,
-        LoggerProtocol,
-        MonitorProtocol,
-        ErrorHandlerProtocol,
-        RequestQueueProtocol,
-        PiMoEProcessorProtocol,
-        BaseService,
-        BaseConfig,
-        ServiceFactory,
-        DIContainer,
-        EventBus,
-        ResourceManager,
-        MetricsCollector,
-        HealthChecker,
-        BasePiMoESystem,
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import refactored_pimoe_base: {e}")
+    'AdvancedPiMoESystem': '.routing.advanced_pimoe_routing',
+    'RoutingStrategy': '.routing.advanced_pimoe_routing',
+    'AdvancedRoutingConfig': '.routing.advanced_pimoe_routing',
+    'AttentionBasedRouter': '.routing.advanced_pimoe_routing',
+    'HierarchicalRouter': '.routing.advanced_pimoe_routing',
+    'DynamicExpertScaler': '.routing.advanced_pimoe_routing',
+    'CrossExpertCommunicator': '.routing.advanced_pimoe_routing',
+    'NeuralArchitectureSearchRouter': '.routing.advanced_pimoe_routing',
 
-# Refactored production system
-try:
-    from .refactored_production_system import (
-        RefactoredProductionPiMoESystem,
-        create_refactored_production_system,
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import refactored_production_system: {e}")
+    # Systems - Point to package to leverage its __init__.py exports
+    'ProductionPiMoESystem': '.systems',
+    'ProductionConfig': '.systems',
+    'ProductionMode': '.systems',
+    'ProductionLogger': '.systems',
+    'ProductionMonitor': '.systems',
+    'ProductionErrorHandler': '.systems',
+    'ProductionRequestQueue': '.systems',
+    'create_production_pimoe_system': '.systems',
 
-# Refactored config manager
-try:
-    from .refactored_config_manager import (
-        ConfigurationManager,
-        ConfigurationFactory,
-        ConfigTemplates,
-        ConfigValidators,
-        EnvironmentConfigBuilder,
-        ConfigSource,
-        ConfigFormat,
-        ConfigValidationRule,
-        ConfigSourceInfo,
-    )
-except ImportError as e:
-    _logger.debug(f"Could not import refactored_config_manager: {e}")
+    'ProductionAPIServer': '.systems',
+    'PiMoERequest': '.systems',
+    'PiMoEResponse': '.systems',
+    'HealthResponse': '.systems',
+    'MetricsResponse': '.systems',
+    'WebSocketMessage': '.systems',
+    'create_production_api_server': '.systems',
+    'run_production_api_demo': '.systems',
+
+    'ProductionDeployment': '.systems',
+    'DeploymentEnvironment': '.systems',
+    'ScalingStrategy': '.systems',
+    'DockerConfig': '.systems',
+    'KubernetesConfig': '.systems',
+    'MonitoringConfig': '.systems',
+    'LoadBalancerConfig': '.systems',
+    'create_production_deployment': '.systems',
+
+    'RefactoredProductionPiMoESystem': '.systems',
+    'create_refactored_production_system': '.systems',
+
+    # Optimization
+    'AdvancedArchitectureOptimizer': '.optimization',
+    'AdvancedArchitectureConfig': '.optimization',
+}
+
+def __getattr__(name: str):
+    """Lazy import system for feed_forward submodules."""
+    return resolve_lazy_import(name, __package__ or 'feed_forward', _LAZY_IMPORTS)
+
+__all__ = list(_LAZY_IMPORTS.keys())
+
+__version__ = "2.0.0"
+

@@ -2,7 +2,7 @@ from typing import Optional
 import torch
 import torch.nn.functional as F
 
-from factories.registry import Registry
+from optimization_core.factories.registry import Registry
 
 ATTENTION_BACKENDS = Registry()
 
@@ -26,6 +26,7 @@ def build_flash():
 def build_triton():
     # Placeholder that falls back to SDPA
     return sdpa_attention
+
 
 
 

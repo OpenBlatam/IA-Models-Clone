@@ -1,7 +1,7 @@
 """
 Validation utilities for inference engines.
 
-This module re-exports common validators from core.validators
+This module re-exports common validators from modules.base.core_system.core.validators
 for backward compatibility and module-specific validation needs.
 """
 from optimization_core.core.validators import (
@@ -29,4 +29,5 @@ __all__ = [
     "validate_float_range",
     "validate_non_empty_string",
 ]
+
 

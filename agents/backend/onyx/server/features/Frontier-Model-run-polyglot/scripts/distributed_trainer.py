@@ -50,6 +50,13 @@ from contextlib import contextmanager
 
 console = Console()
 
+# System 5.0+ Integration
+try:
+    from .core.sys5.telemetry import tracked
+except (ImportError, ValueError):
+    def tracked(phase="General"):
+        return lambda f: f
+
 class DistributionStrategy(Enum):
     """Distribution strategies."""
     SINGLE_GPU = "single_gpu"
@@ -292,6 +299,7 @@ class DistributedTrainer:
             self.logger.error(f"Failed to initialize distributed training: {e}")
             raise
     
+    @tracked(phase="DistributedTraining")
     def train(self, model: nn.Module, train_loader: DataLoader, 
               val_loader: DataLoader, optimizer, scheduler, 
               num_epochs: int, loss_fn) -> Dict[str, Any]:

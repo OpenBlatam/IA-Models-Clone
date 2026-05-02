@@ -250,3 +250,4 @@ def get_metrics_collector() -> MetricsCollector:
 def record_metric(name: str, value: float, **kwargs):
     """Convenience function to record metric."""
     _global_collector.record(name, value, **kwargs)
+

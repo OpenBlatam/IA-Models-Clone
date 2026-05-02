@@ -1,54 +1,56 @@
 # Quality Control AI
 
-Sistema de Control de Calidad con Detección de Defectos por Cámara
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## Descripción
+Quality Control System with Camera-Based Defect Detection
 
-Sistema completo de control de calidad que utiliza una cámara para detectar objetos, identificar anomalías y clasificar defectos en productos. El sistema integra múltiples técnicas de visión por computadora y machine learning para inspección automática de calidad.
+## Description
 
-## Características
+Complete quality control system that uses a camera to detect objects, identify anomalies, and classify product defects. The system integrates multiple computer vision and machine learning techniques for automatic quality inspection.
 
-- **Control de Cámara**: Gestión completa de cámaras con configuración flexible
-- **Detección de Objetos**: Detección de objetos usando modelos de deep learning (YOLOv8, Faster R-CNN, SSD)
-- **Detección de Anomalías**: Múltiples métodos de detección de anomalías (estadístico, autoencoder, bordes, color)
-- **Clasificación de Defectos**: Clasificación automática de defectos en múltiples categorías
-- **Análisis de Calidad**: Análisis detallado y scoring de calidad
-- **Inspección en Tiempo Real**: Inspección continua desde cámara en vivo
-- **Análisis de Video**: Análisis completo de archivos de video y streaming
-- **Visualización Avanzada**: Visualización de resultados con gráficos y estadísticas
-- **Sistema de Alertas**: Alertas automáticas basadas en umbrales de calidad
-- **Generación de Reportes**: Reportes en JSON, CSV y HTML
-- **Optimización de Rendimiento**: Caching y optimizaciones para mejor rendimiento
+## Features
 
-## Estructura
+- **Camera Control**: Complete camera management with flexible configuration
+- **Object Detection**: Object detection using deep learning models (YOLOv8, Faster R-CNN, SSD)
+- **Anomaly Detection**: Multiple anomaly detection methods (statistical, autoencoder, edges, color)
+- **Defect Classification**: Automatic defect classification into multiple categories
+- **Quality Analysis**: Detailed analysis and quality scoring
+- **Real-Time Inspection**: Continuous inspection from live camera
+- **Video Analysis**: Complete analysis of video files and streams
+- **Advanced Visualization**: Result visualization with charts and statistics
+- **Alert System**: Automatic alerts based on quality thresholds
+- **Report Generation**: Reports in JSON, CSV, and HTML
+- **Performance Optimization**: Caching and optimizations for better performance
+
+## Structure
 
 ```
 quality_control_ai/
 ├── __init__.py
 ├── core/
-│   ├── camera_controller.py      # Controlador de cámara
-│   ├── object_detector.py        # Detector de objetos
-│   ├── anomaly_detector.py       # Detector de anomalías
-│   └── defect_classifier.py     # Clasificador de defectos
+│   ├── camera_controller.py      # Camera controller
+│   ├── object_detector.py        # Object detector
+│   ├── anomaly_detector.py       # Anomaly detector
+│   └── defect_classifier.py     # Defect classifier
 ├── config/
-│   ├── camera_config.py          # Configuración de cámara
-│   └── detection_config.py       # Configuración de detección
+│   ├── camera_config.py          # Camera configuration
+│   └── detection_config.py       # Detection configuration
 ├── services/
-│   ├── quality_inspector.py     # Inspector principal de calidad
-│   └── defect_analyzer.py        # Analizador de defectos
+│   ├── quality_inspector.py     # Main quality inspector
+│   └── defect_analyzer.py        # Defect analyzer
 └── utils/
-    ├── image_utils.py           # Utilidades de imagen
-    └── detection_utils.py        # Utilidades de detección
+    ├── image_utils.py           # Image utilities
+    └── detection_utils.py        # Detection utilities
 ```
 
-## Uso Básico
+## Basic Usage
 
-### Inicializar Inspector
+### Initialize Inspector
 
 ```python
 from quality_control_ai import QualityInspector, CameraConfig, DetectionConfig
 
-# Configurar cámara
+# Configure camera
 camera_config = CameraConfig()
 camera_config.update_settings(
     camera_index=0,
@@ -57,147 +59,147 @@ camera_config.update_settings(
     fps=30
 )
 
-# Configurar detección
+# Configure detection
 detection_config = DetectionConfig()
 detection_config.update_settings(
     confidence_threshold=0.5,
     anomaly_threshold=0.7
 )
 
-# Crear inspector
+# Create inspector
 inspector = QualityInspector(camera_config, detection_config)
 ```
 
-### Inspección desde Cámara
+### Camera Inspection
 
 ```python
-# Inicializar cámara
+# Initialize camera
 inspector.start_inspection()
 
-# Inspeccionar frame
+# Inspect frame
 result = inspector.inspect_frame()
 
-print(f"Calidad: {result['quality_score']}/100")
-print(f"Defectos detectados: {result['defects_detected']}")
-print(f"Estado: {result['summary']['status']}")
+print(f"Quality: {result['quality_score']}/100")
+print(f"Defects detected: {result['defects_detected']}")
+print(f"Status: {result['summary']['status']}")
 
-# Detener inspección
+# Stop inspection
 inspector.stop_inspection()
 inspector.release()
 ```
 
-### Inspección de Imagen
+### Image Inspection
 
 ```python
-# Inspeccionar imagen desde archivo
+# Inspect image from file
 result = inspector.inspect_frame("path/to/image.jpg")
 
-# Ver resultados
+# View results
 for defect in result['defects']:
-    print(f"Tipo: {defect['type']}, Severidad: {defect['severity']}")
+    print(f"Type: {defect['type']}, Severity: {defect['severity']}")
 ```
 
-### Análisis Detallado de Defectos
+### Detailed Defect Analysis
 
 ```python
 from quality_control_ai import DefectAnalyzer
 
 analyzer = DefectAnalyzer()
 
-# Analizar defectos
+# Analyze defects
 analysis = analyzer.analyze_defects(
     defects=result['defects'],
     image_size=(1920, 1080)
 )
 
-print(f"Análisis por tipo: {analysis['type_analysis']}")
-print(f"Recomendaciones: {analysis['recommendations']}")
+print(f"Analysis by type: {analysis['type_analysis']}")
+print(f"Recommendations: {analysis['recommendations']}")
 ```
 
-## Tipos de Defectos Detectados
+## Detected Defect Types
 
-El sistema puede detectar y clasificar los siguientes tipos de defectos:
+The system can detect and classify the following types of defects:
 
-- **Scratch** (Rayón): Líneas delgadas y largas
-- **Crack** (Grieta): Líneas más anchas y profundas
-- **Dent** (Abolladura): Deformaciones circulares/elípticas
-- **Discoloration** (Decoloración): Cambios anómalos de color
-- **Deformation** (Deformación): Cambios en la forma
-- **Missing Part** (Parte Faltante): Componentes ausentes
-- **Surface Imperfection** (Imperfección de Superficie): Irregularidades superficiales
-- **Contamination** (Contaminación): Material extraño
-- **Size Variation** (Variación de Tamaño): Desviaciones dimensionales
-- **Other** (Otro): Defectos no categorizados
+- **Scratch**: Thin and long lines
+- **Crack**: Wider and deeper lines
+- **Dent**: Circular/elliptical deformations
+- **Discoloration**: Anomalous color changes
+- **Deformation**: Shape changes
+- **Missing Part**: Absent components
+- **Surface Imperfection**: Surface irregularities
+- **Contamination**: Foreign material
+- **Size Variation**: Dimensional deviations
+- **Other**: Uncategorized defects
 
-## Configuración
+## Configuration
 
-### Configuración de Cámara
+### Camera Configuration
 
 ```python
 camera_config = CameraConfig()
 camera_config.update_settings(
-    camera_index=0,              # Índice de cámara
-    resolution_width=1920,       # Ancho de resolución
-    resolution_height=1080,       # Alto de resolución
-    fps=30,                       # Frames por segundo
-    brightness=0.5,               # Brillo (0-1)
-    contrast=0.5,                 # Contraste (0-1)
-    saturation=0.5,               # Saturación (0-1)
-    exposure=0.5,                 # Exposición (0-1)
-    auto_focus=True,              # Autoenfoque
-    white_balance="auto"          # Balance de blancos
+    camera_index=0,              # Camera index
+    resolution_width=1920,       # Resolution width
+    resolution_height=1080,      # Resolution height
+    fps=30,                      # Frames per second
+    brightness=0.5,              # Brightness (0-1)
+    contrast=0.5,                # Contrast (0-1)
+    saturation=0.5,              # Saturation (0-1)
+    exposure=0.5,                # Exposure (0-1)
+    auto_focus=True,             # Autofocus
+    white_balance="auto"         # White balance
 )
 ```
 
-### Configuración de Detección
+### Detection Configuration
 
 ```python
 detection_config = DetectionConfig()
 detection_config.update_settings(
-    confidence_threshold=0.5,     # Umbral de confianza
-    nms_threshold=0.4,            # Umbral de NMS
-    anomaly_threshold=0.7,         # Umbral de anomalía
-    use_autoencoder=True,         # Usar autoencoder
-    use_statistical=True,          # Usar detección estadística
-    object_detection_model="yolov8",  # Modelo de detección
-    min_defect_size=10,           # Tamaño mínimo de defecto
-    max_defect_size=10000         # Tamaño máximo de defecto
+    confidence_threshold=0.5,     # Confidence threshold
+    nms_threshold=0.4,            # NMS threshold
+    anomaly_threshold=0.7,        # Anomaly threshold
+    use_autoencoder=True,         # Use autoencoder
+    use_statistical=True,         # Use statistical detection
+    object_detection_model="yolov8",  # Detection model
+    min_defect_size=10,           # Minimum defect size
+    max_defect_size=10000         # Maximum defect size
 )
 ```
 
-## Métodos de Detección de Anomalías
+## Anomaly Detection Methods
 
-El sistema utiliza múltiples métodos para detectar anomalías:
+The system uses multiple methods to detect anomalies:
 
-1. **Detección Estadística**: Usa análisis estadístico (Z-score) para identificar outliers
-2. **Autoencoder**: Modelo de autoencoder para reconstrucción y detección de anomalías
-3. **Detección por Bordes**: Análisis de contornos irregulares
-4. **Detección por Color**: Identificación de cambios anómalos de color
+1. **Statistical Detection**: Uses statistical analysis (Z-score) to identify outliers
+2. **Autoencoder**: Autoencoder model for reconstruction and anomaly detection
+3. **Edge Detection**: Analysis of irregular contours
+4. **Color Detection**: Identification of anomalous color changes
 
-## Scoring de Calidad
+## Quality Scoring
 
-El sistema calcula un score de calidad (0-100) basado en:
+The system calculates a quality score (0-100) based on:
 
-- Número y severidad de anomalías detectadas
-- Número y severidad de defectos clasificados
-- Cobertura de área afectada
+- Number and severity of detected anomalies
+- Number and severity of classified defects
+- Affected area coverage
 
-**Interpretación del Score:**
-- 90-100: Excelente
-- 75-89: Bueno
-- 60-74: Aceptable
-- 40-59: Pobre (requiere revisión)
-- 0-39: Rechazado
+**Score Interpretation:**
+- 90-100: Excellent
+- 75-89: Good
+- 60-74: Acceptable
+- 40-59: Poor (requires review)
+- 0-39: Rejected
 
-## Dependencias
+## Dependencies
 
 - OpenCV (`cv2`)
 - NumPy
 - PIL/Pillow
-- scikit-learn (para análisis estadístico)
-- ultralytics (opcional, para YOLOv8)
+- scikit-learn (for statistical analysis)
+- ultralytics (optional, for YOLOv8)
 
-## Ejemplo Completo
+## Complete Example
 
 ```python
 from quality_control_ai import (
@@ -210,24 +212,24 @@ from quality_control_ai import (
     ReportGenerator
 )
 
-# Configurar
+# Configure
 camera_config = CameraConfig()
 detection_config = DetectionConfig()
 
-# Crear inspector
+# Create inspector
 inspector = QualityInspector(camera_config, detection_config)
 
-# Iniciar inspección
+# Start inspection
 if inspector.start_inspection():
-    # Inspeccionar
+    # Inspect
     result = inspector.inspect_frame()
     
-    # Mostrar resultados
-    print(f"Score de Calidad: {result['quality_score']}")
-    print(f"Estado: {result['summary']['status']}")
-    print(f"Recomendación: {result['summary']['recommendation']}")
+    # Show results
+    print(f"Quality Score: {result['quality_score']}")
+    print(f"Status: {result['summary']['status']}")
+    print(f"Recommendation: {result['summary']['recommendation']}")
     
-    # Visualizar resultados
+    # Visualize results
     visualizer = QualityVisualizer()
     vis_image = visualizer.visualize_inspection(
         image=result.get('image'),
@@ -237,58 +239,58 @@ if inspector.start_inspection():
     )
     cv2.imwrite('inspection_result.jpg', vis_image)
     
-    # Generar reporte
+    # Generate report
     report_gen = ReportGenerator()
     report_gen.generate_html_report(result, 'report.html')
     
-    # Sistema de alertas
+    # Alert system
     alert_system = AlertSystem()
     alerts = alert_system.check_inspection_result(result)
     for alert in alerts:
-        print(f"ALERTA [{alert.level.value}]: {alert.message}")
+        print(f"ALERT [{alert.level.value}]: {alert.message}")
     
-    # Detener
+    # Stop
     inspector.stop_inspection()
     inspector.release()
 ```
 
-## Análisis de Video
+## Video Analysis
 
 ```python
 from quality_control_ai import VideoAnalyzer, QualityInspector
 
-# Crear analizador de video
+# Create video analyzer
 inspector = QualityInspector()
 video_analyzer = VideoAnalyzer(inspector)
 
-# Analizar archivo de video
+# Analyze video file
 result = video_analyzer.analyze_video_file(
     video_path="production_line.mp4",
-    frame_skip=5,  # Analizar cada 5 frames
+    frame_skip=5,  # Analyze every 5 frames
     max_frames=1000
 )
 
-print(f"Calidad promedio: {result['average_quality_score']}")
-print(f"Estado: {result['status']}")
+print(f"Average Quality: {result['average_quality_score']}")
+print(f"Status: {result['status']}")
 
-# Análisis de streaming en tiempo real
+# Real-time streaming analysis
 for result in video_analyzer.analyze_stream(duration=60):
     if result.get('quality_score', 100) < 60:
-        print(f"Alerta: Calidad baja en frame {result['frame_number']}")
+        print(f"Alert: Low quality in frame {result['frame_number']}")
 ```
 
-## Sistema de Alertas
+## Alert System
 
 ```python
 from quality_control_ai import AlertSystem, AlertLevel
 
 alert_system = AlertSystem()
 
-# Configurar umbrales
+# Configure thresholds
 alert_system.set_threshold("quality_score_low", 40.0)
 alert_system.set_threshold("defect_count_critical", 5)
 
-# Callback personalizado
+# Custom callback
 def on_alert(alert):
     if alert.level == AlertLevel.CRITICAL:
         send_email_notification(alert.message)
@@ -296,22 +298,22 @@ def on_alert(alert):
 
 alert_system.register_callback(on_alert)
 
-# Verificar resultado
+# Check result
 alerts = alert_system.check_inspection_result(inspection_result)
 
-# Obtener estadísticas
+# Get statistics
 stats = alert_system.get_alert_statistics()
-print(f"Alertas críticas recientes: {stats['recent_critical']}")
+print(f"Recent critical alerts: {stats['recent_critical']}")
 ```
 
-## Visualización Avanzada
+## Advanced Visualization
 
 ```python
 from quality_control_ai import QualityVisualizer
 
 visualizer = QualityVisualizer()
 
-# Visualizar inspección
+# Visualize inspection
 vis_image = visualizer.visualize_inspection(
     image=image,
     objects=objects,
@@ -321,41 +323,41 @@ vis_image = visualizer.visualize_inspection(
     show_labels=True
 )
 
-# Crear imagen resumen
+# Create summary image
 summary_image = visualizer.create_summary_image(
     image=image,
     inspection_result=result,
     save_path="summary.jpg"
 )
 
-# Generar gráficos de estadísticas
+# Generate statistics charts
 plot_bytes = visualizer.create_statistics_plot(
     inspection_result=result,
     save_path="statistics.png"
 )
 ```
 
-## Generación de Reportes
+## Report Generation
 
 ```python
 from quality_control_ai import ReportGenerator
 
 report_gen = ReportGenerator()
 
-# Reporte JSON
+# JSON Report
 report_gen.generate_json_report(
     inspection_result=result,
     output_path="report.json",
     include_images=False
 )
 
-# Reporte CSV (múltiples inspecciones)
+# CSV Report (multiple inspections)
 report_gen.generate_csv_report(
     inspection_results=[result1, result2, result3],
     output_path="batch_report.csv"
 )
 
-# Reporte HTML
+# HTML Report
 report_gen.generate_html_report(
     inspection_result=result,
     output_path="report.html",
@@ -363,37 +365,36 @@ report_gen.generate_html_report(
 )
 ```
 
-## Optimización de Rendimiento
+## Performance Optimization
 
 ```python
 from quality_control_ai import PerformanceOptimizer, measure_time
 
 optimizer = PerformanceOptimizer(cache_size=200)
 
-# Usar decorador de caché
-@optimizer.cached(ttl=300)  # Cache por 5 minutos
+# Use cache decorator
+@optimizer.cached(ttl=300)  # Cache for 5 minutes
 def expensive_detection(image):
-    # Operación costosa
+    # Expensive operation
     return detect_objects(image)
 
-# Medir tiempo de ejecución
+# Measure execution time
 @measure_time
 def process_image(image):
     return inspector.inspect_frame(image)
 
-# Obtener estadísticas
+# Get statistics
 stats = optimizer.get_performance_stats("expensive_detection")
-print(f"Tiempo promedio: {stats['avg_time']:.4f}s")
+print(f"Average time: {stats['avg_time']:.4f}s")
 ```
 
-## Notas
+## Notes
 
-- El sistema requiere una cámara conectada o imágenes para procesar
-- Los modelos de ML (YOLOv8, autoencoder) son opcionales pero mejoran la precisión
-- La configuración puede ajustarse según el tipo de producto a inspeccionar
-- El sistema es extensible y permite agregar nuevos tipos de defectos
+- The system requires a connected camera or images to process
+- ML models (YOLOv8, autoencoder) are optional but improve accuracy
+- Configuration can be adjusted according to the type of product to be inspected
+- The system is extensible and allows adding new defect types
 
-## Autor
+## Author
 
 Blatam Academy
-

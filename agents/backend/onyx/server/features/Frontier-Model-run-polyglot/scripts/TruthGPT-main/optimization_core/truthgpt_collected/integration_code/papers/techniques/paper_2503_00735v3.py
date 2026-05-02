@@ -253,3 +253,4 @@ if __name__ == "__main__":
     x = torch.randn(2, 32, config.hidden_dim)
     output = module(x)
     print(f"✅ Paper 2503.00735v3 module test: Input {x.shape} -> Output {output.shape}")
+

@@ -1646,3 +1646,4 @@ if __name__ == "__main__":
     print("\n🎉 TRUTHGPT OPTIMIZATION CORE INTEGRATION COMPLETE!")
     print(f"✅ Compatible with: https://github.com/OpenBlatam/IA-Models-Clone/tree/main/Frontier-Model-run/scripts/TruthGPT-main/optimization_core")
 
+

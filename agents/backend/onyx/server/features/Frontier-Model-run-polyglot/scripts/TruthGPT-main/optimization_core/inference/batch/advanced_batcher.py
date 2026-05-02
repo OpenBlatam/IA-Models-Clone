@@ -332,3 +332,4 @@ class ContinuousBatcher(DynamicBatcher[T, R]):
             self._result_counter += 1
             return self._result_counter
 
+

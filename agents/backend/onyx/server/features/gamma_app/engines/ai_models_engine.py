@@ -762,17 +762,32 @@ class AIModelsEngine:
             return model
     
     async def _apply_pruning(self, model: Any, config: ModelConfig) -> Any:
-        """Apply model pruning"""
+        """Apply magnitude-based model pruning"""
         try:
-            # This is a simplified pruning implementation
-            # In practice, you would use more sophisticated pruning techniques
             logger.info("Applying model pruning")
+            import torch.nn.utils.prune as prune
+            import torch.nn as nn
             
-            # For now, just return the model as-is
-            # Real implementation would use techniques like:
-            # - Magnitude-based pruning
-            # - Structured pruning
-            # - Unstructured pruning
+            # Apply L1 unstructured pruning to Linear and Conv1D layers
+            parameters_to_prune = []
+            for module in model.modules():
+                if isinstance(module, nn.Linear):
+                    parameters_to_prune.append((module, 'weight'))
+                elif hasattr(module, 'weight') and isinstance(module, (nn.Conv1d, nn.Conv2d)):
+                    parameters_to_prune.append((module, 'weight'))
+            
+            if parameters_to_prune:
+                prune.global_unstructured(
+                    parameters_to_prune,
+                    pruning_method=prune.L1Unstructured,
+                    amount=0.2,
+                )
+                
+                # Make the pruning permanent
+                for module, name in parameters_to_prune:
+                    prune.remove(module, name)
+                
+                logger.info(f"Successfully pruned 20% of weights across {len(parameters_to_prune)} layers")
             
             return model
             
@@ -785,10 +800,38 @@ class AIModelsEngine:
         try:
             logger.info("Converting model to ONNX format")
             
-            # This would involve converting the PyTorch model to ONNX
-            # For now, we'll just return the original model
-            # Real implementation would use torch.onnx.export()
+            onnx_path = self.optimized_dir / f"{config.name}.onnx"
             
+            # Create dummy inputs for tracing
+            device = next(model.parameters()).device
+            dummy_input = torch.randint(0, 1000, (1, 32), dtype=torch.long).to(device)
+            
+            if hasattr(model, 'config') and hasattr(model.config, 'use_cache'):
+                model.config.use_cache = False  # Usually required for ONNX export
+                
+            model.eval()
+            
+            # Export to ONNX
+            torch.onnx.export(
+                model, 
+                dummy_input, 
+                str(onnx_path),
+                export_params=True,
+                opset_version=14,
+                do_constant_folding=True,
+                input_names=['input_ids'],
+                output_names=['logits'],
+                dynamic_axes={
+                    'input_ids': {0: 'batch_size', 1: 'sequence_length'},
+                    'logits': {0: 'batch_size', 1: 'sequence_length'}
+                }
+            )
+            
+            logger.info(f"Model successfully converted to ONNX: {onnx_path}")
+            
+            # For the return value, we continue returning the PyTorch model
+            # as the pipeline expects it, but the ONNX file is now saved.
+            # Real deployment would switch to ONNXRuntime here.
             return model
             
         except Exception as e:

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160" height="40" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pantalón -->
+  <path d="M20 10 L140 10 L130 30 L30 30 Z" fill="#666" stroke="#000" stroke-width="2"/>
+  <!-- Bolsillos -->
+  <path d="M40 15 L60 15 L60 25 L40 25 Z" fill="currentColor" stroke="#000" stroke-width="1"/>
+  <path d="M100 15 L120 15 L120 25 L100 25 Z" fill="currentColor" stroke="#000" stroke-width="1"/>
+</svg> 

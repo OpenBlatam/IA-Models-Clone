@@ -72,3 +72,4 @@ def get_script_info(script_name: str) -> dict[str, any]:
         'available': script_name in _import_cache or True,
     }
 
+

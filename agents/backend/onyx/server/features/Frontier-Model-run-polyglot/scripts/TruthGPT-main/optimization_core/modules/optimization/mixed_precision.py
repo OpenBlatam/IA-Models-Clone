@@ -5,7 +5,7 @@ Following deep learning best practices
 
 import torch
 import torch.nn as nn
-from torch.cuda.amp import autocast, GradScaler
+from torch.amp import autocast, GradScaler
 from typing import Optional, Union, Any
 from dataclasses import dataclass
 
@@ -134,5 +134,6 @@ class GradScaler:
         if self._growth_tracker >= self.growth_interval:
             self.scale *= self.growth_factor
             self._growth_tracker = 0
+
 
 

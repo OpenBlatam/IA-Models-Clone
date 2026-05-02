@@ -8,7 +8,6 @@ from .visual_web_arena import MultimodalWebAgent
 from .web_voyager import WebVoyagerAgent
 from .mobile_agent import MobileDeviceAgent
 from .os_world import OSWorldAgent
-from .web_arena import WebArenaEvaluator
 from .digirl_agent import DigiRLAgent
 from .cog_agent import CogAgent
 from .seeclick_agent import SeeClickAgent

@@ -1,44 +1,46 @@
-# Contabilidad Mexicana AI
+# Mexican Accounting AI
 
-Sistema de IA para resolver problemas contables y fiscales mexicanos basado en [Contarely](https://contarely.com/). Proporciona asesoría fiscal, cálculo de impuestos, guías y soporte para trámites del SAT usando OpenRouter.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🎯 Características
+AI system to solve Mexican accounting and tax problems based on [Contarely](https://contarely.com/). Provides tax advice, tax calculation, guides, and support for SAT procedures using OpenRouter.
 
-- **Cálculo de Impuestos**: ISR, IVA, IEPS para diferentes regímenes fiscales
-- **Asesoría Fiscal**: Consultas personalizadas sobre temas fiscales
-- **Guías Fiscales**: Guías completas sobre temas específicos
-- **Trámites SAT**: Información detallada sobre trámites del SAT
-- **Declaraciones**: Ayuda para preparar y presentar declaraciones
-- **Múltiples Regímenes**: RESICO, PFAE, Sueldos y Salarios, Personas Físicas, Personas Morales
+## 🎯 Features
 
-## 📋 Requisitos
+- **Tax Calculation**: ISR, IVA, IEPS for different tax regimes
+- **Tax Advice**: Personalized consultations on tax topics
+- **Tax Guides**: Comprehensive guides on specific topics
+- **SAT Procedures**: Detailed information on SAT procedures
+- **Tax Returns**: Help in preparing and filing tax returns
+- **Multiple Regimes**: RESICO, PFAE, Wages and Salaries, Individuals, Legal Entities
+
+## 📋 Requirements
 
 - Python 3.8+
 - OpenRouter API Key
-- FastAPI (para endpoints)
+- FastAPI (for endpoints)
 
-## 🚀 Instalación
+## 🚀 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install fastapi httpx uvicorn pydantic
 
-# Configurar variable de entorno
-export OPENROUTER_API_KEY="tu-api-key"
+# Configure environment variable
+export OPENROUTER_API_KEY="your-api-key"
 ```
 
-## 📖 Uso
+## 📖 Usage
 
-### Uso Básico
+### Basic Usage
 
 ```python
 from contabilidad_mexicana_ai import ContadorAI, ContadorConfig
 
-# Inicializar
+# Initialize
 config = ContadorConfig()
 contador = ContadorAI(config)
 
-# Calcular impuestos
+# Calculate taxes
 resultado = await contador.calcular_impuestos(
     regimen="RESICO",
     tipo_impuesto="ISR",
@@ -48,22 +50,22 @@ resultado = await contador.calcular_impuestos(
     }
 )
 
-# Asesoría fiscal
+# Tax advice
 asesoria = await contador.asesoria_fiscal(
-    pregunta="¿Qué deducciones puedo aplicar en RESICO?",
-    contexto={"regimen": "RESICO", "actividad": "Servicios profesionales"}
+    pregunta="What deductions can I apply in RESICO?",
+    contexto={"regimen": "RESICO", "actividad": "Professional services"}
 )
 
-# Generar guía
+# Generate guide
 guia = await contador.guia_fiscal(
-    tema="Deducciones para emprendedores en RESICO",
+    tema="Deductions for entrepreneurs in RESICO",
     nivel_detalle="completo"
 )
 ```
 
 ### API Endpoints
 
-#### Calcular Impuestos
+#### Calculate Taxes
 ```bash
 POST /api/contador/calcular-impuestos
 {
@@ -75,38 +77,38 @@ POST /api/contador/calcular-impuestos
 }
 ```
 
-#### Asesoría Fiscal
+#### Tax Advice
 ```bash
 POST /api/contador/asesoria-fiscal
 {
-    "pregunta": "¿Qué deducciones puedo aplicar?",
+    "pregunta": "What deductions can I apply?",
     "contexto": {
         "regimen": "RESICO"
     }
 }
 ```
 
-#### Guía Fiscal
+#### Tax Guide
 ```bash
 POST /api/contador/guia-fiscal
 {
-    "tema": "Facturación electrónica",
+    "tema": "Electronic invoicing",
     "nivel_detalle": "completo"
 }
 ```
 
-#### Trámite SAT
+#### SAT Procedure
 ```bash
 POST /api/contador/tramite-sat
 {
-    "tipo_tramite": "Alta en RFC",
+    "tipo_tramite": "RFC Registration",
     "detalles": {
         "tipo_persona": "Persona Física"
     }
 }
 ```
 
-#### Ayuda con Declaración
+#### Tax Return Help
 ```bash
 POST /api/contador/ayuda-declaracion
 {
@@ -119,34 +121,34 @@ POST /api/contador/ayuda-declaracion
 }
 ```
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ```
 contabilidad_mexicana_ai/
 ├── core/
-│   └── contador_ai.py          # Clase principal
+│   └── contador_ai.py          # Main class
 ├── config/
-│   └── contador_config.py     # Configuración
+│   └── contador_config.py     # Configuration
 ├── infrastructure/
 │   └── openrouter/
-│       └── openrouter_client.py  # Cliente OpenRouter
+│       └── openrouter_client.py  # OpenRouter client
 ├── api/
-│   └── contador_api.py        # Endpoints FastAPI
+│   └── contador_api.py        # FastAPI endpoints
 ├── services/
-│   └── calculadora_impuestos.py  # Cálculos especializados
+│   └── calculadora_impuestos.py  # Specialized calculations
 └── utils/
-    └── formatters.py          # Utilidades de formato
+    └── formatters.py          # Formatting utilities
 ```
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```bash
-OPENROUTER_API_KEY=tu-api-key
+OPENROUTER_API_KEY=your-api-key
 ```
 
-### Configuración Avanzada
+### Advanced Configuration
 
 ```python
 from contabilidad_mexicana_ai import ContadorConfig, OpenRouterConfig
@@ -160,78 +162,47 @@ config = ContadorConfig(
 )
 ```
 
-## 📚 Regímenes Fiscales Soportados
+## 📚 Supported Tax Regimes
 
-- **RESICO**: Régimen Simplificado de Confianza
-- **PFAE**: Personas Físicas con Actividades Empresariales
-- **Plataformas**: Régimen para plataformas digitales
-- **Sueldos y Salarios**: Asalariados
-- **Personas Físicas**: Otros regímenes
-- **Personas Morales**: Empresas
+- **RESICO**: Simplified Trust Regime
+- **PFAE**: Individuals with Business Activities
+- **Platforms**: Regime for digital platforms
+- **Wages and Salaries**: Employees
+- **Individuals**: Other regimes
+- **Legal Entities**: Companies
 
-## 🎓 Ejemplos
+## 🔒 Security
 
-### Ejemplo 1: Cálculo ISR RESICO
+- API keys are handled via environment variables
+- No sensitive taxpayer data is stored
+- All responses are generated in real-time
 
-```python
-resultado = await contador.calcular_impuestos(
-    regimen="RESICO",
-    tipo_impuesto="ISR",
-    datos={
-        "ingresos_mensuales": 50000
-    }
-)
-```
+## 📝 Important Notes
 
-### Ejemplo 2: Asesoría sobre Deducciones
+- This system provides AI-based advice and does not replace consultation with a certified accountant
+- Calculations must be verified against current tax legislation
+- The information provided is for informational purposes only
 
-```python
-asesoria = await contador.asesoria_fiscal(
-    pregunta="¿Qué gastos puedo deducir en RESICO?",
-    contexto={
-        "regimen": "RESICO",
-        "actividad": "Consultoría"
-    }
-)
-```
+## 🤝 Contributing
 
-### Ejemplo 3: Guía de Facturación
+Contributions are welcome. Please:
 
-```python
-guia = await contador.guia_fiscal(
-    tema="Facturación electrónica CFDI 4.0",
-    nivel_detalle="completo"
-)
-```
+1. Fork the project
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## 🔒 Seguridad
+## 📄 License
 
-- Las API keys se manejan mediante variables de entorno
-- No se almacenan datos sensibles de contribuyentes
-- Todas las respuestas son generadas en tiempo real
+Proprietary - Blatam Academy
 
-## 📝 Notas Importantes
+## 🔗 References
 
-- Este sistema proporciona asesoría basada en IA y no reemplaza la consulta con un contador certificado
-- Los cálculos deben verificarse con la legislación fiscal vigente
-- La información proporcionada es de carácter informativo
+- [Contarely](https://contarely.com/) - Inspiration and reference
+- [SAT](https://www.sat.gob.mx/) - Mexican Tax Administration Service
+- [OpenRouter](https://openrouter.ai/) - AI Provider
 
-## 🤝 Contribuir
+---
 
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto es parte de Blatam Academy.
-
-## 🔗 Referencias
-
-- [Contarely](https://contarely.com/) - Inspiración y referencia
-- [SAT](https://www.sat.gob.mx/) - Sistema de Administración Tributaria
-- [OpenRouter](https://openrouter.ai/) - Proveedor de IA
+[← Back to Main README](../README.md)

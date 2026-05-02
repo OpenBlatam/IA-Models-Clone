@@ -5,15 +5,16 @@ Provides utilities for middleware pattern implementation.
 """
 import logging
 from typing import Dict, Any, Optional, List, Callable, Awaitable
-from dataclasses import dataclass
+from pydantic import BaseModel, ConfigDict
 from functools import wraps
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class Middleware:
+class Middleware(BaseModel):
     """Middleware definition."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     name: str
     func: Callable
     priority: int = 0
@@ -153,6 +154,7 @@ def create_middleware_stack() -> MiddlewareStack:
         Middleware stack
     """
     return MiddlewareStack()
+
 
 
 

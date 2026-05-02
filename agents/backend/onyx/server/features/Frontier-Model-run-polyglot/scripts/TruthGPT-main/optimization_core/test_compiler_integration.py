@@ -16,15 +16,27 @@ logging.basicConfig(level=logging.WARNING)  # Reduce log noise during tests
 logger = logging.getLogger(__name__)
 
 # Import components to test
-from .compiler_integration import (
-    TruthGPTCompilerIntegration, TruthGPTCompilationConfig, TruthGPTCompilationResult,
-    create_truthgpt_compiler_integration
-)
+try:
+    from modules.compilation.compiler_integration import (
+        TruthGPTCompilerIntegration, TruthGPTCompilationConfig, TruthGPTCompilationResult,
+        create_truthgpt_compiler_integration
+    )
 
-from .compiler import (
-    CompilationTarget, OptimizationLevel, CompilationConfig,
-    create_compiler_core, CompilationResult
-)
+    from modules.compilation.core_compiler.compiler import (
+        CompilationTarget, OptimizationLevel, CompilationConfig,
+        create_compiler_core, CompilationResult
+    )
+except ImportError:
+    # Fallback for different import paths
+    from .modules.compilation.compiler_integration import (
+        TruthGPTCompilerIntegration, TruthGPTCompilationConfig, TruthGPTCompilationResult,
+        create_truthgpt_compiler_integration
+    )
+
+    from .modules.compilation.core_compiler.compiler import (
+        CompilationTarget, OptimizationLevel, CompilationConfig,
+        create_compiler_core, CompilationResult
+    )
 
 class TestModel(nn.Module):
     """Simple test model for compiler testing"""
@@ -399,6 +411,7 @@ def run_compiler_tests():
 if __name__ == "__main__":
     success = run_compiler_tests()
     exit(0 if success else 1)
+
 
 
 

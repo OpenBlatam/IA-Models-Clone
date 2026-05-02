@@ -627,3 +627,4 @@ if __name__ == "__main__":
         print(f"📈 Test success rate: {report['summary']['success_rate']:.2%}")
         
         print("✅ Production testing example completed")
+

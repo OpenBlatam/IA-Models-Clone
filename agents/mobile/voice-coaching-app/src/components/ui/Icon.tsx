@@ -22,12 +22,12 @@ export function Icon({
 }: IconProps) {
     switch (set) {
         case "material":
-            return <MaterialCommunityIcons name={name as any} size={size} color={color} />;
+            return <MaterialCommunityIcons name={name as keyof typeof MaterialCommunityIcons.glyphMap} size={size} color={color} />;
         case "fontawesome":
-            return <FontAwesome5 name={name as any} size={size} color={color} />;
+            return <FontAwesome5 name={name as keyof typeof FontAwesome5.glyphMap} size={size} color={color} />;
         case "ionicons":
         default:
-            return <Ionicons name={name as any} size={size} color={color} />;
+            return <Ionicons name={name as keyof typeof Ionicons.glyphMap} size={size} color={color} />;
     }
 }
 

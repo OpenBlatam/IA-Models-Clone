@@ -15,8 +15,8 @@ class WebArenaEvaluator(BaseAgent):
         Evaluates a completed task against the WebArena benchmark criteria.
         """
         try:
-            task_id = context.get("task_id", "unknown_task")
-            trajectory = context.get("trajectory", [])
+            task_id = context.shared_memory.get("task_id", "unknown_task")
+            trajectory = context.shared_memory.get("trajectory", [])
 
             self.log(f"Setting up WebArena environment for task '{task_id}'...")
             self.setup_environment(task_id)

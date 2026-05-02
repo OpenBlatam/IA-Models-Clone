@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime
 from enum import Enum
 import logging
@@ -48,8 +48,7 @@ class ArchitectureType(Enum):
     NEUROMORPHIC = "neuromorphic"
     OPTICAL = "optical"
 
-@dataclass
-class NeuralOptimizationConfig:
+class NeuralOptimizationConfig(BaseModel):
     """Neural network optimization configuration."""
     level: NeuralOptimizationLevel = NeuralOptimizationLevel.NEURAL_ADVANCED
     architecture_type: ArchitectureType = ArchitectureType.TRANSFORMER
@@ -65,17 +64,18 @@ class NeuralOptimizationConfig:
     search_iterations: int = 1000
     max_workers: int = 4
 
-@dataclass
-class NeuralOptimizationResult:
+class NeuralOptimizationResult(BaseModel):
     """Neural network optimization result."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     success: bool
     optimization_time: float
-    optimized_model: nn.Module
+    optimized_model: Any
     performance_metrics: Dict[str, float]
     architecture_changes: List[str]
     optimization_applied: List[str]
     error_message: Optional[str] = None
-    timestamp: datetime = field(default_factory=datetime.now)
+    timestamp: datetime = Field(default_factory=datetime.now)
 
 class UltraNeuralNetworkOptimizer:
     """Ultra neural network optimizer with intelligent architecture search."""
@@ -562,3 +562,4 @@ if __name__ == "__main__":
     
     optimizer.cleanup()
     print("\nUltra Neural Network optimization completed")
+

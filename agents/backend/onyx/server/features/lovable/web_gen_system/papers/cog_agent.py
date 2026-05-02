@@ -15,7 +15,7 @@ class CogAgent(BaseAgent):
         Analyzes a GUI screenshot to understand elements and suggest actions.
         """
         try:
-            screenshot_path = context.get("screenshot_path")
+            screenshot_path = context.shared_memory.get("screenshot_path")
             if not screenshot_path:
                 return {"status": "skipped", "reason": "No screenshot provided"}
 

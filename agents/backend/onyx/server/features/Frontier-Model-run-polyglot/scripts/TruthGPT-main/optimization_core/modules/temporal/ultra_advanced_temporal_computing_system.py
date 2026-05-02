@@ -13,6 +13,7 @@ from enum import Enum
 import logging
 import time
 import threading
+from ..common.base_advanced_system import BaseAdvancedSystem, BaseAdvancedMetrics
 from collections import defaultdict, deque
 import json
 from pathlib import Path
@@ -215,44 +216,24 @@ class TemporalState:
         merged_state.temporal_loops = self.temporal_loops + other.temporal_loops
         return merged_state
 
-class UltraAdvancedTemporalComputingSystem:
+class UltraAdvancedTemporalComputingSystem(BaseAdvancedSystem):
     """
     Ultra-Advanced Temporal Computing System.
-    
-    Features:
-    - Temporal manipulation with time control
-    - Temporal algorithms with time-based processing
-    - Temporal neural networks with temporal layers
-    - Temporal quantum computing with temporal qubits
-    - Temporal machine learning with temporal algorithms
-    - Temporal optimization with temporal methods
-    - Temporal simulation with temporal models
-    - Temporal AI with temporal intelligence
-    - Temporal error correction
-    - Real-time temporal monitoring
+    Refactored to inherit from BaseAdvancedSystem for enterprise scalability.
     """
     
     def __init__(self, config: TemporalComputingConfig):
-        self.config = config
+        super().__init__(config, "TemporalComputingSystem")
         
         # Temporal state
         self.temporal_state = TemporalState()
-        self.temporal_system = None
-        self.temporal_algorithms = None
-        
-        # Performance tracking
-        self.metrics = TemporalComputingMetrics()
-        self.temporal_history = deque(maxlen=1000)
-        self.temporal_algorithm_history = deque(maxlen=1000)
         
         # Advanced components
         self._setup_temporal_components()
         
-        # Background monitoring
-        self._setup_temporal_monitoring()
-        
-        logger.info(f"Ultra-Advanced Temporal Computing System initialized")
-        logger.info(f"Computing type: {config.computing_type}, Level: {config.temporal_level}")
+        # Recording start
+        self.record_event("INITIALIZATION", {"config": str(config)})
+        self.start_monitoring()
     
     def _setup_temporal_components(self):
         """Setup temporal computing components."""
@@ -688,20 +669,26 @@ class TemporalManipulationProcessor:
         return result
     
     def _temporal_forward(self, data: Any) -> Any:
-        """Temporal forward."""
-        return f"temporal_forward_{data}"
+        """Temporal forward using numerical offset."""
+        if isinstance(data, (int, float)):
+            return data + self.config.temporal_precision
+        return data
     
     def _temporal_backward(self, data: Any) -> Any:
-        """Temporal backward."""
-        return f"temporal_backward_{data}"
+        """Temporal backward using numerical offset."""
+        if isinstance(data, (int, float)):
+            return data - self.config.temporal_precision
+        return data
     
     def _temporal_pause(self, data: Any) -> Any:
-        """Temporal pause."""
-        return f"temporal_pause_{data}"
+        """Temporal pause (returns original)."""
+        return data
     
     def _temporal_rewind(self, data: Any) -> Any:
-        """Temporal rewind."""
-        return f"temporal_rewind_{data}"
+        """Temporal rewind (returns zero or baseline)."""
+        if isinstance(data, (int, float)):
+            return 0.0
+        return data
     
     def get_manipulation_metrics(self) -> Dict[str, float]:
         """Get manipulation metrics."""
@@ -1115,3 +1102,4 @@ def create_ultra_advanced_temporal_computing_system(config: TemporalComputingCon
 def create_temporal_computing_config(**kwargs) -> TemporalComputingConfig:
     """Create a temporal computing configuration."""
     return TemporalComputingConfig(**kwargs)
+

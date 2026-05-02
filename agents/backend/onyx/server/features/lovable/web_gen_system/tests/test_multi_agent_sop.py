@@ -1,10 +1,10 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from agents.backend.onyx.server.features.lovable.web_gen_system.pipeline import WebGenPipeline
-from agents.backend.onyx.server.features.lovable.web_gen_system.agents.roles import (
+from ..pipeline import WebGenPipeline
+from ..agents.roles import (
     ProductManagerAgent, ArchitectAgent, EngineerAgent, QAAgent
 )
-from agents.backend.onyx.server.features.lovable.web_gen_system.agents.visual_critic import VisualCriticAgent
+from ..agents.visual_critic import VisualCriticAgent
 
 class TestMultiAgentSOP(unittest.TestCase):
     def setUp(self):
@@ -33,7 +33,7 @@ class TestMultiAgentSOP(unittest.TestCase):
             visual_critic=self.mock_visual
         )
 
-    @patch('agents.backend.onyx.server.features.lovable.web_gen_system.pipeline.logger')
+    @patch('..pipeline.logger')
     def test_run_multi_agent_sop_success(self, mock_logger):
         """Test the happy path of the multi-agent SOP."""
         result = self.pipeline.run("Build a landing page", use_agents=True)

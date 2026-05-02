@@ -96,3 +96,4 @@ def test_compressor_backend():
     compressor = Compressor(algorithm="lz4")
     assert compressor.backend in [Backend.PYTHON, Backend.RUST, Backend.CPP]
 
+

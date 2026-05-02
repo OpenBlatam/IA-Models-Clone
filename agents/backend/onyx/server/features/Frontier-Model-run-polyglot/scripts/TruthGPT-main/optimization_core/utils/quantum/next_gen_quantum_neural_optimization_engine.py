@@ -7,8 +7,8 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from pydantic import BaseModel, Field, ConfigDict
+from datetime import datetime
 from enum import Enum
 import logging
 import random
@@ -52,8 +52,7 @@ class NextGenQuantumNeuralArchitecture(Enum):
     NEXT_GEN_QUANTUM_GENERATIVE = "next_gen_quantum_generative"
     NEXT_GEN_QUANTUM_HYBRID = "next_gen_quantum_hybrid"
 
-@dataclass
-class NextGenQuantumNeuralConfig:
+class NextGenQuantumNeuralConfig(BaseModel):
     """Next-generation quantum neural configuration."""
     architecture: NextGenQuantumNeuralArchitecture = NextGenQuantumNeuralArchitecture.NEXT_GEN_QUANTUM_FEEDFORWARD
     num_qubits: int = 32
@@ -74,9 +73,10 @@ class NextGenQuantumNeuralConfig:
     next_gen_gate_fidelity: float = 0.999
     optimization_algorithm: NextGenQuantumOptimizationAlgorithm = NextGenQuantumOptimizationAlgorithm.NEXT_GEN_VARIATIONAL_QUANTUM_EIGENSOLVER
 
-@dataclass
-class NextGenQuantumNeuralLayer:
+class NextGenQuantumNeuralLayer(BaseModel):
     """Next-generation quantum neural layer representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     layer_type: NextGenQuantumNeuralLayerType
     num_qubits: int
     num_units: int
@@ -88,9 +88,10 @@ class NextGenQuantumNeuralLayer:
     teleportation_capable: bool = False
     error_correction_enabled: bool = True
 
-@dataclass
-class NextGenQuantumNeuralNetwork:
+class NextGenQuantumNeuralNetwork(BaseModel):
     """Next-generation quantum neural network representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     layers: List[NextGenQuantumNeuralLayer]
     num_qubits: int
     num_layers: int
@@ -98,11 +99,10 @@ class NextGenQuantumNeuralNetwork:
     architecture: NextGenQuantumNeuralArchitecture
     fidelity: float = 1.0
     execution_time: float = 0.0
-    teleportation_channels: List[Tuple[int, int]] = field(default_factory=list)
-    error_correction_circuits: List[str] = field(default_factory=list)
+    teleportation_channels: List[Tuple[int, int]] = Field(default_factory=list)
+    error_correction_circuits: List[str] = Field(default_factory=list)
 
-@dataclass
-class NextGenQuantumNeuralOptimizationResult:
+class NextGenQuantumNeuralOptimizationResult(BaseModel):
     """Next-generation quantum neural optimization result."""
     optimal_network: NextGenQuantumNeuralNetwork
     optimization_fidelity: float
@@ -112,7 +112,7 @@ class NextGenQuantumNeuralOptimizationResult:
     optimization_time: float
     teleportation_success_rate: float
     error_correction_effectiveness: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 class NextGenVariationalQuantumCircuit:
     """Next-generation variational quantum circuit implementation."""
@@ -230,31 +230,31 @@ class NextGenVariationalQuantumCircuit:
     
     def _apply_next_gen_rx_gate(self, state: np.ndarray, qubit: int, angle: float) -> np.ndarray:
         """Apply next-generation RX rotation gate."""
-        # Next-gen RX gate implementation
         cos_half = np.cos(angle / 2)
         sin_half = np.sin(angle / 2)
         
         new_state = state.copy()
         for i in range(len(state)):
-            if (i >> qubit) & 1:  # If qubit is 1
-                new_state[i] = state[i] * cos_half - 1j * state[i] * sin_half
-            else:  # If qubit is 0
-                new_state[i] = state[i] * cos_half - 1j * state[i] * sin_half
+            if not ((i >> qubit) & 1):  # If qubit is 0
+                i0 = i
+                i1 = i | (1 << qubit)
+                new_state[i0] = state[i0] * cos_half - 1j * state[i1] * sin_half
+                new_state[i1] = -1j * state[i0] * sin_half + state[i1] * cos_half
         
         return new_state
     
     def _apply_next_gen_ry_gate(self, state: np.ndarray, qubit: int, angle: float) -> np.ndarray:
         """Apply next-generation RY rotation gate."""
-        # Next-gen RY gate implementation
         cos_half = np.cos(angle / 2)
         sin_half = np.sin(angle / 2)
         
         new_state = state.copy()
         for i in range(len(state)):
-            if (i >> qubit) & 1:  # If qubit is 1
-                new_state[i] = state[i] * cos_half + state[i] * sin_half
-            else:  # If qubit is 0
-                new_state[i] = state[i] * cos_half - state[i] * sin_half
+            if not ((i >> qubit) & 1):  # If qubit is 0
+                i0 = i
+                i1 = i | (1 << qubit)
+                new_state[i0] = state[i0] * cos_half - state[i1] * sin_half
+                new_state[i1] = state[i0] * sin_half + state[i1] * cos_half
         
         return new_state
     
@@ -275,16 +275,13 @@ class NextGenVariationalQuantumCircuit:
     
     def _apply_next_gen_cnot_gate(self, state: np.ndarray, control: int, target: int) -> np.ndarray:
         """Apply next-generation CNOT gate."""
-        # Next-gen CNOT gate implementation
         new_state = state.copy()
         
         for i in range(len(state)):
             if (i >> control) & 1:  # If control qubit is 1
-                # Flip target qubit
-                if (i >> target) & 1:  # If target is 1
-                    new_state[i] = 0
-                else:  # If target is 0
-                    new_state[i] = state[i]
+                j = i ^ (1 << target)  # Flip target qubit
+                if i < j:  # Process each pair only once
+                    new_state[i], new_state[j] = state[j], state[i]
         
         return new_state
     
@@ -730,4 +727,5 @@ if __name__ == "__main__":
         next_gen_engine.stop_optimization()
     
     print("\nNext-generation quantum neural optimization completed")
+
 

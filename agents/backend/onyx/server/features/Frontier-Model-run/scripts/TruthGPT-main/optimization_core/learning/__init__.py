@@ -129,3 +129,65 @@ def __getattr__(name: str):
         ) from e
 
 
+def create_learning_module(module_type: str, config: dict = None):
+    """
+    Unified factory function to create learning modules.
+    
+    Args:
+        module_type: Type of learning module. Options: "evolutionary", "active", "reinforcement", etc.
+        config: Optional configuration dictionary
+        
+    Returns:
+        The requested learning module instance
+    """
+    if config is None:
+        config = {}
+        
+    module_type = module_type.lower()
+    
+    if module_type == "evolutionary":
+        from .evolutionary_computing import create_evolutionary_optimizer
+        return create_evolutionary_optimizer(config)
+    elif module_type == "reinforcement":
+        from .reinforcement_learning import ReinforcementLearner
+        return ReinforcementLearner(config)
+    # Add other mappings as needed
+    
+    available = ", ".join(LEARNING_MODULE_REGISTRY.keys())
+    raise ValueError(
+        f"Unknown learning module type: '{module_type}'. "
+        f"Available types: {available}"
+    )
+
+LEARNING_MODULE_REGISTRY = {
+    "active": {
+        "module": "modules.learning.active_learning",
+        "factory": "ActiveLearner",
+    },
+    "adaptive": {
+        "module": "modules.learning.adaptive_learning",
+        "factory": "AdaptiveLearner",
+    },
+    "adversarial": {
+        "module": "modules.learning.adversarial_learning",
+        "factory": "AdversarialLearner",
+    },
+    "evolutionary": {
+        "module": "modules.learning.evolutionary_computing",
+        "factory": "create_evolutionary_optimizer",
+    },
+    "reinforcement": {
+        "module": "modules.learning.reinforcement_learning",
+        "factory": "ReinforcementLearner",
+    },
+}
+
+def list_available_learning_modules() -> list[str]:
+    """List all available learning module types."""
+    return list(LEARNING_MODULE_REGISTRY.keys())
+
+__all__ = __all__ + [
+    'create_learning_module',
+    'list_available_learning_modules',
+    'LEARNING_MODULE_REGISTRY',
+]

@@ -1,55 +1,58 @@
 # Input Prompt Management
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema para gestión de prompts de entrada con modelos, esquemas, servicios y API RESTful.
+## 📋 Description
 
-## 🚀 Características Principales
+System for input prompt management with models, schemas, services, and RESTful API.
 
-- **Gestión de Prompts**: Creación y gestión de prompts de entrada
-- **Modelos de Datos**: Modelos bien definidos
-- **Esquemas Pydantic**: Validación de datos
-- **Servicios**: Servicios de negocio
-- **API RESTful**: Interfaz API para integración
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Prompt Management**: Creation and management of input prompts
+- **Data Models**: Well-defined models
+- **Pydantic Schemas**: Data validation
+- **Services**: Business services
+- **RESTful API**: API interface for integration
+
+## 📁 Structure
 
 ```
 input_prompt/
-├── models.py              # Modelos de datos
-├── schemas.py            # Esquemas Pydantic
-├── service.py            # Servicios de negocio
-└── api.py                # Endpoints de API
+├── models.py              # Data models
+├── schemas.py             # Pydantic schemas
+├── service.py             # Business services
+└── api.py                 # API endpoints
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
-Este módulo requiere las dependencias del sistema principal. No requiere instalación separada.
+This module requires the main system dependencies. No separate installation required.
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
 ```python
 from input_prompt.service import InputPromptService
 from input_prompt.schemas import InputPromptCreate
 
-# Inicializar servicio
+# Initialize service
 service = InputPromptService()
 
-# Crear prompt
+# Create prompt
 prompt = service.create(InputPromptCreate(
-    name="Prompt de ejemplo",
-    content="Genera contenido sobre...",
+    name="Example Prompt",
+    content="Generate content about...",
     category="marketing"
 ))
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Integration System**: Para orquestación
-- **AI Document Processor**: Para procesamiento con IA
-- **Business Agents**: Para automatización
-- Todos los módulos que requieren gestión de prompts
+This module integrates with:
+- **Integration System**: For orchestration
+- **AI Document Processor**: For AI processing
+- **Business Agents**: For automation
+- All modules requiring prompt management
 
+---
 
-
+[← Back to Main README](../README.md)

@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from agents.backend.onyx.server.features.lovable.web_gen_system.pipeline import WebGenPipeline
-from agents.backend.onyx.server.features.lovable.web_gen_system.schemas import WebGenRequest
+from ..pipeline import WebGenPipeline
+from ..schemas import WebGenRequest
 
 class TestWebGenPipeline(unittest.TestCase):
     def setUp(self):

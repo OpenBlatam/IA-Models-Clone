@@ -190,125 +190,45 @@ class FlashAttention(nn.Module):
 
 class FlashAttentionV2(FlashAttention):
     """
-    Flash Attention V2 implementation.
-    
-    This is an improved version of Flash Attention with better memory efficiency
-    and performance optimizations.
-    """
-    
-    def __init__(
-        self, 
-        d_model: int, 
-        n_heads: int, 
-        dropout: float = 0.1,
-        block_size: int = 64,
-        use_flash_attention: bool = True
-    ):
-        """Initialize Flash Attention V2."""
-        super().__init__(d_model, n_heads, dropout, block_size, use_flash_attention)
-    
-    def _flash_attention(
-        self, 
-        query: torch.Tensor, 
-        key: torch.Tensor, 
-        value: torch.Tensor,
-        mask: Optional[torch.Tensor] = None
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Compute Flash Attention V2 with improved efficiency."""
-        batch_size, seq_len, d_model = query.size()
-        
-        # Apply linear transformations
-        query = self.query_linear(query)
-        key = self.key_linear(key)
-        value = self.value_linear(value)
-        
-        # Reshape for multi-head attention
-        query = query.view(batch_size, seq_len, self.n_heads, self.head_dim).transpose(1, 2)
-        key = key.view(batch_size, seq_len, self.n_heads, self.head_dim).transpose(1, 2)
-        value = value.view(batch_size, seq_len, self.n_heads, self.head_dim).transpose(1, 2)
-        
-        # Compute attention with improved block processing
-        output = torch.zeros_like(query)
-        attention_weights = torch.zeros(batch_size, self.n_heads, seq_len, seq_len, device=query.device)
-        
-        # Process in blocks with improved memory management
-        for i in range(0, seq_len, self.block_size):
-            q_block = query[:, :, i:i+self.block_size, :]
-            q_len = q_block.size(2)
-            
-            # Initialize block output
-            block_output = torch.zeros_like(q_block)
-            block_attention = torch.zeros(batch_size, self.n_heads, q_len, seq_len, device=query.device)
-            
-            # Process key-value blocks
-            for j in range(0, seq_len, self.block_size):
-                k_block = key[:, :, j:j+self.block_size, :]
-                v_block = value[:, :, j:j+self.block_size, :]
-                k_len = k_block.size(2)
-                
-                # Compute attention scores for this block
-                scores = torch.matmul(q_block, k_block.transpose(-2, -1)) / self.scale
-                
-                # Apply mask if provided
-                if mask is not None:
-                    mask_block = mask[:, :, i:i+q_len, j:j+k_len]
-                    scores = scores.masked_fill(mask_block == 0, -1e9)
-                
-                # Apply softmax with numerical stability
-                attention_block = F.softmax(scores, dim=-1)
-                attention_block = self.dropout(attention_block)
-                
-                # Apply attention to values
-                block_output += torch.matmul(attention_block, v_block)
-                block_attention[:, :, :, j:j+k_len] = attention_block
-            
-            # Store block output
-            output[:, :, i:i+q_len, :] = block_output
-            attention_weights[:, :, i:i+q_len, :] = block_attention
-        
-        # Reshape back to original format
-        output = output.transpose(1, 2).contiguous().view(batch_size, seq_len, d_model)
-        output = self.output_linear(output)
-        
-        return output, attention_weights
+    Flash Attention V2.
 
-# Factory functions
+    Currently inherits V1 block processing unchanged.
+    Extension point: override ``_flash_attention`` with online-softmax
+    rescaling or tiled SRAM scheduling for true V2 semantics.
+    """
+    pass  # inherits everything from V1
+
+# ---------------------------------------------------------------------------
+# Factory
+# ---------------------------------------------------------------------------
+_VERSION_MAP = {"v1": FlashAttention, "v2": FlashAttentionV2}
+
 def create_flash_attention(
     d_model: int,
     n_heads: int,
     dropout: float = 0.1,
     block_size: int = 64,
     use_flash_attention: bool = True,
-    version: str = "v1"
+    version: str = "v1",
 ) -> Union[FlashAttention, FlashAttentionV2]:
-    """Create a Flash Attention instance."""
-    if version == "v1":
-        return FlashAttention(d_model, n_heads, dropout, block_size, use_flash_attention)
-    elif version == "v2":
-        return FlashAttentionV2(d_model, n_heads, dropout, block_size, use_flash_attention)
-    else:
-        raise ValueError(f"Unsupported Flash Attention version: {version}")
+    """
+    Create a Flash Attention instance.
 
-def create_flash_attention_v1(
-    d_model: int,
-    n_heads: int,
-    dropout: float = 0.1,
-    block_size: int = 64,
-    use_flash_attention: bool = True
-) -> FlashAttention:
-    """Create a Flash Attention V1 instance."""
-    return FlashAttention(d_model, n_heads, dropout, block_size, use_flash_attention)
-
-def create_flash_attention_v2(
-    d_model: int,
-    n_heads: int,
-    dropout: float = 0.1,
-    block_size: int = 64,
-    use_flash_attention: bool = True
-) -> FlashAttentionV2:
-    """Create a Flash Attention V2 instance."""
-    return FlashAttentionV2(d_model, n_heads, dropout, block_size, use_flash_attention)
+    Args:
+        d_model: Model dimension.
+        n_heads: Number of attention heads.
+        dropout: Dropout rate.
+        block_size: Block size for tiled computation.
+        use_flash_attention: Use flash (True) or standard fallback (False).
+        version: ``'v1'`` or ``'v2'``.
+    """
+    cls = _VERSION_MAP.get(version)
+    if cls is None:
+        raise ValueError(f"Unsupported version '{version}'. Choose from {list(_VERSION_MAP)}")
+    return cls(d_model, n_heads, dropout, block_size, use_flash_attention)
 
 
-
+# Backward-compat aliases
+create_flash_attention_v1 = lambda **kw: create_flash_attention(version="v1", **kw)
+create_flash_attention_v2 = lambda **kw: create_flash_attention(version="v2", **kw)
 

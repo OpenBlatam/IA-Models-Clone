@@ -7,14 +7,15 @@ import logging
 import json
 from typing import Dict, Any, List, Optional
 from pathlib import Path
-from dataclasses import dataclass, asdict
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class ReportSection:
+from .base import BaseOptimizationModel
+
+
+class ReportSection(BaseOptimizationModel):
     """Report section."""
     title: str
     content: Dict[str, Any]
@@ -181,6 +182,7 @@ def create_report(title: str) -> ReportGenerator:
         Report generator
     """
     return ReportGenerator(title)
+
 
 
 

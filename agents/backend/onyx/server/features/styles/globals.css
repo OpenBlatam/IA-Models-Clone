@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import './animations.css';
+
+@layer base {
+  :root {
+    /* Brand Colors (Pastel) */
+    --color-bg: #F3F7FF;
+    --color-card-gradient: linear-gradient(90deg, #FFD6E3 0%, #E3D6FF 100%);
+    --color-title: #FF5A7A;
+    --color-text: #23235F;
+    --color-text-secondary: #6B6B8D;
+    --color-border: #E3D6FF;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+
+    /* For compatibility with Tailwind's semantic tokens */
+    --background: var(--color-bg);
+    --foreground: var(--color-text);
+    --card: var(--color-white);
+    --card-foreground: var(--color-text);
+    --primary: var(--color-title);
+    --primary-foreground: var(--color-white);
+    --secondary: #E3D6FF;
+    --secondary-foreground: var(--color-text);
+    --muted: #F3F7FF;
+    --muted-foreground: var(--color-text-secondary);
+    --accent: #FFD6E3;
+    --accent-foreground: var(--color-text);
+    --border: var(--color-border);
+    --input: var(--color-border);
+    --ring: var(--color-title);
+    --radius: 1.5rem;
+
+    /* Gradients */
+    --gradient-card: linear-gradient(90deg, #FFD6E3 0%, #E3D6FF 100%);
+    --gradient-faq: linear-gradient(90deg, #FFD6E3 0%, #E3D6FF 100%);
+  }
+
+  .dark {
+    --color-bg: #23235F;
+    --color-card-gradient: linear-gradient(90deg, #3A2C5F 0%, #23235F 100%);
+    --color-title: #FF5A7A;
+    --color-text: #F3F7FF;
+    --color-text-secondary: #B3B3D6;
+    --color-border: #3A2C5F;
+    --background: var(--color-bg);
+    --foreground: var(--color-text);
+    --card: #2D2D5F;
+    --card-foreground: var(--color-text);
+    --primary: var(--color-title);
+    --primary-foreground: var(--color-white);
+    --secondary: #3A2C5F;
+    --secondary-foreground: var(--color-text);
+    --muted: #23235F;
+    --muted-foreground: var(--color-text-secondary);
+    --accent: #FFD6E3;
+    --accent-foreground: var(--color-text);
+    --border: var(--color-border);
+    --input: var(--color-border);
+    --ring: var(--color-title);
+  }
+}
+
+@layer base {
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  h1, h2, h3 {
+    color: var(--color-title);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .text-title {
+    color: var(--color-title);
+    font-weight: 700;
+  }
+
+  .text-main {
+    color: var(--color-text);
+  }
+
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .card, .faq-card {
+    background: var(--gradient-card);
+    border-radius: 1.5rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    box-shadow: 0 4px 24px 0 rgba(35, 35, 95, 0.06);
+  }
+
+  .dark .card, .dark .faq-card {
+    background: var(--color-card-gradient);
+    border-color: var(--color-border);
+    color: var(--color-text);
+  }
+
+  .faq-card {
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-icon {
+    color: var(--color-title);
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .card {
+    background: var(--color-white);
+    border-radius: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .dark .card {
+    background: var(--color-gray-900);
+    border-color: var(--color-gray-800);
+  }
+
+  input, textarea, .input {
+    background: var(--color-gray-50);
+    border-color: var(--color-gray-200);
+    color: var(--color-foreground);
+  }
+
+  .dark input, .dark textarea, .dark .input {
+    background: var(--color-gray-800);
+    border-color: var(--color-gray-700);
+  }
+
+  .text-muted {
+    color: var(--color-gray-500);
+  }
+
+  .dark .text-muted {
+    color: var(--color-gray-400);
+  }
+
+  .text-strong {
+    color: var(--color-foreground);
+    font-weight: 600;
+  }
+
+  .text-title {
+    color: var(--color-foreground);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3 {
+    font-weight: 800;
+    color: var(--color-foreground);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .border-gradient {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--color-white), var(--color-white)) padding-box,
+                var(--gradient-primary) border-box;
+  }
+
+  .dark .border-gradient {
+    background: linear-gradient(var(--color-gray-900), var(--color-gray-900)) padding-box,
+                var(--gradient-primary) border-box;
+  }
+
+  .button-primary {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    border-radius: 9999px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    transition: all 0.2s;
+  }
+
+  .button-primary:hover {
+    background: var(--gradient-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow);
+  }
+
+  .dark .glass-effect {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .step {
+    counter-increment: step;
+  }
+
+  .step:before {
+    @apply absolute w-9 h-9 bg-muted rounded-full font-mono font-medium text-center text-base inline-flex items-center justify-center -indent-px border-4 border-background;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .bg-grid {
+    background-image: linear-gradient(to right, rgba(0, 230, 160, 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 230, 160, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(rgba(0, 230, 160, 0.2) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, rgba(0, 230, 160, 0.1) 0%, transparent 70%);
+  }
+
+  .bg-gradient-conic {
+    background: conic-gradient(from 0deg at 50% 50%, rgba(0, 230, 160, 0.1) 0deg, transparent 360deg);
+  }
+}
+
+.text-gradient_indigo-purple {
+  background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- FullCalendar Now Indicator Custom --- */
+.fc-now-indicator {
+  background: linear-gradient(90deg, #ef4444 60%, #f87171 100%) !important; /* rojo degradado */
+  height: 4px !important;
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 2px 8px 0 #ef444455;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.fc-now-indicator::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle at 60% 40%, #ef4444 80%, #fff 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #fff, 0 2px 8px 0 #ef444455;
+  border: 2px solid #ef4444;
+  z-index: 11;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* Mejorar contraste y visibilidad en dark mode */
+.dark .fc-now-indicator {
+  background: linear-gradient(90deg, #f87171 60%, #ef4444 100%) !important;
+  box-shadow: 0 2px 8px 0 #ef4444bb;
+}
+.dark .fc-now-indicator::before {
+  background: radial-gradient(circle at 60% 40%, #f87171 80%, #222 100%);
+  box-shadow: 0 0 0 3px #222, 0 2px 8px 0 #ef4444bb;
+  border: 2px solid #f87171;
+}
+
+.high-contrast, .high-contrast body, .high-contrast #__next {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast * {
+  background: transparent !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+  text-shadow: none !important;
+}
+
+.high-contrast img, .high-contrast video {
+  filter: none !important;
+}
+
+.high-contrast a {
+  color: #fff !important;
+  text-decoration: underline;
+}

@@ -1,351 +1,353 @@
 # 🎯 AI Job Replacement Helper
 
-Sistema inteligente que ayuda a las personas cuando una IA les quita su trabajo. Incluye gamificación, pasos guiados personalizados y búsqueda de trabajo estilo Tinder con integración de LinkedIn API.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## ✨ Características Principales
+Intelligent system that helps people when AI displaces their job. Includes gamification, personalized guided steps, and Tinder-style job search with LinkedIn API integration.
 
-### 🎮 Sistema de Gamificación
-- **Puntos y niveles**: Gana puntos por completar acciones y sube de nivel
-- **Badges y logros**: Desbloquea badges por hitos importantes
-- **Rachas (Streaks)**: Mantén rachas de días consecutivos activos
-- **Leaderboards**: Compite con otros usuarios
-- **Sistema de recompensas**: Obtén puntos por cada acción importante
+## ✨ Key Features
 
-### 📋 Pasos Guiados Personalizados
-- **Roadmap completo**: 10 pasos estructurados desde evaluación hasta aplicación
-- **Progreso visual**: Ve tu progreso en cada categoría
-- **Recursos integrados**: Acceso a artículos, videos, herramientas y plantillas
-- **Prerrequisitos inteligentes**: Los pasos se desbloquean según tu progreso
-- **Tracking detallado**: Registra cuándo iniciaste y completaste cada paso
+### 🎮 Gamification System
+- **Points and Levels** — Earn points by completing actions and leveling up
+- **Badges and Achievements** — Unlock badges for important milestones
+- **Streaks** — Maintain consecutive daily activity streaks
+- **Leaderboards** — Compete with other users
+- **Reward System** — Get points for every important action
 
-### 💼 Búsqueda de Trabajo Estilo Tinder
-- **Swipe de trabajos**: Like/dislike trabajos como en Tinder
-- **Integración con LinkedIn**: Busca trabajos reales de LinkedIn
-- **Matching inteligente**: Score de compatibilidad con cada trabajo
-- **Trabajos guardados**: Guarda trabajos para revisar después
-- **Aplicación directa**: Aplica a trabajos desde la plataforma
-- **Matches mutuos**: Ve cuando hay interés mutuo
+### 📋 Personalized Guided Steps
+- **Complete Roadmap** — 10 structured steps from evaluation to application
+- **Visual Progress** — See your progress in each category
+- **Integrated Resources** — Access to articles, videos, tools, and templates
+- **Smart Prerequisites** — Steps unlock based on your progress
+- **Detailed Tracking** — Record when you started and completed each step
 
-### 🤖 Recomendaciones Inteligentes
-- **Habilidades recomendadas**: IA sugiere qué habilidades aprender
-- **Trabajos personalizados**: Recomendaciones basadas en tu perfil
-- **Próximos pasos**: Sugerencias de qué hacer a continuación
-- **Análisis de gaps**: Identifica qué habilidades te faltan
+### 💼 Tinder-Style Job Search
+- **Job Swipe** — Like/dislike jobs like on Tinder
+- **LinkedIn Integration** — Search real LinkedIn jobs
+- **Smart Matching** — Compatibility score with each job
+- **Saved Jobs** — Save jobs to review later
+- **Direct Application** — Apply to jobs from the platform
+- **Mutual Matches** — See when there is mutual interest
 
-### 🔔 Sistema de Notificaciones
-- **Notificaciones inteligentes**: Alertas personalizadas
-- **Recordatorios**: No pierdas tu racha ni pasos importantes
-- **Logros**: Notificaciones cuando desbloqueas badges o subes de nivel
-- **Matches de trabajo**: Alertas cuando hay interés mutuo
+### 🤖 Smart Recommendations
+- **Recommended Skills** — AI suggests skills to learn
+- **Personalized Jobs** — Recommendations based on your profile
+- **Next Steps** — Suggestions on what to do next
+- **Gap Analysis** — Identifies missing skills
 
-### 👨‍🏫 Mentoría y Coaching con IA
-- **Coaches especializados**: Career coach, tech mentor, interview coach
-- **Sesiones personalizadas**: Chats con IA para guía profesional
-- **Consejos de carrera**: Análisis de tu situación y objetivos
-- **Tips para entrevistas**: Preparación específica por trabajo
-- **Mensajes motivacionales**: Mantén la motivación alta
+### 🔔 Notification System
+- **Smart Notifications** — Personalized alerts
+- **Reminders** — Don't lose your streak or miss important steps
+- **Achievements** — Notifications when you unlock badges or level up
+- **Job Matches** — Alerts when there is mutual interest
 
-### 📄 Análisis de CV con IA
-- **Análisis completo**: Score general y por sección
-- **Feedback detallado**: Fortalezas y áreas de mejora
-- **Score ATS**: Compatibilidad con sistemas de tracking
-- **Análisis de keywords**: Coincidencia con trabajos objetivo
-- **Sugerencias específicas**: Mejoras concretas para tu CV
+### 👨‍🏫 AI Mentoring and Coaching
+- **Specialized Coaches** — Career coach, tech mentor, interview coach
+- **Personalized Sessions** — AI chats for professional guidance
+- **Career Advice** — Analysis of your situation and goals
+- **Interview Tips** — Specific preparation per job
+- **Motivational Messages** — Keep motivation high
 
-### 🎤 Simulador de Entrevistas
-- **Entrevistas simuladas**: Practica con IA
-- **Múltiples tipos**: Técnicas, de comportamiento, cultural fit
-- **Feedback en tiempo real**: Análisis de tus respuestas
-- **Score y mejoras**: Identifica qué mejorar
-- **Banco de preguntas**: Preguntas reales de entrevistas
+### 📄 AI CV Analysis
+- **Complete Analysis** — Overall score and section breakdown
+- **Detailed Feedback** — Strengths and areas for improvement
+- **ATS Score** — Compatibility with tracking systems
+- **Keyword Analysis** — Match with target jobs
+- **Specific Suggestions** — Concrete improvements for your CV
 
-### 🏆 Sistema de Desafíos
-- **Desafíos diarios**: Misiones diarias para mantenerte activo
-- **Desafíos semanales**: Objetivos semanales más grandes
-- **Logros especiales**: Badges únicos por hitos importantes
-- **Recompensas**: Puntos, XP y badges por completar desafíos
-- **Tracking de progreso**: Ve tu avance en tiempo real
+### 🎤 Interview Simulator
+- **Simulated Interviews** — Practice with AI
+- **Multiple Types** — Technical, behavioral, cultural fit
+- **Real-Time Feedback** — Analysis of your answers
+- **Score and Improvements** — Identify what to improve
+- **Question Bank** — Real interview questions
 
-### 📊 Dashboard y Analytics
-- **Métricas completas**: Vista 360° de tu progreso
-- **Tendencias**: Gráficos de actividad y crecimiento
-- **Estadísticas de actividad**: Análisis de tus acciones
-- **Leaderboards**: Compara tu progreso con otros
+### 🏆 Challenge System
+- **Daily Challenges** — Daily missions to keep you active
+- **Weekly Challenges** — Larger weekly goals
+- **Special Achievements** — Unique badges for major milestones
+- **Rewards** — Points, XP, and badges for completing challenges
+- **Progress Tracking** — See your advance in real-time
 
-### ✍️ Generador de Contenido con IA
-- **Cartas de presentación**: Genera cartas personalizadas automáticamente
-- **Posts de LinkedIn**: Crea posts profesionales para compartir logros
-- **Emails de seguimiento**: Genera emails de follow-up profesionales
-- **Notas de agradecimiento**: Crea notas post-entrevista
-- **Mejora de texto**: Mejora textos con diferentes estilos
+### 📊 Dashboard and Analytics
+- **Complete Metrics** — 360° view of your progress
+- **Trends** — Activity and growth charts
+- **Activity Statistics** — Analysis of your actions
+- **Leaderboards** — Compare your progress with others
 
-### 🔔 Alertas de Trabajos Inteligentes
-- **Alertas personalizadas**: Crea alertas con keywords, ubicación y tipo
-- **Búsqueda automática**: Verifica periódicamente nuevos trabajos
-- **Frecuencias configurables**: Daily, weekly, o real-time
-- **Rango salarial**: Filtros por rango salarial
-- **Tracking de matches**: Cuenta cuántos trabajos coinciden
+### ✍️ AI Content Generator
+- **Cover Letters** — Automatically generates personalized letters
+- **LinkedIn Posts** — Creates professional posts to share achievements
+- **Follow-up Emails** — Generates professional follow-up emails
+- **Thank You Notes** — Creates post-interview notes
+- **Text Improvement** — Enhances texts with different styles
 
-### 🔗 Integraciones con APIs Externas
-- **GitHub**: Muestra proyectos y contribuciones
-- **Stack Overflow**: Integra reputación y respuestas
-- **Medium**: Muestra artículos publicados
-- **Sincronización**: Sincroniza datos de plataformas integradas
+### 🔔 Smart Job Alerts
+- **Personalized Alerts** — Create alerts with keywords, location, and type
+- **Automatic Search** — Periodically checks for new jobs
+- **Configurable Frequencies** — Daily, weekly, or real-time
+- **Salary Range** — Filters by salary range
+- **Match Tracking** — Counts matching jobs
 
-### 📱 Notificaciones Inteligentes
-- **Canales múltiples**: In-app, email, push, SMS
-- **Prioridades**: Low, medium, high, urgent
-- **Tiempo óptimo**: Calcula el mejor momento para enviar
-- **Preferencias de usuario**: Respeta horarios y canales preferidos
-- **Agrupación**: Agrupa notificaciones para evitar spam
+### 🔗 External API Integrations
+- **GitHub** — Shows projects and contributions
+- **Stack Overflow** — Integrates reputation and answers
+- **Medium** — Shows published articles
+- **Synchronization** — Syncs data from integrated platforms
 
-## 🚀 Instalación
+### 📱 Smart Notifications
+- **Multiple Channels** — In-app, email, push, SMS
+- **Priorities** — Low, medium, high, urgent
+- **Optimal Time** — Calculates the best time to send
+- **User Preferences** — Respects preferred schedules and channels
+- **Grouping** — Groups notifications to avoid spam
 
-### Requisitos
+## 🚀 Installation
+
+### Requirements
 - Python 3.10+
-- PostgreSQL (opcional, para producción)
-- Redis (opcional, para cache)
+- PostgreSQL (optional, for production)
+- Redis (optional, for cache)
 
-### Instalación Local
+### Local Installation
 
 ```bash
-# Clonar o navegar al directorio
+# Clone or navigate to directory
 cd ai_job_replacement_helper
 
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Configurar variables de entorno
+# Configure environment variables
 cp .env.example .env
-# Editar .env con tus credenciales
+# Edit .env with your credentials
 
-# Ejecutar servidor
+# Run server
 python main.py
 ```
 
-El servidor estará disponible en `http://localhost:8030`
+Server will be available at `http://localhost:8030`
 
 ## 📚 API Endpoints
 
-### Gamificación
+### Gamification
 
-- `GET /api/v1/gamification/progress/{user_id}` - Obtener progreso completo
-- `POST /api/v1/gamification/points/{user_id}?action={action}&amount={amount}` - Agregar puntos
-- `GET /api/v1/gamification/leaderboard?limit={limit}` - Ver leaderboard
-- `GET /api/v1/gamification/badges/{user_id}` - Ver badges del usuario
+- `GET /api/v1/gamification/progress/{user_id}` — Get full progress
+- `POST /api/v1/gamification/points/{user_id}?action={action}&amount={amount}` — Add points
+- `GET /api/v1/gamification/leaderboard?limit={limit}` — View leaderboard
+- `GET /api/v1/gamification/badges/{user_id}` — View user badges
 
-### Pasos Guiados
+### Guided Steps
 
-- `GET /api/v1/steps/roadmap/{user_id}` - Obtener roadmap completo
-- `GET /api/v1/steps/progress/{user_id}` - Obtener progreso de pasos
-- `POST /api/v1/steps/start/{user_id}` - Iniciar un paso
-- `POST /api/v1/steps/complete/{user_id}` - Completar un paso
+- `GET /api/v1/steps/roadmap/{user_id}` — Get full roadmap
+- `GET /api/v1/steps/progress/{user_id}` — Get steps progress
+- `POST /api/v1/steps/start/{user_id}` — Start a step
+- `POST /api/v1/steps/complete/{user_id}` — Complete a step
 
-### Trabajos (LinkedIn)
+### Jobs (LinkedIn)
 
-- `GET /api/v1/jobs/search/{user_id}?keywords={keywords}&location={location}` - Buscar trabajos
-- `POST /api/v1/jobs/swipe/{user_id}` - Hacer swipe (like/dislike/save)
-- `POST /api/v1/jobs/apply/{user_id}?job_id={job_id}` - Aplicar a trabajo
-- `GET /api/v1/jobs/saved/{user_id}` - Trabajos guardados
-- `GET /api/v1/jobs/liked/{user_id}` - Trabajos que te gustaron
-- `GET /api/v1/jobs/matches/{user_id}` - Matches (interés mutuo)
-- `GET /api/v1/jobs/statistics/{user_id}` - Estadísticas del usuario
+- `GET /api/v1/jobs/search/{user_id}?keywords={keywords}&location={location}` — Search jobs
+- `POST /api/v1/jobs/swipe/{user_id}` — Swipe (like/dislike/save)
+- `POST /api/v1/jobs/apply/{user_id}?job_id={job_id}` — Apply to job
+- `GET /api/v1/jobs/saved/{user_id}` — Saved jobs
+- `GET /api/v1/jobs/liked/{user_id}` — Liked jobs
+- `GET /api/v1/jobs/matches/{user_id}` — Matches (mutual interest)
+- `GET /api/v1/jobs/statistics/{user_id}` — User statistics
 
-### Recomendaciones
+### Recommendations
 
-- `GET /api/v1/recommendations/skills/{user_id}?target_industry={industry}` - Recomendaciones de habilidades
-- `GET /api/v1/recommendations/jobs/{user_id}?location={location}` - Recomendaciones de trabajos
-- `GET /api/v1/recommendations/next-steps/{user_id}` - Próximos pasos recomendados
+- `GET /api/v1/recommendations/skills/{user_id}?target_industry={industry}` — Skill recommendations
+- `GET /api/v1/recommendations/jobs/{user_id}?location={location}` — Job recommendations
+- `GET /api/v1/recommendations/next-steps/{user_id}` — Recommended next steps
 
-### Notificaciones
+### Notifications
 
-- `GET /api/v1/notifications/{user_id}?unread_only={bool}&limit={limit}` - Obtener notificaciones
-- `GET /api/v1/notifications/unread-count/{user_id}` - Contar no leídas
-- `POST /api/v1/notifications/mark-read/{user_id}/{notification_id}` - Marcar como leída
-- `POST /api/v1/notifications/mark-all-read/{user_id}` - Marcar todas como leídas
+- `GET /api/v1/notifications/{user_id}?unread_only={bool}&limit={limit}` — Get notifications
+- `GET /api/v1/notifications/unread-count/{user_id}` — Count unread
+- `POST /api/v1/notifications/mark-read/{user_id}/{notification_id}` — Mark as read
+- `POST /api/v1/notifications/mark-all-read/{user_id}` — Mark all as read
 
-### Mentoría
+### Mentoring
 
-- `POST /api/v1/mentoring/start/{user_id}?session_type={type}&mentor_type={type}` - Iniciar sesión
-- `POST /api/v1/mentoring/ask/{user_id}/{session_id}?question={question}` - Preguntar al mentor
-- `GET /api/v1/mentoring/career-advice/{user_id}?current_situation={situation}&goals={goals}` - Consejo de carrera
-- `GET /api/v1/mentoring/interview-tips/{user_id}?job_title={title}&company={company}` - Tips para entrevista
-- `GET /api/v1/mentoring/motivation/{user_id}?current_mood={mood}` - Mensaje motivacional
+- `POST /api/v1/mentoring/start/{user_id}?session_type={type}&mentor_type={type}` — Start session
+- `POST /api/v1/mentoring/ask/{user_id}/{session_id}?question={question}` — Ask mentor
+- `GET /api/v1/mentoring/career-advice/{user_id}?current_situation={situation}&goals={goals}` — Career advice
+- `GET /api/v1/mentoring/interview-tips/{user_id}?job_title={title}&company={company}` — Interview tips
+- `GET /api/v1/mentoring/motivation/{user_id}?current_mood={mood}` — Motivational message
 
-### Análisis de CV
+### CV Analysis
 
-- `POST /api/v1/cv/analyze/{user_id}` - Analizar CV (body: cv_content, target_job opcional)
+- `POST /api/v1/cv/analyze/{user_id}` — Analyze CV (body: cv_content, target_job optional)
 
-### Simulador de Entrevistas
+### Interview Simulator
 
-- `POST /api/v1/interview/start/{user_id}?interview_type={type}&job_title={title}&company={company}` - Iniciar entrevista
-- `POST /api/v1/interview/answer/{user_id}/{session_id}?question_id={id}&answer={answer}` - Enviar respuesta
-- `POST /api/v1/interview/complete/{user_id}/{session_id}` - Completar y obtener resultados
+- `POST /api/v1/interview/start/{user_id}?interview_type={type}&job_title={title}&company={company}` — Start interview
+- `POST /api/v1/interview/answer/{user_id}/{session_id}?question_id={id}&answer={answer}` — Send answer
+- `POST /api/v1/interview/complete/{user_id}/{session_id}` — Complete and get results
 
-### Desafíos
+### Challenges
 
-- `GET /api/v1/challenges/available/{user_id}?challenge_type={type}` - Desafíos disponibles
-- `POST /api/v1/challenges/start/{user_id}/{challenge_id}` - Iniciar desafío
-- `POST /api/v1/challenges/progress/{user_id}/{challenge_id}?progress={0.0-1.0}` - Actualizar progreso
-- `POST /api/v1/challenges/complete/{user_id}/{challenge_id}` - Completar desafío
+- `GET /api/v1/challenges/available/{user_id}?challenge_type={type}` — Available challenges
+- `POST /api/v1/challenges/start/{user_id}/{challenge_id}` — Start challenge
+- `POST /api/v1/challenges/progress/{user_id}/{challenge_id}?progress={0.0-1.0}` — Update progress
+- `POST /api/v1/challenges/complete/{user_id}/{challenge_id}` — Complete challenge
 
 ### Dashboard
 
-- `GET /api/v1/dashboard/{user_id}` - Dashboard completo
-- `GET /api/v1/dashboard/metrics/{user_id}` - Métricas del usuario
-- `GET /api/v1/dashboard/activity/{user_id}?days={days}` - Estadísticas de actividad
+- `GET /api/v1/dashboard/{user_id}` — Full dashboard
+- `GET /api/v1/dashboard/metrics/{user_id}` — User metrics
+- `GET /api/v1/dashboard/activity/{user_id}?days={days}` — Activity statistics
 
-### Generador de Contenido
+### Content Generator
 
-- `POST /api/v1/content/cover-letter` - Generar carta de presentación
-- `POST /api/v1/content/linkedin-post` - Generar post de LinkedIn
-- `POST /api/v1/content/follow-up-email` - Generar email de seguimiento
-- `POST /api/v1/content/improve-text` - Mejorar texto con IA
+- `POST /api/v1/content/cover-letter` — Generate cover letter
+- `POST /api/v1/content/linkedin-post` — Generate LinkedIn post
+- `POST /api/v1/content/follow-up-email` — Generate follow-up email
+- `POST /api/v1/content/improve-text` — Improve text with AI
 
-### Alertas de Trabajos
+### Job Alerts
 
-- `POST /api/v1/job-alerts/create/{user_id}` - Crear alerta
-- `GET /api/v1/job-alerts/{user_id}` - Obtener alertas del usuario
-- `POST /api/v1/job-alerts/check/{user_id}` - Verificar alertas y encontrar matches
+- `POST /api/v1/job-alerts/create/{user_id}` — Create alert
+- `GET /api/v1/job-alerts/{user_id}` — Get user alerts
+- `POST /api/v1/job-alerts/check/{user_id}` — Check alerts and find matches
 
 ### Health
 
-- `GET /health` - Health check básico
-- `GET /health/detailed` - Health check detallado
+- `GET /health` — Basic health check
+- `GET /health/detailed` — Detailed health check
 
-## 📖 Ejemplos de Uso
+## 📖 Usage Examples
 
-### Buscar trabajos y hacer swipe
+### Search jobs and swipe
 
 ```bash
-# Buscar trabajos
+# Search jobs
 curl "http://localhost:8030/api/v1/jobs/search/user123?keywords=Python&location=Madrid"
 
-# Hacer like a un trabajo
+# Like a job
 curl -X POST "http://localhost:8030/api/v1/jobs/swipe/user123" \
   -H "Content-Type: application/json" \
   -d '{"job_id": "job_1", "action": "like"}'
 
-# Guardar un trabajo
+# Save a job
 curl -X POST "http://localhost:8030/api/v1/jobs/swipe/user123" \
   -H "Content-Type: application/json" \
   -d '{"job_id": "job_2", "action": "save"}'
 ```
 
-### Completar pasos y ganar puntos
+### Complete steps and earn points
 
 ```bash
-# Iniciar un paso
+# Start a step
 curl -X POST "http://localhost:8030/api/v1/steps/start/user123" \
   -H "Content-Type: application/json" \
   -d '{"step_id": "step_1"}'
 
-# Completar un paso
+# Complete a step
 curl -X POST "http://localhost:8030/api/v1/steps/complete/user123" \
   -H "Content-Type: application/json" \
-  -d '{"step_id": "step_1", "notes": "Completé la evaluación"}'
+  -d '{"step_id": "step_1", "notes": "Completed assessment"}'
 
-# Ver progreso
+# View progress
 curl "http://localhost:8030/api/v1/gamification/progress/user123"
 ```
 
-### Obtener recomendaciones
+### Get recommendations
 
 ```bash
-# Recomendaciones de habilidades
+# Skill recommendations
 curl "http://localhost:8030/api/v1/recommendations/skills/user123?target_industry=tech"
 
-# Recomendaciones de trabajos
+# Job recommendations
 curl "http://localhost:8030/api/v1/recommendations/jobs/user123?location=Madrid"
 
-# Próximos pasos
+# Next steps
 curl "http://localhost:8030/api/v1/recommendations/next-steps/user123"
 ```
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ```
 ai_job_replacement_helper/
-├── core/                    # Lógica de negocio
-│   ├── gamification.py     # Sistema de gamificación
-│   ├── steps_guide.py      # Pasos guiados
-│   ├── linkedin_integration.py  # Integración LinkedIn
-│   └── recommendations.py  # Recomendaciones IA
-├── api/                    # API REST
-│   ├── app_factory.py     # Factory de FastAPI
+├── core/                    # Business logic
+│   ├── gamification.py     # Gamification system
+│   ├── steps_guide.py      # Guided steps
+│   ├── linkedin_integration.py  # LinkedIn integration
+│   └── recommendations.py  # AI recommendations
+├── api/                    # REST API
+│   ├── app_factory.py     # FastAPI factory
 │   └── routes/            # Endpoints
 │       ├── gamification.py
 │       ├── steps.py
 │       ├── jobs.py
 │       ├── recommendations.py
 │       └── health.py
-├── models/                 # Modelos Pydantic
+├── models/                 # Pydantic models
 │   └── schemas.py
-├── main.py                 # Punto de entrada
-└── requirements.txt        # Dependencias
+├── main.py                 # Entry point
+└── requirements.txt        # Dependencies
 ```
 
-## 🎮 Sistema de Gamificación
+## 🎮 Gamification System
 
-### Puntos por Acción
+### Points per Action
 
-- Completar perfil: 50 puntos
-- Completar paso: 25 puntos
-- Aplicar a trabajo: 100 puntos
-- Guardar trabajo: 10 puntos
-- Aprender habilidad: 75 puntos
-- Contacto de networking: 30 puntos
-- Completar desafío: 150 puntos
-- Ayudar comunidad: 50 puntos
-- Login diario: 20 puntos
+- Complete profile: 50 points
+- Complete step: 25 points
+- Apply to job: 100 points
+- Save job: 10 points
+- Learn skill: 75 points
+- Networking contact: 30 points
+- Complete challenge: 150 points
+- Help community: 50 points
+- Daily login: 20 points
 
-### Badges Disponibles
+### Available Badges
 
-- 🎯 **Primer Paso**: Completaste tu primer paso
-- ✅ **Perfil Completo**: Perfil al 100%
-- 📝 **Primera Aplicación**: Enviaste tu primera aplicación
-- 🔥 **Semana de Dedicación**: 7 días consecutivos
-- ⭐ **Mes de Excelencia**: 30 días consecutivos
-- 🎓 **Habilidad Aprendida**: Aprendiste una nueva habilidad
-- 🤝 **Networking Master**: Muchos contactos
-- 💼 **Listo para Entrevista**: Preparado para entrevistas
-- 🎉 **Oferta de Trabajo**: Recibiste una oferta
-- 👨‍🏫 **Mentor**: Ayudaste a otros
+- 🎯 **First Step** — Completed your first step
+- ✅ **Profile Complete** — 100% Profile
+- 📝 **First Application** — Sent your first application
+- 🔥 **Dedication Week** — 7 consecutive days
+- ⭐ **Excellence Month** — 30 consecutive days
+- 🎓 **Skill Learned** — Learned a new skill
+- 🤝 **Networking Master** — Many contacts
+- 💼 **Ready for Interview** — Prepared for interviews
+- 🎉 **Job Offer** — Received an offer
+- 👨‍🏫 **Mentor** — Helped others
 
-### Niveles
+### Levels
 
-Los niveles van del 1 al 10, con experiencia requerida creciente:
-- Nivel 1: 100 XP
-- Nivel 2: 250 XP
-- Nivel 3: 500 XP
-- ... hasta nivel 10: 20,000 XP
+Levels range from 1 to 10, with increasing XP required:
+- Level 1: 100 XP
+- Level 2: 250 XP
+- Level 3: 500 XP
+- ... up to level 10: 20,000 XP
 
-## 📋 Roadmap de Pasos
+## 📋 Steps Roadmap
 
-1. **Evalúa tu situación actual** - Auto-análisis profesional
-2. **Identifica nuevas habilidades** - Investigación de mercado
-3. **Crea un plan de aprendizaje** - Diseño estructurado
-4. **Actualiza tu perfil de LinkedIn** - Optimización
-5. **Construye tu red profesional** - Networking
-6. **Busca oportunidades de trabajo** - Búsqueda activa
-7. **Prepara tu CV y carta** - Documentos profesionales
-8. **Practica para entrevistas** - Preparación
-9. **Aplica a trabajos** - Aplicaciones
-10. **Mantén una mentalidad positiva** - Motivación continua
+1. **Evaluate your current situation** — Professional self-analysis
+2. **Identify new skills** — Market research
+3. **Create a learning plan** — Structured design
+4. **Update your LinkedIn profile** — Optimization
+5. **Build your professional network** — Networking
+6. **Search for job opportunities** — Active search
+7. **Prepare your CV and cover letter** — Professional documents
+8. **Practice for interviews** — Preparation
+9. **Apply to jobs** — Applications
+10. **Maintain a positive mindset** — Continuous motivation
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```env
 # LinkedIn API
 LINKEDIN_API_KEY=your_linkedin_api_key
 LINKEDIN_API_SECRET=your_linkedin_api_secret
 
-# Database (opcional)
+# Database (optional)
 DATABASE_URL=postgresql://user:password@localhost/dbname
 
-# Redis (opcional)
+# Redis (optional)
 REDIS_URL=redis://localhost:6379
 
 # App
@@ -353,81 +355,84 @@ APP_ENV=development
 DEBUG=True
 ```
 
-## ✅ Funcionalidades Implementadas
+## ✅ Implemented Features
 
-- [x] Sistema de gamificación completo
-- [x] Pasos guiados y roadmap
-- [x] Integración LinkedIn estilo Tinder
-- [x] Recomendaciones inteligentes
-- [x] Sistema de notificaciones
-- [x] Mentoría y coaching con IA
-- [x] Análisis de CV con IA
-- [x] Simulador de entrevistas
-- [x] Sistema de desafíos
-- [x] Dashboard y analytics
-- [x] Generador de contenido con IA ⭐ NUEVO
-- [x] Alertas de trabajos inteligentes ⭐ NUEVO
-- [x] Integraciones con APIs externas ⭐ NUEVO
-- [x] Notificaciones inteligentes ⭐ NUEVO
-- [x] Sistema de comunidad y foros
-- [x] Multi-plataforma (LinkedIn, Indeed, Glassdoor, Remote.com)
-- [x] Tracking de aplicaciones completo
-- [x] Sistema de mensajería
-- [x] Eventos y webinars
-- [x] Biblioteca de recursos
-- [x] Sistema de reportes y exportación
-- [x] Autenticación y usuarios
-- [x] Sistema de suscripciones
-- [x] Sistema de referidos
-- [x] Integración social
-- [x] Analytics avanzados
-- [x] Certificados
-- [x] Sistema de feedback
-- [x] Internacionalización (i18n)
+- [x] Complete gamification system
+- [x] Guided steps and roadmap
+- [x] Tinder-style LinkedIn integration
+- [x] Smart recommendations
+- [x] Notification system
+- [x] AI mentoring and coaching
+- [x] AI CV analysis
+- [x] Interview simulator
+- [x] Challenge system
+- [x] Dashboard and analytics
+- [x] AI content generator ⭐ NEW
+- [x] Smart job alerts ⭐ NEW
+- [x] External API integrations ⭐ NEW
+- [x] Smart notifications ⭐ NEW
+- [x] Community system and forums
+- [x] Multi-platform (LinkedIn, Indeed, Glassdoor, Remote.com)
+- [x] Complete application tracking
+- [x] Messaging system
+- [x] Events and webinars
+- [x] Resource library
+- [x] Reporting and export system
+- [x] Authentication and users
+- [x] Subscription system
+- [x] Referral system
+- [x] Social integration
+- [x] Advanced analytics
+- [x] Certificates
+- [x] Feedback system
+- [x] Internationalization (i18n)
 - [x] A/B Testing
-- [x] Integración con calendarios
-- [x] Motor de búsqueda avanzado
-- [x] Sistema de recordatorios
-- [x] Learning paths personalizados
-- [x] AI Coach avanzado
-- [x] Evaluación de habilidades
-- [x] Sistema de colaboración
-- [x] Personalidad de IA
-- [x] Tracking de progreso avanzado
+- [x] Calendar integration
+- [x] Advanced search engine
+- [x] Reminder system
+- [x] Personalized learning paths
+- [x] Advanced AI Coach
+- [x] Skill assessment
+- [x] Collaboration system
+- [x] AI Personality
+- [x] Advanced progress tracking
 
-## 🚧 Próximas Mejoras
+## 🚧 Upcoming Improvements
 
-- [ ] Integración real con LinkedIn Jobs API (actualmente simulado)
-- [ ] Base de datos persistente (PostgreSQL)
-- [ ] Sistema de autenticación completo
-- [ ] Frontend React con UI moderna
-- [ ] Notificaciones push
-- [ ] Sistema de comunidad y foros
-- [ ] Integración con más plataformas (Indeed, Glassdoor, etc.)
-- [ ] Modelos de IA más avanzados (GPT-4, Claude)
-- [ ] Video entrevistas simuladas
-- [ ] Sistema de networking avanzado
+- [ ] Real integration with LinkedIn Jobs API (currently simulated)
+- [ ] Persistent database (PostgreSQL)
+- [ ] Complete authentication system
+- [ ] React frontend with modern UI
+- [ ] Push notifications
+- [ ] Community and forum system
+- [ ] Integration with more platforms (Indeed, Glassdoor, etc.)
+- [ ] More advanced AI models (GPT-4, Claude)
+- [ ] Simulated video interviews
+- [ ] Advanced networking system
 
-## 📝 Licencia
+## 📝 License
 
-Propietaria - Blatam Academy
+Proprietary — Blatam Academy
 
-## 👥 Autor
+## 👥 Author
 
 Blatam Academy
 
 ---
 
-**Versión**: 2.0.0  
-**Última actualización**: 2024
+**Version**: 2.0.0
+**Last update**: 2024
 
 ---
 
-## 📚 Documentación Adicional
+## 📚 Additional Documentation
 
-- [LATEST_IMPROVEMENTS.md](LATEST_IMPROVEMENTS.md) - Últimas mejoras agregadas
-- [COMPLETE_FEATURES_LIST.md](COMPLETE_FEATURES_LIST.md) - Lista completa de funcionalidades
-- [ARCHITECTURE.md](ARCHITECTURE.md) - Arquitectura del sistema
-- [DEPLOYMENT.md](DEPLOYMENT.md) - Guía de despliegue
-- [QUICK_START.md](QUICK_START.md) - Guía de inicio rápido
+- [LATEST_IMPROVEMENTS.md](LATEST_IMPROVEMENTS.md) — Latest improvements added
+- [COMPLETE_FEATURES_LIST.md](COMPLETE_FEATURES_LIST.md) — Complete features list
+- [ARCHITECTURE.md](ARCHITECTURE.md) — System architecture
+- [DEPLOYMENT.md](DEPLOYMENT.md) — Deployment guide
+- [QUICK_START.md](QUICK_START.md) — Quick start guide
 
+---
+
+[← Back to Main README](../README.md)

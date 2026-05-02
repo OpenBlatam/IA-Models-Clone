@@ -9,7 +9,7 @@ import time
 import logging
 from pathlib import Path
 from typing import Dict, Any, Optional, List, Union
-from dataclasses import dataclass, asdict
+from pydantic import BaseModel, Field
 import torch
 import numpy as np
 from datetime import datetime
@@ -20,8 +20,7 @@ import mlflow
 import pandas as pd
 
 
-@dataclass
-class ExperimentMetrics:
+class ExperimentMetrics(BaseModel):
     """Structured metrics for experiment tracking"""
     epoch: int
     step: int
@@ -29,27 +28,16 @@ class ExperimentMetrics:
     val_loss: float
     learning_rate: float
     timestamp: str
-    additional_metrics: Dict[str, float] = None
-    
-    def __post_init__(self):
-        if self.additional_metrics is None:
-            self.additional_metrics = {}
+    additional_metrics: Dict[str, float] = Field(default_factory=dict)
 
 
-@dataclass
-class ExperimentConfig:
+class ExperimentConfig(BaseModel):
     """Experiment configuration"""
     experiment_name: str
     project_name: str = "truthgpt"
-    tags: List[str] = None
+    tags: List[str] = Field(default_factory=list)
     notes: str = ""
-    config: Dict[str, Any] = None
-    
-    def __post_init__(self):
-        if self.tags is None:
-            self.tags = []
-        if self.config is None:
-            self.config = {}
+    config: Dict[str, Any] = Field(default_factory=dict)
 
 
 class ExperimentTracker:
@@ -150,7 +138,7 @@ class ExperimentTracker:
             # Save experiment configuration
             config_path = self.experiment_dir / "config.json"
             with open(config_path, 'w') as f:
-                json.dump(asdict(self.config), f, indent=2)
+                json.dump(self.config.model_dump(), f, indent=2)
             
             self.logger.info(f"Initialized local tracking at {self.experiment_dir}")
         except Exception as e:
@@ -439,5 +427,6 @@ if __name__ == "__main__":
     
     # Close tracker
     tracker.close()
+
 
 

@@ -1,18 +1,21 @@
 'use client';
 
-import { forwardRef, type ButtonHTMLAttributes } from 'react';
-import { motion } from 'framer-motion';
+import { forwardRef } from 'react';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
+import { cn } from '@/src/utils';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'className' | 'children'> {
+    className?: string;
     variant?: ButtonVariant;
     size?: ButtonSize;
     isLoading?: boolean;
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -52,7 +55,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
         {
-            className = '',
+            className,
             variant = 'primary',
             size = 'md',
             isLoading = false,
@@ -71,16 +74,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 ref={ref}
                 whileHover={{ scale: isDisabled ? 1 : 1.02 }}
                 whileTap={{ scale: isDisabled ? 1 : 0.98 }}
-                className={`
-          inline-flex items-center justify-center gap-2
-          font-semibold rounded-xl
-          transition-all duration-300 ease-out
-          focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background
-          disabled:opacity-50 disabled:cursor-not-allowed
-          ${variantClasses[variant]}
-          ${sizeClasses[size]}
-          ${className}
-        `}
+                className={cn(
+                    'inline-flex items-center justify-center gap-2',
+                    'font-semibold rounded-xl',
+                    'transition-all duration-300 ease-out',
+                    'focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background',
+                    'disabled:opacity-50 disabled:cursor-not-allowed',
+                    variantClasses[variant],
+                    sizeClasses[size],
+                    className
+                )}
                 disabled={isDisabled}
                 aria-disabled={isDisabled}
                 tabIndex={isDisabled ? -1 : 0}

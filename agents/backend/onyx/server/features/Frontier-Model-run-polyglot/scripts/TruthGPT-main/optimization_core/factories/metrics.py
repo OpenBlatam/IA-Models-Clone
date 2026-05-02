@@ -1,7 +1,7 @@
 import math
 from typing import Dict, Any
 
-from factories.registry import Registry
+from optimization_core.factories.registry import Registry
 
 METRICS = Registry()
 
@@ -19,6 +19,7 @@ def metric_ppl(context: Dict[str, Any]) -> float:
         return math.exp(min(20.0, max(-20.0, val_loss)))
     except Exception:
         return float("inf")
+
 
 
 

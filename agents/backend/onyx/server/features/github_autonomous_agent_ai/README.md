@@ -1,62 +1,64 @@
 # GitHub Autonomous Agent AI
 
-Agente autónomo que se conecta a cualquier repositorio de GitHub y ejecuta instrucciones de forma continua, incluso con la computadora apagada, hasta que el usuario le da la orden de parar.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🚀 Características
+Autonomous agent that connects to any GitHub repository and executes instructions continuously, even with the computer off, until the user stops it.
 
-- ✅ **Conexión a cualquier repositorio de GitHub** - Soporta cualquier repositorio público o privado
-- ✅ **Recepción de instrucciones desde el frontend** - Interfaz web para enviar comandos
-- ✅ **Ejecución continua de tareas** - El agente trabaja sin parar hasta que se le ordene detenerse
-- ✅ **Funcionamiento como servicio/daemon** - Puede ejecutarse en segundo plano
-- ✅ **Control de inicio/parada** - Control total desde el frontend o API
-- ✅ **Sistema de cola de tareas** - Gestión eficiente de múltiples tareas
-- ✅ **Persistencia de datos** - Las tareas se guardan en base de datos SQLite
+## 🚀 Features
 
-## 📋 Requisitos
+- ✅ **Connect to any GitHub repository** - Supports any public or private repository
+- ✅ **Receive instructions from frontend** - Web interface to send commands
+- ✅ **Continuous task execution** - Agent works non-stop until stopped
+- ✅ **Service/Daemon operation** - Can run in background
+- ✅ **Start/Stop control** - Full control from frontend or API
+- ✅ **Task queue system** - Efficient management of multiple tasks
+- ✅ **Data persistence** - Tasks are saved in SQLite database
+
+## 📋 Requirements
 
 - Python 3.8+
-- Token de GitHub (opcional, para repositorios privados)
-- FastAPI y Uvicorn
+- GitHub Token (optional, for private repositories)
+- FastAPI and Uvicorn
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Configurar variables de entorno (automático)
+# Configure environment variables (automatic)
 python setup_env.py
 
-# O manualmente, copia env.example a .env
+# Or manually, copy env.example to .env
 # cp env.example .env
 ```
 
-### Configuración de GitHub OAuth
+### GitHub OAuth Configuration
 
-Las credenciales de GitHub OAuth ya están configuradas:
+GitHub OAuth credentials are pre-configured:
 - **Client ID**: `Ov23liSy9XyIj3dD0dQc`
 - **Client Secret**: `6ed948f00e7662bbba0eacd356e60747dd12f08f`
 
-**⚠️ IMPORTANTE**: Asegúrate de que en tu GitHub OAuth App la **Authorization callback URL** sea exactamente:
+**⚠️ IMPORTANT**: Ensure that in your GitHub OAuth App the **Authorization callback URL** is exactly:
 ```
 http://localhost:8025/api/github/auth/callback
 ```
 
-Ver `SETUP_GITHUB_OAUTH.md` para más detalles.
+See `SETUP_GITHUB_OAUTH.md` for more details.
 
-## 🎯 Uso
+## 🎯 Usage
 
-### Modo Servicio (Daemon)
+### Service Mode (Daemon)
 
-Ejecuta el agente como servicio persistente:
+Run the agent as a persistent service:
 
 ```bash
 python main.py --mode service
 ```
 
-### Modo API
+### API Mode
 
-Ejecuta el servidor API:
+Run the API server:
 
 ```bash
 python main.py --mode api --port 8025
@@ -64,90 +66,92 @@ python main.py --mode api --port 8025
 
 ## 📡 API Endpoints
 
-### Agente
+### Agent
 
-- `GET /api/agent/status` - Obtener estado del agente
-- `POST /api/agent/start` - Iniciar el agente
-- `POST /api/agent/stop` - Detener el agente
-- `POST /api/agent/pause` - Pausar el agente
-- `POST /api/agent/resume` - Reanudar el agente
+- `GET /api/agent/status` - Get agent status
+- `POST /api/agent/start` - Start the agent
+- `POST /api/agent/stop` - Stop the agent
+- `POST /api/agent/pause` - Pause the agent
+- `POST /api/agent/resume` - Resume the agent
 
-### Tareas
+### Tasks
 
-- `POST /api/tasks/` - Crear una nueva tarea
-- `GET /api/tasks/` - Listar tareas
-- `GET /api/tasks/{task_id}` - Obtener una tarea específica
+- `POST /api/tasks/` - Create a new task
+- `GET /api/tasks/` - List tasks
+- `GET /api/tasks/{task_id}` - Get a specific task
 
-## 📝 Ejemplo de Uso
+## 📝 Usage Example
 
-### Crear una tarea
+### Create a task
 
 ```bash
 curl -X POST "http://localhost:8025/api/tasks/" \
   -H "Content-Type: application/json" \
   -d '{
     "repository": "owner/repo",
-    "instruction": "Crear un archivo README.md con información del proyecto",
+    "instruction": "Create a README.md file with project information",
     "metadata": {
       "file_path": "README.md",
-      "file_content": "# Mi Proyecto\n\nDescripción del proyecto"
+      "file_content": "# My Project\n\nProject description"
     }
   }'
 ```
 
-### Iniciar el agente
+### Start the agent
 
 ```bash
 curl -X POST "http://localhost:8025/api/agent/start"
 ```
 
-### Ver estado
+### Check status
 
 ```bash
 curl "http://localhost:8025/api/agent/status"
 ```
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ```
 github_autonomous_agent_ai/
-├── api/                    # API FastAPI
-│   ├── routes/            # Rutas de la API
-│   └── models/            # Modelos Pydantic
-├── core/                   # Lógica principal
-│   ├── agent.py           # Agente principal
-│   ├── service.py         # Servicio persistente
-│   ├── github_client.py   # Cliente de GitHub
-│   ├── task_queue.py      # Cola de tareas
-│   └── task_executor.py   # Ejecutor de tareas
-├── config/                 # Configuración
-│   └── settings.py        # Settings de la aplicación
-├── frontend/               # Frontend (próximamente)
-├── main.py                 # Punto de entrada
-└── requirements.txt        # Dependencias
+├── api/                    # FastAPI API
+│   ├── routes/            # API Routes
+│   └── models/            # Pydantic Models
+├── core/                   # Core Logic
+│   ├── agent.py           # Main Agent
+│   ├── service.py         # Persistent Service
+│   ├── github_client.py   # GitHub Client
+│   ├── task_queue.py      # Task Queue
+│   └── task_executor.py   # Task Executor
+├── config/                 # Configuration
+│   ├── settings.py        # App Settings
+├── frontend/               # Frontend (coming soon)
+├── main.py                 # Entry Point
+└── requirements.txt        # Dependencies
 ```
 
-## 🔐 Configuración
+## 🔐 Configuration
 
-Variables de entorno:
+Environment variables:
 
-- `GITHUB_TOKEN` - Token de GitHub (opcional)
-- `API_PORT` - Puerto del servidor API (default: 8025)
-- `AGENT_POLL_INTERVAL` - Intervalo de polling en segundos (default: 5)
-- `AGENT_MAX_CONCURRENT_TASKS` - Máximo de tareas concurrentes (default: 3)
-- `STORAGE_PATH` - Ruta de almacenamiento (default: ./data)
+- `GITHUB_TOKEN` - GitHub Token (optional)
+- `API_PORT` - API Server Port (default: 8025)
+- `AGENT_POLL_INTERVAL` - Polling interval in seconds (default: 5)
+- `AGENT_MAX_CONCURRENT_TASKS` - Maximum concurrent tasks (default: 3)
+- `STORAGE_PATH` - Storage path (default: ./data)
 
-## 🚧 Próximas Mejoras
+## 🚧 Upcoming Improvements
 
-- [ ] Frontend completo con React/Next.js
-- [ ] Soporte para más tipos de instrucciones
-- [ ] Integración con modelos de IA para procesar instrucciones naturales
-- [ ] Sistema de notificaciones
-- [ ] Dashboard de monitoreo
-- [ ] Soporte para múltiples repositorios simultáneos
+- [ ] Complete frontend with React/Next.js
+- [ ] Support for more instruction types
+- [ ] Integration with AI models to process natural instructions
+- [ ] Notification system
+- [ ] Monitoring dashboard
+- [ ] Support for multiple simultaneous repositories
 
-## 📄 Licencia
+## 📄 License
 
 MIT
 
+---
 
+[← Back to Main README](../README.md)

@@ -10,7 +10,7 @@ import torch.nn.functional as F
 from typing import Optional, Tuple, Dict, Any, List, Union, Callable
 import math
 import logging
-from dataclasses import dataclass, field
+from .base import BaseOptimizationModel, CudaResourceManager
 from abc import ABC, abstractmethod
 import gc
 import time
@@ -37,8 +37,7 @@ class MemoryLayout(Enum):
     SPARSE = "sparse"            # Sparse memory layout
     HIERARCHICAL = "hierarchical" # Hierarchical memory layout
 
-@dataclass
-class UltraKVCacheConfig:
+class UltraKVCacheConfig(BaseOptimizationModel):
     """Ultra-efficient K/V cache configuration."""
     
     # Cache size and management
@@ -114,10 +113,10 @@ class UltraKVCache:
         self._setup_async_workers()
         
         # CUDA streams for parallel processing
-        if torch.cuda.is_available() and config.use_cuda_streams:
-            self.cuda_streams = [torch.cuda.Stream() for _ in range(config.num_workers)]
-        else:
-            self.cuda_streams = None
+        self.cuda_streams = CudaResourceManager.get_streams(
+            config.num_workers, 
+            enabled=config.use_cuda_streams
+        )
     
     def _setup_async_workers(self):
         """Setup async worker threads."""
@@ -574,10 +573,10 @@ class UltraEfficientAttention(nn.Module):
         self.use_flash_attention = hasattr(F, 'scaled_dot_product_attention')
         
         # CUDA streams for parallel processing
-        if torch.cuda.is_available() and self.cache_config.use_cuda_streams:
-            self.cuda_streams = [torch.cuda.Stream() for _ in range(self.cache_config.num_workers)]
-        else:
-            self.cuda_streams = None
+        self.cuda_streams = CudaResourceManager.get_streams(
+            self.cache_config.num_workers,
+            enabled=self.cache_config.use_cuda_streams
+        )
     
     def forward(
         self,
@@ -928,6 +927,7 @@ def sdpa_with_cache(
         q, k, v, attn_mask=attn_mask, is_causal=False
     )
     return out
+
 
 
 

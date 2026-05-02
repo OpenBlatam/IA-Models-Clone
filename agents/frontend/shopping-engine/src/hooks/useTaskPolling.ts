@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import apiClient from '@/src/api/client';
 import type { TaskStatusResponse } from '@/src/types/api';
 
-interface UseTaskPollingOptions {
+interface UseTaskPollingOptions<T> {
     pollingInterval?: number;
     maxAttempts?: number;
-    onComplete?: <T>(result: T) => void;
+    onComplete?: (result: T) => void;
     onError?: (error: string) => void;
 }
 
@@ -21,7 +21,7 @@ interface UseTaskPollingReturn<T> {
 }
 
 export const useTaskPolling = <T>(
-    options: UseTaskPollingOptions = {}
+    options: UseTaskPollingOptions<T> = {}
 ): UseTaskPollingReturn<T> => {
     const {
         pollingInterval = 2000,
@@ -36,6 +36,14 @@ export const useTaskPolling = <T>(
     const [isPolling, setIsPolling] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [attempts, setAttempts] = useState(0);
+
+    const onCompleteRef = useRef(onComplete);
+    const onErrorRef = useRef(onError);
+
+    useEffect(() => {
+        onCompleteRef.current = onComplete;
+        onErrorRef.current = onError;
+    }, [onComplete, onError]);
 
     const stopPolling = useCallback(() => {
         setIsPolling(false);
@@ -53,6 +61,8 @@ export const useTaskPolling = <T>(
     }, []);
 
     useEffect(() => {
+        let isCancelled = false;
+
         if (!isPolling || !taskId) {
             return;
         }
@@ -60,13 +70,17 @@ export const useTaskPolling = <T>(
         const pollStatus = async () => {
             try {
                 const statusResponse = await apiClient.getTaskStatus(taskId);
+                if (isCancelled) return;
+                
                 setStatus(statusResponse);
 
                 if (statusResponse.status === 'completed') {
                     const taskResult = await apiClient.getTaskResult<T>(taskId);
+                    if (isCancelled) return;
+                    
                     setResult(taskResult);
                     stopPolling();
-                    onComplete?.(taskResult);
+                    onCompleteRef.current?.(taskResult);
                     return;
                 }
 
@@ -74,16 +88,17 @@ export const useTaskPolling = <T>(
                     const errorMessage = statusResponse.error || 'Task failed';
                     setError(errorMessage);
                     stopPolling();
-                    onError?.(errorMessage);
+                    onErrorRef.current?.(errorMessage);
                     return;
                 }
 
                 setAttempts((prev) => prev + 1);
             } catch (err) {
+                if (isCancelled) return;
                 const errorMessage = err instanceof Error ? err.message : 'Polling failed';
                 setError(errorMessage);
                 stopPolling();
-                onError?.(errorMessage);
+                onErrorRef.current?.(errorMessage);
             }
         };
 
@@ -91,14 +106,17 @@ export const useTaskPolling = <T>(
             const timeoutError = 'Task polling timeout';
             setError(timeoutError);
             stopPolling();
-            onError?.(timeoutError);
+            onErrorRef.current?.(timeoutError);
             return;
         }
 
         const timeoutId = setTimeout(pollStatus, attempts === 0 ? 0 : pollingInterval);
 
-        return () => clearTimeout(timeoutId);
-    }, [isPolling, taskId, attempts, pollingInterval, maxAttempts, stopPolling, onComplete, onError]);
+        return () => {
+            isCancelled = true;
+            clearTimeout(timeoutId);
+        };
+    }, [isPolling, taskId, attempts, pollingInterval, maxAttempts, stopPolling]);
 
     return {
         status,

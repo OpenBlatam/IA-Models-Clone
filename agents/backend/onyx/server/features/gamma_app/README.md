@@ -1,366 +1,326 @@
-# Gamma App - AI-Powered Content Generation System
+# Gamma App — AI-Powered Content Generation System
 
-🚀 **Gamma App** es un sistema avanzado de generación de contenido impulsado por IA que permite crear presentaciones, documentos y páginas web de manera automatizada, similar a gamma.app pero con funcionalidades extendidas y características ultra avanzadas.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🎉 **NUEVAS CARACTERÍSTICAS ULTRA AVANZADAS**
+🚀 **Gamma App** is an advanced AI-powered content generation system that allows automated creation of presentations, documents, and web pages, similar to gamma.app but with extended functionalities and ultra-advanced features.
 
-### 🌟 **Funcionalidades Recién Agregadas**
-- ✅ **Interfaz Web Moderna** - UI/UX profesional con diseño responsivo
-- ✅ **IA Avanzada Mejorada** - Fine-tuning, optimización y modelos locales
-- ✅ **Analytics Ultra Completo** - Reportes avanzados y dashboards personalizables
-- ✅ **Automatización de Flujos** - Workflows complejos con triggers y condiciones
-- ✅ **APIs de Integración** - Conectores para servicios externos
-- ✅ **Aplicación Móvil** - App React Native completa
-- ✅ **Sistema de Webhooks** - Integración en tiempo real
-- ✅ **Sincronización de Datos** - Sync automático entre servicios
-- ✅ **API Gateway** - Proxy y rate limiting avanzado
+## 🎉 **NEW ULTRA ADVANCED FEATURES**
 
-## ✨ Características Principales
+### 🌟 **Recently Added Functionalities**
+- ✅ **Modern Web Interface** — Professional UI/UX with responsive design
+- ✅ **Enhanced Advanced AI** — Fine-tuning, optimization, and local models
+- ✅ **Ultra Comprehensive Analytics** — Advanced reports and customizable dashboards
+- ✅ **Workflow Automation** — Complex workflows with triggers and conditions
+- ✅ **Integration APIs** — Connectors for external services
+- ✅ **Mobile App** — Complete React Native App
+- ✅ **Webhooks System** — Real-time integration
+- ✅ **Data Synchronization** — Automatic sync between services
+- ✅ **API Gateway** — Proxy and advanced rate limiting
 
-### 🎯 Generación de Contenido con IA
-- **Múltiples tipos de contenido**: Presentaciones, documentos, páginas web, blogs, redes sociales
-- **Modelos de IA avanzados**: Integración con OpenAI GPT-4, Anthropic Claude, y modelos locales
-- **Personalización completa**: Estilos, tonos, audiencias objetivo, idiomas
-- **Calidad automática**: Evaluación y mejora automática del contenido generado
+## ✨ Key Features
 
-### 🎨 Diseño Automatizado
-- **Temas profesionales**: Moderno, corporativo, creativo, académico, minimalista
-- **Layouts inteligentes**: Selección automática de diseños basada en el contenido
-- **Paletas de colores**: Esquemas de color coherentes y profesionales
-- **Tipografías optimizadas**: Selección automática de fuentes apropiadas
+### 🎯 AI Content Generation
+- **Multiple content types** — Presentations, documents, web pages, blogs, social media
+- **Advanced AI models** — Integration with OpenAI GPT-4, Anthropic Claude, and local models
+- **Full customization** — Styles, tones, target audiences, languages
+- **Automatic quality** — Automatic evaluation and improvement of generated content
 
-### 📊 Múltiples Formatos de Exportación
-- **Presentaciones**: PowerPoint (PPTX), PDF, HTML
-- **Documentos**: Word (DOCX), PDF, HTML, Markdown
-- **Páginas web**: HTML responsivo, PDF
-- **Imágenes**: PNG, JPG para contenido visual
+### 🎨 Automated Design
+- **Professional themes** — Modern, corporate, creative, academic, minimalist
+- **Intelligent layouts** — Automatic design selection based on content
+- **Color palettes** — Coherent and professional color schemes
+- **Optimized typography** — Automatic selection of appropriate fonts
 
-### 👥 Colaboración en Tiempo Real
-- **Sesiones colaborativas**: Múltiples usuarios trabajando simultáneamente
-- **WebSocket en tiempo real**: Actualizaciones instantáneas
-- **Control de versiones**: Seguimiento de cambios y historial
-- **Comentarios y sugerencias**: Sistema de feedback integrado
+### 📊 Multiple Export Formats
+- **Presentations** — PowerPoint (PPTX), PDF, HTML
+- **Documents** — Word (DOCX), PDF, HTML, Markdown
+- **Web Pages** — Responsive HTML, PDF
+- **Images** — PNG, JPG for visual content
 
-### 📈 Analytics y Métricas
-- **Dashboard completo**: Métricas de rendimiento y uso
-- **Análisis de contenido**: Calidad, engagement, exportaciones
-- **Estadísticas de colaboración**: Tiempo de sesión, participantes
-- **Tendencias y predicciones**: Análisis de patrones de uso
+### 👥 Real-Time Collaboration
+- **Collaborative sessions** — Multiple users working simultaneously
+- **Real-time WebSocket** — Instant updates
+- **Version control** — Change tracking and history
+- **Comments and suggestions** — Integrated feedback system
 
-## 🏗️ Arquitectura del Sistema
+### 📈 Analytics & Metrics
+- **Complete Dashboard** — Performance and usage metrics
+- **Content Analysis** — Quality, engagement, exports
+- **Collaboration Stats** — Session time, participants
+- **Trends & Predictions** — Usage pattern analysis
+
+## 🏗️ System Architecture
 
 ```
 gamma_app/
-├── api/                    # API REST y WebSocket
-│   ├── main.py            # Aplicación principal FastAPI
-│   ├── routes.py          # Endpoints de la API
-│   └── models.py          # Modelos Pydantic
-├── core/                  # Motor principal de generación
+├── api/                    # REST API and WebSocket
+│   ├── main.py            # Main FastAPI application
+│   ├── routes.py          # API Endpoints
+│   └── models.py          # Pydantic Models
+├── core/                  # Main generation engine
 │   ├── content_generator.py
 │   ├── presentation_engine.py
 │   └── document_engine.py
-├── engines/               # Motores especializados
+├── engines/               # Specialized engines
 │   ├── presentation_engine.py
 │   └── document_engine.py
-├── services/              # Servicios de negocio
+├── services/              # Business services
 │   ├── collaboration_service.py
 │   └── analytics_service.py
-├── utils/                 # Utilidades y configuración
+├── utils/                 # Utilities and configuration
 │   ├── config.py
 │   └── auth.py
-├── examples/              # Ejemplos y demos
-└── requirements.txt       # Dependencias
+├── examples/              # Examples and demos
+└── requirements.txt       # Dependencies
 ```
 
-## 🚀 Instalación y Configuración
+## 🚀 Installation & Configuration
 
-### Prerrequisitos
+### Prerequisites
 - Python 3.11+
-- Docker y Docker Compose
-- API Keys de OpenAI y/o Anthropic (opcional)
+- Docker and Docker Compose
+- OpenAI and/or Anthropic API Keys (optional)
 
-### Instalación Rápida con Docker
+### Quick Installation with Docker
 
 ```bash
-# Clonar el repositorio
+# Clone repository
 git clone <repository-url>
 cd gamma_app
 
-# Configurar variables de entorno
+# Configure environment variables
 cp .env.example .env
-# Editar .env con tus API keys
+# Edit .env with your API keys
 
-# Ejecutar con Docker Compose
+# Run with Docker Compose
 docker-compose up -d
 ```
 
-### Instalación Manual
+### Manual Installation
 
 ```bash
-# Crear entorno virtual
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Configurar variables de entorno
-export OPENAI_API_KEY="tu-api-key"
-export ANTHROPIC_API_KEY="tu-api-key"
-export SECRET_KEY="tu-secret-key"
+# Configure environment variables
+export OPENAI_API_KEY="your-api-key"
+export ANTHROPIC_API_KEY="your-api-key"
+export SECRET_KEY="your-secret-key"
 
-# Ejecutar la aplicación
+# Run application
 uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```env
-# API Keys de IA
-OPENAI_API_KEY=tu-openai-api-key
-ANTHROPIC_API_KEY=tu-anthropic-api-key
+# AI API Keys
+OPENAI_API_KEY=your-openai-api-key
+ANTHROPIC_API_KEY=your-anthropic-api-key
 
-# Base de datos
+# Database
 DATABASE_URL=postgresql://user:password@localhost:5432/gamma_db
 REDIS_URL=redis://localhost:6379
 
-# Seguridad
-SECRET_KEY=tu-secret-key-muy-seguro
+# Security
+SECRET_KEY=your-secure-secret-key
 
-# Email (opcional)
+# Email (optional)
 SMTP_HOST=smtp.gmail.com
-SMTP_USERNAME=tu-email@gmail.com
-SMTP_PASSWORD=tu-password
+SMTP_USERNAME=your-email@gmail.com
+SMTP_PASSWORD=your-password
 
-# Configuración de la aplicación
+# App Configuration
 ENVIRONMENT=production
 DEBUG=false
 ```
 
-## 📖 Uso de la API
+## 📖 API Usage
 
-### Generar Contenido
+### Generate Content
 
 ```python
 import requests
 
-# Crear una presentación
+# Create a presentation
 response = requests.post("http://localhost:8000/api/v1/content/generate", json={
     "content_type": "presentation",
-    "topic": "El Futuro de la IA",
-    "description": "Presentación sobre tendencias de IA",
-    "target_audience": "Ejecutivos de tecnología",
+    "topic": "Future of AI",
+    "description": "Presentation about AI trends",
+    "target_audience": "Tech Executives",
     "length": "medium",
     "style": "modern",
     "output_format": "pptx",
     "include_images": True,
     "include_charts": True,
-    "language": "es",
+    "language": "en",
     "tone": "professional"
 })
 
 content = response.json()
-print(f"Contenido generado: {content['content_id']}")
+print(f"Generated Content: {content['content_id']}")
 ```
 
-### Exportar en Diferentes Formatos
+### Export in Different Formats
 
 ```python
-# Exportar presentación
+# Export presentation
 export_response = requests.post("http://localhost:8000/api/v1/export/presentation", json={
     "content": content_data,
     "output_format": "pdf",
     "theme": "modern"
 })
 
-# Descargar archivo
+# Download file
 with open("presentation.pdf", "wb") as f:
     f.write(export_response.content)
 ```
 
-### Colaboración en Tiempo Real
+### Real-Time Collaboration
 
 ```javascript
-// Conectar a WebSocket
+// Connect to WebSocket
 const ws = new WebSocket('ws://localhost:8000/api/v1/collaboration/session/session-id/ws');
 
-// Enviar actualización de cursor
+// Send cursor update
 ws.send(JSON.stringify({
     type: 'cursor_update',
     data: { position: { x: 100, y: 200 } }
 }));
 
-// Enviar edición de contenido
+// Send content edit
 ws.send(JSON.stringify({
     type: 'content_edit',
-    data: { changes: { text: 'Nuevo contenido' } }
+    data: { changes: { text: 'New content' } }
 }));
 ```
 
-## 🎯 Casos de Uso
+## 🎯 Use Cases
 
-### 1. Presentaciones de Negocio
-- Pitches de inversión
-- Reportes trimestrales
-- Presentaciones de productos
-- Capacitaciones corporativas
+### 1. Business Presentations
+- Investment pitches
+- Quarterly reports
+- Product presentations
+- Corporate training
 
-### 2. Documentación Técnica
-- Manuales de usuario
-- Documentación de API
-- Guías de implementación
-- Whitepapers técnicos
+### 2. Technical Documentation
+- User manuals
+- API Documentation
+- Implementation guides
+- Technical Whitepapers
 
-### 3. Contenido de Marketing
-- Páginas de aterrizaje
-- Blogs y artículos
-- Contenido para redes sociales
-- Emails de marketing
+### 3. Marketing Content
+- Landing pages
+- Blogs and articles
+- Social media content
+- Marketing emails
 
-### 4. Educación y Capacitación
-- Materiales de curso
-- Presentaciones educativas
-- Guías de estudio
-- Evaluaciones
+### 4. Education & Training
+- Course materials
+- Educational presentations
+- Study guides
+- Assessments
 
-## 🔍 Monitoreo y Analytics
+## 🔍 Monitoring & Analytics
 
-### Dashboard de Métricas
-- Accede a `http://localhost:8000/api/v1/analytics/dashboard`
-- Visualiza métricas de rendimiento
-- Analiza tendencias de uso
-- Monitorea la calidad del contenido
+### Metrics Dashboard
+- Access `http://localhost:8000/api/v1/analytics/dashboard`
+- Visualize performance metrics
+- Analyze usage trends
+- Monitor content quality
 
-### Métricas Disponibles
-- **Generación de contenido**: Tiempo de procesamiento, calidad
-- **Exportaciones**: Formatos más utilizados, tamaño de archivos
-- **Colaboración**: Sesiones activas, tiempo de participación
-- **Rendimiento del sistema**: Tiempo de respuesta, uso de recursos
+### Available Metrics
+- **Content Generation** — Processing time, quality
+- **Exports** — Most used formats, file sizes
+- **Collaboration** — Active sessions, participation time
+- **System Performance** — Response time, resource usage
 
-## 🛠️ Desarrollo
+## 🛠️ Development
 
-### Estructura del Proyecto
+### Project Structure
 ```
 gamma_app/
-├── api/           # API REST y WebSocket
-├── core/          # Lógica principal
-├── engines/       # Motores de generación
-├── services/      # Servicios de negocio
-├── utils/         # Utilidades
-└── examples/      # Ejemplos
+├── api/           # REST API and WebSocket
+├── core/          # Main logic
+├── engines/       # Generation engines
+├── services/      # Business services
+├── utils/         # Utilities
+└── examples/      # Examples
 ```
 
-### Ejecutar Tests
+### Run Tests
 ```bash
-# Tests unitarios
+# Unit tests
 pytest tests/
 
-# Tests de integración
+# Integration tests
 pytest tests/integration/
 
 # Coverage
 pytest --cov=gamma_app tests/
 ```
 
-### Ejecutar Demo
+### Run Demo
 ```bash
 python examples/demo.py
 ```
 
-## 🚀 Despliegue en Producción
+## 🚀 Production Deployment
 
-### Docker Compose (Recomendado)
+### Docker Compose (Recommended)
 ```bash
-# Producción
+# Production
 docker-compose -f docker-compose.yml up -d
 
-# Con monitoreo
+# With monitoring
 docker-compose -f docker-compose.yml --profile monitoring up -d
 ```
 
-### Kubernetes
-```bash
-# Aplicar manifiestos
-kubectl apply -f k8s/
+## 📊 Performance
 
-# Verificar despliegue
-kubectl get pods -l app=gamma-app
-```
-
-## 📊 Rendimiento
-
-### Especificaciones Recomendadas
+### Recommended Specifications
 - **CPU**: 4+ cores
-- **RAM**: 8GB+ 
-- **Almacenamiento**: 50GB+ SSD
-- **Red**: 100Mbps+
+- **RAM**: 8GB+
+- **Storage**: 50GB+ SSD
+- **Network**: 100Mbps+
 
-### Optimizaciones
-- Cache Redis para sesiones
-- CDN para archivos estáticos
-- Load balancer para alta disponibilidad
-- Base de datos optimizada
+### Optimizations
+- Redis Cache for sessions
+- CDN for static files
+- Load balancer for high availability
+- Optimized database
 
-## 🔒 Seguridad
+## 🔒 Security
 
-### Características de Seguridad
-- Autenticación JWT
-- Autorización basada en roles
-- Validación de entrada
+### Security Features
+- JWT Authentication
+- Role-based authorization
+- Input validation
 - Rate limiting
-- HTTPS obligatorio en producción
-- Logs de auditoría
+- Mandatory HTTPS in production
+- Audit logs
 
-### Mejores Prácticas
-- Rotar secretos regularmente
-- Monitorear logs de seguridad
-- Actualizar dependencias
-- Usar HTTPS en producción
-- Implementar backup automático
+## 🤝 Contribution
 
-## 🤝 Contribución
+### How to Contribute
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/new-feature`)
+3. Commit changes (`git commit -am 'Add new feature'`)
+4. Push to branch (`git push origin feature/new-feature`)
+5. Create Pull Request
 
-### Cómo Contribuir
-1. Fork el repositorio
-2. Crear rama de feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crear Pull Request
+## 📄 License
 
-### Estándares de Código
-- PEP 8 para Python
-- Type hints obligatorios
-- Documentación en docstrings
-- Tests para nuevas funcionalidades
-
-## 📄 Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
-
-## 🆘 Soporte
-
-### Documentación
-- [API Documentation](http://localhost:8000/docs)
-- [Guía de Usuario](docs/user-guide.md)
-- [Guía de Desarrollador](docs/developer-guide.md)
-
-### Comunidad
-- [Issues](https://github.com/your-repo/issues)
-- [Discussions](https://github.com/your-repo/discussions)
-- [Discord](https://discord.gg/your-server)
-
-### Contacto
-- Email: support@gamma-app.com
-- Twitter: [@GammaApp](https://twitter.com/gammaapp)
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Gamma App** - Transformando la creación de contenido con el poder de la IA 🚀
+**Gamma App** — Transforming content creation with the power of AI 🚀
 
-
-
-
-
-
+[← Back to Main README](../README.md)

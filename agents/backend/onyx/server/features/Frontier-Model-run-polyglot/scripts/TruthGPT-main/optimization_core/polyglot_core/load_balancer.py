@@ -192,3 +192,4 @@ def create_load_balancer(strategy: LoadBalanceStrategy = LoadBalanceStrategy.ROU
     """Create a new load balancer."""
     return LoadBalancer(strategy)
 
+

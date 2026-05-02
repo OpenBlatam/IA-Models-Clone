@@ -1,57 +1,59 @@
 # Burnout Prevention AI
 
-Sistema de IA para prevención y manejo del burnout laboral, ayudando a identificar signos tempranos y proporcionar estrategias personalizadas de afrontamiento.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🎯 Características
+AI system for burnout prevention and management in the workplace, helping identify early signs and provide customized coping strategies.
 
-- **Evaluación de Burnout**: Análisis completo del riesgo de burnout basado en múltiples factores
-- **Chequeo de Bienestar**: Evaluación del estado general de bienestar y recomendaciones
-- **Estrategias de Afrontamiento**: Recomendaciones personalizadas para manejar el estrés
-- **Chat Conversacional**: Asistente de IA empático y conversacional sobre burnout y bienestar
-- **Seguimiento de Progreso**: Análisis del progreso a lo largo del tiempo con insights personalizados
-- **Análisis de Tendencias**: Identificación de patrones y predicciones basadas en historial
-- **Recursos Educativos**: Biblioteca personalizada de recursos (artículos, videos, podcasts, libros)
-- **Planes Personalizados**: Generación de planes estructurados adaptados a cada usuario
-- **Integración OpenRouter**: Utiliza modelos avanzados de IA a través de OpenRouter
+## 🎯 Features
 
-## 🚀 Instalación
+- **Burnout Assessment**: Comprehensive analysis of burnout risk based on multiple factors
+- **Wellness Check**: Evaluation of general wellness status and recommendations
+- **Coping Strategies**: Personalized recommendations for managing stress
+- **Conversational Chat**: Empathetic AI assistant for burnout and wellness conversations
+- **Progress Tracking**: Progress analysis over time with personalized insights
+- **Trend Analysis**: Pattern identification and predictions based on history
+- **Educational Resources**: Personalized resource library (articles, videos, podcasts, books)
+- **Personalized Plans**: Generation of structured plans adapted to each user
+- **OpenRouter Integration**: Uses advanced AI models via OpenRouter
+
+## 🚀 Installation
 
 ```bash
-# Instalación básica (producción)
+# Basic installation (production)
 pip install -r requirements.txt
 
-# Instalación con herramientas de desarrollo
+# Installation with development tools
 pip install -r requirements-dev.txt
 
-# Instalación mínima (solo core)
+# Minimal installation (core only)
 pip install -r requirements-minimal.txt
 
-# Configurar variables de entorno
-export OPENROUTER_API_KEY="tu-api-key"
+# Configure environment variables
+export OPENROUTER_API_KEY="your-api-key"
 export BURNOUT_AI_PORT=8025
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-Crear archivo `.env`:
+Create `.env` file:
 
 ```env
-OPENROUTER_API_KEY=tu-api-key-aqui
+OPENROUTER_API_KEY=your-api-key-here
 OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
 BURNOUT_AI_HOST=0.0.0.0
 BURNOUT_AI_PORT=8025
 DEBUG=False
 ```
 
-## 🏃 Uso
+## 🏃 Usage
 
-### Iniciar servidor
+### Start Server
 
 ```bash
 python main.py
 ```
 
-O con uvicorn:
+Or with uvicorn:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8025 --reload
@@ -59,7 +61,7 @@ uvicorn main:app --host 0.0.0.0 --port 8025 --reload
 
 ### Endpoints
 
-#### Evaluar Burnout
+#### Assess Burnout
 ```bash
 POST /api/v1/assess
 ```
@@ -71,14 +73,14 @@ Body:
   "stress_level": 8,
   "sleep_hours_per_night": 5.5,
   "work_satisfaction": 4,
-  "physical_symptoms": ["fatiga", "dolores de cabeza"],
-  "emotional_symptoms": ["ansiedad", "irritabilidad"],
-  "work_environment": "Alta presión, plazos ajustados",
-  "additional_context": "Trabajo remoto, múltiples proyectos"
+  "physical_symptoms": ["fatigue", "headaches"],
+  "emotional_symptoms": ["anxiety", "irritability"],
+  "work_environment": "High pressure, tight deadlines",
+  "additional_context": "Remote work, multiple projects"
 }
 ```
 
-#### Chequeo de Bienestar
+#### Wellness Check
 ```bash
 POST /api/v1/wellness-check
 ```
@@ -86,14 +88,14 @@ POST /api/v1/wellness-check
 Body:
 ```json
 {
-  "current_mood": "ansioso y agotado",
+  "current_mood": "anxious and exhausted",
   "energy_level": 3,
-  "recent_challenges": "Proyecto importante con plazo ajustado",
-  "support_system": "Familia y algunos colegas"
+  "recent_challenges": "Important project with tight deadline",
+  "support_system": "Family and some colleagues"
 }
 ```
 
-#### Estrategias de Afrontamiento
+#### Coping Strategies
 ```bash
 POST /api/v1/coping-strategies
 ```
@@ -101,14 +103,14 @@ POST /api/v1/coping-strategies
 Body:
 ```json
 {
-  "stressor_type": "Sobrecarga de trabajo",
-  "current_coping_methods": ["trabajar más horas"],
-  "available_time": "30 minutos diarios",
-  "preferences": ["ejercicio", "meditación"]
+  "stressor_type": "Work overload",
+  "current_coping_methods": ["working more hours"],
+  "available_time": "30 minutes daily",
+  "preferences": ["exercise", "meditation"]
 }
 ```
 
-#### Chat Conversacional
+#### Conversational Chat
 ```bash
 POST /api/v1/chat
 ```
@@ -116,12 +118,12 @@ POST /api/v1/chat
 Body:
 ```json
 {
-  "message": "Me siento muy agotado últimamente, ¿qué puedo hacer?",
+  "message": "I feel very exhausted lately, what can I do?",
   "conversation_history": []
 }
 ```
 
-#### Seguimiento de Progreso
+#### Progress Tracking
 ```bash
 POST /api/v1/progress
 ```
@@ -134,12 +136,12 @@ Body:
     {"date": "2024-01-01", "burnout_score": 75},
     {"date": "2024-01-15", "burnout_score": 65}
   ],
-  "goals": ["Reducir horas de trabajo", "Mejorar sueño"],
+  "goals": ["Reduce work hours", "Improve sleep"],
   "current_status": {"stress_level": 6, "energy_level": 5}
 }
 ```
 
-#### Análisis de Tendencias
+#### Trend Analysis
 ```bash
 POST /api/v1/trends
 ```
@@ -156,7 +158,7 @@ Body:
 }
 ```
 
-#### Recursos Educativos
+#### Educational Resources
 ```bash
 POST /api/v1/resources
 ```
@@ -164,13 +166,13 @@ POST /api/v1/resources
 Body:
 ```json
 {
-  "topic": "Manejo del estrés laboral",
+  "topic": "Work stress management",
   "level": "intermediate",
   "format_preference": "article"
 }
 ```
 
-#### Plan Personalizado
+#### Personalized Plan
 ```bash
 POST /api/v1/personalized-plan
 ```
@@ -180,19 +182,19 @@ Body:
 {
   "current_situation": {
     "burnout_score": 70,
-    "main_stressors": ["Sobrecarga de trabajo", "Falta de límites"]
+    "main_stressors": ["Work overload", "Lack of boundaries"]
   },
   "goals": [
-    "Reducir burnout score a 50",
-    "Establecer límites saludables",
-    "Mejorar balance trabajo-vida"
+    "Reduce burnout score to 50",
+    "Establish healthy boundaries",
+    "Improve work-life balance"
   ],
   "constraints": {
-    "available_time": "1 hora diaria",
-    "budget": "limitado"
+    "available_time": "1 hour daily",
+    "budget": "limited"
   },
   "preferences": {
-    "activities": ["ejercicio", "meditación", "lectura"]
+    "activities": ["exercise", "meditation", "reading"]
   }
 }
 ```
@@ -202,58 +204,58 @@ Body:
 GET /api/v1/health
 ```
 
-## 📊 Respuestas de Ejemplo
+## 📊 Example Responses
 
-### Evaluación de Burnout
+### Burnout Assessment
 ```json
 {
   "burnout_risk_level": "high",
   "burnout_score": 75.5,
   "risk_factors": [
-    "Horas de trabajo excesivas",
-    "Falta de sueño",
-    "Alto nivel de estrés"
+    "Excessive work hours",
+    "Lack of sleep",
+    "High stress level"
   ],
   "recommendations": [
-    "Establecer límites claros de horario laboral",
-    "Priorizar 7-8 horas de sueño",
-    "Implementar técnicas de manejo de estrés"
+    "Establish clear work schedule boundaries",
+    "Prioritize 7-8 hours of sleep",
+    "Implement stress management techniques"
   ],
   "immediate_actions": [
-    "Tomar un descanso de 15 minutos ahora",
-    "Programar tiempo de recuperación esta semana",
-    "Hablar con tu supervisor sobre la carga de trabajo"
+    "Take a 15-minute break now",
+    "Schedule recovery time this week",
+    "Talk to your supervisor about workload"
   ],
   "long_term_strategies": [
-    "Revisar y ajustar expectativas laborales",
-    "Desarrollar rutina de autocuidado",
-    "Establecer límites saludables"
+    "Review and adjust work expectations",
+    "Develop self-care routine",
+    "Establish healthy boundaries"
   ],
   "assessment_date": "2024-01-15T10:30:00"
 }
 ```
 
-### Seguimiento de Progreso
+### Progress Tracking
 ```json
 {
   "progress_score": 65.0,
   "trend": "improving",
   "milestones_achieved": [
-    "Reducción de 10 puntos en burnout score",
-    "Establecimiento de límites de horario",
-    "Mejora en horas de sueño"
+    "10 point reduction in burnout score",
+    "Establishment of schedule boundaries",
+    "Improvement in sleep hours"
   ],
   "next_steps": [
-    "Mantener límites establecidos",
-    "Continuar con rutina de autocuidado",
-    "Evaluar carga de trabajo semanal"
+    "Maintain established boundaries",
+    "Continue with self-care routine",
+    "Evaluate weekly workload"
   ],
-  "insights": "Has mostrado una mejora constante en los últimos 15 días. La reducción en tu burnout score indica que las estrategias implementadas están funcionando. Continúa con el enfoque actual y considera agregar más tiempo para actividades de recuperación.",
+  "insights": "You have shown consistent improvement over the last 15 days. The reduction in your burnout score indicates that implemented strategies are working. Continue with the current approach and consider adding more time for recovery activities.",
   "progress_date": "2024-01-15T10:30:00"
 }
 ```
 
-### Análisis de Tendencias
+### Trend Analysis
 ```json
 {
   "overall_trend": "improving",
@@ -263,9 +265,9 @@ GET /api/v1/health
     "improvement_rate": 0.67
   },
   "patterns": [
-    "Mejora consistente los fines de semana",
-    "Aumento de estrés los lunes",
-    "Correlación positiva entre sueño y bienestar"
+    "Consistent improvement on weekends",
+    "Increased stress on Mondays",
+    "Positive correlation between sleep and wellness"
   ],
   "predictions": {
     "next_week": {
@@ -278,208 +280,211 @@ GET /api/v1/health
     }
   },
   "recommendations": [
-    "Mantener rutina actual de autocuidado",
-    "Enfocarse en mejorar calidad de sueño",
-    "Planificar mejor los lunes para reducir estrés",
-    "Continuar monitoreo semanal"
+    "Maintain current self-care routine",
+    "Focus on improving sleep quality",
+    "Better plan Mondays to reduce stress",
+    "Continue weekly monitoring"
   ],
   "analysis_date": "2024-01-15T10:30:00"
 }
 ```
 
-### Recursos Educativos
+### Educational Resources
 ```json
 {
   "resources": [
     {
       "title": "Understanding and Preventing Burnout",
       "type": "article",
-      "description": "Guía completa sobre burnout y estrategias de prevención",
+      "description": "Complete guide on burnout and prevention strategies",
       "url": "https://example.com/burnout-guide",
-      "duration": "15 min lectura"
+      "duration": "15 min read"
     },
     {
       "title": "Stress Management Techniques",
       "type": "video",
-      "description": "Técnicas prácticas de manejo de estrés",
+      "description": "Practical stress management techniques",
       "url": "https://example.com/stress-video",
       "duration": "20 min"
     }
   ],
   "learning_path": [
-    "1. Entender qué es el burnout",
-    "2. Identificar tus factores de riesgo",
-    "3. Aprender técnicas de manejo de estrés",
-    "4. Implementar estrategias de prevención",
-    "5. Monitorear y ajustar continuamente"
+    "1. Understand what burnout is",
+    "2. Identify your risk factors",
+    "3. Learn stress management techniques",
+    "4. Implement prevention strategies",
+    "5. Monitor and adjust continuously"
   ],
   "key_concepts": [
-    "Burnout vs estrés",
-    "Síntomas tempranos",
-    "Límites saludables",
-    "Autocuidado",
-    "Balance trabajo-vida"
+    "Burnout vs stress",
+    "Early symptoms",
+    "Healthy boundaries",
+    "Self-care",
+    "Work-life balance"
   ],
   "action_items": [
-    "Leer artículo sobre prevención",
-    "Practicar una técnica de manejo de estrés",
-    "Establecer un límite de horario esta semana"
+    "Read article on prevention",
+    "Practice a stress management technique",
+    "Set a schedule limit this week"
   ]
 }
 ```
 
-### Plan Personalizado
+### Personalized Plan
 ```json
 {
-  "plan_name": "Plan de Recuperación y Prevención - 8 Semanas",
+  "plan_name": "Recovery and Prevention Plan - 8 Weeks",
   "duration_weeks": 8,
   "weekly_goals": [
     {
       "week": 1,
-      "goal": "Establecer límites básicos de horario",
+      "goal": "Establish basic schedule boundaries",
       "actions": [
-        "Definir horario de trabajo fijo",
-        "Comunicar límites al equipo",
-        "Implementar bloqueo de notificaciones después de horas"
+        "Define fixed work schedule",
+        "Communicate boundaries to team",
+        "Implement notification blocking after hours"
       ],
-      "focus_area": "Límites laborales"
+      "focus_area": "Work boundaries"
     },
     {
       "week": 2,
-      "goal": "Mejorar calidad de sueño",
+      "goal": "Improve sleep quality",
       "actions": [
-        "Establecer rutina de sueño",
-        "Crear ambiente óptimo para dormir",
-        "Limitar pantallas antes de dormir"
+        "Establish sleep routine",
+        "Create optimal sleep environment",
+        "Limit screens before sleep"
       ],
-      "focus_area": "Recuperación"
+      "focus_area": "Recovery"
     }
   ],
   "daily_actions": [
-    "Meditación de 10 minutos",
-    "Pausa de 15 minutos cada 2 horas",
-    "Ejercicio ligero (caminar 20 min)",
-    "Reflexión diaria sobre bienestar",
-    "Desconexión completa después de horas laborales"
+    "10-minute meditation",
+    "15-minute break every 2 hours",
+    "Light exercise (20 min walk)",
+    "Daily reflection on wellness",
+    "Complete disconnection after work hours"
   ],
   "milestones": [
     {
       "week": 2,
-      "milestone": "Límites establecidos y comunicados"
+      "milestone": "Boundaries established and communicated"
     },
     {
       "week": 4,
-      "milestone": "Rutina de sueño mejorada"
+      "milestone": "Sleep routine improved"
     },
     {
       "week": 6,
-      "milestone": "Burnout score reducido en 15 puntos"
+      "milestone": "Burnout score reduced by 15 points"
     },
     {
       "week": 8,
-      "milestone": "Sistema de autocuidado establecido"
+      "milestone": "Self-care system established"
     }
   ],
   "resources": [
-    "App de meditación",
-    "Libro sobre límites saludables",
-    "Guía de higiene del sueño"
+    "Meditation App",
+    "Book on healthy boundaries",
+    "Sleep hygiene guide"
   ],
   "created_date": "2024-01-15T10:30:00"
 }
 ```
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ```
 burnout_prevention_ai/
-├── main.py                 # Aplicación principal
-├── config/                 # Configuración
+├── main.py                 # Main application
+├── config/                 # Configuration
 │   └── app_config.py
-├── infrastructure/         # Infraestructura
-│   └── openrouter/         # Cliente OpenRouter
+├── infrastructure/         # Infrastructure
+│   └── openrouter/         # OpenRouter Client
 │       ├── api_client.py
 │       └── openrouter_client.py
-├── services/               # Servicios de negocio
+├── services/               # Business services
 │   └── burnout_service.py
 ├── api/                    # API endpoints
 │   └── routes/
 │       └── burnout_routes.py
-├── schemas.py              # Modelos Pydantic
+├── schemas.py              # Pydantic models
 └── requirements.txt
 ```
 
-## 🔧 Desarrollo
+## 🔧 Development
 
-### Estructura del Código
+### Code Structure
 
-- **main.py**: Punto de entrada de la aplicación FastAPI
-- **config/**: Configuración de la aplicación
-- **infrastructure/**: Clientes externos (OpenRouter)
-- **services/**: Lógica de negocio
-- **api/**: Endpoints de la API
-- **schemas.py**: Modelos de datos Pydantic
+- **main.py**: Entry point of the FastAPI application
+- **config/**: Application configuration
+- **infrastructure/**: External clients (OpenRouter)
+- **services/**: Business logic
+- **api/**: API Endpoints
+- **schemas.py**: Pydantic data models
 
-### Agregar Nuevas Funcionalidades
+### Adding New Features
 
-1. Agregar schema en `schemas.py`
-2. Implementar lógica en `services/burnout_service.py`
-3. Crear endpoint en `api/routes/burnout_routes.py`
+1. Add schema in `schemas.py`
+2. Implement logic in `services/burnout_service.py`
+3. Create endpoint in `api/routes/burnout_routes.py`
 
-## 📝 Notas
+## 📝 Notes
 
-- El servicio utiliza OpenRouter para acceder a modelos de IA avanzados
-- Las respuestas son generadas dinámicamente usando Claude 3.5 Sonnet por defecto
-- El sistema está diseñado para ser empático, conversacional y no juzgador
-- Todas las conversaciones son confidenciales
-- El chat adapta su estilo de comunicación al usuario
-- Los planes personalizados se generan considerando restricciones y preferencias reales
-- El análisis de tendencias identifica patrones para predicciones más precisas
-- Los recursos educativos se personalizan según nivel y preferencias del usuario
+- The service uses OpenRouter to access advanced AI models
+- Responses are generated dynamically using Claude 3.5 Sonnet by default
+- The system is designed to be empathetic, conversational, and non-judgmental
+- All conversations are confidential
+- The chat adapts its communication style to the user
+- Personalized plans are generated considering real constraints and preferences
+- Trend analysis identifies patterns for more accurate predictions
+- Educational resources are personalized based on level and user preferences
 
-## 🚀 Mejoras de Rendimiento
+## 🚀 Performance Improvements
 
-El proyecto utiliza librerías optimizadas para mejor rendimiento:
+The project uses optimized libraries for better performance:
 
-- **orjson**: JSON 2-3x más rápido que la librería estándar
-- **uvloop**: Event loop ultra-rápido (Linux/macOS)
-- **structlog**: Logging estructurado con JSON
-- **httpx**: Cliente HTTP asíncrono moderno
-- **tenacity**: Reintentos inteligentes con backoff exponencial
+- **orjson**: JSON 2-3x faster than standard library
+- **uvloop**: Ultra-fast event loop (Linux/macOS)
+- **structlog**: Structured logging with JSON
+- **httpx**: Modern asynchronous HTTP client
+- **tenacity**: Intelligent retries with exponential backoff
 
-## 📦 Dependencias Principales
+## 📦 Main Dependencies
 
-- **FastAPI 0.115+**: Framework web moderno y rápido
-- **Pydantic 2.9+**: Validación de datos con mejor rendimiento
-- **httpx 0.27+**: Cliente HTTP asíncrono
-- **structlog**: Logging estructurado para producción
-- **prometheus-client**: Métricas para monitoreo
-- **slowapi**: Rate limiting opcional
+- **FastAPI 0.115+**: Modern and fast web framework
+- **Pydantic 2.9+**: Data validation with better performance
+- **httpx 0.27+**: Asynchronous HTTP client
+- **structlog**: Structured logging for production
+- **prometheus-client**: Metrics for monitoring
+- **slowapi**: Optional rate limiting
 
-## 🔒 Seguridad
+## 🔒 Security
 
-- Las API keys deben almacenarse de forma segura
-- Considera implementar autenticación para producción
-- Valida todas las entradas del usuario
-- Implementa rate limiting para prevenir abuso
+- API keys must be stored securely
+- Consider implementing authentication for production
+- Validate all user inputs
+- Implement rate limiting to prevent abuse
 
-## 📚 Recursos
+## 📚 Resources
 
 - [OpenRouter Documentation](https://openrouter.ai/docs)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [Burnout Prevention Resources](https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases)
 
-## 🤝 Contribución
+## 🤝 Contribution
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome. Please:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
+1. Fork the project
+2. Create a branch for your feature
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto es parte del ecosistema Blatam Academy.
+Proprietary - Blatam Academy
 
+---
+
+[← Back to Main README](../README.md)

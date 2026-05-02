@@ -236,7 +236,13 @@ export function useWebSocketSync(options: UseWebSocketSyncOptions = {}) {
         }
       }
       
-      console.error('❌ Error conectando WebSocket:', logData);
+      // Log the error message directly as a string to avoid Turbopack serialization issues
+      console.error(`❌ Error conectando WebSocket: ${errorMessage}`);
+      
+      // Log additional details as a stringified JSON if they exist
+      if (Object.keys(logData).length > 0 && typeof window !== 'undefined') {
+        console.error('Detalles del error:', JSON.stringify(logData, null, 2));
+      }
       
       // Log adicional para debugging si es un Error
       if (error instanceof Error) {

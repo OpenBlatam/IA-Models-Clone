@@ -1,23 +1,27 @@
 # TruthGPT - Unified Test System
 
-## 🚀 Quick Start
+## 🚀 SOTA 2025 Interactive Quick Start
+Experience the full TruthGPT ecosystem via the stylized terminal menu.
+
+### Option A: From the Root Directory (Recommended)
+Run the following from the `TruthGPT-main` directory:
 
 ```bash
-# 1. Check environment
-python quick_check.py
-
-# 2. Setup if needed
-python setup_environment.py
-
-# 3. Run tests
-python run_unified_tests.py
+# Launch the Command Center
+.\run.bat
 ```
 
-See [QUICK_START_GUIDE.md](QUICK_START_GUIDE.md) for detailed instructions.
+### Option B: From the Optimization Core Directory
+If you are already inside `optimization_core`:
+```bash
+python main.py
+```
+
+For more details, see the [SOTA 2025 Quick Start Guide](optimization_core/docs/quickstart_sota.md).
 
 ---
 
-## TruthGPT
+## 🧪 Testing System
 
 Is simple add a open source model then optimize or just create a ia model for your necessity.
 

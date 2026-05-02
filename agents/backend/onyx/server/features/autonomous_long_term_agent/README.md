@@ -1,93 +1,95 @@
 # Autonomous Long-Term Agent
 
-Agente autónomo que corre continuamente hasta que se detiene explícitamente. Implementa conceptos de investigación sobre agentes autónomos de largo plazo, continual learning y self-initiated learning.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 📚 Basado en Papers de Investigación
+Autonomous agent that runs continuously until explicitly stopped. Implements research concepts on long-term autonomous agents, continual learning, and self-initiated learning.
 
-Este agente implementa conceptos de 20+ papers de investigación sobre agentes autónomos:
+## 📚 Based on Research Papers
 
-### Papers Principales (1-10)
+This agent implements concepts from 20+ research papers on autonomous agents:
+
+### Key Papers (1-10)
 
 1. **WebResearcher: Unleashing unbounded reasoning capability in Long-Horizon Agents** (2025)
-   - Long-horizon reasoning con acumulación continua de conocimiento
-   - Razonamiento profundo sobre horizontes temporales largos
+   - Long-horizon reasoning with continuous knowledge accumulation
+   - Deep reasoning over long time horizons
 
 2. **AI Autonomy: Self-initiated Open-world Continual Learning and Adaptation** (2023)
-   - Paradigma SOLA para aprendizaje auto-iniciado
-   - Adaptación continua sin retraining manual
+   - SOLA paradigm for self-initiated learning
+   - Continuous adaptation without manual retraining
 
 3. **Continual Learning for Robotics** (2019)
-   - Estrategias de aprendizaje continuo
-   - Aprendizaje desde streams de datos cambiantes
+   - Continual learning strategies
+   - Learning from changing data streams
 
 4. **Towards Continual Reinforcement Learning** (2022)
-   - Adaptación a tareas/entornos cambiantes
-   - Retención de conocimiento previo
+   - Adaptation to changing tasks/environments
+   - Retention of prior knowledge
 
 5. **Learning to Adapt in Dynamic, Real-World Environments** (2018)
-   - Adaptación en tiempo real
+   - Real-time adaptation
    - Meta-reinforcement learning
 
-### Papers Nuevos (11-20)
+### New Papers (11-20)
 
 11. **Building Self-Evolving Agents via Experience-Driven Lifelong Learning** (2025)
-    - Framework ELL (Experience-driven Lifelong Learning)
-    - Crecimiento continuo mediante interacciones reales
-    - Abstracción de habilidades recurrentes
-    - Internalización de conocimiento
+    - ELL (Experience-driven Lifelong Learning) Framework
+    - Continuous growth through real interactions
+    - Recurrent skill abstraction
+    - Knowledge internalization
 
 12. **EvoAgent: Agent Autonomous Evolution with Continual World Model** (2025)
-    - Continual world model para tareas de largo horizonte
+    - Continual world model for long-horizon tasks
     - Self-planning, self-control, self-reflection
-    - Actualización de experiencias sin intervención humana
+    - Experience updates without human intervention
 
 13. **Lifelong Learning of Large Language Model based Agents** (2025)
-    - Roadmap para lifelong learning en agentes LLM
-    - Memoria, percepción multimodal, interacción dinámica
+    - Roadmap for lifelong learning in LLM agents
+    - Memory, multimodal perception, dynamic interaction
 
 14. **A Survey of Self-Evolving Agents** (2025)
-    - Paradigma de agentes self-evolving
-    - Evolución de componentes (modelo, memoria, herramientas, arquitectura)
+    - Self-evolving agent paradigm
+    - Component evolution (model, memory, tools, architecture)
 
 15. **The Landscape of Agentic Reinforcement Learning for LLMs** (2025)
-    - Agentic RL para LLMs
-    - Planificación, memoria, razonamiento multi-paso
+    - Agentic RL for LLMs
+    - Planning, memory, multi-step reasoning
 
-Y más... Ver `papers_references.json` para la lista completa.
+And more... See `papers_references.json` for the full list.
 
-## 🚀 Características
+## 🚀 Features
 
-### Características Principales
-- ✅ **Ejecución Continua**: El agente corre indefinidamente hasta detenerse explícitamente
-- ✅ **Múltiples Instancias Paralelas**: Soporte para ejecutar varios agentes en paralelo
-- ✅ **OpenRouter Integration**: Acceso a 1000+ modelos de IA
-- ✅ **Base de Conocimiento Persistente**: Almacenamiento continuo de conocimiento aprendido
-- ✅ **Self-Initiated Learning**: El agente aprende y se adapta automáticamente
-- ✅ **Long-Horizon Reasoning**: Razonamiento profundo considerando contexto histórico
-- ✅ **Continual Learning**: Aprende continuamente sin olvidar conocimiento previo
+### Core Features
+- ✅ **Continuous Execution**: The agent runs indefinitely until explicitly stopped
+- ✅ **Multiple Parallel Instances**: Support for running multiple agents in parallel
+- ✅ **OpenRouter Integration**: Access to 1000+ AI models
+- ✅ **Persistent Knowledge Base**: Continuous storage of learned knowledge
+- ✅ **Self-Initiated Learning**: The agent learns and adapts automatically
+- ✅ **Long-Horizon Reasoning**: Deep reasoning considering historical context
+- ✅ **Continual Learning**: Continuously learns without forgetting prior knowledge
 
-### Nuevas Características (Papers 11-20)
-- ✅ **Self-Reflection Engine** (EvoAgent): Reflexión automática sobre performance, estrategia y capacidades
-- ✅ **Experience-Driven Learning** (ELL): Framework de aprendizaje basado en experiencias reales
-- ✅ **Continual World Model** (EvoAgent): Modelo del mundo que se actualiza continuamente
-- ✅ **Self-Planning**: Planificación autónoma basada en el estado del mundo
-- ✅ **Skill Abstraction**: Abstracción automática de habilidades de experiencias recurrentes
-- ✅ **Knowledge Internalization**: Internalización de conocimiento en memoria a largo plazo
+### New Features (Papers 11-20)
+- ✅ **Self-Reflection Engine** (EvoAgent): Automatic reflection on performance, strategy, and capabilities
+- ✅ **Experience-Driven Learning** (ELL): Learning framework based on real experiences
+- ✅ **Continual World Model** (EvoAgent): World model that updates continuously
+- ✅ **Self-Planning**: Autonomous planning based on world state
+- ✅ **Skill Abstraction**: Automatic skill abstraction from recurrent experiences
+- ✅ **Knowledge Internalization**: Internalization of knowledge into long-term memory
 
-## 📦 Instalación
+## 📦 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install fastapi uvicorn httpx pydantic pydantic-settings
 
-# Configurar variables de entorno
+# Configure environment variables
 export OPENROUTER_API_KEY="sk-or-v1-..."
-export OPENROUTER_HTTP_REFERER="https://tu-dominio.com"
+export OPENROUTER_HTTP_REFERER="https://your-domain.com"
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-Crea un archivo `.env` o configura variables de entorno:
+Create a `.env` file or configure environment variables:
 
 ```env
 # OpenRouter
@@ -131,15 +133,15 @@ HOST=0.0.0.0
 PORT=8001
 ```
 
-## 🎯 Uso
+## 🎯 Usage
 
-### Iniciar el Servidor
+### Start the Server
 
 ```bash
 python -m autonomous_long_term_agent.main
 ```
 
-O usando uvicorn directamente:
+Or using uvicorn directly:
 
 ```bash
 uvicorn autonomous_long_term_agent.main:app --host 0.0.0.0 --port 8001
@@ -147,19 +149,19 @@ uvicorn autonomous_long_term_agent.main:app --host 0.0.0.0 --port 8001
 
 ### API Endpoints
 
-#### 1. Iniciar un Agente
+#### 1. Start an Agent
 
 ```bash
 POST /api/v1/agents/start
 Content-Type: application/json
 
 {
-  "instruction": "Investigar y aprender sobre inteligencia artificial",
+  "instruction": "Research and learn about artificial intelligence",
   "agent_id": "optional-custom-id"
 }
 ```
 
-#### 2. Iniciar Múltiples Agentes en Paralelo
+#### 2. Start Multiple Agents in Parallel
 
 ```bash
 POST /api/v1/agents/parallel
@@ -167,31 +169,31 @@ Content-Type: application/json
 
 {
   "count": 3,
-  "instruction": "Operar autónomamente y aprender continuamente"
+  "instruction": "Operate autonomously and learn continuously"
 }
 ```
 
-#### 3. Obtener Estado de un Agente
+#### 3. Get Agent Status
 
 ```bash
 GET /api/v1/agents/{agent_id}/status
 ```
 
-Respuesta incluye:
-- Estado del agente
-- Métricas (tareas completadas, tokens usados, uptime)
-- Tamaño de cola de tareas
-- Estadísticas de aprendizaje
-- Estadísticas de base de conocimiento
+Response includes:
+- Agent state
+- Metrics (tasks completed, tokens used, uptime)
+- Task queue size
+- Learning statistics
+- Knowledge base statistics
 
-#### 4. Agregar Tarea a un Agente
+#### 4. Add Task to an Agent
 
 ```bash
 POST /api/v1/agents/{agent_id}/tasks
 Content-Type: application/json
 
 {
-  "instruction": "Analizar las tendencias actuales en machine learning",
+  "instruction": "Analyze current trends in machine learning",
   "metadata": {
     "priority": "high",
     "category": "research"
@@ -199,234 +201,230 @@ Content-Type: application/json
 }
 ```
 
-#### 5. Listar Tareas de un Agente
+#### 5. List Agent Tasks
 
 ```bash
 GET /api/v1/agents/{agent_id}/tasks?status=completed
 ```
 
-#### 6. Pausar/Reanudar Agente
+#### 6. Pause/Resume Agent
 
 ```bash
 POST /api/v1/agents/{agent_id}/pause
 POST /api/v1/agents/{agent_id}/resume
 ```
 
-#### 7. Detener Agente
+#### 7. Stop Agent
 
 ```bash
 POST /api/v1/agents/{agent_id}/stop
 ```
 
-**⚠️ IMPORTANTE**: El agente NO se detiene automáticamente. Debes llamar explícitamente al endpoint de stop.
+**⚠️ IMPORTANT**: The agent does NOT stop automatically. You must explicitly call the stop endpoint.
 
-#### 8. Listar Todos los Agentes
+#### 8. List All Agents
 
 ```bash
 GET /api/v1/agents
 ```
 
-#### 9. Detener Todos los Agentes
+#### 9. Stop All Agents
 
 ```bash
 POST /api/v1/agents/stop-all
 ```
 
-## 🔄 Flujo de Operación
+## 🔄 Operation Flow
 
-1. **Inicio**: El agente se inicia y comienza su loop principal
-2. **Procesamiento Continuo**: 
-   - Procesa tareas de la cola
-   - Ejecuta operaciones autónomas cuando no hay tareas
-   - Aprende y se adapta continuamente
-3. **Almacenamiento de Conocimiento**: Todo el conocimiento se guarda en la base de conocimiento persistente
-4. **Self-Initiated Learning**: El agente detecta oportunidades de aprendizaje y se adapta automáticamente
-5. **Stop Explícito**: Solo se detiene cuando se llama al endpoint de stop
+1. **Start**: The agent starts and begins its main loop
+2. **Continuous Processing**: 
+   - Processes tasks from the queue
+   - Executes autonomous operations when no tasks are present
+   - Learns and adapts continuously
+3. **Knowledge Storage**: All knowledge is saved in the persistent knowledge base
+4. **Self-Initiated Learning**: The agent detects learning opportunities and adapts automatically
+5. **Explicit Stop**: Only stops when the stop endpoint is called
 
-## 🧠 Conceptos Implementados
+## 🧠 Implemented Concepts
 
 ### Long-Horizon Reasoning
 
-El agente utiliza razonamiento de largo horizonte al:
-- Consultar conocimiento histórico relevante antes de responder
-- Considerar implicaciones a largo plazo
-- Acumular conocimiento continuamente
+The agent uses long-horizon reasoning by:
+- Consulting relevant historical knowledge before responding
+- Considering long-term implications
+- Continuously accumulating knowledge
 
 ### Continual Learning
 
-- **Base de Conocimiento Persistente**: Almacena todo el conocimiento aprendido
-- **Retención Selectiva**: Mantiene conocimiento relevante según período de retención
-- **Búsqueda Contextual**: Recupera conocimiento relevante para cada tarea
+- **Persistent Knowledge Base**: Stores all learned knowledge
+- **Selective Retention**: Keeps relevant knowledge based on retention period
+- **Contextual Search**: Retrieves relevant knowledge for each task
 
 ### Self-Initiated Learning (SOLA)
 
-- **Detección Automática**: Detecta oportunidades de aprendizaje
-- **Adaptación Automática**: Ajusta parámetros basado en performance
-- **Event-Driven Learning**: Aprende de eventos y resultados
+- **Automatic Detection**: Detects learning opportunities
+- **Automatic Adaptation**: Adjusts parameters based on performance
+- **Event-Driven Learning**: Learns from events and outcomes
 
 ### Self-Reflection (EvoAgent Paper)
 
-- **Reflection on Performance**: Analiza métricas y tareas recientes
-- **Reflection on Strategy**: Evalúa efectividad de estrategias actuales
-- **Reflection on Capabilities**: Identifica brechas y habilidades subutilizadas
-- **Periodic Reflection**: Reflexión automática cada 5 minutos (configurable)
+- **Reflection on Performance**: Analyzes recent metrics and tasks
+- **Reflection on Strategy**: Evaluates effectiveness of current strategies
+- **Reflection on Capabilities**: Identifies gaps and underutilized skills
+- **Periodic Reflection**: Automatic reflection every 5 minutes (configurable)
 
 ### Experience-Driven Learning (ELL Paper)
 
-- **Experience Recording**: Registra todas las interacciones reales
-- **Skill Abstraction**: Abstrae habilidades de patrones recurrentes
-- **Knowledge Internalization**: Internaliza conocimiento en memoria a largo plazo
-- **Lifelong Growth**: Crecimiento continuo a lo largo del ciclo de vida del agente
+- **Experience Recording**: Records all real interactions
+- **Skill Abstraction**: Abstracts skills from recurrent patterns
+- **Knowledge Internalization**: Internalizes knowledge into long-term memory
+- **Lifelong Growth**: Continuous growth throughout the agent's lifecycle
 
 ### Continual World Model (EvoAgent Paper)
 
-- **World State Tracking**: Rastrea estados del mundo continuamente
-- **Change Detection**: Detecta cambios significativos en el mundo
-- **Self-Planning**: Planificación autónoma basada en el estado del mundo
-- **Adaptive Strategy**: Estrategia adaptativa según estabilidad del mundo
+- **World State Tracking**: Tracks world states continuously
+- **Change Detection**: Detects significant changes in the world
+- **Self-Planning**: Autonomous planning based on world state
+- **Adaptive Strategy**: Adaptive strategy based on world stability
 
-## 📊 Monitoreo
+## 📊 Monitoring
 
-### Métricas del Agente
+### Agent Metrics
 
-- `tasks_completed`: Tareas completadas exitosamente
-- `tasks_failed`: Tareas que fallaron
-- `total_tokens_used`: Tokens de OpenRouter consumidos
-- `uptime_seconds`: Tiempo de ejecución en segundos
-- `last_activity`: Última actividad del agente
+- `tasks_completed`: Successfully completed tasks
+- `tasks_failed`: Failed tasks
+- `total_tokens_used`: OpenRouter tokens consumed
+- `uptime_seconds`: Uptime in seconds
+- `last_activity`: Last agent activity
 
-### Estadísticas de Aprendizaje
+### Learning Statistics
 
-- `total_events`: Total de eventos de aprendizaje registrados
-- `recent_events_1h`: Eventos en la última hora
-- `adaptation_params`: Parámetros de adaptación actuales
-- `performance_metrics`: Métricas de performance
+- `total_events`: Total learning events recorded
+- `recent_events_1h`: Events in the last hour
+- `adaptation_params`: Current adaptation parameters
+- `performance_metrics`: Performance metrics
 
-### Estadísticas de Conocimiento
+### Knowledge Statistics
 
-- `total_entries`: Total de entradas en la base de conocimiento
-- `oldest_entry`: Entrada más antigua
-- `newest_entry`: Entrada más reciente
-- `total_access_count`: Total de accesos a conocimiento
+- `total_entries`: Total entries in the knowledge base
+- `oldest_entry`: Oldest entry
+- `newest_entry`: Newest entry
+- `total_access_count`: Total knowledge accesses
 
-### Estadísticas de Self-Reflection (Nuevo)
+### Self-Reflection Statistics (New)
 
-- `total_reflections`: Total de reflexiones realizadas
-- `reflection_types`: Distribución por tipo (performance, strategy, capability, periodic)
-- `average_confidence`: Confianza promedio en las reflexiones
-- `last_reflection`: Timestamp de la última reflexión
+- `total_reflections`: Total reflections performed
+- `reflection_types`: Distribution by type (performance, strategy, capability, periodic)
+- `average_confidence`: Average confidence in reflections
+- `last_reflection`: Timestamp of last reflection
 
-### Estadísticas de Experience Learning (Nuevo)
+### Experience Learning Statistics (New)
 
-- `total_experiences`: Total de experiencias registradas
-- `recent_experiences_24h`: Experiencias en las últimas 24 horas
-- `abstracted_skills_count`: Número de habilidades abstractas
-- `experience_types`: Distribución por tipo de experiencia
-- `outcome_distribution`: Distribución de resultados (success/failure)
+- `total_experiences`: Total experiences recorded
+- `recent_experiences_24h`: Experiences in the last 24 hours
+- `abstracted_skills_count`: Number of abstracted skills
+- `experience_types`: Distribution by experience type
+- `outcome_distribution`: Distribution of outcomes (success/failure)
 
-### Estadísticas de World Model (Nuevo)
+### World Model Statistics (New)
 
-- `total_states`: Total de estados del mundo rastreados
-- `stable_states`: Estados estables
-- `changing_states`: Estados en cambio
-- `average_confidence`: Confianza promedio en el modelo
-- `total_observations`: Total de observaciones registradas
+- `total_states`: Total world states tracked
+- `stable_states`: Stable states
+- `changing_states`: States in change
+- `average_confidence`: Average confidence in the model
+- `total_observations`: Total observations recorded
 
-## 🔧 Desarrollo
+## 🔧 Development
 
-### Estructura del Proyecto
+### Project Structure
 
 ```
 autonomous_long_term_agent/
 ├── __init__.py
-├── config.py                 # Configuración
-├── main.py                    # Aplicación FastAPI
+├── config.py                 # Configuration
+├── main.py                    # FastAPI Application
 ├── README.md
 ├── api/
 │   └── v1/
-│       ├── routes.py         # Rutas API
-│       ├── controllers/     # Controladores
-│       └── schemas/          # Schemas Pydantic
+│       ├── routes.py         # API Routes
+│       ├── controllers/     # Controllers
+│       └── schemas/          # Pydantic Schemas
 ├── core/
-│   ├── agent.py              # Agente principal
-│   ├── task_queue.py         # Cola de tareas
-│   └── learning_engine.py    # Motor de aprendizaje
+│   ├── agent.py              # Main Agent
+│   ├── task_queue.py         # Task Queue
+│   └── learning_engine.py    # Learning Engine
 └── infrastructure/
-    ├── openrouter/           # Cliente OpenRouter
-    └── storage/              # Almacenamiento persistente
-        └── knowledge_base.py # Base de conocimiento
+    ├── openrouter/           # OpenRouter Client
+    └── storage/              # Persistent Storage
+        └── knowledge_base.py # Knowledge Base
 ```
 
-## 🧪 Ejemplos
+## 🧪 Examples
 
-### Ejemplo 1: Agente Simple
+### Example 1: Simple Agent
 
 ```python
 import requests
 
-# Iniciar agente
+# Start agent
 response = requests.post("http://localhost:8001/api/v1/agents/start", json={
-    "instruction": "Aprender sobre Python y machine learning"
+    "instruction": "Learn about Python and machine learning"
 })
 agent_id = response.json()["message"].split()[-1]
 
-# Agregar tarea
+# Add task
 requests.post(f"http://localhost:8001/api/v1/agents/{agent_id}/tasks", json={
-    "instruction": "Investigar las mejores prácticas de Python"
+    "instruction": "Research Python best practices"
 })
 
-# Ver estado
+# View status
 status = requests.get(f"http://localhost:8001/api/v1/agents/{agent_id}/status")
 print(status.json())
 
-# Detener cuando termines
+# Stop when done
 requests.post(f"http://localhost:8001/api/v1/agents/{agent_id}/stop")
 ```
 
-### Ejemplo 2: Múltiples Agentes Paralelos
+### Example 2: Multiple Parallel Agents
 
 ```python
 import requests
 
-# Iniciar 3 agentes en paralelo
+# Start 3 agents in parallel
 response = requests.post("http://localhost:8001/api/v1/agents/parallel", json={
     "count": 3,
-    "instruction": "Investigar diferentes aspectos de IA"
+    "instruction": "Research different aspects of AI"
 })
 
 agent_ids = response.json()["agent_ids"]
 
-# Cada agente puede recibir tareas independientes
+# Each agent can receive independent tasks
 for i, agent_id in enumerate(agent_ids):
     requests.post(f"http://localhost:8001/api/v1/agents/{agent_id}/tasks", json={
-        "instruction": f"Tarea específica para agente {i+1}"
+        "instruction": f"Specific task for agent {i+1}"
     })
 ```
 
-## 🛡️ Seguridad
+## 🛡️ Security
 
-- Validación de inputs con Pydantic
-- Rate limiting configurable
-- Manejo seguro de errores
-- Limpieza automática de recursos
+- Input validation with Pydantic
+- Configurable rate limiting
+- Secure error handling
+- Automatic resource cleanup
 
-## 📝 Notas Importantes
+## 📝 Important Notes
 
-1. **El agente NO se detiene automáticamente**: Debes llamar explícitamente al endpoint de stop
-2. **Persistencia**: El conocimiento se guarda en disco en `./data/autonomous_agent/`
-3. **Recursos**: Múltiples agentes consumen más recursos (tokens, memoria, CPU)
-4. **OpenRouter API Key**: Requerida para funcionar
+1. **The agent does NOT stop automatically**: You must explicitly call the stop endpoint
+2. **Persistence**: Knowledge is saved to disk in `./data/autonomous_agent/`
+3. **Resources**: Multiple agents consume more resources (tokens, memory, CPU)
+4. **OpenRouter API Key**: Required to function
 
-## 🔗 Referencias
+## 🔗 References
 
 - [OpenRouter Documentation](https://openrouter.ai/docs)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- Papers de investigación mencionados en la sección "Basado en Papers"
+- Research papers mentioned in the "Based on Research Papers" section
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto es parte de Blatam Academy.
-
-
-
-
+This project is part of Blatam Academy.

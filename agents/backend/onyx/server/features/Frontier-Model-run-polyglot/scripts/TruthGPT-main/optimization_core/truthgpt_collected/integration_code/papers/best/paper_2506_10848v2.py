@@ -303,3 +303,4 @@ if __name__ == "__main__":
     output = module(x)
     print(f"✅ Paper 2506.10848v2 Best Techniques test: Input {x.shape} -> Output {output.shape}")
 
+

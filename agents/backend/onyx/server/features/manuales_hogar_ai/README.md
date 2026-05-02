@@ -1,99 +1,101 @@
 # Manuales Hogar AI 🏠🔧
 
-Sistema de IA para generar manuales paso a paso tipo LEGO para oficios populares. Permite procesar imágenes (fotos de problemas) o descripciones de texto y genera guías visuales y detalladas de cómo resolver problemas del hogar, trabajo y oficios.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-**✨ Refactorizado para microservicios, serverless y cloud-native** - Ver [REFACTORING.md](REFACTORING.md) y [ARCHITECTURE.md](ARCHITECTURE.md)
+AI system to generate LEGO-style step-by-step manuals for popular trades. Allows processing internal images (photos of problems) or text descriptions and generates visual and detailed guides on how to solve problems in the home, work, and trades.
 
-**🛡️ Mejorado para máxima estabilidad** - Ver [STABILITY.md](STABILITY.md)
+**✨ Refactored for microservices, serverless, and cloud-native** - See [REFACTORING.md](REFACTORING.md) and [ARCHITECTURE.md](ARCHITECTURE.md)
 
-**☁️ Listo para cualquier EC2** - Ver [EC2_DEPLOYMENT.md](EC2_DEPLOYMENT.md)
+**🛡️ Improved for maximum stability** - See [STABILITY.md](STABILITY.md)
 
-## ⚡ Inicio Rápido
+**☁️ Ready for any EC2** - See [EC2_DEPLOYMENT.md](EC2_DEPLOYMENT.md)
+
+## ⚡ Quick Start
 
 ```bash
-# Un solo comando para iniciar todo
+# Single command to start everything
 ./start.sh        # Linux/Mac
 .\start.ps1       # Windows
-python run.py     # Cualquier plataforma
+python run.py     # Any platform
 ```
 
-Ver [QUICKSTART.md](QUICKSTART.md) para más detalles.
+See [QUICKSTART.md](QUICKSTART.md) for more details.
 
-## 🛠️ Scripts de Utilidad
+## 🛠️ Utility Scripts
 
-El proyecto incluye **25+ scripts** útiles para gestión y mantenimiento:
+The project includes **25+ utility scripts** for management and maintenance:
 
-### Gestión Básica
+### Basic Management
 ```bash
-./status.sh              # Estado de servicios
-./scripts/setup.sh       # Configuración inicial
-./scripts/clean.sh       # Limpieza
+./status.sh              # Service status
+./scripts/setup.sh       # Initial setup
+./scripts/clean.sh       # Cleanup
 ```
 
-### Monitoreo y Diagnóstico
+### Monitoring and Diagnostics
 ```bash
-./scripts/monitor.sh      # Monitoreo en tiempo real
-./scripts/health-monitor.sh # Monitoreo continuo con alertas
-./scripts/diagnostics.sh  # Diagnósticos completos
-./scripts/watch.sh        # Auto-reiniciar en cambios
+./scripts/monitor.sh      # Real-time monitoring
+./scripts/health-monitor.sh # Continuous monitoring with alerts
+./scripts/diagnostics.sh  # Complete diagnostics
+./scripts/watch.sh        # Auto-restart on changes
 ```
 
-### Testing y Performance
+### Testing and Performance
 ```bash
-./scripts/test-api.sh     # Pruebas de API
-./scripts/quick-test.sh   # Validación rápida
-./scripts/performance-test.sh # Pruebas de rendimiento
+./scripts/test-api.sh     # API tests
+./scripts/quick-test.sh   # Quick validation
+./scripts/performance-test.sh # Performance tests
 ```
 
-### Backup y Seguridad
+### Backup and Security
 ```bash
-./scripts/backup.sh       # Backup de base de datos
-./scripts/restore.sh      # Restaurar desde backup
-./scripts/security-check.sh # Validación de seguridad
+./scripts/backup.sh       # Database backup
+./scripts/restore.sh      # Restore from backup
+./scripts/security-check.sh # Security validation
 ```
 
-### Optimización y Mantenimiento
+### Optimization and Maintenance
 ```bash
-./scripts/optimize.sh     # Optimizar Docker
-./scripts/update.sh       # Actualizar aplicación
-./scripts/export-logs.sh  # Exportar logs
+./scripts/optimize.sh     # Optimize Docker
+./scripts/update.sh       # Update application
+./scripts/export-logs.sh  # Export logs
 ```
 
-Ver [scripts/README.md](scripts/README.md) para lista completa y [FEATURES_COMPLETE.md](FEATURES_COMPLETE.md) para todas las funcionalidades.
+See [scripts/README.md](scripts/README.md) for the full list and [FEATURES_COMPLETE.md](FEATURES_COMPLETE.md) for all features.
 
-## 🎯 Características
+## 🎯 Features
 
-- ✅ **Soporte para múltiples modelos de IA** a través de OpenRouter
-- ✅ **Procesamiento de imágenes** con modelos de visión
-- ✅ **Soporte para múltiples imágenes** (hasta 5 imágenes por solicitud)
-- ✅ **Procesamiento de texto** para descripciones de problemas
-- ✅ **Detección automática de categorías** con algoritmo inteligente
-- ✅ **Sistema de cache** (memoria + persistente en BD)
-- ✅ **Validación y optimización de imágenes** automática
-- ✅ **Persistencia en base de datos** con Alembic
-- ✅ **Historial de manuales** con búsqueda avanzada
-- ✅ **Estadísticas de uso** automáticas
-- ✅ **Manuales tipo LEGO** paso a paso con formato visual
-- ✅ **Múltiples categorías de oficios**:
-  - Plomería
-  - Techos y reparaciones
-  - Carpintería
-  - Electricidad
-  - Albañilería
-  - Pintura
-  - Herrería
-  - Jardinería
+- ✅ **Support for multiple AI models** via OpenRouter
+- ✅ **Image processing** with vision models
+- ✅ **Support for multiple images** (up to 5 images per request)
+- ✅ **Text processing** for problem descriptions
+- ✅ **Automatic category detection** with intelligent algorithm
+- ✅ **Cache system** (memory + persistent in DB)
+- ✅ **Automatic image validation and optimization**
+- ✅ **Database persistence** with Alembic
+- ✅ **Manual history** with advanced search
+- ✅ **Automatic usage statistics**
+- ✅ **LEGO-style step-by-step manuals** with visual format
+- ✅ **Multiple trade categories**:
+  - Plumbing
+  - Roofing and repairs
+  - Carpentry
+  - Electricity
+  - Masonry
+  - Painting
+  - Blacksmithing
+  - Gardening
   - General
 
-## 📋 Requisitos
+## 📋 Requirements
 
-- Python 3.8+ (o Docker)
-- PostgreSQL 12+ (para base de datos)
-- API Key de OpenRouter (configurar en variable de entorno `OPENROUTER_API_KEY`)
+- Python 3.8+ (or Docker)
+- PostgreSQL 12+ (for database)
+- OpenRouter API Key (configure in `OPENROUTER_API_KEY` environment variable)
 
-## 🚀 Instalación y Uso
+## 🚀 Installation and Usage
 
-### Inicio Rápido (Un Solo Comando)
+### Quick Start (Single Command)
 
 **Linux/Mac:**
 ```bash
@@ -105,80 +107,80 @@ Ver [scripts/README.md](scripts/README.md) para lista completa y [FEATURES_COMPL
 .\start.ps1
 ```
 
-**Python (cualquier plataforma):**
+**Python (any platform):**
 ```bash
 python run.py
 ```
 
-**Producción:**
+**Production:**
 ```bash
 ./start.sh prod
-# o
+# or
 python run.py prod
 ```
 
-El script automáticamente:
-- ✅ Verifica que Docker esté corriendo
-- ✅ Crea archivo `.env` si no existe
-- ✅ Inicia todos los servicios (app, PostgreSQL, Redis)
-- ✅ Espera a que el servicio esté listo
-- ✅ Muestra la URL del API
+The script automatically:
+- ✅ Checks if Docker is running
+- ✅ Creates `.env` file if it doesn't exist
+- ✅ Starts all services (app, PostgreSQL, Redis)
+- ✅ Waits for the service to be ready
+- ✅ Shows the API URL
 
-### Opción 2: Docker Compose Manual
+### Option 2: Manual Docker Compose
 
-**Desarrollo:**
+**Development:**
 ```bash
 docker-compose up -d
 ```
 
-**Producción:**
+**Production:**
 ```bash
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
-Ver [DOCKER.md](DOCKER.md) para más detalles.
+See [DOCKER.md](DOCKER.md) for more details.
 
-### Opción 3: Instalación Local
+### Option 3: Local Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Variables de Entorno
+### Environment Variables
 
-Configurar las variables de entorno o crear un archivo `.env` (ver `.env.example`):
+Configure environment variables or create a `.env` file (see `.env.example`):
 
 ```bash
-# OpenRouter API Key (requerido)
-OPENROUTER_API_KEY=tu-api-key-aqui
+# OpenRouter API Key (required)
+OPENROUTER_API_KEY=your-api-key-here
 
-# Base de Datos (opcional, para persistencia)
-DATABASE_URL=postgresql+asyncpg://usuario:password@localhost:5432/manuales_hogar
-# O individualmente:
+# Database (optional, for persistence)
+DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/manuales_hogar
+# Or individually:
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
-DB_PASSWORD=tu_password
+DB_PASSWORD=your_password
 DB_NAME=manuales_hogar
 ```
 
-### Inicializar Base de Datos
+### Initialize Database
 
-Si quieres usar persistencia de datos, inicializa la base de datos:
+If you want to use data persistence, initialize the database:
 
 ```bash
-# Crear migración inicial
+# Create initial migration
 alembic revision --autogenerate -m "Initial migration"
 
-# Aplicar migraciones
+# Apply migrations
 alembic upgrade head
 ```
 
-Ver [MIGRATIONS.md](MIGRATIONS.md) para más detalles sobre migraciones.
+See [MIGRATIONS.md](MIGRATIONS.md) for more details on migrations.
 
-## 📖 Uso
+## 📖 Usage
 
 ### API Endpoints
 
@@ -187,143 +189,143 @@ Ver [MIGRATIONS.md](MIGRATIONS.md) para más detalles sobre migraciones.
 GET /api/v1/health
 ```
 
-#### 2. Listar Modelos Disponibles
+#### 2. List Available Models
 ```bash
 GET /api/v1/models
 ```
 
-#### 3. Generar Manual desde Texto
+#### 3. Generate Manual from Text
 ```bash
 POST /api/v1/generate-from-text
 Content-Type: application/json
 
 {
-  "problem_description": "Tengo una fuga de agua en el grifo de la cocina",
-  "category": "plomeria",
+  "problem_description": "I have a water leak in the kitchen faucet",
+  "category": "plumbing",
   "include_safety": true,
   "include_tools": true,
   "include_materials": true
 }
 ```
 
-#### 4. Generar Manual desde Imagen
+#### 4. Generate Manual from Image
 ```bash
 POST /api/v1/generate-from-image
 Content-Type: multipart/form-data
 
-file: [imagen.jpg]
-problem_description: "Descripción adicional (opcional)"
-category: "plomeria" (opcional, se detecta automáticamente)
+file: [image.jpg]
+problem_description: "Additional description (optional)"
+category: "plumbing" (optional, automatically detected)
 ```
 
-#### 5. Generar Manual Combinado (Texto + Imagen)
+#### 5. Generate Combined Manual (Text + Image)
 ```bash
 POST /api/v1/generate-combined
 Content-Type: multipart/form-data
 
-problem_description: "Tengo un problema con..."
-file: [imagen.jpg] (opcional)
+problem_description: "I have a problem with..."
+file: [image.jpg] (optional)
 category: "general"
 ```
 
-#### 6. Generar Manual desde Múltiples Imágenes
+#### 6. Generate Manual from Multiple Images
 ```bash
 POST /api/v1/generate-from-multiple-images
 Content-Type: multipart/form-data
 
-files: [imagen1.jpg, imagen2.jpg, imagen3.jpg] (máximo 5)
-problem_description: "Descripción adicional" (opcional)
-category: "plomeria" (opcional, se detecta automáticamente)
+files: [image1.jpg, image2.jpg, image3.jpg] (max 5)
+problem_description: "Additional description" (optional)
+category: "plumbing" (optional, automatically detected)
 ```
 
-#### 7. Obtener Categorías Soportadas
+#### 7. Get Supported Categories
 ```bash
 GET /api/v1/categories
 ```
 
-#### 8. Estadísticas del Cache
+#### 8. Cache Statistics
 ```bash
 GET /api/v1/cache/stats
 ```
 
-#### 9. Limpiar Cache (Memoria)
+#### 9. Clear Cache (Memory)
 ```bash
 DELETE /api/v1/cache/clear
 ```
 
-#### 10. Listar Manuales (Historial)
+#### 10. List Manuals (History)
 ```bash
-GET /api/v1/manuals?category=plomeria&limit=20&offset=0
+GET /api/v1/manuals?category=plumbing&limit=20&offset=0
 ```
 
-#### 11. Obtener Manual por ID
+#### 11. Get Manual by ID
 ```bash
 GET /api/v1/manuals/{manual_id}
 ```
 
-#### 12. Manuales Recientes
+#### 12. Recent Manuals
 ```bash
 GET /api/v1/manuals/recent?limit=10
 ```
 
-#### 13. Estadísticas de Uso
+#### 13. Usage Statistics
 ```bash
 GET /api/v1/statistics?days=30
 ```
 
-#### 14. Estadísticas de Cache Persistente
+#### 14. Persistent Cache Statistics
 ```bash
 GET /api/v1/cache/stats-db
 ```
 
-#### 15. Limpiar Cache Persistente
+#### 15. Clear Persistent Cache
 ```bash
 DELETE /api/v1/cache/clear-db
 ```
 
-#### 16. Limpiar Cache Expirado
+#### 16. Clear Expired Cache
 ```bash
 POST /api/v1/cache/cleanup-expired
 ```
 
-### Ejemplo de Uso en Python
+### Python Usage Example
 
 ```python
 from manuales_hogar_ai import ManualGenerator
 from manuales_hogar_ai.infrastructure import OpenRouterClient
 
-# Crear cliente y generador
+# Create client and generator
 client = OpenRouterClient()
 generator = ManualGenerator(openrouter_client=client)
 
-# Generar manual desde texto
+# Generate manual from text
 result = await generator.generate_manual_from_text(
-    problem_description="Fuga de agua en el grifo",
-    category="plomeria"
+    problem_description="Water leak in faucet",
+    category="plumbing"
 )
 
 print(result["manual"])
 
-# Generar manual desde imagen
+# Generate manual from image
 result = await generator.generate_manual_from_image(
-    image_path="problema.jpg",
-    problem_description="Fuga visible en la conexión",
-    category="plomeria"
+    image_path="problem.jpg",
+    problem_description="Visible leak at connection",
+    category="plumbing"
 )
 
 print(result["manual"])
 ```
 
-## 🏗️ Estructura del Proyecto
+## 🏗️ Project Structure
 
 ```
 manuales_hogar_ai/
 ├── __init__.py
-├── alembic/                    # Migraciones de base de datos
-│   ├── versions/               # Archivos de migración
-│   ├── env.py                  # Configuración de Alembic
-│   └── script.py.mako         # Template de migraciones
-├── alembic.ini                 # Configuración de Alembic
+├── alembic/                    # Database migrations
+│   ├── versions/               # Migration files
+│   ├── env.py                  # Alembic configuration
+│   └── script.py.mako         # Migration template
+├── alembic.ini                 # Alembic configuration
 ├── api/
 │   ├── __init__.py
 │   └── routes/
@@ -335,16 +337,16 @@ manuales_hogar_ai/
 ├── core/
 │   ├── __init__.py
 │   └── manual_generator.py
-├── database/                   # Modelos y sesiones de BD
+├── database/                   # DB models and sessions
 │   ├── __init__.py
-│   ├── models.py               # Modelos SQLAlchemy
-│   └── session.py              # Gestión de sesiones
+│   ├── models.py               # SQLAlchemy models
+│   └── session.py              # Session management
 ├── infrastructure/
 │   ├── __init__.py
 │   └── openrouter_client.py
-├── scripts/                    # Scripts de utilidad
+├── scripts/                    # Utility scripts
 │   ├── __init__.py
-│   └── init_db.py              # Inicializar BD
+│   └── init_db.py              # Initialize DB
 ├── services/
 │   └── __init__.py
 ├── utils/
@@ -354,32 +356,32 @@ manuales_hogar_ai/
 │   └── image_validator.py
 ├── requirements.txt
 ├── README.md
-└── MIGRATIONS.md               # Guía de migraciones
+└── MIGRATIONS.md               # Migrations guide
 ```
 
-## 🎨 Formato de Manual
+## 🎨 Manual Format
 
-Los manuales generados siguen un formato tipo LEGO con:
+The generated manuals follow a LEGO-style format with:
 
-1. **Título del Manual**
-2. **Diagnóstico** del problema
-3. **Advertencias de Seguridad** ⚠️
-4. **Herramientas Necesarias** 🔧
-5. **Materiales Necesarios** 📦
-6. **Pasos de la Reparación** (formato LEGO):
-   - Número de paso
-   - Descripción clara
-   - Ilustración verbal
-   - Tiempo estimado
-   - Dificultad (Fácil/Media/Difícil)
-   - Precauciones
-7. **Verificación**
-8. **Mantenimiento Preventivo**
-9. **Cuándo Llamar a un Profesional**
+1. **Manual Title**
+2. **Diagnosis** of the problem
+3. **Safety Warnings** ⚠️
+4. **Required Tools** 🔧
+5. **Required Materials** 📦
+6. **Repair Steps** (LEGO format):
+   - Step number
+   - Clear description
+   - Verbal illustration
+   - Estimated time
+   - Difficulty (Easy/Medium/Hard)
+   - Precautions
+7. **Verification**
+8. **Preventive Maintenance**
+9. **When to Call a Professional**
 
-## 🤖 Modelos Soportados
+## 🤖 Supported Models
 
-El sistema puede usar cualquier modelo disponible en OpenRouter, incluyendo:
+The system can use any model available on OpenRouter, including:
 
 - `anthropic/claude-3.5-sonnet` (default)
 - `openai/gpt-4o`
@@ -388,63 +390,66 @@ El sistema puede usar cualquier modelo disponible en OpenRouter, incluyendo:
 - `meta-llama/llama-3.1-70b-instruct`
 - `anthropic/claude-3-opus`
 
-Para modelos con visión, se recomienda usar:
+For models with vision, it is recommended to use:
 - `anthropic/claude-3.5-sonnet`
 - `openai/gpt-4o`
 - `google/gemini-pro-1.5`
 
-## 📝 Categorías Soportadas
+## 📝 Supported Categories
 
-- `plomeria` - Plomería
-- `techos` - Reparación de Techos
-- `carpinteria` - Carpintería
-- `electricidad` - Electricidad
-- `albanileria` - Albañilería
-- `pintura` - Pintura
-- `herreria` - Herrería
-- `jardineria` - Jardinería
-- `general` - Reparación General
+- `plumbing` - Plumbing
+- `roofing` - Roofing Repair
+- `carpentry` - Carpentry
+- `electricity` - Electricity
+- `masonry` - Masonry
+- `painting` - Painting
+- `blacksmithing` - Blacksmithing
+- `gardening` - Gardening
+- `general` - General Repair
 
-## 🔒 Seguridad
+## 🔒 Security
 
-- Las imágenes se procesan temporalmente y se eliminan después del procesamiento
-- Tamaño máximo de imagen: 10MB
-- Se validan tipos de archivo antes del procesamiento
-- Se incluyen advertencias de seguridad en los manuales generados
-- Validación de entrada en todos los endpoints
-- Manejo seguro de errores sin exponer información sensible
+- Images are temporarily processed and deleted after processing
+- Maximum image size: 10MB
+- File types are validated before processing
+- Safety warnings included in generated manuals
+- Input validation on all endpoints
+- Secure error handling without exposing sensitive information
 
-## 📊 Base de Datos y Persistencia
+## 📊 Database and Persistence
 
-El sistema incluye persistencia completa con:
+The system includes full persistence with:
 
-- **Historial de Manuales**: Todos los manuales generados se guardan automáticamente
-- **Cache Persistente**: Cache en base de datos con expiración automática
-- **Estadísticas**: Métricas automáticas de uso, tokens, modelos, etc.
-- **Búsqueda Avanzada**: Búsqueda por categoría, término, fecha, etc.
+- **Manual History**: All generated manuals are saved automatically
+- **Persistent Cache**: Database cache with automatic expiration
+- **Statistics**: Automatic metrics for usage, tokens, models, etc.
+- **Advanced Search**: Search by category, term, date, etc.
 
-Ver [MIGRATIONS.md](MIGRATIONS.md) para configuración de base de datos y [FEATURES.md](FEATURES.md) para detalles de funcionalidades.
+See [MIGRATIONS.md](MIGRATIONS.md) for database configuration and [FEATURES.md](FEATURES.md) for feature details.
 
 ## 🐛 Troubleshooting
 
 ### Error: "OpenRouter API key not configured"
-- Asegúrate de configurar la variable de entorno `OPENROUTER_API_KEY`
+- Make sure to configure the `OPENROUTER_API_KEY` environment variable
 
-### Error: "La imagen es demasiado grande"
-- El tamaño máximo es 10MB. Reduce el tamaño de la imagen antes de subirla.
+### Error: "The image is too large"
+- The maximum size is 10MB. Reduce the image size before uploading.
 
-### Error: "Categoría no soportada"
-- Verifica que la categoría esté en la lista de categorías soportadas usando `GET /api/v1/categories`
+### Error: "Category not supported"
+- Verify that the category is in the list of supported categories using `GET /api/v1/categories`
 
-## 📄 Licencia
+## 📄 License
 
-Propietaria - Blatam Academy
+Proprietary - Blatam Academy
 
-## 👥 Autor
+## 👥 Author
 
 Blatam Academy
 
-## 🔄 Versión
+## 🔄 Version
 
 1.0.0
 
+---
+
+[← Back to Main README](../README.md)

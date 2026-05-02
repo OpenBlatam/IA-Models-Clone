@@ -5,15 +5,18 @@ Provides utilities for managing dependencies and versions.
 """
 import logging
 import importlib
-import pkg_resources
+import sys
+import threading
 from typing import Dict, Any, Optional, List, Tuple
 from dataclasses import dataclass
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class Dependency:
+from pydantic import BaseModel
+
+
+class Dependency(BaseModel):
     """Dependency information."""
     name: str
     version: str
@@ -62,10 +65,17 @@ class DependencyManager:
         """Check which dependencies are installed."""
         for dep in self.dependencies.values():
             try:
-                dist = pkg_resources.get_distribution(dep.name)
+                # Use importlib.metadata for cleaner dependency checking
+                if sys.version_info >= (3, 8):
+                    from importlib.metadata import version, PackageNotFoundError
+                else:
+                    # Fallback for older python
+                    from importlib_metadata import version, PackageNotFoundError
+
+                dep.installed_version = version(dep.name)
                 dep.installed = True
-                dep.installed_version = dist.version
-            except pkg_resources.DistributionNotFound:
+            except (ImportError, Exception):
+                # Fallback or package not found
                 dep.installed = False
                 dep.installed_version = None
     
@@ -165,13 +175,58 @@ def register_dependency(name: str, version: str, required: bool = True):
     _global_dependency_manager.register(name, version, required)
 
 
+# --- Lazy Import Utilities ---
 
+_import_cache = {}
+_cache_lock = threading.RLock()
 
+def resolve_lazy_import(name: str, package: str, lazy_imports: Dict[str, str]) -> Any:
+    """
+    Resolve a lazy import.
 
+    Args:
+        name: The name of the attribute relative to the package.
+        package: The name of the package (e.g., 'optimization_core.optimizers').
+        lazy_imports: A dictionary mapping names to module paths.
 
+    Returns:
+        The imported module or attribute.
 
+    Raises:
+        AttributeError: If the name is not in lazy_imports or import fails.
+    """
+    if name.startswith('_'):
+         raise AttributeError(f"module '{package}' has no attribute '{name}'")
 
+    with _cache_lock:
+        cache_key = f"{package}.{name}"
+        if cache_key in _import_cache:
+            return _import_cache[cache_key]
 
+        if name not in lazy_imports:
+             raise AttributeError(f"module '{package}' has no attribute '{name}'")
 
+        module_path = lazy_imports[name]
 
+        try:
+            if module_path.startswith('.'):
+                 # Relative import
+                 module = importlib.import_module(module_path, package=package)
+            else:
+                 module = importlib.import_module(module_path)
+
+            # If the attribute exists in the module, return it (Class/Function)
+            # Otherwise return the module itself (Submodule)
+            if hasattr(module, name):
+                obj = getattr(module, name)
+            else:
+                obj = module
+
+            _import_cache[cache_key] = obj
+            return obj
+        except Exception as e:
+            raise AttributeError(
+                f"module '{package}' has no attribute '{name}'. "
+                f"Failed to import: {e}"
+            ) from e
 

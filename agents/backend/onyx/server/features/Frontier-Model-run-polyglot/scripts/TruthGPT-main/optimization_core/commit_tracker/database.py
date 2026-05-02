@@ -328,3 +328,4 @@ class CommitRepository:
             # Process results similar to get_commits
             # ... (implementation details)
             return []
+

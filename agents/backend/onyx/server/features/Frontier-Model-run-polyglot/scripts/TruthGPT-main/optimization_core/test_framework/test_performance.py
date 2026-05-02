@@ -400,7 +400,7 @@ class TestStressPerformance(BaseTest):
                 except:
                     pass
         
-            end_time = time.time()
+        end_time = time.time()
         execution_time = end_time - start_time
         
         metrics = PerformanceMetrics(
@@ -422,7 +422,7 @@ class TestStressPerformance(BaseTest):
     def test_network_stress(self):
         """Test network stress performance."""
         scenario = self.stress_scenarios[3]
-            start_time = time.time()
+        start_time = time.time()
         
         # Simulate network stress
         while time.time() - start_time < scenario['duration']:
@@ -433,7 +433,7 @@ class TestStressPerformance(BaseTest):
             data = np.random.random(1000)
             _ = np.sum(data)
         
-            end_time = time.time()
+        end_time = time.time()
         execution_time = end_time - start_time
         
         metrics = PerformanceMetrics(

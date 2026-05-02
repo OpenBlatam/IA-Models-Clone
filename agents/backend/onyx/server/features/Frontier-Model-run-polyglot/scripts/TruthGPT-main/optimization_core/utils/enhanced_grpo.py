@@ -44,67 +44,61 @@ def compute_reward_function(outputs, targets, reward_config=None):
 import time
 import warnings
 
-@dataclass
-class EnhancedGRPOArgs:
+from pydantic import BaseModel, Field, ConfigDict
+
+
+class EnhancedGRPOArgs(BaseModel):
     """Enhanced GRPO training arguments with advanced optimizations."""
-    learning_rate: float = field(default=1e-4, metadata={"help": "Learning rate for optimizer"})
-    beta1: float = field(default=0.9, metadata={"help": "Beta1 for Adam optimizer"})
-    beta2: float = field(default=0.999, metadata={"help": "Beta2 for Adam optimizer"})
-    eps: float = field(default=1e-8, metadata={"help": "Epsilon for Adam optimizer"})
-    weight_decay: float = field(default=0.01, metadata={"help": "Weight decay for optimizer"})
-    max_grad_norm: float = field(default=1.0, metadata={"help": "Maximum gradient norm for clipping"})
-    warmup_steps: int = field(default=100, metadata={"help": "Number of warmup steps"})
-    total_steps: int = field(default=1000, metadata={"help": "Total training steps"})
-    reward_scaling: float = field(default=1.0, metadata={"help": "Reward scaling factor"})
-    kl_penalty: float = field(default=0.1, metadata={"help": "KL penalty coefficient"})
-    entropy_bonus: float = field(default=0.01, metadata={"help": "Entropy bonus coefficient"})
-    advantage_normalization: bool = field(default=True, metadata={"help": "Whether to normalize advantages"})
-    use_kalman_filter: bool = field(default=True, metadata={"help": "Whether to use Kalman filtering"})
-    kalman_process_noise: float = field(default=0.01, metadata={"help": "Kalman filter process noise"})
-    kalman_measurement_noise: float = field(default=0.1, metadata={"help": "Kalman filter measurement noise"})
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    learning_rate: float = Field(default=1e-4, description="Learning rate for optimizer")
+    beta1: float = Field(default=0.9, description="Beta1 for Adam optimizer")
+    beta2: float = Field(default=0.999, description="Beta2 for Adam optimizer")
+    eps: float = Field(default=1e-8, description="Epsilon for Adam optimizer")
+    weight_decay: float = Field(default=0.01, description="Weight decay for optimizer")
+    max_grad_norm: float = Field(default=1.0, description="Maximum gradient norm for clipping")
+    warmup_steps: int = Field(default=100, description="Number of warmup steps")
+    total_steps: int = Field(default=1000, description="Total training steps")
+    reward_scaling: float = Field(default=1.0, description="Reward scaling factor")
+    kl_penalty: float = Field(default=0.1, description="KL penalty coefficient")
+    entropy_bonus: float = Field(default=0.01, description="Entropy bonus coefficient")
+    advantage_normalization: bool = Field(default=True, description="Whether to normalize advantages")
+    use_kalman_filter: bool = Field(default=True, description="Whether to use Kalman filtering")
+    kalman_process_noise: float = Field(default=0.01, description="Kalman filter process noise")
+    kalman_measurement_noise: float = Field(default=0.1, description="Kalman filter measurement noise")
     
-    use_enhanced_loss: bool = field(default=True, metadata={"help": "Use enhanced loss computation"})
-    use_dynamic_clipping: bool = field(default=True, metadata={"help": "Use dynamic clipping"})
+    use_enhanced_loss: bool = Field(default=True, description="Use enhanced loss computation")
+    use_dynamic_clipping: bool = Field(default=True, description="Use dynamic clipping")
     
-    process_noise: float = field(default=0.01, metadata={"help": "Process noise covariance (Q)"})
-    measurement_noise: float = field(default=0.1, metadata={"help": "Measurement noise covariance (R)"})
-    kalman_memory_size: int = field(default=1000, metadata={"help": "Size of Kalman filter memory buffer"})
+    process_noise: float = Field(default=0.01, description="Process noise covariance (Q)")
+    measurement_noise: float = Field(default=0.1, description="Measurement noise covariance (R)")
+    kalman_memory_size: int = Field(default=1000, description="Size of Kalman filter memory buffer")
     
-    pruning_threshold: float = field(default=0.1, metadata={"help": "Threshold for sample pruning"})
-    pruning_alpha: float = field(default=0.5, metadata={"help": "Alpha for dynamic K adjustment"})
-    k_min: int = field(default=1, metadata={"help": "Minimum K value"})
-    k_max: int = field(default=10, metadata={"help": "Maximum K value"})
+    pruning_threshold: float = Field(default=0.1, description="Threshold for sample pruning")
+    pruning_alpha: float = Field(default=0.5, description="Alpha for dynamic K adjustment")
+    k_min: int = Field(default=1, description="Minimum K value")
+    k_max: int = Field(default=10, description="Maximum K value")
     
-    policy_clip_delta: float = field(default=0.2, metadata={"help": "Policy clipping delta"})
-    length_penalty_lambda: float = field(default=0.1, metadata={"help": "Length penalty coefficient"})
-    max_length: int = field(default=1000, metadata={"help": "Maximum sequence length for normalization"})
+    policy_clip_delta: float = Field(default=0.2, description="Policy clipping delta")
+    length_penalty_lambda: float = Field(default=0.1, description="Length penalty coefficient")
+    max_length: int = Field(default=1000, description="Maximum sequence length for normalization")
     
-    use_amp: bool = field(default=True, metadata={"help": "Use automatic mixed precision"})
-    gradient_accumulation_steps: int = field(default=1, metadata={"help": "Number of steps to accumulate gradients"})
-    warmup_ratio: float = field(default=0.1, metadata={"help": "Ratio of warmup steps"})
+    use_amp: bool = Field(default=True, description="Use automatic mixed precision")
+    gradient_accumulation_steps: int = Field(default=1, description="Number of steps to accumulate gradients")
+    warmup_ratio: float = Field(default=0.1, description="Ratio of warmup steps")
     
-    enable_adaptive_parameters: bool = field(default=True, metadata={"help": "Enable adaptive parameter optimization"})
-    parameter_adaptation_rate: float = field(default=0.1, metadata={"help": "Rate of parameter adaptation"})
-    performance_window_size: int = field(default=100, metadata={"help": "Window size for performance tracking"})
-    threshold_sensitivity: float = field(default=0.05, metadata={"help": "Sensitivity for threshold adjustments"})
-    lr_adaptation_factor: float = field(default=1.2, metadata={"help": "Factor for learning rate adaptation"})
-    convergence_patience: int = field(default=50, metadata={"help": "Patience for convergence detection"})
-    parameter_momentum: float = field(default=0.9, metadata={"help": "Momentum for parameter updates"})
-    adaptive_clipping_enabled: bool = field(default=True, metadata={"help": "Enable adaptive gradient clipping"})
-    dynamic_regularization: bool = field(default=True, metadata={"help": "Enable dynamic regularization"})
+    enable_adaptive_parameters: bool = Field(default=True, description="Enable adaptive parameter optimization")
+    parameter_adaptation_rate: float = Field(default=0.1, description="Rate of parameter adaptation")
+    performance_window_size: int = Field(default=100, description="Window size for performance tracking")
+    threshold_sensitivity: float = Field(default=0.05, description="Sensitivity for threshold adjustments")
+    lr_adaptation_factor: float = Field(default=1.2, description="Factor for learning rate adaptation")
+    convergence_patience: int = Field(default=50, description="Patience for convergence detection")
+    parameter_momentum: float = Field(default=0.9, description="Momentum for parameter updates")
+    adaptive_clipping_enabled: bool = Field(default=True, description="Enable adaptive gradient clipping")
+    dynamic_regularization: bool = Field(default=True, description="Enable dynamic regularization")
     
-    enable_adaptive_parameters: bool = field(default=True, metadata={"help": "Enable adaptive parameter optimization"})
-    parameter_adaptation_rate: float = field(default=0.1, metadata={"help": "Rate of parameter adaptation"})
-    performance_window_size: int = field(default=100, metadata={"help": "Window size for performance tracking"})
-    threshold_sensitivity: float = field(default=0.05, metadata={"help": "Sensitivity for threshold adjustments"})
-    lr_adaptation_factor: float = field(default=1.2, metadata={"help": "Factor for learning rate adaptation"})
-    convergence_patience: int = field(default=50, metadata={"help": "Patience for convergence detection"})
-    parameter_momentum: float = field(default=0.9, metadata={"help": "Momentum for parameter updates"})
-    adaptive_clipping_enabled: bool = field(default=True, metadata={"help": "Enable adaptive gradient clipping"})
-    temperature_adaptation: bool = field(default=True, metadata={"help": "Enable temperature parameter adaptation"})
-    quantization_adaptation: bool = field(default=True, metadata={"help": "Enable quantization parameter adaptation"})
-    temperature_adaptation: bool = field(default=True, metadata={"help": "Enable temperature parameter adaptation"})
-    quantization_adaptation: bool = field(default=True, metadata={"help": "Enable quantization parameter adaptation"})
+    temperature_adaptation: bool = Field(default=True, description="Enable temperature parameter adaptation")
+    quantization_adaptation: bool = Field(default=True, description="Enable quantization parameter adaptation")
 
 class KalmanFilter:
     def __init__(self, process_noise: float, measurement_noise: float, memory_size: int = 1000):
@@ -259,6 +253,7 @@ class EnhancedGRPOTrainer:
         
         self.performance_window = []
         self.parameter_adaptation_history = []
+        self.adaptation_step = 0
         self.convergence_detector = ConvergenceDetector(args.convergence_patience)
         
         if args.use_amp:
@@ -397,39 +392,6 @@ class EnhancedGRPOTrainer:
         
         dynamic_lr = base_lr * (1.0 + 0.5 * reward_factor) * pruning_adjustment * velocity_factor
         
-    
-    def adapt_parameters_based_on_performance(self, performance_metrics: Dict[str, float]):
-        """Adapt parameters based on performance metrics."""
-        if not hasattr(self, 'parameter_optimizer'):
-            return
-        
-        self.performance_window.append(performance_metrics)
-        if len(self.performance_window) > getattr(self.args, 'performance_window_size', 100):
-            self.performance_window.pop(0)
-        
-        if len(self.performance_window) >= 5:
-            current_config = {
-                'learning_rates': {'base_lr': self.args.learning_rate},
-                'rl_parameters': {'epsilon_start': 0.9, 'gamma': 0.99},
-                'temperature_parameters': {'attention_temperature': 1.0}
-            }
-            
-            adapted_config = self.parameter_optimizer.adapt_parameters(
-                performance_metrics, current_config
-            )
-            
-            self.parameter_adaptation_history.append({
-                'step': self.adaptation_step,
-                'performance': performance_metrics,
-                'adapted_config': adapted_config
-            })
-            
-            self.adaptation_step += 1
-    
-    def get_enhanced_metrics(self) -> Dict[str, Any]:
-        """Get enhanced metrics including parameter optimization."""
-        return self.get_metrics()
-
         min_lr = base_lr * 0.01
         max_lr = base_lr * 10.0
         
@@ -472,10 +434,11 @@ class EnhancedGRPOTrainer:
                 self._apply_parameter_adaptations(adapted_params)
                 
                 self.parameter_adaptation_history.append({
-                    'step': len(self._metrics["learning_rate"]),
+                    'step': self.adaptation_step,
                     'trend': performance_trend,
                     'adaptations': adapted_params
                 })
+                self.adaptation_step += 1
     
     def _calculate_performance_trend(self) -> float:
         """Calculate recent performance trend."""
@@ -597,3 +560,4 @@ class ConvergenceDetector:
             return 'approaching_convergence'
         else:
             return 'training'
+

@@ -18,7 +18,7 @@ import copy
 import time
 import logging
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, model_validator
 from enum import Enum
 import json
 import pickle
@@ -64,10 +64,9 @@ class AttentionMechanism(Enum):
     TEMPORAL_ATTENTION = "temporal_attention"
     CHANNEL_ATTENTION = "channel_attention"
 
-@dataclass
-class MultimodalConfig:
+class MultimodalConfig(BaseModel):
     """Configuration for multi-modal fusion."""
-    modalities: List[ModalityType] = field(default_factory=lambda: [ModalityType.TEXT, ModalityType.IMAGE])
+    modalities: List[ModalityType] = Field(default_factory=lambda: [ModalityType.TEXT, ModalityType.IMAGE])
     fusion_strategy: FusionStrategy = FusionStrategy.ATTENTION_FUSION
     attention_mechanism: AttentionMechanism = AttentionMechanism.MULTI_HEAD_ATTENTION
     hidden_dim: int = 512
@@ -82,8 +81,9 @@ class MultimodalConfig:
     device: str = "auto"
     log_level: str = "INFO"
     output_dir: str = "./multimodal_results"
-    
-    def __post_init__(self):
+
+    @model_validator(mode='after')
+    def validate_config(self) -> 'MultimodalConfig':
         """Post-initialization validation."""
         if self.hidden_dim <= 0:
             raise ValueError("Hidden dimension must be positive")
@@ -91,6 +91,7 @@ class MultimodalConfig:
             raise ValueError("Number of attention heads must be positive")
         if not 0 <= self.dropout_rate <= 1:
             raise ValueError("Dropout rate must be between 0 and 1")
+        return self
 
 class ModalityEncoder(nn.Module):
     """Base class for modality encoders."""
@@ -710,3 +711,4 @@ def example_multimodal_fusion():
 if __name__ == "__main__":
     # Run example
     example_multimodal_fusion()
+

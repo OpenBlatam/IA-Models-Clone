@@ -1,46 +1,49 @@
 # Notifications System
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema de notificaciones para el ecosistema Blatam Academy.
+## 📋 Description
 
-## 🚀 Características Principales
+Notification system for the Blatam Academy ecosystem.
 
-- **Sistema de Notificaciones**: API para gestión de notificaciones
-- **Integración**: Integración con otros módulos del sistema
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Notification System**: Notification management API
+- **Integration**: Integration with other system modules
+
+## 📁 Structure
 
 ```
 notifications/
-└── api.py                 # API de notificaciones
+└── api.py                 # Notification API
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
-Este módulo requiere las dependencias del sistema principal.
+This module requires the main system dependencies.
 
-## 💻 Uso
+## 💻 Usage
 
 ```python
 from notifications.api import NotificationService
 
-# Inicializar servicio
+# Initialize service
 service = NotificationService()
 
-# Enviar notificación
+# Send notification
 service.send(
     user_id=123,
-    message="Nueva actualización disponible",
+    message="New update available",
     type="info"
 )
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- Todos los módulos que requieren notificaciones
-- **Integration System**: Para orquestación
+This module integrates with:
+- All modules requiring notifications
+- **Integration System**: For orchestration
 
+---
 
-
+[← Back to Main README](../README.md)

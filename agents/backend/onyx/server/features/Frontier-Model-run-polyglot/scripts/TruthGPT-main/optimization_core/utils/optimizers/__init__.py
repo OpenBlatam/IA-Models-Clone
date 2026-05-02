@@ -83,3 +83,4 @@ def get_optimizer_info(optimizer_name: str) -> dict[str, any]:
         'available': optimizer_name in _import_cache or True,
     }
 
+

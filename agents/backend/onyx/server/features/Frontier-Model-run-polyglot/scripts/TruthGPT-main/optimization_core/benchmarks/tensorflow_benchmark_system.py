@@ -546,3 +546,4 @@ def example_tensorflow_benchmark():
 if __name__ == "__main__":
     # Run example
     suite = example_tensorflow_benchmark()
+

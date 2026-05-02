@@ -1,7 +1,7 @@
 import unittest
-from agents.backend.onyx.server.features.lovable.web_gen_system.context import RepositoryContext
-from agents.backend.onyx.server.features.lovable.web_gen_system.instruction import InstructionParser
-from agents.backend.onyx.server.features.lovable.web_gen_system.agents import ProductManagerAgent, EngineerAgent
+from ..context import RepositoryContext
+from ..instruction import InstructionParser
+from ..agents import ProductManagerAgent, EngineerAgent
 
 class TestAdvancedConcepts(unittest.TestCase):
     

@@ -282,3 +282,4 @@ if __name__ == "__main__":
     output = module(x)
     print(f"✅ Paper 2505.05315v2 module test: Input {x.shape} -> Output {output.shape}")
 
+

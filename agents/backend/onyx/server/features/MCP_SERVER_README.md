@@ -1,15 +1,17 @@
-# 🚀 Servidor MCP para Mejora de Código - Blatam Academy
+# 🚀 MCP Server for Code Improvement — Blatam Academy
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](README.md)
 
-Este servidor MCP (Model Context Protocol) proporciona herramientas avanzadas para analizar, mejorar y refactorizar el código del proyecto Blatam Academy. Incluye 16 herramientas especializadas para diferentes aspectos de la mejora de código.
+## 📋 Description
 
-## 🛠️ Herramientas Disponibles
+This MCP (Model Context Protocol) server provides advanced tools to analyze, improve, and refactor the Blatam Academy project code. It includes 16 specialized tools for different aspects of code improvement.
+
+## 🛠️ Available Tools
 
 ### 1. **analyze_code_quality**
-Analiza la calidad del código detectando problemas de estilo, complejidad ciclomática y violaciones de mejores prácticas.
+Analyzes code quality by detecting style issues, cyclomatic complexity, and best practice violations.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "path": "features/suno_clone_ai/core/",
@@ -19,9 +21,9 @@ Analiza la calidad del código detectando problemas de estilo, complejidad ciclo
 ```
 
 ### 2. **detect_code_duplication**
-Detecta código duplicado en el proyecto, identificando patrones repetitivos.
+Detects duplicate code in the project, identifying repetitive patterns.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "minLines": 5,
@@ -31,9 +33,9 @@ Detecta código duplicado en el proyecto, identificando patrones repetitivos.
 ```
 
 ### 3. **suggest_refactoring**
-Sugiere refactorizaciones específicas basadas en patrones identificados.
+Suggests specific refactorings based on identified patterns.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "filePath": "features/suno_clone_ai/core/optimizer.py",
@@ -43,9 +45,9 @@ Sugiere refactorizaciones específicas basadas en patrones identificados.
 ```
 
 ### 4. **analyze_architecture**
-Analiza la arquitectura del proyecto, detectando violaciones de principios SOLID y Clean Architecture.
+Analyzes project architecture, detecting violations of SOLID principles and Clean Architecture.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "featurePath": "features/facebook_posts",
@@ -56,9 +58,9 @@ Analiza la arquitectura del proyecto, detectando violaciones de principios SOLID
 ```
 
 ### 5. **optimize_performance**
-Identifica oportunidades de optimización de performance.
+Identifies performance optimization opportunities.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "filePath": "features/music_analyzer_ai/api.py",
@@ -68,9 +70,9 @@ Identifica oportunidades de optimización de performance.
 ```
 
 ### 6. **check_security**
-Analiza el código en busca de vulnerabilidades de seguridad.
+Analyzes code for security vulnerabilities.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "path": "features/",
@@ -81,9 +83,9 @@ Analiza el código en busca de vulnerabilidades de seguridad.
 ```
 
 ### 7. **improve_documentation**
-Analiza y mejora la documentación del código.
+Analyzes and improves code documentation.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "filePath": "features/dermatology_ai/services.py",
@@ -94,9 +96,9 @@ Analiza y mejora la documentación del código.
 ```
 
 ### 8. **analyze_dependencies**
-Analiza las dependencias del proyecto: versiones, conflictos, vulnerabilidades.
+Analyzes project dependencies: versions, conflicts, vulnerabilities.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "checkVulnerabilities": true,
@@ -107,9 +109,9 @@ Analiza las dependencias del proyecto: versiones, conflictos, vulnerabilidades.
 ```
 
 ### 9. **standardize_code_style**
-Estandariza el estilo de código según las mejores prácticas.
+Standardizes code style according to best practices.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "filePath": "features/blog_posts/generator.py",
@@ -119,9 +121,9 @@ Estandariza el estilo de código según las mejores prácticas.
 ```
 
 ### 10. **detect_anti_patterns**
-Detecta anti-patrones comunes en el código.
+Detects common anti-patterns in code.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "path": "features/copywriting/",
@@ -130,9 +132,9 @@ Detecta anti-patrones comunes en el código.
 ```
 
 ### 11. **optimize_imports**
-Optimiza y organiza los imports.
+Optimizes and organizes imports.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "filePath": "features/seo/optimizer.py",
@@ -143,9 +145,9 @@ Optimiza y organiza los imports.
 ```
 
 ### 12. **generate_tests**
-Genera tests unitarios y de integración.
+Generates unit and integration tests.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "filePath": "features/ai_video/processor.py",
@@ -156,9 +158,9 @@ Genera tests unitarios y de integración.
 ```
 
 ### 13. **migrate_to_clean_architecture**
-Ayuda a migrar código existente a Clean Architecture.
+Helps migrate existing code to Clean Architecture.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "featurePath": "features/ads",
@@ -169,9 +171,9 @@ Ayuda a migrar código existente a Clean Architecture.
 ```
 
 ### 14. **analyze_feature_consistency**
-Analiza la consistencia entre features.
+Analyzes consistency between features.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "compareWith": "instagram_captions",
@@ -180,9 +182,9 @@ Analiza la consistencia entre features.
 ```
 
 ### 15. **optimize_config_files**
-Optimiza y unifica archivos de configuración.
+Optimizes and unifies configuration files.
 
-**Uso:**
+**Usage:**
 ```json
 {
   "configType": "all",
@@ -191,9 +193,9 @@ Optimiza y unifica archivos de configuración.
 ```
 
 ### 16. **detect_unified_patterns**
-Detecta patrones que pueden ser unificados (como los optimizadores).
+Detects patterns that can be unified (like optimizers).
 
-**Uso:**
+**Usage:**
 ```json
 {
   "patternType": "optimizers",
@@ -201,51 +203,51 @@ Detecta patrones que pueden ser unificados (como los optimizadores).
 }
 ```
 
-## 📚 Recursos Disponibles
+## 📚 Available Resources
 
-El servidor proporciona acceso a los siguientes recursos:
+The server provides access to the following resources:
 
-- **codebase://best-practices** - Mejores prácticas del proyecto
-- **codebase://architecture-patterns** - Patrones arquitectónicos
-- **codebase://refactoring-opportunities** - Oportunidades de refactorización
-- **codebase://anti-patterns** - Anti-patrones a evitar
-- **codebase://code-quality-standards** - Estándares de calidad
+- **codebase://best-practices** — Project best practices
+- **codebase://architecture-patterns** — Architectural patterns
+- **codebase://refactoring-opportunities** — Refactoring opportunities
+- **codebase://anti-patterns** — Anti-patterns to avoid
+- **codebase://code-quality-standards** — Quality standards
 
-## 🎯 Prompts Disponibles
+## 🎯 Available Prompts
 
-1. **improve_code_quality** - Mejora la calidad general del código
-2. **refactor_code** - Refactoriza código siguiendo mejores prácticas
-3. **optimize_performance** - Optimiza performance del código
+1. **improve_code_quality** — Improves general code quality
+2. **refactor_code** — Refactors code following best practices
+3. **optimize_performance** — Optimizes code performance
 
-## 🚀 Configuración
+## 🚀 Configuration
 
-### Instalación
+### Installation
 
-1. Asegúrate de tener Python 3.8+ instalado
-2. Instala las dependencias necesarias:
+1. Ensure Python 3.8+ is installed
+2. Install necessary dependencies:
 
 ```bash
 pip install mcp pylint black isort mypy bandit safety
 ```
 
-### Configuración en Cursor
+### Cursor Configuration
 
-1. Abre la configuración de MCP en Cursor
-2. Agrega el servidor usando el archivo `mcp_code_improvement_server.json`
-3. El servidor se conectará automáticamente
+1. Open MCP settings in Cursor
+2. Add the server using `mcp_code_improvement_server.json`
+3. The server will connect automatically
 
-### Variables de Entorno
+### Environment Variables
 
 ```bash
 export PYTHONPATH="${workspace}/agents/backend/onyx/server/features"
 ```
 
-## 💡 Ejemplos de Uso
+## 💡 Usage Examples
 
-### Análisis Completo de una Feature
+### Full Feature Analysis
 
 ```python
-# Usar analyze_code_quality + analyze_architecture + check_security
+# Use analyze_code_quality + analyze_architecture + check_security
 {
   "tool": "analyze_code_quality",
   "arguments": {
@@ -256,10 +258,10 @@ export PYTHONPATH="${workspace}/agents/backend/onyx/server/features"
 }
 ```
 
-### Refactorización de Optimizadores
+### Optimizer Refactoring
 
 ```python
-# Detectar patrones unificables
+# Detect unified patterns
 {
   "tool": "detect_unified_patterns",
   "arguments": {
@@ -268,7 +270,7 @@ export PYTHONPATH="${workspace}/agents/backend/onyx/server/features"
   }
 }
 
-# Luego aplicar refactorización
+# Then apply refactoring
 {
   "tool": "suggest_refactoring",
   "arguments": {
@@ -279,7 +281,7 @@ export PYTHONPATH="${workspace}/agents/backend/onyx/server/features"
 }
 ```
 
-### Migración a Clean Architecture
+### Migration to Clean Architecture
 
 ```python
 {
@@ -293,78 +295,71 @@ export PYTHONPATH="${workspace}/agents/backend/onyx/server/features"
 }
 ```
 
-## 📊 Métricas y Reportes
+## 📊 Metrics and Reports
 
-El servidor genera reportes detallados que incluyen:
+The server generates detailed reports including:
 
-- **Calidad de Código**: Puntuación general y desglose por categoría
-- **Duplicación**: Porcentaje de código duplicado y ubicaciones
-- **Seguridad**: Vulnerabilidades encontradas y severidad
-- **Performance**: Oportunidades de optimización identificadas
-- **Arquitectura**: Conformidad con Clean Architecture y SOLID
-- **Documentación**: Cobertura de documentación y mejoras sugeridas
+- **Code Quality** — Overall score and category breakdown
+- **Duplication** — Percentage of duplicate code and locations
+- **Security** — Vulnerabilities found and severity
+- **Performance** — Identification of optimization opportunities
+- **Architecture** — Compliance with Clean Architecture and SOLID
+- **Documentation** — Documentation coverage and suggested improvements
 
-## 🔧 Personalización
+## 🔧 Customization
 
-Puedes personalizar el servidor editando `mcp_code_improvement_server.json`:
+You can customize the server by editing `mcp_code_improvement_server.json`:
 
-- Agregar nuevas herramientas
-- Modificar parámetros por defecto
-- Agregar recursos adicionales
-- Configurar reglas específicas del proyecto
+- Add new tools
+- Modify default parameters
+- Add additional resources
+- Configure project-specific rules
 
-## 🎓 Mejores Prácticas
+## 🎓 Best Practices
 
-1. **Usa análisis incremental**: Empieza con análisis de calidad antes de refactorizar
-2. **Revisa sugerencias**: Siempre revisa las sugerencias antes de aplicar cambios automáticos
-3. **Pruebas primero**: Genera tests antes de refactorizar código crítico
-4. **Documenta cambios**: Usa `improve_documentation` después de refactorizaciones importantes
-5. **Mantén consistencia**: Usa `analyze_feature_consistency` para mantener uniformidad
+1. **Use incremental analysis** — Start with quality analysis before refactoring
+2. **Review suggestions** — Always review suggestions before applying automatic changes
+3. **Tests first** — Generate tests before refactoring critical code
+4. **Document changes** — Use `improve_documentation` after major refactorings
+5. **Maintain consistency** — Use `analyze_feature_consistency` to maintain uniformity
 
 ## 🐛 Troubleshooting
 
-### El servidor no se conecta
-- Verifica que Python esté en el PATH
-- Revisa las variables de entorno
-- Asegúrate de que las dependencias estén instaladas
+### Server not connecting
+- Verify Python is in PATH
+- Check environment variables
+- Ensure dependencies are installed
 
-### Herramientas no funcionan
-- Verifica los permisos de lectura/escritura
-- Revisa los logs del servidor
-- Asegúrate de que las rutas sean correctas
+### Tools not working
+- Check read/write permissions
+- Check server logs
+- Ensure paths are correct
 
-### Performance lenta
-- Limita el alcance del análisis
-- Usa exclusiones apropiadas
-- Considera análisis incremental
+### Slow performance
+- Limit analysis scope
+- Use appropriate exclusions
+- Consider incremental analysis
 
-## 📝 Notas
+## 📝 Notes
 
-- El servidor está diseñado específicamente para el proyecto Blatam Academy
-- Las herramientas están optimizadas para Python, pero soportan múltiples lenguajes
-- Los cambios automáticos siempre se pueden revertir (usa control de versiones)
-- Se recomienda ejecutar análisis en branches separados antes de mergear
+- The server is specifically designed for the Blatam Academy project
+- Tools are optimized for Python but support multiple languages
+- Automatic changes can always be reverted (use version control)
+- It is recommended to run analysis in separate branches before merging
 
-## 🤝 Contribución
+## 🤝 Contribution
 
-Para mejorar el servidor MCP:
+To improve the MCP server:
 
-1. Identifica áreas de mejora
-2. Agrega nuevas herramientas según necesidad
-3. Actualiza la documentación
-4. Prueba con diferentes features del proyecto
+1. Identify improvement areas
+2. Add new tools as needed
+3. Update documentation
+4. Test with different project features
 
-## 📄 Licencia
+## 📄 License
 
-MIT License - Blatam Academy
+MIT License — Blatam Academy
 
+---
 
-
-
-
-
-
-
-
-
-
+[← Back to Main README](README.md)

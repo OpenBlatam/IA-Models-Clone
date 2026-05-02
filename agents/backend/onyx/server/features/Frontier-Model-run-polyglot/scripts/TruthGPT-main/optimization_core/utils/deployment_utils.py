@@ -7,13 +7,12 @@ import logging
 import os
 from typing import Dict, Any, Optional, List
 from pathlib import Path
-from dataclasses import dataclass
+from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class EnvironmentConfig:
+class EnvironmentConfig(BaseModel):
     """Configuration for deployment environment."""
     name: str
     api_url: Optional[str] = None
@@ -21,12 +20,7 @@ class EnvironmentConfig:
     cache_dir: Optional[str] = None
     log_level: str = "INFO"
     debug: bool = False
-    metadata: Dict[str, Any] = None
-    
-    def __post_init__(self):
-        """Initialize metadata if None."""
-        if self.metadata is None:
-            self.metadata = {}
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class DeploymentManager:
@@ -127,6 +121,7 @@ def get_deployment_config(
     """
     manager = DeploymentManager()
     return manager.setup_environment(env_name)
+
 
 
 

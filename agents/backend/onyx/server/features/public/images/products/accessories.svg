@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20" height="100" viewBox="0 0 20 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Accesorios genéricos -->
+  <circle cx="10" cy="20" r="5" fill="currentColor" stroke="#000" stroke-width="1"/>
+  <rect x="5" y="40" width="10" height="10" fill="currentColor" stroke="#000" stroke-width="1"/>
+  <path d="M5 60 L15 60 L10 80 Z" fill="currentColor" stroke="#000" stroke-width="1"/>
+</svg> 

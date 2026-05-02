@@ -399,7 +399,7 @@ class TruthGPTAPIServer:
             
             return ModelResponse(
                 success=True,
-                message=f"Model {model_name}} loaded successfully",
+                message=f"Model {model_name} loaded successfully",
                 model_name=model_name,
                 model_type=request.model_type,
                 model_size=model_size,

@@ -1,61 +1,63 @@
-# Contabilidad Mexicana AI SAM3
+# Mexican Accounting AI SAM3
 
-Sistema de contabilidad mexicana con arquitectura SAM3, integrado con OpenRouter y TruthGPT.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## Características
+Mexican accounting system with SAM3 architecture, integrated with OpenRouter and TruthGPT.
 
-- ✅ Arquitectura SAM3 para procesamiento paralelo y continuo
-- ✅ Integración con OpenRouter para LLM de alta calidad
-- ✅ Integración con TruthGPT para optimización avanzada
-- ✅ Operación continua 24/7
-- ✅ Ejecución paralela de tareas
-- ✅ Gestión automática de tareas con cola de prioridades
-- ✅ Servicios de contabilidad mexicana:
-  - Cálculo de impuestos
-  - Asesoría fiscal
-  - Guías fiscales
-  - Trámites SAT
-  - Ayuda con declaraciones
+## Features
 
-## Instalación
+- ✅ SAM3 architecture for parallel and continuous processing
+- ✅ OpenRouter integration for high-quality LLMs
+- ✅ TruthGPT integration for advanced optimization
+- ✅ Continuous 24/7 operation
+- ✅ Parallel task execution
+- ✅ Automatic task management with priority queue
+- ✅ Mexican accounting services:
+  - Tax calculation
+  - Tax advice
+  - Tax guides
+  - SAT procedures
+  - Tax return help
+
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuración
+## Configuration
 
-Configura las variables de entorno:
+Configure environment variables:
 
 ```bash
-export OPENROUTER_API_KEY="tu-api-key"
-export TRUTHGPT_ENDPOINT="opcional-endpoint"  # Opcional
+export OPENROUTER_API_KEY="your-api-key"
+export TRUTHGPT_ENDPOINT="optional-endpoint"  # Optional
 ```
 
-## Uso Básico
+## Basic Usage
 
 ```python
 import asyncio
 from contabilidad_mexicana_ai_sam3 import ContadorSAM3Agent, ContadorSAM3Config
 
 async def main():
-    # Crear configuración
+    # Create configuration
     config = ContadorSAM3Config()
     
-    # Crear agente
+    # Create agent
     agent = ContadorSAM3Agent(config=config)
     
-    # Iniciar agente (modo 24/7)
-    # await agent.start()  # En producción
+    # Start agent (24/7 mode)
+    # await agent.start()  # In production
     
-    # O usar métodos directos
+    # Or use direct methods
     task_id = await agent.calcular_impuestos(
         regimen="RESICO",
         tipo_impuesto="ISR",
         datos={"ingresos": 100000, "gastos": 30000}
     )
     
-    # Esperar resultado
+    # Wait for result
     import time
     while True:
         status = await agent.get_task_status(task_id)
@@ -69,48 +71,48 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Arquitectura
+## Architecture
 
-Para una documentación completa de la arquitectura, consulta:
-- **[COMPLETE_ARCHITECTURE.md](docs/COMPLETE_ARCHITECTURE.md)** - Documentación completa y detallada
-- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Resumen de arquitectura
+For complete architecture documentation, see:
+- **[COMPLETE_ARCHITECTURE.md](docs/COMPLETE_ARCHITECTURE.md)** - Complete and detailed documentation
+- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Architecture summary
 
-### Estructura de Directorios
+### Directory Structure
 
 ```
 contabilidad_mexicana_ai_sam3/
 ├── core/
-│   ├── contador_sam3_agent.py    # Agente principal (orchestrator)
-│   ├── task_manager.py            # Gestión de tareas y cola de prioridades
-│   ├── parallel_executor.py       # Ejecución paralela con worker pool
-│   ├── prompt_builder.py          # Construcción de prompts de usuario
-│   ├── system_prompts_builder.py # Prompts del sistema especializados
-│   └── helpers.py                 # Utilidades comunes
+│   ├── contador_sam3_agent.py    # Main agent (orchestrator)
+│   ├── task_manager.py            # Task management and priority queue
+│   ├── parallel_executor.py       # Parallel execution with worker pool
+│   ├── prompt_builder.py          # User prompt builder
+│   ├── system_prompts_builder.py # Specialized system prompts
+│   └── helpers.py                 # Common utilities
 ├── infrastructure/
-│   ├── openrouter_client.py       # Cliente OpenRouter (LLM)
-│   ├── truthgpt_client.py         # Cliente TruthGPT (optimización)
-│   └── retry_helpers.py           # Helpers de reintentos con backoff
+│   ├── openrouter_client.py       # OpenRouter client (LLM)
+│   ├── truthgpt_client.py         # TruthGPT client (optimization)
+│   └── retry_helpers.py           # Retry helpers with backoff
 ├── config/
-│   └── contador_sam3_config.py    # Configuración centralizada
+│   └── contador_sam3_config.py    # Centralized configuration
 ├── api/
-│   └── contador_sam3_api.py       # API REST (FastAPI, opcional)
+│   └── contador_sam3_api.py       # REST API (FastAPI, optional)
 ├── utils/
-│   ├── formatters.py              # Formateo de datos fiscales
-│   └── validators.py              # Validación de entrada
+│   ├── formatters.py              # Tax data formatting
+│   └── validators.py              # Input validation
 ├── tests/
-│   └── test_contador_sam3_agent.py # Suite de tests
+│   └── test_contador_sam3_agent.py # Test suite
 ├── examples/
-│   ├── example_usage.py           # Ejemplos básicos
-│   └── advanced_examples.py        # Ejemplos avanzados
+│   ├── example_usage.py           # Basic examples
+│   └── advanced_examples.py        # Advanced examples
 └── docs/
-    ├── COMPLETE_ARCHITECTURE.md   # Arquitectura completa
-    ├── ARCHITECTURE.md            # Resumen de arquitectura
-    └── API.md                     # Documentación de API
+    ├── COMPLETE_ARCHITECTURE.md   # Complete architecture
+    ├── ARCHITECTURE.md            # Architecture summary
+    └── API.md                     # API documentation
 ```
 
-## Servicios Disponibles
+## Available Services
 
-### 1. Cálculo de Impuestos
+### 1. Tax Calculation
 
 ```python
 task_id = await agent.calcular_impuestos(
@@ -124,34 +126,34 @@ task_id = await agent.calcular_impuestos(
 )
 ```
 
-### 2. Asesoría Fiscal
+### 2. Tax Advice
 
 ```python
 task_id = await agent.asesoria_fiscal(
-    pregunta="¿Puedo deducir gastos de home office?",
+    pregunta="Can I deduct home office expenses?",
     contexto={"regimen": "RESICO", "ingresos_anuales": 500000}
 )
 ```
 
-### 3. Guía Fiscal
+### 3. Tax Guide
 
 ```python
 task_id = await agent.guia_fiscal(
-    tema="Deducciones RESICO",
+    tema="RESICO Deductions",
     nivel_detalle="completo"
 )
 ```
 
-### 4. Trámites SAT
+### 4. SAT Procedures
 
 ```python
 task_id = await agent.tramite_sat(
-    tipo_tramite="Alta en RFC",
+    tipo_tramite="RFC Registration",
     detalles={"persona_fisica": True}
 )
 ```
 
-### 5. Ayuda con Declaraciones
+### 5. Tax Return Help
 
 ```python
 task_id = await agent.ayuda_declaracion(
@@ -161,41 +163,45 @@ task_id = await agent.ayuda_declaracion(
 )
 ```
 
-## Características Avanzadas
+## Advanced Features
 
-### Modo 24/7 Continuo
+### Continuous 24/7 Mode
 
-El agente puede ejecutarse en modo continuo procesando tareas automáticamente:
+The agent can run in continuous mode processing tasks automatically:
 
 ```python
 agent = ContadorSAM3Agent(config=config)
-await agent.start()  # Ejecuta indefinidamente
+await agent.start()  # Runs indefinitely
 ```
 
-### Priorización de Tareas
+### Task Prioritization
 
-Las tareas pueden tener diferentes prioridades:
+Tasks can have different priorities:
 
 ```python
-# Alta prioridad
+# High priority
 task_id = await agent.calcular_impuestos(
     regimen="RESICO",
     tipo_impuesto="ISR",
     datos={...},
-    priority=10  # Mayor prioridad
+    priority=10  # Higher priority
 )
 ```
 
-### Integración con TruthGPT
+### TruthGPT Integration
 
-El agente optimiza automáticamente las consultas usando TruthGPT cuando está disponible.
+The agent automatically optimizes queries using TruthGPT when available.
 
-## Requisitos
+## Requirements
 
 - Python 3.8+
 - OpenRouter API key
-- TruthGPT (opcional pero recomendado)
+- TruthGPT (optional but recommended)
 
-## Licencia
+## License
 
-MIT
+Proprietary - Blatam Academy
+
+---
+
+[← Back to Main README](../README.md)

@@ -32,7 +32,6 @@ from .advanced_training import (
     AdvancedTrainer,
     TransformersTrainer,
     DiffusionTrainer,
-    GradientAccumulator,
     EarlyStopping
 )
 
@@ -50,10 +49,13 @@ from .monitoring import (
 )
 
 from .metrics import (
-    MetricsCollector,
-    TrainingMetrics,
-    PerformanceMetrics,
-    SystemMetrics
+    AdvancedMetricsCollector,
+    get_metrics_collector,
+    shutdown_metrics_collector,
+    track_performance,
+    MetricType,
+    MetricCategory,
+    MetricDefinition
 )
 
 # =============================================================================
@@ -61,10 +63,12 @@ from .metrics import (
 # =============================================================================
 
 from .cache import (
-    CacheManager,
-    ModelCache,
-    ResultCache,
-    TTLCache
+    Cache,
+    LRUCache,
+    TTLCache,
+    FunctionCache,
+    DistributedCache,
+    create_cache
 )
 
 from .memory import (
@@ -79,14 +83,14 @@ from .memory import (
 
 from .initialization import (
     ModelInitializer,
-    PipelineInitializer,
-    ServiceInitializer
+    WeightInitializer,
+    TrainingUtilities
 )
 
 from .experiment import (
     ExperimentTracker,
     HyperparameterOptimizer,
-    A/BTestManager
+    ABTestManager
 )
 
 # =============================================================================
@@ -110,7 +114,6 @@ __all__ = [
     "AdvancedTrainer",
     "TransformersTrainer",
     "DiffusionTrainer",
-    "GradientAccumulator",
     "EarlyStopping",
     
     # Monitoring and Metrics
@@ -120,25 +123,30 @@ __all__ = [
     "SystemMonitor",
     "MetricPoint",
     "MetricSeries",
-    "MetricsCollector",
-    "TrainingMetrics",
-    "PerformanceMetrics",
-    "SystemMetrics",
+    "AdvancedMetricsCollector",
+    "get_metrics_collector",
+    "shutdown_metrics_collector",
+    "track_performance",
+    "MetricType",
+    "MetricCategory",
+    "MetricDefinition",
     
     # Memory and Caching
-    "CacheManager",
-    "ModelCache",
-    "ResultCache",
+    "Cache",
+    "LRUCache",
     "TTLCache",
+    "FunctionCache",
+    "DistributedCache",
+    "create_cache",
     "MemoryProfiler",
     "MemoryOptimizer",
     "MemoryManager",
     
     # Specialized
     "ModelInitializer",
-    "PipelineInitializer",
-    "ServiceInitializer",
+    "WeightInitializer",
+    "TrainingUtilities",
     "ExperimentTracker",
     "HyperparameterOptimizer",
-    "A/BTestManager"
+    "ABTestManager"
 ]

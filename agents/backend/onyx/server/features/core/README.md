@@ -1,55 +1,58 @@
 # Core - Core System Components
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Componentes centrales del sistema incluyendo factories de aplicaciones, rutas declarativas, componentes funcionales, y ejemplos de lifespan y middleware.
+## 📋 Description
 
-## 🚀 Características Principales
+Central system components including application factories, declarative routes, functional components, and lifespan and middleware examples.
 
-- **App Factory**: Factory para creación de aplicaciones
-- **Declarative Routes**: Sistema de rutas declarativas
-- **Functional Components**: Componentes funcionales
-- **Lifespan Management**: Gestión de ciclo de vida
-- **Middleware Examples**: Ejemplos de middleware
-- **Sync/Async Examples**: Ejemplos de sincronización/asíncrono
+## 🚀 Key Features
 
-## 📁 Estructura
+- **App Factory**: Factory for application creation
+- **Declarative Routes**: Declarative routing system
+- **Functional Components**: Functional components
+- **Lifespan Management**: Lifecycle management
+- **Middleware Examples**: Middleware examples
+- **Sync/Async Examples**: Sync/Async examples
+
+## 📁 Structure
 
 ```
 core/
-├── app_factory.py           # Factory de aplicaciones
-├── declarative_routes.py     # Rutas declarativas
-├── example_declarative_app.py # Ejemplo de app declarativa
-├── functional_components.py  # Componentes funcionales
-├── functional_endpoints.py  # Endpoints funcionales
-├── lifespan_examples.py     # Ejemplos de lifespan
-├── middleware_examples.py   # Ejemplos de middleware
-└── sync_async_example.py    # Ejemplo sync/async
+├── app_factory.py           # Application factory
+├── declarative_routes.py     # Declarative routes
+├── example_declarative_app.py # Declarative app example
+├── functional_components.py  # Functional components
+├── functional_endpoints.py  # Functional endpoints
+├── lifespan_examples.py     # Lifespan examples
+├── middleware_examples.py   # Middleware examples
+└── sync_async_example.py    # Sync/async example
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
-Este módulo se instala con el sistema principal.
+This module is installed with the main system.
 
-## 💻 Uso
+## 💻 Usage
 
 ```python
 from core.app_factory import create_app
 from core.declarative_routes import DeclarativeRoutes
 
-# Crear aplicación
+# Create application
 app = create_app()
 
-# Usar rutas declarativas
+# Use declarative routes
 routes = DeclarativeRoutes()
 routes.register(app)
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo proporciona componentes base para:
-- **Integration System**: Sistema principal
-- Todos los módulos que requieren componentes centrales
+This module provides base components for:
+- **Integration System**: Main system
+- All modules requiring core components
 
+---
 
-
+[← Back to Main README](../README.md)

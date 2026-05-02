@@ -6,16 +6,18 @@ Provides utilities for retry logic with exponential backoff and jitter.
 import logging
 import time
 import random
-from typing import Callable, Optional, Type, Tuple, List
+from typing import Callable, Optional, Type, Tuple, List, Any
 from functools import wraps
-from dataclasses import dataclass
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class RetryConfig:
+from .base import BaseOptimizationModel
+
+
+class RetryConfig(BaseOptimizationModel):
     """Retry configuration."""
+
     max_attempts: int = 3
     initial_delay: float = 1.0
     max_delay: float = 60.0
@@ -194,6 +196,7 @@ def with_retry(
         return handler.execute(func, *args, **kwargs)
     
     return wrapper
+
 
 
 

@@ -420,3 +420,4 @@ class Tokenizer:
         return (f"Tokenizer(model={self.config.model_name}, "
                 f"vocab_size={self.vocab_size}, "
                 f"backend={self._backend.name})")
+

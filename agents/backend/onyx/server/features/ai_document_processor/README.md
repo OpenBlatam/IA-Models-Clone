@@ -1,147 +1,149 @@
 # Advanced AI Document Processor
 
-Un sistema avanzado de procesamiento de documentos con capacidades de IA/ML, OCR, análisis de contenido y procesamiento en lote.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🚀 Características Principales
+An advanced document processing system with AI/ML capabilities, OCR, content analysis, and batch processing.
 
-### 📄 Procesamiento de Documentos
-- **Soporte Multi-formato**: PDF, DOCX, DOC, TXT, RTF, ODT, PPTX, XLSX, CSV
-- **OCR Avanzado**: Reconocimiento óptico de caracteres con EasyOCR y Tesseract
-- **Extracción de Metadatos**: Información completa del documento
-- **Procesamiento en Lote**: Manejo eficiente de múltiples documentos
+## 🚀 Key Features
 
-### 🤖 Análisis con IA/ML
-- **Clasificación de Documentos**: Categorización automática usando transformers
-- **Extracción de Entidades**: Identificación de personas, lugares, organizaciones
-- **Análisis de Sentimientos**: Evaluación del tono y emociones del contenido
-- **Modelado de Temas**: Identificación de temas principales (LDA)
-- **Resumen Automático**: Generación de resúmenes usando BART
-- **Extracción de Palabras Clave**: Identificación de términos importantes
-- **Análisis de Contenido**: Evaluación de calidad y legibilidad
+### 📄 Document Processing
+- **Multi-Format Support** — PDF, DOCX, DOC, TXT, RTF, ODT, PPTX, XLSX, CSV
+- **Advanced OCR** — Optical character recognition with EasyOCR and Tesseract
+- **Metadata Extraction** — Complete document information
+- **Batch Processing** — Efficient handling of multiple documents
 
-### 🔍 Búsqueda y Comparación
-- **Búsqueda Semántica**: Búsqueda inteligente basada en significado
-- **Comparación de Documentos**: Análisis de similitud y detección de plagio
-- **Base de Datos Vectorial**: Almacenamiento eficiente de embeddings
+### 🤖 AI/ML Analysis
+- **Document Classification** — Automatic categorization using transformers
+- **Entity Extraction** — Identification of persons, places, organizations
+- **Sentiment Analysis** — Evaluation of content tone and emotions
+- **Topic Modeling** — Main topic identification (LDA)
+- **Automatic Summarization** — Summary generation using BART
+- **Keyword Extraction** — Identification of important terms
+- **Content Analysis** — Quality and readability evaluation
 
-### ⚡ Características Avanzadas
-- **Procesamiento Asíncrono**: Manejo eficiente de múltiples tareas
-- **WebSockets**: Actualizaciones en tiempo real
-- **Caché Inteligente**: Optimización de rendimiento con Redis
-- **Exportación**: Múltiples formatos de salida (JSON, CSV, XLSX, PDF, DOCX)
-- **API RESTful**: Interfaz completa y bien documentada
+### 🔍 Search & Comparison
+- **Semantic Search** — Intelligent search based on meaning
+- **Document Comparison** — Similarity analysis and plagiarism detection
+- **Vector Database** — Efficient embedding storage
 
-## 🛠️ Tecnologías Utilizadas
+### ⚡ Advanced Features
+- **Async Processing** — Efficient multi-task handling
+- **WebSockets** — Real-time updates
+- **Smart Cache** — Performance optimization with Redis
+- **Export** — Multiple output formats (JSON, CSV, XLSX, PDF, DOCX)
+- **RESTful API** — Comprehensive and well-documented interface
+
+## 🛠️ Technologies Used
 
 ### Core Framework
-- **FastAPI**: Framework web moderno y rápido
-- **Pydantic**: Validación de datos y configuración
-- **Uvicorn**: Servidor ASGI de alto rendimiento
+- **FastAPI** — Modern and fast web framework
+- **Pydantic** — Data validation and configuration
+- **Uvicorn** — High-performance ASGI server
 
-### IA/ML y NLP
-- **Transformers**: Modelos de lenguaje pre-entrenados
-- **PyTorch**: Framework de deep learning
-- **spaCy**: Procesamiento de lenguaje natural
-- **NLTK**: Herramientas de NLP
-- **scikit-learn**: Machine learning
-- **sentence-transformers**: Embeddings semánticos
+### AI/ML & NLP
+- **Transformers** — Pre-trained language models
+- **PyTorch** — Deep learning framework
+- **spaCy** — Natural Language Processing
+- **NLTK** — NLP tools
+- **scikit-learn** — Machine Learning
+- **sentence-transformers** — Semantic embeddings
 
-### Procesamiento de Documentos
-- **PyPDF2/pdfplumber**: Procesamiento de PDFs
-- **python-docx**: Procesamiento de documentos Word
-- **openpyxl**: Procesamiento de Excel
-- **python-pptx**: Procesamiento de PowerPoint
-- **EasyOCR/Tesseract**: Reconocimiento óptico de caracteres
+### Document Processing
+- **PyPDF2/pdfplumber** — PDF processing
+- **python-docx** — Word document processing
+- **openpyxl** — Excel processing
+- **python-pptx** — PowerPoint processing
+- **EasyOCR/Tesseract** — Optical Character Recognition
 
-### Base de Datos y Almacenamiento
-- **SQLAlchemy**: ORM para bases de datos
-- **Redis**: Caché en memoria
-- **ChromaDB**: Base de datos vectorial
-- **FAISS**: Búsqueda de similitud
+### Database & Storage
+- **SQLAlchemy** — ORM for databases
+- **Redis** — In-memory cache
+- **ChromaDB** — Vector database
+- **FAISS** — Similarity search
 
-### Monitoreo y Logging
-- **Prometheus**: Métricas del sistema
-- **Sentry**: Monitoreo de errores
-- **structlog**: Logging estructurado
+### Monitoring & Logging
+- **Prometheus** — System metrics
+- **Sentry** — Error monitoring
+- **structlog** — Structured logging
 
-## 📦 Instalación
+## 📦 Installation
 
-### Requisitos Previos
+### Prerequisites
 - Python 3.8+
 - pip
-- Redis (opcional, para caché)
-- Base de datos SQL (opcional)
+- Redis (optional, for cache)
+- SQL Database (optional)
 
-### Instalación de Dependencias
+### Dependency Installation
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone <repository-url>
 cd ai-document-processor
 
-# Crear entorno virtual
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Descargar modelos de spaCy
+# Download spaCy models
 python -m spacy download en_core_web_sm
 
-# Descargar datos de NLTK
+# Download NLTK data
 python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('vader_lexicon')"
 ```
 
-### Configuración
+### Configuration
 
-1. Copiar el archivo de configuración:
+1. Copy configuration file:
 ```bash
 cp env.example .env
 ```
 
-2. Editar `.env` con tus configuraciones:
+2. Edit `.env` with your settings:
 ```bash
-# Configuración básica
+# Basic configuration
 APP_NAME="Advanced AI Document Processor"
 DEBUG=true
 HOST=0.0.0.0
 PORT=8001
 
-# Base de datos (opcional)
+# Database (optional)
 DATABASE_URL=sqlite:///./document_processor.db
 
-# Redis (opcional)
+# Redis (optional)
 REDIS_URL=redis://localhost:6379
 
-# Configuración de IA/ML
+# AI/ML Configuration
 EMBEDDING_MODEL=all-MiniLM-L6-v2
 CLASSIFICATION_MODEL=distilbert-base-uncased
 SUMMARIZATION_MODEL=facebook/bart-large-cnn
 ```
 
-## 🚀 Uso
+## 🚀 Usage
 
-### Iniciar el Servidor
+### Start Server
 
 ```bash
-# Desarrollo
+# Development
 python app.py
 
-# Producción
+# Production
 uvicorn app:app --host 0.0.0.0 --port 8001 --workers 4
 ```
 
-### Acceder a la Documentación
+### Access Documentation
 
 - **Swagger UI**: http://localhost:8001/docs
 - **ReDoc**: http://localhost:8001/redoc
 
 ## 📚 API Endpoints
 
-### Documentos
+### Documents
 
-#### Subir Documento
+#### Upload Document
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/upload" \
   -H "Content-Type: multipart/form-data" \
@@ -150,7 +152,7 @@ curl -X POST "http://localhost:8001/api/v1/documents/upload" \
   -F "language=en"
 ```
 
-#### Subir Lote de Documentos
+#### Upload Batch
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/upload/batch" \
   -H "Content-Type: multipart/form-data" \
@@ -160,67 +162,67 @@ curl -X POST "http://localhost:8001/api/v1/documents/upload/batch" \
   -F "analysis_types=content_analysis,classification"
 ```
 
-#### Obtener Resultado
+#### Get Result
 ```bash
 curl -X GET "http://localhost:8001/api/v1/documents/{document_id}"
 ```
 
-### Análisis Específicos
+### Specific Analysis
 
-#### Análisis OCR
+#### OCR Analysis
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/ocr"
 ```
 
-#### Clasificación
+#### Classification
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/classification"
 ```
 
-#### Extracción de Entidades
+#### Entity Extraction
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/entities"
 ```
 
-#### Análisis de Sentimientos
+#### Sentiment Analysis
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/sentiment"
 ```
 
-#### Modelado de Temas
+#### Topic Modeling
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/topics"
 ```
 
-#### Resumen
+#### Summary
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/summary"
 ```
 
-#### Palabras Clave
+#### Keywords
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/keywords"
 ```
 
-#### Análisis de Contenido
+#### Content Analysis
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/analyze/content"
 ```
 
-### Búsqueda y Comparación
+### Search & Comparison
 
-#### Búsqueda Semántica
+#### Semantic Search
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/search" \
   -H "Content-Type: application/json" \
   -d '{
-    "query": "documentos sobre inteligencia artificial",
+    "query": "documents about artificial intelligence",
     "search_type": "semantic",
     "limit": 10
   }'
 ```
 
-#### Comparar Documentos
+#### Compare Documents
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/compare" \
   -H "Content-Type: application/json" \
@@ -231,61 +233,49 @@ curl -X POST "http://localhost:8001/api/v1/documents/compare" \
   }'
 ```
 
-### Exportación
+### Export
 
-#### Exportar Resultados
+#### Export Results
 ```bash
 curl -X POST "http://localhost:8001/api/v1/documents/{document_id}/export" \
   -F "format=json"
 ```
 
-### Sistema
+## 🔧 Advanced Configuration
 
-#### Estado del Sistema
-```bash
-curl -X GET "http://localhost:8001/health"
-```
+### Available Analysis Types
 
-#### Estadísticas
-```bash
-curl -X GET "http://localhost:8001/api/v1/documents/stats"
-```
+- `ocr`: Optical Character Recognition
+- `classification`: Document classification
+- `entity_extraction`: Entity extraction
+- `sentiment_analysis`: Sentiment analysis
+- `topic_modeling`: Topic modeling
+- `summarization`: Automatic summarization
+- `keyword_extraction`: Keyword extraction
+- `semantic_search`: Semantic search
+- `plagiarism_detection`: Plagiarism detection
+- `content_analysis`: Content analysis
 
-## 🔧 Configuración Avanzada
+### Supported Formats
 
-### Tipos de Análisis Disponibles
-
-- `ocr`: Reconocimiento óptico de caracteres
-- `classification`: Clasificación de documentos
-- `entity_extraction`: Extracción de entidades
-- `sentiment_analysis`: Análisis de sentimientos
-- `topic_modeling`: Modelado de temas
-- `summarization`: Resumen automático
-- `keyword_extraction`: Extracción de palabras clave
-- `semantic_search`: Búsqueda semántica
-- `plagiarism_detection`: Detección de plagio
-- `content_analysis`: Análisis de contenido
-
-### Formatos Soportados
-
-- **PDF**: Documentos PDF
-- **DOCX/DOC**: Documentos de Microsoft Word
-- **TXT**: Archivos de texto plano
+- **PDF**: PDF Documents
+- **DOCX/DOC**: Microsoft Word Documents
+- **TXT**: Plain Text Files
 - **RTF**: Rich Text Format
 - **ODT**: OpenDocument Text
-- **PPTX**: Presentaciones de PowerPoint
-- **XLSX**: Hojas de cálculo de Excel
-- **CSV**: Archivos CSV
-- **Imágenes**: PNG, JPG, JPEG, TIFF, BMP (con OCR)
+- **PPTX**: PowerPoint Presentations
+- **XLSX**: Excel Spreadsheets
+- **CSV**: CSV Files
+- **Images**: PNG, JPG, JPEG, TIFF, BMP (with OCR)
 
-### Idiomas OCR Soportados
+### Supported OCR Languages
 
-- Inglés (en)
-- Español (es)
-- Francés (fr)
-- Alemán (de)
-- Italiano (it)
-- Portugués (pt)
+- English (en)
+- Spanish (es)
+- French (fr)
+- German (de)
+- Italian (it)
+- Portuguese (pt)
 
 ## 🐳 Docker
 
@@ -305,166 +295,49 @@ EXPOSE 8001
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8001"]
 ```
 
-### Docker Compose
-```yaml
-version: '3.8'
-
-services:
-  document-processor:
-    build: .
-    ports:
-      - "8001:8001"
-    environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/documents
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - db
-      - redis
-    volumes:
-      - ./uploads:/app/uploads
-      - ./processed:/app/processed
-
-  db:
-    image: postgres:13
-    environment:
-      - POSTGRES_DB=documents
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:6-alpine
-    volumes:
-      - redis_data:/data
-
-volumes:
-  postgres_data:
-  redis_data:
-```
-
 ## 🧪 Testing
 
 ```bash
-# Ejecutar tests
+# Run tests
 pytest
 
-# Tests con cobertura
+# Tests with coverage
 pytest --cov=.
-
-# Tests específicos
-pytest tests/test_document_processor.py
 ```
 
-## 📊 Monitoreo
+## 📊 Monitoring
 
-### Métricas Prometheus
+### Prometheus Metrics
 - Endpoint: http://localhost:9091/metrics
-- Métricas disponibles:
+- Available metrics:
   - `documents_processed_total`
   - `document_processing_duration_seconds`
   - `active_processing_jobs`
   - `error_rate`
 
-### Logs Estructurados
-```json
-{
-  "timestamp": "2024-01-01T12:00:00Z",
-  "level": "INFO",
-  "logger": "document_processor",
-  "message": "Document processed successfully",
-  "document_id": "uuid",
-  "processing_time": 2.5,
-  "analysis_types": ["ocr", "classification"]
-}
-```
+## 🔒 Security
 
-## 🔒 Seguridad
-
-### Configuración de Seguridad
-- Validación de tipos de archivo
-- Límites de tamaño de archivo
+### Security Configuration
+- File type validation
+- File size limits
 - Rate limiting
-- CORS configurable
-- Autenticación JWT (opcional)
+- Configurable CORS
+- JWT Authentication (optional)
 
-### Variables de Entorno Sensibles
-```bash
-SECRET_KEY=your-secret-key-change-in-production
-SENTRY_DSN=your-sentry-dsn
-DATABASE_URL=your-database-url
-REDIS_URL=your-redis-url
-```
+## 🤝 Contribution
 
-## 🚀 Despliegue en Producción
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Requisitos del Sistema
-- **CPU**: 4+ cores recomendados
-- **RAM**: 8GB+ recomendados
-- **Almacenamiento**: SSD recomendado
-- **GPU**: Opcional, para aceleración de modelos
+## 📄 License
 
-### Configuración de Producción
-```bash
-# Variables de entorno para producción
-ENVIRONMENT=production
-DEBUG=false
-WORKERS=4
-LOG_LEVEL=INFO
-ENABLE_METRICS=true
-```
-
-### Nginx Configuration
-```nginx
-server {
-    listen 80;
-    server_name your-domain.com;
-
-    location / {
-        proxy_pass http://localhost:8001;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    client_max_body_size 100M;
-}
-```
-
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 🆘 Soporte
-
-- **Documentación**: [Wiki del proyecto]
-- **Issues**: [GitHub Issues]
-- **Discusiones**: [GitHub Discussions]
-- **Email**: support@example.com
-
-## 🎯 Roadmap
-
-### Próximas Características
-- [ ] Integración con servicios en la nube (AWS, GCP, Azure)
-- [ ] Procesamiento de audio y video
-- [ ] Análisis de documentos en tiempo real
-- [ ] Interfaz web para usuarios
-- [ ] API GraphQL
-- [ ] Soporte para más idiomas
-- [ ] Modelos personalizados
-- [ ] Análisis de documentos históricos
-- [ ] Integración con sistemas de gestión documental
-- [ ] Análisis de tendencias temporales
+This project is under the MIT License. See `LICENSE` file for details.
 
 ---
 
-**Desarrollado con ❤️ usando FastAPI, Transformers y tecnologías de vanguardia en IA/ML.**
+**Developed with ❤️ using FastAPI, Transformers, and cutting-edge AI/ML technologies.**
+
+[← Back to Main README](../README.md)

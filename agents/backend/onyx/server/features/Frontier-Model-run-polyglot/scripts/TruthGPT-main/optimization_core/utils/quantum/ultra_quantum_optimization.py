@@ -18,7 +18,7 @@ import copy
 import time
 import logging
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, model_validator
 from enum import Enum
 import json
 import pickle
@@ -68,8 +68,7 @@ class QuantumGate(Enum):
     T = "t"
     S = "s"
 
-@dataclass
-class QuantumConfig:
+class QuantumConfig(BaseModel):
     """Configuration for quantum optimization."""
     backend: QuantumBackend = QuantumBackend.SIMULATOR
     algorithm: QuantumAlgorithm = QuantumAlgorithm.QAOA
@@ -85,15 +84,17 @@ class QuantumConfig:
     device: str = "auto"
     log_level: str = "INFO"
     output_dir: str = "./quantum_results"
-    
-    def __post_init__(self):
-        """Post-initialization validation."""
+
+    @model_validator(mode='after')
+    def validate_config(self) -> 'QuantumConfig':
+        """Validate configuration values."""
         if self.num_qubits < 1:
             raise ValueError("Number of qubits must be at least 1")
         if self.num_layers < 1:
             raise ValueError("Number of layers must be at least 1")
         if self.max_iterations < 1:
             raise ValueError("Max iterations must be at least 1")
+        return self
 
 class QuantumCircuit:
     """Quantum circuit implementation."""
@@ -738,3 +739,4 @@ def example_quantum_optimization():
 if __name__ == "__main__":
     # Run example
     example_quantum_optimization()
+

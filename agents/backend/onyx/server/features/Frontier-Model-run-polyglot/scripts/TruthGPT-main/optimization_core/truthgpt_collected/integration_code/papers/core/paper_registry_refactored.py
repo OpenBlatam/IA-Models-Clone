@@ -25,7 +25,10 @@ import threading
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 
-from .metadata_extractor import MetadataExtractor, PaperMetadata
+try:
+    from .metadata_extractor import MetadataExtractor, PaperMetadata
+except (ImportError, ValueError):
+    from metadata_extractor import MetadataExtractor, PaperMetadata
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -407,4 +410,5 @@ def get_registry(papers_base_dir: Optional[Path] = None, **kwargs) -> PaperRegis
             if _global_registry is None:
                 _global_registry = PaperRegistryRefactored(papers_base_dir, **kwargs)
     return _global_registry
+
 

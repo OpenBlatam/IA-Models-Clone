@@ -1,6 +1,6 @@
 from typing import Iterable
 import torch
-from factories.registry import Registry
+from optimization_core.factories.registry import Registry
 
 OPTIMIZERS = Registry()
 
@@ -17,15 +17,16 @@ def build_adamw(params: Iterable, lr: float, weight_decay: float = 0.01, fused: 
 
 
 @OPTIMIZERS.register("lion")
-def build_lion(params: Iterable, lr: float, weight_decay: float = 0.0):
-    # Placeholder: default to AdamW until Lion is added
-    return torch.optim.AdamW(params, lr=lr, weight_decay=weight_decay)
+def build_lion(params: Iterable, lr: float = 1e-4, weight_decay: float = 0.0):
+    from optimization_core.optimizers.lion import Lion
+    return Lion(params, lr=lr, weight_decay=weight_decay)
 
 
 @OPTIMIZERS.register("adafactor")
 def build_adafactor(params: Iterable, lr: float):
     # Placeholder: default to AdamW; real Adafactor requires transformers.optimization
     return torch.optim.AdamW(params, lr=lr)
+
 
 
 

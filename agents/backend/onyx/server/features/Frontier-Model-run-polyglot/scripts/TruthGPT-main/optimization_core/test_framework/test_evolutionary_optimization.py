@@ -23,7 +23,7 @@ import math
 # Import evolutionary optimization components
 import sys
 sys.path.append('..')
-from core.advanced_optimizations import (
+from modules.base.core_system.core.advanced_optimizations import (
     EvolutionaryOptimizer, AdvancedOptimizationEngine, OptimizationTechnique,
     OptimizationMetrics, create_evolutionary_optimizer
 )
@@ -838,3 +838,4 @@ if __name__ == '__main__':
             print(f"  - {test}: {traceback}")
     
     print(f"\n{'='*60}")
+

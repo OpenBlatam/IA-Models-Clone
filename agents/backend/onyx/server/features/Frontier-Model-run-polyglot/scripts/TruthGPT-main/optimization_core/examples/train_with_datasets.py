@@ -1,5 +1,5 @@
 import yaml
-from build_trainer import build_trainer
+from optimization_core.scripts.legacy.build_trainer import build_trainer
 from trainers.trainer import TrainerConfig
 
 
@@ -24,6 +24,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 

@@ -1,80 +1,82 @@
 # Research Paper Code Improver
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema de IA que permite:
-1. **Cargar papers de investigación** mediante PDFs o links
-2. **Extraer información completa** de los papers
-3. **Entrenar un modelo** basado en el conocimiento extraído
-4. **Mejorar código de GitHub** usando el modelo entrenado
+## 📋 Description
 
-## 🚀 Características Principales
+AI system that allows you to:
+1. **Upload research papers** via PDFs or links
+2. **Extract complete information** from papers
+3. **Train a model** based on the extracted knowledge
+4. **Improve GitHub code** using the trained model
 
-- 📄 **Procesamiento de PDFs**: Extracción de texto, figuras, tablas y referencias
-- 🔗 **Procesamiento de Links**: Descarga y análisis de papers desde URLs
-- 🧠 **Entrenamiento de Modelo**: Fine-tuning de modelos de lenguaje basado en papers
-- 💻 **Mejora de Código**: Análisis y mejora de código de GitHub usando conocimiento de papers
-- 🔍 **Análisis de GitHub**: Integración con GitHub API para examinar repositorios
-- 📊 **Vector Database**: Almacenamiento de embeddings para búsqueda semántica (ChromaDB)
-- 🧬 **RAG (Retrieval Augmented Generation)**: Mejoras de código usando papers relevantes + LLMs
-- 💾 **Almacenamiento Persistente**: Base de datos de papers con búsqueda y gestión
-- 🤖 **Integración LLM**: Soporte para OpenAI GPT-4 y Anthropic Claude
-- 🔎 **Búsqueda Semántica**: Encuentra papers relevantes para mejoras de código
+## 🚀 Key Features
 
-## 📁 Estructura
+- 📄 **PDF Processing**: Extraction of text, figures, tables, and references
+- 🔗 **Link Processing**: Download and analysis of papers from URLs
+- 🧠 **Model Training**: Fine-tuning of language models based on papers
+- 💻 **Code Improvement**: Analysis and improvement of GitHub code using paper knowledge
+- 🔍 **GitHub Analysis**: Integration with GitHub API to examine repositories
+- 📊 **Vector Database**: Storage of embeddings for semantic search (ChromaDB)
+- 🧬 **RAG (Retrieval Augmented Generation)**: Code improvements using relevant papers + LLMs
+- 💾 **Persistent Storage**: Paper database with search and management
+- 🤖 **LLM Integration**: Support for OpenAI GPT-4 and Anthropic Claude
+- 🔎 **Semantic Search**: Find relevant papers for code improvements
+
+## 📁 Structure
 
 ```
 research_paper_code_improver/
-├── core/                    # Lógica de negocio principal
-│   ├── paper_extractor.py   # Extracción de información de papers
-│   ├── model_trainer.py     # Entrenamiento de modelos
-│   └── code_improver.py     # Mejora de código
-├── api/                     # Endpoints de API
-│   ├── routes.py            # Rutas principales
-│   └── schemas.py           # Esquemas Pydantic
-├── config/                  # Configuraciones
-│   └── settings.py          # Configuración del sistema
-├── utils/                   # Utilidades
-│   ├── pdf_processor.py     # Procesamiento de PDFs
-│   ├── link_downloader.py   # Descarga de links
-│   └── github_integration.py # Integración con GitHub
-├── models/                  # Modelos de datos
-│   └── paper_model.py       # Modelos de papers
-├── training/                # Scripts de entrenamiento
-│   └── train.py             # Script principal de entrenamiento
-├── data/                    # Datos almacenados
-│   ├── papers/              # PDFs descargados
-│   ├── embeddings/          # Embeddings generados
-│   └── models/              # Modelos entrenados
-├── main.py                  # Aplicación FastAPI principal
-├── requirements.txt         # Dependencias
-└── README.md               # Este archivo
+├── core/                    # Main business logic
+│   ├── paper_extractor.py   # Paper information extraction
+│   ├── model_trainer.py     # Model training
+│   └── code_improver.py     # Code improvement
+├── api/                     # API Endpoints
+│   ├── routes.py            # Main routes
+│   └── schemas.py           # Pydantic schemas
+├── config/                  # Configurations
+│   └── settings.py          # System configuration
+├── utils/                   # Utilities
+│   ├── pdf_processor.py     # PDF processing
+│   ├── link_downloader.py   # Link downloading
+│   └── github_integration.py # GitHub integration
+├── models/                  # Data models
+│   └── paper_model.py       # Paper models
+├── training/                # Training scripts
+│   └── train.py             # Main training script
+├── data/                    # Stored data
+│   ├── papers/              # Downloaded PDFs
+│   ├── embeddings/          # Generated embeddings
+│   └── models/              # Trained models
+├── main.py                  # Main FastAPI application
+├── requirements.txt         # Dependencies
+└── README.md               # This file
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
 cd research_paper_code_improver
 pip install -r requirements.txt
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
-### 1. Cargar Papers
+### 1. Load Papers
 
 ```python
 from core.paper_extractor import PaperExtractor
 
 extractor = PaperExtractor()
 
-# Desde PDF
+# From PDF
 paper = extractor.extract_from_pdf("path/to/paper.pdf")
 
-# Desde link
+# From link
 paper = extractor.extract_from_link("https://arxiv.org/pdf/...")
 ```
 
-### 2. Entrenar Modelo
+### 2. Train Model
 
 ```python
 from core.model_trainer import ModelTrainer
@@ -83,7 +85,7 @@ trainer = ModelTrainer()
 trainer.train_from_papers(papers=[paper1, paper2, ...])
 ```
 
-### 3. Mejorar Código
+### 3. Improve Code
 
 ```python
 from core.code_improver import CodeImprover
@@ -97,31 +99,30 @@ improved_code = improver.improve_code(
 
 ## 🔗 API Endpoints
 
-- `POST /api/papers/upload` - Subir PDF
-- `POST /api/papers/link` - Procesar link
-- `POST /api/training/train` - Entrenar modelo
-- `POST /api/code/improve` - Mejorar código de GitHub
-- `GET /api/models/status` - Estado del modelo
+- `POST /api/papers/upload` - Upload PDF
+- `POST /api/papers/link` - Process link
+- `POST /api/training/train` - Train model
+- `POST /api/code/improve` - Improve GitHub code
+- `GET /api/models/status` - Model status
 
-## 📊 Modelos Utilizados
+## 📊 Models Used
 
-- **Base Model**: GPT-4, Claude, o modelos open-source (Llama, Mistral)
+- **Base Model**: GPT-4, Claude, or open-source models (Llama, Mistral)
 - **Embeddings**: sentence-transformers (all-MiniLM-L6-v2)
-- **Vector DB**: ChromaDB (con fallback a memoria)
-- **RAG**: Retrieval Augmented Generation con búsqueda semántica
+- **Vector DB**: ChromaDB (with memory fallback)
+- **RAG**: Retrieval Augmented Generation with semantic search
 
-## 🔒 Seguridad
+## 🔒 Security
 
-- Validación de archivos PDF
-- Rate limiting en endpoints
-- Autenticación JWT para GitHub API
-- Sanitización de inputs
+- PDF file validation
+- Endpoint rate limiting
+- JWT authentication for GitHub API
+- Input sanitization
 
 ## 📈 Roadmap
 
-- [ ] Soporte para múltiples formatos (LaTeX, Markdown)
-- [ ] Integración con más fuentes (arXiv, PubMed, etc.)
-- [ ] Dashboard de visualización
-- [ ] Comparación de mejoras antes/después
-- [ ] Exportación de modelos entrenados
-
+- [ ] Support for multiple formats (LaTeX, Markdown)
+- [ ] Integration with more sources (arXiv, PubMed, etc.)
+- [ ] Visualization dashboard
+- [ ] Before/after improvement comparison
+- [ ] Export of trained models

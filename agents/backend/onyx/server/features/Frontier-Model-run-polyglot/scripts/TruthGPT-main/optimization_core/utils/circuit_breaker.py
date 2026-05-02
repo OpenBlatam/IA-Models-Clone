@@ -6,9 +6,9 @@ Provides utilities for circuit breaker pattern implementation.
 import logging
 import time
 from typing import Callable, Optional, Dict, Any
-from dataclasses import dataclass
 from enum import Enum
 from functools import wraps
+from pydantic import BaseModel, ConfigDict
 
 logger = logging.getLogger(__name__)
 
@@ -20,9 +20,10 @@ class CircuitState(Enum):
     HALF_OPEN = "half_open"  # Testing if service recovered
 
 
-@dataclass
-class CircuitBreakerConfig:
+class CircuitBreakerConfig(BaseModel):
     """Circuit breaker configuration."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     failure_threshold: int = 5
     success_threshold: int = 2
     timeout: float = 60.0
@@ -196,6 +197,7 @@ def circuit_breaker(
         return wrapper
     
     return decorator
+
 
 
 

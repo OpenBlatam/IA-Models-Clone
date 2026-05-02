@@ -104,7 +104,7 @@ def test_kv_cache():
 
 def test_build_components():
     """Test build_components function."""
-    from build import build_components
+    from optimization_core.build import build_components
     
     config = {
         "model": {
@@ -122,5 +122,6 @@ def test_build_components():
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
 
 

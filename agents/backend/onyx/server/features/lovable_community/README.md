@@ -1,102 +1,104 @@
 # Lovable Community API
 
-Sistema de comunidad estilo Lovable donde los usuarios pueden publicar sus chats, remixar chats de otros usuarios, y los mejores chats aparecen en la parte superior según un algoritmo de ranking.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## Características
+Lovable-style community system where users can publish their chats, remix other users' chats, and the best chats appear at the top based on a ranking algorithm.
 
-### Funcionalidades Principales
-- **Publicar chats**: Los usuarios pueden publicar sus conversaciones en la comunidad
-- **Remixar**: Los usuarios pueden crear remixes (versiones modificadas) de chats existentes
-- **Sistema de votación**: Upvote/downvote para rankear contenido
-- **Ranking inteligente**: Algoritmo que combina votos, remixes, vistas y recencia
-- **Búsqueda avanzada**: Buscar por texto, tags, usuario, etc.
-- **Top chats**: Ver los chats más populares ordenados por score
+## Features
 
-### Funcionalidades Avanzadas
-- **Actualizar chats**: Los usuarios pueden actualizar sus chats publicados
-- **Eliminar chats**: Los usuarios pueden eliminar sus propios chats
-- **Destacar chats**: Sistema para marcar chats como destacados (featured)
-- **Perfiles de usuario**: Ver estadísticas y perfil de cualquier usuario
-- **Chats trending**: Ver chats trending en diferentes períodos (hora, día, semana, mes)
-- **Analytics**: Estadísticas agregadas de toda la comunidad
-- **Operaciones en lote**: Realizar operaciones sobre múltiples chats simultáneamente
-- **Estadísticas detalladas**: Métricas avanzadas incluyendo upvotes, downvotes y engagement rate
+### Core Functionality
+- **Publish chats**: Users can publish their conversations to the community
+- **Remix**: Users can create remixes (modified versions) of existing chats
+- **Voting System**: Upvote/downvote to rank content
+- **Smart Ranking**: Algorithm combining votes, remixes, views, and recency
+- **Advanced Search**: Search by text, tags, user, etc.
+- **Top Chats**: View the most popular chats sorted by score
 
-## Estructura
+### Advanced Functionality
+- **Update Chats**: Users can update their published chats
+- **Delete Chats**: Users can delete their own chats
+- **Feature Chats**: System to mark chats as featured
+- **User Profiles**: View statistics and profile of any user
+- **Trending Chats**: View trending chats in different periods (hour, day, week, month)
+- **Analytics**: Aggregated community statistics
+- **Batch Operations**: Perform operations on multiple chats simultaneously
+- **Detailed Statistics**: Advanced metrics including upvotes, downvotes, and engagement rate
+
+## Structure
 
 ```
 lovable_community/
 ├── __init__.py
-├── models.py          # Modelos de base de datos (SQLAlchemy)
-├── schemas.py          # Schemas Pydantic para validación
-├── services.py         # Lógica de negocio y servicios
-├── helpers.py          # Funciones auxiliares y utilidades
-├── validators.py       # Validadores reutilizables
-├── exceptions.py       # Excepciones personalizadas
-├── dependencies.py     # Dependencias de FastAPI
-├── config.py           # Configuración de la aplicación
+├── models.py          # Database models (SQLAlchemy)
+├── schemas.py         # Pydantic schemas for validation
+├── services.py        # Business logic and services
+├── helpers.py         # Helper functions and utilities
+├── validators.py      # Reusable validators
+├── exceptions.py      # Custom exceptions
+├── dependencies.py    # FastAPI dependencies
+├── config.py          # Application configuration
 ├── api/
 │   ├── __init__.py
-│   ├── routes.py       # Endpoints de la API
-│   └── router.py       # Router principal
-├── main.py             # Aplicación FastAPI principal
+│   ├── routes.py      # API Endpoints
+│   └── router.py      # Main router
+├── main.py            # Main FastAPI application
 └── README.md
 ```
 
-## Modelos de Base de Datos
+## Database Models
 
 ### PublishedChat
-- `id`: ID único del chat
-- `user_id`: ID del usuario que publicó
-- `title`: Título del chat
-- `description`: Descripción opcional
-- `chat_content`: Contenido del chat (JSON o texto)
-- `tags`: Tags separados por coma
-- `vote_count`: Número de votos
-- `remix_count`: Número de remixes
-- `view_count`: Número de vistas
-- `score`: Score calculado para ranking
-- `is_public`: Si es público
-- `is_featured`: Si está destacado
-- `original_chat_id`: ID del chat original (si es remix)
+- `id`: Unique chat ID
+- `user_id`: ID of the user who published
+- `title`: Chat title
+- `description`: Optional description
+- `chat_content`: Chat content (JSON or text)
+- `tags`: Comma-separated tags
+- `vote_count`: Number of votes
+- `remix_count`: Number of remixes
+- `view_count`: Number of views
+- `score`: Calculated ranking score
+- `is_public`: Whether it is public
+- `is_featured`: Whether it is featured
+- `original_chat_id`: ID of the original chat (if remix)
 
 ### ChatRemix
-- `id`: ID único del remix
-- `original_chat_id`: ID del chat original
-- `remix_chat_id`: ID del chat remix
-- `user_id`: ID del usuario que creó el remix
+- `id`: Unique remix ID
+- `original_chat_id`: Original chat ID
+- `remix_chat_id`: Remix chat ID
+- `user_id`: ID of the user who created the remix
 
 ### ChatVote
-- `id`: ID único del voto
-- `chat_id`: ID del chat votado
-- `user_id`: ID del usuario que votó
-- `vote_type`: "upvote" o "downvote"
+- `id`: Unique vote ID
+- `chat_id`: Voted chat ID
+- `user_id`: ID of the user who voted
+- `vote_type`: "upvote" or "downvote"
 
 ### ChatView
-- `id`: ID único de la vista
-- `chat_id`: ID del chat visto
-- `user_id`: ID del usuario (opcional)
+- `id`: Unique view ID
+- `chat_id`: Viewed chat ID
+- `user_id`: User ID (optional)
 
-## Algoritmo de Ranking
+## Ranking Algorithm
 
-El score se calcula usando la siguiente fórmula:
+The score is calculated using the following formula:
 
 ```
 score = (votes * 2 + remixes * 3 + views * 0.1) / time_decay
 ```
 
-Donde `time_decay` aumenta con el tiempo para dar prioridad a contenido reciente.
+Where `time_decay` increases with time to prioritize recent content.
 
 ## Endpoints
 
 ### POST `/lovable/community/publish`
-Publica un nuevo chat en la comunidad.
+Publishes a new chat to the community.
 
 **Request:**
 ```json
 {
-  "title": "Mi chat increíble",
-  "description": "Una conversación sobre IA",
+  "title": "My amazing chat",
+  "description": "A conversation about AI",
   "chat_content": "{...}",
   "tags": ["ai", "chat", "conversation"],
   "is_public": true
@@ -104,34 +106,34 @@ Publica un nuevo chat en la comunidad.
 ```
 
 ### GET `/lovable/community/chats`
-Lista chats con paginación.
+Lists chats with pagination.
 
 **Query Parameters:**
-- `page`: Número de página (default: 1)
-- `page_size`: Tamaño de página (default: 20, max: 100)
-- `sort_by`: Ordenar por: `score`, `created_at`, `vote_count`, `remix_count` (default: `score`)
-- `order`: `asc` o `desc` (default: `desc`)
-- `user_id`: Filtrar por usuario (opcional)
+- `page`: Page number (default: 1)
+- `page_size`: Page size (default: 20, max: 100)
+- `sort_by`: Sort by: `score`, `created_at`, `vote_count`, `remix_count` (default: `score`)
+- `order`: `asc` or `desc` (default: `desc`)
+- `user_id`: Filter by user (optional)
 
 ### GET `/lovable/community/chats/{chat_id}`
-Obtiene los detalles de un chat específico.
+Gets details of a specific chat.
 
 ### POST `/lovable/community/chats/{chat_id}/remix`
-Crea un remix de un chat existente.
+Creates a remix of an existing chat.
 
 **Request:**
 ```json
 {
   "original_chat_id": "chat-id",
-  "title": "Mi remix",
-  "description": "Versión mejorada",
+  "title": "My remix",
+  "description": "Improved version",
   "chat_content": "{...}",
   "tags": ["remix", "improved"]
 }
 ```
 
 ### POST `/lovable/community/chats/{chat_id}/vote`
-Vota un chat (upvote o downvote).
+Votes for a chat (upvote or downvote).
 
 **Request:**
 ```json
@@ -142,56 +144,56 @@ Vota un chat (upvote o downvote).
 ```
 
 ### GET `/lovable/community/chats/{chat_id}/remixes`
-Obtiene todos los remixes de un chat.
+Gets all remixes of a chat.
 
 **Query Parameters:**
-- `limit`: Límite de resultados (default: 20, max: 100)
+- `limit`: Result limit (default: 20, max: 100)
 
 ### GET `/lovable/community/search`
-Busca chats por texto, tags, usuario, etc.
+Searches chats by text, tags, user, etc.
 
 **Query Parameters:**
-- `query`: Texto de búsqueda (opcional)
-- `tags`: Tags separados por coma (opcional)
-- `user_id`: Filtrar por usuario (opcional)
-- `sort_by`: Ordenar por (default: `score`)
-- `order`: `asc` o `desc` (default: `desc`)
-- `page`: Número de página (default: 1)
-- `page_size`: Tamaño de página (default: 20)
+- `query`: Search text (optional)
+- `tags`: Comma-separated tags (optional)
+- `user_id`: Filter by user (optional)
+- `sort_by`: Sort by (default: `score`)
+- `order`: `asc` or `desc` (default: `desc`)
+- `page`: Page number (default: 1)
+- `page_size`: Page size (default: 20)
 
 ### GET `/lovable/community/top`
-Obtiene los chats más populares ordenados por score.
+Gets the most popular chats sorted by score.
 
 **Query Parameters:**
-- `limit`: Límite de resultados (default: 20, max: 100)
+- `limit`: Result limit (default: 20, max: 100)
 
 ### GET `/lovable/community/chats/{chat_id}/stats`
-Obtiene las estadísticas de engagement de un chat.
+Gets engagement statistics for a chat.
 
 ### PUT `/lovable/community/chats/{chat_id}`
-Actualiza un chat existente. Solo el propietario puede actualizar su chat.
+Updates an existing chat. Only the owner can update their chat.
 
 **Request:**
 ```json
 {
-  "title": "Título actualizado",
-  "description": "Nueva descripción",
-  "tags": ["nuevo", "tag"],
+  "title": "Updated title",
+  "description": "New description",
+  "tags": ["new", "tag"],
   "is_public": true
 }
 ```
 
 ### DELETE `/lovable/community/chats/{chat_id}`
-Elimina un chat. Solo el propietario puede eliminar su chat.
+Deletes a chat. Only the owner can delete their chat.
 
 ### POST `/lovable/community/chats/{chat_id}/feature`
-Destaca o quita el destacado de un chat. Requiere permisos de administrador.
+Features or unfeatures a chat. Requires admin permissions.
 
 **Query Parameters:**
-- `featured`: `true` para destacar, `false` para quitar destacado
+- `featured`: `true` to feature, `false` to unfeature
 
 ### GET `/lovable/community/users/{user_id}/profile`
-Obtiene el perfil y estadísticas de un usuario.
+Gets a user's profile and statistics.
 
 **Response:**
 ```json
@@ -206,17 +208,17 @@ Obtiene el perfil y estadísticas de un usuario.
 ```
 
 ### GET `/lovable/community/trending`
-Obtiene los chats trending en diferentes períodos de tiempo.
+Gets trending chats in different time periods.
 
 **Query Parameters:**
-- `period`: `hour`, `day`, `week`, o `month` (default: `day`)
-- `limit`: Límite de resultados (default: 20, max: 100)
+- `period`: `hour`, `day`, `week`, or `month` (default: `day`)
+- `limit`: Result limit (default: 20, max: 100)
 
 ### GET `/lovable/community/analytics`
-Obtiene estadísticas agregadas de toda la comunidad.
+Gets aggregated statistics for the entire community.
 
 **Query Parameters:**
-- `period_days`: Número de días para filtrar (opcional)
+- `period_days`: Number of days to filter (optional)
 
 **Response:**
 ```json
@@ -236,7 +238,7 @@ Obtiene estadísticas agregadas de toda la comunidad.
 ```
 
 ### POST `/lovable/community/bulk`
-Realiza una operación en lote sobre múltiples chats (máximo 100).
+Performs a batch operation on multiple chats (max 100).
 
 **Request:**
 ```json
@@ -246,15 +248,15 @@ Realiza una operación en lote sobre múltiples chats (máximo 100).
 }
 ```
 
-**Operations disponibles:**
-- `delete`: Eliminar chats (requiere user_id)
-- `feature`: Destacar chats
-- `unfeature`: Quitar destacado
-- `make_public`: Hacer públicos
-- `make_private`: Hacer privados
+**Available Operations:**
+- `delete`: Delete chats (requires user_id)
+- `feature`: Feature chats
+- `unfeature`: Unfeature chats
+- `make_public`: Make public
+- `make_private`: Make private
 
 ### GET `/lovable/community/chats/{chat_id}/stats/detailed`
-Obtiene estadísticas detalladas incluyendo upvotes, downvotes y engagement rate.
+Gets detailed statistics including upvotes, downvotes, and engagement rate.
 
 **Response:**
 ```json
@@ -271,71 +273,74 @@ Obtiene estadísticas detalladas incluyendo upvotes, downvotes y engagement rate
 }
 ```
 
-## Instalación
+## Installation
 
-1. Instalar dependencias:
+1. Install dependencies:
 ```bash
 pip install fastapi uvicorn sqlalchemy pydantic
 ```
 
-2. Ejecutar la aplicación:
+2. Run the application:
 ```bash
 python -m features.lovable_community.main
 ```
 
-O usando uvicorn directamente:
+Or using uvicorn directly:
 ```bash
 uvicorn features.lovable_community.main:app --host 0.0.0.0 --port 8007
 ```
 
-## Base de Datos
+## Database
 
-Por defecto usa SQLite (`lovable_community.db`). Para cambiar a PostgreSQL u otra base de datos, modifica la URL en `api/routes.py` y `main.py`.
+By default uses SQLite (`lovable_community.db`). To switch to PostgreSQL or another database, modify the URL in `api/routes.py` and `main.py`.
 
-## Autenticación
+## Authentication
 
-Actualmente el sistema usa un `user_id` simplificado. Para producción, deberías:
-1. Implementar autenticación JWT
-2. Obtener `user_id` del token
-3. Validar permisos antes de operaciones sensibles
+Currently the system uses a simplified `user_id`. For production, you should:
+1. Implement JWT authentication
+2. Get `user_id` from token
+3. Validate permissions before sensitive operations
 
-## Arquitectura y Mejoras Implementadas
+## Architecture and Implemented Improvements
 
-### Validación y Sanitización
-- ✅ Validación exhaustiva de inputs con Pydantic
-- ✅ Sanitización automática de datos
-- ✅ Validadores reutilizables en `validators.py`
-- ✅ Helpers para conversión y formateo en `helpers.py`
+### Validation and Sanitization
+- ✅ Exhaustive input validation with Pydantic
+- ✅ Automatic data sanitization
+- ✅ Reusable validators in `validators.py`
+- ✅ Conversion and formatting helpers in `helpers.py`
 
-### Manejo de Errores
-- ✅ Excepciones personalizadas con mensajes descriptivos
-- ✅ Manejo consistente de errores en todos los endpoints
-- ✅ Logging detallado para debugging
+### Error Handling
+- ✅ Custom exceptions with descriptive messages
+- ✅ Consistent error handling across all endpoints
+- ✅ Detailed logging for debugging
 
-### Optimizaciones
-- ✅ Índices de base de datos optimizados
-- ✅ Consultas eficientes con SQLAlchemy
-- ✅ Paginación optimizada
-- ✅ Cálculo de scores optimizado
+### Optimizations
+- ✅ Optimized database indexes
+- ✅ Efficient queries with SQLAlchemy
+- ✅ Optimized pagination
+- ✅ Optimized score calculation
 
-### Nuevas Funcionalidades
-- ✅ Actualización y eliminación de chats
-- ✅ Sistema de destacados (featured)
-- ✅ Perfiles de usuario con estadísticas
-- ✅ Chats trending por período
-- ✅ Analytics agregados
-- ✅ Operaciones en lote
-- ✅ Estadísticas detalladas
+### New Features
+- ✅ Chat update and deletion
+- ✅ Featured system
+- ✅ User profiles with statistics
+- ✅ Trending chats by period
+- ✅ Aggregated analytics
+- ✅ Batch operations
+- ✅ Detailed statistics
 
-## Mejoras Futuras
+## Future Improvements
 
-- [ ] Autenticación JWT completa
-- [ ] Sistema de comentarios (schemas ya creados)
-- [ ] Notificaciones cuando alguien remixa tu chat
-- [ ] Sistema de reportes y moderación
-- [ ] Rate limiting implementado
-- [ ] Exportación de chats
-- [ ] Integración con otros sistemas
-- [ ] Cache para consultas frecuentes
-- [ ] WebSockets para actualizaciones en tiempo real
+- [ ] Full JWT authentication
+- [ ] Comment system (schemas already created)
+- [ ] Notifications when someone remixes your chat
+- [ ] Reporting and moderation system
+- [ ] Rate limiting implemented
+- [ ] Chat export
+- [ ] Integration with other systems
+- [ ] Cache for frequent queries
+- [ ] WebSockets for real-time updates
 
+---
+
+[← Back to Main README](../README.md)

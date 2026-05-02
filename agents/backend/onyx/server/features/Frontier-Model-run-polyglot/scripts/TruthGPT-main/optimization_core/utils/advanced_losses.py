@@ -272,3 +272,4 @@ def create_loss_function(loss_type: str = "grpo", **kwargs):
         return CurriculumLoss(**kwargs)
     else:
         raise ValueError(f"Unknown loss type: {loss_type}")
+

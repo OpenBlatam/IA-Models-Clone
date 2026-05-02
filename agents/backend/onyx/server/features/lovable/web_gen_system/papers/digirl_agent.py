@@ -15,7 +15,7 @@ class DigiRLAgent(BaseAgent):
         Executes a device control task using RL-based prediction.
         """
         try:
-            task = context.get("task")
+            task = context.shared_memory.get("task")
             if not task:
                 return {"status": "skipped", "reason": "No task provided"}
 

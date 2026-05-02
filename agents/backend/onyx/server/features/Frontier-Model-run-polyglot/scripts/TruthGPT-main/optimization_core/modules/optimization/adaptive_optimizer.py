@@ -700,3 +700,4 @@ def create_optimization_config(**kwargs) -> OptimizationConfig:
     """Create an optimization configuration."""
     return OptimizationConfig(**kwargs)
 
+

@@ -7,7 +7,7 @@ import logging
 import time
 import requests
 from typing import Dict, Any, Optional, List, Callable
-from dataclasses import dataclass
+from pydantic import BaseModel
 from enum import Enum
 
 logger = logging.getLogger(__name__)
@@ -22,14 +22,13 @@ class HTTPMethod(Enum):
     PATCH = "PATCH"
 
 
-@dataclass
-class APIResponse:
+class APIResponse(BaseModel):
     """API response data structure."""
     status_code: int
     data: Any
     headers: Dict[str, str]
     elapsed_time: float
-    
+
     @property
     def success(self) -> bool:
         """Check if request was successful."""
@@ -187,6 +186,7 @@ class RateLimiter:
                 sleep_time = self.time_window - (time.time() - self.calls[0])
                 if sleep_time > 0:
                     time.sleep(sleep_time)
+
 
 
 

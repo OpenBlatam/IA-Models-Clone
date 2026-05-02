@@ -1,63 +1,65 @@
 # AI Video Processing System
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema completo de procesamiento de video con IA, incluyendo optimizaciones avanzadas, soporte para multi-GPU, mixed precision training, y herramientas de debugging y profiling.
+## 📋 Description
 
-## 🚀 Características Principales
+Complete AI video processing system, including advanced optimizations, multi-GPU support, mixed precision training, and debugging/profiling tools.
 
-- **Procesamiento de Video con IA**: Análisis y procesamiento inteligente de video
-- **Optimizaciones de Rendimiento**: Sistema optimizado con profiling y optimizaciones
-- **Multi-GPU Training**: Soporte para entrenamiento distribuido
-- **Mixed Precision**: Entrenamiento con precisión mixta para eficiencia
-- **Gradient Accumulation**: Acumulación de gradientes para batches grandes
-- **Herramientas de Debugging**: Debugging avanzado con PyTorch
-- **Sistema de Logging**: Logging avanzado para monitoreo
-- **Gestión de Errores**: Sistema robusto de manejo de errores
+## 🚀 Key Features
 
-## 📁 Estructura
+- **AI Video Processing** — Intelligent video analysis and processing
+- **Performance Optimizations** — Optimized system with profiling
+- **Multi-GPU Training** — Support for distributed training
+- **Mixed Precision** — Mixed precision training for efficiency
+- **Gradient Accumulation** — Gradient accumulation for large batches
+- **Debugging Tools** — Advanced debugging with PyTorch
+- **Logging System** — Advanced logging for monitoring
+- **Error Management** — Robust error handling system
+
+## 📁 Structure
 
 ```
 ai_video/
-├── api/                    # Endpoints de la API
-├── core/                   # Núcleo del sistema
-├── optimization/           # Optimizaciones
-├── performance/            # Análisis de rendimiento
-├── monitoring/             # Monitoreo del sistema
-├── deployment/             # Despliegue
-├── examples/               # Ejemplos
+├── api/                    # API Endpoints
+├── core/                   # System core
+├── optimization/           # Optimizations
+├── performance/            # Performance analysis
+├── monitoring/             # System monitoring
+├── deployment/             # Deployment
+├── examples/               # Examples
 ├── tests/                  # Tests
-└── docs/                   # Documentación
+└── docs/                   # Documentation
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements_optimization.txt
 
-# Instalar sistema
+# Install system
 python install.py
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
 ```python
 from ai_video.core import VideoProcessor
 from ai_video.optimization import OptimizationSystem
 
-# Inicializar procesador
+# Initialize processor
 processor = VideoProcessor()
 
-# Procesar video
+# Process video
 result = processor.process("video.mp4")
 
-# Aplicar optimizaciones
+# Apply optimizations
 optimizer = OptimizationSystem()
 optimized_result = optimizer.optimize(result)
 ```
 
-## 📚 Guías
+## 📚 Guides
 
 - [Performance Optimization Guide](PERFORMANCE_OPTIMIZATION_GUIDE.md)
 - [Multi-GPU Training Guide](MULTI_GPU_TRAINING_GUIDE.md)
@@ -70,32 +72,33 @@ optimized_result = optimizer.optimize(result)
 ## 🧪 Testing
 
 ```bash
-# Test de logging avanzado
+# Test advanced logging
 python test_advanced_logging.py
 
-# Test de manejo de errores
+# Test error handling
 python test_error_handling.py
 
-# Test de optimización
+# Test optimization
 python test_performance_optimization.py
 ```
 
-## 🚀 Despliegue
+## 🚀 Deployment
 
 ```bash
-# Desplegar en producción
+# Deploy to production
 python run_production.py
 
-# Iniciar sistema de producción
+# Start production system
 python start_production.py
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Integration System**: Para orquestación
-- **Export IA**: Para exportación de resultados
-- **Video OpusClip**: Para procesamiento avanzado
+This module integrates with:
+- **[Integration System](../integration_system/README.md)** — For orchestration
+- **[Export IA](../export_ia/README.md)** — For results export
+- **Video OpusClip** — For advanced processing
 
+---
 
-
+[← Back to Main README](../README.md)

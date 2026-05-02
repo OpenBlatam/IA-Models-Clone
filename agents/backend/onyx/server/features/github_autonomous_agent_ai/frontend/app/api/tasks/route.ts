@@ -23,12 +23,12 @@ async function loadTasks(): Promise<any[]> {
   try {
     await ensureTasksDir();
     const data = await fs.readFile(TASKS_FILE, 'utf-8');
-    
+
     // Check if file is empty or only whitespace
     if (!data || !data.trim()) {
       return [];
     }
-    
+
     try {
       return JSON.parse(data);
     } catch (parseError: any) {
@@ -64,7 +64,7 @@ async function saveTasks(tasks: any[]): Promise<void> {
   }
 }
 
-// GET: Obtener todas las tareas
+// GET: Obtener todas las tareas (con backend delegation)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -74,6 +74,62 @@ export async function GET(request: NextRequest) {
       taskId: taskId || 'all',
     });
 
+    // Intentar cargar desde backend unificado primero
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8030';
+    try {
+      if (taskId) {
+        const backendResponse = await fetch(`${backendUrl}/api/v1/tasks/${taskId}`, {
+          signal: AbortSignal.timeout(5000),
+        });
+        if (backendResponse.ok) {
+          const backendTask = await backendResponse.json();
+          // Mapear formato backend → frontend
+          const task = {
+            id: backendTask.id,
+            repository: `${backendTask.repository_owner}/${backendTask.repository_name}`,
+            instruction: backendTask.instruction,
+            status: mapBackendStatus(backendTask.status),
+            createdAt: backendTask.created_at,
+            processingStartedAt: backendTask.started_at,
+            result: backendTask.result,
+            error: backendTask.error,
+          };
+          console.log(`✅ [API] Tarea ${taskId} cargada desde backend unificado`);
+          return NextResponse.json({ task });
+        }
+      } else {
+        const backendResponse = await fetch(`${backendUrl}/api/v1/tasks/`, {
+          signal: AbortSignal.timeout(5000),
+        });
+        if (backendResponse.ok) {
+          const backendTasks = await backendResponse.json();
+          // Mapear formato backend → frontend
+          const tasks = (Array.isArray(backendTasks) ? backendTasks : []).map((bt: any) => ({
+            id: bt.id,
+            repository: `${bt.repository_owner}/${bt.repository_name}`,
+            instruction: bt.instruction,
+            status: mapBackendStatus(bt.status),
+            createdAt: bt.created_at,
+            processingStartedAt: bt.started_at,
+            result: bt.result,
+            error: bt.error,
+          }));
+
+          // Fusionar con tareas locales
+          const localTasks = await loadTasks();
+          const backendIds = new Set(tasks.map((t: any) => t.id));
+          const uniqueLocalTasks = localTasks.filter((t: any) => !backendIds.has(t.id));
+          const mergedTasks = [...tasks, ...uniqueLocalTasks];
+
+          console.log(`✅ [API] ${tasks.length} tareas del backend + ${uniqueLocalTasks.length} locales = ${mergedTasks.length} total`);
+          return NextResponse.json({ tasks: mergedTasks });
+        }
+      }
+    } catch (backendError: any) {
+      console.warn(`⚠️ [API] Backend unificado no disponible, usando almacenamiento local:`, backendError.message);
+    }
+
+    // Fallback: cargar desde archivos locales
     const tasks = await loadTasks();
 
     if (taskId) {
@@ -86,17 +142,28 @@ export async function GET(request: NextRequest) {
         );
       }
 
-      console.log(`✅ [API] GET /api/tasks?taskId=${taskId} - Tarea encontrada`);
+      console.log(`✅ [API] GET /api/tasks?taskId=${taskId} - Tarea encontrada (local)`);
       return NextResponse.json({ task });
     }
 
-    console.log(`✅ [API] GET /api/tasks - ${tasks.length} tareas encontradas`);
+    console.log(`✅ [API] GET /api/tasks - ${tasks.length} tareas encontradas (local)`);
     return NextResponse.json({ tasks });
   } catch (error: any) {
     console.error('❌ [API] Error getting tasks:', error);
-    // Retornar array vacío en lugar de error para que el frontend pueda continuar
     return NextResponse.json({ tasks: [] }, { status: 200 });
   }
+}
+
+// Helper: Mapear status del backend al frontend
+function mapBackendStatus(status: string): string {
+  const statusMap: Record<string, string> = {
+    'pending': 'pending',
+    'running': 'processing',
+    'completed': 'completed',
+    'failed': 'failed',
+    'cancelled': 'stopped',
+  };
+  return statusMap[status] || status;
 }
 
 // POST: Crear una nueva tarea
@@ -113,12 +180,12 @@ export async function POST(request: NextRequest) {
     }
 
     const tasks = await loadTasks();
-    
+
     // Generar ID si no existe
     if (!task.id) {
       task.id = `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     }
-    
+
     // Asegurar createdAt
     if (!task.createdAt) {
       task.createdAt = new Date().toISOString();

@@ -1,52 +1,54 @@
 # Character Consistency AI - Flux2-based Model
 
-Modelo basado en Flux2 para generar safe tensors de consistencia de personaje. Acepta una o varias imágenes y genera embeddings que mantienen la consistencia del personaje en diferentes generaciones.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🎯 Características
+Flux2-based model for generating character consistency safe tensors. It accepts one or multiple images and generates embeddings that maintain character consistency across different generations.
 
-- **Modelo Flux2**: Basado en la arquitectura Flux2 de Black Forest Labs
-- **Múltiples Imágenes**: Procesa una o varias imágenes para extraer características consistentes
-- **Safe Tensors**: Genera archivos safe tensors listos para usar en workflows
-- **API REST**: Endpoints FastAPI para integración fácil
-- **Optimizaciones**: Soporte para optimizaciones de memoria y velocidad
+## 🎯 Features
 
-## 📋 Requisitos
+- **Flux2 Model**: Based on Black Forest Labs' Flux2 architecture
+- **Multiple Images**: Processes one or multiple images to extract consistent features
+- **Safe Tensors**: Generates workflow-ready safe tensor files
+- **REST API**: FastAPI endpoints for easy integration
+- **Optimizations**: Support for memory and speed optimizations
+
+## 📋 Requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 🚀 Uso Rápido
+## 🚀 Quick Start
 
-### 1. Uso Básico con Python
+### 1. Basic Python Usage
 
 ```python
 from character_consistency_ai.core.character_consistency_service import CharacterConsistencyService
 from character_consistency_ai.config.character_consistency_config import CharacterConsistencyConfig
 
-# Crear configuración
+# Create configuration
 config = CharacterConsistencyConfig.from_env()
 
-# Crear servicio
+# Create service
 service = CharacterConsistencyService(config=config)
 
-# Inicializar modelo
+# Initialize model
 service.initialize_model()
 
-# Generar embedding desde imágenes
+# Generate embedding from images
 result = service.generate_character_embedding(
     images=["path/to/image1.jpg", "path/to/image2.jpg"],
     character_name="MyCharacter",
     save_tensor=True,
 )
 
-print(f"Embedding guardado en: {result['saved_path']}")
+print(f"Embedding saved at: {result['saved_path']}")
 ```
 
-### 2. Crear Workflow Tensor
+### 2. Create Workflow Tensor
 
 ```python
-# Crear tensor optimizado para workflow
+# Create optimized tensor for workflow
 workflow_result = service.create_workflow_tensor(
     embedding_path="character_embeddings/my_character_20240101_120000.safetensors",
     prompt_template="A photo of {character} in a {setting}",
@@ -56,37 +58,37 @@ workflow_result = service.create_workflow_tensor(
 )
 ```
 
-### 3. Usar la API
+### 3. Use the API
 
 ```bash
-# Iniciar servidor
+# Start server
 python -m character_consistency_ai.main
 
-# O usar uvicorn directamente
+# Or use uvicorn directly
 uvicorn character_consistency_ai.api.character_consistency_api:app --host 0.0.0.0 --port 8001
 ```
 
-#### Endpoints Disponibles
+#### Available Endpoints
 
-- `POST /api/v1/generate` - Generar embedding desde imágenes
-- `POST /api/v1/workflow` - Crear workflow tensor
-- `GET /api/v1/embeddings` - Listar todos los embeddings
-- `GET /api/v1/embedding/{id}` - Descargar embedding específico
-- `GET /api/v1/model/info` - Información del modelo
-- `POST /api/v1/initialize` - Inicializar modelo
+- `POST /api/v1/generate` - Generate embedding from images
+- `POST /api/v1/workflow` - Create workflow tensor
+- `GET /api/v1/embeddings` - List all embeddings
+- `GET /api/v1/embedding/{id}` - Download specific embedding
+- `GET /api/v1/model/info` - Model information
+- `POST /api/v1/initialize` - Initialize model
 - `GET /api/v1/health` - Health check
 
-#### Ejemplo de Uso con cURL
+#### cURL Usage Example
 
 ```bash
-# Generar embedding
+# Generate embedding
 curl -X POST "http://localhost:8001/api/v1/generate" \
   -F "images=@image1.jpg" \
   -F "images=@image2.jpg" \
   -F "character_name=MyCharacter" \
   -F "save_tensor=true"
 
-# Crear workflow tensor
+# Create workflow tensor
 curl -X POST "http://localhost:8001/api/v1/workflow" \
   -F "embedding_path=character_embeddings/my_character.safetensors" \
   -F "prompt_template=A photo of {character}" \
@@ -95,34 +97,34 @@ curl -X POST "http://localhost:8001/api/v1/workflow" \
   -F "guidance_scale=7.5"
 ```
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 character_consistency_ai/
 ├── models/
-│   ├── flux2_character_model.py      # Modelo Flux2 principal
-│   └── safe_tensor_generator.py     # Generador de safe tensors
+│   ├── flux2_character_model.py      # Main Flux2 model
+│   └── safe_tensor_generator.py     # Safe tensor generator
 ├── core/
-│   └── character_consistency_service.py  # Servicio principal
+│   └── character_consistency_service.py  # Main service
 ├── api/
-│   └── character_consistency_api.py      # API FastAPI
+│   └── character_consistency_api.py      # FastAPI API
 ├── config/
-│   └── character_consistency_config.py   # Configuración
-├── main.py                               # Punto de entrada
-└── requirements.txt                      # Dependencias
+│   └── character_consistency_config.py   # Configuration
+├── main.py                               # Entry point
+└── requirements.txt                      # Dependencies
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```bash
-# Modelo
+# Model
 CHARACTER_CONSISTENCY_MODEL_ID=black-forest-labs/flux2-dev
-CHARACTER_CONSISTENCY_DEVICE=cuda  # o cpu, auto
-CHARACTER_CONSISTENCY_DTYPE=float16  # o float32
+CHARACTER_CONSISTENCY_DEVICE=cuda  # or cpu, auto
+CHARACTER_CONSISTENCY_DTYPE=float16  # or float32
 
-# Optimizaciones
+# Optimizations
 CHARACTER_CONSISTENCY_OPTIMIZATIONS=true
 CHARACTER_CONSISTENCY_EMBEDDING_DIM=768
 
@@ -142,7 +144,7 @@ CHARACTER_CONSISTENCY_INFERENCE_STEPS=50
 CHARACTER_CONSISTENCY_GUIDANCE_SCALE=7.5
 ```
 
-### Configuración Programática
+### Programmatic Configuration
 
 ```python
 from character_consistency_ai.config.character_consistency_config import CharacterConsistencyConfig
@@ -156,45 +158,45 @@ config = CharacterConsistencyConfig(
 )
 ```
 
-## 🔧 Uso en Workflows
+## 🔧 Workflow Usage
 
-Los safe tensors generados pueden usarse en workflows de generación de imágenes:
+Generated safe tensors can be used in image generation workflows:
 
 ```python
 from safetensors.torch import load_file
 import torch
 
-# Cargar embedding
+# Load embedding
 data = load_file("character_embeddings/my_character.safetensors")
 character_embedding = data["character_embedding"]
 
-# Usar en tu pipeline de generación
-# (ejemplo con diffusers)
+# Use in your generation pipeline
+# (diffusers example)
 from diffusers import StableDiffusionPipeline
 
 pipeline = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
 
-# Inyectar embedding en el pipeline
-# (implementación específica depende de tu workflow)
+# Inject embedding into pipeline
+# (specific implementation depends on your workflow)
 ```
 
-## 📊 Formato de Safe Tensors
+## 📊 Safe Tensors Format
 
-Los safe tensors generados contienen:
+Generated safe tensors contain:
 
-- `character_embedding`: Tensor con el embedding del personaje [embedding_dim]
-- Metadata JSON asociada con información sobre:
-  - Nombre del personaje
-  - Número de imágenes usadas
-  - Fecha de creación
-  - Configuración del modelo
+- `character_embedding`: Tensor with character embedding [embedding_dim]
+- Associated JSON Metadata with information about:
+  - Character name
+  - Number of images used
+  - Creation date
+  - Model configuration
 
-## 🎨 Ejemplos de Uso
+## 🎨 Usage Examples
 
-### Procesar Múltiples Imágenes
+### Processing Multiple Images
 
 ```python
-# Procesar varias imágenes del mismo personaje
+# Process variable number of images for same character
 images = [
     "character_front.jpg",
     "character_side.jpg",
@@ -211,7 +213,7 @@ result = service.generate_character_embedding(
 ### Batch Processing
 
 ```python
-# Procesar múltiples personajes
+# Process multiple characters
 image_groups = [
     ["hero1_front.jpg", "hero1_side.jpg"],
     ["hero2_front.jpg", "hero2_side.jpg"],
@@ -226,20 +228,20 @@ results = service.batch_generate(
 )
 ```
 
-## 🔍 Información del Modelo
+## 🔍 Model Information
 
 ```python
-# Obtener información del modelo
+# Get model info
 info = service.get_model_info()
 print(info)
 ```
 
-## 📝 Notas
+## 📝 Notes
 
-- El modelo requiere GPU para mejor rendimiento (CUDA)
-- Los embeddings tienen dimensión configurable (default: 768)
-- Los safe tensors son compatibles con la librería `safetensors`
-- El modelo se inicializa bajo demanda (lazy loading)
+- Model requires GPU for best performance (CUDA)
+- Embeddings have configurable dimension (default: 768)
+- Safe tensors are compatible with `safetensors` library
+- Model uses lazy loading
 
 ## 🐛 Troubleshooting
 
@@ -249,22 +251,24 @@ pip install diffusers transformers
 ```
 
 ### Error: "CUDA out of memory"
-- Reduce `max_batch_size` en la configuración
-- Usa `enable_optimizations=True`
-- Considera usar CPU si la GPU no tiene suficiente memoria
+- Reduce `max_batch_size` in configuration
+- Use `enable_optimizations=True`
+- Consider using CPU if GPU lacks memory
 
 ### Error: "Model not found"
-- Verifica que el modelo ID sea correcto
-- Asegúrate de tener acceso a HuggingFace (token si es necesario)
+- Verify model ID is correct
+- Ensure access to HuggingFace (token if needed)
 
-## 📚 Referencias
+## 📚 References
 
 - [Flux2 Model](https://github.com/black-forest-labs/flux2)
 - [Safe Tensors](https://huggingface.co/docs/safetensors/)
 - [Diffusers Library](https://huggingface.co/docs/diffusers/)
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto sigue las licencias de los modelos base utilizados.
+This project follows the licenses of the base models used.
 
+---
 
+[← Back to Main README](../README.md)

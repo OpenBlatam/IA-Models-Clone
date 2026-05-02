@@ -5,15 +5,16 @@ Provides utilities for automatic optimization and tuning.
 """
 import logging
 from typing import Dict, Any, Optional, List, Callable, Tuple
-from dataclasses import dataclass
+from pydantic import BaseModel, Field, ConfigDict
 import numpy as np
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class OptimizationResult:
+class OptimizationResult(BaseModel):
     """Result of optimization."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     best_params: Dict[str, Any]
     best_score: float
     iterations: int
@@ -21,12 +22,7 @@ class OptimizationResult:
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
-        return {
-            "best_params": self.best_params,
-            "best_score": self.best_score,
-            "iterations": self.iterations,
-            "history": self.history,
-        }
+        return self.model_dump()
 
 
 class HyperparameterOptimizer:
@@ -150,6 +146,7 @@ def optimize_batch_size(
             break
     
     return best_batch
+
 
 
 

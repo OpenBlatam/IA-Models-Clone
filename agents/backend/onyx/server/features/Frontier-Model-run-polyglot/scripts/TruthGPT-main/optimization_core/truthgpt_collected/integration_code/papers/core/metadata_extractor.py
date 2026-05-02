@@ -50,7 +50,7 @@ class MetadataExtractor:
     """
     
     # Patrones regex compilados (mejor rendimiento)
-    _ARXIV_PATTERN = re.compile(r'arxiv[_\s]*id[:\s]*(\d{4}\.\d{4,5})', re.IGNORECASE)
+    _ARXIV_PATTERN = re.compile(r'arxiv[_\s]*id[:\s]*(\d{4}[\._]\d{4,5})', re.IGNORECASE)
     _YEAR_PATTERN = re.compile(r'\b(202[0-5])\b')
     _AUTHORS_PATTERN = re.compile(r'authors?[:\s]*\[(.*?)\]', re.IGNORECASE)
     _SPEEDUP_PATTERN = re.compile(r'(\d+\.?\d*)x\s*speedup', re.IGNORECASE)
@@ -86,7 +86,7 @@ class MetadataExtractor:
                 category=category,
                 config_class=cls._extract_config_class(content),
                 module_class=cls._extract_module_class(content),
-                arxiv_id=cls._extract_arxiv_id(content),
+                arxiv_id=cls._extract_arxiv_id(content, paper_file=paper_file),
                 year=cls._extract_year(content),
                 authors=cls._extract_authors(content),
                 benchmarks=cls._extract_benchmarks(content),
@@ -131,10 +131,21 @@ class MetadataExtractor:
         return match.group(1) if match else None
     
     @classmethod
-    def _extract_arxiv_id(cls, content: str) -> Optional[str]:
-        """Extrae arXiv ID."""
+    def _extract_arxiv_id(cls, content: str, paper_file: Optional[Path] = None) -> Optional[str]:
+        """Extrae arXiv ID del contenido o nombre de archivo."""
+        # Intento 1: Por contenido
         match = cls._ARXIV_PATTERN.search(content)
-        return match.group(1) if match else None
+        if match:
+            return match.group(1).replace('_', '.')
+            
+        # Intento 2: Por nombre de archivo
+        if paper_file:
+            # Buscar patrón 1234.5678 o 1234_5678 en el nombre
+            fn_match = re.search(r'(\d{4})[\._](\d{4,5})', paper_file.stem)
+            if fn_match:
+                return f"{fn_match.group(1)}.{fn_match.group(2)}"
+                
+        return None
     
     @classmethod
     def _extract_year(cls, content: str) -> Optional[int]:
@@ -213,5 +224,6 @@ class MetadataExtractor:
         """Extrae mejora de precisión."""
         match = cls._ACCURACY_PATTERN.search(content)
         return float(match.group(1)) if match else None
+
 
 

@@ -1,5 +1,5 @@
 import unittest
-from agents.backend.onyx.server.features.lovable.web_gen_system.agents import ProductManagerAgent, ArchitectAgent, EngineerAgent, QAAgent
+from ..agents import ProductManagerAgent, ArchitectAgent, EngineerAgent, QAAgent
 
 class TestAgents(unittest.TestCase):
     def test_pm_agent(self):

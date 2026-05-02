@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime, timedelta
 from enum import Enum
 import logging
@@ -59,8 +59,7 @@ class CuttingEdgeQuantumHardwareType(Enum):
     CUTTING_EDGE_QUANTUM_MEGA_COMPUTER = "cutting_edge_quantum_mega_computer"
     CUTTING_EDGE_QUANTUM_ULTRA_COMPUTER = "cutting_edge_quantum_ultra_computer"
 
-@dataclass
-class CuttingEdgeUniversalQuantumOptimizationConfig:
+class CuttingEdgeUniversalQuantumOptimizationConfig(BaseModel):
     """Cutting-edge universal quantum optimization configuration."""
     method: CuttingEdgeUniversalQuantumOptimizationMethod = CuttingEdgeUniversalQuantumOptimizationMethod.CUTTING_EDGE_VARIATIONAL_QUANTUM_EIGENSOLVER
     level: CuttingEdgeQuantumOptimizationLevel = CuttingEdgeQuantumOptimizationLevel.CUTTING_EDGE_ADVANCED
@@ -83,9 +82,10 @@ class CuttingEdgeUniversalQuantumOptimizationConfig:
     cutting_edge_annealing_time: float = 200.0
     cutting_edge_temperature_schedule: str = "cutting_edge_linear"
 
-@dataclass
-class CuttingEdgeQuantumOptimizationState:
+class CuttingEdgeQuantumOptimizationState(BaseModel):
     """Cutting-edge quantum optimization state representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     quantum_state: np.ndarray
     classical_state: np.ndarray
     energy: float
@@ -94,10 +94,9 @@ class CuttingEdgeQuantumOptimizationState:
     entanglement_entropy: float
     teleportation_fidelity: float
     error_correction_level: float
-    timestamp: datetime = field(default_factory=datetime.now)
+    timestamp: datetime = Field(default_factory=datetime.now)
 
-@dataclass
-class CuttingEdgeUniversalQuantumOptimizationResult:
+class CuttingEdgeUniversalQuantumOptimizationResult(BaseModel):
     """Cutting-edge universal quantum optimization result."""
     optimal_state: CuttingEdgeQuantumOptimizationState
     optimization_method: CuttingEdgeUniversalQuantumOptimizationMethod
@@ -110,7 +109,7 @@ class CuttingEdgeUniversalQuantumOptimizationResult:
     optimization_time: float
     teleportation_success_rate: float
     error_correction_effectiveness: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 class CuttingEdgeQuantumAnnealingOptimizer:
     """Cutting-edge quantum annealing optimizer."""
@@ -801,4 +800,5 @@ if __name__ == "__main__":
         cutting_edge_optimizer.stop_optimization()
     
     print("\nCutting-edge universal quantum optimization completed")
+
 

@@ -15,7 +15,7 @@ class OmniParserAgent(BaseAgent):
         Parses a screen into structured elements using vision only.
         """
         try:
-            screenshot_path = context.get("screenshot_path")
+            screenshot_path = context.shared_memory.get("screenshot_path")
             if not screenshot_path:
                 return {"status": "skipped", "reason": "No screenshot provided"}
 

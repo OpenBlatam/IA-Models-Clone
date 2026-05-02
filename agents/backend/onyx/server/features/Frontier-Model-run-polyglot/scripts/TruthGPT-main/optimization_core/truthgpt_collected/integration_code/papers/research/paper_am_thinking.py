@@ -302,3 +302,4 @@ if __name__ == "__main__":
     print(f"   Reasoning quality: {metadata['reasoning_quality']:.4f}")
     print(f"   Num layers: {metadata['num_layers']}")
 
+

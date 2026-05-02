@@ -1,5 +1,7 @@
 # Dog Training Coaching AI
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
 AI-powered dog training coaching assistant using OpenRouter to provide personalized training advice and plans.
 
 ## Features
@@ -414,3 +416,6 @@ All inputs are validated:
 
 Part of Blatam Academy platform.
 
+---
+
+[← Back to Main README](../README.md)

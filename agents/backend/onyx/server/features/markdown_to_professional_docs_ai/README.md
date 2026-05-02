@@ -1,6 +1,17 @@
 # Markdown to Professional Documents AI
 
-Convert Markdown files to professional document formats with charts, diagrams, tables, and beautiful formatting.
+<div align="center">
+
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)
+![Features](https://img.shields.io/badge/formats-PDF--Excel--Word--PPT-orange.svg)
+![AI](https://img.shields.io/badge/AI-Claude--GPT--Onyx-purple.svg)
+
+**Ultimate conversion engine to transform Markdown into stunning business-ready documents with automated charts and diagrams.**
+
+</div>
+
+---
 
 ## 🚀 Features
 
@@ -796,6 +807,11 @@ curl -X POST "http://localhost:8035/convert" \
 markdown_to_professional_docs_ai/
 ├── main.py                 # FastAPI application
 ├── config.py               # Configuration
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>
 ├── services/
 │   ├── markdown_parser.py  # Markdown parsing
 │   ├── converter_service.py # Main conversion service

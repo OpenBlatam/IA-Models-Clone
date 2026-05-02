@@ -266,3 +266,4 @@ class AdvancedQuantizationOptimizer:
 def create_quantization_optimizer(config: Dict[str, Any]) -> AdvancedQuantizationOptimizer:
     """Create advanced quantization optimizer from configuration."""
     return AdvancedQuantizationOptimizer(config)
+

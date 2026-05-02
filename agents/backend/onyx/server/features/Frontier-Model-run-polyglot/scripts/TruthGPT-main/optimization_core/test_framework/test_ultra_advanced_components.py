@@ -39,7 +39,7 @@ from bulk.ultra_advanced_optimizer import (
     UltraAdvancedOptimizer, QuantumOptimizer, NeuralArchitectureSearch,
     HyperparameterOptimizer, QuantumState, NeuralArchitecture, HyperparameterSpace
 )
-from core.advanced_optimizations import (
+from modules.base.core_system.core.advanced_optimizations import (
     AdvancedOptimizationEngine, OptimizationTechnique, OptimizationMetrics,
     NeuralArchitectureSearch as AdvancedNAS, QuantumInspiredOptimizer,
     EvolutionaryOptimizer, MetaLearningOptimizer
@@ -861,3 +861,4 @@ if __name__ == '__main__':
             print(f"  - {test}: {traceback}")
     
     print(f"\n{'='*60}")
+

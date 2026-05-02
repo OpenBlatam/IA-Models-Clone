@@ -8,25 +8,21 @@ import shutil
 import json
 from typing import Dict, Any, Optional, List
 from pathlib import Path
-from dataclasses import dataclass
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class BackupInfo:
+class BackupInfo(BaseModel):
     """Backup information."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     name: str
     path: Path
     created_at: datetime
     size: int
-    metadata: Dict[str, Any] = None
-    
-    def __post_init__(self):
-        """Initialize metadata if None."""
-        if self.metadata is None:
-            self.metadata = {}
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class BackupManager:
@@ -201,6 +197,7 @@ class BackupManager:
         
         with open(index_path, 'w') as f:
             json.dump(data, f, indent=2)
+
 
 
 

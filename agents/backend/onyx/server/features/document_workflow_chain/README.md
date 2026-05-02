@@ -1,416 +1,418 @@
 # Document Workflow Chain
 
-## 🚀 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-El **Document Workflow Chain** es un sistema de IA profesional y optimizado que permite la generación continua de documentos mediante encadenamiento inteligente de prompts. Cada documento generado se convierte automáticamente en la entrada para generar el siguiente documento, creando flujos de trabajo eficientes y escalables.
+## 🚀 Description
 
-### ✨ Características Principales
+The **Document Workflow Chain** is a professional and optimized AI system that allows continuous document generation through intelligent prompt chaining. Each generated document automatically becomes the input for generating the next document, creating efficient and scalable workflows.
 
-- **Generación Continua**: Crea documentos de forma ininterrumpida usando una sola consulta inicial
-- **Encadenamiento Inteligente**: Cada documento alimenta automáticamente la generación del siguiente
-- **Gestión de Flujos**: Control completo sobre el estado y progreso de los workflows
-- **Generación de Títulos**: Crea títulos atractivos para blogs automáticamente
-- **API REST Completa**: Endpoints para integración con otros sistemas
-- **Persistencia de Estado**: Mantiene el historial completo de cada cadena de documentos
-- **Múltiples Clientes de IA**: Soporte para OpenAI, Anthropic, Cohere y clientes personalizados
-- **Base de Datos Avanzada**: Persistencia completa con PostgreSQL y SQLAlchemy
-- **Dashboard Web**: Interfaz visual para monitoreo y gestión de workflows
-- **Integraciones Inteligentes**: Conexión automática con otros servicios de Blatam Academy
-- **Análisis de Calidad**: Sistema de puntuación automática de calidad de contenido
-- **Optimización SEO**: Integración automática con servicios de SEO
-- **Detección de Redundancia**: Verificación automática de contenido único
-- **Consistencia de Marca**: Análisis y ajuste automático del tono de marca
-- **Plantillas de Contenido**: Sistema de plantillas predefinidas para diferentes tipos de contenido
-- **Soporte Multi-idioma**: Generación de contenido en 6 idiomas principales
-- **Analytics Avanzado**: Sistema de análisis predictivo y tendencias
-- **Análisis de Sentimientos**: Evaluación automática del tono y sentimiento del contenido
-- **Optimización de Prompts**: Sistema inteligente de optimización de prompts
-- **Métricas de Rendimiento**: Seguimiento detallado de métricas de calidad y rendimiento
+### ✨ Key Features
 
-## 🏗️ Arquitectura
+- **Continuous Generation**: Create documents uninterruptedly using a single initial query
+- **Intelligent Chaining**: Each document automatically feeds the generation of the next
+- **Workflow Management**: Complete control over workflow status and progress
+- **Title Generation**: Automatically create attractive blog titles
+- **Full REST API**: Endpoints for integration with other systems
+- **State Persistence**: Maintains the complete history of each document chain
+- **Multiple AI Clients**: Support for OpenAI, Anthropic, Cohere, and custom clients
+- **Advanced Database**: Full persistence with PostgreSQL and SQLAlchemy
+- **Web Dashboard**: Visual interface for workflow monitoring and management
+- **Intelligent Integrations**: Automatic connection with other Blatam Academy services
+- **Quality Analysis**: Automatic content quality scoring system
+- **SEO Optimization**: Automatic integration with SEO services
+- **Redundancy Detection**: Automatic verification of unique content
+- **Brand Consistency**: Automatic analysis and adjustment of brand tone
+- **Content Templates**: Predefined template system for different types of content
+- **Multi-language Support**: Content generation in 6 main languages
+- **Advanced Analytics**: Predictive analytics and trend system
+- **Sentiment Analysis**: Automatic evaluation of content tone and sentiment
+- **Prompt Optimization**: Intelligent prompt optimization system
+- **Performance Metrics**: Detailed tracking of quality and performance metrics
+
+## 🏗️ Architecture
 
 ```
 Document Workflow Chain
-├── main.py                     # Aplicación principal FastAPI
-├── start.py                    # Script de inicio optimizado
-├── system_config.py            # Configuración centralizada del sistema
-├── workflow_chain_engine.py    # Motor principal del sistema
-├── api_endpoints.py            # Endpoints REST API
-├── ai_clients.py              # Integración con clientes de IA
-├── database.py                # Modelos y operaciones de base de datos
-├── dashboard.py               # Dashboard web de monitoreo
-├── integrations.py            # Integraciones con servicios Blatam
-├── external_integrations.py   # Integraciones con servicios externos
-├── content_analyzer.py        # Análisis avanzado de contenido
-├── content_templates.py       # Sistema de plantillas de contenido
-├── multilang_support.py       # Soporte multi-idioma
-├── advanced_analytics.py      # Analytics y análisis predictivo
-├── advanced_analysis.py       # Análisis avanzado de documentos
-├── content_quality_control.py # Control de calidad de contenido
-├── content_versioning.py      # Sistema de versionado
-├── workflow_scheduler.py      # Programador de workflows
-├── workflow_automation.py     # Automatización de workflows
-├── intelligent_generation.py  # Generación inteligente
-├── trend_analysis.py          # Análisis de tendencias
-├── ai_optimization.py         # Optimización de IA
-├── intelligent_cache.py       # Sistema de caché inteligente
-├── test_workflow.py           # Suite de pruebas
-├── examples/                   # Ejemplos y demos
-├── templates/                  # Plantillas HTML para dashboard
-├── Dockerfile                  # Configuración Docker
-├── docker-compose.yml          # Orquestación de servicios
-├── nginx.conf                  # Configuración de load balancer
-├── requirements.txt            # Dependencias Python
-├── env.example                 # Variables de entorno
-└── README.md                   # Este archivo
+├── main.py                     # Main FastAPI application
+├── start.py                    # Optimized startup script
+├── system_config.py            # Centralized system configuration
+├── workflow_chain_engine.py    # Main system engine
+├── api_endpoints.py            # REST API Endpoints
+├── ai_clients.py              # AI client integration
+├── database.py                # Database models and operations
+├── dashboard.py               # Web monitoring dashboard
+├── integrations.py            # Blatam service integrations
+├── external_integrations.py   # External service integrations
+├── content_analyzer.py        # Advanced content analysis
+├── content_templates.py       # Content template system
+├── multilang_support.py       # Multi-language support
+├── advanced_analytics.py      # Analytics and predictive analysis
+├── advanced_analysis.py       # Advanced document analysis
+├── content_quality_control.py # Content quality control
+├── content_versioning.py      # Versioning system
+├── workflow_scheduler.py      # Workflow scheduler
+├── workflow_automation.py     # Workflow automation
+├── intelligent_generation.py  # Intelligent generation
+├── trend_analysis.py          # Trend analysis
+├── ai_optimization.py         # AI optimization
+├── intelligent_cache.py       # Intelligent cache system
+├── test_workflow.py           # Test suite
+├── examples/                   # Examples and demos
+├── templates/                  # HTML templates for dashboard
+├── Dockerfile                  # Docker configuration
+├── docker-compose.yml          # Service orchestration
+├── nginx.conf                  # Load balancer configuration
+├── requirements.txt            # Python dependencies
+├── env.example                 # Environment variables
+└── README.md                   # This file
 ```
 
-## 🚀 Instalación y Configuración
+## 🚀 Installation and Configuration
 
-### Requisitos Previos
+### Prerequisites
 
 - Python 3.11+
-- Docker y Docker Compose
-- Cliente de IA (OpenAI, Anthropic, Cohere, etc.)
+- Docker and Docker Compose
+- AI Client (OpenAI, Anthropic, Cohere, etc.)
 
-### Instalación Local
+### Local Installation
 
 ```bash
-# Clonar o navegar al directorio
+# Clone or navigate to directory
 cd document_workflow_chain
 
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Configurar variables de entorno
-export AI_API_KEY="tu_api_key_aqui"
-export AI_CLIENT_TYPE="openai"  # o anthropic, cohere
-export AI_MODEL="gpt-4"         # o claude-3, etc.
+# Configure environment variables
+export AI_API_KEY="your_api_key_here"
+export AI_CLIENT_TYPE="openai"  # or anthropic, cohere
+export AI_MODEL="gpt-4"         # or claude-3, etc.
 ```
 
-### Instalación con Docker
+### Docker Installation
 
 ```bash
-# Construir y ejecutar con Docker Compose
+# Build and run with Docker Compose
 docker-compose up --build
 
-# O ejecutar solo el servicio principal
+# Or run only the main service
 docker build -t document-workflow-chain .
-docker run -p 8001:8000 -e AI_API_KEY=tu_key document-workflow-chain
+docker run -p 8001:8000 -e AI_API_KEY=your_key document-workflow-chain
 ```
 
-## 📖 Uso Básico
+## 📖 Basic Usage
 
-### 1. Crear una Cadena de Workflow
+### 1. Create a Workflow Chain
 
 ```python
 from workflow_chain_engine import WorkflowChainEngine
 
-# Inicializar el motor
-engine = WorkflowChainEngine(ai_client=tu_cliente_ai)
+# Initialize engine
+engine = WorkflowChainEngine(ai_client=your_ai_client)
 
-# Crear una nueva cadena
+# Create a new chain
 chain = await engine.create_workflow_chain(
-    name="Guía de Marketing Digital",
-    description="Serie de artículos sobre marketing digital",
-    initial_prompt="Escribe una introducción al marketing digital moderno"
+    name="Digital Marketing Guide",
+    description="Series of articles on digital marketing",
+    initial_prompt="Write an introduction to modern digital marketing"
 )
 ```
 
-### 2. Continuar la Cadena
+### 2. Continue the Chain
 
 ```python
-# Generar el siguiente documento automáticamente
+# Generate the next document automatically
 next_doc = await engine.continue_workflow_chain(chain.id)
 
-# O con un prompt personalizado
+# Or with a custom prompt
 next_doc = await engine.continue_workflow_chain(
     chain.id, 
-    continuation_prompt="Ahora escribe sobre estrategias de SEO"
+    continuation_prompt="Now write about SEO strategies"
 )
 ```
 
-### 3. Generar Títulos de Blog
+### 3. Generate Blog Titles
 
 ```python
-# Generar un título atractivo
+# Generate an attractive title
 title = await engine.generate_blog_title(
-    "Contenido del blog sobre inteligencia artificial..."
+    "Blog content about artificial intelligence..."
 )
-print(title)  # "Inteligencia Artificial: El Futuro del Marketing Digital"
+print(title)  # "Artificial Intelligence: The Future of Digital Marketing"
 ```
 
-## 🎛️ Dashboard Web
+## 🎛️ Web Dashboard
 
-### Acceso al Dashboard
+### Dashboard Access
 - **URL**: `http://localhost:8020/dashboard/`
-- **Características**:
-  - Visualización en tiempo real de workflows activos
-  - Estadísticas de rendimiento y calidad
-  - Gestión de cadenas (pausar, reanudar, completar)
-  - Gráficos de tendencias de calidad
-  - Métricas de uso de tokens y tiempo de generación
+- **Features**:
+  - Real-time visualization of active workflows
+  - Performance and quality statistics
+  - Chain management (pause, resume, complete)
+  - Quality trend charts
+  - Token usage and generation time metrics
 
-### Funcionalidades del Dashboard
-- **Monitoreo en Tiempo Real**: Ve el estado de todos tus workflows
-- **Gestión Visual**: Controla tus cadenas con clicks simples
-- **Analytics Avanzados**: Gráficos de rendimiento y calidad
-- **Exportación de Datos**: Descarga estadísticas y reportes
+### Dashboard Functionalities
+- **Real-Time Monitoring**: See the status of all your workflows
+- **Visual Management**: Control your chains with simple clicks
+- **Advanced Analytics**: Performance and quality charts
+- **Data Export**: Download statistics and reports
 
-## 🔗 Integraciones Inteligentes
+## 🔗 Intelligent Integrations
 
-### Servicios Integrados
-- **Content Redundancy Detector**: Verifica unicidad del contenido
-- **SEO Optimizer**: Optimiza automáticamente para motores de búsqueda
-- **Brand Voice Analyzer**: Mantiene consistencia de marca
-- **Blog Publisher**: Publica automáticamente en tu blog
+### Integrated Services
+- **Content Redundancy Detector**: Verifies content uniqueness
+- **SEO Optimizer**: Automatically optimizes for search engines
+- **Brand Voice Analyzer**: Maintains brand consistency
+- **Blog Publisher**: Automatically publishes to your blog
 
-### Flujo de Integración
-1. **Generación**: Crea contenido con IA
-2. **Verificación**: Detecta redundancia automáticamente
-3. **Optimización**: Mejora SEO y consistencia de marca
-4. **Publicación**: Publica o programa automáticamente
+### Integration Flow
+1. **Generation**: Create content with AI
+2. **Verification**: Detect redundancy automatically
+3. **Optimization**: Improve SEO and brand consistency
+4. **Publication**: Publish or schedule automatically
 
-## 🎨 Plantillas de Contenido
+## 🎨 Content Templates
 
-### Tipos de Plantillas Disponibles
-- **Blog Post**: Artículos estructurados con introducción, cuerpo y conclusión
-- **Tutorial**: Guías paso a paso con instrucciones detalladas
-- **Product Description**: Descripciones de productos optimizadas para ventas
-- **News Article**: Artículos de noticias con estructura periodística
-- **Social Media Post**: Publicaciones optimizadas para redes sociales
+### Available Template Types
+- **Blog Post**: Structured articles with introduction, body, and conclusion
+- **Tutorial**: Step-by-step guides with detailed instructions
+- **Product Description**: Sales-optimized product descriptions
+- **News Article**: News articles with journalistic structure
+- **Social Media Post**: Optimized posts for social media
 
-### Uso de Plantillas
+### Template Usage
 ```python
-# Crear workflow con plantilla
+# Create workflow with template
 chain = await engine.create_workflow_with_template(
     template_id="blog_post",
-    topic="Inteligencia Artificial en Marketing",
-    name="Serie de IA Marketing",
-    description="Artículos sobre IA en marketing",
-    language_code="es",
+    topic="Artificial Intelligence in Marketing",
+    name="AI Marketing Series",
+    description="Articles about AI in marketing",
+    language_code="en",
     word_count=1500,
-    tone="profesional",
+    tone="professional",
     audience="marketing professionals"
 )
 ```
 
-## 🌍 Soporte Multi-idioma
+## 🌍 Multi-language Support
 
-### Idiomas Soportados
-- **Inglés (en)**: Contenido profesional y conversacional
-- **Español (es)**: Contenido cálido y amigable
-- **Francés (fr)**: Contenido elegante y formal
-- **Portugués (pt)**: Contenido cálido y acogedor
-- **Alemán (de)**: Contenido preciso y profesional
-- **Italiano (it)**: Contenido apasionado y expresivo
+### Supported Languages
+- **English (en)**: Professional and conversational content
+- **Spanish (es)**: Warm and friendly content
+- **French (fr)**: Elegant and formal content
+- **Portuguese (pt)**: Warm and welcoming content
+- **German (de)**: Precise and professional content
+- **Italian (it)**: Passionate and expressive content
 
-### Adaptación Cultural
-- Formato de fechas localizado
-- Formato de números regional
-- Estilo de escritura culturalmente apropiado
-- Nivel de formalidad adaptado
-- Palabras clave localizadas
+### Cultural Adaptation
+- Localized date format
+- Regional number format
+- Culturally appropriate writing style
+- Adapted formality level
+- Localized keywords
 
-## 📊 Analytics Avanzado
+## 📊 Advanced Analytics
 
-### Métricas de Rendimiento
-- **Puntuación de Calidad**: Evaluación automática de calidad del contenido
-- **Tiempo de Generación**: Métricas de velocidad de generación
-- **Uso de Tokens**: Seguimiento de costos y eficiencia
-- **Puntuación de Engagement**: Medición de potencial de engagement
-- **Puntuación SEO**: Evaluación de optimización para motores de búsqueda
-- **Legibilidad**: Análisis de facilidad de lectura
+### Performance Metrics
+- **Quality Score**: Automatic content quality evaluation
+- **Generation Time**: Generation speed metrics
+- **Token Usage**: Cost and efficiency tracking
+- **Engagement Score**: Engagement potential measurement
+- **SEO Score**: Search engine optimization evaluation
+- **Readability**: Reading ease analysis
 
-### Análisis Predictivo
-- **Tendencias de Calidad**: Predicción de tendencias de calidad
-- **Optimización de Costos**: Recomendaciones para reducir costos
-- **Mejora de Rendimiento**: Sugerencias de optimización
-- **Insights de Engagement**: Predicciones de engagement
+### Predictive Analysis
+- **Quality Trends**: Quality trend prediction
+- **Cost Optimization**: Recommendations to reduce costs
+- **Performance Improvement**: Optimization suggestions
+- **Engagement Insights**: Engagement predictions
 
-### Dashboard de Analytics
-- Visualización en tiempo real de métricas
-- Gráficos de tendencias interactivos
-- Alertas automáticas de rendimiento
-- Reportes de optimización personalizados
+### Analytics Dashboard
+- Real-time metric visualization
+- Interactive trend charts
+- Automatic performance alerts
+- Personalized optimization reports
 
-## 🌐 API REST
+## 🌐 REST API
 
-### Endpoints Principales
+### Main Endpoints
 
-#### Crear Workflow Chain
+#### Create Workflow Chain
 ```http
 POST /api/v1/document-workflow-chain/create
 Content-Type: application/json
 
 {
-    "name": "Mi Serie de Blog",
-    "description": "Serie sobre tecnología",
-    "initial_prompt": "Escribe sobre el futuro de la IA"
+    "name": "My Blog Series",
+    "description": "Series about technology",
+    "initial_prompt": "Write about the future of AI"
 }
 ```
 
-#### Continuar Workflow Chain
+#### Continue Workflow Chain
 ```http
 POST /api/v1/document-workflow-chain/continue
 Content-Type: application/json
 
 {
-    "chain_id": "uuid-del-workflow",
-    "continuation_prompt": "Continúa con el siguiente tema"
+    "chain_id": "uuid-of-workflow",
+    "continuation_prompt": "Continue with the next topic"
 }
 ```
 
-#### Obtener Historial de la Cadena
+#### Get Chain History
 ```http
 GET /api/v1/document-workflow-chain/chain/{chain_id}/history
 ```
 
-#### Generar Título de Blog
+#### Generate Blog Title
 ```http
 POST /api/v1/document-workflow-chain/generate-title
 Content-Type: application/json
 
 {
-    "content": "Contenido del blog para generar título..."
+    "content": "Blog content to generate title..."
 }
 ```
 
-#### Crear Workflow con Plantilla
+#### Create Workflow with Template
 ```http
 POST /api/v1/document-workflow-chain/create-with-template
 Content-Type: application/json
 
 {
     "template_id": "blog_post",
-    "topic": "Inteligencia Artificial en Marketing",
-    "name": "Serie de IA Marketing",
-    "description": "Artículos sobre IA en marketing",
-    "language_code": "es",
+    "topic": "Artificial Intelligence in Marketing",
+    "name": "AI Marketing Series",
+    "description": "Articles about AI in marketing",
+    "language_code": "en",
     "word_count": 1500,
-    "tone": "profesional",
+    "tone": "professional",
     "audience": "marketing professionals"
 }
 ```
 
-#### Analizar Contenido
+#### Analyze Content
 ```http
 POST /api/v1/document-workflow-chain/analyze-content
 Content-Type: application/json
 
 {
-    "content": "Contenido a analizar...",
-    "title": "Título del documento",
-    "language_code": "es"
+    "content": "Content to analyze...",
+    "title": "Document Title",
+    "language_code": "en"
 }
 ```
 
-#### Obtener Análisis de Rendimiento
+#### Get Performance Analysis
 ```http
 GET /api/v1/document-workflow-chain/chain/{chain_id}/performance
 ```
 
-#### Obtener Insights del Workflow
+#### Get Workflow Insights
 ```http
 GET /api/v1/document-workflow-chain/chain/{chain_id}/insights
 ```
 
-#### Obtener Plantillas Disponibles
+#### Get Available Templates
 ```http
 GET /api/v1/document-workflow-chain/templates?category=blogging
 ```
 
-#### Obtener Idiomas Soportados
+#### Get Supported Languages
 ```http
 GET /api/v1/document-workflow-chain/languages
 ```
 
-#### Obtener Resumen de Analytics
+#### Get Analytics Summary
 ```http
 GET /api/v1/document-workflow-chain/analytics/summary
 ```
 
-### Gestión de Workflows
+### Workflow Management
 
 ```http
-# Pausar workflow
+# Pause workflow
 POST /api/v1/document-workflow-chain/chain/{chain_id}/pause
 
-# Reanudar workflow
+# Resume workflow
 POST /api/v1/document-workflow-chain/chain/{chain_id}/resume
 
-# Completar workflow
+# Complete workflow
 POST /api/v1/document-workflow-chain/chain/{chain_id}/complete
 
-# Exportar workflow
+# Export workflow
 GET /api/v1/document-workflow-chain/chain/{chain_id}/export
 ```
 
-## 🎯 Casos de Uso
+## 🎯 Use Cases
 
-### 1. Serie de Blog Automática
+### 1. Automatic Blog Series
 ```python
-# Crear una serie completa de blog posts
+# Create a complete blog post series
 chain = await engine.create_workflow_chain(
-    name="Guía Completa de SEO",
-    description="Serie de 10 artículos sobre SEO",
-    initial_prompt="Escribe una introducción completa al SEO"
+    name="Complete SEO Guide",
+    description="Series of 10 articles about SEO",
+    initial_prompt="Write a complete introduction to SEO"
 )
 
-# Generar 9 artículos más automáticamente
+# Generate 9 more articles automatically
 for i in range(9):
     await engine.continue_workflow_chain(chain.id)
 ```
 
-### 2. Contenido Educativo Escalonado
+### 2. Staggered Educational Content
 ```python
-# Crear contenido educativo progresivo
+# Create progressive educational content
 chain = await engine.create_workflow_chain(
-    name="Curso de Python",
-    description="Lecciones progresivas de Python",
-    initial_prompt="Escribe la lección 1: Introducción a Python"
+    name="Python Course",
+    description="Progressive Python lessons",
+    initial_prompt="Write lesson 1: Introduction to Python"
 )
 
-# Cada lección se basa en la anterior
+# Each lesson builds on the previous one
 for lesson in range(2, 11):
     await engine.continue_workflow_chain(
         chain.id,
-        f"Escribe la lección {lesson} basándote en la anterior"
+        f"Write lesson {lesson} based on the previous one"
     )
 ```
 
-### 3. Documentación Técnica
+### 3. Technical Documentation
 ```python
-# Generar documentación técnica completa
+# Generate complete technical documentation
 chain = await engine.create_workflow_chain(
-    name="Documentación API",
-    description="Documentación completa de la API",
-    initial_prompt="Escribe la introducción a nuestra API REST"
+    name="API Documentation",
+    description="Complete API documentation",
+    initial_prompt="Write the introduction to our REST API"
 )
 ```
 
-## 🔧 Configuración Avanzada
+## 🔧 Advanced Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```bash
-# Configuración de IA
+# AI Configuration
 AI_CLIENT_TYPE=openai          # openai, anthropic, cohere
-AI_API_KEY=tu_api_key
+AI_API_KEY=your_api_key
 AI_MODEL=gpt-4                 # gpt-4, claude-3, etc.
 
-# Configuración de Base de Datos
-POSTGRES_PASSWORD=tu_password
+# Database Configuration
+POSTGRES_PASSWORD=your_password
 REDIS_URL=redis://localhost:6379
 
-# Configuración de Logging
+# Logging Configuration
 LOG_LEVEL=INFO                 # DEBUG, INFO, WARNING, ERROR
 ```
 
-### Personalización del Motor
+### Engine Customization
 
 ```python
-# Configuración personalizada
+# Custom settings
 settings = {
     "max_chain_length": 50,
     "auto_title_generation": True,
@@ -419,21 +421,21 @@ settings = {
 }
 
 chain = await engine.create_workflow_chain(
-    name="Mi Workflow",
-    description="Workflow personalizado",
-    initial_prompt="Prompt inicial",
+    name="My Workflow",
+    description="Custom workflow",
+    initial_prompt="Initial prompt",
     settings=settings
 )
 ```
 
-## 📊 Monitoreo y Logs
+## 📊 Monitoring and Logs
 
 ### Health Check
 ```http
 GET /api/v1/document-workflow-chain/health
 ```
 
-Respuesta:
+Response:
 ```json
 {
     "status": "healthy",
@@ -443,41 +445,41 @@ Respuesta:
 }
 ```
 
-### Logs Estructurados
-El sistema genera logs detallados para:
-- Creación de workflows
-- Generación de documentos
-- Errores y excepciones
-- Métricas de rendimiento
+### Structured Logs
+The system generates detailed logs for:
+- Workflow creation
+- Document generation
+- Errors and exceptions
+- Performance metrics
 
 ## 🧪 Testing
 
-### Ejecutar Demo
+### Run Demo
 ```bash
 python examples/demo.py
 ```
 
-### Tests Unitarios
+### Unit Tests
 ```bash
 pytest tests/
 ```
 
-### Tests de Integración
+### Integration Tests
 ```bash
 pytest tests/integration/
 ```
 
-## 🚀 Despliegue en Producción
+## 🚀 Production Deployment
 
 ### Docker Compose
 ```bash
-# Despliegue completo con base de datos y Redis
+# Complete deployment with database and Redis
 docker-compose -f docker-compose.yml up -d
 ```
 
 ### Kubernetes
 ```yaml
-# Ejemplo de deployment para Kubernetes
+# Example deployment for Kubernetes
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -505,47 +507,49 @@ spec:
               key: api-key
 ```
 
-## 🔒 Seguridad
+## 🔒 Security
 
-- Autenticación JWT para endpoints
-- Rate limiting para prevenir abuso
-- Validación de entrada en todos los endpoints
-- Logs de auditoría para seguimiento
-- Encriptación de datos sensibles
+- JWT Authentication for endpoints
+- Rate limiting to prevent abuse
+- Input validation on all endpoints
+- Audit logs for tracking
+- Sensitive data encryption
 
-## 📈 Escalabilidad
+## 📈 Scalability
 
-- Arquitectura stateless para horizontal scaling
-- Cache con Redis para optimización
-- Base de datos PostgreSQL para persistencia
-- Load balancing con Nginx
-- Monitoreo con Prometheus
+- Stateless architecture for horizontal scaling
+- Cache with Redis for optimization
+- PostgreSQL database for persistence
+- Load balancing with Nginx
+- Monitoring with Prometheus
 
-## 🤝 Contribución
+## 🤝 Contribution
 
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crea un Pull Request
+1. Fork the repository
+2. Create a branch for your feature (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Create a Pull Request
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+This project is under the MIT License. See the `LICENSE` file for more details.
 
-## 🆘 Soporte
+## 🆘 Support
 
-- **Documentación**: [Wiki del proyecto]
+- **Documentation**: [Project Wiki]
 - **Issues**: [GitHub Issues]
-- **Discusiones**: [GitHub Discussions]
-- **Email**: soporte@blatam-academy.com
+- **Discussions**: [GitHub Discussions]
+- **Email**: support@blatam-academy.com
 
-## 🎉 Agradecimientos
+## 🎉 Acknowledgments
 
-- Equipo de Blatam Academy
-- Comunidad de desarrolladores
-- Contribuidores de código abierto
+- Blatam Academy Team
+- Developer Community
+- Open Source Contributors
 
 ---
 
-**Document Workflow Chain** - Transformando la creación de contenido con IA 🚀
+**Document Workflow Chain** - Transforming content creation with AI 🚀
+
+[← Back to Main README](../README.md)

@@ -38,7 +38,7 @@ sys.path.append('..')
 from bulk.ultra_advanced_optimizer import (
     QuantumOptimizer, QuantumState, UltraAdvancedOptimizer
 )
-from core.advanced_optimizations import (
+from modules.base.core_system.core.advanced_optimizations import (
     QuantumInspiredOptimizer, AdvancedOptimizationEngine, OptimizationTechnique,
     OptimizationMetrics
 )
@@ -939,3 +939,4 @@ if __name__ == '__main__':
             print(f"  - {test}: {traceback}")
     
     print(f"\n{'='*60}")
+

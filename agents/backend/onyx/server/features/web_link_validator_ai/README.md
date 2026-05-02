@@ -1,5 +1,7 @@
 # Web Link Validator AI
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
 AI-powered web link validator that checks if links are real, accessible, and relevant to user queries. Solves the problem of AI-generated fake links that don't exist or aren't relevant.
 
 ## Features
@@ -153,3 +155,6 @@ Default port: **8025**
 
 Part of Blatam Academy platform
 
+---
+
+[← Back to Main README](../README.md)

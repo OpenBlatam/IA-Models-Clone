@@ -1,3 +1,4 @@
+
 """
 Tools Module
 
@@ -16,6 +17,7 @@ __all__ = [
 _LAZY_IMPORTS = {
     'test_compiler_integration': '..test_compiler_integration',
     'test_kv_cache': '..test_kv_cache',
+    'sota_research_injector': '.sota_injector',
 }
 
 _import_cache = {}
@@ -59,4 +61,5 @@ def get_tool_info(tool_name: str) -> dict[str, any]:
         'module': _LAZY_IMPORTS[tool_name],
         'available': tool_name in _import_cache or True,
     }
+
 

@@ -1,7 +1,7 @@
 import unittest
-from agents.backend.onyx.server.features.lovable.web_gen_system.frameworks.nextjs import NextJSGenerator
-from agents.backend.onyx.server.features.lovable.web_gen_system.frameworks.expo import ExpoGenerator
-from agents.backend.onyx.server.features.lovable.web_gen_system.pipeline import WebGenPipeline
+from ..frameworks.nextjs import NextJSGenerator
+from ..frameworks.expo import ExpoGenerator
+from ..pipeline import WebGenPipeline
 
 class TestFrameworkGenerators(unittest.TestCase):
     def setUp(self):

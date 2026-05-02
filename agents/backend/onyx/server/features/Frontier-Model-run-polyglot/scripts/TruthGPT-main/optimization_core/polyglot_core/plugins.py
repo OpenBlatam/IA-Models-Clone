@@ -189,3 +189,4 @@ def get_plugin(plugin_name: str) -> Optional[Plugin]:
     """Convenience function to get plugin."""
     return _global_plugin_manager.get_plugin(plugin_name)
 
+

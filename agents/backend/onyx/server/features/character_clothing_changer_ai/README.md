@@ -1,5 +1,7 @@
 # 👔 Character Clothing Changer AI
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
 AI-powered tool for changing clothing in character images using Flux2 and DeepSeek models.
 
 ## 🚀 Quick Start
@@ -253,10 +255,14 @@ pytest tests/
 
 ## 📝 License
 
-[Your License Here]
+Proprietary - Blatam Academy
 
 ## 🙏 Acknowledgments
 
 - Flux2 model by Black Forest Labs
 - DeepSeek for fallback support
 - FastAPI for the API framework
+
+---
+
+[← Back to Main README](../README.md)

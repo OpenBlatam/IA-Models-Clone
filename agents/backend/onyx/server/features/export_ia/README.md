@@ -1,116 +1,114 @@
-# Export IA
+# Export IA — AI-Powered Document Export System
 
-Sistema de exportación de documentos con IA - Arquitectura modular y funcional.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🚀 **Características**
+AI-powered document export system — modular and functional architecture.
 
-- ✅ **Exportación a múltiples formatos** (PDF, DOCX, HTML, Markdown, etc.)
-- ✅ **API REST completa** con FastAPI
-- ✅ **Gestión asíncrona de tareas**
-- ✅ **Validación y mejora de calidad**
-- ✅ **Arquitectura modular y escalable**
-- ✅ **Configuración flexible**
-- ✅ **Documentación completa**
+## 🚀 Features
 
-## 📁 **Estructura del Proyecto**
+- ✅ **Multi-Format Export** — PDF, DOCX, HTML, Markdown, and more
+- ✅ **Full REST API** — Built with FastAPI
+- ✅ **Async Task Management** — Asynchronous job processing
+- ✅ **Quality Validation** — Content validation and quality improvements
+- ✅ **Modular Architecture** — Scalable and maintainable
+- ✅ **Flexible Configuration** — Environment-based configuration
+- ✅ **Complete Documentation** — Interactive API docs included
+
+## 📁 Project Structure
 
 ```
 export_ia/
-├── 📁 app/                          # Aplicación principal
-│   ├── 📁 core/                     # Lógica de negocio
-│   ├── 📁 api/                      # API REST
-│   ├── 📁 exporters/                # Exportadores
-│   ├── 📁 services/                 # Servicios
-│   └── 📁 utils/                    # Utilidades
-├── 📁 config/                       # Configuración
-├── 📁 database/                     # Base de datos
-├── 📁 tests/                        # Pruebas
-├── 📁 docs/                         # Documentación
+├── 📁 app/                          # Main application
+│   ├── 📁 core/                     # Business logic
+│   ├── 📁 api/                      # REST API
+│   ├── 📁 exporters/                # Exporters
+│   ├── 📁 services/                 # Services
+│   └── 📁 utils/                    # Utilities
+├── 📁 config/                       # Configuration
+├── 📁 database/                     # Database
+├── 📁 tests/                        # Tests
+├── 📁 docs/                         # Documentation
 ├── 📁 scripts/                      # Scripts
 ├── 📁 docker/                       # Docker
-├── 📁 examples/                     # Ejemplos
-├── 📄 requirements.txt              # Dependencias
-└── 📄 README.md                     # Este archivo
+├── 📁 examples/                     # Examples
+├── 📄 requirements.txt              # Dependencies
+└── 📄 README.md                     # This file
 ```
 
-## 🛠️ **Instalación**
+## 🛠️ Installation
 
-### **1. Clonar el repositorio**
+### 1. Clone the repository
 ```bash
 git clone https://github.com/your-org/export-ia.git
 cd export-ia
 ```
 
-### **2. Crear entorno virtual**
+### 2. Create a virtual environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-# o
+# or
 venv\Scripts\activate     # Windows
 ```
 
-### **3. Instalar dependencias**
+### 3. Install dependencies
 ```bash
-# Dependencias principales
+# Main dependencies
 pip install -r requirements.txt
 
-# Dependencias de desarrollo (opcional)
+# Development dependencies (optional)
 pip install -r requirements-dev.txt
 ```
 
-### **4. Configurar variables de entorno**
+### 4. Configure environment variables
 ```bash
-# Copiar archivo de ejemplo
 cp .env.example .env
-
-# Editar variables de entorno
-nano .env
+# Edit .env with your settings
 ```
 
-## 🚀 **Uso Rápido**
+## 🚀 Quick Start
 
-### **Ejecutar la API**
+### Run the API
 ```bash
-# Desarrollo
+# Development
 python -m app.api.main
 
-# Producción
+# Production
 uvicorn app.api.main:app --host 0.0.0.0 --port 8000
 ```
 
-### **Con Docker**
+### With Docker
 ```bash
-# Construir y ejecutar
 docker-compose -f docker/docker-compose.yml up --build
-
-# Acceder a la API
 curl http://localhost:8000/health
 ```
 
-## 📚 **API Endpoints**
+## 📚 API Endpoints
 
-### **Endpoints Principales**
-```
-GET  /api/v1/                    # Información del sistema
-GET  /api/v1/health             # Health check
-POST /api/v1/export             # Exportar documento
-GET  /api/v1/export/{id}/status # Estado de tarea
-GET  /api/v1/export/{id}/download # Descargar archivo
-POST /api/v1/validate           # Validar contenido
-GET  /api/v1/formats            # Formatos soportados
-GET  /api/v1/templates/{type}   # Plantillas
-```
+### Main Endpoints
 
-### **Ejemplo de Uso**
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/v1/` | System information |
+| `GET` | `/api/v1/health` | Health check |
+| `POST` | `/api/v1/export` | Export document |
+| `GET` | `/api/v1/export/{id}/status` | Task status |
+| `GET` | `/api/v1/export/{id}/download` | Download file |
+| `POST` | `/api/v1/validate` | Validate content |
+| `GET` | `/api/v1/formats` | Supported formats |
+| `GET` | `/api/v1/templates/{type}` | Templates |
+
+### Usage Example
+
 ```bash
-# Exportar documento
+# Export document
 curl -X POST "http://localhost:8000/api/v1/export" \
   -H "Content-Type: application/json" \
   -d '{
     "content": {
-      "title": "Mi Documento",
+      "title": "My Document",
       "sections": [
-        {"heading": "Introducción", "content": "Contenido aquí..."}
+        {"heading": "Introduction", "content": "Content here..."}
       ]
     },
     "format": "pdf",
@@ -118,85 +116,84 @@ curl -X POST "http://localhost:8000/api/v1/export" \
     "quality_level": "professional"
   }'
 
-# Verificar estado
+# Check status
 curl "http://localhost:8000/api/v1/export/{task_id}/status"
 
-# Descargar archivo
-curl "http://localhost:8000/api/v1/export/{task_id}/download" -o documento.pdf
+# Download file
+curl "http://localhost:8000/api/v1/export/{task_id}/download" -o document.pdf
 ```
 
-## 🐍 **SDK Python**
+## 🐍 Python SDK
 
-### **Uso Básico**
+### Basic Usage
 ```python
 from app.core.engine import get_export_engine
 from app.core.models import ExportConfig, ExportFormat, DocumentType
 
-# Obtener motor
+# Get engine
 engine = get_export_engine()
 await engine.initialize()
 
-# Configurar exportación
+# Configure export
 config = ExportConfig(
     format=ExportConfig.PDF,
     document_type=DocumentType.REPORT
 )
 
-# Exportar documento
+# Export document
 content = {
-    "title": "Mi Documento",
+    "title": "My Document",
     "sections": [
-        {"heading": "Introducción", "content": "Contenido aquí..."}
+        {"heading": "Introduction", "content": "Content here..."}
     ]
 }
 
 task_id = await engine.export_document(content, config)
 
-# Esperar completado
+# Wait for completion
 result = await engine.wait_for_completion(task_id)
-print(f"Archivo exportado: {result['file_path']}")
+print(f"Exported file: {result['file_path']}")
 ```
 
-## 🧪 **Pruebas**
+## 🧪 Testing
 
-### **Ejecutar Pruebas**
 ```bash
-# Todas las pruebas
+# All tests
 pytest
 
-# Con cobertura
+# With coverage
 pytest --cov=app
 
-# Pruebas específicas
+# Specific tests
 pytest tests/unit/
 pytest tests/integration/
 ```
 
-## 📖 **Documentación**
+## 📖 Documentation
 
-### **Documentos Disponibles**
-- **[API Documentation](docs/API.md)** - Documentación completa de la API
-- **[Deployment Guide](docs/DEPLOYMENT.md)** - Guía de despliegue
-- **[Development Guide](docs/DEVELOPMENT.md)** - Guía de desarrollo
-- **[Examples](examples/)** - Ejemplos de uso
+### Available Docs
+- **[API Documentation](docs/API.md)** — Complete API documentation
+- **[Deployment Guide](docs/DEPLOYMENT.md)** — Deployment guide
+- **[Development Guide](docs/DEVELOPMENT.md)** — Development guide
+- **[Examples](examples/)** — Usage examples
 
-### **Documentación Interactiva**
+### Interactive Documentation
 - **Swagger UI**: http://localhost:8000/docs
 - **ReDoc**: http://localhost:8000/redoc
 
-## 🔧 **Configuración**
+## 🔧 Configuration
 
-### **Variables de Entorno**
+### Environment Variables
 ```bash
 # API
 API_TITLE="Export IA API"
 API_VERSION="2.0.0"
 DEBUG=false
 
-# Base de datos
+# Database
 DATABASE_URL="sqlite:///./export_ia.db"
 
-# Archivos
+# Files
 EXPORTS_DIR="./exports"
 MAX_FILE_SIZE=52428800  # 50MB
 
@@ -205,9 +202,9 @@ LOG_LEVEL="INFO"
 LOG_FILE="./logs/export_ia.log"
 ```
 
-## 🐳 **Docker**
+## 🐳 Docker
 
-### **Docker Compose**
+### Docker Compose
 ```yaml
 version: '3.8'
 services:
@@ -222,58 +219,39 @@ services:
     restart: unless-stopped
 ```
 
-### **Comandos Docker**
+### Docker Commands
 ```bash
-# Construir imagen
 docker build -t export-ia .
-
-# Ejecutar contenedor
 docker run -p 8000:8000 export-ia
-
-# Con Docker Compose
 docker-compose up --build
 ```
 
-## 🤝 **Contribuir**
+## 🤝 Contributing
 
-### **1. Fork del repositorio**
-```bash
-git fork https://github.com/your-org/export-ia.git
-```
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Make changes and commit (`git commit -m "feat: add new feature"`)
+4. Push and create a Pull Request
 
-### **2. Crear rama de feature**
-```bash
-git checkout -b feature/nueva-funcionalidad
-```
+## 📄 License
 
-### **3. Hacer cambios y commit**
-```bash
-git add .
-git commit -m "feat: agregar nueva funcionalidad"
-```
+This project is under the MIT License. See [LICENSE](LICENSE) for details.
 
-### **4. Push y crear Pull Request**
-```bash
-git push origin feature/nueva-funcionalidad
-```
+## 🆘 Support
 
-## 📄 **Licencia**
-
-Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
-
-## 🆘 **Soporte**
-
-- **Documentación**: [docs/](docs/)
+- **Documentation**: [docs/](docs/)
 - **Issues**: [GitHub Issues](https://github.com/your-org/export-ia/issues)
-- **Discusiones**: [GitHub Discussions](https://github.com/your-org/export-ia/discussions)
+- **Discussions**: [GitHub Discussions](https://github.com/your-org/export-ia/discussions)
 
-## 🎯 **Roadmap**
+## 🎯 Roadmap
 
-- [ ] **v2.1.0**: Mejoras de rendimiento
-- [ ] **v2.2.0**: Nuevos formatos de exportación
-- [ ] **v2.3.0**: Integración con IA avanzada
-- [ ] **v3.0.0**: Arquitectura de microservicios
+- [ ] **v2.1.0** — Performance improvements
+- [ ] **v2.2.0** — New export formats
+- [ ] **v2.3.0** — Advanced AI integration
+- [ ] **v3.0.0** — Microservices architecture
 
 ---
 
-**¡Export IA - Exportación de documentos simple, rápida y profesional!** 🚀
+**Export IA — Simple, fast, and professional document export!** 🚀
+
+[← Back to Main README](../README.md)

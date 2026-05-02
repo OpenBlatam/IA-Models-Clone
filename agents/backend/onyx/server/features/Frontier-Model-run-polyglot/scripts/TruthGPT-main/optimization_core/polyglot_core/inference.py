@@ -575,3 +575,4 @@ class InferenceEngine:
         return (f"InferenceEngine(seed={self.config.seed}, "
                 f"backend={self._backend.name}, "
                 f"use_cache={self.config.use_cache})")
+

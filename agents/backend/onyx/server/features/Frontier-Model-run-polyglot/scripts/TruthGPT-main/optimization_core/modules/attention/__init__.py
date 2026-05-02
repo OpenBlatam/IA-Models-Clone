@@ -1,54 +1,36 @@
 """
 Attention module for TruthGPT Optimization Core
-Contains multi-head attention and specialized attention implementations
+Contains multi-head attention and specialized attention implementations.
 """
 
-from .multi_head_attention import (
-    MultiHeadAttention,
-    ScaledDotProductAttention,
-    create_multi_head_attention
-)
+from __future__ import annotations
+from optimization_core.utils.dependency_manager import resolve_lazy_import
 
-from .flash_attention import (
-    FlashAttention,
-    FlashAttentionV2,
-    create_flash_attention
-)
-
-from .sparse_attention import (
-    SparseAttention,
-    LocalAttention,
-    StridedAttention,
-    create_sparse_attention
-)
-
-from .cross_attention import (
-    CrossAttention,
-    create_cross_attention
-)
-
-__all__ = [
+_LAZY_IMPORTS = {
     # Multi-Head Attention
-    'MultiHeadAttention',
-    'ScaledDotProductAttention',
-    'create_multi_head_attention',
+    'MultiHeadAttention': '.multi_head_attention',
+    'ScaledDotProductAttention': '.multi_head_attention',
+    'create_multi_head_attention': '.multi_head_attention',
     
     # Flash Attention
-    'FlashAttention',
-    'FlashAttentionV2',
-    'create_flash_attention',
+    'FlashAttention': '.flash_attention',
+    'FlashAttentionV2': '.flash_attention',
+    'create_flash_attention': '.flash_attention',
     
     # Sparse Attention
-    'SparseAttention',
-    'LocalAttention',
-    'StridedAttention',
-    'create_sparse_attention',
+    'SparseAttention': '.sparse_attention',
+    'LocalAttention': '.sparse_attention',
+    'StridedAttention': '.sparse_attention',
+    'create_sparse_attention': '.sparse_attention',
     
     # Cross Attention
-    'CrossAttention',
-    'create_cross_attention'
-]
+    'CrossAttention': '.cross_attention',
+    'create_cross_attention': '.cross_attention',
+}
 
+def __getattr__(name: str):
+    """Lazy import system for attention components."""
+    return resolve_lazy_import(name, __package__ or 'attention', _LAZY_IMPORTS)
 
-
+__all__ = list(_LAZY_IMPORTS.keys())
 

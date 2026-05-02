@@ -14,7 +14,10 @@ import time
 import threading
 import gc
 import psutil
-import GPUtil
+try:
+    import GPUtil
+except ImportError:
+    GPUtil = None
 from collections import defaultdict, deque
 import json
 from pathlib import Path
@@ -730,4 +733,5 @@ def create_advanced_memory_manager(config: MemoryConfig = None) -> AdvancedMemor
 def create_memory_config(**kwargs) -> MemoryConfig:
     """Create a memory configuration."""
     return MemoryConfig(**kwargs)
+
 

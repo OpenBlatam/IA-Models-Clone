@@ -1,78 +1,80 @@
-# 🏆 3D Prototype AI - Sistema Enterprise Completo
+# 🏆 3D Prototype AI — Complete Enterprise System
 
-## 🎉 Sistema Enterprise de Clase Mundial
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema completo de generación de prototipos 3D con **81 sistemas funcionales**, **250+ endpoints REST** y **~65,000+ líneas de código**.
+## 🎉 World-Class Enterprise System
 
-### ✨ Características Principales
+Complete 3D prototype generation system with **81 functional systems**, **250+ REST endpoints**, and **~65,000+ lines of code**.
 
-- ✅ **Generación automática** de prototipos desde descripciones
-- ✅ **81 sistemas funcionales** completos
-- ✅ **250+ endpoints REST** con OpenAPI
-- ✅ **Machine Learning** avanzado
+### ✨ Key Features
+
+- ✅ **Automatic Generation** of prototypes from descriptions
+- ✅ **81 Functional Systems** complete
+- ✅ **250+ REST Endpoints** with OpenAPI
+- ✅ **Advanced Machine Learning**
 - ✅ **Blockchain** verification
 - ✅ **AR/VR** integration
-- ✅ **IoT** y Edge Computing
-- ✅ **Monetización** y Marketplace
-- ✅ **Gamificación**
-- ✅ **Análisis avanzado** (sentimientos, demanda, competencia)
-- ✅ **Enterprise features** completas
+- ✅ **IoT** and Edge Computing
+- ✅ **Monetization** and Marketplace
+- ✅ **Gamification**
+- ✅ **Advanced Analytics** (sentiment, demand, competition)
+- ✅ **Enterprise Features** complete
 
-### 📊 Estadísticas
+### 📊 Statistics
 
-- **Módulos**: 81
+- **Modules**: 81
 - **Endpoints**: 250+
-- **Líneas de código**: ~65,000+
-- **Idiomas**: ES, EN, PT
-- **Tests**: ✅ Implementados
-- **Documentación**: ✅ Completa
+- **Lines of Code**: ~65,000+
+- **Languages**: ES, EN, PT
+- **Tests**: ✅ Implemented
+- **Documentation**: ✅ Complete
 
 ---
 
-Sistema de IA que genera prototipos completos de productos 3D incluyendo documentación, materiales, modelos CAD, instrucciones de ensamblaje y opciones según presupuesto.
+AI system that generates complete 3D product prototypes including documentation, materials, CAD models, assembly instructions, and budget options.
 
-## 🎯 Características
+## 🎯 Features
 
-- **Generación de Prototipos**: Crea prototipos completos basados en descripciones de productos
-- **Lista de Materiales**: Genera listas detalladas de materiales con precios y fuentes
-- **Modelos CAD**: Genera modelos CAD por partes (STL, STEP, OBJ)
-- **Instrucciones de Ensamblaje**: Proporciona pasos detallados para ensamblar el producto
-- **Opciones de Presupuesto**: Ofrece diferentes opciones según el presupuesto disponible
-- **Documentación Completa**: Genera documentos JSON con toda la información
+- **Prototype Generation** — Creates complete prototypes based on product descriptions
+- **Bill of Materials** — Generates detailed material lists with prices and sources
+- **CAD Models** — Generates CAD models by parts (STL, STEP, OBJ)
+- **Assembly Instructions** — Provides detailed steps to assemble the product
+- **Budget Options** — Offers different options according to available budget
+- **Complete Documentation** — Generates JSON documents with full information
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
-### Instalación
+### Installation
 
 ```bash
 cd agents/backend/onyx/server/features/3d_prototype_ai
 pip install -r requirements.txt
 ```
 
-### Opción 1: Chat Interactivo (Recomendado)
+### Option 1: Interactive Chat (Recommended)
 
-La forma más fácil de usar el sistema es a través del chat:
+The easiest way to use the system is through the chat:
 
 ```bash
 python chat_interface.py
 ```
 
-Luego simplemente escribe qué quieres hacer:
+Then simply type what you want to make:
 ```
-💬 Tú: Quiero hacer una nueva licuadora
+💬 You: I want to make a new blender
 ```
 
-El sistema generará automáticamente toda la documentación.
+The system will automatically generate all documentation.
 
-### Opción 2: API REST
+### Option 2: REST API
 
 ```bash
 python main.py
 ```
 
-El servidor estará disponible en `http://localhost:8030`
+The server will be available at `http://localhost:8030`
 
-### Opción 3: Ejemplos de Código
+### Option 3: Code Examples
 
 ```bash
 python example_usage.py
@@ -80,36 +82,36 @@ python example_usage.py
 
 ## 📡 API Endpoints
 
-### Generar Prototipo
+### Generate Prototype
 
 ```http
 POST /api/v1/generate
 Content-Type: application/json
 
 {
-  "product_description": "Quiero hacer una nueva licuadora",
-  "product_type": "licuadora",
+  "product_description": "I want to make a new blender",
+  "product_type": "blender",
   "budget": 100.0,
-  "requirements": ["Potente", "Fácil de limpiar"],
-  "location": "México"
+  "requirements": ["Powerful", "Easy to clean"],
+  "location": "Mexico"
 }
 ```
 
 **Response:**
 ```json
 {
-  "product_name": "Nueva Licuadora",
-  "product_description": "Quiero hacer una nueva licuadora",
+  "product_name": "New Blender",
+  "product_description": "I want to make a new blender",
   "specifications": {
-    "tipo": "licuadora",
-    "potencia_motor": "500-1000W",
-    "capacidad_vaso": "1-2 litros"
+    "type": "blender",
+    "motor_power": "500-1000W",
+    "jar_capacity": "1-2 liters"
   },
   "materials": [
     {
-      "name": "Motor eléctrico",
+      "name": "Electric Motor",
       "quantity": 1,
-      "unit": "unidad",
+      "unit": "unit",
       "price_per_unit": 25.0,
       "total_price": 25.0,
       "sources": [...]
@@ -119,21 +121,21 @@ Content-Type: application/json
   "assembly_instructions": [...],
   "budget_options": [...],
   "total_cost_estimate": 150.0,
-  "estimated_build_time": "2-3 horas",
-  "difficulty_level": "Media"
+  "estimated_build_time": "2-3 hours",
+  "difficulty_level": "Medium"
 }
 ```
 
-### Obtener Tipos de Productos
+### Get Product Types
 
 ```http
 GET /api/v1/product-types
 ```
 
-### Obtener Sugerencias de Materiales
+### Get Material Suggestions
 
 ```http
-GET /api/v1/materials/suggestions?product_type=licuadora
+GET /api/v1/materials/suggestions?product_type=blender
 ```
 
 ### Health Check
@@ -142,110 +144,84 @@ GET /api/v1/materials/suggestions?product_type=licuadora
 GET /health
 ```
 
-## 📋 Ejemplos de Uso
+## 📋 Usage Examples
 
-### Ejemplo 1: Licuadora
+### Example 1: Blender
 
 ```python
 import requests
 
 response = requests.post("http://localhost:8030/api/v1/generate", json={
-    "product_description": "Quiero hacer una nueva licuadora potente",
-    "product_type": "licuadora",
+    "product_description": "I want to make a new powerful blender",
+    "product_type": "blender",
     "budget": 150.0
 })
 
 prototype = response.json()
-print(f"Producto: {prototype['product_name']}")
-print(f"Costo total: ${prototype['total_cost_estimate']}")
-print(f"Materiales necesarios: {len(prototype['materials'])}")
+print(f"Product: {prototype['product_name']}")
+print(f"Total Cost: ${prototype['total_cost_estimate']}")
+print(f"Materials needed: {len(prototype['materials'])}")
 ```
 
-### Ejemplo 2: Estufa
-
-```python
-response = requests.post("http://localhost:8030/api/v1/generate", json={
-    "product_description": "Necesito diseñar una estufa de gas de 4 quemadores",
-    "product_type": "estufa",
-    "budget": 300.0,
-    "location": "México"
-})
-
-prototype = response.json()
-```
-
-### Ejemplo 3: Máquina Personalizada
-
-```python
-response = requests.post("http://localhost:8030/api/v1/generate", json={
-    "product_description": "Quiero crear una máquina para cortar madera",
-    "product_type": "maquina",
-    "requirements": ["Segura", "Precisa", "Fácil de usar"]
-})
-
-prototype = response.json()
-```
-
-## 🏗️ Estructura del Proyecto
+## 🏗️ Project Structure
 
 ```
 3d_prototype_ai/
 ├── api/
 │   ├── __init__.py
-│   └── prototype_api.py      # API REST FastAPI
+│   └── prototype_api.py      # FastAPI REST API
 ├── core/
 │   ├── __init__.py
-│   └── prototype_generator.py # Generador principal
+│   └── prototype_generator.py # Main generator
 ├── models/
 │   ├── __init__.py
-│   └── schemas.py             # Modelos Pydantic
+│   └── schemas.py             # Pydantic models
 ├── config/
 │   ├── __init__.py
-│   └── settings.py            # Configuración
+│   └── settings.py            # Configuration
 ├── utils/
-│   └── __init__.py
-├── main.py                    # Punto de entrada (API REST)
-├── chat_interface.py          # Interfaz de chat interactivo
-├── example_usage.py           # Ejemplos de uso
-├── requirements.txt           # Dependencias
-├── README.md                  # Este archivo
-└── QUICK_START.md            # Guía de inicio rápido
+├── main.py                    # Entry point (REST API)
+├── chat_interface.py          # Interactive chat interface
+├── example_usage.py           # Usage examples
+├── requirements.txt           # Dependencies
+├── README.md                  # This file
+└── QUICK_START.md             # Quick start guide
 ```
 
-## 📦 Componentes Principales
+## 📦 Main Components
 
 ### PrototypeGenerator
 
-Generador principal que:
-- Analiza la descripción del producto
-- Genera especificaciones técnicas
-- Crea lista de materiales con precios
-- Genera partes CAD
-- Crea instrucciones de ensamblaje
-- Calcula opciones según presupuesto
+Main generator that:
+- Analyzes product description
+- Generates technical specifications
+- Creates bill of materials with prices
+- Generates CAD parts
+- Creates assembly instructions
+- Calculates options according to budget
 
 ### MaterialDatabase
 
-Base de datos de materiales que incluye:
-- Precios por unidad
-- Fuentes de suministro
-- Disponibilidad
-- Alternativas
+Material database including:
+- Price per unit
+- Supply sources
+- Availability
+- Alternatives
 
-### Tipos de Productos Soportados
+### Supported Product Types
 
-- Licuadora
-- Estufa
-- Máquina
-- Electrodoméstico
-- Herramienta
-- Mueble
-- Dispositivo
-- Otro
+- Blender
+- Stove
+- Machine
+- Appliance
+- Tool
+- Furniture
+- Device
+- Other
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-Crear archivo `.env`:
+Create `.env` file:
 
 ```env
 DEBUG=false
@@ -255,60 +231,41 @@ OUTPUT_DIR=output/prototypes
 CAD_OUTPUT_DIR=output/cad_files
 ```
 
-## 📝 Documentos Generados
+## 📝 Generated Documents
 
-El sistema genera los siguientes documentos:
+The system generates the following documents:
 
-1. **Documento Completo** (`{producto}_completo.json`): Contiene toda la información del prototipo
-2. **Documento de Materiales** (`{producto}_materiales.json`): Lista detallada de materiales y precios
+1. **Complete Document** (`{product}_complete.json`): Contains full prototype information
+2. **Materials Document** (`{product}_materials.json`): Detailed list of materials and prices
 
-## 🎨 Opciones de Presupuesto
+## 🎨 Budget Options
 
-El sistema genera 4 niveles de presupuesto:
+The system generates 4 budget levels:
 
-1. **Bajo**: Materiales económicos (70% del costo base)
-2. **Medio**: Materiales estándar (100% del costo base)
-3. **Alto**: Materiales de calidad (150% del costo base)
-4. **Premium**: Mejores materiales (200% del costo base)
+1. **Low**: Economy materials (70% of base cost)
+2. **Medium**: Standard materials (100% of base cost)
+3. **High**: Quality materials (150% of base cost)
+4. **Premium**: Best materials (200% of base cost)
 
 ## 💬 Chat Interface
 
-El sistema incluye una interfaz de chat interactiva que permite conversar de forma natural:
+The system includes an interactive chat interface that allows natural conversation:
 
 ```bash
 python chat_interface.py
 ```
 
-**Características del chat:**
-- ✅ Entrada en lenguaje natural
-- ✅ Detección automática del tipo de producto
-- ✅ Extracción de presupuesto si se menciona
-- ✅ Respuestas formateadas y fáciles de leer
-- ✅ Generación automática de documentos
+**Chat Features:**
+- ✅ Natural language input
+- ✅ Automatic product type detection
+- ✅ Budget extraction if mentioned
+- ✅ Formatted and easy-to-read responses
+- ✅ Automatic document generation
 
-**Ejemplos de uso en el chat:**
-- "Quiero hacer una nueva licuadora"
-- "Necesito diseñar una estufa de gas con presupuesto de 300 dólares"
-- "Quiero crear una máquina para cortar madera que sea segura"
+## 📄 License & Author
 
-## 🚧 Mejoras Futuras
+Proprietary — Blatam Academy
 
-- [ ] Integración con APIs de búsqueda de materiales en tiempo real
-- [ ] Generación real de archivos CAD (STL, STEP)
-- [ ] Integración con LLM para descripciones más detalladas
-- [ ] Visualización 3D de los modelos
-- [ ] Base de datos de materiales más completa
-- [ ] Integración con proveedores de materiales
-- [ ] Sistema de recomendaciones mejorado
-- [ ] Exportación a formatos adicionales (PDF, Markdown)
-- [ ] Chat con memoria de conversación
-- [ ] Generación de imágenes de los prototipos
+---
 
-## 📄 Licencia
-
-Propietaria - Blatam Academy
-
-## 👥 Autor
-
-Blatam Academy
-
+[← Back to Main README](../README.md)

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { cn } from '@/src/utils';
 
 type SpinnerSize = 'sm' | 'md' | 'lg' | 'xl';
 
@@ -26,17 +27,15 @@ export const LoadingSpinner = ({
 
     return (
         <div
-            className={`flex flex-col items-center justify-center gap-3 ${className}`}
+            className={cn('flex flex-col items-center justify-center gap-3', className)}
             role="status"
             aria-label={label}
         >
             <motion.div
-                className={`
-          ${spinner}
-          border-primary/20
-          border-t-primary
-          rounded-full
-        `}
+                className={cn(
+                    spinner,
+                    'border-primary/20 border-t-primary rounded-full'
+                )}
                 animate={{ rotate: 360 }}
                 transition={{
                     duration: 1,
@@ -46,7 +45,7 @@ export const LoadingSpinner = ({
                 aria-hidden="true"
             />
             <motion.span
-                className={`${text} text-text-muted font-medium`}
+                className={cn(text, 'text-text-muted font-medium')}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -59,7 +58,11 @@ export const LoadingSpinner = ({
 
 export const LoadingDots = ({ className = '' }: { className?: string }) => {
     return (
-        <div className={`flex items-center gap-1 ${className}`} role="status" aria-label="Loading">
+        <div
+            className={cn('flex items-center gap-1', className)}
+            role="status"
+            aria-label="Loading"
+        >
             {[0, 1, 2].map((i) => (
                 <motion.div
                     key={i}
@@ -89,7 +92,7 @@ export const LoadingPulse = ({
 }) => {
     return (
         <div
-            className={`flex flex-col items-center justify-center gap-4 ${className}`}
+            className={cn('flex flex-col items-center justify-center gap-4', className)}
             role="status"
             aria-label={label}
         >

@@ -8,13 +8,12 @@ import subprocess
 import json
 from typing import Dict, Any, List, Optional
 from pathlib import Path
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class TestResult:
+class TestResult(BaseModel):
     """Result of test execution."""
     test_name: str
     passed: bool
@@ -240,6 +239,7 @@ def run_ci_checks(
         runner.generate_report(results, output_path)
     
     return results
+
 
 
 

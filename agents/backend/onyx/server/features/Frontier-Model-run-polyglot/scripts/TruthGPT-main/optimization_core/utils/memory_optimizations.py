@@ -5,11 +5,12 @@ Advanced Memory and Quantization Optimizations for TruthGPT Models
 import torch
 import torch.nn as nn
 from typing import Dict, Any, Optional
-from dataclasses import dataclass
+from pydantic import BaseModel, Field, ConfigDict
 
-@dataclass
-class MemoryOptimizationConfig:
+class MemoryOptimizationConfig(BaseModel):
     """Configuration for memory optimizations."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     enable_fp16: bool = True
     enable_gradient_checkpointing: bool = True
     enable_quantization: bool = True
@@ -99,3 +100,4 @@ def create_memory_optimizer(config: Dict[str, Any]) -> MemoryOptimizer:
     )
     
     return MemoryOptimizer(opt_config)
+

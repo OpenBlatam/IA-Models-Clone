@@ -129,7 +129,7 @@ FROM production as final
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p /app/models /app/cache /app/logs /app/config /tmp && \
+RUN mkdir -p /app/models /app/cache /app/logs /app/config /app/plugins /tmp && \
     chown -R truthgpt:truthgpt /app
 
 # Set permissions
@@ -145,8 +145,8 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
 # Expose ports
 EXPOSE 8080 9090
 
-# Default command
-CMD ["python", "-m", "ultra_speed_truthgpt_optimizer"]
+# Default command (Using the modular CLI)
+CMD ["python", "cli.py", "swarm", "ask", "Hola, ¿en qué puedes ayudarme hoy?"]
 
 # Labels for metadata
 LABEL maintainer="TruthGPT Team" \

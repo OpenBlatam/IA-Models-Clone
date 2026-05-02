@@ -6,7 +6,7 @@ Provides utilities for production monitoring and alerting.
 import logging
 import time
 from typing import Dict, Any, List, Optional, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from enum import Enum
 from collections import deque
 
@@ -21,14 +21,13 @@ class AlertLevel(Enum):
     CRITICAL = "critical"
 
 
-@dataclass
-class Alert:
+class Alert(BaseModel):
     """Alert data structure."""
     level: AlertLevel
     message: str
     component: str
-    timestamp: float = field(default_factory=time.time)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    timestamp: float = Field(default_factory=time.time)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
@@ -294,6 +293,7 @@ def get_alert_manager() -> AlertManager:
 def get_system_monitor() -> SystemMonitor:
     """Get global system monitor."""
     return _global_system_monitor
+
 
 
 

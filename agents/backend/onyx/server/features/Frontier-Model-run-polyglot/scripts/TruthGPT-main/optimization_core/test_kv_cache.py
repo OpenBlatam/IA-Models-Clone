@@ -120,7 +120,7 @@ def test_optimizer_config():
     print("Testing Optimizer Configuration...")
     
     try:
-        from optimizers.kv_cache_optimizer import KVCacheOptimizationConfig, create_kv_cache_config
+        from modules.optimizers.kv_cache.kv_cache_optimizer import KVCacheOptimizationConfig, create_kv_cache_config
         
         # Test creating config
         config = create_kv_cache_config(
@@ -172,6 +172,7 @@ def run_all_tests():
 
 if __name__ == "__main__":
     run_all_tests()
+
 
 
 

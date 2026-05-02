@@ -1,54 +1,57 @@
 # Instagram Captions Generation System
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema para generación de captions para Instagram con arquitectura modular y optimizaciones avanzadas.
+## 📋 Description
 
-## 🚀 Características Principales
+System for generating Instagram captions with modular architecture and advanced optimizations.
 
-- **Generación de Captions**: Sistema completo para crear captions atractivos para Instagram
-- **Arquitectura Modular**: Diseño modular y escalable
-- **Seguridad**: Principios de seguridad integrados
-- **Configuración Flexible**: Sistema de configuración adaptable
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Caption Generation**: Complete system for creating engaging Instagram captions
+- **Modular Architecture**: Modular and scalable design
+- **Security**: Integrated security principles
+- **Flexible Configuration**: Adaptable configuration system
+
+## 📁 Structure
 
 ```
 instagram_captions/
-├── config/                 # Configuraciones
-├── current/                # Versión actual
-├── demos/                  # Demostraciones
-├── docs/                   # Documentación
-├── legacy/                 # Código legado
-└── utils/                  # Utilidades
+├── config/                 # Configurations
+├── current/                # Current version
+├── demos/                  # Demos
+├── docs/                   # Documentation
+├── legacy/                 # Legacy code
+└── utils/                  # Utilities
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
-Las dependencias se instalan con el sistema principal.
+Dependencies are installed with the main system.
 
-## 💻 Uso
+## 💻 Usage
 
 ```python
 from instagram_captions.current import InstagramCaptionGenerator
 
-# Inicializar generador
+# Initialize generator
 generator = InstagramCaptionGenerator()
 
-# Generar caption
+# Generate caption
 caption = generator.generate(
-    image_description="Foto de producto",
-    style="moderno",
+    image_description="Product photo",
+    style="modern",
     hashtags=True
 )
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Blatam AI**: Motor de IA
-- **Integration System**: Para orquestación
-- **Export IA**: Para exportación
+This module integrates with:
+- **Blatam AI**: AI Engine
+- **Integration System**: For orchestration
+- **Export IA**: For export
 
+---
 
-
+[← Back to Main README](../README.md)

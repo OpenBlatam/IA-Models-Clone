@@ -18,7 +18,7 @@ class InferenceEngineError(InferenceError):
     """
     Base exception for inference engine errors.
     
-    Inherits from core.InferenceError for consistency.
+    Inherits from modules.base.core_system.core.InferenceError for consistency.
     """
     
     def __init__(self, message: str, engine_type: str = None, **kwargs):
@@ -56,7 +56,7 @@ class ValidationError(CoreValidationError):
     """
     Raised when input validation fails.
     
-    Inherits from core.ValidationError for consistency.
+    Inherits from modules.base.core_system.core.ValidationError for consistency.
     """
     pass
 
@@ -65,7 +65,7 @@ class ModelNotFoundError(ModelError):
     """
     Raised when model file is not found.
     
-    Inherits from core.ModelError for consistency.
+    Inherits from modules.base.core_system.core.ModelError for consistency.
     """
     pass
 
@@ -83,4 +83,5 @@ class QuantizationError(InferenceEngineError):
 class BatchProcessingError(InferenceEngineError):
     """Raised when batch processing fails."""
     pass
+
 

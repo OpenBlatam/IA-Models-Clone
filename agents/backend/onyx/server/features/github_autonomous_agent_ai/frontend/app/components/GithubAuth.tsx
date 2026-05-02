@@ -37,9 +37,9 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
   const handleTokenAuth = async () => {
     try {
       setAuthenticating(true);
-      const token = tokenInput.trim() || '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';
+      const token = tokenInput.trim() || process.env.NEXT_PUBLIC_GITHUB_DEFAULT_TOKEN || '';
       const { success, user: authUser } = await githubAPI.authenticateWithToken(token);
-      
+
       if (success && authUser) {
         setUser(authUser);
         onAuthSuccess(authUser);
@@ -58,9 +58,14 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
   const handleQuickConnect = async () => {
     try {
       setAuthenticating(true);
-      // Usar token por defecto
-      const { success, user: authUser } = await githubAPI.authenticateWithToken('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');
-      
+      const defaultToken = process.env.NEXT_PUBLIC_GITHUB_DEFAULT_TOKEN || '';
+      if (!defaultToken) {
+        onAuthError('No hay token configurado. Usa "Usar mi propio token" para conectar con tu Personal Access Token de GitHub.');
+        setAuthenticating(false);
+        return;
+      }
+      const { success, user: authUser } = await githubAPI.authenticateWithToken(defaultToken);
+
       if (success && authUser) {
         setUser(authUser);
         onAuthSuccess(authUser);
@@ -78,28 +83,28 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
     try {
       setAuthenticating(true);
       const response = await githubAPI.initiateAuth();
-      
+
       if (!response || !response.auth_url) {
         throw new Error('No se recibió URL de autorización del servidor');
       }
-      
+
       const { auth_url, state } = response;
-      
+
       // Guardar el estado para validación posterior
       sessionStorage.setItem('github_oauth_state', state);
-      
+
       // Abrir ventana de OAuth
       const width = 600;
       const height = 700;
       const left = window.screen.width / 2 - width / 2;
       const top = window.screen.height / 2 - height / 2;
-      
+
       const popup = window.open(
         auth_url,
         'GitHub Auth',
         `width=${width},height=${height},left=${left},top=${top}`
       );
-      
+
       if (!popup) {
         throw new Error('No se pudo abrir la ventana de autenticación. Verifica que los popups no estén bloqueados.');
       }
@@ -107,11 +112,11 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
       // Escuchar mensaje del popup
       const messageListener = async (event: MessageEvent) => {
         if (event.origin !== window.location.origin) return;
-        
+
         if (event.data.type === 'github-auth-success') {
           const { code, state: callbackState } = event.data;
           const savedState = sessionStorage.getItem('github_oauth_state');
-          
+
           // Validar estado
           if (callbackState !== savedState) {
             onAuthError('Error de seguridad: estado no coincide');
@@ -119,7 +124,7 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
             setAuthenticating(false);
             return;
           }
-          
+
           try {
             const { success, user: authUser } = await githubAPI.handleCallback(code, callbackState);
             if (success && authUser) {
@@ -208,7 +213,7 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
         <p className="text-sm text-gray-600 mb-4">
           Conecta tu cuenta de GitHub usando un token de acceso
         </p>
-        
+
         {/* Botón de conexión rápida con token por defecto */}
         <button
           onClick={handleQuickConnect}
@@ -223,7 +228,7 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
           ) : (
             <>
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
               <span>Conectar con Token Predefinido</span>
             </>
@@ -238,7 +243,7 @@ export default function GithubAuth({ onAuthSuccess, onAuthError }: GithubAuthPro
           >
             {useToken ? 'Ocultar' : 'Usar mi propio token'}
           </button>
-          
+
           {useToken && (
             <div className="space-y-2">
               <input

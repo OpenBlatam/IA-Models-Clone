@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Dict, Optional, Callable, Awaitable, Protocol
 
-from ..core.interfaces import HealthStatus
+from ..core.interfaces import HealthStatus, ComponentHealth, ComponentType
 from ..utils.logging import get_logger
 
 # =============================================================================
@@ -27,7 +27,7 @@ class Executable(Protocol):
 
 class HealthCheckable(Protocol):
     """Protocol for health-checkable components."""
-    def get_health_status(self) -> HealthStatus: ...
+    def get_health_status(self) -> ComponentHealth: ...
 
 class Configurable(Protocol):
     """Protocol for configurable components."""
@@ -251,11 +251,25 @@ class Engine(ABC, Executable, HealthCheckable, Configurable, MetricsProvider):
             self._last_operation_time = time.time()
             self.status = EngineStatus.IDLE
     
-    def get_health_status(self) -> HealthStatus:
+    def get_health_status(self) -> ComponentHealth:
         """Get engine health status."""
-        return HealthStatus(
-            component=self.name,
-            status=self.status.value,
+        # Map EngineStatus to HealthStatus
+        status_map = {
+            EngineStatus.IDLE: HealthStatus.HEALTHY,
+            EngineStatus.BUSY: HealthStatus.HEALTHY,
+            EngineStatus.SCALING: HealthStatus.HEALTHY,
+            EngineStatus.INITIALIZING: HealthStatus.UNKNOWN,
+            EngineStatus.MAINTENANCE: HealthStatus.DEGRADED,
+            EngineStatus.ERROR: HealthStatus.UNHEALTHY,
+            EngineStatus.OFFLINE: HealthStatus.UNHEALTHY
+        }
+        
+        health_status = status_map.get(self.status, HealthStatus.UNKNOWN)
+        
+        return ComponentHealth(
+            component_id=self.name,
+            component_type=ComponentType.ENGINE,
+            status=health_status,
             message=f"Engine {self.name} is {self.status.value}",
             timestamp=time.time(),
             details={
@@ -329,5 +343,3 @@ class Engine(ABC, Executable, HealthCheckable, Configurable, MetricsProvider):
         
         current_requests = self._get_metrics("current_requests", 0)
         return min(100.0, (current_requests / self.capabilities.max_concurrent_requests) * 100.0)
-
-

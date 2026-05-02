@@ -336,3 +336,4 @@ class BatchProcessor:
         return self.engine.generate_batched(prompts, **kwargs)
 
 
+

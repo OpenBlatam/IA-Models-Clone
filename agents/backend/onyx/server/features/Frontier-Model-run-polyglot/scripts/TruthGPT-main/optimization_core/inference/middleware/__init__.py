@@ -75,3 +75,4 @@ def get_middleware_component_info(component_name: str) -> dict[str, any]:
         'available': component_name in _import_cache or True,
     }
 
+

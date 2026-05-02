@@ -1,64 +1,66 @@
 # Web Content Extractor AI
 
-Sistema avanzado para extraer información completa de páginas web usando OpenRouter y múltiples métodos de scraping.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## Características
+Advanced system for extracting complete information from web pages using OpenRouter and multiple scraping methods.
 
-### ✨ Extracción Avanzada
-- **Múltiples métodos de extracción**: Trafilatura, Readability, Newspaper3k, BeautifulSoup
-- **Scraping avanzado**: Soporte para JavaScript con Playwright
-- **Extracción de tablas**: Tablas HTML estructuradas
-- **Extracción de videos**: HTML5, embeds (YouTube, Vimeo, etc.)
-- **Extracción de citas**: Blockquotes y citas inline
-- **Extracción de código**: Bloques de código con detección de lenguaje
-- **Extracción de formularios**: Campos y estructura de formularios
-- **Feeds RSS/Atom**: Detección y extracción de feeds
+## Features
 
-### 🧠 Análisis Inteligente
-- **Procesamiento con IA**: OpenRouter para análisis y estructuración de contenido
-- **Detección de idioma**: Detección avanzada con múltiples idiomas
-- **Análisis de calidad**: Métricas de legibilidad (Flesch, Flesch-Kincaid, etc.)
-- **Metadatos enriquecidos**: Autor, fecha, keywords, Open Graph, Twitter Cards, JSON-LD
-- **Datos estructurados**: Microdata, Schema.org
+### ✨ Advanced Extraction
+- **Multiple Extraction Methods**: Trafilatura, Readability, Newspaper3k, BeautifulSoup
+- **Advanced Scraping**: Support for JavaScript with Playwright
+- **Table Extraction**: Structured HTML tables
+- **Video Extraction**: HTML5, embeds (YouTube, Vimeo, etc.)
+- **Quote Extraction**: Blockquotes and inline quotes
+- **Code Extraction**: Code blocks with language detection
+- **Form Extraction**: Form fields and structure
+- **RSS/Atom Feeds**: Feed detection and extraction
 
-### ⚡ Rendimiento
-- **Cache inteligente**: Sistema de cache con TTL para optimizar rendimiento
-- **Batch scraping**: Procesamiento paralelo de múltiples URLs
-- **Retry automático**: Reintentos con backoff exponencial
-- **Rate limiting**: Control de velocidad de requests
-- **User agents rotativos**: Evita bloqueos
+### 🧠 Intelligent Analysis
+- **AI Processing**: OpenRouter for content analysis and structuring
+- **Language Detection**: Advanced detection with multiple languages
+- **Quality Analysis**: Readability metrics (Flesch, Flesch-Kincaid, etc.)
+- **Rich Metadata**: Author, date, keywords, Open Graph, Twitter Cards, JSON-LD
+- **Structured Data**: Microdata, Schema.org
 
-### 🔌 API REST
-- **Endpoints documentados**: FastAPI con Swagger/OpenAPI
-- **Validación de datos**: Pydantic para validación robusta
-- **Manejo de errores**: Respuestas de error estructuradas
+### ⚡ Performance
+- **Intelligent Cache**: Cache system with TTL to optimize performance
+- **Batch Scraping**: Parallel processing of multiple URLs
+- **Automatic Retry**: Retries with exponential backoff
+- **Rate Limiting**: Request speed control
+- **Rotating User Agents**: Prevents blocking
 
-## Instalación
+### 🔌 REST API
+- **Documented Endpoints**: FastAPI with Swagger/OpenAPI
+- **Data Validation**: Pydantic for robust validation
+- **Error Handling**: Structured error responses
+
+## Installation
 
 ```bash
-# Instalar dependencias esenciales
+# Install essential dependencies
 pip install -r requirements.txt
 
-# Instalar dependencias opcionales (para funcionalidades avanzadas)
+# Install optional dependencies (for advanced functionality)
 pip install -r requirements-optional.txt
 
-# Instalar navegadores para Playwright (opcional, solo si usas JavaScript rendering)
+# Install browsers for Playwright (optional, only if using JavaScript rendering)
 playwright install chromium
 ```
 
-## Configuración
+## Configuration
 
-Crea un archivo `.env` basado en `.env.example`:
+Create a `.env` file based on `.env.example`:
 
 ```bash
-OPENROUTER_API_KEY=tu_api_key_aqui
+OPENROUTER_API_KEY=your_api_key_here
 HOST=0.0.0.0
 PORT=8000
 CACHE_MAX_SIZE=1000
 CACHE_TTL=3600
 ```
 
-## Inicio Rápido
+## Quick Start
 
 ```bash
 # Linux/Mac
@@ -68,19 +70,19 @@ chmod +x scripts/start.sh
 # Windows
 scripts\start.bat
 
-# O manualmente
+# Or manually
 python main.py
 ```
 
-## Uso
+## Usage
 
-### Iniciar servidor
+### Start Server
 
 ```bash
 python main.py
 ```
 
-O con uvicorn:
+Or with uvicorn:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
@@ -88,7 +90,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ### Endpoints
 
-#### Extraer contenido
+#### Extract Content
 
 ```bash
 POST /api/v1/extract
@@ -101,19 +103,19 @@ Content-Type: application/json
 }
 ```
 
-#### Estadísticas de cache
+#### Cache Statistics
 
 ```bash
 GET /api/v1/extract/cache/stats
 ```
 
-#### Limpiar cache
+#### Clear Cache
 
 ```bash
 DELETE /api/v1/extract/cache
 ```
 
-#### Extracción en batch (múltiples URLs)
+#### Batch Extraction (Multiple URLs)
 
 ```bash
 POST /api/v1/extract/batch
@@ -130,10 +132,10 @@ Content-Type: application/json
 }
 ```
 
-### Ejemplo con curl
+### Example with curl
 
 ```bash
-# Extraer contenido
+# Extract content
 curl -X POST "http://localhost:8000/api/v1/extract" \
   -H "Content-Type: application/json" \
   -d '{
@@ -141,13 +143,13 @@ curl -X POST "http://localhost:8000/api/v1/extract" \
     "model": "anthropic/claude-3.5-sonnet"
   }'
 
-# Ver estadísticas de cache
+# View cache statistics
 curl "http://localhost:8000/api/v1/extract/cache/stats"
 
-# Limpiar cache
+# Clear cache
 curl -X DELETE "http://localhost:8000/api/v1/extract/cache"
 
-# Extracción en batch
+# Batch extraction
 curl -X POST "http://localhost:8000/api/v1/extract/batch" \
   -H "Content-Type: application/json" \
   -d '{
@@ -156,69 +158,69 @@ curl -X POST "http://localhost:8000/api/v1/extract/batch" \
   }'
 ```
 
-### Ejemplo con Python
+### Example with Python
 
 ```python
 import asyncio
 from example_usage import example_extract, example_cache_stats
 
-# Extraer contenido
+# Extract content
 asyncio.run(example_extract())
 
-# Ver estadísticas
+# View statistics
 asyncio.run(example_cache_stats())
 ```
 
-## Modelos disponibles
+## Available Models
 
-Puedes usar cualquier modelo de OpenRouter. Recomendados:
+You can use any OpenRouter model. Recommended:
 
-- `anthropic/claude-3.5-sonnet` (por defecto) - Mejor calidad
-- `anthropic/claude-3-haiku` - Más rápido y económico
-- `openai/gpt-4-turbo` - Excelente para análisis
-- `google/gemini-pro` - Buen balance calidad/precio
+- `anthropic/claude-3.5-sonnet` (default) - Best quality
+- `anthropic/claude-3-haiku` - Faster and cheaper
+- `openai/gpt-4-turbo` - Excellent for analysis
+- `google/gemini-pro` - Good quality/price balance
 
-## Métodos de extracción
+## Extraction Methods
 
-El sistema intenta automáticamente en este orden:
+The system automatically attempts in this order:
 
-1. **Trafilatura** - Mejor para artículos y contenido estructurado
-2. **Readability** - Extrae contenido principal limpio
-3. **Newspaper3k** - Ideal para noticias y artículos
-4. **BeautifulSoup** - Fallback siempre disponible
+1. **Trafilatura** - Best for articles and structured content
+2. **Readability** - Extracts clean main content
+3. **Newspaper3k** - Ideal for news and articles
+4. **BeautifulSoup** - Always available fallback
 
-## Contenido extraído
+## Extracted Content
 
-El scraper extrae:
+The scraper extracts:
 
-- ✅ **Texto principal** - Contenido limpio y estructurado
-- ✅ **Metadatos** - Título, descripción, autor, fecha, keywords
-- ✅ **Enlaces** - Todos los enlaces con texto y URLs normalizadas
-- ✅ **Imágenes** - Con alt text, dimensiones y URLs
-- ✅ **Tablas** - Estructura completa con headers y filas
+- ✅ **Main Text** - Clean and structured content
+- ✅ **Metadata** - Title, description, author, date, keywords
+- ✅ **Links** - All links with text and normalized URLs
+- ✅ **Images** - With alt text, dimensions, and URLs
+- ✅ **Tables** - Complete structure with headers and rows
 - ✅ **Videos** - HTML5, embeds (YouTube, Vimeo, etc.)
-- ✅ **Citas** - Blockquotes y citas inline con autores
-- ✅ **Código** - Bloques de código con detección de lenguaje
-- ✅ **Formularios** - Campos y estructura completa
-- ✅ **Feeds** - RSS/Atom feeds detectados
-- ✅ **Datos estructurados** - JSON-LD, Microdata, Open Graph
-- ✅ **Análisis de calidad** - Métricas de legibilidad
-- ✅ **Detección de idioma** - Con nivel de confianza
+- ✅ **Quotes** - Blockquotes and inline quotes with authors
+- ✅ **Code** - Code blocks with language detection
+- ✅ **Forms** - Complete fields and structure
+- ✅ **Feeds** - Detected RSS/Atom feeds
+- ✅ **Structured Data** - JSON-LD, Microdata, Open Graph
+- ✅ **Quality Analysis** - Readability metrics
+- ✅ **Language Detection** - With confidence level
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 web_content_extractor_ai/
-├── main.py                          # Servidor FastAPI
-├── config.py                        # Configuración
-├── example_usage.py                 # Ejemplos de uso
+├── main.py                          # FastAPI Server
+├── config.py                        # Configuration
+├── example_usage.py                 # Usage examples
 ├── infrastructure/
 │   ├── openrouter/
-│   │   └── client.py               # Cliente OpenRouter
+│   │   └── client.py               # OpenRouter Client
 │   ├── web_scraper/
-│   │   └── scraper.py              # Scraper multi-método
+│   │   └── scraper.py              # Multi-method Scraper
 │   └── cache/
-│       └── content_cache.py        # Sistema de cache
+│       └── content_cache.py        # Cache System
 ├── application/
 │   └── use_cases/
 │       └── extract_content_use_case.py
@@ -233,7 +235,7 @@ web_content_extractor_ai/
 └── requirements.txt
 ```
 
-## Respuesta de ejemplo
+## Example Response
 
 ```json
 {
@@ -246,57 +248,61 @@ web_content_extractor_ai/
     "images_count": 2,
     "extraction_method": "trafilatura"
   },
-  "extracted_info": "{\"titulo\": \"...\", \"contenido\": \"...\"}",
+  "extracted_info": "{\"title\": \"...\", \"content\": \"...\"}",
   "processing_metadata": {
     "model_used": "anthropic/claude-3.5-sonnet",
     "tokens_used": 1234
   },
-  "message": "Contenido extraído exitosamente"
+  "message": "Content extracted successfully"
 }
 ```
 
-## Parámetros de configuración
+## Configuration Parameters
 
-- `use_cache`: Usar cache (default: true)
-- `use_javascript`: Renderizar JavaScript con Playwright (default: false, más lento)
-- `extract_strategy`: Forzar método específico ("auto", "trafilatura", "readability", "newspaper", "beautifulsoup")
+- `use_cache`: Use cache (default: true)
+- `use_javascript`: Render JavaScript with Playwright (default: false, slower)
+- `extract_strategy`: Force specific method ("auto", "trafilatura", "readability", "newspaper", "beautifulsoup")
 
-## Documentación API
+## API Documentation
 
-Una vez iniciado el servidor, visita:
+Once the server is started, visit:
 
 - Swagger UI: `http://localhost:8000/docs`
 - ReDoc: `http://localhost:8000/redoc`
 
 ## Docker
 
-### Construir y ejecutar
+### Build and Run
 
 ```bash
-# Construir imagen
+# Build image
 docker build -t web-content-extractor-ai .
 
-# Ejecutar
-docker run -p 8000:8000 -e OPENROUTER_API_KEY=tu_key web-content-extractor-ai
+# Run
+docker run -p 8000:8000 -e OPENROUTER_API_KEY=your_key web-content-extractor-ai
 
-# O con docker-compose
+# Or with docker-compose
 docker-compose up
 ```
 
 ## Testing
 
 ```bash
-# Ejecutar tests
+# Run tests
 pytest tests/
 
-# Con coverage
+# With coverage
 pytest tests/ --cov=. --cov-report=html
 ```
 
-## Notas
+## Notes
 
-- El cache tiene TTL de 1 hora por defecto
-- Playwright requiere más recursos pero maneja mejor páginas con JavaScript
-- Trafilatura es generalmente el método más efectivo para artículos
-- El sistema detecta automáticamente el encoding del contenido
-- Rate limiting: 100 requests por minuto por IP
+- Cache has a default TTL of 1 hour
+- Playwright requires more resources but handles JavaScript pages better
+- Trafilatura is generally the most effective method for articles
+- The system automatically detects content encoding
+- Rate limiting: 100 requests per minute per IP
+
+---
+
+[← Back to Main README](../README.md)

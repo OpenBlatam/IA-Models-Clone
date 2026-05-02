@@ -226,3 +226,4 @@ class MetricsCollector:
 # Global metrics collector instance
 metrics_collector = MetricsCollector()
 
+

@@ -12,6 +12,7 @@ This module provides organized access to module components:
 - optimization: Optimization strategies
 - training: Training components
 - transformer: Transformer components
+- learning: Learning strategies and optimization
 """
 
 from __future__ import annotations
@@ -46,6 +47,7 @@ _LAZY_IMPORTS = {
     'interface': '.interface',
     'memory': '.memory',
     'monitoring': '.monitoring',
+    'learning': '.learning',
 }
 
 _import_cache = {}
@@ -165,6 +167,7 @@ __all__ = [
     'interface',
     'memory',
     'monitoring',
+    'learning',
     'list_available_module_submodules',
 ]
 

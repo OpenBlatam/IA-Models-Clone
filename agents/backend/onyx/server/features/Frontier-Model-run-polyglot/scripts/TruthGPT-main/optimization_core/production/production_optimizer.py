@@ -533,3 +533,4 @@ if __name__ == "__main__":
         # Get metrics
         metrics = optimizer.get_performance_metrics()
         print(f"📊 Performance metrics collected: {len(metrics)} categories")
+

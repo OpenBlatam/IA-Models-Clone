@@ -322,3 +322,4 @@ def check_backend_compatibility(backend: str, feature: str) -> bool:
     features = compatibility[backend_lower]
     return feature in features or 'all' in features
 
+

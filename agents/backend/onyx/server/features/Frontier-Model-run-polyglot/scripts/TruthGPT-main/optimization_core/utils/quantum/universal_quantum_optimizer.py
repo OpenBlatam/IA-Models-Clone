@@ -7,15 +7,19 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime
 from enum import Enum
 import logging
+import random
+import time
+from .common import initialize_quantum_state, normalize_state, calculate_quantum_advantage
+from pydantic import Field, ConfigDict
 import random
 import math
 import asyncio
 import threading
 import time
+from ..base import BaseOptimizationModel, CudaResourceManager
 
 class UniversalQuantumOptimizationMethod(Enum):
     """Universal quantum optimization method enum."""
@@ -52,8 +56,7 @@ class QuantumHardwareType(Enum):
     HYBRID_QUANTUM_CLASSICAL = "hybrid_quantum_classical"
     QUANTUM_CLOUD = "quantum_cloud"
 
-@dataclass
-class UniversalQuantumOptimizationConfig:
+class UniversalQuantumOptimizationConfig(BaseOptimizationModel):
     """Universal quantum optimization configuration."""
     method: UniversalQuantumOptimizationMethod = UniversalQuantumOptimizationMethod.VARIATIONAL_QUANTUM_EIGENSOLVER
     level: QuantumOptimizationLevel = QuantumOptimizationLevel.ADVANCED
@@ -74,20 +77,22 @@ class UniversalQuantumOptimizationConfig:
     annealing_time: float = 100.0
     temperature_schedule: str = "linear"
 
-@dataclass
-class QuantumOptimizationState:
+class QuantumState(BaseOptimizationModel):
     """Quantum optimization state representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     quantum_state: np.ndarray
     classical_state: np.ndarray
     energy: float
     fidelity: float
     coherence_time: float
     entanglement_entropy: float
-    timestamp: datetime = field(default_factory=datetime.now)
+    timestamp: datetime = Field(default_factory=datetime.now)
 
-@dataclass
-class UniversalQuantumOptimizationResult:
+class UniversalQuantumOptimizationResult(BaseModel):
     """Universal quantum optimization result."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     optimal_state: QuantumOptimizationState
     optimization_method: UniversalQuantumOptimizationMethod
     optimization_level: QuantumOptimizationLevel
@@ -97,7 +102,7 @@ class UniversalQuantumOptimizationResult:
     quantum_advantage: float
     classical_comparison: float
     optimization_time: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 class QuantumAnnealingOptimizer:
     """Quantum annealing optimizer."""
@@ -168,11 +173,7 @@ class QuantumAnnealingOptimizer:
     
     def _initialize_quantum_state(self) -> QuantumOptimizationState:
         """Initialize quantum state for annealing."""
-        # Create superposition state
-        quantum_state = np.ones(2 ** self.config.num_qubits, dtype=complex)
-        quantum_state = quantum_state / np.sqrt(2 ** self.config.num_qubits)
-        
-        # Initialize classical state
+        quantum_state = initialize_quantum_state(self.config.num_qubits)
         classical_state = np.random.random(self.config.num_qubits)
         
         return QuantumOptimizationState(
@@ -220,8 +221,7 @@ class QuantumAnnealingOptimizer:
     
     def _apply_quantum_annealing(self, quantum_state: np.ndarray, s: float, temperature: float) -> np.ndarray:
         """Apply quantum annealing to quantum state."""
-        # Simulate quantum annealing
-        new_state = quantum_state.copy()
+        new_state = quantum_state.copy().astype(np.complex128)
         
         # Apply quantum tunneling
         if self.config.use_quantum_tunneling:
@@ -233,10 +233,7 @@ class QuantumAnnealingOptimizer:
             interference_pattern = np.exp(1j * s * np.pi)
             new_state *= interference_pattern
         
-        # Normalize
-        new_state = new_state / np.linalg.norm(new_state)
-        
-        return new_state
+        return normalize_state(new_state)
     
     def _update_classical_state(self, classical_state: np.ndarray, s: float) -> np.ndarray:
         """Update classical state."""
@@ -362,11 +359,7 @@ class VariationalQuantumEigensolverOptimizer:
     
     def _initialize_quantum_state(self) -> QuantumOptimizationState:
         """Initialize quantum state for VQE."""
-        # Create superposition state
-        quantum_state = np.ones(2 ** self.config.num_qubits, dtype=complex)
-        quantum_state = quantum_state / np.sqrt(2 ** self.config.num_qubits)
-        
-        # Initialize classical state
+        quantum_state = initialize_quantum_state(self.config.num_qubits)
         classical_state = np.random.random(self.config.num_qubits)
         
         return QuantumOptimizationState(
@@ -419,19 +412,18 @@ class VariationalQuantumEigensolverOptimizer:
         return gradients
     
     def _apply_variational_circuit(self, quantum_state: np.ndarray) -> np.ndarray:
-        """Apply variational circuit to quantum state."""
-        # Simulate variational circuit
-        new_state = quantum_state.copy()
+        """Apply variational circuit to quantum state with proper simulation."""
+        new_state = quantum_state.copy().astype(np.complex128)
         
-        # Apply rotation gates
+        # Apply rotation gates based on variational parameters
         for i in range(len(self.variational_params)):
             angle = self.variational_params[i]
-            new_state *= np.exp(1j * angle)
+            qubit_idx = i % self.config.num_qubits
+            # Simple rotation simulation for VQE
+            rot_matrix = np.array([[np.cos(angle/2), -1j*np.sin(angle/2)], [-1j*np.sin(angle/2), np.cos(angle/2)]])
+            new_state = apply_single_qubit_gate(new_state, rot_matrix, qubit_idx)
         
-        # Normalize
-        new_state = new_state / np.linalg.norm(new_state)
-        
-        return new_state
+        return normalize_state(new_state)
     
     def _evaluate_energy_with_params(self, params: np.ndarray, objective_function: Callable) -> float:
         """Evaluate energy with specific parameters."""
@@ -640,4 +632,5 @@ if __name__ == "__main__":
         optimizer.stop_optimization()
     
     print("\nUniversal quantum optimization completed")
+
 

@@ -7,6 +7,10 @@ This module contains optimization techniques and computational optimizations.
 from __future__ import annotations
 
 __all__ = [
+    'OptimizationTechnique',
+    'get_technique',
+    'register_technique',
+    'TechniqueRegistry',
     'ComputationalOptimizer',
     'FusedAttention',
     'BatchOptimizer',
@@ -19,6 +23,11 @@ __all__ = [
 ]
 
 _LAZY_IMPORTS = {
+    # Core techniques
+    'OptimizationTechnique': '..core.techniques',
+    'get_technique': '..core.techniques',
+    'register_technique': '..core.techniques',
+    'TechniqueRegistry': '..core.techniques',
     # Computational optimizations
     'ComputationalOptimizer': '..computational_optimizations',
     'FusedAttention': '..computational_optimizations',
@@ -48,7 +57,14 @@ def __getattr__(name: str):
     
     module_path = _LAZY_IMPORTS[name]
     try:
-        module = __import__(module_path, fromlist=[name], level=2)
+        import importlib
+        if module_path.startswith('..'):
+            # Handle relative imports
+            package = __name__
+            module = importlib.import_module(module_path, package=package)
+        else:
+            module = importlib.import_module(module_path)
+            
         obj = getattr(module, name)
         _import_cache[name] = obj
         return obj

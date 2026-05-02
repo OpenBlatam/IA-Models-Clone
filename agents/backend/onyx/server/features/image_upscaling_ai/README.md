@@ -1,15 +1,17 @@
 # Image Upscaling AI
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
 AI-powered image upscaling service using OpenRouter and optimization_core for super-resolution image enhancement.
 
 ## Features
 
-- **Multi-scale upscaling**: Support for 1.5x to 8x upscaling
-- **AI enhancement**: Integration with OpenRouter for AI-powered image enhancement
-- **optimization_core integration**: Uses optimization_core for advanced image processing
-- **Quality modes**: Fast, balanced, high, and ultra quality modes
-- **Batch processing**: Process multiple images in batch
-- **REST API**: FastAPI-based REST API for easy integration
+- **Multi-scale upscaling** — Support for 1.5x to 8x upscaling
+- **AI enhancement** — Integration with OpenRouter for AI-powered image enhancement
+- **optimization_core integration** — Uses optimization_core for advanced image processing
+- **Quality modes** — Fast, balanced, high, and ultra quality modes
+- **Batch processing** — Process multiple images in batch
+- **REST API** — FastAPI-based REST API for easy integration
 
 ## Architecture
 
@@ -164,8 +166,6 @@ Times vary based on image size and scale factor.
 
 See `requirements.txt` for full list.
 
-## License
+---
 
-See parent project license.
-
-
+[← Back to Main README](../README.md)

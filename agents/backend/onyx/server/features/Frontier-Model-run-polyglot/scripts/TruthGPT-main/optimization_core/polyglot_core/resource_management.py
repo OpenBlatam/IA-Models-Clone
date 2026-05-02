@@ -209,3 +209,4 @@ def allocate_resources(allocation_id: str, resources: Dict[ResourceType, float])
     """Convenience function to allocate resources."""
     return _global_resource_manager.allocate(allocation_id, resources)
 
+

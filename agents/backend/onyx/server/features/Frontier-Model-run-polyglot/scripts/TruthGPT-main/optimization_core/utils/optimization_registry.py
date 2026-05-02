@@ -5,38 +5,38 @@ Enhanced with MCTS, parallel training, and advanced optimization techniques.
 
 import torch
 import torch.nn as nn
-from typing import Dict, Any, Optional, List, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 import warnings
 
-@dataclass
-class OptimizationConfig:
+class OptimizationConfig(BaseModel):
     """Configuration for optimization techniques."""
-    use_cuda_kernels: bool = field(default=True, metadata={"help": "Use CUDA kernels"})
-    use_triton_kernels: bool = field(default=True, metadata={"help": "Use Triton kernels"})
-    use_enhanced_grpo: bool = field(default=True, metadata={"help": "Use enhanced GRPO training"})
-    use_mixed_precision: bool = field(default=True, metadata={"help": "Use mixed precision training"})
-    use_gradient_checkpointing: bool = field(default=False, metadata={"help": "Use gradient checkpointing"})
+    model_config = ConfigDict(arbitrary_types_allowed=True)
     
-    use_mcts_optimization: bool = field(default=True, metadata={"help": "Use MCTS optimization"})
-    use_parallel_training: bool = field(default=True, metadata={"help": "Use parallel training"})
-    use_experience_buffer: bool = field(default=True, metadata={"help": "Use experience buffer"})
-    use_advanced_losses: bool = field(default=True, metadata={"help": "Use advanced loss functions"})
-    use_reward_functions: bool = field(default=True, metadata={"help": "Use advanced reward functions"})
+    use_cuda_kernels: bool = Field(default=True, description="Use CUDA kernels")
+    use_triton_kernels: bool = Field(default=True, description="Use Triton kernels")
+    use_enhanced_grpo: bool = Field(default=True, description="Use enhanced GRPO training")
+    use_mixed_precision: bool = Field(default=True, description="Use mixed precision training")
+    use_gradient_checkpointing: bool = Field(default=False, description="Use gradient checkpointing")
     
-    cuda_block_size: int = field(default=256, metadata={"help": "CUDA block size"})
-    cuda_grid_size: int = field(default=1024, metadata={"help": "CUDA grid size"})
+    use_mcts_optimization: bool = Field(default=True, description="Use MCTS optimization")
+    use_parallel_training: bool = Field(default=True, description="Use parallel training")
+    use_experience_buffer: bool = Field(default=True, description="Use experience buffer")
+    use_advanced_losses: bool = Field(default=True, description="Use advanced loss functions")
+    use_reward_functions: bool = Field(default=True, description="Use advanced reward functions")
     
-    triton_block_size: int = field(default=1024, metadata={"help": "Triton block size"})
+    cuda_block_size: int = Field(default=256, description="CUDA block size")
+    cuda_grid_size: int = Field(default=1024, description="CUDA grid size")
     
-    grpo_clip_ratio: float = field(default=0.2, metadata={"help": "GRPO clip ratio"})
-    grpo_entropy_coef: float = field(default=0.01, metadata={"help": "GRPO entropy coefficient"})
+    triton_block_size: int = Field(default=1024, description="Triton block size")
     
-    mcts_max_evaluations: int = field(default=100, metadata={"help": "MCTS max evaluations"})
-    mcts_exploration_constant: float = field(default=0.1, metadata={"help": "MCTS exploration constant"})
+    grpo_clip_ratio: float = Field(default=0.2, description="GRPO clip ratio")
+    grpo_entropy_coef: float = Field(default=0.01, description="GRPO entropy coefficient")
     
-    parallel_micro_batch_size: int = field(default=4, metadata={"help": "Parallel training micro batch size"})
-    parallel_global_batch_size: int = field(default=8, metadata={"help": "Parallel training global batch size"})
+    mcts_max_evaluations: int = Field(default=100, description="MCTS max evaluations")
+    mcts_exploration_constant: float = Field(default=0.1, description="MCTS exploration constant")
+    
+    parallel_micro_batch_size: int = Field(default=4, description="Parallel training micro batch size")
+    parallel_global_batch_size: int = Field(default=8, description="Parallel training global batch size")
 
 class OptimizationRegistry:
     """Enhanced registry for managing optimization techniques."""
@@ -49,14 +49,18 @@ class OptimizationRegistry:
     def _register_default_optimizations(self):
         """Register default and enhanced optimization techniques."""
         try:
-            from .cuda_kernels import CUDAOptimizations
-            from .triton_optimizations import apply_triton_optimizations
+            from ..modules.acceleration.gpu.cuda_kernels import CUDAOptimizations
+            from ..modules.optimizers.techniques.triton_optimizations import apply_triton_optimizations
             from .enhanced_grpo import create_enhanced_grpo_trainer
             try:
-                from .mcts_optimization import create_mcts_optimizer
+                from ..modules.optimizers.advanced.next_gen_engine import create_mcts_optimizer
                 self.register_optimization("mcts_optimization", create_mcts_optimizer)
             except ImportError:
-                warnings.warn("MCTS optimization not available")
+                try:
+                    from .mcts_optimization import create_mcts_optimizer
+                    self.register_optimization("mcts_optimization", create_mcts_optimizer)
+                except ImportError:
+                    warnings.warn("MCTS optimization not available")
             
             try:
                 from .parallel_training import create_parallel_actor
@@ -288,3 +292,4 @@ def register_optimization(name: str, optimization_func: Callable):
 def get_optimization_report(model: nn.Module) -> Dict[str, Any]:
     """Get optimization report for a model."""
     return _optimization_registry.get_optimization_report(model)
+

@@ -173,3 +173,4 @@ def format_error_details(error: Exception, context: Dict[str, Any] = None) -> Di
     
     return details
 
+

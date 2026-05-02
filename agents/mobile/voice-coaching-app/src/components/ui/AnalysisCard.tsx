@@ -33,7 +33,7 @@ export function AnalysisCard({ analysis, onPress }: AnalysisCardProps) {
                     </View>
                 </View>
                 <View className="items-end">
-                    <Text className={`text-3xl font-bold ${scoreColor}`}>
+                    <Text className="text-3xl font-bold" style={{ color: scoreColor.includes('text-') ? undefined : scoreColor }}>
                         {analysis.score}
                     </Text>
                     <Text className="text-text-muted text-xs">Score</Text>

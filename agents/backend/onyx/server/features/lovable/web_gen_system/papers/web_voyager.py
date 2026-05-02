@@ -15,7 +15,7 @@ class WebVoyagerAgent(BaseAgent):
         Plans a navigation sequence for a complex user goal.
         """
         try:
-            goal = context.get("goal")
+            goal = context.shared_memory.get("goal")
             if not goal:
                 return {"status": "skipped"}
 

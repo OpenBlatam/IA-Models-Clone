@@ -13,6 +13,7 @@ from enum import Enum
 import logging
 import time
 import threading
+from ..common.base_advanced_system import BaseAdvancedSystem, BaseAdvancedMetrics
 from collections import defaultdict, deque
 import json
 from pathlib import Path
@@ -249,44 +250,24 @@ class DimensionalSpace:
         new_space.data = unfolded_data
         return new_space
 
-class UltraAdvancedDimensionalComputingSystem:
+class UltraAdvancedDimensionalComputingSystem(BaseAdvancedSystem):
     """
     Ultra-Advanced Dimensional Computing System.
-    
-    Features:
-    - Multi-dimensional processing (2D to 11D)
-    - Dimensional algorithms with transformations
-    - Dimensional neural networks with multi-dimensional layers
-    - Dimensional quantum computing with dimensional qubits
-    - Dimensional machine learning with dimensional algorithms
-    - Dimensional optimization with dimensional methods
-    - Dimensional simulation with dimensional models
-    - Dimensional AI with dimensional intelligence
-    - Dimensional error correction
-    - Real-time dimensional monitoring
+    Refactored to inherit from BaseAdvancedSystem for enterprise scalability.
     """
     
     def __init__(self, config: DimensionalComputingConfig):
-        self.config = config
+        super().__init__(config, "DimensionalComputingSystem")
         
         # Dimensional state
         self.dimensional_spaces = {}
-        self.dimensional_system = None
-        self.dimensional_algorithms = None
-        
-        # Performance tracking
-        self.metrics = DimensionalComputingMetrics()
-        self.dimensional_history = deque(maxlen=1000)
-        self.dimensional_algorithm_history = deque(maxlen=1000)
         
         # Advanced components
         self._setup_dimensional_components()
         
-        # Background monitoring
-        self._setup_dimensional_monitoring()
-        
-        logger.info(f"Ultra-Advanced Dimensional Computing System initialized")
-        logger.info(f"Computing type: {config.computing_type}, Level: {config.dimensional_level}")
+        # Recording start
+        self.record_event("INITIALIZATION", {"config": str(config)})
+        self.start_monitoring()
     
     def _setup_dimensional_components(self):
         """Setup dimensional computing components."""
@@ -755,20 +736,28 @@ class MultiDimensionalProcessor:
         return result
     
     def _dimensional_transformation(self, data: Any) -> Any:
-        """Dimensional transformation."""
-        return f"dimensional_transformed_{data}"
+        """Dimensional transformation using matrix mapping."""
+        if isinstance(data, (int, float, np.ndarray)):
+            return np.tanh(data)
+        return data
     
     def _dimensional_rotation(self, data: Any) -> Any:
-        """Dimensional rotation."""
-        return f"dimensional_rotated_{data}"
+        """Dimensional rotation using sine waves."""
+        if isinstance(data, (int, float, np.ndarray)):
+            return np.sin(data)
+        return data
     
     def _dimensional_scaling(self, data: Any) -> Any:
-        """Dimensional scaling."""
-        return f"dimensional_scaled_{data}"
+        """Dimensional scaling logic."""
+        if isinstance(data, (int, float, np.ndarray)):
+            return data * 1.5
+        return data
     
     def _dimensional_projection(self, data: Any) -> Any:
-        """Dimensional projection."""
-        return f"dimensional_projected_{data}"
+        """Dimensional projection logic."""
+        if isinstance(data, (int, float, np.ndarray)):
+            return np.abs(data)
+        return data
     
     def get_processing_metrics(self) -> Dict[str, float]:
         """Get processing metrics."""
@@ -1183,3 +1172,4 @@ def create_ultra_advanced_dimensional_computing_system(config: DimensionalComput
 def create_dimensional_computing_config(**kwargs) -> DimensionalComputingConfig:
     """Create a dimensional computing configuration."""
     return DimensionalComputingConfig(**kwargs)
+

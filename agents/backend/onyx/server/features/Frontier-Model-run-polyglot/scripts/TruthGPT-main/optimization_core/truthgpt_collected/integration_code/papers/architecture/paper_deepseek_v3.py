@@ -10,6 +10,8 @@ Técnicas principales:
 - MLA (Multi-head Latent Attention)
 - MoE (Mixture of Experts)
 - Escalado eficiente
+
+ArXiv ID: 2412.19437
 """
 
 import torch
@@ -263,4 +265,5 @@ if __name__ == "__main__":
     print(f"   Input {x.shape} -> Output {output.shape}")
     print(f"   Memory efficiency: {metadata['memory_efficiency']:.2%}")
     print(f"   Computation efficiency: {metadata['computation_efficiency']:.2%}")
+
 

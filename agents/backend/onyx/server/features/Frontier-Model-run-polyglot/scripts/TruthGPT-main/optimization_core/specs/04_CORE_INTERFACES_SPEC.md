@@ -2,567 +2,255 @@
 
 ## 📋 Resumen
 
-Este documento especifica todas las interfaces y contratos base del sistema `optimization_core`. Estas interfaces definen los contratos que deben cumplir todos los componentes del sistema.
+Este documento especifica todas las interfaces y contratos base del sistema `optimization_core`. Estas interfaces definen los contratos asíncronos y arquitectónicos que deben cumplir de manera estricta todos los componentes de la suite para garantizar concurrencia no bloqueante y alta cohesión.
 
 ## 🎯 Principios de Diseño
 
-1. **Interfaces Primero**: Todas las funcionalidades se definen primero como interfaces
-2. **Contratos Claros**: Cada interfaz especifica claramente qué debe hacer, no cómo
-3. **Extensibilidad**: Fácil agregar nuevas implementaciones
-4. **Testabilidad**: Interfaces permiten fácil mocking y testing
+1. **Interfaces Primero y Asíncronas**: Todas las funcionalidades se definen primero como interfaces `async-first`.
+2. **Contratos Claros (Zero-Copy)**: Cada interfaz especifica explícitamente el uso de visualizaciones de memoria transitorias (MemoryViews) en fronteras intensivas.
+3. **Extensibilidad Vía Factory**: El registro de implementaciones ocurre siempre a través de un patrón *Registry*. No instanciar clases concretas directamente.
+4. **Resiliencia Pormenorizada**: Cada interfaz promueve delegación y recolección de métricas.
 
 ## 📦 Interfaces Base
 
 ### IComponent
 
-**Propósito**: Interfaz base para todos los componentes del sistema.
+**Propósito**: Interfaz general para todos los bloques de construcción (Motores, Caches, Procesadores).
 
 **Especificación**:
 
 ```python
+from abc import ABC, abstractmethod
+from typing import Dict, Any, Type, Optional, List, Union, AsyncGenerator
+from pathlib import Path
+
 class IComponent(ABC):
-    """Base interface for all components."""
+    """Base asynchronous interface for all lifecycle components."""
     
     @property
     @abstractmethod
     def name(self) -> str:
-        """
-        Get component name.
-        
-        Returns:
-            Component name (e.g., "VLLMEngine", "PolarsProcessor")
-        """
+        """Returns the registry name (e.g., 'PolarsProcessor')."""
         pass
     
     @property
     @abstractmethod
     def version(self) -> str:
-        """
-        Get component version.
-        
-        Returns:
-            Version string (e.g., "1.0.0", "2.3.1")
-        """
+        """Returns semantic version string."""
         pass
     
     @abstractmethod
-    def initialize(self, **kwargs) -> bool:
+    def initialize(self, **kwargs) -> 'IComponent':
         """
-        Initialize the component.
-        
-        Args:
-            **kwargs: Initialization parameters (component-specific)
-        
-        Returns:
-            True if initialization successful, False otherwise
-        
-        Raises:
-            InitializationError: If initialization fails
+        Synchronous foundational setup (e.g., config parsing).
+        Returns self for chaining: engine.initialize().load_model()
         """
         pass
+        
+    @abstractmethod
+    async def ainitialize(self, **kwargs) -> 'IComponent':
+         """
+         Asynchronous network or heavy setup initialization.
+         """
+         pass
     
     @abstractmethod
     def cleanup(self) -> None:
         """
-        Cleanup component resources.
-        
-        This method should:
-        - Release all allocated resources
-        - Close connections
-        - Free memory
-        - Be idempotent (safe to call multiple times)
+        Idempotent synchronous cleanup of resources (file handles, lockfiles).
         """
         pass
+        
+    @abstractmethod
+    async def acleanup(self) -> None:
+         """
+         Asynchronous cleanup (closing aiohttp sessions, asyncio queues).
+         """
+         pass
     
     @abstractmethod
     def get_status(self) -> Dict[str, Any]:
         """
-        Get component status.
-        
+        Get standard observability payload. Must never block.
         Returns:
-            Dictionary with status information:
             {
-                "name": str,
-                "version": str,
-                "initialized": bool,
-                "ready": bool,
-                "health": str,  # "healthy", "degraded", "unhealthy"
-                "metrics": Dict[str, Any],  # Component-specific metrics
-                "last_error": Optional[str],
-                "uptime_seconds": float
+                "name": str, "version": str, "health": "healthy|degraded",
+                "metrics": Dict, "last_error": Optional[str]
             }
         """
         pass
 ```
 
-**Contrato**:
-- `name` y `version` deben ser constantes (no cambian durante la vida del componente)
-- `initialize()` debe ser llamado antes de usar el componente
-- `cleanup()` debe ser llamado cuando el componente ya no se necesita
-- `get_status()` debe ser thread-safe y no bloquear
-
 ### IInferenceEngine
 
-**Propósito**: Interfaz para motores de inferencia de LLMs.
+**Propósito**: Interfaz estandarizada asíncrona para motores de texto (vLLM, TensorRT).
 
 **Especificación**:
 
 ```python
 class IInferenceEngine(IComponent):
-    """Interface for inference engines."""
+    """Async interface for LLM operations."""
     
     @abstractmethod
-    def generate(
+    async def agenerate(
         self,
         prompts: Union[str, List[str]],
-        config: Optional[GenerationConfig] = None,
+        config: Optional['GenerationConfig'] = None,
         **kwargs
     ) -> Union[str, List[str]]:
         """
-        Generate text from prompts.
+        Single-shot async text generation.
+        """
+        pass
         
-        Args:
-            prompts: Single prompt string or list of prompt strings
-            config: Generation configuration (max_tokens, temperature, etc.)
-            **kwargs: Additional generation parameters:
-                - max_tokens: int (overrides config)
-                - temperature: float (overrides config)
-                - top_p: float (overrides config)
-                - top_k: int (overrides config)
-                - repetition_penalty: float (overrides config)
-                - stop_sequences: List[str] (overrides config)
-                - stream: bool (streaming generation)
-                - seed: Optional[int] (random seed)
-        
-        Returns:
-            If single prompt: single string
-            If list of prompts: list of strings (same order)
-        
-        Raises:
-            NotInitializedError: If engine not initialized
-            InvalidInputError: If prompts invalid
-            GenerationError: If generation fails
+    @abstractmethod
+    async def stream_generate(
+        self,
+        prompt: str,
+        config: Optional['GenerationConfig'] = None,
+        **kwargs
+    ) -> AsyncGenerator[str, None]:
+        """
+        Yields tokens asynchronously (SSE/WebSocket friendly).
         """
         pass
     
     @abstractmethod
     def get_model_info(self) -> Dict[str, Any]:
-        """
-        Get model information.
-        
-        Returns:
-            Dictionary with model information:
-            {
-                "model_name": str,
-                "model_type": str,
-                "vocab_size": int,
-                "max_seq_len": int,
-                "num_layers": int,
-                "hidden_size": int,
-                "num_heads": int,
-                "dtype": str,  # "float32", "float16", "bfloat16", "int8"
-                "quantization": Optional[str],  # "awq", "gptq", None
-                "memory_usage_gb": float,
-                "device": str,  # "cuda:0", "cpu", etc.
-            }
-        """
+        """Hardware footprint and dimension data."""
         pass
     
     @abstractmethod
-    def load_model(
-        self,
-        model: Union[str, Path],
-        **kwargs
-    ) -> bool:
-        """
-        Load a model.
-        
-        Args:
-            model: Model name (HuggingFace) or path to model
-            **kwargs: Model loading parameters:
-                - dtype: str (precision)
-                - quantization: str (quantization method)
-                - tensor_parallel_size: int (multi-GPU)
-                - gpu_memory_utilization: float (0.0-1.0)
-        
-        Returns:
-            True if model loaded successfully
-        
-        Raises:
-            ModelLoadError: If model loading fails
-        """
-        pass
-    
-    @abstractmethod
-    def unload_model(self) -> None:
-        """
-        Unload the current model.
-        
-        Frees memory and resources.
-        """
+    def load_model(self, model: Union[str, Path], **kwargs) -> bool:
+        """Loads weights into memory."""
         pass
     
     @property
     @abstractmethod
     def is_model_loaded(self) -> bool:
-        """Check if a model is currently loaded."""
+        """Boolean guard for initialization."""
         pass
 ```
 
-**Contrato**:
-- `generate()` debe manejar tanto strings individuales como listas
-- `generate()` debe preservar el orden de los prompts
-- `generate()` debe ser thread-safe si el engine lo soporta
-- `get_model_info()` debe retornar información actualizada
-
 ### IDataProcessor
 
-**Propósito**: Interfaz para procesadores de datos.
+**Propósito**: Transformador matricial o de eventos (Polars/Pandas).
 
 **Especificación**:
 
 ```python
 class IDataProcessor(IComponent):
-    """Interface for data processors."""
+    """Interface for Lazy data evaluation and Streaming pipelines."""
     
     @abstractmethod
-    def process(
-        self,
-        data: Any,
-        **kwargs
-    ) -> Any:
-        """
-        Process data.
-        
-        Args:
-            data: Data to process (format depends on processor type)
-            **kwargs: Processing parameters:
-                - lazy: bool (lazy evaluation)
-                - parallel: bool (parallel processing)
-                - batch_size: int (batch size)
-                - filters: Dict[str, Any] (filtering criteria)
-                - transformations: List[Callable] (transformations to apply)
-        
-        Returns:
-            Processed data (format depends on processor type)
-        
-        Raises:
-            InvalidInputError: If data format invalid
-            ProcessingError: If processing fails
-        """
+    def process(self, data: Any, operations: List[Dict[str, Any]], **kwargs) -> Any:
+        """Applies a sequence of logical operations (AST-like build)."""
         pass
     
     @abstractmethod
-    def validate(self, data: Any) -> bool:
-        """
-        Validate data.
-        
-        Args:
-            data: Data to validate
-        
-        Returns:
-            True if data is valid, False otherwise
-        
-        Raises:
-            ValidationError: If validation fails with details
-        """
+    async def aread(self, path: Union[str, Path], format: Optional[str] = None, **kwargs) -> Any:
+        """Asynchronous disk/network file ingest."""
         pass
     
     @abstractmethod
-    def read(
-        self,
-        path: Union[str, Path],
-        **kwargs
-    ) -> Any:
-        """
-        Read data from file.
-        
-        Args:
-            path: Path to data file
-            **kwargs: Reading parameters:
-                - format: str (auto-detect if None)
-                - lazy: bool (lazy loading)
-                - columns: List[str] (columns to read)
-                - filters: Dict[str, Any] (pushdown filters)
-        
-        Returns:
-            Data object (lazy or eager depending on parameters)
-        
-        Raises:
-            FileNotFoundError: If file doesn't exist
-            ReadError: If reading fails
-        """
-        pass
-    
-    @abstractmethod
-    def write(
-        self,
-        data: Any,
-        path: Union[str, Path],
-        **kwargs
-    ) -> bool:
-        """
-        Write data to file.
-        
-        Args:
-            data: Data to write
-            path: Output path
-            **kwargs: Writing parameters:
-                - format: str (output format)
-                - compression: str (compression method)
-                - partition_by: List[str] (partition columns)
-        
-        Returns:
-            True if write successful
-        
-        Raises:
-            WriteError: If writing fails
-        """
+    async def awrite(self, data: Any, path: Union[str, Path], format: Optional[str] = None, **kwargs) -> bool:
+        """Asynchronous disk/network flush."""
         pass
 ```
 
-**Contrato**:
-- `process()` debe soportar lazy evaluation cuando sea posible
-- `validate()` debe proporcionar mensajes de error descriptivos
-- `read()` y `write()` deben soportar múltiples formatos
-
-## 📊 Tipos de Datos
+## 📊 Tipos de Datos (Value Objects)
 
 ### GenerationConfig
 
 ```python
-@dataclass
-class GenerationConfig:
-    """Configuration for text generation."""
+from pydantic import BaseModel, Field
+
+class GenerationConfig(BaseModel):
+    """Pydantic-based configuration for strict validation at system ingress."""
     
-    max_tokens: int = 100
-    """Maximum tokens to generate."""
-    
-    temperature: float = 0.7
-    """Sampling temperature (0.0 = deterministic, >1.0 = more random)."""
-    
-    top_p: float = 1.0
-    """Nucleus sampling parameter (0.0-1.0)."""
-    
-    top_k: int = -1
-    """Top-k sampling (-1 = disabled)."""
-    
-    repetition_penalty: float = 1.0
-    """Repetition penalty (>1.0 = penalize repetition)."""
-    
+    max_tokens: int = Field(default=100, ge=1, description="Maximum tokens to output.")
+    temperature: float = Field(default=0.7, ge=0.0, le=2.0)
+    top_p: float = Field(default=1.0, ge=0.0, le=1.0)
+    top_k: int = Field(default=-1)
+    repetition_penalty: float = Field(default=1.0, ge=0.0)
     stop_sequences: Optional[List[str]] = None
-    """Stop sequences (generation stops when encountered)."""
-    
     seed: Optional[int] = None
-    """Random seed for reproducibility."""
-    
-    stream: bool = False
-    """Whether to stream results."""
-    
-    def validate(self) -> None:
-        """
-        Validate configuration.
-        
-        Raises:
-            ValidationError: If configuration invalid
-        """
-        if self.max_tokens < 1:
-            raise ValidationError("max_tokens must be >= 1")
-        if not 0.0 <= self.temperature <= 2.0:
-            raise ValidationError("temperature must be in [0.0, 2.0]")
-        if not 0.0 <= self.top_p <= 1.0:
-            raise ValidationError("top_p must be in [0.0, 1.0]")
-        if self.top_k < -1:
-            raise ValidationError("top_k must be >= -1")
-        if self.repetition_penalty < 0.0:
-            raise ValidationError("repetition_penalty must be >= 0.0")
 ```
 
-## 🏭 Factories
+## 🏭 ComponentFactory (Registry)
 
-### ComponentFactory
-
-**Propósito**: Factory genérico para crear componentes.
+**Propósito**: Mecanismo global para resolver componentes en tiempo de ejecución.
 
 **Especificación**:
 
 ```python
-class ComponentFactory(ABC):
-    """Generic factory for creating components."""
+class IComponentFactory(ABC):
+    """Interface for the strict Component Registry."""
     
+    @classmethod
     @abstractmethod
-    def register(
-        self,
-        name: str,
-        component_class: Type[IComponent],
-        **kwargs
-    ) -> None:
-        """
-        Register a component class.
-        
-        Args:
-            name: Component name
-            component_class: Component class (must implement IComponent)
-            **kwargs: Default initialization parameters
-        """
+    def register(cls, name: str):
+        """Decorator for appending a class to the registry."""
         pass
     
+    @classmethod
     @abstractmethod
-    def create(
-        self,
-        name: str,
-        **kwargs
-    ) -> IComponent:
+    def create(cls, name: str, **kwargs) -> IComponent:
         """
-        Create a component instance.
-        
-        Args:
-            name: Component name (must be registered)
-            **kwargs: Initialization parameters (override defaults)
-        
-        Returns:
-            Component instance
-        
-        Raises:
-            ComponentNotFoundError: If component not registered
-            InitializationError: If initialization fails
+        Instantiates a registered component. 
+        Raises ComponentNotFoundError if the string key is absent.
         """
         pass
-    
-    @abstractmethod
-    def list_components(self) -> List[str]:
-        """
-        List all registered component names.
-        
-        Returns:
-            List of component names
-        """
-        pass
-    
-    @abstractmethod
-    def is_registered(self, name: str) -> bool:
-        """
-        Check if component is registered.
-        
-        Args:
-            name: Component name
-        
-        Returns:
-            True if registered
-        """
-        pass
-```
-
-## 🔄 Flujos de Uso
-
-### Flujo de Inicialización
-
-```
-1. Usuario crea factory
-2. Factory registra componentes
-3. Usuario llama factory.create(name, **kwargs)
-4. Factory crea instancia
-5. Factory llama initialize(**kwargs)
-6. Factory retorna componente inicializado
-```
-
-### Flujo de Uso
-
-```
-1. Usuario obtiene componente (via factory o directo)
-2. Usuario verifica is_initialized
-3. Usuario usa componente (generate, process, etc.)
-4. Usuario llama get_status() para monitoreo
-5. Usuario llama cleanup() cuando termina
 ```
 
 ## ✅ Validación y Errores
 
-### Jerarquía de Excepciones
+### Jerarquía de Excepciones Core
 
 ```python
 class OptimizationCoreError(Exception):
-    """Base exception for optimization_core."""
+    """Base top-level error."""
     pass
 
-class InitializationError(OptimizationCoreError):
-    """Component initialization failed."""
+class ComponentLifecycleError(OptimizationCoreError):
+    """Caught during initialize(), cleanup() or instantiation constraints."""
     pass
 
-class NotInitializedError(OptimizationCoreError):
-    """Component not initialized."""
+class MemoryConstraintError(OptimizationCoreError):
+    """Raised when an operation would exceed the configured zero-copy buffer limits."""
     pass
 
-class InvalidInputError(OptimizationCoreError):
-    """Invalid input provided."""
-    pass
-
-class ValidationError(OptimizationCoreError):
-    """Validation failed."""
-    pass
-
-class ModelLoadError(OptimizationCoreError):
-    """Model loading failed."""
-    pass
-
-class GenerationError(OptimizationCoreError):
-    """Text generation failed."""
-    pass
-
-class ProcessingError(OptimizationCoreError):
-    """Data processing failed."""
-    pass
-
-class ComponentNotFoundError(OptimizationCoreError):
-    """Component not found in factory."""
+class IOTimeoutError(OptimizationCoreError):
+    """Raised on asynchronous aread/awrite blocking thresholds breached."""
     pass
 ```
 
 ## 🧪 Testing
 
-### Mocking
+### Principios de Mocking en Async
 
-Todas las interfaces deben ser fácilmente mockeables:
+En la era asíncrona (`v1.1.0`), las interfaces se mochean usando `AsyncMock`.
 
 ```python
-from unittest.mock import Mock
+import pytest
+from unittest.mock import AsyncMock
 
-# Mock IComponent
-mock_component = Mock(spec=IComponent)
-mock_component.name = "MockComponent"
-mock_component.version = "1.0.0"
-mock_component.initialize.return_value = True
-mock_component.get_status.return_value = {"ready": True}
-
-# Mock IInferenceEngine
-mock_engine = Mock(spec=IInferenceEngine)
-mock_engine.generate.return_value = "Generated text"
-mock_engine.get_model_info.return_value = {"model_name": "test"}
+@pytest.mark.asyncio
+async def test_engine_delegation():
+    mock_engine = AsyncMock(spec=IInferenceEngine)
+    mock_engine.agenerate.return_value = "Result"
+    
+    res = await mock_engine.agenerate("Hello")
+    assert res == "Result"
 ```
 
-## 📝 Convenciones
+## 📝 Convenciones Restrictivas v1.1.0
 
-### Nombres
-- Interfaces: Prefijo `I` (IComponent, IInferenceEngine)
-- Implementaciones: Sin prefijo (VLLMEngine, PolarsProcessor)
-- Factories: Sufijo `Factory` (EngineFactory, ProcessorFactory)
-
-### Documentación
-- Todas las interfaces deben tener docstrings completos
-- Todos los métodos deben documentar Args, Returns, Raises
-- Ejemplos de uso en docstrings cuando sea apropiado
-
-### Versionado
-- Versiones siguen Semantic Versioning (MAJOR.MINOR.PATCH)
-- Cambios breaking requieren incremento de MAJOR
-- Nuevas features requieren incremento de MINOR
-- Bug fixes requieren incremento de PATCH
+- **Type Annotations obligatorias**: Requerimos que todo código de Optimization Core pase validadores estáticos (`mypy --strict`). 
+- **Pydantic**: En lugar de simples diccionarios o `@dataclass` crudas nativas para la entrada de parámetros sucios (`GenerationConfig/Inputs`), preferimos `Pydantic` o equivalente validación cruzada.
+- **Asincronía Integral**: Los componentes FFI (Rust/CPP) que consuman la interfaz `IComponent` usarán `run_in_executor` silenciosamente para adaptar su código bloqueante y comportarse como corrutinas frente a Python.
 
 ---
 
-**Versión**: 1.0.0  
-**Última actualización**: Enero 2025
-
-
-
-
+**Versión**: 1.1.0  
+**Última actualización**: Marzo 2026

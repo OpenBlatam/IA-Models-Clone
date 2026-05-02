@@ -42,7 +42,10 @@ from dataclasses import dataclass
 import math
 import logging
 
-from ..core.paper_base import BasePaperModule, BasePaperConfig
+try:
+    from ..core.paper_base import BasePaperModule, BasePaperConfig
+except (ImportError, ValueError):
+    from paper_base import BasePaperModule, BasePaperConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -303,5 +306,6 @@ if __name__ == "__main__":
     print(f"   Input shape: {hidden_states.shape}")
     print(f"   Output shape: {output.shape}")
     print(f"   Num chunks: {metadata['num_chunks']}")
+
 
 

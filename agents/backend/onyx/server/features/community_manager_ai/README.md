@@ -1,64 +1,66 @@
 # Community Manager AI
 
-Sistema completo de gestión automatizada de redes sociales con IA.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🎯 Características Principales
+Complete automated social media management system with AI.
 
-- **Gestión de Memes**: Creación, almacenamiento y organización de memes
-- **Calendario de Publicaciones**: Programación inteligente de contenido
-- **Conexiones Multiplataforma**: Integración con todas las redes sociales principales
-- **Automatización**: Scripts para tareas repetitivas
-- **Organización de Publicaciones**: Sistema de cola y priorización
+## 🎯 Key Features
 
-## 📁 Estructura del Proyecto
+- **Meme Management**: Creation, storage, and organization of memes
+- **Content Calendar**: Intelligent content scheduling
+- **Cross-Platform Connections**: Integration with all major social networks
+- **Automation**: Scripts for repetitive tasks
+- **Post Organization**: Queue system and prioritization
+
+## 📁 Project Structure
 
 ```
 community_manager_ai/
-├── core/                    # Lógica de negocio principal
-│   ├── community_manager.py    # Gestor principal
-│   ├── scheduler.py            # Programador de publicaciones
-│   └── calendar.py             # Calendario de contenido
-├── services/                # Servicios especializados
-│   ├── meme_manager.py         # Gestión de memes
-│   ├── social_media_connector.py  # Conexiones a redes sociales
-│   └── content_generator.py      # Generador de contenido
-├── integrations/            # Integraciones con plataformas
+├── core/                    # Main business logic
+│   ├── community_manager.py    # Main manager
+│   ├── scheduler.py            # Post scheduler
+│   └── calendar.py             # Content calendar
+├── services/                # Specialized services
+│   ├── meme_manager.py         # Meme management
+│   ├── social_media_connector.py  # Social media connections
+│   └── content_generator.py      # Content generator
+├── integrations/            # Platform integrations
 │   ├── facebook.py
 │   ├── instagram.py
 │   ├── twitter.py
 │   ├── linkedin.py
 │   ├── tiktok.py
 │   └── youtube.py
-├── scripts/                 # Scripts de automatización
+├── scripts/                 # Automation scripts
 │   ├── auto_post.py
 │   ├── content_analyzer.py
 │   └── engagement_tracker.py
-├── api/                     # API REST
+├── api/                     # REST API
 │   ├── routes/
 │   └── controllers/
-├── config/                  # Configuración
+├── config/                  # Configuration
 │   └── settings.py
-└── utils/                   # Utilidades
+└── utils/                   # Utilities
     ├── validators.py
     └── helpers.py
 ```
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
 ```python
 from community_manager_ai import CommunityManager
 
-# Inicializar el gestor
+# Initialize manager
 manager = CommunityManager()
 
-# Programar una publicación
+# Schedule a post
 manager.schedule_post(
-    content="¡Hola mundo!",
+    content="Hello world!",
     platforms=["facebook", "twitter", "instagram"],
     scheduled_time="2024-01-15 10:00:00"
 )
 
-# Agregar un meme
+# Add a meme
 manager.add_meme(
     image_path="meme.jpg",
     caption="Funny meme",
@@ -66,10 +68,10 @@ manager.add_meme(
 )
 ```
 
-## 📚 Documentación
+## 📚 Documentation
 
-Ver la documentación completa en `/docs/`
+See full documentation in `/docs/`
 
+---
 
-
-
+[← Back to Main README](../README.md)

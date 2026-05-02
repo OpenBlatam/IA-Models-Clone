@@ -542,3 +542,4 @@ if __name__ == "__main__":
         print(f"📊 Performance summary: {summary.get('snapshot_count', 0)} snapshots collected")
         
         print("✅ Production monitoring example completed")
+

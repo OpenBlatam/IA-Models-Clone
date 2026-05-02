@@ -1,62 +1,64 @@
 # Robot Maintenance Teaching AI
 
-Sistema de IA avanzado para enseñar mantenimiento de robots y máquinas usando OpenRouter, NLP y Machine Learning con las mejores librerías disponibles.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🎯 Características
+Advanced AI system for teaching robot and machine maintenance using OpenRouter, NLP, and Machine Learning with the best available libraries.
 
-- **Enseñanza Personalizada**: Procedimientos de mantenimiento adaptados al tipo de robot y nivel de dificultad
-- **Diagnóstico Inteligente**: Análisis de problemas basado en síntomas usando IA
-- **NLP Avanzado**: Procesamiento de lenguaje natural con spaCy y Transformers
-- **Predicción ML**: Modelos de machine learning para predecir necesidades de mantenimiento
-- **Múltiples Tipos de Robots**: Soporte para robots industriales, de servicio, colaborativos, móviles, médicos y agrícolas
-- **Programas de Mantenimiento**: Generación automática de calendarios de mantenimiento
-- **API REST**: Endpoints completos para integración
-- **Análisis de Componentes**: Explicaciones detalladas de componentes y sus procedimientos
-- **Sistema de Caché**: Caché inteligente para respuestas de API, mejorando rendimiento
-- **Historial de Conversaciones**: Almacenamiento y recuperación del historial de interacciones
-- **Manejo de Errores Robusto**: Retry logic con exponential backoff y manejo de errores mejorado
-- **Validación de Entrada**: Validación completa de parámetros de entrada
-- **Async Context Manager**: Soporte para gestión automática de recursos
-- **Endpoint de Entrenamiento ML**: API para entrenar modelos de machine learning
-- **Logging Mejorado**: Sistema de logging completo para debugging y monitoreo
+## 🎯 Features
 
-## 📋 Requisitos
+- **Personalized Teaching**: Maintenance procedures adapted to robot type and difficulty level
+- **Intelligent Diagnosis**: Problem analysis based on symptoms using AI
+- **Advanced NLP**: Natural language processing with spaCy and Transformers
+- **ML Prediction**: Machine learning models to predict maintenance needs
+- **Multiple Robot Types**: Support for industrial, service, collaborative, mobile, medical, and agricultural robots
+- **Maintenance Schedules**: Automatic generation of maintenance calendars
+- **REST API**: Complete endpoints for integration
+- **Component Analysis**: Detailed explanations of components and their procedures
+- **Cache System**: Intelligent cache for API responses, improving performance
+- **Conversation History**: Storage and retrieval of interaction history
+- **Robust Error Handling**: Retry logic with exponential backoff and improved error handling
+- **Input Validation**: Complete validation of input parameters
+- **Async Context Manager**: Support for automatic resource management
+- **ML Training Endpoint**: API for training machine learning models
+- **Enhanced Logging**: Complete logging system for debugging and monitoring
+
+## 📋 Requirements
 
 - Python 3.8+
-- Clave API de OpenRouter (`OPENROUTER_API_KEY`)
-- 8GB+ RAM recomendado para modelos NLP/ML
+- OpenRouter API Key (`OPENROUTER_API_KEY`)
+- 8GB+ RAM recommended for NLP/ML models
 
-## 🚀 Instalación
+## 🚀 Installation
 
-### 1. Instalar dependencias
+### 1. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Instalar modelo de spaCy
+### 2. Install spaCy model
 
 ```bash
 python -m spacy download es_core_news_md
 ```
 
-### 3. Configurar variables de entorno
+### 3. Configure environment variables
 
 ```bash
-export OPENROUTER_API_KEY="tu-api-key-aqui"
+export OPENROUTER_API_KEY="your-api-key-here"
 ```
 
-O crea un archivo `.env`:
+Or create a `.env` file:
 
 ```
-OPENROUTER_API_KEY=tu-api-key-aqui
+OPENROUTER_API_KEY=your-api-key-here
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
-### Uso como Módulo Python
+### Usage as Python Module
 
-#### Uso Básico
+#### Basic Usage
 
 ```python
 import asyncio
@@ -66,7 +68,7 @@ async def main():
     config = MaintenanceConfig()
     tutor = RobotMaintenanceTutor(config)
     
-    # Enseñar procedimiento de mantenimiento
+    # Teach maintenance procedure
     result = await tutor.teach_maintenance_procedure(
         robot_type="industrial_robot",
         maintenance_type="preventive",
@@ -74,37 +76,37 @@ async def main():
     )
     print(result["content"])
     
-    # Diagnosticar problema
+    # Diagnose problem
     diagnosis = await tutor.diagnose_problem(
-        symptoms="El robot hace ruidos extraños",
+        symptoms="The robot makes strange noises",
         robot_type="industrial_robot"
     )
     print(diagnosis["content"])
     
-    # Explicar componente
+    # Explain component
     explanation = await tutor.explain_component(
-        component_name="reductor de velocidad",
+        component_name="speed reducer",
         robot_type="industrial_robot"
     )
     print(explanation["content"])
     
-    # Generar programa de mantenimiento
+    # Generate maintenance schedule
     schedule = await tutor.generate_maintenance_schedule(
         robot_type="industrial_robot",
         usage_hours=8
     )
     print(schedule["content"])
     
-    # Obtener historial de conversaciones
+    # Get conversation history
     history = tutor.get_conversation_history(limit=10)
-    print(f"Historial: {len(history)} conversaciones")
+    print(f"History: {len(history)} conversations")
     
     await tutor.close()
 
 asyncio.run(main())
 ```
 
-#### Uso con Async Context Manager (Recomendado)
+#### Usage with Async Context Manager (Recommended)
 
 ```python
 import asyncio
@@ -113,7 +115,7 @@ from robot_maintenance_teaching_ai import RobotMaintenanceTutor, MaintenanceConf
 async def main():
     config = MaintenanceConfig()
     
-    # Usar async context manager para gestión automática de recursos
+    # Use async context manager for automatic resource management
     async with RobotMaintenanceTutor(config) as tutor:
         result = await tutor.teach_maintenance_procedure(
             robot_type="industrial_robot",
@@ -121,29 +123,29 @@ async def main():
             difficulty="intermediate"
         )
         print(result["content"])
-        # Los recursos se cierran automáticamente al salir del bloque
+        # Resources are automatically closed when exiting the block
 
 asyncio.run(main())
 ```
 
-### Uso con API REST
+### Usage with REST API
 
-1. Inicia el servidor:
+1. Start the server:
 
 ```bash
 python main.py
 ```
 
-O usando uvicorn directamente:
+Or using uvicorn directly:
 
 ```bash
 uvicorn api.maintenance_api:app --host 0.0.0.0 --port 8000
 ```
 
-2. Usa los endpoints:
+2. Use the endpoints:
 
 ```bash
-# Enseñar procedimiento de mantenimiento
+# Teach maintenance procedure
 curl -X POST http://localhost:8000/api/teach \
   -H "Content-Type: application/json" \
   -d '{
@@ -152,23 +154,23 @@ curl -X POST http://localhost:8000/api/teach \
     "difficulty": "intermediate"
   }'
 
-# Diagnosticar problema
+# Diagnose problem
 curl -X POST http://localhost:8000/api/diagnose \
   -H "Content-Type: application/json" \
   -d '{
-    "symptoms": "El robot hace ruidos extraños",
+    "symptoms": "The robot makes strange noises",
     "robot_type": "industrial_robot"
   }'
 
-# Explicar componente
+# Explain component
 curl -X POST http://localhost:8000/api/explain-component \
   -H "Content-Type: application/json" \
   -d '{
-    "component_name": "reductor de velocidad",
+    "component_name": "speed reducer",
     "robot_type": "industrial_robot"
   }'
 
-# Generar programa de mantenimiento
+# Generate maintenance schedule
 curl -X POST http://localhost:8000/api/schedule \
   -H "Content-Type: application/json" \
   -d '{
@@ -177,22 +179,22 @@ curl -X POST http://localhost:8000/api/schedule \
     "environment": "industrial"
   }'
 
-# Responder pregunta
+# Answer question
 curl -X POST http://localhost:8000/api/answer \
   -H "Content-Type: application/json" \
   -d '{
-    "question": "¿Con qué frecuencia debo lubricar las juntas?",
+    "question": "How often should I lubricate the joints?",
     "robot_type": "industrial_robot"
   }'
 
-# Análisis NLP
+# NLP Analysis
 curl -X POST http://localhost:8000/api/nlp/analyze \
   -H "Content-Type: application/json" \
   -d '{
-    "text": "El robot necesita mantenimiento preventivo"
+    "text": "The robot needs preventive maintenance"
   }'
 
-# Predicción ML
+# ML Prediction
 curl -X POST http://localhost:8000/api/ml/predict \
   -H "Content-Type: application/json" \
   -d '{
@@ -205,7 +207,7 @@ curl -X POST http://localhost:8000/api/ml/predict \
   }'
 ```
 
-## 📚 Estructura del Proyecto
+## 📚 Project Structure
 
 ```
 robot_maintenance_teaching_ai/
@@ -215,49 +217,49 @@ robot_maintenance_teaching_ai/
 ├── requirements.txt
 ├── config/
 │   ├── __init__.py
-│   └── maintenance_config.py      # Configuración del sistema
+│   └── maintenance_config.py      # System configuration
 ├── core/
 │   ├── __init__.py
-│   ├── maintenance_tutor.py       # Tutor principal con OpenRouter
-│   ├── nlp_processor.py          # Procesador NLP (spaCy + Transformers)
-│   └── ml_predictor.py            # Predictor ML (scikit-learn)
+│   ├── maintenance_tutor.py       # Main tutor with OpenRouter
+│   ├── nlp_processor.py          # NLP processor (spaCy + Transformers)
+│   └── ml_predictor.py            # ML predictor (scikit-learn)
 ├── api/
 │   ├── __init__.py
-│   └── maintenance_api.py         # Endpoints FastAPI
+│   └── maintenance_api.py         # FastAPI endpoints
 ├── examples/
-│   ├── basic_usage.py             # Ejemplos básicos
-│   └── nlp_ml_example.py          # Ejemplos NLP/ML
+│   ├── basic_usage.py             # Basic examples
+│   └── nlp_ml_example.py          # NLP/ML examples
 ├── ml_models/
-│   └── saved_models/              # Modelos ML guardados
+│   └── saved_models/              # Saved ML models
 ├── nlp_utils/
-│   └── (utilidades NLP adicionales)
+│   └── (additional NLP utilities)
 └── data/
-    └── conversations/              # Historial de conversaciones
+    └── conversations/              # Conversation history
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Configuración Básica
+### Basic Configuration
 
 ```python
 from robot_maintenance_teaching_ai import MaintenanceConfig, OpenRouterConfig, MLConfig, NLPConfig
 
-# Configurar OpenRouter
+# Configure OpenRouter
 openrouter_config = OpenRouterConfig(
-    api_key="tu-api-key",
+    api_key="your-api-key",
     default_model="openai/gpt-4-turbo",
     temperature=0.7,
     max_tokens=3000
 )
 
-# Configurar ML
+# Configure ML
 ml_config = MLConfig(
     model_type="ensemble",
     prediction_threshold=0.7,
     use_pretrained=True
 )
 
-# Configurar NLP
+# Configure NLP
 nlp_config = NLPConfig(
     language="es",
     model_name="es_core_news_md",
@@ -265,7 +267,7 @@ nlp_config = NLPConfig(
     transformer_model="dccuchile/bert-base-spanish-wwm-uncased"
 )
 
-# Configuración principal
+# Main configuration
 config = MaintenanceConfig(
     openrouter=openrouter_config,
     ml=ml_config,
@@ -275,53 +277,53 @@ config = MaintenanceConfig(
 )
 ```
 
-## 🤖 Tipos de Robots Soportados
+## 🤖 Supported Robot Types
 
-- **industrial_robot**: Robots industriales (brazos robóticos, robots de soldadura, etc.)
-- **service_robot**: Robots de servicio (limpieza, atención al cliente, etc.)
-- **collaborative_robot**: Robots colaborativos (cobots)
-- **mobile_robot**: Robots móviles (AGV, robots de exploración, etc.)
-- **medical_robot**: Robots médicos (quirúrgicos, de rehabilitación, etc.)
-- **agricultural_robot**: Robots agrícolas (siembra, cosecha, etc.)
+- **industrial_robot**: Industrial robots (robotic arms, welding robots, etc.)
+- **service_robot**: Service robots (cleaning, customer service, etc.)
+- **collaborative_robot**: Collaborative robots (cobots)
+- **mobile_robot**: Mobile robots (AGV, exploration robots, etc.)
+- **medical_robot**: Medical robots (surgical, rehabilitation, etc.)
+- **agricultural_robot**: Agricultural robots (seeding, harvesting, etc.)
 
-## 🔧 Tipos de Mantenimiento
+## 🔧 Maintenance Types
 
-- **preventive**: Mantenimiento preventivo
-- **corrective**: Mantenimiento correctivo
-- **predictive**: Mantenimiento predictivo
-- **emergency**: Mantenimiento de emergencia
-- **scheduled**: Mantenimiento programado
-- **condition_based**: Mantenimiento basado en condición
+- **preventive**: Preventive maintenance
+- **corrective**: Corrective maintenance
+- **predictive**: Predictive maintenance
+- **emergency**: Emergency maintenance
+- **scheduled**: Scheduled maintenance
+- **condition_based**: Condition-based maintenance
 
-## 📊 Niveles de Dificultad
+## 📊 Difficulty Levels
 
-- **beginner**: Para principiantes, explicaciones básicas
-- **intermediate**: Nivel intermedio, procedimientos estándar
-- **advanced**: Nivel avanzado, procedimientos complejos
-- **expert**: Nivel experto, procedimientos especializados
+- **beginner**: For beginners, basic explanations
+- **intermediate**: Intermediate level, standard procedures
+- **advanced**: Advanced level, complex procedures
+- **expert**: Expert level, specialized procedures
 
-## 🧠 Tecnologías Utilizadas
+## 🧠 Technologies Used
 
-### NLP (Procesamiento de Lenguaje Natural)
-- **spaCy**: Procesamiento de texto y extracción de entidades
-- **Transformers (Hugging Face)**: Modelos BERT para análisis avanzado
-- **NLTK**: Herramientas adicionales de NLP
-- **Gensim**: Análisis semántico y similitud
+### NLP (Natural Language Processing)
+- **spaCy**: Text processing and entity extraction
+- **Transformers (Hugging Face)**: BERT models for advanced analysis
+- **NLTK**: Additional NLP tools
+- **Gensim**: Semantic analysis and similarity
 
 ### Machine Learning
-- **scikit-learn**: Modelos de clasificación y regresión
-- **Random Forest**: Para predicción de fallos
-- **Gradient Boosting**: Modelos ensemble avanzados
-- **NumPy/Pandas**: Procesamiento de datos
+- **scikit-learn**: Classification and regression models
+- **Random Forest**: For failure prediction
+- **Gradient Boosting**: Advanced ensemble models
+- **NumPy/Pandas**: Data processing
 
-### IA y APIs
-- **OpenRouter**: Acceso a modelos de IA avanzados (GPT-4, Claude, etc.)
-- **FastAPI**: Framework web moderno y rápido
-- **httpx**: Cliente HTTP asíncrono
+### AI and APIs
+- **OpenRouter**: Access to advanced AI models (GPT-4, Claude, etc.)
+- **FastAPI**: Modern and fast web framework
+- **httpx**: Asynchronous HTTP client
 
-## 📖 Ejemplos
+## 📖 Examples
 
-### Ejemplo 1: Enseñanza de Mantenimiento
+### Example 1: Teaching Maintenance
 
 ```python
 from robot_maintenance_teaching_ai import RobotMaintenanceTutor
@@ -337,22 +339,22 @@ result = await tutor.teach_maintenance_procedure(
 print(result["content"])
 ```
 
-### Ejemplo 2: Uso de NLP
+### Example 2: Using NLP
 
 ```python
 from robot_maintenance_teaching_ai.core.nlp_processor import MaintenanceNLPProcessor
 
 nlp = MaintenanceNLPProcessor()
 
-text = "El robot necesita revisión de engranajes y lubricación"
+text = "The robot needs gear inspection and lubrication"
 analysis = nlp.process_maintenance_query(text)
 
-print("Entidades:", analysis["entities"])
-print("Palabras clave:", analysis["keywords"])
-print("Sentimiento:", analysis["sentiment"])
+print("Entities:", analysis["entities"])
+print("Keywords:", analysis["keywords"])
+print("Sentiment:", analysis["sentiment"])
 ```
 
-### Ejemplo 3: Predicción ML
+### Example 3: ML Prediction
 
 ```python
 from robot_maintenance_teaching_ai.core.ml_predictor import MaintenancePredictor
@@ -368,103 +370,97 @@ prediction = predictor.predict_maintenance_need(
     last_maintenance_hours=200.0
 )
 
-print(f"¿Necesita mantenimiento?: {prediction['needs_maintenance']}")
-print(f"Confianza: {prediction['confidence']}")
-print(f"Recomendación: {prediction['recommendation']}")
+print(f"Needs maintenance?: {prediction['needs_maintenance']}")
+print(f"Confidence: {prediction['confidence']}")
+print(f"Recommendation: {prediction['recommendation']}")
 ```
 
-## 🔍 Endpoints de la API
+## 🔍 API Endpoints
 
 ### GET `/`
-Información básica de la API
+Basic API information
 
 ### POST `/api/teach`
-Enseñar procedimiento de mantenimiento
+Teach maintenance procedure
 
 ### POST `/api/diagnose`
-Diagnosticar problema de robot
+Diagnose robot problem
 
 ### POST `/api/explain-component`
-Explicar componente del robot
+Explain robot component
 
 ### POST `/api/schedule`
-Generar programa de mantenimiento
+Generate maintenance schedule
 
 ### POST `/api/answer`
-Responder pregunta sobre mantenimiento
+Answer maintenance question
 
 ### POST `/api/nlp/analyze`
-Analizar texto con NLP
+Analyze text with NLP
 
 ### POST `/api/ml/predict`
-Predecir necesidad de mantenimiento
+Predict maintenance need
 
 ### POST `/api/ml/train`
-Entrenar modelo de machine learning con datos sintéticos o reales
+Train machine learning model with synthetic or real data
 
 ### GET `/api/conversation/history`
-Obtener historial de conversaciones
+Get conversation history
 
 ### GET `/api/health`
-Health check del sistema con información detallada de componentes
+System health check with detailed component information
 
-## 🛠️ Desarrollo
+## 🛠️ Development
 
-### Ejecutar ejemplos
+### Run examples
 
 ```bash
-# Ejemplo básico
+# Basic example
 python examples/basic_usage.py
 
-# Ejemplo NLP/ML
+# NLP/ML example
 python examples/nlp_ml_example.py
 ```
 
-### Ejecutar tests
+### Run tests
 
 ```bash
-# (Agregar tests en el futuro)
+# (Add tests in the future)
 pytest tests/
 ```
 
-## 📝 Notas
+## 📝 Notes
 
-- El modelo de spaCy se descarga automáticamente la primera vez
-- Los modelos de Transformers se descargan automáticamente
-- Los modelos ML se pueden entrenar con datos propios usando el endpoint `/api/ml/train`
-- Se recomienda usar GPU para mejor rendimiento con Transformers
-- El sistema de caché está habilitado por defecto (configurable en `MaintenanceConfig`)
-- El historial de conversaciones se guarda automáticamente en `data/conversations/`
-- El sistema incluye retry logic automático con exponential backoff para errores transitorios
-- Se recomienda usar el async context manager (`async with`) para gestión automática de recursos
+- spaCy model is downloaded automatically the first time
+- Transformers models are downloaded automatically
+- ML models can be trained with custom data using the `/api/ml/train` endpoint
+- GPU is recommended for better performance with Transformers
+- Cache system is enabled by default (configurable in `MaintenanceConfig`)
+- Conversation history is automatically saved in `data/conversations/`
+- System includes automatic retry logic with exponential backoff for transient errors
+- It is recommended to use the async context manager (`async with`) for automatic resource management
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome. Please:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 Licencia
+## 📝 License
 
-Este proyecto es parte de Blatam Academy.
+This project is part of Blatam Academy.
 
-## 🆘 Soporte
+## 🆘 Support
 
-Para soporte, abre un issue en el repositorio o contacta al equipo de Blatam Academy.
+For support, open an issue in the repository or contact the Blatam Academy team.
 
-## 🎓 Recursos Adicionales
+## 🎓 Additional Resources
 
-- [Documentación de OpenRouter](https://openrouter.ai/docs)
-- [Documentación de spaCy](https://spacy.io/usage)
-- [Documentación de Transformers](https://huggingface.co/docs/transformers)
-- [Documentación de scikit-learn](https://scikit-learn.org/stable/)
-
-
-
-
-
-
+- [OpenRouter Documentation](https://openrouter.ai/docs)
+- [spaCy Documentation](https://spacy.io/usage)
+- [Transformers Documentation](https://huggingface.co/docs/transformers)
+- [scikit-learn Documentation](https://scikit-learn.org/stable/)

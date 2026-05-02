@@ -2,6 +2,7 @@
 LLM Service Implementation
 """
 
+import hashlib
 from typing import List, Optional, Dict, Any, AsyncIterator
 import logging
 
@@ -149,7 +150,6 @@ class LLMService(LLMBase):
     
     def _get_cache_key(self, messages: List[LLMMessage], model: str) -> str:
         """Generate cache key"""
-        import hashlib
         content = f"{model}:{str(messages)}"
         return f"llm:cache:{hashlib.md5(content.encode()).hexdigest()}"
 

@@ -462,3 +462,4 @@ if __name__ == "__main__":
     print(f"   Verification score: {metadata['verification_score']:.4f}")
     print(f"   Learning progress: {metrics['learning_progress']:.4f}")
 
+

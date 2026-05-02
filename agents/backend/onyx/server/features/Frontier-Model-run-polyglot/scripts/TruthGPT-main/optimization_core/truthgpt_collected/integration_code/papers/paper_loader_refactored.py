@@ -329,3 +329,4 @@ if __name__ == "__main__":
     print(f"  Cache hit rate: {stats['cache_hit_rate']:.2%}")
     print(f"  Avg load time: {stats['avg_load_time']:.3f}s")
 
+

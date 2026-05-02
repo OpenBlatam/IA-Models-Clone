@@ -1,73 +1,111 @@
 # Advanced AI Models
 
-## 📋 Descripción
+<div align="center">
 
-Sistema de modelos de IA avanzados con capacidades completas de inferencia y entrenamiento. Incluye interfaces Gradio para interacción interactiva y soporte para múltiples tipos de modelos.
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Version](https://img.shields.io/badge/version-2.5-blue.svg)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## 🚀 Características Principales
+**Advanced AI model system with full inference and training capabilities.**
 
-- **Modelos Avanzados**: Implementación de modelos de IA de última generación
-- **Inferencia Optimizada**: Sistema de inferencia optimizado para producción
-- **Entrenamiento**: Capacidades de entrenamiento y fine-tuning
-- **Interfaces Gradio**: Interfaces interactivas para demostración y uso
-- **Gestión de Datos**: Sistema de gestión de datos de entrenamiento
+[Overview](#-overview) •
+[Features](#-key-features) •
+[Architecture](#-architecture) •
+[Installation](#-installation) •
+[Usage](#-usage) •
+[Documentation](#-documentation) •
+[Contributing](#-contributing)
 
-## 📁 Estructura
+</div>
+
+---
+
+## 📋 Overview
+
+**Advanced AI Models** is a comprehensive framework for managing, fine-tuning, and deploying state-of-the-art AI models. It includes optimized inference engines, data management pipelines, and pre-built Gradio interfaces for rapid prototyping and interactive testing.
+
+This module serves as the intelligence core for various Blatam Academy services, providing the underlying models for document processing, business agents, and specialized AI systems.
+
+## 🚀 Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Multi-Model Support** | Implementation of latest LLMs, vision, and audio models. |
+| **Optimized Inference** | Production-ready inference engine with caching and batching. |
+| **Training Pipeline** | Modular systems for fine-tuning and supervised training. |
+| **Gradio Interfaces** | Interactive web UIs for model testing and demonstration. |
+| **Data Management** | Robust handling of training datasets and validation sets. |
+
+## 🏗 Architecture
+
+```mermaid
+graph TD
+    A[Raw Data] --> B(Data Processing)
+    B --> C{Training / Fine-tuning}
+    C --> D[(Model Storage)]
+    
+    subgraph "Inference Layer"
+    D --> E[Inference Engine]
+    E --> F[Gradio UI]
+    E --> G[REST API]
+    end
+    
+    subgraph "Clients"
+    F --> H[Research / Demo]
+    G --> I[Production Features]
+    end
+```
+
+## 📁 Structure
 
 ```
 advanced_ai_models/
-├── models/                 # Modelos de IA
-├── inference/             # Sistema de inferencia
-├── training/              # Entrenamiento de modelos
-├── gradio_interfaces/     # Interfaces Gradio
-├── data/                  # Datos y datasets
-└── utils/                 # Utilidades
+├── models/                 # AI Model implementations
+├── inference/             # Inference optimization engine
+├── training/              # Training and fine-tuning scripts
+├── gradio_interfaces/     # Interactive UIs
+├── data/                  # Dataset management
+└── utils/                 # Helper utilities
 ```
 
-## 🔧 Instalación
+## 💻 Installation
 
 ```bash
-# Instalar dependencias básicas
+# Install core dependencies
 pip install -r requirements_advanced.txt
 ```
 
-## 💻 Uso Básico
+## ⚡ Usage
 
 ```python
 from advanced_ai_models.models import AdvancedAIModel
 from advanced_ai_models.inference import InferenceEngine
 
-# Cargar modelo
-model = AdvancedAIModel.load("model_name")
+# Load a specific model
+model = AdvancedAIModel.load("neural_prism_v2")
 
-# Inicializar motor de inferencia
+# Initialize the inference engine
 engine = InferenceEngine(model)
 
-# Realizar inferencia
-result = engine.predict(input_data)
+# Run a prediction
+result = engine.predict({"text": "Analyze this sequence."})
+print(result)
 ```
 
-## 📚 Documentación
+## 📚 Documentation
 
 - [Quick Start Guide](QUICK_START_GUIDE.md)
 - [Advanced AI Models Summary](ADVANCED_AI_MODELS_SUMMARY.md)
 
-## 🧪 Testing
+## 🤝 Contributing
 
-```bash
-# Demo simple
-python demo_simple.py
+We welcome contributions! Please see our [Contributing Guidelines](../../../CONTRIBUTING.md) for details.
 
-# Demo avanzado
-python demo_advanced_models.py
-```
+---
 
-## 🔗 Integración
-
-Este módulo proporciona modelos base para:
-- **AI Document Processor**: Procesamiento de documentos
-- **Business Agents**: Agentes de negocio inteligentes
-- **Blatam AI**: Motor principal de IA
-
-
-
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>

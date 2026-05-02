@@ -1,9 +1,9 @@
 """
 Example demonstrating plugin system for extensibility.
 """
-from core.plugin_system import Plugin, PluginManager
-from core.service_registry import ServiceRegistry
-from core.dynamic_factory import DynamicFactory
+from modules.base.core_system.core.plugin_system import Plugin, PluginManager
+from modules.base.core_system.core.service_registry import ServiceRegistry
+from modules.base.core_system.core.dynamic_factory import DynamicFactory
 
 
 class CustomOptimizerPlugin(Plugin):
@@ -94,5 +94,6 @@ def plugin_example():
 
 if __name__ == "__main__":
     plugin_example()
+
 
 

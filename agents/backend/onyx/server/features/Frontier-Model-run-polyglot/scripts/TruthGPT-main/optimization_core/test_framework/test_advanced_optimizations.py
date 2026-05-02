@@ -21,7 +21,7 @@ from pathlib import Path
 # Import the advanced optimizations
 import sys
 sys.path.append('..')
-from core.advanced_optimizations import (
+from modules.base.core_system.core.advanced_optimizations import (
     AdvancedOptimizationEngine, NeuralArchitectureSearch, QuantumInspiredOptimizer,
     EvolutionaryOptimizer, MetaLearningOptimizer, OptimizationTechnique,
     OptimizationMetrics, create_advanced_optimization_engine, create_nas_optimizer,
@@ -1191,3 +1191,4 @@ if __name__ == '__main__':
             print(f"  - {test}: {traceback}")
     
     print(f"\n{'='*60}")
+

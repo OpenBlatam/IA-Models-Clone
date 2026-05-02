@@ -1,40 +1,42 @@
 # AI Project Generator 🚀
 
-Generador automático de proyectos de IA que crea la estructura completa de backend y frontend basándose en una descripción del usuario. Funciona de forma continua sin parar.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## ✨ Características Principales
+Automatic AI project generator that creates complete backend and frontend structures based on user descriptions. Works continuously to process project requests.
 
-- ✅ **Generación Automática Inteligente**
-  - Backend completo (FastAPI) con estructura modular
-  - Frontend completo (React + TypeScript + Vite + Tailwind)
-  - Detección automática de tipo de IA (chat, vision, audio, NLP, etc.)
-  - Detección de características necesarias (auth, database, websocket, etc.)
+## ✨ Key Features
 
-- ✅ **Generación Continua**
-  - Procesa proyectos automáticamente sin parar
-  - Sistema de cola con prioridades
-  - Persistencia de estado
-  - Monitoreo en tiempo real
+- ✅ **Smart Automatic Generation**
+  - Complete backend (FastAPI) with modular structure
+  - Complete frontend (React + TypeScript + Vite + Tailwind)
+  - Automatic detection of AI type (chat, vision, audio, NLP, etc.)
+  - Detection of necessary features (auth, database, websocket, etc.)
 
-- ✅ **API REST Completa**
-  - Endpoints para generar, listar, monitorear proyectos
-  - Estadísticas y métricas
-  - Gestión de cola
+- ✅ **Continuous Generation**
+  - Processes projects automatically without stopping
+  - Priority queue system
+  - State persistence
+  - Real-time monitoring
 
-- ✅ **Código Inteligente**
-  - Genera código según el tipo de IA detectado
-  - Incluye WebSocket si es necesario
-  - Soporte para file upload
-  - Configuración de cache, queue, database según necesidad
-  - Dependencias automáticas según características
+- ✅ **Complete REST API**
+  - Endpoints to generate, list, and monitor projects
+  - Statistics and metrics
+  - Queue management
 
-- ✅ **Listo para Producción**
-  - Docker y docker-compose incluidos
-  - Tests automáticos
-  - Documentación generada
-  - Estructura profesional
+- ✅ **Smart Code**
+  - Generates code according to the detected AI type
+  - Includes WebSocket if necessary
+  - File upload support
+  - Cache, queue, database configuration as needed
+  - Automatic dependencies based on features
 
-## 📦 Instalación
+- ✅ **Production Ready**
+  - Docker and docker-compose included
+  - Automatic tests
+  - Generated documentation
+  - Professional structure
+
+## 📦 Installation
 
 ```bash
 cd ai_project_generator
@@ -72,67 +74,35 @@ See [CI_CD_README.md](CI_CD_README.md) for complete CI/CD documentation.
    ./scripts/ci_cd/build.sh docker
    ```
 
-## 🏃 Uso
+## 🏃 Usage
 
-### Iniciar el servidor
+### Start the Server
 
 ```bash
 python main.py
 ```
 
-El servidor estará disponible en `http://localhost:8020`
+Server will be available at `http://localhost:8020`
 
-## 🚀 CI/CD Pipeline
-
-Este proyecto incluye un pipeline completo de CI/CD con GitHub Actions:
-
-### Características CI/CD
-
-- ✅ **Continuous Integration**: Testing, linting y security scanning automatizados
-- ✅ **Continuous Deployment**: Despliegue automatizado a AWS EC2
-- ✅ **Release Management**: Creación automática de releases
-- ✅ **Security Scanning**: Escaneo de seguridad completo
-- ✅ **Pre-commit Hooks**: Validación antes de commit
-
-### Quick Start CI/CD
-
-```bash
-# 1. Instalar pre-commit hooks
-pip install pre-commit
-pre-commit install
-
-# 2. Ejecutar tests localmente
-make test
-
-# 3. Ejecutar CI completo
-make ci
-
-# 4. Build y deploy
-make build
-make deploy
-```
-
-Ver [CI_CD_README.md](CI_CD_README.md) para documentación completa.
-
-### Generar un proyecto
+### Generate a Project
 
 ```bash
 curl -X POST "http://localhost:8020/api/v1/generate" \
   -H "Content-Type: application/json" \
   -d '{
-    "description": "Un sistema de chat con IA que responde preguntas sobre programación",
+    "description": "An AI chat system answering programming questions",
     "project_name": "programming_chat_ai",
     "author": "Blatam Academy"
   }'
 ```
 
-### Ver estado del generador
+### View Generator Status
 
 ```bash
 curl "http://localhost:8020/api/v1/status"
 ```
 
-### Ver cola de proyectos
+### View Queue
 
 ```bash
 curl "http://localhost:8020/api/v1/queue"
@@ -140,242 +110,242 @@ curl "http://localhost:8020/api/v1/queue"
 
 ## 📚 API Endpoints
 
-### Generación
-- `POST /api/v1/generate` - Genera un nuevo proyecto
+### Generation
+- `POST /api/v1/generate` — Generate a new project
   - Body: `{description, project_name?, author?, version?, priority?, backend_framework?, frontend_framework?, generate_tests?, include_docker?, include_docs?}`
 
-### Estado y Monitoreo
-- `GET /api/v1/status` - Estado del generador continuo
-- `GET /api/v1/project/{project_id}` - Estado de un proyecto específico
-- `GET /api/v1/queue` - Cola de proyectos pendientes
-- `GET /api/v1/stats` - Estadísticas del generador
-- `GET /api/v1/projects` - Lista proyectos generados (con filtros)
+### Status and Monitoring
+- `GET /api/v1/status` — Continuous generator status
+- `GET /api/v1/project/{project_id}` — Specific project status
+- `GET /api/v1/queue` — Pending projects queue
+- `GET /api/v1/stats` — Generator statistics
+- `GET /api/v1/projects` — List generated projects (with filters)
 
 ### Control
-- `POST /api/v1/start` - Inicia el generador continuo
-- `POST /api/v1/stop` - Detiene el generador continuo
-- `DELETE /api/v1/project/{project_id}` - Elimina proyecto de la cola
+- `POST /api/v1/start` — Start continuous generator
+- `POST /api/v1/stop` — Stop continuous generator
+- `DELETE /api/v1/project/{project_id}` — Remove project from queue
 
-### Exportación y Validación
-- `POST /api/v1/export/zip` - Exporta proyecto a ZIP
-- `POST /api/v1/export/tar` - Exporta proyecto a TAR
-- `POST /api/v1/validate` - Valida un proyecto generado
+### Export and Validation
+- `POST /api/v1/export/zip` — Export project to ZIP
+- `POST /api/v1/export/tar` — Export project to TAR
+- `POST /api/v1/validate` — Validate a generated project
 
-### Despliegue
-- `POST /api/v1/deploy/generate` - Genera configuraciones de despliegue (Vercel, Netlify, Railway, Heroku)
+### Deployment
+- `POST /api/v1/deploy/generate` — Generate deployment configurations (Vercel, Netlify, Railway, Heroku)
 
-### Clonado y Templates
-- `POST /api/v1/clone` - Clona un proyecto existente
-- `POST /api/v1/templates/save` - Guarda un template personalizado
-- `GET /api/v1/templates/list` - Lista todos los templates
-- `GET /api/v1/templates/{name}` - Obtiene un template específico
-- `DELETE /api/v1/templates/{name}` - Elimina un template
+### Cloning and Templates
+- `POST /api/v1/clone` — Clone an existing project
+- `POST /api/v1/templates/save` — Save a custom template
+- `GET /api/v1/templates/list` — List all templates
+- `GET /api/v1/templates/{name}` — Get a specific template
+- `DELETE /api/v1/templates/{name}` — Delete a template
 
-### Búsqueda Avanzada
-- `GET /api/v1/search` - Busca proyectos con filtros avanzados
-- `GET /api/v1/search/stats` - Estadísticas de búsqueda
+### Advanced Search
+- `GET /api/v1/search` — Search projects with advanced filters
+- `GET /api/v1/search/stats` — Search statistics
 
 ### Webhooks
-- `POST /api/v1/webhooks/register` - Registra un webhook
-- `GET /api/v1/webhooks` - Lista webhooks registrados
-- `DELETE /api/v1/webhooks/{id}` - Desregistra un webhook
+- `POST /api/v1/webhooks/register` — Register a webhook
+- `GET /api/v1/webhooks` — List registered webhooks
+- `DELETE /api/v1/webhooks/{id}` — Unregister a webhook
 
 ### Cache
-- `POST /api/v1/cache/clear` - Limpia el cache
-- `GET /api/v1/cache/stats` - Estadísticas del cache
+- `POST /api/v1/cache/clear` — Clear cache
+- `GET /api/v1/cache/stats` — Cache statistics
 
 ### Rate Limiting
-- `GET /api/v1/rate-limit` - Información de rate limit
+- `GET /api/v1/rate-limit` — Rate limit information
 
-### Autenticación
-- `POST /api/v1/auth/register` - Registrar usuario
-- `POST /api/v1/auth/login` - Autenticar usuario
-- `POST /api/v1/auth/api-key` - Crear API key
+### Authentication
+- `POST /api/v1/auth/register` — Register user
+- `POST /api/v1/auth/login` — Authenticate user
+- `POST /api/v1/auth/api-key` — Create API key
 
-### Métricas
-- `GET /api/v1/metrics` - Métricas del sistema
-- `GET /api/v1/metrics/prometheus` - Métricas en formato Prometheus
+### Metrics
+- `GET /api/v1/metrics` — System metrics
+- `GET /api/v1/metrics/prometheus` — Metrics in Prometheus format
 
-### Backup y Restore
-- `POST /api/v1/backup/create` - Crear backup completo
-- `GET /api/v1/backup/list` - Listar backups
-- `POST /api/v1/backup/restore` - Restaurar backup
-- `DELETE /api/v1/backup/{name}` - Eliminar backup
+### Backup and Restore
+- `POST /api/v1/backup/create` — Create full backup
+- `GET /api/v1/backup/list` — List backups
+- `POST /api/v1/backup/restore` — Restore backup
+- `DELETE /api/v1/backup/{name}` — Delete backup
 
-### Dashboard y UI
-- `GET /dashboard` - Dashboard web interactivo
-- `POST /api/v1/dashboard/generate` - Generar dashboard
+### Dashboard and UI
+- `GET /dashboard` — Interactive web dashboard
+- `POST /api/v1/dashboard/generate` — Generate dashboard
 
-### Health y Versiones
-- `GET /health` - Health check básico
-- `GET /health/detailed` - Health check detallado
-- `GET /api/version` - Información de versiones de API
+### Health and Versions
+- `GET /health` — Basic health check
+- `GET /health/detailed` — Detailed health check
+- `GET /api/version` — API version information
 
-### Notificaciones
-- `POST /api/v1/notifications/register` - Registrar canal de notificaciones
-- `GET /api/v1/notifications/channels` - Listar canales
+### Notifications
+- `POST /api/v1/notifications/register` — Register notification channel
+- `GET /api/v1/notifications/channels` — List channels
 
 ### Plugins
-- `POST /api/v1/plugins/register` - Registrar plugin
-- `GET /api/v1/plugins` - Listar plugins
-- `POST /api/v1/plugins/{name}/enable` - Activar plugin
-- `POST /api/v1/plugins/{name}/disable` - Desactivar plugin
+- `POST /api/v1/plugins/register` — Register plugin
+- `GET /api/v1/plugins` — List plugins
+- `POST /api/v1/plugins/{name}/enable` — Enable plugin
+- `POST /api/v1/plugins/{name}/disable` — Disable plugin
 
-### Eventos
-- `GET /api/v1/events/history` - Historial de eventos
-- `GET /api/v1/events/stats` - Estadísticas de eventos
+### Events
+- `GET /api/v1/events/history` — Event history
+- `GET /api/v1/events/stats` — Event statistics
 
 ### Logs
-- `GET /api/v1/logs/stats` - Estadísticas de logs
+- `GET /api/v1/logs/stats` — Log statistics
 
 ### WebSocket
-- `WS /ws` - WebSocket para actualizaciones en tiempo real
-- `WS /ws/project/{project_id}` - WebSocket para suscribirse a un proyecto específico
+- `WS /ws` — WebSocket for real-time updates
+- `WS /ws/project/{project_id}` — WebSocket to subscribe to a specific project
 
 ### Batch Generation
-- `POST /api/v1/generate/batch` - Generar múltiples proyectos en batch
+- `POST /api/v1/generate/batch` — Generate multiple projects in batch
 
 ### Performance
-- `GET /api/v1/performance/stats` - Estadísticas de performance
-- `GET /api/v1/performance/optimize` - Sugerencias de optimización
+- `GET /api/v1/performance/stats` — Performance statistics
+- `GET /api/v1/performance/optimize` — Optimization suggestions
 
-### Streaming en Tiempo Real
-- `GET /api/v1/stream/events` - Eventos de streaming
-- `GET /api/v1/stream/stats` - Estadísticas de streaming
+### Real-time Streaming
+- `GET /api/v1/stream/events` — Streaming events
+- `GET /api/v1/stream/stats` — Streaming statistics
 
 ### Analytics
-- `GET /api/v1/analytics/trends` - Tendencias de analytics
-- `GET /api/v1/analytics/top-ai-types` - Tipos de IA más populares
-- `GET /api/v1/analytics/performance` - Reporte de performance
-- `GET /api/v1/analytics/frameworks` - Uso de frameworks
-- `GET /api/v1/analytics/authors` - Estadísticas por autor
-- `GET /api/v1/analytics/report` - Reporte completo
+- `GET /api/v1/analytics/trends` — Analytics trends
+- `GET /api/v1/analytics/top-ai-types` — Most popular AI types
+- `GET /api/v1/analytics/performance` — Performance report
+- `GET /api/v1/analytics/frameworks` — Framework usage
+- `GET /api/v1/analytics/authors` — Stats by author
+- `GET /api/v1/analytics/report` — Full report
 
-### Recomendaciones
-- `GET /api/v1/recommendations` - Recomendaciones inteligentes
-- `GET /api/v1/recommendations/features` - Features recomendadas
-- `GET /api/v1/recommendations/framework` - Framework recomendado
+### Recommendations
+- `GET /api/v1/recommendations` — Smart recommendations
+- `GET /api/v1/recommendations/features` — Recommended features
+- `GET /api/v1/recommendations/framework` — Recommended framework
 
-### Documentación
-- `POST /api/v1/documentation/generate` - Generar documentación automática
+### Documentation
+- `POST /api/v1/documentation/generate` — Automatic documentation generation
 
-### Alertas
-- `POST /api/v1/alerts/rule` - Crear regla de alerta
-- `POST /api/v1/alerts/trigger` - Disparar alerta
-- `GET /api/v1/alerts` - Obtener alertas activas
-- `POST /api/v1/alerts/{id}/acknowledge` - Reconocer alerta
-- `GET /api/v1/alerts/stats` - Estadísticas de alertas
+### Alerts
+- `POST /api/v1/alerts/rule` — Create alert rule
+- `POST /api/v1/alerts/trigger` — Trigger alert
+- `GET /api/v1/alerts` — Get active alerts
+- `POST /api/v1/alerts/{id}/acknowledge` — Acknowledge alert
+- `GET /api/v1/alerts/stats` — Alert statistics
 
 ### Scheduling
-- `POST /api/v1/scheduler/task` - Programar tarea
-- `GET /api/v1/scheduler/tasks` - Listar tareas
-- `GET /api/v1/scheduler/task/{id}` - Estado de tarea
-- `POST /api/v1/scheduler/task/{id}/enable` - Habilitar tarea
-- `POST /api/v1/scheduler/task/{id}/disable` - Deshabilitar tarea
+- `POST /api/v1/scheduler/task` — Schedule task
+- `GET /api/v1/scheduler/tasks` — List tasks
+- `GET /api/v1/scheduler/task/{id}` — Task status
+- `POST /api/v1/scheduler/task/{id}/enable` — Enable task
+- `POST /api/v1/scheduler/task/{id}/disable` — Disable task
 
-### Import/Export Avanzado
-- `POST /api/v1/export/advanced` - Exportar proyecto avanzado
-- `POST /api/v1/import` - Importar proyecto
+### Advanced Import/Export
+- `POST /api/v1/export/advanced` — Advanced project export
+- `POST /api/v1/import` — Import project
 
 ### Machine Learning
-- `POST /api/v1/ml/predict/time` - Predecir tiempo de generación
-- `POST /api/v1/ml/predict/success` - Predecir probabilidad de éxito
-- `POST /api/v1/ml/train` - Entrenar modelo ML
-- `GET /api/v1/ml/stats` - Estadísticas del modelo
+- `POST /api/v1/ml/predict/time` — Predict generation time
+- `POST /api/v1/ml/predict/success` — Predict success probability
+- `POST /api/v1/ml/train` — Train ML model
+- `GET /api/v1/ml/stats` — Model statistics
 
-### Optimización Automática
-- `POST /api/v1/optimize/analyze` - Analizar proyecto
-- `POST /api/v1/optimize/config` - Optimizar configuración
-- `POST /api/v1/optimize/recommendations` - Recomendaciones de optimización
+### Automatic Optimization
+- `POST /api/v1/optimize/analyze` — Analyze project
+- `POST /api/v1/optimize/config` — Optimize configuration
+- `POST /api/v1/optimize/recommendations` — Optimization recommendations
 
-### Testing Avanzado
-- `POST /api/v1/testing/run` - Ejecutar tests de proyecto
+### Advanced Testing
+- `POST /api/v1/testing/run` — Run project tests
 
-### Deployment Automático
-- `POST /api/v1/deploy/vercel` - Desplegar a Vercel
-- `POST /api/v1/deploy/netlify` - Desplegar a Netlify
-- `POST /api/v1/deploy/railway` - Desplegar a Railway
-- `GET /api/v1/deploy/history` - Historial de despliegues
+### Automatic Deployment
+- `POST /api/v1/deploy/vercel` — Deploy to Vercel
+- `POST /api/v1/deploy/netlify` — Deploy to Netlify
+- `POST /api/v1/deploy/railway` — Deploy to Railway
+- `GET /api/v1/deploy/history` — Deployment history
 
 ### Performance Analysis
-- `GET /api/v1/performance/analyze` - Analizar performance
-- `GET /api/v1/performance/predict/{operation}` - Predecir tiempo
-- `GET /api/v1/resources/stats` - Estadísticas de recursos
+- `GET /api/v1/performance/analyze` — Analyze performance
+- `GET /api/v1/performance/predict/{operation}` — Predict time
+- `GET /api/v1/resources/stats` — Resource statistics
 
-### Reportes Avanzados
-- `POST /api/v1/reports/generate/project` - Generar reporte de proyecto
-- `POST /api/v1/reports/generate/system` - Generar reporte del sistema
-- `GET /api/v1/reports` - Listar reportes
+### Advanced Reports
+- `POST /api/v1/reports/generate/project` — Generate project report
+- `POST /api/v1/reports/generate/system` — Generate system report
+- `GET /api/v1/reports` — List reports
 
-### Monitoreo en Tiempo Real
-- `POST /api/v1/monitoring/start` - Iniciar monitoreo
-- `POST /api/v1/monitoring/stop` - Detener monitoreo
-- `GET /api/v1/monitoring/metrics` - Métricas actuales
-- `GET /api/v1/monitoring/history` - Historial de métricas
-- `GET /api/v1/monitoring/alerts` - Alertas recientes
+### Real-time Monitoring
+- `POST /api/v1/monitoring/start` — Start monitoring
+- `POST /api/v1/monitoring/stop` — Stop monitoring
+- `GET /api/v1/monitoring/metrics` — Current metrics
+- `GET /api/v1/monitoring/history` — Metrics history
+- `GET /api/v1/monitoring/alerts` — Recent alerts
 
-### Automatización
-- `POST /api/v1/automation/create` - Crear automatización
-- `GET /api/v1/automation/list` - Listar automatizaciones
-- `GET /api/v1/automation/history` - Historial de ejecuciones
+### Automation
+- `POST /api/v1/automation/create` — Create automation
+- `GET /api/v1/automation/list` — List automations
+- `GET /api/v1/automation/history` — Execution history
 
-### Seguridad Avanzada
-- `POST /api/v1/security/api-key/generate` - Generar API key
-- `POST /api/v1/security/api-key/validate` - Validar API key
-- `GET /api/v1/security/stats` - Estadísticas de seguridad
+### Advanced Security
+- `POST /api/v1/security/api-key/generate` — Generate API key
+- `POST /api/v1/security/api-key/validate` — Validate API key
+- `GET /api/v1/security/stats` — Security statistics
 
-### Análisis de Calidad de Código
-- `POST /api/v1/quality/analyze/file` - Analizar calidad de archivo
-- `POST /api/v1/quality/analyze/project` - Analizar calidad de proyecto
+### Code Quality Analysis
+- `POST /api/v1/quality/analyze/file` — Analyze file quality
+- `POST /api/v1/quality/analyze/project` — Analyze project quality
 
-### Sugerencias Inteligentes
-- `POST /api/v1/suggestions/generate` - Generar sugerencias
-- `POST /api/v1/suggestions/feedback` - Registrar feedback
-- `GET /api/v1/suggestions/stats` - Estadísticas de sugerencias
+### Smart Suggestions
+- `POST /api/v1/suggestions/generate` — Generate suggestions
+- `POST /api/v1/suggestions/feedback` — Submit feedback
+- `GET /api/v1/suggestions/stats` — Suggestion statistics
 
 ### Benchmarking
-- `POST /api/v1/benchmark/record` - Registrar benchmark
-- `POST /api/v1/benchmark/compare` - Comparar proyectos
-- `GET /api/v1/benchmark/leaderboard` - Leaderboard de benchmarks
+- `POST /api/v1/benchmark/record` — Record benchmark
+- `POST /api/v1/benchmark/compare` — Compare projects
+- `GET /api/v1/benchmark/leaderboard` — Benchmark leaderboard
 
-### Métricas Avanzadas
-- `POST /api/v1/metrics/record` - Registrar métrica
-- `GET /api/v1/metrics/stats/{metric_name}` - Estadísticas de métrica
-- `POST /api/v1/metrics/custom/create` - Crear métrica personalizada
-- `GET /api/v1/metrics/summary` - Resumen de métricas
+### Advanced Metrics
+- `POST /api/v1/metrics/record` — Record metric
+- `GET /api/v1/metrics/stats/{metric_name}` — Metric statistics
+- `POST /api/v1/metrics/custom/create` — Create custom metric
+- `GET /api/v1/metrics/summary` — Metrics summary
 
 ### System
-- `GET /api/v1/system/info` - Información del sistema
+- `GET /api/v1/system/info` — System information
 
-## 🎯 Ejemplo de Uso
+## 🎯 Usage Example
 
 ```python
 import requests
 
-# Generar proyecto
+# Generate project
 response = requests.post(
     "http://localhost:8020/api/v1/generate",
     json={
-        "description": "Un analizador de imágenes con IA que detecta objetos",
+        "description": "An image analyzer with AI that detects objects",
         "project_name": "image_analyzer",
-        "author": "Tu Nombre"
+        "author": "Your Name"
     }
 )
 
 project_id = response.json()["project_id"]
-print(f"Proyecto en cola: {project_id}")
+print(f"Project in queue: {project_id}")
 
-# Ver estado
+# View status
 status = requests.get(f"http://localhost:8020/api/v1/project/{project_id}")
 print(status.json())
 ```
 
-## 📁 Estructura Generada
+## 📁 Generated Structure
 
-Cada proyecto generado incluye:
+Each generated project includes:
 
 ```
-proyecto/
+project/
 ├── backend/
 │   ├── app/
 │   │   ├── api/
@@ -402,439 +372,56 @@ proyecto/
 └── project_info.json
 ```
 
-## 🔄 Generación Continua
+## 🔄 Continuous Generation
 
-El sistema funciona de forma continua:
-1. Recibe descripciones de proyectos (vía API)
-2. Analiza y extrae características automáticamente
-3. Los agrega a una cola con prioridades
-4. Los procesa automáticamente uno por uno
-5. Genera backend y frontend completos con código inteligente
-6. Todo listo para usar inmediatamente
+The system works continuously:
+1. Receives project descriptions (via API)
+2. Analyses and extracts features automatically
+3. Adds them to a priority queue
+4. Processes them automatically one by one
+5. Generates full backend and frontend with smart code
+6. Ready to use immediately
 
-## 🧠 Detección Inteligente
+## 🧠 Smart Detection
 
-El sistema detecta automáticamente:
+The system automatically detects:
 
-### Tipos de IA
-- **Chat**: Conversacional, assistant, chatbot
-- **Vision**: Imágenes, detección, reconocimiento, OCR
-- **Audio**: Música, voz, transcripción, speech
-- **NLP**: Texto, traducción, análisis de sentimiento
-- **Video**: Streaming, procesamiento de video
-- **Recommendation**: Sistemas de recomendación
-- **Analytics**: Análisis de datos, reportes
-- **Generation**: Generación de contenido
-- **Classification**: Clasificación, categorización
-- **QA**: Preguntas y respuestas
+### AI Types
+- **Chat**: Conversational, assistant, chatbot
+- **Vision**: Images, detection, recognition, OCR
+- **Audio**: Music, voice, transcription, speech
+- **NLP**: Text, translation, sentiment analysis
+- **Video**: Streaming, video processing
+- **Recommendation**: Recommendation systems
+- **Analytics**: Data analysis, reporting
+- **Generation**: Content generation
+- **Classification**: Classification, categorization
+- **QA**: Questions and Answers
 
-### Características
-- **Auth**: Autenticación de usuarios
-- **Database**: Base de datos (PostgreSQL, MySQL, MongoDB)
-- **WebSocket**: Comunicación en tiempo real
-- **File Upload**: Subida de archivos
+### Features
+- **Auth**: User authentication
+- **Database**: Database (PostgreSQL, MySQL, MongoDB)
+- **WebSocket**: Real-time communication
+- **File Upload**: File uploads
 - **Cache**: Redis, Memcached
-- **Queue**: Tareas en background
-- **Streaming**: Procesamiento en tiempo real
+- **Queue**: Background tasks
+- **Streaming**: Real-time processing
 
-### Proveedores de Modelos
+### Model Providers
 - OpenAI (GPT)
 - Anthropic (Claude)
 - Google (Gemini)
 - HuggingFace (Transformers)
-- Modelos locales (Llama, Mistral)
+- Local Models (Llama, Mistral)
 
-## 🛠️ Tecnologías Generadas
+## 📝 Notes
 
-### Backend
-- FastAPI
-- Pydantic
-- Uvicorn
-- Estructura modular
+- Projects are generated in `generated_projects/` directory
+- Queue is saved in `project_queue.json`
+- System automatically detects AI type and generates appropriate code
+- Projects are automatically validated after generation
+- Metadata is automatically exported for each project
 
-### Frontend
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- React Router
-- Axios
+---
 
-## 🚀 Funcionalidades Avanzadas
-
-### ✨ Exportación de Proyectos
-- Exporta proyectos a ZIP o TAR
-- Incluye metadata del proyecto
-- Filtra archivos innecesarios automáticamente
-
-### ✅ Validación Automática
-- Valida estructura de directorios
-- Verifica archivos esenciales
-- Comprueba configuración
-- Valida sintaxis básica del código
-
-### 🌐 Configuraciones de Despliegue
-Genera configuraciones para:
-- **Vercel**: `vercel.json` y `.vercelignore`
-- **Netlify**: `netlify.toml`
-- **Railway**: `railway.json`
-- **Heroku**: `Procfile`, `runtime.txt`, `.slugignore`
-
-### 📊 Metadata y Estadísticas
-Cada proyecto incluye:
-- Metadata completa en `project_metadata.json`
-- Conteo de archivos por tipo
-- Información de estructura
-- Estadísticas del proyecto
-
-### 🔄 Clonado de Proyectos
-- Clona proyectos existentes con un solo comando
-- Actualiza configuraciones automáticamente
-- Excluye archivos innecesarios
-- Mantiene historial de clonado
-
-### 📝 Templates Personalizados
-- Guarda configuraciones de proyectos como templates
-- Reutiliza templates para generar proyectos similares
-- Gestiona templates (crear, listar, eliminar)
-- Templates reutilizables y personalizables
-
-### 🔍 Búsqueda Avanzada
-- Búsqueda por texto, tipo de IA, autor, fecha
-- Filtros por características (tests, CI/CD)
-- Estadísticas agregadas de proyectos
-- Búsqueda rápida y eficiente
-
-### ⚡ Cache Inteligente
-- Cache automático de proyectos generados
-- Reducción de tiempo de generación
-- Expiración automática (7 días)
-- Estadísticas de cache
-
-### 🔔 Webhooks
-- Notificaciones automáticas de eventos
-- Eventos: project.queued, project.completed, project.failed
-- Verificación con secret (HMAC)
-- Gestión completa de webhooks
-
-### 🛡️ Rate Limiting
-- Protección contra abuso
-- Límites configurables por endpoint
-- Headers informativos (X-RateLimit-*)
-- Middleware automático
-
-### 🔐 Autenticación y Autorización
-- Sistema de usuarios y roles
-- Autenticación JWT
-- API keys para acceso programático
-- Roles: user, admin
-
-### 📊 Métricas y Monitoreo
-- Métricas en tiempo real
-- Formato Prometheus compatible
-- Tracking de requests, proyectos, cache
-- Estadísticas de performance
-- Uptime y disponibilidad
-
-### 💾 Backup y Restore
-- Backups automáticos completos
-- Incluye proyectos, cache y cola
-- Restauración fácil
-- Gestión de múltiples backups
-
-### 📊 Dashboard Web
-- Dashboard interactivo en tiempo real
-- Visualización de estadísticas
-- Gráficos y métricas
-- Actualización automática
-- Accesible en `/dashboard`
-
-### 🏥 Health Checks Avanzados
-- Health check básico y detallado
-- Verificación de sistema de archivos
-- Monitoreo de memoria y disco
-- Verificación de dependencias
-- Estado completo del sistema
-
-### 🔄 API Versioning
-- Gestión de versiones de API
-- Soporte para múltiples versiones
-- Deprecación de versiones
-- Información de versiones disponibles
-
-### 🔔 Sistema de Notificaciones
-- Notificaciones multi-canal
-- Soporte para Slack, Discord, Telegram, Email
-- Configuración por canal
-- Prioridades de notificación
-
-### 🔌 Sistema de Plugins
-- Sistema extensible de plugins
-- Registro dinámico de plugins
-- Hooks personalizables
-- Activación/desactivación de plugins
-
-### 📡 Sistema de Eventos
-- Eventos en tiempo real
-- Historial de eventos
-- Estadísticas de eventos
-- Suscripción a eventos
-
-### 📝 Logging Avanzado
-- Logging estructurado
-- Formato JSON opcional
-- Estadísticas de logs
-- Rotación automática
-
-### 🔌 WebSocket en Tiempo Real
-- Conexiones WebSocket
-- Suscripciones por proyecto
-- Actualizaciones en tiempo real
-- Notificaciones push
-
-### 📦 Generación en Batch
-- Generar múltiples proyectos
-- Procesamiento paralelo o secuencial
-- Control de errores
-- Hasta 50 proyectos por batch
-
-### ⚡ Optimización de Performance Avanzada
-- Cache inteligente LRU con TTL
-- Procesamiento paralelo de proyectos
-- Optimizador de generación con estadísticas
-- Procesador inteligente de lotes
-- Sugerencias automáticas de optimización
-- Tracking de tiempos de respuesta
-- Análisis de performance
-
-### 📡 Streaming en Tiempo Real
-- Sistema de eventos en tiempo real
-- Streamers especializados (proyectos, cola, stats)
-- Historial de eventos
-- Suscripción a eventos
-- Estadísticas de streaming
-
-### 📊 Analytics Avanzado
-- Motor de análisis completo
-- Tendencias y estadísticas
-- Reportes personalizables
-- Análisis de performance
-- Uso de frameworks
-- Estadísticas por autor
-- Tipos de IA más populares
-
-### 🎯 Sistema de Recomendaciones Inteligentes
-- Recomendaciones basadas en ML
-- Features recomendadas por tipo de IA
-- Framework recomendado
-- Proyectos similares
-- Aprendizaje continuo
-
-### 📦 Sistema de Versionado
-- Versionado semántico de proyectos
-- Historial completo de versiones
-- Restauración de versiones anteriores
-- Comparación entre versiones
-- Hash de integridad
-- Metadata por versión
-
-### 👥 Sistema de Colaboración
-- Gestión de colaboradores
-- Roles y permisos (owner, editor, viewer)
-- Comentarios en proyectos
-- Respuestas a comentarios
-- Control de acceso granular
-
-### 📚 Documentación Automática
-- Generación automática de README.md
-- Documentación de API
-- CHANGELOG automático
-- Templates personalizables
-- Información completa del proyecto
-
-### 🚨 Sistema de Alertas
-- Alertas por niveles (info, warning, error, critical)
-- Reglas de alerta configurables
-- Historial de alertas
-- Reconocimiento de alertas
-- Estadísticas de alertas
-- Notificaciones automáticas
-
-### ⏰ Sistema de Scheduling
-- Tareas programadas
-- Ejecución automática
-- Tipos: interval, cron, once
-- Habilitar/deshabilitar tareas
-- Historial de ejecuciones
-- Estadísticas de tareas
-
-### 📥📤 Import/Export Avanzado
-- Exportación con opciones (dependencies, tests, docs)
-- Múltiples formatos (zip, tar, tar.gz, tar.bz2, tar.xz)
-- Importación de proyectos
-- Validación automática
-- Compresión configurable
-
-### 🤖 Machine Learning
-- Predicción de tiempo de generación
-- Predicción de probabilidad de éxito
-- Modelo entrenable con datos históricos
-- Estadísticas del modelo
-- Aprendizaje continuo
-
-### ⚡ Optimización Automática
-- Análisis automático de proyectos
-- Sugerencias de optimización
-- Optimización de configuración
-- Recomendaciones inteligentes
-- Score de optimización
-
-### 🧪 Testing Avanzado
-- Tests automáticos de backend (pytest)
-- Tests automáticos de frontend (npm test)
-- Ejecución de todos los tests
-- Reportes JSON de resultados
-- Timeout configurable
-
-### 🚀 Deployment Automático
-- Despliegue a Vercel
-- Despliegue a Netlify
-- Despliegue a Railway
-- Historial de despliegues
-- Configuración automática
-
-### 📊 Performance Analysis
-- Análisis avanzado de performance
-- Predicción de tiempos de operaciones
-- Monitoreo de recursos (CPU, memoria, disco)
-- Métricas históricas
-- Percentiles (P95, P99)
-
-### 📋 Reportes Avanzados
-- Reportes de proyectos personalizables
-- Reportes del sistema (daily, weekly, monthly)
-- Inclusión de estadísticas y timeline
-- Almacenamiento persistente
-- Listado y búsqueda de reportes
-
-### 📡 Monitoreo en Tiempo Real
-- Monitoreo continuo del sistema
-- Recolección de métricas (CPU, memoria, disco)
-- Alertas automáticas (CPU alto, memoria alta)
-- Historial de métricas
-- Control de inicio/detención
-
-### 🤖 Motor de Automatización
-- Automatizaciones basadas en triggers
-- Múltiples tipos de triggers (project.created, scheduled, etc.)
-- Múltiples acciones (run_tests, deploy, notify, etc.)
-- Historial de ejecuciones
-- Habilitar/deshabilitar automatizaciones
-
-### 🔐 Seguridad Avanzada
-- Generación y validación de API keys
-- Control de acceso basado en permisos
-- Rate limiting avanzado
-- Bloqueo automático de IPs
-- Protección contra intentos fallidos
-- Estadísticas de seguridad
-- Expiración de API keys
-
-### 📊 Análisis de Calidad de Código
-- Análisis de archivos Python (AST)
-- Complejidad ciclomática
-- Longitud de funciones y clases
-- Detección de problemas de calidad
-- Score de calidad (0-100)
-- Análisis de proyectos completos
-- Reportes detallados
-
-### 🧠 Sugerencias Inteligentes
-- Generación automática de sugerencias
-- Análisis de descripción del proyecto
-- Recomendaciones de frameworks
-- Sugerencias de features
-- Aprendizaje de preferencias del usuario
-- Feedback y mejora continua
-- Estadísticas de aceptación
-
-### 📈 Sistema de Benchmarking
-- Benchmarking de generación de proyectos
-- Comparación de múltiples proyectos
-- Leaderboard de performance
-- Score de performance automático
-- Métricas de tiempo y complejidad
-- Análisis comparativo
-
-### 📊 Métricas Avanzadas
-- Sistema de métricas personalizables
-- Estadísticas detalladas (min, max, avg, percentiles)
-- Ventanas de tiempo configurables
-- Métricas personalizadas
-- Agregaciones automáticas
-- Resumen completo de métricas
-
-### 🔒 Seguridad Mejorada
-- Security headers automáticos
-- GZip compression
-- Validaciones mejoradas
-- Protección contra spam
-
-## 📝 Notas
-
-- Los proyectos se generan en el directorio `generated_projects/`
-- La cola se guarda en `project_queue.json`
-- El sistema detecta automáticamente el tipo de IA y genera código apropiado
-- Los proyectos se validan automáticamente después de generarse
-- Metadata se exporta automáticamente para cada proyecto
-
-## 🎯 Ejemplo Completo con Todas las Características
-
-```python
-import requests
-
-# 1. Generar proyecto
-response = requests.post(
-    "http://localhost:8020/api/v1/generate",
-    json={
-        "description": "Un sistema de chat con IA",
-        "project_name": "chat_ai",
-        "generate_tests": True,
-        "include_cicd": True,
-        "create_github_repo": True,
-        "github_token": "ghp_...",
-    }
-)
-
-project_id = response.json()["project_id"]
-project_path = response.json()["project_info"]["project_dir"]
-
-# 2. Validar proyecto
-validation = requests.post(
-    "http://localhost:8020/api/v1/validate",
-    json={"project_path": project_path}
-)
-print(f"Proyecto válido: {validation.json()['valid']}")
-
-# 3. Exportar a ZIP
-export = requests.post(
-    "http://localhost:8020/api/v1/export/zip",
-    json={"project_path": project_path}
-)
-print(f"Exportado a: {export.json()['zip_path']}")
-
-# 4. Generar configuraciones de despliegue
-deploy = requests.post(
-    "http://localhost:8020/api/v1/deploy/generate",
-    json={
-        "project_path": project_path,
-        "platforms": ["vercel", "netlify"]
-    }
-)
-print(f"Configuraciones generadas: {deploy.json()['generated']}")
-```
-
-## 👤 Autor
-
-Blatam Academy
-
+[← Back to Main README](../README.md)

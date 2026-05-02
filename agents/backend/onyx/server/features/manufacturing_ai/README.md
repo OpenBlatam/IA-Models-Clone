@@ -1,224 +1,106 @@
 # Manufacturing AI
 
-Sistema inteligente de manufactura con planificación de producción, control de calidad, optimización de procesos y monitoreo en tiempo real.
+<div align="center">
 
-## Características
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Version](https://img.shields.io/badge/version-2.5-blue.svg)
+![Type](https://img.shields.io/badge/module-industrial--ai-orange.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-### 1. Planificación de Producción
-- Creación y gestión de órdenes de producción
-- Programación automática optimizada
-- Asignación de recursos
-- Priorización inteligente
+**Intelligent manufacturing system featuring production planning, quality control, process optimization, and real-time monitoring.**
 
-### 2. Control de Calidad
-- Inspección visual con visión por computadora
-- Checks dimensionales
-- Detección de defectos
-- Análisis estadístico de calidad
+[Overview](#-overview) •
+[Features](#-key-features) •
+[Architecture](#-architecture) •
+[API Endpoints](#-api-endpoints) •
+[Usage](#-usage) •
+[Contributing](#-contributing)
 
-### 3. Optimización de Procesos
-- Optimización de parámetros usando deep learning
-- Predicción de mejoras
-- Recomendaciones automáticas
-- Múltiples objetivos (eficiencia, calidad, costo)
+</div>
 
-### 4. Monitoreo en Tiempo Real
-- Estado de equipos
-- Métricas de producción
-- Alertas automáticas
-- Historial de métricas
+---
 
-## API Endpoints
+## 📋 Overview
 
-### Producción
-- `POST /api/v1/manufacturing/orders`: Crear orden
-- `POST /api/v1/manufacturing/orders/{id}/schedule`: Programar orden
-- `POST /api/v1/manufacturing/orders/{id}/start`: Iniciar orden
-- `POST /api/v1/manufacturing/orders/{id}/complete`: Completar orden
-- `POST /api/v1/manufacturing/optimize-schedule`: Optimizar schedule
+**Manufacturing AI** is a comprehensive industrial solution designed to optimize shop-floor operations. It leverages Deep Learning (CNNs and Transformers) for predictive quality control and process parameter optimization, combined with a robust PlanOps layer for demand forecasting and predictive maintenance.
 
-### Calidad
-- `POST /api/v1/manufacturing/quality/checks`: Crear check
-- `POST /api/v1/manufacturing/quality/checks/{id}/dimensional`: Check dimensional
+## 🚀 Key Features
 
-### Optimización
-- `POST /api/v1/manufacturing/processes`: Registrar proceso
-- `POST /api/v1/manufacturing/processes/optimize`: Optimizar proceso
+| Feature | Description |
+|---------|-------------|
+| **Production Planning** | Automated scheduling and resource allocation for production orders. |
+| **Visual Quality Control** | Computer vision-based defect detection and dimensional checks. |
+| **Process Optimization** | Transformer-based parameter tuning for maximum efficiency. |
+| **Real-time Monitoring** | IoT equipment status tracking and automatic alerting systems. |
+| **PlanOps Integration** | LSTM-based demand forecasting and predictive maintenance. |
 
-### Monitoreo
-- `POST /api/v1/manufacturing/equipment`: Registrar equipo
-- `GET /api/v1/manufacturing/statistics`: Estadísticas
+## 🏗 Architecture
 
-### PlanOps
-- `POST /api/v1/manufacturing/demand/forecast`: Predecir demanda
-- `POST /api/v1/manufacturing/demand/add-data`: Agregar datos históricos
-- `POST /api/v1/manufacturing/maintenance/predict`: Predecir mantenimiento
-- `POST /api/v1/manufacturing/maintenance/sensor-data`: Agregar datos de sensores
-- `POST /api/v1/manufacturing/capacity/optimize`: Optimizar capacidad
-- `POST /api/v1/manufacturing/capacity/allocate`: Asignar recurso
+```mermaid
+graph TD
+    A[Industrial Sensors/Cameras] --> B[Data Ingestion]
+    B --> C{AI Core}
+    
+    subgraph "Deep Learning Tiers"
+    C --> D[Quality Predictor - CNN]
+    C --> E[Process Optimizer - Transformer]
+    end
+    
+    D & E --> F[Decision Engine]
+    F --> G[Robot Control / Dashboards]
+```
 
-## Ejemplo de Uso
+## 📁 Structure
+
+```
+manufacturing_ai/
+├── core/                   # Central business logic and scheduling
+├── models/                 # Deep learning model definitions (Quality/Process)
+├── architecture/           # Reusable NN components (Attention, Residual, etc.)
+├── planops/                # Planning Operations (Demand, Maintenance, Capacity)
+└── dashboards/             # Gradio interaction layer
+```
+
+## 💻 Installation
+
+This module requires a GPU-enabled environment for training and high-performance inference.
+
+```bash
+# Core manufacturing dependencies
+pip install -r requirements.txt
+```
+
+## ⚡ Usage
 
 ```python
-# Crear orden de producción
+# Launch production order
 POST /api/v1/manufacturing/orders
 {
-    "product_id": "PROD001",
-    "quantity": 100,
-    "due_date": "2025-11-15T10:00:00",
-    "priority": "high"
+    "product_id": "PROD_X100",
+    "quantity": 500,
+    "priority": "high",
+    "due_date": "2025-12-01T08:00:00"
 }
 
-# Optimizar schedule
-POST /api/v1/manufacturing/optimize-schedule
-
-# Realizar check de calidad
+# Run visual quality inspection
 POST /api/v1/manufacturing/quality/checks
 {
-    "product_id": "PROD001",
-    "check_type": "visual"
+    "product_id": "PROD_X100",
+    "check_type": "visual_cnn_advanced"
 }
 ```
 
-## Integración con Robots
+## 🔗 Integration
 
-El sistema se integra con el sistema de robots universal para automatización completa de manufactura.
+The system seamlessly integrates with:
+- **Universal Robot System**: For full end-to-end automation.
+- **Enterprise System**: For production reporting and ERP integration.
+- **Experiment Tracking**: Native support for WandB and TensorBoard.
 
-## Modelos de Deep Learning
+---
 
-### Quality Predictor
-Modelo CNN+MLP para predecir calidad de productos usando imágenes y características numéricas.
-
-**Arquitecturas disponibles:**
-- **Standard**: CNN + MLP básico
-- **Advanced**: Con atención multi-head y bloques residuales
-
-### Process Optimizer Transformer
-Modelo transformer para optimizar parámetros de procesos de manufactura.
-
-**Arquitecturas disponibles:**
-- **Standard**: Transformer básico con encoder
-- **Advanced**: Transformer completo con atención avanzada y feed-forward mejorado
-
-## Arquitectura Avanzada
-
-### Componentes Arquitectónicos
-
-El sistema incluye componentes reutilizables para construir modelos avanzados:
-
-#### Attention Layers
-- `MultiHeadAttention`: Atención multi-head completa
-- `SelfAttention`: Self-attention wrapper
-- `CrossAttention`: Cross-attention entre secuencias
-
-#### Residual Blocks
-- `ResidualBlock`: Bloque residual con normalización
-- `ResidualConnection`: Wrapper para conexiones residuales
-
-#### Normalization
-- `LayerNorm`: Layer normalization
-- `BatchNorm1d`: Batch normalization
-- `GroupNorm`: Group normalization
-
-#### Activations
-- `GELU`: Gaussian Error Linear Unit
-- `Swish`: Swish activation
-- `Mish`: Mish activation
-
-#### Model Builder
-- `ModelBuilder`: Builder pattern para construir modelos complejos
-- `ArchitectureConfig`: Configuración flexible de arquitecturas
-
-#### Component Factory
-- Factory methods para crear componentes consistentes
-- Soporte para bloques transformer completos
-
-#### Distributed Training
-- Soporte para `DataParallel` (multi-GPU)
-- Soporte para `DistributedDataParallel` (entrenamiento distribuido)
-- Gestión automática de batch size por GPU
-
-### Uso de Arquitecturas Avanzadas
-
-```python
-# Crear modelo de calidad avanzado
-POST /api/v1/manufacturing/models/quality/create
-{
-    "model_id": "quality_advanced_001",
-    "image_input_size": 224,
-    "num_features": 10,
-    "use_advanced": true
-}
-
-# Crear modelo de optimización avanzado
-POST /api/v1/manufacturing/models/optimizer/create
-{
-    "model_id": "optimizer_advanced_001",
-    "input_dim": 10,
-    "output_dim": 10,
-    "use_advanced": true
-}
-```
-
-## Mejoras Avanzadas de Arquitectura
-
-### Advanced Training
-- **Mixed Precision Training**: Entrenamiento con FP16 para aceleración
-- **Gradient Accumulation**: Permite batch sizes grandes
-- **Advanced Trainer**: Entrenador completo con todas las optimizaciones
-
-### Profiling y Optimización
-- **Model Profiler**: Análisis de tiempo y memoria
-- **Model Optimizer**: Optimización para inferencia (JIT, fusion)
-
-### Checkpointing Avanzado
-- **CheckpointManager**: Gestión completa de checkpoints
-- Guardado/carga con metadata
-- Gestión de mejor modelo
-- Limpieza automática
-
-### Embeddings
-- **Positional Encoding**: Encoding posicional para transformers
-- **Token Embedding**: Embedding de tokens con normalización
-- **Feature Embedding**: Embedding de características numéricas
-
-### Ensembling
-- **Model Ensemble**: Combinación de múltiples modelos
-- **Stacking Ensemble**: Meta-modelo para combinar predicciones
-- Múltiples métodos (average, weighted, voting)
-
-### Data Augmentation
-- **Advanced Image Augmentation**: Transformaciones avanzadas
-- **Feature Augmentation**: Augmentación de características
-- **MixUp/CutMix**: Técnicas modernas de augmentación
-
-## Dashboards Gradio
-
-Dashboards interactivos para:
-- Monitoreo de producción en tiempo real
-- Análisis de calidad con imágenes
-- Optimización de procesos
-
-## Experiment Tracking
-
-Soporte para TensorBoard y Weights & Biases para tracking de experimentos de modelos.
-
-## PlanOps (Planning Operations)
-
-### 1. Demand Forecasting
-- Predicción de demanda usando LSTM
-- Intervalos de confianza
-- Integración con planificación
-
-### 2. Predictive Maintenance
-- Predicción de fallas usando CNN
-- Análisis de sensores en tiempo real
-- Recomendaciones de mantenimiento
-
-### 3. Capacity Optimization
-- Optimización de capacidad con MLP
-- Asignación inteligente de recursos
-- Recomendaciones de ajuste
-
-Ver `IMPROVEMENTS.md` y `PLANOPS_IMPROVEMENTS.md` para más detalles.
-
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>

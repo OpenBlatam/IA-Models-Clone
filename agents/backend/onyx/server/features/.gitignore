@@ -31,3 +31,5 @@ target/
 *.onnx
 *.pt
 *.ckpt
+checkpoints/
+**/checkpoints/

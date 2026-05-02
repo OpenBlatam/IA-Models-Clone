@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from agents.backend.onyx.server.features.lovable.web_gen_system.agents.base import BaseAgent
-from agents.backend.onyx.server.features.lovable.web_gen_system.papers.reflexion import ReflexionAgent
+from ...agents.base import BaseAgent
+from ...papers.reflexion import ReflexionAgent
 
 class TestAgentLogic(unittest.TestCase):
     def setUp(self):

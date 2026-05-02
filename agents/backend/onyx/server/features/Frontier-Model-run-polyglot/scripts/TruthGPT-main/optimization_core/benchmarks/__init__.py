@@ -11,6 +11,7 @@ from .benchmark_runner import (
 )
 from .performance_metrics import (
     PerformanceMetrics,
+    MetricsCollector,
     collect_metrics,
     analyze_performance,
 )
@@ -21,6 +22,8 @@ __all__ = [
     "run_benchmark",
     "compare_benchmarks",
     "PerformanceMetrics",
+    "MetricsCollector",
     "collect_metrics",
     "analyze_performance",
 ]
+

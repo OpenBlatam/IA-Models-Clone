@@ -18,7 +18,7 @@ import copy
 import time
 import logging
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from enum import Enum
 import json
 import pickle
@@ -71,35 +71,32 @@ class LoadBalancingStrategy(Enum):
     LEAST_RESPONSE_TIME = "least_response_time"
     CONSISTENT_HASHING = "consistent_hashing"
 
-@dataclass
-class EdgeConfig:
+class EdgeConfig(BaseModel):
     """Configuration for edge computing."""
     device_type: EdgeDeviceType = EdgeDeviceType.MOBILE
-    compute_capacity: float = 1.0  # GFLOPS
-    memory_capacity: float = 1.0  # GB
-    bandwidth: float = 10.0  # Mbps
+    compute_capacity: float = 1.0
+    memory_capacity: float = 1.0
+    bandwidth: float = 10.0
     battery_level: float = 1.0
-    latency_threshold: float = 100.0  # ms
+    latency_threshold: float = 100.0
     energy_efficiency: float = 1.0
     device_id: str = "edge_device_1"
-    location: Tuple[float, float] = (0.0, 0.0)  # lat, lon
-    
-@dataclass
-class CloudConfig:
+    location: Tuple[float, float] = (0.0, 0.0)
+
+class CloudConfig(BaseModel):
     """Configuration for cloud computing."""
-    server_capacity: float = 1000.0  # GFLOPS
-    memory_capacity: float = 100.0  # GB
-    bandwidth: float = 1000.0  # Mbps
-    latency: float = 50.0  # ms
+    server_capacity: float = 1000.0
+    memory_capacity: float = 100.0
+    bandwidth: float = 1000.0
+    latency: float = 50.0
     cost_per_hour: float = 0.1
     server_id: str = "cloud_server_1"
     region: str = "us-east-1"
 
-@dataclass
-class HybridConfig:
+class HybridConfig(BaseModel):
     """Configuration for edge-cloud hybrid computing."""
-    edge_config: EdgeConfig = field(default_factory=EdgeConfig)
-    cloud_config: CloudConfig = field(default_factory=CloudConfig)
+    edge_config: EdgeConfig = Field(default_factory=EdgeConfig)
+    cloud_config: CloudConfig = Field(default_factory=CloudConfig)
     computing_mode: ComputingMode = ComputingMode.HYBRID
     offloading_strategy: OffloadingStrategy = OffloadingStrategy.BALANCED
     load_balancing_strategy: LoadBalancingStrategy = LoadBalancingStrategy.ROUND_ROBIN
@@ -879,3 +876,4 @@ def example_edge_cloud_hybrid():
 if __name__ == "__main__":
     # Run example
     example_edge_cloud_hybrid()
+

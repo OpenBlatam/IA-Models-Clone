@@ -15,7 +15,7 @@ class EnterpriseTaskPlanner(BaseAgent):
         Creates a long-term plan based on the high-level goal.
         """
         try:
-            goal = context.get("goal") or context.get("prompt")
+            goal = context.shared_memory.get("goal") or context.shared_memory.get("prompt")
             if not goal:
                  return {"status": "skipped", "plan": []}
 

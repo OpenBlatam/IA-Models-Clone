@@ -230,7 +230,7 @@ class CacheManager:
             cache_file = self.cache_dir / f"{key}.cache"
             if cache_file.exists():
                 with open(cache_file, 'rb') as f:
-                data = pickle.load(f)
+                    data = pickle.load(f)
                 
                 # Check expiration
                 if data.get('expires_at') and data['expires_at'] < datetime.now():
@@ -422,5 +422,6 @@ class CacheManager:
         
         if hasattr(self, 'redis_client'):
             self.redis_client.close()
+
 
 

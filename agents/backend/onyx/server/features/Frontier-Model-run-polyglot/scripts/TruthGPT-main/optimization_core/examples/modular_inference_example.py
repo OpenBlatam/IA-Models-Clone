@@ -4,9 +4,9 @@ Example demonstrating modular inference with caching and batching.
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from core.service_registry import ServiceContainer
-from core.services import InferenceService, ModelService
-from core.config import ConfigManager
+from modules.base.core_system.core.service_registry import ServiceContainer
+from modules.base.core_system.core.services import InferenceService, ModelService
+from modules.base.core_system.core.config import ConfigManager
 
 from inference.text_generator import TextGenerator
 
@@ -112,5 +112,6 @@ def inference_example():
 
 if __name__ == "__main__":
     inference_example()
+
 
 

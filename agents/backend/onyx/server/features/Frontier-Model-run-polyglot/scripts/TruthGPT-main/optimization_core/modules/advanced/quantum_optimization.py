@@ -340,3 +340,4 @@ class QuantumOptimizationEngine:
         return torch.std(self.quantum_optimizer.quantum_state).item()
 
 
+

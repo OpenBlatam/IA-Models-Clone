@@ -7,10 +7,13 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta
-from enum import Enum
-import logging
+from datetime import datetime
+import math
+import asyncio
+import threading
+import time
+from ..base import BaseOptimizationModel, CudaResourceManager
+from pydantic import Field
 import random
 import math
 import asyncio
@@ -50,8 +53,7 @@ class RevolutionaryQuantumActivationFunction(Enum):
     REVOLUTIONARY_QUANTUM_MEGA = "revolutionary_quantum_mega"
     REVOLUTIONARY_QUANTUM_ULTRA = "revolutionary_quantum_ultra"
 
-@dataclass
-class RevolutionaryQuantumDeepLearningConfig:
+class RevolutionaryQuantumDeepLearningConfig(BaseOptimizationModel):
     """Revolutionary quantum deep learning configuration."""
     architecture: RevolutionaryQuantumDeepLearningArchitecture = RevolutionaryQuantumDeepLearningArchitecture.REVOLUTIONARY_QUANTUM_CONVOLUTIONAL_NETWORK
     num_qubits: int = 32
@@ -73,9 +75,8 @@ class RevolutionaryQuantumDeepLearningConfig:
     learning_algorithm: RevolutionaryQuantumLearningAlgorithm = RevolutionaryQuantumLearningAlgorithm.REVOLUTIONARY_QUANTUM_BACKPROPAGATION
     activation_function: RevolutionaryQuantumActivationFunction = RevolutionaryQuantumActivationFunction.REVOLUTIONARY_QUANTUM_RELU
 
-@dataclass
-class RevolutionaryQuantumNeuralLayer:
-    """Revolutionary quantum neural layer representation."""
+class RevolutionaryQuantumNeuralLayer(BaseOptimizationModel):
+    
     layer_type: str
     num_qubits: int
     num_units: int
@@ -89,9 +90,8 @@ class RevolutionaryQuantumNeuralLayer:
     teleportation_capable: bool = False
     error_correction_enabled: bool = True
 
-@dataclass
-class RevolutionaryQuantumDeepLearningNetwork:
-    """Revolutionary quantum deep learning network representation."""
+class RevolutionaryQuantumDeepLearningNetwork(BaseOptimizationModel):
+    
     layers: List[RevolutionaryQuantumNeuralLayer]
     num_qubits: int
     num_layers: int
@@ -99,12 +99,13 @@ class RevolutionaryQuantumDeepLearningNetwork:
     architecture: RevolutionaryQuantumDeepLearningArchitecture
     fidelity: float = 1.0
     execution_time: float = 0.0
-    teleportation_channels: List[Tuple[int, int]] = field(default_factory=list)
-    error_correction_circuits: List[str] = field(default_factory=list)
+    teleportation_channels: List[Tuple[int, int]] = Field(default_factory=list)
+    error_correction_circuits: List[str] = Field(default_factory=list)
 
-@dataclass
-class RevolutionaryQuantumDeepLearningResult:
+class RevolutionaryQuantumDeepLearningResult(BaseModel):
     """Revolutionary quantum deep learning result."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     trained_network: RevolutionaryQuantumDeepLearningNetwork
     training_loss: float
     validation_loss: float
@@ -115,15 +116,47 @@ class RevolutionaryQuantumDeepLearningResult:
     training_time: float
     teleportation_success_rate: float
     error_correction_effectiveness: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 class RevolutionaryQuantumActivationFunction:
-    """Revolutionary quantum activation function implementation."""
+    """Enterprise-quality revolutionary quantum activation functions."""
     
-    def __init__(self, config: RevolutionaryQuantumDeepLearningConfig):
+    def __init__(self, config: RevolutionaryQuantumConfig):
         self.config = config
         self.logger = logging.getLogger(__name__)
-        
+
+    def _apply_quantum_activation(self, x: np.ndarray, func: Callable) -> np.ndarray:
+        """Helper to apply activation with quantum effects."""
+        noise = self.config.quantum_noise_level if self.config.use_quantum_superposition else 0.0
+        return apply_elementwise_quantum_op(x, func, noise).astype(np.float64)
+
+    def _revolutionary_quantum_relu(self, x: np.ndarray) -> np.ndarray:
+        return self._apply_quantum_activation(x, lambda v: np.maximum(0, v))
+
+    def _revolutionary_quantum_sigmoid(self, x: np.ndarray) -> np.ndarray:
+        return self._apply_quantum_activation(x, lambda v: 1 / (1 + np.exp(-v)))
+
+    def _revolutionary_quantum_tanh(self, x: np.ndarray) -> np.ndarray:
+        return self._apply_quantum_activation(x, np.tanh)
+
+    def _revolutionary_quantum_leaky_relu(self, x: np.ndarray) -> np.ndarray:
+        return self._apply_quantum_activation(x, lambda v: np.where(v > 0, v, v * 0.01))
+
+    def _revolutionary_quantum_swish(self, x: np.ndarray) -> np.ndarray:
+        return self._apply_quantum_activation(x, lambda v: v / (1 + np.exp(-v)))
+
+    def _revolutionary_quantum_gelu(self, x: np.ndarray) -> np.ndarray:
+        return self._apply_quantum_activation(x, lambda v: 0.5 * v * (1 + np.tanh(np.sqrt(2 / np.pi) * (v + 0.044715 * v**3))))
+
+    def _revolutionary_quantum_selu(self, x: np.ndarray) -> np.ndarray:
+        alpha = 1.67326
+        scale = 1.0507
+        return self._apply_quantum_activation(x, lambda v: scale * np.where(v > 0, v, alpha * (np.exp(v) - 1)))
+
+    def _revolutionary_quantum_elu(self, x: np.ndarray) -> np.ndarray:
+        alpha = 1.0
+        return self._apply_quantum_activation(x, lambda v: np.where(v > 0, v, alpha * (np.exp(v) - 1)))
+    
     def apply(self, x: np.ndarray, activation_type: RevolutionaryQuantumActivationFunction) -> np.ndarray:
         """Apply revolutionary quantum activation function."""
         if activation_type == RevolutionaryQuantumActivationFunction.REVOLUTIONARY_QUANTUM_RELU:
@@ -331,40 +364,35 @@ class RevolutionaryQuantumNeuralLayer:
         return revolutionary_activated_output
     
     def _apply_revolutionary_quantum_gates(self, x: np.ndarray) -> np.ndarray:
-        """Apply revolutionary quantum gates to input."""
-        # Simulate revolutionary quantum gate application
-        revolutionary_quantum_output = x.copy()
+        """Apply revolutionary quantum gates with proper simulation."""
+        current_state = normalize_state(x.astype(np.complex128))
+        num_qubits = int(np.log2(len(x))) if len(x) > 1 else 1
         
-        # Apply revolutionary rotation gates
-        for i in range(len(x)):
-            # Revolutionary RX gate
-            angle = random.uniform(0, 2 * np.pi)
-            revolutionary_quantum_output[i] *= np.cos(angle / 2) - 1j * np.sin(angle / 2)
+        # Define rotation matrices
+        def rx(theta): return np.array([[np.cos(theta/2), -1j*np.sin(theta/2)], [-1j*np.sin(theta/2), np.cos(theta/2)]])
+        def ry(theta): return np.array([[np.cos(theta/2), -np.sin(theta/2)], [np.sin(theta/2), np.cos(theta/2)]])
+        def rz(theta): return np.array([[np.exp(-1j*theta/2), 0], [0, np.exp(1j*theta/2)]])
+
+        for qubit in range(num_qubits):
+            # Apply rotations
+            for gate_func in [rx, ry, rz]:
+                angle = np.random.uniform(0, 2*np.pi)
+                current_state = apply_single_qubit_gate(current_state, gate_func(angle), qubit)
             
-            # Revolutionary RY gate
-            angle = random.uniform(0, 2 * np.pi)
-            revolutionary_quantum_output[i] *= np.cos(angle / 2) + np.sin(angle / 2)
-            
-            # Revolutionary RZ gate
-            angle = random.uniform(0, 2 * np.pi)
-            revolutionary_quantum_output[i] *= np.exp(1j * angle / 2)
-        
-        # Apply revolutionary entangling gates
-        for control, target in self.entanglement_pattern:
-            if control < len(revolutionary_quantum_output) and target < len(revolutionary_quantum_output):
-                # Revolutionary CNOT gate simulation
-                if revolutionary_quantum_output[control] > 0.5:  # If control qubit is 1
-                    revolutionary_quantum_output[target] = 1 - revolutionary_quantum_output[target]  # Flip target
-        
+            # Apply entangling gates (CNOT) if not last qubit
+            if self.config.use_quantum_entanglement and qubit < num_qubits - 1:
+                current_state = apply_cnot(current_state, qubit, qubit + 1)
+
         # Apply revolutionary quantum teleportation if enabled
+        res = np.real(current_state) if not self.config.use_quantum_superposition else current_state
+        
         if self.revolutionary_teleportation_enabled:
-            revolutionary_quantum_output = self._apply_revolutionary_quantum_teleportation(revolutionary_quantum_output)
+            res = self._apply_revolutionary_quantum_teleportation(res)
         
-        # Apply revolutionary quantum error correction if enabled
         if self.revolutionary_error_correction_enabled:
-            revolutionary_quantum_output = self._apply_revolutionary_quantum_error_correction(revolutionary_quantum_output)
-        
-        return revolutionary_quantum_output
+            res = self._apply_revolutionary_quantum_error_correction(res)
+            
+        return res
     
     def _apply_revolutionary_quantum_teleportation(self, quantum_output: np.ndarray) -> np.ndarray:
         """Apply revolutionary quantum teleportation."""
@@ -580,7 +608,8 @@ class RevolutionaryQuantumDeepLearningOptimizer:
             revolutionary_gradients = self._calculate_revolutionary_gradients(revolutionary_predictions, batch_y)
             self.network.backward(revolutionary_gradients)
         
-        avg_loss = total_loss / (len(X_train) // self.config.batch_size)
+        num_batches = max(1, len(X_train) // self.config.batch_size)
+        avg_loss = total_loss / num_batches
         accuracy = total_correct / total_samples
         
         return avg_loss, accuracy
@@ -608,7 +637,8 @@ class RevolutionaryQuantumDeepLearningOptimizer:
             total_correct += revolutionary_correct
             total_samples += len(batch_y)
         
-        avg_loss = total_loss / (len(X_val) // self.config.batch_size)
+        num_batches = max(1, len(X_val) // self.config.batch_size)
+        avg_loss = total_loss / num_batches
         accuracy = total_correct / total_samples
         
         return avg_loss, accuracy
@@ -813,4 +843,5 @@ if __name__ == "__main__":
         revolutionary_engine.stop_training()
     
     print("\nRevolutionary quantum deep learning training completed")
+
 

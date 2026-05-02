@@ -5,7 +5,7 @@ Integrated from buffer.py optimization file.
 
 import torch
 import torch.nn.functional as F
-from dataclasses import dataclass, fields
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional, Self, List, Any, Dict
 import warnings
 
@@ -22,83 +22,68 @@ def zero_pad_sequences(
         padded_sequences.append(F.pad(seq, padding))
     return torch.stack(padded_sequences, dim=0)
 
-@dataclass
-class Experience:
-    """Experience data structure for replay buffer."""
+class Experience(BaseModel):
+    """Experience data structure for replay buffer (Pydantic-First)."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     sequences: torch.Tensor
     action_log_probs: torch.Tensor
     log_probs_ref: torch.Tensor
-    returns: Optional[torch.Tensor]
-    advantages: Optional[torch.Tensor]
-    attention_mask: Optional[torch.Tensor]
     action_mask: torch.Tensor
+    returns: Optional[torch.Tensor] = None
+    advantages: Optional[torch.Tensor] = None
+    attention_mask: Optional[torch.Tensor] = None
     kl: Optional[torch.Tensor] = None
     rewards: Optional[torch.Tensor] = None
     values: Optional[torch.Tensor] = None
 
     def to(self, device: torch.device) -> Self:
         """Move experience to specified device."""
-        members = {}
-        for field in fields(self):
-            v = getattr(self, field.name)
-            if isinstance(v, torch.Tensor):
-                v = v.to(device=device)
-            members[field.name] = v
-        return Experience(**members)
+        updates = {}
+        for name, value in self.model_dump().items():
+            if isinstance(value, torch.Tensor):
+                updates[name] = value.to(device=device)
+            else:
+                updates[name] = value
+        return self.model_copy(update=updates)
 
     def detach(self) -> Self:
         """Detach all tensors from computation graph."""
-        members = {}
-        for field in fields(self):
-            v = getattr(self, field.name)
-            if isinstance(v, torch.Tensor):
-                v = v.detach()
-            members[field.name] = v
-        return Experience(**members)
+        updates = {}
+        for name, value in self.model_dump().items():
+            if isinstance(value, torch.Tensor):
+                updates[name] = value.detach()
+            else:
+                updates[name] = value
+        return self.model_copy(update=updates)
 
 def split_experience_batch(experience: Experience) -> list[Experience]:
-    """Split batched experience into individual experiences."""
+    """Split batched experience into individual experiences using Pydantic."""
     batch_size = experience.sequences.size(0)
-    batch_data = [{} for _ in range(batch_size)]
-    keys = (
-        "sequences",
-        "action_log_probs", 
-        "log_probs_ref",
-        "returns",
-        "advantages",
-        "attention_mask",
-        "action_mask",
-        "kl",
-        "rewards",
-        "values"
-    )
-    for key in keys:
-        value = getattr(experience, key)
+    data_dict = experience.model_dump()
+    split_data = [{} for _ in range(batch_size)]
+    
+    for key, value in data_dict.items():
         if value is None:
-            vals = [None] * batch_size
+            for i in range(batch_size):
+                split_data[i][key] = None
         else:
             vals = torch.unbind(value)
-        assert batch_size == len(vals)
-        for i, v in enumerate(vals):
-            batch_data[i][key] = v
+            assert batch_size == len(vals)
+            for i, v in enumerate(vals):
+                split_data[i][key] = v
 
-    return [Experience(**data) for data in batch_data]
+    return [Experience.model_validate(data) for data in split_data]
 
 def join_experience_batch(items: list[Experience]) -> Experience:
     """Join individual experiences into a batched experience."""
+    if not items:
+        raise ValueError("Cannot join empty experience list")
+        
     batch_data = {}
-    keys = (
-        "sequences",
-        "action_log_probs",
-        "log_probs_ref", 
-        "returns",
-        "advantages",
-        "attention_mask",
-        "action_mask",
-        "kl",
-        "rewards",
-        "values"
-    )
+    # Get keys from the first item
+    keys = items[0].model_dump().keys()
+    
     for key in keys:
         vals = [getattr(item, key) for item in items]
         if all(v is not None for v in vals):
@@ -106,10 +91,11 @@ def join_experience_batch(items: list[Experience]) -> Experience:
         else:
             data = None
         batch_data[key] = data
-    return Experience(**batch_data)
+        
+    return Experience.model_validate(batch_data)
 
 class ReplayBuffer:
-    """Enhanced replay buffer with prioritization and sampling strategies."""
+    """Enhanced replay buffer with prioritization and sampling strategies (Pydantic-Compatible)."""
     
     def __init__(self, limit: int = 0, prioritized: bool = False, alpha: float = 0.6):
         self.limit = limit
@@ -127,10 +113,10 @@ class ReplayBuffer:
             self.items.append(item)
             
             if self.prioritized:
-                if priority is None:
-                    priority = self.max_priority
-                self.priorities.append(priority)
-                self.max_priority = max(self.max_priority, priority)
+                # Ensure priority is a float before appending to self.priorities
+                p = float(priority if priority is not None else self.max_priority)
+                self.priorities.append(p)
+                self.max_priority = max(self.max_priority, p)
             
             if self.limit > 0 and len(self.items) > self.limit:
                 self.items.pop(0)
@@ -144,7 +130,7 @@ class ReplayBuffer:
         
         if not self.prioritized:
             indices = torch.randint(0, len(self.items), (min(batch_size, len(self.items)),))
-            sampled_items = [self.items[i] for i in indices]
+            sampled_items = [self.items[i.item()] for i in indices]
             return sampled_items, None
         
         priorities = torch.tensor(self.priorities, dtype=torch.float32)
@@ -152,7 +138,7 @@ class ReplayBuffer:
         probs = probs / probs.sum()
         
         indices = torch.multinomial(probs, min(batch_size, len(self.items)), replacement=True)
-        sampled_items = [self.items[i] for i in indices]
+        sampled_items = [self.items[i.item()] for i in indices]
         
         weights = (len(self.items) * probs[indices]) ** (-beta)
         weights = weights / weights.max()
@@ -167,8 +153,8 @@ class ReplayBuffer:
         
         for idx, priority in zip(indices, priorities):
             if 0 <= idx < len(self.priorities):
-                self.priorities[idx] = priority
-                self.max_priority = max(self.max_priority, priority)
+                self.priorities[idx] = float(priority)
+                self.max_priority = max(self.max_priority, float(priority))
 
     def clear(self) -> None:
         """Clear all experiences from buffer."""
@@ -187,7 +173,8 @@ class CircularBuffer:
     
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.buffer = [None] * capacity
+        # Use a list of Optional[Any] to satisfy typing
+        self.buffer: list[Optional[Any]] = [None] * capacity
         self.position = 0
         self.size = 0
 
@@ -203,14 +190,11 @@ class CircularBuffer:
             return []
         
         indices = torch.randint(0, self.size, (min(batch_size, self.size),))
-        return [self.buffer[i] for i in indices]
+        return [self.buffer[i.item()] for i in indices if self.buffer[i.item()] is not None]
 
     def get_all(self) -> list[Any]:
         """Get all items in buffer."""
-        if self.size < self.capacity:
-            return [item for item in self.buffer[:self.size] if item is not None]
-        else:
-            return [item for item in self.buffer if item is not None]
+        return [item for item in self.buffer if item is not None]
 
     def clear(self) -> None:
         """Clear buffer."""
@@ -236,7 +220,7 @@ class PrioritizedExperienceReplay:
         if error is None:
             priority = self.buffer.max_priority
         else:
-            priority = (abs(error) + 1e-6) ** self.alpha
+            priority = float((abs(error) + 1e-6) ** self.alpha)
         
         self.buffer.append(experience, priority)
 
@@ -255,10 +239,10 @@ class PrioritizedExperienceReplay:
 
     def update_priorities(self, indices: list[int], errors: list[float]) -> None:
         """Update priorities based on new TD errors."""
-        priorities = [(abs(error) + 1e-6) ** self.alpha for error in errors]
+        priorities = [float((abs(error) + 1e-6) ** self.alpha) for error in errors]
         self.buffer.update_priorities(indices, priorities)
 
-def create_experience_buffer(buffer_type: str = "standard", **kwargs) -> ReplayBuffer:
+def create_experience_buffer(buffer_type: str = "standard", **kwargs) -> Union[ReplayBuffer, CircularBuffer]:
     """Factory function to create experience buffer."""
     if buffer_type == "standard":
         return ReplayBuffer(**kwargs)
@@ -275,7 +259,7 @@ def group_advantages(returns: torch.Tensor,
                      meas_var: float = 1e-2,
                      eps: float = 1e-8) -> torch.Tensor:
     """Compute advantages using Kalman filtering."""
-    from .cuda_kernels import KalmanFilter
+    from ..modules.acceleration.gpu.cuda_kernels import KalmanFilter
     
     kf = KalmanFilter(process_var, meas_var)
     flat_returns = returns.flatten()
@@ -287,3 +271,4 @@ def group_advantages(returns: torch.Tensor,
         advantages.append(adv)
 
     return torch.stack(advantages).view_as(returns)
+

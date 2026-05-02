@@ -791,3 +791,4 @@ if __name__ == "__main__":
     print(f"Errors: {len(result.errors)}")
     print(f"Success rate: {((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100):.1f}%")
     print(f"{'='*50}")
+

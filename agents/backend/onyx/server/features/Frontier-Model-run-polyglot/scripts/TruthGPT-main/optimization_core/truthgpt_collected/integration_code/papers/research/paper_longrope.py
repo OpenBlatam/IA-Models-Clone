@@ -43,7 +43,10 @@ from dataclasses import dataclass
 import math
 import logging
 
-from ..core.paper_base import BasePaperModule, BasePaperConfig
+try:
+    from ..core.paper_base import BasePaperModule, BasePaperConfig
+except (ImportError, ValueError):
+    from paper_base import BasePaperModule, BasePaperConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -252,8 +255,9 @@ class LongRoPEModule(BasePaperModule):
             
             # NOTACIÓN: Valores de coseno y seno para frecuencia j
             # cos_val[i] = cos(θ_j · p'_i), sin_val[i] = sin(θ_j · p'_i)
-            cos_j = cos_theta_p[:, j].unsqueeze(-1).unsqueeze(-1)  # [N, 1, 1]
-            sin_j = sin_theta_p[:, j].unsqueeze(-1).unsqueeze(-1)  # [N, 1, 1]
+            # Ensure correct broadcasting for [B, N, G]
+            cos_j = cos_theta_p[:, j].view(1, N, 1)  # [1, N, 1]
+            sin_j = sin_theta_p[:, j].view(1, N, 1)  # [1, N, 1]
             
             # NOTACIÓN DEL PAPER: Rotación 2D
             # x'_{2j} = x_{2j} · cos(θ_j·p') - x_{2j+1} · sin(θ_j·p')
@@ -363,4 +367,5 @@ if __name__ == "__main__":
     print(f"   Output shape: {output.shape}")
     print(f"   Extended: {metadata['extended']}")
     print(f"   Scaling factor: {metadata['scaling_factor']:.4f}")
+
 

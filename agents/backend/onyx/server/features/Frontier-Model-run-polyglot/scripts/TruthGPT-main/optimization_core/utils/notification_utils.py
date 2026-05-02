@@ -5,7 +5,7 @@ Provides utilities for sending notifications.
 """
 import logging
 from typing import Dict, Any, Optional, List, Callable
-from dataclasses import dataclass
+from pydantic import BaseModel, Field
 from enum import Enum
 
 logger = logging.getLogger(__name__)
@@ -19,18 +19,12 @@ class NotificationLevel(Enum):
     SUCCESS = "success"
 
 
-@dataclass
-class Notification:
+class Notification(BaseModel):
     """Notification data structure."""
     title: str
     message: str
     level: NotificationLevel
-    metadata: Dict[str, Any] = None
-    
-    def __post_init__(self):
-        """Initialize metadata if None."""
-        if self.metadata is None:
-            self.metadata = {}
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class NotificationManager:
@@ -154,6 +148,7 @@ def notify(
         **metadata: Optional metadata
     """
     _global_notification_manager.notify(title, message, level, metadata)
+
 
 
 

@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime, timedelta
 from enum import Enum
 import logging
@@ -44,8 +44,7 @@ class QuantumNeuralArchitecture(Enum):
     QUANTUM_RESIDUAL = "quantum_residual"
     QUANTUM_AUTOENCODER = "quantum_autoencoder"
 
-@dataclass
-class QuantumNeuralConfig:
+class QuantumNeuralConfig(BaseModel):
     """Quantum neural configuration."""
     architecture: QuantumNeuralArchitecture = QuantumNeuralArchitecture.QUANTUM_FEEDFORWARD
     num_qubits: int = 16
@@ -64,21 +63,25 @@ class QuantumNeuralConfig:
     gate_fidelity: float = 0.99
     optimization_algorithm: QuantumOptimizationAlgorithm = QuantumOptimizationAlgorithm.VARIATIONAL_QUANTUM_EIGENSOLVER
 
-@dataclass
-class QuantumNeuralLayer:
+
+class QuantumNeuralLayer(BaseModel):
     """Quantum neural layer representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     layer_type: QuantumNeuralLayerType
     num_qubits: int
-    variational_params: np.ndarray
+    variational_params: Any  # np.ndarray
     quantum_gates: List[str]
     entanglement_pattern: List[Tuple[int, int]]
     fidelity: float = 1.0
     execution_time: float = 0.0
 
-@dataclass
-class QuantumNeuralNetwork:
+
+class QuantumNeuralNetwork(BaseModel):
     """Quantum neural network representation."""
-    layers: List[QuantumNeuralLayer]
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    layers: List[Any]  # List[QuantumNeuralLayer]
     num_qubits: int
     num_layers: int
     total_params: int
@@ -86,16 +89,18 @@ class QuantumNeuralNetwork:
     fidelity: float = 1.0
     execution_time: float = 0.0
 
-@dataclass
-class QuantumNeuralOptimizationResult:
+
+class QuantumNeuralOptimizationResult(BaseModel):
     """Quantum neural optimization result."""
-    optimal_network: QuantumNeuralNetwork
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    optimal_network: Any  # QuantumNeuralNetwork
     optimization_fidelity: float
     convergence_rate: float
     quantum_advantage: float
     classical_comparison: float
     optimization_time: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 class VariationalQuantumCircuit:
     """Variational quantum circuit implementation."""
@@ -631,4 +636,5 @@ if __name__ == "__main__":
         engine.stop_optimization()
     
     print("\nQuantum neural optimization completed")
+
 

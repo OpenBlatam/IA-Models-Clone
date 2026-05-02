@@ -7,15 +7,17 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime, timedelta
 from enum import Enum
 import logging
 import random
-import math
 import asyncio
 import threading
+import math
 import time
+from ..base import BaseOptimizationModel, CudaResourceManager
+from .common import initialize_quantum_state, normalize_state, apply_elementwise_quantum_op, apply_single_qubit_gate, apply_cnot
 
 class QuantumDeepLearningArchitecture(Enum):
     """Quantum deep learning architecture enum."""
@@ -35,8 +37,8 @@ class QuantumLearningAlgorithm(Enum):
     QUANTUM_RMSprop_OPTIMIZER = "quantum_rmsprop_optimizer"
     QUANTUM_ADAGRAD_OPTIMIZER = "quantum_adagrad_optimizer"
 
-class QuantumActivationFunction(Enum):
-    """Quantum activation function enum."""
+class QuantumActivationType(Enum):
+    """Quantum activation type enum."""
     QUANTUM_RELU = "quantum_relu"
     QUANTUM_SIGMOID = "quantum_sigmoid"
     QUANTUM_TANH = "quantum_tanh"
@@ -44,8 +46,7 @@ class QuantumActivationFunction(Enum):
     QUANTUM_SWISH = "quantum_swish"
     QUANTUM_QUANTUM = "quantum_quantum"
 
-@dataclass
-class QuantumDeepLearningConfig:
+class QuantumDeepLearningConfig(BaseOptimizationModel):
     """Quantum deep learning configuration."""
     architecture: QuantumDeepLearningArchitecture = QuantumDeepLearningArchitecture.QUANTUM_CONVOLUTIONAL_NETWORK
     num_qubits: int = 16
@@ -63,26 +64,26 @@ class QuantumDeepLearningConfig:
     decoherence_time: float = 100.0
     gate_fidelity: float = 0.99
     learning_algorithm: QuantumLearningAlgorithm = QuantumLearningAlgorithm.QUANTUM_BACKPROPAGATION
-    activation_function: QuantumActivationFunction = QuantumActivationFunction.QUANTUM_RELU
+    activation_function: QuantumActivationType = QuantumActivationType.QUANTUM_RELU
 
-@dataclass
-class QuantumNeuralLayer:
-    """Quantum neural layer representation."""
+class QuantumNeuralLayerState(BaseModel):
+    """Quantum neural layer state representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     layer_type: str
     num_qubits: int
     num_units: int
     weights: np.ndarray
     biases: np.ndarray
-    activation: QuantumActivationFunction
+    activation: QuantumActivationType
     quantum_gates: List[str]
     entanglement_pattern: List[Tuple[int, int]]
     fidelity: float = 1.0
     execution_time: float = 0.0
 
-@dataclass
-class QuantumDeepLearningNetwork:
-    """Quantum deep learning network representation."""
-    layers: List[QuantumNeuralLayer]
+class QuantumDeepLearningNetworkModel(BaseModel):
+    """Quantum deep learning network state/model representation."""
+    layers: List[QuantumNeuralLayerState]
     num_qubits: int
     num_layers: int
     total_params: int
@@ -90,10 +91,9 @@ class QuantumDeepLearningNetwork:
     fidelity: float = 1.0
     execution_time: float = 0.0
 
-@dataclass
-class QuantumDeepLearningResult:
+class QuantumDeepLearningResult(BaseModel):
     """Quantum deep learning result."""
-    trained_network: QuantumDeepLearningNetwork
+    trained_network: QuantumDeepLearningNetworkModel
     training_loss: float
     validation_loss: float
     training_accuracy: float
@@ -101,106 +101,38 @@ class QuantumDeepLearningResult:
     quantum_advantage: float
     classical_comparison: float
     training_time: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
-class QuantumActivationFunction:
-    """Quantum activation function implementation."""
+class QuantumActivationLayer:
+    """Enterprise-quality quantum activation layer."""
     
     def __init__(self, config: QuantumDeepLearningConfig):
         self.config = config
         self.logger = logging.getLogger(__name__)
-        
-    def apply(self, x: np.ndarray, activation_type: QuantumActivationFunction) -> np.ndarray:
-        """Apply quantum activation function."""
-        if activation_type == QuantumActivationFunction.QUANTUM_RELU:
-            return self._quantum_relu(x)
-        elif activation_type == QuantumActivationFunction.QUANTUM_SIGMOID:
-            return self._quantum_sigmoid(x)
-        elif activation_type == QuantumActivationFunction.QUANTUM_TANH:
-            return self._quantum_tanh(x)
-        elif activation_type == QuantumActivationFunction.QUANTUM_GELU:
-            return self._quantum_gelu(x)
-        elif activation_type == QuantumActivationFunction.QUANTUM_SWISH:
-            return self._quantum_swish(x)
-        elif activation_type == QuantumActivationFunction.QUANTUM_QUANTUM:
-            return self._quantum_quantum(x)
-        else:
-            return self._quantum_relu(x)
-    
+
+    def _apply_quantum(self, x: np.ndarray, func: Callable) -> np.ndarray:
+        noise = self.config.quantum_noise_level if self.config.use_quantum_superposition else 0.0
+        return apply_elementwise_quantum_op(x, func, noise).astype(np.float64)
+
     def _quantum_relu(self, x: np.ndarray) -> np.ndarray:
-        """Quantum ReLU activation."""
-        # Apply quantum ReLU with superposition
-        result = np.zeros_like(x)
-        
-        for i in range(len(x)):
-            if x[i] > 0:
-                result[i] = x[i]
-            else:
-                # Quantum tunneling effect
-                if random.random() < 0.1:  # 10% tunneling probability
-                    result[i] = x[i] * 0.1
-        
-        return result
-    
+        return self._apply_quantum(x, lambda v: np.maximum(0, v))
+
     def _quantum_sigmoid(self, x: np.ndarray) -> np.ndarray:
-        """Quantum sigmoid activation."""
-        # Apply quantum sigmoid with interference
-        result = np.zeros_like(x)
-        
-        for i in range(len(x)):
-            # Classical sigmoid
-            sigmoid_val = 1 / (1 + np.exp(-x[i]))
-            
-            # Add quantum interference
-            interference = np.sin(x[i] * np.pi) * 0.1
-            result[i] = sigmoid_val + interference
-        
-        return result
-    
+        return self._apply_quantum(x, lambda v: 1 / (1 + np.exp(-v)))
+
     def _quantum_tanh(self, x: np.ndarray) -> np.ndarray:
-        """Quantum tanh activation."""
-        # Apply quantum tanh with coherence
-        result = np.zeros_like(x)
-        
-        for i in range(len(x)):
-            # Classical tanh
-            tanh_val = np.tanh(x[i])
-            
-            # Add quantum coherence
-            coherence = np.cos(x[i] * np.pi) * 0.1
-            result[i] = tanh_val + coherence
-        
-        return result
-    
+        return self._apply_quantum(x, np.tanh)
+
     def _quantum_gelu(self, x: np.ndarray) -> np.ndarray:
-        """Quantum GELU activation."""
-        # Apply quantum GELU with entanglement
-        result = np.zeros_like(x)
-        
-        for i in range(len(x)):
-            # Classical GELU
-            gelu_val = 0.5 * x[i] * (1 + np.tanh(np.sqrt(2 / np.pi) * (x[i] + 0.044715 * x[i] ** 3)))
-            
-            # Add quantum entanglement effect
-            entanglement = np.sin(x[i] * np.pi / 2) * 0.1
-            result[i] = gelu_val + entanglement
-        
-        return result
-    
+        return self._apply_quantum(x, lambda v: 0.5 * v * (1 + np.tanh(np.sqrt(2 / np.pi) * (v + 0.044715 * v**3))))
+
     def _quantum_swish(self, x: np.ndarray) -> np.ndarray:
-        """Quantum Swish activation."""
-        # Apply quantum Swish with superposition
-        result = np.zeros_like(x)
-        
-        for i in range(len(x)):
-            # Classical Swish
-            swish_val = x[i] * (1 / (1 + np.exp(-x[i])))
-            
-            # Add quantum superposition
-            superposition = np.cos(x[i] * np.pi) * 0.1
-            result[i] = swish_val + superposition
-        
-        return result
+        return self._apply_quantum(x, lambda v: v / (1 + np.exp(-v)))
+
+    def _quantum_quantum(self, x: np.ndarray) -> np.ndarray:
+        # Quantum-specific activation (preserving phase)
+        noise = self.config.quantum_noise_level
+        return apply_elementwise_quantum_op(x, np.tanh, noise)
     
     def _quantum_quantum(self, x: np.ndarray) -> np.ndarray:
         """Pure quantum activation."""
@@ -235,7 +167,7 @@ class QuantumNeuralLayer:
         self.entanglement_pattern = self._initialize_entanglement_pattern()
         
         # Activation function
-        self.activation_function = QuantumActivationFunction(config)
+        self.activation_layer = QuantumActivationLayer(config)
         
     def _initialize_weights(self) -> np.ndarray:
         """Initialize weights."""
@@ -273,33 +205,11 @@ class QuantumNeuralLayer:
         linear_output = np.dot(quantum_output, self.weights) + self.biases
         
         # Apply quantum activation function
-        activated_output = self.activation_function.apply(linear_output, self.config.activation_function)
+        activated_output = self.activation_layer.apply(linear_output, self.config.activation_function)
         
         return activated_output
     
     def _apply_quantum_gates(self, x: np.ndarray) -> np.ndarray:
-        """Apply quantum gates to input."""
-        # Simulate quantum gate application
-        quantum_output = x.copy()
-        
-        # Apply rotation gates
-        for i in range(len(x)):
-            # RX gate
-            angle = random.uniform(0, 2 * np.pi)
-            quantum_output[i] *= np.cos(angle / 2) - 1j * np.sin(angle / 2)
-            
-            # RY gate
-            angle = random.uniform(0, 2 * np.pi)
-            quantum_output[i] *= np.cos(angle / 2) + np.sin(angle / 2)
-            
-            # RZ gate
-            angle = random.uniform(0, 2 * np.pi)
-            quantum_output[i] *= np.exp(1j * angle / 2)
-        
-        # Apply entangling gates
-        for control, target in self.entanglement_pattern:
-            if control < len(quantum_output) and target < len(quantum_output):
-                # CNOT gate simulation
                 if quantum_output[control] > 0.5:  # If control qubit is 1
                     quantum_output[target] = 1 - quantum_output[target]  # Flip target
         
@@ -360,10 +270,12 @@ class QuantumDeepLearningNetwork:
         # Simplified backward pass
         # In a real implementation, this would involve quantum gradient calculation
         
+        # Apply real part of gradients to real weights
+        real_gradients = np.real(gradients)
         for layer in reversed(self.layers):
             # Update weights and biases
-            layer.weights -= self.config.learning_rate * gradients
-            layer.biases -= self.config.learning_rate * gradients
+            layer.weights -= self.config.learning_rate * real_gradients
+            layer.biases -= self.config.learning_rate * real_gradients
         
         return gradients
 
@@ -393,6 +305,14 @@ class QuantumDeepLearningOptimizer:
         best_loss = float('inf')
         best_accuracy = 0.0
         
+        # Initialize metrics to avoid UnboundLocalError if loop fails early
+        train_loss = 0.0
+        val_loss = 0.0
+        train_accuracy = 0.0
+        val_accuracy = 0.0
+        quantum_advantage = 0.0
+        epoch = 0
+
         for epoch in range(self.config.epochs):
             try:
                 # Training
@@ -483,7 +403,8 @@ class QuantumDeepLearningOptimizer:
             gradients = self._calculate_gradients(predictions, batch_y)
             self.network.backward(gradients)
         
-        avg_loss = total_loss / (len(X_train) // self.config.batch_size)
+        num_batches = max(1, len(X_train) // self.config.batch_size)
+        avg_loss = total_loss / num_batches
         accuracy = total_correct / total_samples
         
         return avg_loss, accuracy
@@ -511,7 +432,8 @@ class QuantumDeepLearningOptimizer:
             total_correct += correct
             total_samples += len(batch_y)
         
-        avg_loss = total_loss / (len(X_val) // self.config.batch_size)
+        num_batches = max(1, len(X_val) // self.config.batch_size)
+        avg_loss = total_loss / num_batches
         accuracy = total_correct / total_samples
         
         return avg_loss, accuracy
@@ -656,7 +578,7 @@ if __name__ == "__main__":
         num_layers=8,
         num_hidden_units=64,
         learning_algorithm=QuantumLearningAlgorithm.QUANTUM_BACKPROPAGATION,
-        activation_function=QuantumActivationFunction.QUANTUM_RELU,
+        activation_function=QuantumActivationType.QUANTUM_RELU,
         use_quantum_entanglement=True,
         use_quantum_superposition=True,
         use_quantum_interference=True
@@ -698,4 +620,5 @@ if __name__ == "__main__":
         engine.stop_training()
     
     print("\nQuantum deep learning training completed")
+
 

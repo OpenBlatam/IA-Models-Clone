@@ -1,7 +1,7 @@
 """
 Metrics utilities for optimization_core.
 
-This module re-exports common metrics utilities from core.metrics_base
+This module re-exports common metrics utilities from modules.base.core_system.core.metrics_base
 for backward compatibility.
 """
 from optimization_core.core.metrics_base import (
@@ -31,6 +31,7 @@ __all__ = [
     "BaseMetrics",
     "MetricsCollectorBase",
 ]
+
 
 
 

@@ -1,90 +1,92 @@
 # Color Grading AI TruthGPT
 
-Sistema completo de color grading automático con arquitectura enterprise, integrado con OpenRouter y TruthGPT. Similar a DaVinci Resolve pero completamente automático.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🚀 Características Principales
+Complete automatic color grading system with enterprise architecture, integrated with OpenRouter and TruthGPT. Similar to DaVinci Resolve but completely automated.
 
-### Procesamiento
-- ✅ Procesamiento de video e imágenes
-- ✅ Análisis de color avanzado
-- ✅ Color matching desde referencias
-- ✅ Análisis de calidad de video
+## 🚀 Key Features
 
-### Gestión
-- ✅ Templates predefinidos (cinematic, vintage, modern, etc.)
-- ✅ Presets personalizados
-- ✅ LUTs profesionales
-- ✅ Historial completo
-- ✅ Versionado de parámetros
-- ✅ Backup y restauración
+### Processing
+- ✅ Video and image processing
+- ✅ Advanced color analysis
+- ✅ Color matching from references
+- ✅ Video quality analysis
 
-### Infraestructura
+### Management
+- ✅ Predefined templates (cinematic, vintage, modern, etc.)
+- ✅ Custom presets
+- ✅ Professional LUTs
+- ✅ Complete history
+- ✅ Parameter versioning
+- ✅ Backup and restore
+
+### Infrastructure
 - ✅ Event bus (pub/sub)
 - ✅ Security manager
 - ✅ Telemetry service
-- ✅ Task queue unificada
+- ✅ Unified task queue
 - ✅ Cloud integration (S3)
 
 ### Analytics
-- ✅ Métricas y estadísticas
+- ✅ Metrics and statistics
 - ✅ Performance monitoring
 - ✅ Analytics service
-- ✅ Dashboard en tiempo real
+- ✅ Real-time dashboard
 
-### Inteligencia
+### Intelligence
 - ✅ Recommendation engine
 - ✅ ML optimizer
 - ✅ Optimization engine
 
-### Colaboración
+### Collaboration
 - ✅ Webhooks
 - ✅ Notifications (Email, Slack, Discord, Telegram)
 - ✅ Collaboration manager
 - ✅ Workflow manager
 
-### Resiliencia
+### Resilience
 - ✅ Circuit breaker
 - ✅ Retry manager
 - ✅ Load balancer
 - ✅ Feature flags
 
-### Control de Tráfico
+### Traffic Control
 - ✅ Rate limiter
 - ✅ Throttle manager
 - ✅ Backpressure manager
 
-### Gestión de Ciclo de Vida
+### Lifecycle Management
 - ✅ Health monitor
 - ✅ Graceful shutdown
 - ✅ Lifecycle manager
 
-### Compliance y Auditoría
+### Compliance & Audit
 - ✅ Audit logger
 - ✅ Compliance manager (GDPR, CCPA, HIPAA, SOC2, ISO27001)
 
-## 📊 Estadísticas del Proyecto
+## 📊 Project Statistics
 
-- **Servicios totales**: 63+
-- **Categorías**: 11
-- **Patrones de diseño**: 8+
-- **Componentes base**: 5
-- **Utilidades**: 10+
-- **Decoradores**: 4
+- **Total services**: 63+
+- **Categories**: 11
+- **Design patterns**: 8+
+- **Base components**: 5
+- **Utilities**: 10+
+- **Decorators**: 4
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
-Ver [ARCHITECTURE.md](ARCHITECTURE.md) para detalles completos de la arquitectura.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for full architecture details.
 
-### Estructura Principal
+### Main Structure
 ```
-core/              # Componentes base y agentes
-services/          # 63+ servicios organizados
-infrastructure/    # Clientes (OpenRouter, TruthGPT)
-api/              # API REST completa
-config/           # Configuración
+core/              # Base components and agents
+services/          # 63+ organized services
+infrastructure/    # Clients (OpenRouter, TruthGPT)
+api/              # Full REST API
+config/           # Configuration
 ```
 
-### Categorías de Servicios
+### Service Categories
 1. **Processing** (5): Video, Image, Color Analysis, Color Matching, Quality
 2. **Management** (7): Templates, Presets, LUTs, Cache, History, Version, Backup
 3. **Infrastructure** (5): EventBus, Security, Telemetry, Queue, Cloud
@@ -95,37 +97,37 @@ config/           # Configuración
 8. **Traffic Control** (3): Rate Limiter, Throttle, Backpressure
 9. **Lifecycle** (3): Health Monitor, Graceful Shutdown, Lifecycle Manager
 10. **Compliance** (2): Audit Logger, Compliance Manager
-11. **Support** (23+): Batch, Comparison, Export, y más...
+11. **Support** (23+): Batch, Comparison, Export, and more...
 
-## 📦 Instalación
+## 📦 Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```bash
-export OPENROUTER_API_KEY="tu-api-key"
-export TRUTHGPT_ENDPOINT="opcional-endpoint"  # Opcional
-export FFMPEG_PATH="/path/to/ffmpeg"  # Opcional, defaults to "ffmpeg"
+export OPENROUTER_API_KEY="your-api-key"
+export TRUTHGPT_ENDPOINT="optional-endpoint"  # Optional
+export FFMPEG_PATH="/path/to/ffmpeg"  # Optional, defaults to "ffmpeg"
 ```
 
-### Configuración Programática
+### Programmatic Configuration
 
 ```python
 from color_grading_ai_truthgpt import ColorGradingConfig
 
 config = ColorGradingConfig()
-config.openrouter.api_key = "tu-api-key"
+config.openrouter.api_key = "your-api-key"
 config.max_parallel_tasks = 10
 config.enable_cache = True
 config.cache_ttl = 3600
 ```
 
-## 🎯 Uso Básico
+## 🎯 Basic Usage
 
 ### Python API
 
@@ -134,29 +136,29 @@ import asyncio
 from color_grading_ai_truthgpt import UnifiedColorGradingAgent, ColorGradingConfig
 
 async def main():
-    # Crear configuración
+    # Create configuration
     config = ColorGradingConfig()
     
-    # Crear agente unificado (recomendado)
+    # Create unified agent (recommended)
     agent = UnifiedColorGradingAgent(config=config)
     
-    # Aplicar template a video
+    # Apply template to video
     result = await agent.grade_video(
         video_path="input.mp4",
         template_name="cinematic"
     )
-    print(f"Video procesado: {result['output_path']}")
+    print(f"Processed video: {result['output_path']}")
     
-    # Aplicar color matching desde imagen de referencia
+    # Apply color matching from reference image
     result = await agent.grade_image(
         image_path="input.jpg",
         reference_image="reference.jpg"
     )
-    print(f"Imagen procesada: {result['output_path']}")
+    print(f"Processed image: {result['output_path']}")
     
-    # Analizar color
+    # Analyze color
     analysis = await agent.analyze_media("input.mp4")
-    print(f"Análisis: {analysis}")
+    print(f"Analysis: {analysis}")
 
 asyncio.run(main())
 ```
@@ -164,52 +166,52 @@ asyncio.run(main())
 ### REST API
 
 ```bash
-# Iniciar servidor
+# Start server
 uvicorn color_grading_ai_truthgpt.api.color_grading_api:app --reload
 
-# Aplicar color grading
+# Apply color grading
 curl -X POST "http://localhost:8000/api/v1/grade/video" \
   -F "file=@input.mp4" \
   -F "template_name=cinematic"
 
-# Listar templates
+# List templates
 curl "http://localhost:8000/api/v1/templates"
 ```
 
-## 📚 Documentación
+## 📚 Documentation
 
-Ver [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) para índice completo de documentación.
+See [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) for full documentation index.
 
-### Documentos Principales
-- [ARCHITECTURE.md](ARCHITECTURE.md) - Arquitectura completa
-- [REFACTORING_FINAL_COMPLETE.md](REFACTORING_FINAL_COMPLETE.md) - Refactorización final
-- [RESILIENCE_PATTERNS.md](RESILIENCE_PATTERNS.md) - Patrones de resiliencia
-- [TRAFFIC_CONTROL.md](TRAFFIC_CONTROL.md) - Control de tráfico
-- [LIFECYCLE_MANAGEMENT.md](LIFECYCLE_MANAGEMENT.md) - Gestión de ciclo de vida
-- [COMPLIANCE_AUDIT.md](COMPLIANCE_AUDIT.md) - Compliance y auditoría
-- [DEPLOYMENT.md](DEPLOYMENT.md) - Guías de deployment
+### Main Documents
+- [ARCHITECTURE.md](ARCHITECTURE.md) - Complete architecture
+- [REFACTORING_FINAL_COMPLETE.md](REFACTORING_FINAL_COMPLETE.md) - Final refactoring
+- [RESILIENCE_PATTERNS.md](RESILIENCE_PATTERNS.md) - Resilience patterns
+- [TRAFFIC_CONTROL.md](TRAFFIC_CONTROL.md) - Traffic control
+- [LIFECYCLE_MANAGEMENT.md](LIFECYCLE_MANAGEMENT.md) - Lifecycle management
+- [COMPLIANCE_AUDIT.md](COMPLIANCE_AUDIT.md) - Compliance and audit
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Deployment guides
 
-## 🔧 Componentes Clave
+## 🔧 Key Components
 
-### Agentes
-- **UnifiedColorGradingAgent** ⭐ (Recomendado)
+### Agents
+- **UnifiedColorGradingAgent** ⭐ (Recommended)
 - ColorGradingAgent (Original, compatible)
-- RefactoredColorGradingAgent (Refactorizado, compatible)
+- RefactoredColorGradingAgent (Refactored, compatible)
 
 ### Factories
-- **RefactoredServiceFactory** ⭐ (Recomendado)
+- **RefactoredServiceFactory** ⭐ (Recommended)
 - ServiceFactory (Original, compatible)
 
-### Componentes Base
-- BaseService - Base para todos los servicios
-- FileManagerBase - Base para managers de archivos
-- ConfigManager - Gestión de configuración
-- ServiceGroups - Agrupación lógica
-- ServiceAccessor - Acceso unificado
+### Base Components
+- BaseService - Base for all services
+- FileManagerBase - Base for file managers
+- ConfigManager - Configuration management
+- ServiceGroups - Logical grouping
+- ServiceAccessor - Unified access
 
-## 🎨 Ejemplos
+## 🎨 Examples
 
-### Template Predefinido
+### Predefined Template
 ```python
 result = await agent.grade_video(
     video_path="input.mp4",
@@ -225,7 +227,7 @@ result = await agent.grade_video(
 )
 ```
 
-### Descripción de Texto
+### Text Description
 ```python
 result = await agent.grade_image(
     image_path="input.jpg",
@@ -233,7 +235,7 @@ result = await agent.grade_image(
 )
 ```
 
-### Parámetros Personalizados
+### Custom Parameters
 ```python
 result = await agent.grade_video(
     video_path="input.mp4",
@@ -248,7 +250,7 @@ result = await agent.grade_video(
 
 ## 🚀 Deployment
 
-Ver [DEPLOYMENT.md](DEPLOYMENT.md) para guías completas.
+See [DEPLOYMENT.md](DEPLOYMENT.md) for complete guides.
 
 ### Docker
 ```bash
@@ -260,30 +262,34 @@ docker-compose up -d
 kubectl apply -f k8s/
 ```
 
-## 📈 Características Enterprise
+## 📈 Enterprise Features
 
-- ✅ **Resiliencia**: Circuit breaker, retry, load balancing
-- ✅ **Observabilidad**: Health monitoring, performance tracking, telemetry
-- ✅ **Seguridad**: Security manager, input validation, threat detection
-- ✅ **Escalabilidad**: Load balancing, resource pooling, cloud integration
+- ✅ **Resilience**: Circuit breaker, retry, load balancing
+- ✅ **Observability**: Health monitoring, performance tracking, telemetry
+- ✅ **Security**: Security manager, input validation, threat detection
+- ✅ **Scalability**: Load balancing, resource pooling, cloud integration
 - ✅ **Compliance**: GDPR, CCPA, HIPAA, SOC2, ISO27001
-- ✅ **Auditoría**: Audit logging completo
+- ✅ **Audit**: Complete audit logging
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-El proyecto está completamente funcional y listo para producción. Para contribuir:
+The project is fully functional and production-ready. To contribute:
 
-1. Revisar [ARCHITECTURE.md](ARCHITECTURE.md)
-2. Seguir los patrones establecidos
-3. Usar los componentes base disponibles
-4. Agregar tests para nuevas funcionalidades
+1. Review [ARCHITECTURE.md](ARCHITECTURE.md)
+2. Follow established patterns
+3. Use available base components
+4. Add tests for new features
 
-## 📄 Licencia
+## 📄 License
 
-[Especificar licencia]
+Proprietary - Blatam Academy
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-- OpenRouter por la integración LLM
-- TruthGPT por la optimización avanzada
-- Comunidad open source
+- OpenRouter for LLM integration
+- TruthGPT for advanced optimization
+- Open source community
+
+---
+
+[← Back to Main README](../README.md)

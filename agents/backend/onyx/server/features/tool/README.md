@@ -1,53 +1,75 @@
-# Tools Module
+# General Tools Module
 
-## 📋 Descripción
+<div align="center">
 
-Módulo de herramientas generales con modelos, esquemas, servicios y API RESTful.
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Type](https://img.shields.io/badge/module-shared--utilities-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## 🚀 Características Principales
+**Shared utilities and common tool abstractions for the Onyx Server ecosystem, providing unified models, schemas, and RESTful services.**
 
-- **Herramientas Generales**: Sistema de herramientas compartidas
-- **Modelos de Datos**: Modelos bien definidos
-- **Esquemas Pydantic**: Validación de datos
-- **Servicios**: Servicios de negocio
-- **API RESTful**: Interfaz API para integración
+[Overview](#-overview) •
+[Features](#-key-features) •
+[Structure](#-structure) •
+[Installation](#-installation) •
+[Usage](#-usage) •
+[Contributing](#-contributing)
 
-## 📁 Estructura
+</div>
+
+---
+
+## 📋 Overview
+
+**General Tools** is a foundational module that provides reusable component logic and shared abstractions across the entire server repository. It ensures that common tasks—from data transformation to utility orchestration—follow a standardized pattern consisting of strict Pydantic validation and clean service separation.
+
+## 🚀 Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Shared Utilities** | Centralized repository for common system-wide functions. |
+| **RESTful Interface** | Uniform API endpoints for tool management and execution. |
+| **Logic Decoupling** | Clean separation of business logic from infrastructure. |
+| **Schema Validation** | Enforced data integrity via strictly typed Pydantic models. |
+
+## 📁 Structure
 
 ```
 tool/
-├── models.py              # Modelos de datos
-├── schemas.py            # Esquemas Pydantic
-├── service.py            # Servicios de negocio
-└── api.py                # Endpoints de API
+├── api.py                # REST API endpoints for tool access
+├── models.py             # Shared data models (ORM)
+├── schemas.py           # Pydantic validation schemas
+└── service.py           # Business logic and tool implementations
 ```
 
-## 🔧 Instalación
-
-Este módulo requiere las dependencias del sistema principal.
-
-## 💻 Uso
+## ⚡ Usage
 
 ```python
 from tool.service import ToolService
 from tool.schemas import ToolCreate
 
-# Inicializar servicio
+# Initialize the shared tool service
 service = ToolService()
 
-# Crear herramienta
+# Register or execute a new utility tool
 tool = service.create(ToolCreate(
-    name="Herramienta de análisis",
-    type="analytics",
-    config={}
+    name="Log Analytics Utility",
+    type="analytics_engine",
+    config={"threshold": 0.8}
 ))
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Integration System**: Para orquestación
-- Otros módulos que requieren herramientas compartidas
+This module is a mandatory dependency for:
+- **Integration System**: For common tool discovery.
+- **Cross-Component Utilities**: Any feature requiring standardized helper functions.
 
+---
 
-
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>

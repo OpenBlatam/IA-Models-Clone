@@ -1,77 +1,80 @@
 # Key Messages Management
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema completo para gestión de mensajes clave con capacidades de ML, seguridad cibernética, y arquitectura funcional.
+## 📋 Description
 
-## 🚀 Características Principales
+Complete system for key messages management with ML capabilities, cybersecurity, and functional architecture.
 
-- **Gestión de Mensajes Clave**: Sistema completo para mensajes clave
-- **Machine Learning**: Integración con ML para análisis
-- **Seguridad Cibernética**: Sistema de seguridad avanzado
-- **Arquitectura Funcional**: Diseño funcional y modular
-- **Reporting**: Sistema de reportes integrado
-- **Routers**: Sistema de enrutamiento
-- **Tipos**: Tipos bien definidos
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Key Messages Management**: Complete system for key messages
+- **Machine Learning**: ML integration for analysis
+- **Cybersecurity**: Advanced security system
+- **Functional Architecture**: Functional and modular design
+- **Reporting**: Integrated reporting system
+- **Routers**: Routing system
+- **Types**: Well-defined types
+
+## 📁 Structure
 
 ```
 key_messages/
 ├── ml/                    # Machine Learning
-├── routers/               # Routers de API
-├── types/                 # Tipos y esquemas
-├── attackers/             # Sistema de seguridad
-├── reporting/             # Sistema de reportes
-├── utils/                 # Utilidades
-└── docs/                  # Documentación
+├── routers/               # API Routers
+├── types/                 # Types and schemas
+├── attackers/             # Security system
+├── reporting/             # Reporting system
+├── utils/                 # Utilities
+└── docs/                  # Documentation
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
-# Instalación mínima
+# Minimal installation
 pip install -r requirements-minimal.txt
 
-# Para desarrollo
+# For development
 pip install -r requirements-dev.txt
 
-# Para producción
+# For production
 pip install -r requirements-prod.txt
 
-# Con seguridad cibernética
+# With cybersecurity
 pip install -r requirements-cyber.txt
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
 ```python
 from key_messages.service import KeyMessagesService
 from key_messages.config import Config
 
-# Inicializar servicio
+# Initialize service
 service = KeyMessagesService(Config())
 
-# Crear mensaje clave
+# Create key message
 message = service.create_key_message(
-    content="Mensaje importante",
+    content="Important message",
     category="marketing"
 )
 ```
 
-## 📚 Documentación
+## 📚 Documentation
 
 - [Project Definition](PROJECT_DEFINITION.md)
 - [Migration Summary](MIGRATION_SUMMARY.md)
 - [Dependencies](dependencies.md)
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Integration System**: Para orquestación
-- **Business Agents**: Para automatización
-- **Export IA**: Para exportación de mensajes
-- **Security Systems**: Para seguridad
+This module integrates with:
+- **Integration System**: For orchestration
+- **Business Agents**: For automation
+- **Export IA**: For message export
+- **Security Systems**: For security
 
+---
 
-
+[← Back to Main README](../README.md)

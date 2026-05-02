@@ -1,11 +1,11 @@
 from typing import Any, Dict
 import torch
 
-from factories.attention import ATTENTION_BACKENDS
-from factories.kv_cache import KV_CACHE
-from factories.memory import MEMORY_MANAGERS
-from factories.datasets import DATASETS
-from factories.collate import COLLATE
+from optimization_core.factories.attention import ATTENTION_BACKENDS
+from optimization_core.factories.kv_cache import KV_CACHE
+from optimization_core.factories.memory import MEMORY_MANAGERS
+from optimization_core.factories.datasets import DATASETS
+from optimization_core.factories.collate import COLLATE
 
 
 def build_components(cfg: Dict[str, Any]) -> Dict[str, Any]:
@@ -34,5 +34,6 @@ def build_components(cfg: Dict[str, Any]) -> Dict[str, Any]:
         "datasets": DATASETS,
         "collate": COLLATE,
     }
+
 
 

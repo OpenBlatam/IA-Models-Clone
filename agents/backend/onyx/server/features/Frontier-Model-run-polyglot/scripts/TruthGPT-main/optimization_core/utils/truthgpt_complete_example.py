@@ -290,7 +290,7 @@ class TruthGPTCompleteExample:
         dashboard_data = dashboard.generate_dashboard_data()
         
         self.results['monitoring'] = {
-            'metrics': metrics.to_dict(),
+            'metrics': metrics.model_dump(),
             'analytics': analytics_report,
             'dashboard': dashboard_data
         }
@@ -323,7 +323,7 @@ class TruthGPTCompleteExample:
         
         self.results['integration'] = {
             'status': status,
-            'config': config.to_dict()
+            'config': config.model_dump()
         }
         
         return self.results['integration']
@@ -417,7 +417,7 @@ def quick_truthgpt_demo():
     )
     
     results = quick_truthgpt_evaluation(optimized_model, test_loader, "language_modeling")
-    print(f"✅ Evaluation completed: {results}")
+    print(f"✅ Evaluation completed: {results.model_dump()}")
     
     print("🎉 Quick TruthGPT demo completed!")
 
@@ -438,5 +438,6 @@ if __name__ == "__main__":
     
     print("\n🎉 TruthGPT Complete Example finished!")
     print("📊 Check 'truthgpt_complete_example_report.json' for detailed results")
+
 
 

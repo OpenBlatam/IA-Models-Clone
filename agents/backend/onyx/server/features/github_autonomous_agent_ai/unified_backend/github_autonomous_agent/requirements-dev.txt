@@ -1,0 +1,62 @@
+# ============================================================================
+# GitHub Autonomous Agent - Development Dependencies
+# ============================================================================
+# Instalar con: pip install -r requirements-dev.txt
+# O mejor: pip install -e ".[dev]"
+# ============================================================================
+
+# Incluir dependencias base
+-r requirements.txt
+
+# ----------------------------------------------------------------------------
+# Testing Framework
+# ----------------------------------------------------------------------------
+pytest>=8.0.0,<9.0.0                # Framework de testing
+pytest-asyncio>=0.23.3,<0.24.0     # Soporte async para pytest
+pytest-cov>=4.1.0,<5.0.0           # Coverage reporting
+pytest-mock>=3.12.0,<4.0.0         # Mocking utilities
+pytest-timeout>=2.2.0               # Timeouts para tests
+pytest-xdist>=3.5.0                 # Ejecución paralela de tests
+faker>=22.0.0                       # Generación de datos de prueba
+freezegun>=1.4.0                    # Mock de fechas/horas
+
+# ----------------------------------------------------------------------------
+# Code Quality & Linting
+# ----------------------------------------------------------------------------
+black>=24.0.0,<25.0.0               # Code formatter
+ruff>=0.3.0,<1.0.0                  # Linter rápido (reemplaza flake8 + isort)
+mypy>=1.8.0,<2.0.0                  # Type checking estático
+pylint>=3.1.0,<4.0.0                # Linter adicional (opcional)
+bandit>=1.7.6,<2.0.0                # Security linter
+safety>=3.0.0,<4.0.0                # Verificación de vulnerabilidades
+
+# ----------------------------------------------------------------------------
+# Development Tools
+# ----------------------------------------------------------------------------
+ipython>=8.20.0,<9.0.0              # REPL mejorado
+ipdb>=0.13.13,<1.0.0                # Debugger mejorado
+pre-commit>=3.6.0,<4.0.0            # Git hooks para calidad de código
+debugpy>=1.8.0,<2.0.0               # Debugger remoto para VS Code
+
+# ----------------------------------------------------------------------------
+# Documentation
+# ----------------------------------------------------------------------------
+sphinx>=7.2.0,<8.0.0                # Generación de documentación
+sphinx-rtd-theme>=2.0.0,<3.0.0      # Tema Read the Docs
+mkdocs>=1.5.3,<2.0.0                # Documentación alternativa (más simple)
+mkdocs-material>=9.5.0,<10.0.0      # Tema Material para MkDocs
+
+# ----------------------------------------------------------------------------
+# Profiling & Performance
+# ----------------------------------------------------------------------------
+py-spy>=0.3.14,<1.0.0               # Profiler de performance
+memory-profiler>=0.61.0,<1.0.0      # Profiler de memoria
+line-profiler>=4.1.1,<5.0.0         # Profiler línea por línea
+
+# ----------------------------------------------------------------------------
+# API Testing & Documentation
+# ----------------------------------------------------------------------------
+# httpx ya incluido en requirements.txt base
+locust>=2.20.0,<3.0.0               # Load testing
+swagger-ui-bundle>=1.0.0,<2.0.0     # UI para OpenAPI docs (ya incluido en FastAPI)
+

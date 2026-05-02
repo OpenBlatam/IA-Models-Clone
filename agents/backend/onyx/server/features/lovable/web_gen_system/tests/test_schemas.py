@@ -1,6 +1,6 @@
 import unittest
 from pydantic import ValidationError
-from agents.backend.onyx.server.features.lovable.web_gen_system.schemas import WebGenRequest, WebGenResponse, AccessibilityIssue, AgentContext
+from ..schemas import WebGenRequest, WebGenResponse, AccessibilityIssue, AgentContext
 
 class TestSchemas(unittest.TestCase):
     def test_web_gen_request_valid(self):

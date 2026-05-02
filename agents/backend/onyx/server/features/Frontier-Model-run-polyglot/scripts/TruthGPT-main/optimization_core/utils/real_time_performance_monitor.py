@@ -19,7 +19,7 @@ import numpy as np
 import torch
 import psutil
 import GPUtil
-from dataclasses import dataclass, field
+from pydantic import BaseModel, ConfigDict, Field
 from enum import Enum
 from typing import Dict, List, Optional, Any, Union, Callable, Tuple
 from collections import defaultdict, deque
@@ -61,19 +61,22 @@ class AlertLevel(Enum):
     ERROR = "error"
     CRITICAL = "critical"
 
-@dataclass
-class PerformanceMetric:
+class PerformanceMetric(BaseModel):
     """Performance metric data structure"""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     metric_id: str
     metric_type: MetricType
     value: float
     timestamp: datetime
-    tags: Dict[str, str] = field(default_factory=dict)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    tags: Dict[str, str] = Field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
-@dataclass
-class PerformanceAlert:
+
+class PerformanceAlert(BaseModel):
     """Performance alert data structure"""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     alert_id: str
     metric_id: str
     alert_level: AlertLevel
@@ -84,9 +87,11 @@ class PerformanceAlert:
     resolved: bool = False
     resolution_time: Optional[datetime] = None
 
-@dataclass
-class PerformanceInsight:
+
+class PerformanceInsight(BaseModel):
     """Performance insight data structure"""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     insight_id: str
     insight_type: str
     description: str
@@ -863,3 +868,4 @@ if __name__ == "__main__":
     
     # Shutdown
     monitor.shutdown()
+

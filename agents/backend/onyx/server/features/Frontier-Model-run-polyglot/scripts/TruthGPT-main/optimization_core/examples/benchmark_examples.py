@@ -3,7 +3,7 @@ Examples for benchmarking.
 
 Demonstrates usage of benchmarking utilities.
 """
-from benchmarks import (
+from optimization_core.benchmarks import (
     BenchmarkRunner,
     run_benchmark,
     compare_benchmarks,
@@ -92,6 +92,7 @@ def example_benchmark_runner():
     
     result = runner.run("my_benchmark", my_function)
     return result
+
 
 
 

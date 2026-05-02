@@ -1,0 +1,42 @@
+# ==============================================
+# UNIFIED AI MODEL - Environment Configuration
+# ==============================================
+# Copy this file to .env and fill in your values
+
+# ==================== API KEY (choose one) ====================
+
+# Option 1: DeepSeek API (recommended - direct, fast)
+# Get key from: https://platform.deepseek.com/
+DEEPSEEK_API_KEY=sk-your-deepseek-api-key
+
+# Option 2: OpenRouter API (supports multiple models)
+# Get key from: https://openrouter.ai/keys
+# OPENROUTER_API_KEY=sk-or-v1-your-api-key-here
+
+# ==================== OPTIONAL ====================
+
+# Default model
+# For DeepSeek: deepseek-chat, deepseek-coder
+# For OpenRouter: deepseek/deepseek-chat, openai/gpt-4o-mini, etc.
+UNIFIED_AI_DEFAULT_MODEL=deepseek-chat
+
+# Server configuration
+UNIFIED_AI_HOST=0.0.0.0
+UNIFIED_AI_PORT=8050
+
+# CORS origins (comma-separated, for frontend)
+UNIFIED_AI_CORS_ORIGINS=http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000
+
+# Debug mode
+UNIFIED_AI_DEBUG=false
+
+# Cache settings
+UNIFIED_AI_CACHE_ENABLED=true
+UNIFIED_AI_CACHE_TTL=3600
+
+# Rate limiting
+UNIFIED_AI_RATE_LIMIT_REQUESTS=100
+UNIFIED_AI_RATE_LIMIT_WINDOW=60
+
+
+

@@ -700,3 +700,4 @@ if __name__ == "__main__":
     print(f"   NaN count: {metrics['nan_count']}")
     print(f"   Inf count: {metrics['inf_count']}")
 
+

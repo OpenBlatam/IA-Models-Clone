@@ -10,9 +10,13 @@ from dataclasses import dataclass
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class Transformation:
+from pydantic import BaseModel, ConfigDict
+
+
+class Transformation(BaseModel):
     """Data transformation definition."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     name: str
     func: Callable
     input_type: type
@@ -136,6 +140,7 @@ def create_transformer() -> DataTransformer:
         Data transformer
     """
     return DataTransformer()
+
 
 
 

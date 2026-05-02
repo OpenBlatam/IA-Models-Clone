@@ -424,3 +424,4 @@ if __name__ == "__main__":
     metrics = module.get_metrics()
     print(f"✅ Metrics: {metrics}")
 
+

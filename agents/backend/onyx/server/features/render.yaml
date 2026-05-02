@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: blatam-academy
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_ejg2Yr1EZMOw@ep-dark-sky-a5c88yly-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require
+      - key: AUTH_SECRET
+        value: 32mwUMnlOtkH1H8irIqxlaL80KvgdjUlbg2IovnhL1s=
+      - key: GOOGLE_CLIENT_ID
+        value: 766657034501-2fcprad0507agtsvn5gvgvpv0ggqm80i.apps.googleusercontent.com
+      - key: GOOGLE_CLIENT_SECRET
+        value: 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
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false 

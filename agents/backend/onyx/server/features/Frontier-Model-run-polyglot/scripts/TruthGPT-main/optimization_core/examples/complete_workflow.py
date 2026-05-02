@@ -5,7 +5,7 @@ Shows how to switch components via YAML without code changes.
 
 import yaml
 from pathlib import Path
-from build_trainer import build_trainer
+from optimization_core.scripts.legacy.build_trainer import build_trainer
 from trainers.trainer import TrainerConfig
 
 
@@ -140,5 +140,6 @@ def demo_workflows():
 
 if __name__ == "__main__":
     demo_workflows()
+
 
 

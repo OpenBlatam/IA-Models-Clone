@@ -5,7 +5,7 @@ Provides utilities for checking system health and component availability.
 """
 import logging
 from typing import Dict, Any, List, Optional
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from enum import Enum
 
 logger = logging.getLogger(__name__)
@@ -19,13 +19,12 @@ class HealthStatus(Enum):
     UNKNOWN = "unknown"
 
 
-@dataclass
-class HealthCheckResult:
+class HealthCheckResult(BaseModel):
     """Result of a health check."""
     component: str
     status: HealthStatus
     message: str = ""
-    details: Dict[str, Any] = field(default_factory=dict)
+    details: Dict[str, Any] = Field(default_factory=dict)
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
@@ -232,3 +231,4 @@ def create_default_health_checker() -> HealthChecker:
     checker.register_check("polars", check_polars_available)
     checker.register_check("gpu", check_gpu_available)
     return checker
+

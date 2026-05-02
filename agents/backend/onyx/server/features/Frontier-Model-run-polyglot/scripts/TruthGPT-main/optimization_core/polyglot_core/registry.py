@@ -199,3 +199,4 @@ def get_component(
     """Convenience function to get component."""
     return _global_registry.get(name, component_type)
 
+

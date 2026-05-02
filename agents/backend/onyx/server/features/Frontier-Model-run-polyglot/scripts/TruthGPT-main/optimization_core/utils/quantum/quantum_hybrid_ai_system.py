@@ -7,15 +7,16 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime
 from enum import Enum
 import logging
 import random
+import time
+from .common import initialize_quantum_state, normalize_state, calculate_quantum_advantage, apply_single_qubit_gate, apply_cnot
+from pydantic import BaseModel, Field, ConfigDict
 import math
 import asyncio
 import threading
-import time
 
 class QuantumGateType(Enum):
     """Quantum gate type enum."""
@@ -51,9 +52,10 @@ class HybridMode(Enum):
     CLASSICAL_QUANTUM = "classical_quantum"
     NEURAL_QUANTUM = "neural_quantum"
 
-@dataclass
-class QuantumHybridConfig:
+class QuantumHybridConfig(BaseModel):
     """Quantum hybrid configuration."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     level: QuantumOptimizationLevel = QuantumOptimizationLevel.ADVANCED
     hybrid_mode: HybridMode = HybridMode.QUANTUM_NEURAL
     num_qubits: int = 16
@@ -70,38 +72,42 @@ class QuantumHybridConfig:
     decoherence_time: float = 100.0
     gate_fidelity: float = 0.99
 
-@dataclass
-class QuantumState:
+class QuantumState(BaseModel):
     """Quantum state representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     amplitudes: np.ndarray
     num_qubits: int
     fidelity: float = 1.0
     coherence_time: float = 0.0
     entanglement_entropy: float = 0.0
-    timestamp: datetime = field(default_factory=datetime.now)
+    timestamp: datetime = Field(default_factory=datetime.now)
 
-@dataclass
-class QuantumGate:
+class QuantumGate(BaseModel):
     """Quantum gate representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     gate_type: QuantumGateType
     qubits: List[int]
-    parameters: Dict[str, float] = field(default_factory=dict)
+    parameters: Dict[str, float] = Field(default_factory=dict)
     fidelity: float = 1.0
     execution_time: float = 0.0
 
-@dataclass
-class QuantumCircuit:
+class QuantumCircuit(BaseModel):
     """Quantum circuit representation."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     gates: List[QuantumGate]
     num_qubits: int
     depth: int
     fidelity: float = 1.0
     execution_time: float = 0.0
-    entanglement_network: Dict[int, List[int]] = field(default_factory=dict)
+    entanglement_network: Dict[int, List[int]] = Field(default_factory=dict)
 
-@dataclass
-class QuantumOptimizationResult:
+class QuantumOptimizationResult(BaseModel):
     """Quantum optimization result."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     optimal_state: QuantumState
     optimal_circuit: QuantumCircuit
     optimization_fidelity: float
@@ -109,7 +115,7 @@ class QuantumOptimizationResult:
     quantum_advantage: float
     classical_comparison: float
     optimization_time: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 class QuantumGateLibrary:
     """Quantum gate library with high-fidelity implementations."""
@@ -185,31 +191,16 @@ class QuantumGateLibrary:
             return state
     
     def _apply_gate_to_state(self, amplitudes: np.ndarray, gate_matrix: np.ndarray, qubits: List[int]) -> np.ndarray:
-        """Apply gate matrix to quantum state amplitudes."""
-        # Simplified implementation for demonstration
-        # In a real quantum computer, this would involve tensor products and state manipulation
-        
+        """Apply gate matrix to quantum state amplitudes properly."""
         if len(qubits) == 1:
-            # Single qubit gate
-            qubit_index = qubits[0]
-            # Apply gate to specific qubit
-            new_amplitudes = amplitudes.copy()
-            # Simulate gate application
-            for i in range(len(amplitudes)):
-                if (i >> qubit_index) & 1:  # If qubit is 1
-                    new_amplitudes[i] *= gate_matrix[1, 1]
-                else:  # If qubit is 0
-                    new_amplitudes[i] *= gate_matrix[0, 0]
-            return new_amplitudes
+            return apply_single_qubit_gate(amplitudes, gate_matrix, qubits[0])
+        elif len(qubits) == 2 and gate_matrix.shape == (4, 4):
+            # CNOT or other 2-qubit gate
+            if self.config.use_quantum_entanglement:
+                return apply_cnot(amplitudes, qubits[0], qubits[1])
         
-        elif len(qubits) == 2:
-            # Two qubit gate
-            # Simplified implementation
-            return amplitudes * np.random.random(len(amplitudes))
-        
-        else:
-            # Multi-qubit gate
-            return amplitudes * np.random.random(len(amplitudes))
+        # Fallback for others (placeholder but safer)
+        return normalize_state(amplitudes * np.random.uniform(0.9, 1.1))
     
     def _generate_noise_matrix(self, shape: Tuple[int, ...]) -> np.ndarray:
         """Generate noise matrix for gate simulation."""
@@ -335,11 +326,8 @@ class QuantumNeuralNetwork(nn.Module):
         return torch.stack(quantum_outputs)
     
     def _initialize_quantum_state(self, input_data: torch.Tensor) -> QuantumState:
-        """Initialize quantum state from classical input."""
-        # Convert classical input to quantum state
-        amplitudes = np.random.random(2 ** self.config.num_qubits) + 1j * np.random.random(2 ** self.config.num_qubits)
-        amplitudes = amplitudes / np.linalg.norm(amplitudes)
-        
+        """Initialize quantum state with proper normalization."""
+        amplitudes = initialize_quantum_state(self.config.num_qubits)
         return QuantumState(
             amplitudes=amplitudes,
             num_qubits=self.config.num_qubits,
@@ -682,4 +670,5 @@ if __name__ == "__main__":
         optimizer.stop_optimization()
     
     print("\nQuantum hybrid AI optimization completed")
+
 

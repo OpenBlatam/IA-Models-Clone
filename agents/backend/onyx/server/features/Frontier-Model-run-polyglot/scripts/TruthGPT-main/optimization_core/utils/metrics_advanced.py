@@ -6,23 +6,21 @@ Provides advanced metrics collection and analysis.
 import logging
 import time
 from typing import Dict, Any, Optional, List, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from collections import defaultdict, deque
 from statistics import mean, median, stdev
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class MetricValue:
+class MetricValue(BaseModel):
     """Metric value with timestamp."""
     value: float
-    timestamp: float = field(default_factory=time.time)
-    tags: Dict[str, str] = field(default_factory=dict)
+    timestamp: float = Field(default_factory=time.time)
+    tags: Dict[str, str] = Field(default_factory=dict)
 
 
-@dataclass
-class MetricStats:
+class MetricStats(BaseModel):
     """Statistics for a metric."""
     count: int
     sum: float
@@ -200,6 +198,7 @@ def create_metrics_collector(max_samples: int = 10000) -> AdvancedMetricsCollect
         Metrics collector
     """
     return AdvancedMetricsCollector(max_samples)
+
 
 
 

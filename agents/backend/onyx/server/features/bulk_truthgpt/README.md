@@ -1,5 +1,7 @@
 # Bulk TruthGPT AI System
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
 ## 🚀 Overview
 
 The Bulk TruthGPT AI System is a comprehensive, adaptive AI system that integrates all TruthGPT components and provides continuous document generation capabilities. It automatically adapts to all optimization variants, models, and advanced features available in the TruthGPT ecosystem.
@@ -453,3 +455,5 @@ For support and questions:
 ---
 
 **Bulk TruthGPT AI System** - The ultimate adaptive AI system for continuous document generation with maximum performance optimization.
+
+[← Back to Main README](../README.md)

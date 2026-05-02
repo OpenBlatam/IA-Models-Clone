@@ -399,7 +399,9 @@ class MemoryEfficientAttention:
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
+# ---------------------------------------------------------------------------
 # Factory functions
+# ---------------------------------------------------------------------------
 def create_efficient_attention(
     d_model: int,
     n_heads: int,
@@ -429,6 +431,7 @@ def create_memory_efficient_attention(
 ) -> MemoryEfficientAttention:
     """Create a memory-efficient attention handler."""
     return MemoryEfficientAttention(use_checkpointing, use_mixed_precision)
+
 
 
 

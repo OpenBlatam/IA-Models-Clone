@@ -500,3 +500,4 @@ def decompress(data: bytes, algorithm: str = DEFAULT_ALGORITHM) -> bytes:
         Decompressed bytes
     """
     return Compressor(algorithm=algorithm).decompress(data)
+

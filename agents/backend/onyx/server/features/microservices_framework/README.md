@@ -2,6 +2,9 @@
 
 A production-ready microservices framework with integrated deep learning capabilities, supporting transformers, diffusion models, and LLM development using PyTorch, Transformers, Diffusers, and Gradio.
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
+
 ## 🏗️ Architecture Overview
 
 ### Core Principles

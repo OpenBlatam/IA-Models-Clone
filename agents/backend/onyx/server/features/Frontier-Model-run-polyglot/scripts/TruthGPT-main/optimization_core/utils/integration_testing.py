@@ -6,25 +6,19 @@ Provides utilities for integration testing.
 import logging
 import time
 from typing import Dict, Any, Optional, List, Callable
-from dataclasses import dataclass
+from pydantic import BaseModel, Field
 from contextlib import contextmanager
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class IntegrationTestResult:
+class IntegrationTestResult(BaseModel):
     """Result of integration test."""
     test_name: str
     passed: bool
     duration: float
     components_tested: List[str]
-    errors: List[str] = None
-    
-    def __post_init__(self):
-        """Initialize errors if None."""
-        if self.errors is None:
-            self.errors = []
+    errors: List[str] = Field(default_factory=list)
 
 
 class IntegrationTestRunner:
@@ -161,6 +155,7 @@ def create_integration_test_runner() -> IntegrationTestRunner:
         Integration test runner
     """
     return IntegrationTestRunner()
+
 
 
 

@@ -13,25 +13,24 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
 from collections import defaultdict
 from typing import Any, Dict, Optional, Tuple
-from dataclasses import dataclass, field
+from pydantic import BaseModel
 import warnings
 
-@dataclass
-class ParallelTrainingConfig:
+class ParallelTrainingConfig(BaseModel):
     """Configuration for parallel training optimizations."""
-    micro_batch_size_per_device_for_experience: int = field(default=4)
-    micro_batch_size_per_device_for_update: int = field(default=2)
-    global_batch_size_per_device: int = field(default=8)
-    max_grad_norm: float = field(default=1.0)
-    ppo_epochs: int = field(default=1)
-    clip_ratio: float = field(default=0.2)
-    entropy_coeff: float = field(default=0.01)
-    use_kl_loss: bool = field(default=False)
-    kl_loss_coef: float = field(default=0.1)
-    kl_loss_type: str = field(default="kl")
-    padding_free: bool = field(default=False)
-    ulysses_sequence_parallel_size: int = field(default=1)
-    logging_steps: int = field(default=10)
+    micro_batch_size_per_device_for_experience: int = 4
+    micro_batch_size_per_device_for_update: int = 2
+    global_batch_size_per_device: int = 8
+    max_grad_norm: float = 1.0
+    ppo_epochs: int = 1
+    clip_ratio: float = 0.2
+    entropy_coeff: float = 0.01
+    use_kl_loss: bool = False
+    kl_loss_coef: float = 0.1
+    kl_loss_type: str = "kl"
+    padding_free: bool = False
+    ulysses_sequence_parallel_size: int = 1
+    logging_steps: int = 10
 
 class MockDataProto:
     """Mock data protocol for compatibility."""
@@ -425,3 +424,4 @@ def wrap_model_for_distributed(model: nn.Module, use_fsdp: bool = False):
             warnings.warn(f"Failed to wrap with FSDP: {e}, falling back to DDP")
     
     return DDP(model)
+

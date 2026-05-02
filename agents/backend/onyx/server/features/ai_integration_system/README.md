@@ -1,5 +1,7 @@
 # AI Integration System
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
 A comprehensive system for integrating AI-generated content directly with CMS, CRM, and marketing platforms including Salesforce, Mailchimp, WordPress, HubSpot, and more.
 
 ## 🚀 Features
@@ -410,33 +412,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Made with ❤️ by the AI Integration Team**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[← Back to Main README](../README.md)

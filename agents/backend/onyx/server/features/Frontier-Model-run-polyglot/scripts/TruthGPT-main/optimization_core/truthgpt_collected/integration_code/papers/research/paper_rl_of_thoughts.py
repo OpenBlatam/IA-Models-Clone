@@ -10,6 +10,8 @@ bloques de razonamiento (cadena, árbol, etc) según la tarea. Logran mejoras de
 hasta +13.4% en benchmarks como AIME, MATH y GPQA.
 
 Técnica principal: Lightweight RL navigator for dynamic reasoning block selection.
+
+ArXiv ID: 2501.12948
 """
 
 import torch
@@ -307,5 +309,6 @@ if __name__ == "__main__":
     print(f"   Input {x.shape} -> Output {output.shape}")
     print(f"   Selected actions: {metadata['selected_actions']}")
     print(f"   Navigation confidence: {metadata['navigation_confidence']:.4f}")
+
 
 

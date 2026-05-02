@@ -5,15 +5,16 @@ Provides utilities for migrating code and configurations between versions.
 """
 import logging
 from typing import Dict, Any, List, Optional, Callable
-from dataclasses import dataclass
+from pydantic import BaseModel, ConfigDict
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class Migration:
+class Migration(BaseModel):
     """Migration definition."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     from_version: str
     to_version: str
     description: str
@@ -148,6 +149,7 @@ def migrate_config(
     )
     
     return manager.migrate(config, from_version, to_version)
+
 
 
 

@@ -1,62 +1,64 @@
-# Sistema de Generación de Anuncios con IA
+# AI-Powered Ad Generation System
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema avanzado para generación de anuncios usando modelos de difusión (diffusion models) y transformers. Este módulo proporciona capacidades completas para crear, optimizar y gestionar anuncios publicitarios mediante IA.
+## 📋 Description
 
-## 🚀 Características Principales
+An advanced system for generating advertisements using diffusion models and transformers. This module provides end-to-end capabilities for creating, optimizing, and managing AI-driven ad content — both visual and textual.
 
-- **Generación de Anuncios con Diffusion Models**: Integración con modelos de difusión para crear contenido visual y textual
-- **Optimización de Rendimiento**: Sistema optimizado con mixed precision training, gradient accumulation y multi-GPU
-- **Tokenización Avanzada**: Sistema de tokenización optimizado para procesamiento eficiente
-- **Gestión de Versiones**: Control de versiones integrado para modelos y configuraciones
-- **API RESTful**: Interfaz API completa para integración con otros servicios
-- **Sistema de Configuración**: Gestión flexible de configuraciones para diferentes escenarios
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Diffusion Model Generation** — Integration with state-of-the-art diffusion models for visual and textual ad creation
+- **Performance Optimization** — Mixed-precision training, gradient accumulation, and multi-GPU support
+- **Advanced Tokenization** — Optimized tokenization pipeline for efficient text processing
+- **Version Management** — Built-in version control for models and configurations
+- **RESTful API** — Full API interface for integration with other services
+- **Flexible Configuration** — Scenario-based configuration management
+
+## 📁 Project Structure
 
 ```
 ads/
-├── api/                    # Endpoints de la API
-├── core/                   # Lógica central del sistema
-├── config/                 # Configuraciones
-├── domain/                 # Modelos de dominio
-├── infrastructure/         # Infraestructura y servicios
-├── optimization/           # Optimizaciones y mejoras
-├── providers/              # Proveedores de servicios
-├── services/               # Servicios de negocio
-├── training/               # Entrenamiento de modelos
-├── examples/               # Ejemplos de uso
-└── docs/                   # Documentación adicional
+├── api/                    # API endpoints
+├── core/                   # Core system logic
+├── config/                 # Configuration files
+├── domain/                 # Domain models
+├── infrastructure/         # Infrastructure & services
+├── optimization/           # Optimizations & improvements
+├── providers/              # Service providers
+├── services/               # Business services
+├── training/               # Model training
+├── examples/               # Usage examples
+└── docs/                   # Additional documentation
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Para desarrollo
+# For development
 pip install -r profiling_requirements_dev.txt
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
 ```python
 from ads.diffusion_service import DiffusionService
 from ads.api import create_app
 
-# Inicializar servicio
+# Initialize service
 service = DiffusionService()
 
-# Generar anuncio
-result = service.generate_ad(prompt="Producto innovador para startups")
+# Generate an ad
+result = service.generate_ad(prompt="Innovative product for startups")
 
-# Iniciar API
+# Start the API
 app = create_app()
 ```
 
-## 📚 Documentación Adicional
+## 📚 Additional Documentation
 
 - [Advanced Diffusers Guide](ADVANCED_DIFFUSERS_GUIDE.md)
 - [Diffusion Process Guide](DIFFUSION_PROCESS_GUIDE.md)
@@ -67,28 +69,31 @@ app = create_app()
 ## 🧪 Testing
 
 ```bash
-# Ejecutar tests básicos
+# Run basic tests
 python test_basic.py
 
-# Tests de difusión
+# Diffusion tests
 python test_diffusion.py
 
-# Tests de optimización
+# Optimization tests
 python test_performance_optimization.py
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Integration System**: API Gateway principal
-- **Export IA**: Exportación de anuncios generados
-- **Business Agents**: Agentes de negocio para automatización
+This module integrates with:
+- **[Integration System](../integration_system/README.md)** — Primary API Gateway
+- **[Export IA](../export_ia/README.md)** — Export generated ads
+- **[Business Agents](../business_agents/README.md)** — Automated business workflows
 
-## 📊 Puerto
+## 📊 Service Info
 
-- Puerto por defecto: Configurable en `config.py`
-- Health endpoint: `/health`
-- API Docs: `/docs`
+| Item | Value |
+|------|-------|
+| **Default Port** | Configurable in `config.py` |
+| **Health Endpoint** | `/health` |
+| **API Docs** | `/docs` |
 
+---
 
-
+[← Back to Main README](../README.md)

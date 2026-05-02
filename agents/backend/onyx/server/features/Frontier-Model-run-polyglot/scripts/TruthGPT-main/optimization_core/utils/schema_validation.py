@@ -5,7 +5,7 @@ Provides utilities for validating data structures against schemas.
 """
 import logging
 from typing import Dict, Any, Optional, List, Union, Type, Callable
-from dataclasses import dataclass, fields
+from dataclasses import fields
 from enum import Enum
 
 logger = logging.getLogger(__name__)
@@ -16,9 +16,12 @@ class ValidationError(Exception):
     pass
 
 
-@dataclass
-class FieldSchema:
+from .base import BaseOptimizationModel
+
+
+class FieldSchema(BaseOptimizationModel):
     """Schema for a field."""
+
     type: Type
     required: bool = True
     default: Any = None
@@ -166,6 +169,7 @@ def validate_dataclass(
     
     validator = SchemaValidator(schema)
     return validator.validate(data)
+
 
 
 

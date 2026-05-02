@@ -6,7 +6,7 @@ Provides utilities for monitoring, tracing, and observability.
 import logging
 import time
 from typing import Dict, Any, Optional, List
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from contextlib import contextmanager
 from enum import Enum
 
@@ -21,14 +21,13 @@ class TraceLevel(Enum):
     ERROR = "error"
 
 
-@dataclass
-class TraceSpan:
+class TraceSpan(BaseModel):
     """Span in a trace."""
     name: str
     start_time: float
     end_time: Optional[float] = None
-    tags: Dict[str, Any] = field(default_factory=dict)
-    logs: List[Dict[str, Any]] = field(default_factory=list)
+    tags: Dict[str, Any] = Field(default_factory=dict)
+    logs: List[Dict[str, Any]] = Field(default_factory=list)
     
     @property
     def duration(self) -> float:
@@ -239,6 +238,7 @@ def get_tracer() -> Tracer:
 def get_metrics_exporter() -> MetricsExporter:
     """Get global metrics exporter."""
     return MetricsExporter()
+
 
 
 

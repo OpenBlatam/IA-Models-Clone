@@ -5,7 +5,7 @@ Provides utilities for processing data in batches.
 """
 import logging
 from typing import List, Any, Callable, Optional, Iterator, TypeVar, Generic
-from dataclasses import dataclass
+from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
@@ -13,18 +13,12 @@ T = TypeVar('T')
 R = TypeVar('R')
 
 
-@dataclass
-class BatchResult:
+class BatchResult(BaseModel):
     """Result of batch processing."""
     batch_index: int
     items_processed: int
     results: List[Any]
-    errors: List[str] = None
-    
-    def __post_init__(self):
-        """Initialize errors if None."""
-        if self.errors is None:
-            self.errors = []
+    errors: List[str] = Field(default_factory=list)
 
 
 class BatchProcessor(Generic[T, R]):
@@ -154,6 +148,7 @@ def create_batch_processor(
         Batch processor
     """
     return BatchProcessor(batch_size, max_workers)
+
 
 
 

@@ -7,10 +7,10 @@ from transformers import AutoTokenizer, get_cosine_schedule_with_warmup
 from torch.cuda.amp import GradScaler
 
 # Core modules
-from core.config import ConfigManager
-from core.service_registry import ServiceContainer
-from core.event_system import EventType, on_event
-from core.services import ModelService, TrainingService
+from modules.base.core_system.core.config import ConfigManager
+from modules.base.core_system.core.service_registry import ServiceContainer
+from modules.base.core_system.core.event_system import EventType, on_event
+from modules.base.core_system.core.services import ModelService, TrainingService
 
 # Data modules
 from data import DatasetManager, DataLoaderFactory
@@ -283,5 +283,6 @@ if __name__ == "__main__":
     except Exception as e:
         logger.error(f"Training failed: {e}", exc_info=True)
         raise
+
 
 

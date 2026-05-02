@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  unified-ai-model:
+    build:
+      context: ..
+      dockerfile: aws/Dockerfile
+    container_name: unified-ai-model
+    ports:
+      - "8050:8050"
+    environment:
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - UNIFIED_AI_HOST=0.0.0.0
+      - UNIFIED_AI_PORT=8050
+      - UNIFIED_AI_CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000}
+      - UNIFIED_AI_DEBUG=${DEBUG:-false}
+    restart: unless-stopped
+    networks:
+      - onyx-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8050/api/v1/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  nginx:
+    image: nginx:alpine
+    container_name: unified-ai-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - unified-ai-model
+    restart: unless-stopped
+    networks:
+      - onyx-network
+
+networks:
+  onyx-network:
+    driver: bridge

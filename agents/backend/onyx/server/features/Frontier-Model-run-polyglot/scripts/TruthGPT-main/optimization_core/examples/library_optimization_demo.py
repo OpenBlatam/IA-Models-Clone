@@ -19,20 +19,14 @@ import GPUtil
 # Add the current directory to the path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from optimizers.library_optimizer import (
+from optimizers import (
     LibraryOptimizer, 
-    LibraryOptimizationConfig,
     create_library_optimizer,
-    create_optimization_config
 )
-from modules.advanced_libraries import (
-    AdvancedLibraryManager,
-    AdvancedLibraryConfig,
-    create_advanced_library_manager,
-    create_advanced_library_config,
-    create_optimized_attention,
-    create_optimized_transformer_block
-)
+# We use simple dicts for config in the new modular system
+def create_optimization_config(**kwargs):
+    return kwargs
+
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -76,30 +70,10 @@ class TruthGPTLibraryOptimizationDemo:
             use_torch_compile=True
         )
         
-        self.advanced_config = create_advanced_library_config(
-            use_flash_attention=True,
-            use_xformers=True,
-            use_triton=True,
-            use_apex=True,
-            use_accelerate=True,
-            use_bitsandbytes=True,
-            use_optimum=True,
-            use_peft=True,
-            use_mixed_precision=True,
-            use_gradient_checkpointing=True,
-            use_quantization=True,
-            quantization_type="int8",
-            use_wandb=True,
-            use_tensorboard=True,
-            use_mlflow=True,
-            use_optuna=True,
-            use_compilation=True,
-            use_torch_compile=True
-        )
         
         # Initialize optimizers
+        # Initialize optimizers
         self.library_optimizer = create_library_optimizer(self.library_config)
-        self.advanced_manager = create_advanced_library_manager(self.advanced_config)
         
         # Performance tracking
         self.performance_results = {}
@@ -172,7 +146,7 @@ class TruthGPTLibraryOptimizationDemo:
         optimized_model = self.library_optimizer.optimize_model(model)
         
         # Apply advanced optimizations
-        advanced_optimized_model = self.advanced_manager.optimize_model(optimized_model)
+        advanced_optimized_model = optimized_model # self.advanced_manager.optimize_model(optimized_model)
         
         # Test model
         test_input = torch.randint(0, 1000, (2, 10)).to(self.device)
@@ -614,6 +588,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 

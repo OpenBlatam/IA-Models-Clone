@@ -1,54 +1,57 @@
 # Integration System
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema principal de integración y API Gateway para Blatam Academy. Orquesta todos los servicios y actúa como punto de entrada único.
+## 📋 Description
 
-## 🚀 Características Principales
+Main integration system and API Gateway for Blatam Academy. Orchestrates all services and acts as a single entry point.
 
-- **API Gateway**: Puerta de enlace para todos los servicios
-- **Orquestación**: Orquesta todos los servicios del sistema
-- **Enrutamiento**: Enrutamiento inteligente de peticiones
-- **Autenticación**: Autenticación centralizada
-- **Monitoreo**: Monitoreo del sistema completo
+## 🚀 Key Features
 
-## 📁 Estructura
+- **API Gateway** — Gateway for all services
+- **Orchestration** — Orchestrates all system services
+- **Routing** — Intelligent request routing
+- **Authentication** — Centralized authentication
+- **Monitoring** — Complete system monitoring
+
+## 📁 Structure
 
 ```
 integration_system/
-├── api/                    # Endpoints de API
-├── config/                 # Configuraciones
-├── core/                   # Lógica central
-└── main.py                 # Punto de entrada
+├── api/                    # API Endpoints
+├── config/                 # Configurations
+├── core/                   # Core logic
+└── main.py                 # Entry point
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
-Este módulo se instala con el sistema principal usando `start_system.py`.
+This module is installed with the main system using `start_system.py`.
 
-## 💻 Uso
+## 💻 Usage
 
-El sistema se inicia automáticamente con:
+The system starts automatically with:
 
 ```bash
 python start_system.py start
 ```
 
-## 📊 Puerto
+## 📊 Port
 
-- Puerto por defecto: **8000**
+- Default Port: **8000**
 - Health endpoint: `http://localhost:8000/health`
 - API Docs: `http://localhost:8000/docs`
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este sistema orquesta:
-- Todos los servicios del ecosistema Blatam Academy
-- **Content Redundancy Detector** (puerto 8001)
-- **BUL** (puerto 8002)
-- **Gamma App** (puerto 8003)
-- **Business Agents** (puerto 8004)
-- **Export IA** (puerto 8005)
+This system orchestrates:
+- All Blatam Academy ecosystem services
+- **[Content Redundancy Detector](../content_redundancy_detector/README.md)** (Port 8001)
+- **[BUL](../bulk/README.md)** (Port 8002)
+- **Gamma App** (Port 8003)
+- **[Business Agents](../business_agents/README.md)** (Port 8004)
+- **[Export IA](../export_ia/README.md)** (Port 8005)
 
+---
 
-
+[← Back to Main README](../README.md)

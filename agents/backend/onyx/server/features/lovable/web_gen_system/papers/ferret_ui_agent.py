@@ -15,7 +15,7 @@ class FerretUIAgent(BaseAgent):
         Describes a UI element or screen region with high precision.
         """
         try:
-            element_region = context.get("region")
+            element_region = context.shared_memory.get("region")
             if not element_region:
                 return {"status": "skipped", "reason": "No region provided"}
 

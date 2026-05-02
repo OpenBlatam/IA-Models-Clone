@@ -645,3 +645,4 @@ class SparseAttention(Attention):
         if global_tokens <= 0:
             raise ValueError(f"global_tokens must be positive, got {global_tokens}")
         self.global_tokens = global_tokens
+

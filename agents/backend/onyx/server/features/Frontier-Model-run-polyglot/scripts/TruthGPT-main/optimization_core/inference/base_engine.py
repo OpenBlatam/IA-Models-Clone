@@ -7,6 +7,7 @@ import logging
 from abc import ABC, abstractmethod
 from typing import List, Optional, Union, Dict, Any
 from pathlib import Path
+from ..agents.models import InferenceResult
 
 logger = logging.getLogger(__name__)
 
@@ -41,19 +42,9 @@ class BaseInferenceEngine(ABC):
         temperature: float = 0.7,
         top_p: float = 0.95,
         **kwargs
-    ) -> Union[str, List[str]]:
+    ) -> Union[InferenceResult, List[InferenceResult]]:
         """
-        Generate text from prompts.
-        
-        Args:
-            prompts: Single prompt or list of prompts
-            max_tokens: Maximum tokens to generate
-            temperature: Sampling temperature
-            top_p: Nucleus sampling parameter
-            **kwargs: Additional generation parameters
-        
-        Returns:
-            Generated text(s)
+        Generate text from prompts and return structured results.
         """
         pass
     
@@ -158,6 +149,7 @@ class GenerationConfig:
         """String representation."""
         params = ", ".join(f"{k}={v}" for k, v in self.to_dict().items())
         return f"GenerationConfig({params})"
+
 
 
 

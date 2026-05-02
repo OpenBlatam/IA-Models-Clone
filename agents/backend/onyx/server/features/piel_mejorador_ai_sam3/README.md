@@ -1,72 +1,74 @@
-# Piel Mejorador AI SAM3
+# Skin Enhancer AI SAM3
 
-Sistema de mejoramiento de piel con arquitectura SAM3, integrado con OpenRouter y TruthGPT para procesamiento de imágenes y videos con niveles configurables de mejora y realismo.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## Características
+Skin enhancement system with SAM3 architecture, integrated with OpenRouter and TruthGPT for image and video processing with configurable levels of enhancement and realism.
+
+## Features
 
 ### Core
-- ✅ Arquitectura SAM3 para procesamiento paralelo y continuo
-- ✅ Integración con OpenRouter para LLM de alta calidad con soporte vision
-- ✅ Integración con TruthGPT para optimización avanzada
-- ✅ Operación continua 24/7
-- ✅ Ejecución paralela de tareas
-- ✅ Gestión automática de tareas con cola de prioridades
-- ✅ Procesamiento de imágenes y videos
-- ✅ Niveles configurables de mejora (low, medium, high, ultra)
-- ✅ Niveles configurables de realismo (0.0 a 1.0)
-- ✅ Análisis de condición de piel
+- ✅ SAM3 architecture for parallel and continuous processing
+- ✅ OpenRouter integration for high-quality LLMs with vision support
+- ✅ TruthGPT integration for advanced optimization
+- ✅ 24/7 continuous operation
+- ✅ Parallel task execution
+- ✅ Automatic task management with priority queue
+- ✅ Image and video processing
+- ✅ Configurable enhancement levels (low, medium, high, ultra)
+- ✅ Configurable realism levels (0.0 to 1.0)
+- ✅ Skin condition analysis
 
-### Avanzadas
-- ✅ Procesamiento frame-by-frame para videos
-- ✅ Sistema de caché inteligente
-- ✅ Procesamiento en lote (batch processing)
-- ✅ Logging avanzado estructurado
+### Advanced
+- ✅ Frame-by-frame processing for videos
+- ✅ Intelligent cache system
+- ✅ Batch processing
+- ✅ Advanced structured logging
 
 ### Enterprise
-- ✅ Rate limiting con token bucket
-- ✅ Sistema de webhooks para notificaciones
-- ✅ Optimización automática de memoria
-- ✅ Métricas y monitoreo avanzado
-- ✅ Health checks y recomendaciones
+- ✅ Rate limiting with token bucket
+- ✅ Webhooks system for notifications
+- ✅ Automatic memory optimization
+- ✅ Advanced metrics and monitoring
+- ✅ Health checks and recommendations
 
-## Instalación
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuración
+## Configuration
 
-Configura las variables de entorno:
+Configure environment variables:
 
 ```bash
-export OPENROUTER_API_KEY="tu-api-key"
-export TRUTHGPT_ENDPOINT="opcional-endpoint"  # Opcional
+export OPENROUTER_API_KEY="your-api-key"
+export TRUTHGPT_ENDPOINT="optional-endpoint"  # Optional
 ```
 
-## Uso Básico
+## Basic Usage
 
-### Uso del Agente
+### Agent Usage
 
 ```python
 import asyncio
 from piel_mejorador_ai_sam3 import PielMejoradorAgent, PielMejoradorConfig
 
 async def main():
-    # Crear configuración
+    # Create configuration
     config = PielMejoradorConfig()
     
-    # Crear agente
+    # Create agent
     agent = PielMejoradorAgent(config=config)
     
-    # Mejorar una imagen
+    # Enhance an image
     task_id = await agent.mejorar_imagen(
-        file_path="ruta/a/imagen.jpg",
+        file_path="path/to/image.jpg",
         enhancement_level="medium",
         realism_level=0.8
     )
     
-    # Esperar resultado
+    # Wait for result
     import time
     while True:
         status = await agent.get_task_status(task_id)
@@ -80,186 +82,186 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Uso de la API REST
+### REST API Usage
 
-Inicia el servidor:
+Start the server:
 
 ```bash
 uvicorn piel_mejorador_ai_sam3.api.piel_mejorador_api:app --reload
 ```
 
-#### Subir y mejorar imagen
+#### Upload and enhance image
 
 ```bash
 curl -X POST "http://localhost:8000/upload-image" \
-  -F "file=@imagen.jpg" \
+  -F "file=@image.jpg" \
   -F "enhancement_level=medium" \
   -F "realism_level=0.8"
 ```
 
-#### Mejorar imagen desde ruta
+#### Enhance image from path
 
 ```bash
 curl -X POST "http://localhost:8000/mejorar-imagen" \
   -H "Content-Type: application/json" \
   -d '{
-    "file_path": "/ruta/a/imagen.jpg",
+    "file_path": "/path/to/image.jpg",
     "enhancement_level": "high",
     "realism_level": 0.9
   }'
 ```
 
-#### Mejorar video
+#### Enhance video
 
 ```bash
 curl -X POST "http://localhost:8000/mejorar-video" \
   -H "Content-Type: application/json" \
   -d '{
-    "file_path": "/ruta/a/video.mp4",
+    "file_path": "/path/to/video.mp4",
     "enhancement_level": "medium",
     "realism_level": 0.7
   }'
 ```
 
-#### Analizar piel
+#### Analyze skin
 
 ```bash
 curl -X POST "http://localhost:8000/analizar-piel" \
   -H "Content-Type: application/json" \
   -d '{
-    "file_path": "/ruta/a/imagen.jpg",
+    "file_path": "/path/to/image.jpg",
     "file_type": "image"
   }'
 ```
 
-#### Consultar estado de tarea
+#### Check task status
 
 ```bash
 curl "http://localhost:8000/task/{task_id}/status"
 ```
 
-#### Obtener resultado
+#### Get result
 
 ```bash
 curl "http://localhost:8000/task/{task_id}/result"
 ```
 
-## Arquitectura
+## Architecture
 
-### Estructura de Directorios
+### Directory Structure
 
 ```
 piel_mejorador_ai_sam3/
 ├── core/
-│   ├── piel_mejorador_agent.py    # Agente principal (orchestrator)
-│   ├── task_manager.py            # Gestión de tareas y cola de prioridades
-│   ├── service_handler.py         # Manejo de servicios de mejora
-│   ├── prompt_builder.py          # Construcción de prompts
-│   ├── system_prompts_builder.py  # Prompts del sistema especializados
-│   └── helpers.py                 # Utilidades comunes
+│   ├── piel_mejorador_agent.py    # Main agent (orchestrator)
+│   ├── task_manager.py            # Task management and priority queue
+│   ├── service_handler.py         # Enhancement service handling
+│   ├── prompt_builder.py          # Prompt construction
+│   ├── system_prompts_builder.py  # Specialized system prompts
+│   └── helpers.py                 # Common utilities
 ├── infrastructure/
-│   ├── openrouter_client.py       # Cliente OpenRouter (LLM + Vision)
-│   ├── truthgpt_client.py         # Cliente TruthGPT (optimización)
-│   └── retry_helpers.py           # Helpers de reintentos con backoff
+│   ├── openrouter_client.py       # OpenRouter client (LLM + Vision)
+│   ├── truthgpt_client.py         # TruthGPT client (optimization)
+│   └── retry_helpers.py           # Retry helpers with backoff
 ├── config/
-│   └── piel_mejorador_config.py  # Configuración centralizada
+│   └── piel_mejorador_config.py  # Centralized configuration
 ├── api/
-│   └── piel_mejorador_api.py      # API REST (FastAPI)
+│   └── piel_mejorador_api.py      # REST API (FastAPI)
 ├── utils/
-│   └── (utilidades adicionales)
+│   └── (additional utilities)
 ├── tests/
 │   └── (tests)
 ├── examples/
-│   └── (ejemplos de uso)
+│   └── (usage examples)
 └── docs/
-    └── (documentación)
+    └── (documentation)
 ```
 
-## Servicios Disponibles
+## Available Services
 
-### 1. Mejorar Imagen
+### 1. Enhance Image
 
-Mejora la piel en una imagen estática.
+Enhances skin in a static image.
 
 ```python
 task_id = await agent.mejorar_imagen(
-    file_path="imagen.jpg",
+    file_path="image.jpg",
     enhancement_level="medium",  # low, medium, high, ultra
-    realism_level=0.8,  # 0.0 a 1.0 (opcional)
-    custom_instructions="Enfocarse en suavizar textura",
+    realism_level=0.8,  # 0.0 to 1.0 (optional)
+    custom_instructions="Focus on smoothing texture",
     priority=0
 )
 ```
 
-### 2. Mejorar Video
+### 2. Enhance Video
 
-Mejora la piel en un video manteniendo consistencia entre frames.
+Enhances skin in a video maintaining consistency between frames.
 
 ```python
 task_id = await agent.mejorar_video(
     file_path="video.mp4",
     enhancement_level="high",
     realism_level=0.9,
-    custom_instructions="Mantener movimiento natural",
+    custom_instructions="Keep movement natural",
     priority=0
 )
 ```
 
-### 3. Analizar Piel
+### 3. Analyze Skin
 
-Analiza la condición de la piel y proporciona recomendaciones.
+Analyzes skin condition and provides recommendations.
 
 ```python
 task_id = await agent.analizar_piel(
-    file_path="imagen.jpg",
-    file_type="image",  # o "video"
+    file_path="image.jpg",
+    file_type="image",  # or "video"
     priority=0
 )
 ```
 
-## Niveles de Mejora
+## Enhancement Levels
 
-- **low**: Mejoras sutiles y naturales (intensidad: 0.3, realismo: 0.5)
-- **medium**: Mejoras moderadas manteniendo realismo (intensidad: 0.6, realismo: 0.7)
-- **high**: Mejoras significativas con alto realismo (intensidad: 0.9, realismo: 0.9)
-- **ultra**: Mejoras máximas con realismo fotográfico perfecto (intensidad: 1.0, realismo: 1.0)
+- **low**: Subtle and natural enhancements (intensity: 0.3, realism: 0.5)
+- **medium**: Moderate enhancements maintaining realism (intensity: 0.6, realism: 0.7)
+- **high**: Significant enhancements with high realism (intensity: 0.9, realism: 0.9)
+- **ultra**: Maximum enhancements with perfect photographic realism (intensity: 1.0, realism: 1.0)
 
-## Niveles de Realismo
+## Realism Levels
 
-El nivel de realismo puede especificarse como un valor flotante entre 0.0 y 1.0:
-- **0.0**: Natural, preserva características originales
-- **0.5**: Balanceado entre natural y mejorado
-- **1.0**: Realismo fotográfico perfecto
+Realism level can be specified as a float between 0.0 and 1.0:
+- **0.0**: Natural, preserves original features
+- **0.5**: Balanced between natural and enhanced
+- **1.0**: Perfect photographic realism
 
-## Características Avanzadas
+## Advanced Features
 
-### Procesamiento Frame-by-Frame para Videos
+### Frame-by-Frame Processing for Videos
 
-El sistema puede procesar videos frame por frame para mejoras más precisas:
+The system can process videos frame by frame for more precise enhancements:
 
 ```python
 from piel_mejorador_ai_sam3.core.video_processor import VideoProcessor
 
 processor = VideoProcessor()
 frames = await processor.extract_frames("video.mp4")
-# Procesar frames...
+# Process frames...
 enhanced_video = await processor.reconstruct_video(frames, "output.mp4")
 ```
 
-### Sistema de Caché Inteligente
+### Intelligent Cache System
 
-Evita reprocesamiento de archivos ya procesados:
+Avoids reprocessing already processed files:
 
 ```python
-# El caché se usa automáticamente
-# Ver estadísticas:
+# Cache is used automatically
+# View statistics:
 stats = agent.cache_manager.get_stats()
-print(f"Tasa de aciertos: {stats['hit_rate']:.2%}")
+print(f"Hit rate: {stats['hit_rate']:.2%}")
 ```
 
-### Procesamiento en Lote
+### Batch Processing
 
-Procesa múltiples archivos simultáneamente:
+Processes multiple files simultaneously:
 
 ```python
 from piel_mejorador_ai_sam3.core.batch_processor import BatchItem
@@ -270,58 +272,58 @@ items = [
 ]
 
 result = await agent.process_batch(items)
-print(f"Tasa de éxito: {result.success_rate:.2%}")
+print(f"Success rate: {result.success_rate:.2%}")
 ```
 
-Ver **[ADVANCED_FEATURES.md](ADVANCED_FEATURES.md)** para más detalles.
+See **[ADVANCED_FEATURES.md](ADVANCED_FEATURES.md)** for more details.
 
-### Características Enterprise
+### Enterprise Features
 
 #### Rate Limiting
-Protección automática contra abuso de API con límites configurables por cliente.
+Automatic protection against API abuse with configurable limits per client.
 
 #### Webhooks
-Sistema completo de notificaciones asíncronas para eventos de tareas.
+Complete asynchronous notification system for task events.
 
-#### Optimización de Memoria
-Monitoreo y optimización automática de memoria para archivos grandes.
+#### Memory Optimization
+Automatic monitoring and optimization of memory for large files.
 
-Ver **[ENTERPRISE_FEATURES.md](ENTERPRISE_FEATURES.md)** para más detalles.
+See **[ENTERPRISE_FEATURES.md](ENTERPRISE_FEATURES.md)** for more details.
 
-### Modo 24/7 Continuo
+### 24/7 Continuous Mode
 
-El agente puede ejecutarse en modo continuo procesando tareas automáticamente:
+The agent can run in continuous mode processing tasks automatically:
 
 ```python
 agent = PielMejoradorAgent(config=config)
-await agent.start()  # Ejecuta indefinidamente
+await agent.start()  # Runs indefinitely
 ```
 
-### Priorización de Tareas
+### Task Prioritization
 
-Las tareas pueden tener diferentes prioridades:
+Tasks can have different priorities:
 
 ```python
-# Alta prioridad
+# High priority
 task_id = await agent.mejorar_imagen(
-    file_path="imagen.jpg",
+    file_path="image.jpg",
     enhancement_level="high",
-    priority=10  # Mayor prioridad
+    priority=10  # Higher priority
 )
 ```
 
-### Integración con TruthGPT
+### TruthGPT Integration
 
-El agente optimiza automáticamente las consultas usando TruthGPT cuando está disponible.
+The agent automatially optimizes queries using TruthGPT when available.
 
-## Formatos Soportados
+## Supported Formats
 
-### Imágenes
+### Images
 - JPG/JPEG
 - PNG
 - WebP
 
-Tamaño máximo: 50MB (configurable)
+Maximum size: 50MB (configurable)
 
 ### Videos
 - MP4
@@ -329,15 +331,14 @@ Tamaño máximo: 50MB (configurable)
 - AVI
 - WebM
 
-Tamaño máximo: 500MB (configurable)
+Maximum size: 500MB (configurable)
 
-## Requisitos
+## Requirements
 
 - Python 3.8+
 - OpenRouter API key
-- TruthGPT (opcional pero recomendado)
+- TruthGPT (optional but recommended)
 
-## Licencia
+## License
 
 MIT
-

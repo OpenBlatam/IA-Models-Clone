@@ -1,52 +1,58 @@
 # Voice Coaching AI
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema de coaching de voz con IA con múltiples versiones mejoradas y optimizaciones avanzadas.
+## 📋 Description
 
-## 🚀 Características Principales
+AI-powered voice coaching system providing real-time voice analysis, personalized feedback, and guided improvement paths. Multiple enhanced versions with advanced optimizations and specialized processing engines.
 
-- **Coaching de Voz**: Sistema completo para coaching de voz con IA
-- **Múltiples Versiones Mejoradas**: Varias versiones optimizadas
-- **Engines Especializados**: Motores especializados para procesamiento de voz
-- **Factories**: Sistema de factories para creación de objetos
-- **Services**: Servicios de negocio
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Voice Coaching** — Complete AI-driven voice coaching with personalized feedback
+- **Multiple Enhanced Versions** — Several optimized builds for different use cases
+- **Specialized Engines** — Dedicated voice processing engines for analysis and transformation
+- **Factory Pattern** — Extensible factory system for object creation
+- **Service Layer** — Clean service architecture for business logic
+
+## 📁 Project Structure
 
 ```
 voice_coaching_ai/
-├── core/                   # Lógica central
-├── engines/                # Motores especializados
-├── factories/              # Factories
-├── services/               # Servicios
-└── utils/                  # Utilidades
+├── core/                   # Core logic
+├── engines/                # Specialized voice engines
+├── factories/              # Factory classes
+├── services/               # Business services
+└── utils/                  # Utilities
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 💻 Uso
+## 💻 Usage
 
 ```python
 from voice_coaching_ai.example_usage import VoiceCoachingAI
 
-# Inicializar sistema
+# Initialize the system
 coaching = VoiceCoachingAI()
 
-# Analizar voz
+# Analyze voice
 analysis = coaching.analyze_voice(audio_file="voice.mp3")
 
-# Proporcionar feedback
+# Get personalized feedback
 feedback = coaching.provide_feedback(analysis)
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Integration System**: Para orquestación
-- **Blatam AI**: Motor de IA
-- **Export IA**: Para exportación de resultados
+This module integrates with:
+- **[Integration System](../integration_system/README.md)** — Service orchestration
+- **[Blatam AI](../blatam_ai/README.md)** — Core AI engine
+- **[Export IA](../export_ia/README.md)** — Results export
+
+---
+
+[← Back to Main README](../README.md)

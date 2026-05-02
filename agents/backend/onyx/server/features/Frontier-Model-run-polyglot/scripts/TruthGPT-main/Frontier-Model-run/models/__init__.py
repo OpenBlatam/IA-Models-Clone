@@ -4,7 +4,6 @@ from .base import (
     BaseModelArgs,
     BaseTransformer,
     BaseTransformerBlock,
-    FP8Linear,
     RMSNorm,
     SafetyLinear,
     apply_rotary_emb,

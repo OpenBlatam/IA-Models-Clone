@@ -413,6 +413,56 @@ app.add_middleware(
 if ENABLE_METRICS:
     app.middleware("http")(metrics_middleware)
 
+# ============================================================================
+# Routers
+# ============================================================================
+try:
+    from ..agents.api_router import create_agent_router
+    from ..agents.client import AgentClient
+
+    _agent_client = AgentClient(use_swarm=False)
+    agent_router = create_agent_router(_agent_client)
+    app.include_router(agent_router)
+    print("Agent API router mounted at /v1/agent")
+except ImportError as e:
+    _agent_client = None
+    print(f"Warning: the Agent API router could not be loaded: {e}")
+
+try:
+    from ..agents.messaging.api_routes import create_messaging_router
+
+    if _agent_client is not None:
+        messaging_router = create_messaging_router(_agent_client)
+        app.include_router(messaging_router)
+        print("Messaging webhooks mounted at /webhooks/*")
+    else:
+        print("Warning: Messaging webhooks skipped (AgentClient not available)")
+except ImportError as e:
+    print(f"Warning: Messaging webhooks could not be loaded: {e}")
+
+try:
+    from ..agents.observability.api_routes import create_observability_router
+
+    observability_router = create_observability_router()
+    app.include_router(observability_router)
+    print("Observability router mounted at /v1/traces")
+except ImportError as e:
+    print(f"Warning: Observability router could not be loaded: {e}")
+
+try:
+    from ..agents.scheduler import AgentScheduler
+    from ..agents.scheduler.api_routes import create_scheduler_router
+
+    if _agent_client is not None:
+        _scheduler = AgentScheduler(_agent_client)
+        scheduler_router = create_scheduler_router(_scheduler)
+        app.include_router(scheduler_router)
+        print("Scheduler router mounted at /v1/scheduler")
+    else:
+        print("Warning: Scheduler skipped (AgentClient not available)")
+except ImportError as e:
+    print(f"Warning: Scheduler router could not be loaded: {e}")
+
 
 # ============================================================================
 # Authentication
@@ -455,7 +505,9 @@ async def root():
             "metrics": "/metrics",
             "infer": "/v1/infer",
             "stream": "/v1/infer/stream",
-            "webhooks": "/webhooks/ingest"
+            "webhooks": "/webhooks/ingest",
+            "agent_run": "/v1/agent/run",
+            "agent_memory_clear": "/v1/agent/memory/{user_id}"
         }
     }
 
@@ -660,36 +712,51 @@ async def infer_stream(
     )
 
 
-@app.post("/webhooks/ingest")
-async def webhook_ingest(
-    payload: WebhookPayload,
-    request: Request,
-    x_signature: str = Header(..., alias="X-Signature"),
-    x_timestamp: str = Header(None, alias="X-Timestamp"),
-    idempotency_key: Optional[str] = Header(None, alias="Idempotency-Key")
-):
-    """Webhook ingestion endpoint"""
-    # Verify signature
-    payload_bytes = json.dumps(payload.dict(), sort_keys=True).encode()
-    timestamp = int(x_timestamp) if x_timestamp else int(time.time())
-    header = f"t={timestamp},v1={x_signature}"
-    
-    if not verify_webhook(WEBHOOK_HMAC_SECRET, payload_bytes, header):
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid webhook signature"
-        )
-    
-    # Idempotency check (simplified)
-    if idempotency_key:
-        # Check if already processed
-        pass
-    
     return {
         "success": True,
         "id": payload.id,
         "received_at": int(time.time())
     }
+
+
+# ============================================================================
+# High-level Swarm & Research Endpoints
+# ============================================================================
+
+@app.post("/v1/swarm/ask")
+async def swarm_ask(
+    prompt: str,
+    user_id: str = "api_user",
+    token: str = Depends(verify_token)
+):
+    """High-level swarm interaction endpoint."""
+    if _agent_client is None:
+        raise HTTPException(status_code=503, detail="Agent system not initialized")
+    
+    response = await _agent_client.run(user_id=user_id, prompt=prompt)
+    return response
+
+
+@app.get("/v1/research/papers")
+async def list_papers(
+    category: Optional[str] = None,
+    token: str = Depends(verify_token)
+):
+    """List available research knowledge base."""
+    from ..core.papers import PaperRegistry
+    registry = PaperRegistry()
+    
+    paper_ids = registry.list_available_papers(category=category)
+    results = []
+    for pid in paper_ids:
+        meta = registry.get_paper_metadata(pid)
+        results.append({
+            "id": pid,
+            "category": meta.category,
+            "techniques": meta.techniques
+        })
+    
+    return {"total": len(results), "papers": results}
 
 
 # ============================================================================
@@ -703,6 +770,7 @@ if __name__ == "__main__":
         port=int(os.environ.get("PORT", "8080")),
         reload=os.environ.get("ENVIRONMENT", "production") == "development"
     )
+
 
 
 

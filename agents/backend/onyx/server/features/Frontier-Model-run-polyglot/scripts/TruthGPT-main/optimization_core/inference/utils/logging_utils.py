@@ -190,3 +190,4 @@ def log_metrics(metrics: MetricsCollector, logger: Optional[logging.Logger] = No
         for error_type, count in summary['error_counts'].items():
             logger.info(f"  {error_type}: {count}")
 
+

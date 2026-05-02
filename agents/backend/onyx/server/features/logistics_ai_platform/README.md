@@ -481,5 +481,9 @@ For support, please open an issue in the repository.
 
 ---
 
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>
 **Built with FastAPI** - A modern, fast web framework for building APIs with Python.
-

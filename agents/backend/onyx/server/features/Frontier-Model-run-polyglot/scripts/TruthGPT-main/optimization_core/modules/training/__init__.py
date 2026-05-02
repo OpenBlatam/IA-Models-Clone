@@ -1,41 +1,71 @@
 """
 Ultra-fast modular training components
-Following deep learning best practices
+Following deep learning best practices.
 """
 
-from .trainer import FastTrainer, TrainerConfig, TrainingStep
-from .data_loader import FastDataLoader, DataLoaderConfig, DataProcessor
-from .optimizer import FastOptimizer, OptimizerConfig, SchedulerConfig
-from .loss import LossFunction, LossConfig, compute_loss
-from .metrics import MetricsTracker, MetricConfig, compute_metrics
-from .checkpoint import CheckpointManager, CheckpointConfig, save_checkpoint, load_checkpoint
-from .validation import Validator, ValidationConfig, validate_model
-from .profiler import TrainingProfiler, ProfilerConfig, profile_training
+from __future__ import annotations
+from optimization_core.utils.dependency_manager import resolve_lazy_import
 
-__all__ = [
-    # Training
-    'FastTrainer', 'TrainerConfig', 'TrainingStep',
+_LAZY_IMPORTS = {
+    # Training Core
+    'FastTrainer': '.trainer',
+    'AdvancedTrainer': '.trainer',
+    'create_trainer': '.trainer',
+    
+    # Configuration
+    'TrainerConfig': '.config',
+    'TrainingConfig': '.config',
+    'TrainingStrategy': '.config',
+    'OptimizerType': '.config',
+    'SchedulerType': '.config',
+    'create_training_config': '.config',
+    
+    # Components
+    'TrainingStep': '.components',
+    'EMAManager': '.components',
+    'CurriculumScheduler': '.components',
+    'ExperimentLogger': '.components',
     
     # Data loading
-    'FastDataLoader', 'DataLoaderConfig', 'DataProcessor',
+    'FastDataLoader': '.data_loader',
+    'DataLoaderConfig': '.data_loader',
+    'DataProcessor': '.data_loader',
     
     # Optimization
-    'FastOptimizer', 'OptimizerConfig', 'SchedulerConfig',
+    'FastOptimizer': '.optimizer',
+    'OptimizerConfig': '.optimizer',
+    'SchedulerConfig': '.optimizer',
     
     # Loss functions
-    'LossFunction', 'LossConfig', 'compute_loss',
+    'LossFunction': '.loss',
+    'LossConfig': '.loss',
+    'compute_loss': '.loss',
     
     # Metrics
-    'MetricsTracker', 'MetricConfig', 'compute_metrics',
+    'MetricsTracker': '.metrics',
+    'MetricConfig': '.metrics',
+    'compute_metrics': '.metrics',
     
     # Checkpointing
-    'CheckpointManager', 'CheckpointConfig', 'save_checkpoint', 'load_checkpoint',
+    'CheckpointManager': '.checkpoint',
+    'CheckpointConfig': '.checkpoint',
+    'save_checkpoint': '.checkpoint',
+    'load_checkpoint': '.checkpoint',
     
     # Validation
-    'Validator', 'ValidationConfig', 'validate_model',
+    'Validator': '.validation',
+    'ValidationConfig': '.validation',
+    'validate_model': '.validation',
     
     # Profiling
-    'TrainingProfiler', 'ProfilerConfig', 'profile_training'
-]
+    'TrainingProfiler': '.profiler',
+    'ProfilerConfig': '.profiler',
+    'profile_training': '.profiler',
+}
 
+def __getattr__(name: str):
+    """Lazy import system for training components."""
+    return resolve_lazy_import(name, __package__ or 'training', _LAZY_IMPORTS)
+
+__all__ = list(_LAZY_IMPORTS.keys())
 

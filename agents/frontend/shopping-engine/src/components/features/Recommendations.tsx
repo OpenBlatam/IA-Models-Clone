@@ -26,6 +26,106 @@ const typeDescriptions: Record<RecommendationType, string> = {
     bundle: 'Save more with these bundles',
 };
 
+interface RecommendationItemProps {
+    rec: Recommendation;
+    index: number;
+    onSelect: (rec: Recommendation) => void;
+    onKeyDownSelect: (e: React.KeyboardEvent, rec: Recommendation) => void;
+}
+
+const RecommendationItem = ({
+    rec,
+    index,
+    onSelect,
+    onKeyDownSelect,
+}: RecommendationItemProps) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+        >
+            <Card
+                variant="bordered"
+                isHoverable
+                isClickable
+                onClick={() => onSelect(rec)}
+                onKeyDown={(e) => onKeyDownSelect(e, rec)}
+                className="h-full flex flex-col"
+            >
+                {/* Image */}
+                {rec.image_url && (
+                    <div className="relative h-40 rounded-t-xl overflow-hidden bg-card">
+                        <img
+                            src={rec.image_url}
+                            alt={rec.name}
+                            className="w-full h-full object-cover"
+                        />
+                        {rec.similarity_score && (
+                            <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-background/80 backdrop-blur-sm text-xs font-medium text-primary">
+                                {Math.round(rec.similarity_score * 100)}% match
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                <CardContent className="flex-1 flex flex-col">
+                    {/* Product Info */}
+                    <div className="flex-1">
+                        <div className="flex items-start justify-between gap-2">
+                            <div>
+                                <h3 className="font-semibold text-text line-clamp-2">{rec.name}</h3>
+                                {rec.brand && (
+                                    <p className="text-sm text-text-muted mt-1">{rec.brand}</p>
+                                )}
+                            </div>
+                            {rec.rating && (
+                                <div className="flex items-center gap-1 flex-shrink-0">
+                                    <Star className="w-4 h-4 text-accent-warning fill-accent-warning" aria-hidden="true" />
+                                    <span className="text-sm text-text-muted">{rec.rating.toFixed(1)}</span>
+                                </div>
+                            )}
+                        </div>
+
+                        <p className="text-sm text-text-muted mt-3 line-clamp-2">
+                            {rec.reason}
+                        </p>
+                    </div>
+
+                    {/* Bottom Section */}
+                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+                        {rec.price && (
+                            <p className="text-lg font-bold text-text">
+                                {rec.currency || '$'}{rec.price.toLocaleString()}
+                            </p>
+                        )}
+                        {rec.url ? (
+                            <a
+                                href={rec.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex items-center gap-1 text-sm text-primary hover:text-primary-light transition-colors"
+                                tabIndex={0}
+                            >
+                                View <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                            </a>
+                        ) : (
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                rightIcon={<ArrowRight className="w-4 h-4" />}
+                            >
+                                Details
+                            </Button>
+                        )}
+                    </div>
+                </CardContent>
+            </Card>
+        </motion.div>
+    );
+};
+
 export const Recommendations = ({
     recommendations,
     type,
@@ -63,90 +163,13 @@ export const Recommendations = ({
             {/* Recommendations Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {recommendations.map((rec, index) => (
-                    <motion.div
+                    <RecommendationItem
                         key={`${rec.name}-${index}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                    >
-                        <Card
-                            variant="bordered"
-                            isHoverable
-                            isClickable
-                            onClick={() => handleSelect(rec)}
-                            onKeyDown={(e) => handleKeyDownSelect(e, rec)}
-                            className="h-full flex flex-col"
-                        >
-                            {/* Image */}
-                            {rec.image_url && (
-                                <div className="relative h-40 rounded-t-xl overflow-hidden bg-card">
-                                    <img
-                                        src={rec.image_url}
-                                        alt={rec.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    {rec.similarity_score && (
-                                        <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-background/80 backdrop-blur-sm text-xs font-medium text-primary">
-                                            {Math.round(rec.similarity_score * 100)}% match
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-
-                            <CardContent className="flex-1 flex flex-col">
-                                {/* Product Info */}
-                                <div className="flex-1">
-                                    <div className="flex items-start justify-between gap-2">
-                                        <div>
-                                            <h3 className="font-semibold text-text line-clamp-2">{rec.name}</h3>
-                                            {rec.brand && (
-                                                <p className="text-sm text-text-muted mt-1">{rec.brand}</p>
-                                            )}
-                                        </div>
-                                        {rec.rating && (
-                                            <div className="flex items-center gap-1 flex-shrink-0">
-                                                <Star className="w-4 h-4 text-accent-warning fill-accent-warning" aria-hidden="true" />
-                                                <span className="text-sm text-text-muted">{rec.rating.toFixed(1)}</span>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <p className="text-sm text-text-muted mt-3 line-clamp-2">
-                                        {rec.reason}
-                                    </p>
-                                </div>
-
-                                {/* Bottom Section */}
-                                <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
-                                    {rec.price && (
-                                        <p className="text-lg font-bold text-text">
-                                            {rec.currency || '$'}{rec.price.toLocaleString()}
-                                        </p>
-                                    )}
-                                    {rec.url ? (
-                                        <a
-                                            href={rec.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            onClick={(e) => e.stopPropagation()}
-                                            className="flex items-center gap-1 text-sm text-primary hover:text-primary-light transition-colors"
-                                            tabIndex={0}
-                                        >
-                                            View <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                        </a>
-                                    ) : (
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            rightIcon={<ArrowRight className="w-4 h-4" />}
-                                        >
-                                            Details
-                                        </Button>
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
+                        rec={rec}
+                        index={index}
+                        onSelect={handleSelect}
+                        onKeyDownSelect={handleKeyDownSelect}
+                    />
                 ))}
             </div>
         </div>

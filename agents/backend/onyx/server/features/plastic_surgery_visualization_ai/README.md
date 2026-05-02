@@ -2,6 +2,9 @@
 
 AI system that visualizes how you'll look after plastic surgery procedures.
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
+
 > **Quick Start**: See [QUICK_START.md](QUICK_START.md) for a quick setup guide.
 > **Features**: See [FEATURES.md](FEATURES.md) for complete feature list.
 

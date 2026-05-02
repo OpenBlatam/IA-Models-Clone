@@ -5,7 +5,7 @@ Provides advanced rate limiting with multiple strategies.
 """
 import logging
 import time
-from typing import Dict, Optional, Callable
+from typing import Dict, Optional, Callable, Any
 from dataclasses import dataclass
 from collections import deque
 from enum import Enum
@@ -20,8 +20,10 @@ class RateLimitStrategy(Enum):
     TOKEN_BUCKET = "token_bucket"
 
 
-@dataclass
-class RateLimitConfig:
+from pydantic import BaseModel
+
+
+class RateLimitConfig(BaseModel):
     """Rate limit configuration."""
     max_requests: int
     window_seconds: float
@@ -173,6 +175,7 @@ def create_rate_limiter(
         strategy=strategy
     )
     return AdvancedRateLimiter(config)
+
 
 
 

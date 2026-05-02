@@ -1,110 +1,112 @@
-# AI Tutor Educacional con Open Router
+# AI Educational Tutor with Open Router
 
-Sistema de tutoría educacional inteligente que utiliza Open Router para proporcionar asistencia educativa personalizada a estudiantes.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🎯 Características
+Intelligent educational tutor system using Open Router to provide personalized educational assistance to students.
 
-### Funcionalidades Principales
-- **Tutoría Personalizada**: Respuestas adaptadas al nivel y estilo de aprendizaje del estudiante
-- **Múltiples Materias**: Soporte para matemáticas, ciencias, historia, literatura, programación y más
-- **Análisis de Aprendizaje**: Seguimiento del progreso del estudiante y adaptación del contenido
-- **Generación de Ejercicios**: Crea ejercicios de práctica personalizados
-- **Generación de Quizzes**: Crea quizzes completos con diferentes tipos de preguntas
-- **Historial de Conversaciones**: Mantiene contexto de las interacciones previas
-- **API REST**: Endpoints fáciles de usar para integración
+## 🎯 Features
 
-### Características Avanzadas ⚡
-- **Sistema de Cache Inteligente**: Reduce llamadas a la API y mejora tiempos de respuesta
-- **Rate Limiting**: Control de velocidad para evitar exceder límites de API
-- **Métricas y Analytics**: Seguimiento detallado de uso, rendimiento y costos
-- **Múltiples Modelos**: Soporte para diferentes modelos de Open Router
-- **Retry Logic**: Reintentos automáticos en caso de errores
-- **Análisis de Progreso**: Identificación de fortalezas y debilidades del estudiante
-- **Sistema de Reportes**: Generación de reportes completos en JSON, Markdown y HTML
-- **Gamificación**: Sistema de badges, puntos, niveles y leaderboards
-- **Rachas de Aprendizaje**: Tracking de días consecutivos de estudio
-- **Exportación de Datos**: Exporta reportes y estadísticas en múltiples formatos
-- **Evaluación Automática**: Sistema inteligente de evaluación de respuestas y quizzes
-- **Motor de Recomendaciones**: Recomendaciones personalizadas de aprendizaje
-- **Sistema de Notificaciones**: Notificaciones inteligentes para engagement
-- **Rutas de Aprendizaje**: Paths estructurados por materia y nivel
-- **Feedback Automático**: Feedback instantáneo y personalizado
-- **Dashboard de Analytics**: Visualizaciones y estadísticas en tiempo real
-- **Sistema de Base de Datos**: Persistencia completa de datos
-- **Autenticación y Autorización**: Sistema de usuarios, roles y permisos
-- **Backups Automáticos**: Sistema de respaldo de datos
-- **Sistema de Webhooks**: Notificaciones de eventos para integraciones
-- **Integración con LMS**: Soporte para Moodle, Canvas, Blackboard y más
-- **Testing Completo**: Suite de tests con pytest
-- **Docker Ready**: Configuración Docker lista para producción
-- **Python SDK**: SDK completo para integración fácil
-- **Versionado de API**: Soporte para múltiples versiones de API
-- **Validación Avanzada**: Sistema robusto de validación de inputs
-- **Scripts de Utilidad**: Setup y backup automatizados
+### Key Functionalities
+- **Personalized Tutoring** — Responses adapted to student's level and learning style
+- **Multiple Subjects** — Support for Math, Science, History, Literature, Programming, and more
+- **Learning Analysis** — Tracking student progress and adapting content
+- **Exercise Generation** — Creates personalized practice exercises
+- **Quiz Generation** — Creates complete quizzes with different question types
+- **Conversation History** — Maintains context of previous interactions
+- **REST API** — Easy-to-use endpoints for integration
 
-## 📋 Requisitos
+### Advanced Features ⚡
+- **Intelligent Cache System** — Reduces API calls and improves response times
+- **Rate Limiting** — Speed control to avoid exceeding API limits
+- **Metrics & Analytics** — Detailed tracking of usage, performance, and costs
+- **Multiple Models** — Support for different Open Router models
+- **Retry Logic** — Automatic retries in case of errors
+- **Progress Analysis** — Identification of student strengths and weaknesses
+- **Reporting System** — Full reporting in JSON, Markdown, and HTML
+- **Gamification** — Badges, points, levels, and leaderboards system
+- **Learning Streaks** — Tracking of consecutive study days
+- **Data Export** — Export reports and statistics in multiple formats
+- **Automatic Evaluation** — Intelligent evaluation of answers and quizzes
+- **Recommendation Engine** — Personalized learning recommendations
+- **Notification System** — Intelligent notifications for engagement
+- **Learning Paths** — Structured paths by subject and level
+- **Automatic Feedback** — Instant and personalized feedback
+- **Analytics Dashboard** — Real-time visualizations and statistics
+- **Database System** — Full data persistence
+- **Auth & Authorization** — Users, roles, and permissions system
+- **Automatic Backups** — Data backup system
+- **Webhooks System** — Event notifications for integrations
+- **LMS Integration** — Support for Moodle, Canvas, Blackboard, and more
+- **Full Testing** — Test suite with pytest
+- **Docker Ready** — Docker configuration ready for production
+- **Python SDK** — Full SDK for easy integration
+- **API Versioning** — Support for multiple API versions
+- **Advanced Validation** — Robust input validation system
+- **Utility Scripts** — Automated setup and backup
+
+## 📋 Requirements
 
 - Python 3.8+
-- Clave API de Open Router (`OPENROUTER_API_KEY`)
+- Open Router API Key (`OPENROUTER_API_KEY`)
 
-## 🚀 Instalación
+## 🚀 Installation
 
-### Setup Rápido
+### Quick Setup
 
 ```bash
-# Ejecutar script de setup
+# Run setup script
 python scripts/setup.py
 
-# Actualizar .env con tu API key
-# Luego ejecutar
+# Update .env with your API key
+# Then run
 python main.py
 ```
 
-### Opción 1: Instalación Local
+### Option 1: Local Installation
 
-1. Instala las dependencias:
+1. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Opción 2: Docker
+### Option 2: Docker
 
-1. Construye y ejecuta con Docker Compose:
+1. Build and run with Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-### Opción 3: Docker Manual
+### Option 3: Manual Docker
 
-1. Construye la imagen:
-
-```bash
-docker build -t ai-tutor-educacional .
-```
-
-2. Ejecuta el contenedor:
+1. Build image:
 
 ```bash
-docker run -p 8000:8000 -e OPENROUTER_API_KEY=tu-api-key ai-tutor-educacional
+docker build -t ai-tutor-educational .
 ```
 
-2. Configura la variable de entorno:
+2. Run container:
 
 ```bash
-export OPENROUTER_API_KEY="tu-api-key-aqui"
+docker run -p 8000:8000 -e OPENROUTER_API_KEY=your-api-key ai-tutor-educational
 ```
 
-O crea un archivo `.env`:
+2. Configure environment variable:
+
+```bash
+export OPENROUTER_API_KEY="your-api-key-here"
+```
+
+Or create a `.env` file:
 
 ```
-OPENROUTER_API_KEY=tu-api-key-aqui
+OPENROUTER_API_KEY=your-api-key-here
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
-### Uso como Módulo Python
+### Usage as Python Module
 
 ```python
 import asyncio
@@ -114,29 +116,29 @@ async def main():
     config = TutorConfig()
     tutor = AITutor(config)
     
-    # Hacer una pregunta
+    # Ask a question
     response = await tutor.ask_question(
-        question="¿Qué es la fotosíntesis?",
-        subject="ciencias",
-        difficulty="intermedio"
+        question="What is photosynthesis?",
+        subject="science",
+        difficulty="intermediate"
     )
     
     print(response["answer"])
     
-    # Explicar un concepto
+    # Explain a concept
     explanation = await tutor.explain_concept(
-        concept="derivadas",
-        subject="matematicas",
-        difficulty="avanzado"
+        concept="derivatives",
+        subject="math",
+        difficulty="advanced"
     )
     
     print(explanation["answer"])
     
-    # Generar ejercicios
+    # Generate exercises
     exercises = await tutor.generate_exercise(
-        topic="ecuaciones cuadráticas",
-        subject="matematicas",
-        difficulty="intermedio",
+        topic="quadratic equations",
+        subject="math",
+        difficulty="intermediate",
         num_exercises=5
     )
     
@@ -147,9 +149,9 @@ async def main():
 asyncio.run(main())
 ```
 
-### Uso con API REST
+### Usage with REST API
 
-1. Inicia el servidor:
+1. Start server:
 
 ```python
 from ai_tutor_educacional_openrouter.api.tutor_api import create_tutor_app
@@ -161,96 +163,96 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-2. Usa los endpoints:
+2. Use endpoints:
 
 ```bash
-# Hacer una pregunta
+# Ask a question
 curl -X POST http://localhost:8000/api/tutor/ask \
   -H "Content-Type: application/json" \
   -d '{
-    "question": "¿Qué es la fotosíntesis?",
-    "subject": "ciencias",
-    "difficulty": "intermedio"
+    "question": "What is photosynthesis?",
+    "subject": "science",
+    "difficulty": "intermediate"
   }'
 
-# Explicar un concepto
+# Explain a concept
 curl -X POST http://localhost:8000/api/tutor/explain \
   -H "Content-Type: application/json" \
   -d '{
-    "concept": "derivadas",
-    "subject": "matematicas",
-    "difficulty": "avanzado"
+    "concept": "derivatives",
+    "subject": "math",
+    "difficulty": "advanced"
   }'
 
-# Generar ejercicios
+# Generate exercises
 curl -X POST http://localhost:8000/api/tutor/exercises \
   -H "Content-Type: application/json" \
   -d '{
-    "topic": "ecuaciones cuadráticas",
-    "subject": "matematicas",
-    "difficulty": "intermedio",
+    "topic": "quadratic equations",
+    "subject": "math",
+    "difficulty": "intermediate",
     "num_exercises": 5
   }'
 
-# Generar quiz
+# Generate quiz
 curl -X POST http://localhost:8000/api/tutor/quiz \
   -H "Content-Type: application/json" \
   -d '{
     "topic": "algebra",
-    "subject": "matematicas",
-    "difficulty": "intermedio",
+    "subject": "math",
+    "difficulty": "intermediate",
     "num_questions": 10,
     "question_types": ["multiple_choice", "short_answer"]
   }'
 
-# Obtener métricas
+# Get metrics
 curl http://localhost:8000/api/tutor/metrics
 
-# Limpiar cache
+# Clear cache
 curl -X DELETE http://localhost:8000/api/tutor/cache
 ```
 
-## 📚 Estructura del Proyecto
+## 📚 Project Structure
 
 ```
 ai_tutor_educacional_openrouter/
 ├── __init__.py
-├── main.py                       # Punto de entrada del servidor
+├── main.py                       # Server entry point
 ├── README.md
 ├── requirements.txt
 ├── config/
 │   ├── __init__.py
-│   └── tutor_config.py          # Configuración del sistema
+│   └── tutor_config.py          # System configuration
 ├── core/
 │   ├── __init__.py
-│   ├── tutor.py                 # Clase principal del tutor (mejorada)
-│   ├── conversation_manager.py  # Gestión de conversaciones
-│   ├── learning_analyzer.py     # Análisis de aprendizaje
-│   ├── cache_manager.py         # Sistema de cache (NUEVO)
-│   ├── rate_limiter.py          # Control de velocidad (NUEVO)
-│   ├── metrics_collector.py     # Métricas y analytics (NUEVO)
-│   └── quiz_generator.py        # Generador de quizzes (NUEVO)
+│   ├── tutor.py                 # Main tutor class (improved)
+│   ├── conversation_manager.py  # Conversation management
+│   ├── learning_analyzer.py     # Learning analysis
+│   ├── cache_manager.py         # Cache system (NEW)
+│   ├── rate_limiter.py          # Rate limiting (NEW)
+│   ├── metrics_collector.py     # Metrics & analytics (NEW)
+│   └── quiz_generator.py        # Quiz generator (NEW)
 ├── api/
 │   ├── __init__.py
-│   └── tutor_api.py             # Endpoints FastAPI (mejorados)
+│   └── tutor_api.py             # FastAPI Endpoints (improved)
 ├── utils/
 │   ├── __init__.py
-│   └── helpers.py               # Funciones auxiliares
+│   └── helpers.py               # Helper functions
 └── examples/
     ├── __init__.py
-    ├── basic_usage.py           # Ejemplos de uso básico
-    └── api_usage.py             # Ejemplos de API REST
+    ├── basic_usage.py           # Basic usage examples
+    └── api_usage.py             # REST API examples
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-Puedes personalizar la configuración creando una instancia de `TutorConfig`:
+You can customize the configuration by creating a `TutorConfig` instance:
 
 ```python
 from ai_tutor_educacional_openrouter import TutorConfig, OpenRouterConfig
 
 openrouter_config = OpenRouterConfig(
-    api_key="tu-api-key",
+    api_key="your-api-key",
     default_model="openai/gpt-4",
     temperature=0.7,
     max_tokens=2000
@@ -258,44 +260,43 @@ openrouter_config = OpenRouterConfig(
 
 config = TutorConfig(
     openrouter=openrouter_config,
-    subjects=["matematicas", "programacion"],
+    subjects=["math", "programming"],
     adaptive_learning=True,
     provide_exercises=True
 )
 ```
 
-## 🔧 Materias Soportadas
+## 🔧 Supported Subjects
 
-- Matemáticas
-- Ciencias
-- Historia
-- Literatura
-- Física
-- Química
-- Biología
-- Programación
+- Math
+- Science
+- History
+- Literature
+- Physics
+- Chemistry
+- Biology
+- Programming
 
-## 📊 Niveles de Dificultad
+## 📊 Difficulty Levels
 
-- **Básico**: Conceptos fundamentales y explicaciones simples
-- **Intermedio**: Conceptos más complejos con ejemplos
-- **Avanzado**: Temas complejos con análisis profundo
+- **Basic**: Fundamental concepts and simple explanations
+- **Intermediate**: More complex concepts with examples
+- **Advanced**: Complex topics with deep analysis
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome. Please:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 Licencia
+## 📝 License
 
-Este proyecto es parte de Blatam Academy.
+This project is part of Blatam Academy.
 
-## 🆘 Soporte
+---
 
-Para soporte, abre un issue en el repositorio o contacta al equipo de Blatam Academy.
-
+[← Back to Main README](../README.md)

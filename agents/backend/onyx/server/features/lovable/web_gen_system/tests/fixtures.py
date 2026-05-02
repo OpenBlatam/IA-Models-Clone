@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock
-from agents.backend.onyx.server.features.lovable.web_gen_system.pipeline import WebGenPipeline
+from ..pipeline import WebGenPipeline
 
 def create_mock_pipeline():
     """

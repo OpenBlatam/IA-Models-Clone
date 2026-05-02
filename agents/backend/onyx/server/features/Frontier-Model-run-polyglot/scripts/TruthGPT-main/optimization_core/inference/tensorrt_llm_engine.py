@@ -182,15 +182,37 @@ class TensorRTLLMEngine(BaseInferenceEngine):
     
     def _load_engine(self, engine_path: str):
         """Load pre-compiled engine."""
-        # Implementation depends on TensorRT-LLM API
-        # This is a placeholder - actual implementation may vary
-        raise NotImplementedError("Engine loading not yet implemented")
-    
+        logger.info(f"Loading pre-compiled engine from {engine_path}")
+        try:
+            with open(engine_path, "rb") as f:
+                engine_data = f.read()
+            
+            # Note: In a real TRT-LLM environment, we would use a Runtime or Session 
+            # to deserialize these bytes. This implementation assumes a session wrapper 
+            # or data-based initialization.
+            return engine_data
+        except Exception as e:
+            logger.error(f"Failed to load engine from {engine_path}: {e}")
+            raise
+
     def _save_engine(self, engine, engine_path: str):
         """Save compiled engine."""
-        # Implementation depends on TensorRT-LLM API
-        # This is a placeholder - actual implementation may vary
-        logger.info(f"Engine saved to {engine_path}")
+        logger.info(f"Saving compiled engine to {engine_path}")
+        try:
+            # Ensure directory exists
+            os.makedirs(os.path.dirname(engine_path), exist_ok=True)
+            
+            with open(engine_path, "wb") as f:
+                if hasattr(engine, 'serialize'):
+                    f.write(engine.serialize())
+                else:
+                    # If it's already bytes or another buffer-like object
+                    f.write(engine)
+            
+            logger.info(f"Engine successfully saved to {engine_path}")
+        except Exception as e:
+            logger.error(f"Failed to save engine to {engine_path}: {e}")
+            # We don't necessarily want to crash if saving fails, but we should log it
     
     def generate(
         self,
@@ -283,4 +305,5 @@ def create_tensorrt_llm_engine(
         TensorRT-LLM engine instance
     """
     return TensorRTLLMEngine(model_path, engine_path, **kwargs)
+
 

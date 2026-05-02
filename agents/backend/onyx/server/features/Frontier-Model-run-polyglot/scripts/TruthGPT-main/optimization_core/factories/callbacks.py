@@ -1,5 +1,5 @@
-from factories.registry import Registry
-from trainers.callbacks import PrintLogger, WandbLogger, TensorBoardLogger
+from optimization_core.factories.registry import Registry
+from optimization_core.trainers.callbacks import PrintLogger, WandbLogger, TensorBoardLogger
 
 CALLBACKS = Registry()
 
@@ -17,5 +17,6 @@ def build_wandb(project: str = None, run_name: str = None):
 @CALLBACKS.register("tensorboard")
 def build_tensorboard(log_dir: str = None):
     return TensorBoardLogger(log_dir=log_dir or "runs")
+
 
 

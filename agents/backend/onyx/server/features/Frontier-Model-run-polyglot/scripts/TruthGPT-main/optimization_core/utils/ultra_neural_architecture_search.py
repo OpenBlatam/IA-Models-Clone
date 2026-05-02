@@ -19,7 +19,7 @@ import copy
 import time
 import logging
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, model_validator
 from enum import Enum
 import json
 import pickle
@@ -191,8 +191,7 @@ class ArchitectureCandidate:
             'connection_type': random.choice(['skip', 'residual', 'dense', 'attention'])
         }
 
-@dataclass
-class NASConfig:
+class NASConfig(BaseModel):
     """Configuration for Neural Architecture Search."""
     strategy: NASStrategy = NASStrategy.EVOLUTIONARY
     search_space: SearchSpace = SearchSpace.CELL_BASED
@@ -211,8 +210,9 @@ class NASConfig:
     log_level: str = "INFO"
     output_dir: str = "./nas_results"
     device: str = "auto"
-    
-    def __post_init__(self):
+
+    @model_validator(mode='after')
+    def validate_config(self) -> 'NASConfig':
         """Post-initialization validation."""
         if self.population_size < 2:
             raise ValueError("Population size must be at least 2")
@@ -222,6 +222,7 @@ class NASConfig:
             raise ValueError("Mutation rate must be between 0 and 1")
         if not 0 <= self.crossover_rate <= 1:
             raise ValueError("Crossover rate must be between 0 and 1")
+        return self
 
 class EvolutionaryNAS:
     """Evolutionary Neural Architecture Search."""
@@ -836,3 +837,4 @@ def example_neural_architecture_search():
 if __name__ == "__main__":
     # Run example
     example_neural_architecture_search()
+

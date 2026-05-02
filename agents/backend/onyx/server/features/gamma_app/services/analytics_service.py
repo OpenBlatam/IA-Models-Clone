@@ -11,7 +11,7 @@ from typing import Dict, List, Optional, Any, Tuple
 from dataclasses import dataclass, asdict
 from collections import defaultdict, Counter
 import statistics
-from sqlalchemy import Column, String, DateTime, JSON, Integer, Float, Boolean
+from sqlalchemy import Column, String, DateTime, JSON, Integer, Float, Boolean, select, func
 from sqlalchemy.orm import DeclarativeBase
 
 from ..infrastructure.services.base_service import BaseService
@@ -396,10 +396,10 @@ class AnalyticsService(BaseService):
                 )
                 self.db_session.add(analytics)
                 try:
-                    self.db_session.commit()
+                    await self.db_session.commit()
                 except Exception as e:
                     logger.error(f"Error committing content analytics: {e}", exc_info=True)
-                    self.db_session.rollback()
+                    await self.db_session.rollback()
                     raise
         except Exception as e:
             logger.error(f"Error saving content analytics: {e}", exc_info=True)
@@ -419,10 +419,10 @@ class AnalyticsService(BaseService):
                 )
                 self.db_session.add(analytics)
                 try:
-                    self.db_session.commit()
+                    await self.db_session.commit()
                 except Exception as e:
                     logger.error(f"Error committing user analytics: {e}", exc_info=True)
-                    self.db_session.rollback()
+                    await self.db_session.rollback()
                     raise
         except Exception as e:
             logger.error(f"Error saving user analytics: {e}", exc_info=True)
@@ -440,10 +440,10 @@ class AnalyticsService(BaseService):
                 )
                 self.db_session.add(metric)
                 try:
-                    self.db_session.commit()
+                    await self.db_session.commit()
                 except Exception as e:
                     logger.error(f"Error committing performance metrics: {e}", exc_info=True)
-                    self.db_session.rollback()
+                    await self.db_session.rollback()
                     raise
         except Exception as e:
             logger.error(f"Error saving performance metrics: {e}", exc_info=True)
@@ -489,54 +489,66 @@ class AnalyticsService(BaseService):
         try:
             if self.db_session:
                 # Get total content created
-                total_content = self.db_session.query(ContentAnalyticsDB).filter(
+                total_content_stmt = select(func.count()).select_from(ContentAnalyticsDB).filter(
                     ContentAnalyticsDB.user_id == user_id,
                     ContentAnalyticsDB.action == 'created',
                     ContentAnalyticsDB.timestamp >= start_time
-                ).count()
+                )
+                total_content_res = await self.db_session.execute(total_content_stmt)
+                total_content = total_content_res.scalar() or 0
                 
                 # Get total exports
-                total_exports = self.db_session.query(ContentAnalyticsDB).filter(
+                total_exports_stmt = select(func.count()).select_from(ContentAnalyticsDB).filter(
                     ContentAnalyticsDB.user_id == user_id,
                     ContentAnalyticsDB.action == 'exported',
                     ContentAnalyticsDB.timestamp >= start_time
-                ).count()
+                )
+                total_exports_res = await self.db_session.execute(total_exports_stmt)
+                total_exports = total_exports_res.scalar() or 0
                 
                 # Get active sessions
-                active_sessions = self.db_session.query(UserAnalyticsDB).filter(
+                active_sessions_stmt = select(func.count()).select_from(UserAnalyticsDB).filter(
                     UserAnalyticsDB.user_id == user_id,
                     UserAnalyticsDB.action == 'session_start',
                     UserAnalyticsDB.timestamp >= start_time
-                ).count()
+                )
+                active_sessions_res = await self.db_session.execute(active_sessions_stmt)
+                active_sessions = active_sessions_res.scalar() or 0
                 
                 # Get collaboration time
-                collaboration_time = self.db_session.query(UserAnalyticsDB).filter(
+                collab_time_stmt = select(UserAnalyticsDB.duration).filter(
                     UserAnalyticsDB.user_id == user_id,
                     UserAnalyticsDB.timestamp >= start_time
-                ).with_entities(UserAnalyticsDB.duration).all()
+                )
+                collaboration_time_res = await self.db_session.execute(collab_time_stmt)
+                collaboration_time = collaboration_time_res.scalars().all()
                 
-                total_collaboration_time = sum(row[0] for row in collaboration_time if row[0])
+                total_collaboration_time = sum(row for row in collaboration_time if row)
                 
                 # Get content types
-                content_types = self.db_session.query(ContentAnalyticsDB).filter(
+                content_types_stmt = select(ContentAnalyticsDB.content_type).filter(
                     ContentAnalyticsDB.user_id == user_id,
                     ContentAnalyticsDB.action == 'created',
                     ContentAnalyticsDB.timestamp >= start_time
-                ).with_entities(ContentAnalyticsDB.content_type).all()
+                )
+                content_types_res = await self.db_session.execute(content_types_stmt)
+                content_types = content_types_res.scalars().all()
                 
-                content_type_counts = Counter(row[0] for row in content_types)
+                content_type_counts = Counter(ct for ct in content_types if ct)
                 
                 # Get export formats
-                export_formats = self.db_session.query(ContentAnalyticsDB).filter(
+                export_formats_stmt = select(ContentAnalyticsDB.metadata).filter(
                     ContentAnalyticsDB.user_id == user_id,
                     ContentAnalyticsDB.action == 'exported',
                     ContentAnalyticsDB.timestamp >= start_time
-                ).with_entities(ContentAnalyticsDB.metadata).all()
+                )
+                export_formats_res = await self.db_session.execute(export_formats_stmt)
+                export_formats = export_formats_res.scalars().all()
                 
                 export_format_counts = Counter()
                 for row in export_formats:
-                    if row[0] and 'export_format' in row[0]:
-                        export_format_counts[row[0]['export_format']] += 1
+                    if row and isinstance(row, dict) and 'export_format' in row:
+                        export_format_counts[row['export_format']] += 1
                 
                 return UserMetrics(
                     user_id=user_id,
@@ -560,10 +572,12 @@ class AnalyticsService(BaseService):
         try:
             if self.db_session:
                 # Get content analytics
-                analytics = self.db_session.query(ContentAnalyticsDB).filter(
+                analytics_stmt = select(ContentAnalyticsDB).filter(
                     ContentAnalyticsDB.user_id == user_id,
                     ContentAnalyticsDB.timestamp >= start_time
-                ).all()
+                )
+                analytics_res = await self.db_session.execute(analytics_stmt)
+                analytics = analytics_res.scalars().all()
                 
                 # Group by content ID
                 content_metrics = defaultdict(lambda: {
@@ -605,10 +619,12 @@ class AnalyticsService(BaseService):
         """Get recent activity for user"""
         try:
             if self.db_session:
-                activities = self.db_session.query(ContentAnalyticsDB).filter(
+                stmt = select(ContentAnalyticsDB).filter(
                     ContentAnalyticsDB.user_id == user_id,
                     ContentAnalyticsDB.timestamp >= start_time
-                ).order_by(ContentAnalyticsDB.timestamp.desc()).limit(20).all()
+                ).order_by(ContentAnalyticsDB.timestamp.desc()).limit(20)
+                res = await self.db_session.execute(stmt)
+                activities = res.scalars().all()
                 
                 return [
                     {
@@ -630,9 +646,11 @@ class AnalyticsService(BaseService):
         """Get performance metrics"""
         try:
             if self.db_session:
-                metrics = self.db_session.query(PerformanceMetricsDB).filter(
+                stmt = select(PerformanceMetricsDB).filter(
                     PerformanceMetricsDB.timestamp >= start_time
-                ).all()
+                )
+                res = await self.db_session.execute(stmt)
+                metrics = res.scalars().all()
                 
                 # Group by metric name
                 metric_groups = defaultdict(list)
@@ -662,10 +680,12 @@ class AnalyticsService(BaseService):
         """Get metrics for specific content"""
         try:
             if self.db_session:
-                analytics = self.db_session.query(ContentAnalyticsDB).filter(
+                stmt = select(ContentAnalyticsDB).filter(
                     ContentAnalyticsDB.content_id == content_id,
                     ContentAnalyticsDB.timestamp >= start_time
-                ).all()
+                )
+                res = await self.db_session.execute(stmt)
+                analytics = res.scalars().all()
                 
                 metrics = {
                     'content_id': content_id,
@@ -711,15 +731,17 @@ class AnalyticsService(BaseService):
         try:
             if self.db_session:
                 # Get all content created by user
-                content_ids = self.db_session.query(ContentAnalyticsDB).filter(
+                stmt = select(ContentAnalyticsDB.content_id).filter(
                     ContentAnalyticsDB.user_id == user_id,
                     ContentAnalyticsDB.action == 'created',
                     ContentAnalyticsDB.timestamp >= start_time
-                ).with_entities(ContentAnalyticsDB.content_id).distinct().all()
+                ).distinct()
+                res = await self.db_session.execute(stmt)
+                content_ids = res.scalars().all()
                 
                 # Get metrics for each content
                 content_performance = []
-                for (content_id,) in content_ids:
+                for content_id in content_ids:
                     metrics = await self._get_content_metrics_by_id(content_id, start_time)
                     if metrics:
                         content_performance.append(metrics)
@@ -737,10 +759,12 @@ class AnalyticsService(BaseService):
         try:
             if self.db_session:
                 # Get collaboration sessions
-                sessions = self.db_session.query(UserAnalyticsDB).filter(
+                stmt = select(UserAnalyticsDB).filter(
                     UserAnalyticsDB.user_id == user_id,
                     UserAnalyticsDB.timestamp >= start_time
-                ).all()
+                )
+                res = await self.db_session.execute(stmt)
+                sessions = res.scalars().all()
                 
                 total_sessions = len(set(session.session_id for session in sessions))
                 active_sessions = len([s for s in sessions if s.action == 'session_active'])

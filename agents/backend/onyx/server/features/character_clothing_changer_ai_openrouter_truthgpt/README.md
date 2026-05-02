@@ -1,5 +1,7 @@
 # Character Clothing Changer AI - OpenRouter & TruthGPT
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
 Advanced AI-powered character clothing changer that integrates:
 - **ComfyUI** workflow for Flux Fill inpainting
 - **OpenRouter** for intelligent prompt processing and optimization
@@ -218,3 +220,6 @@ The workflow is based on Flux Fill for inpainting:
 
 MIT
 
+---
+
+[← Back to Main README](../README.md)

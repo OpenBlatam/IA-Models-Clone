@@ -8,17 +8,17 @@ import torch.nn as nn
 import numpy as np
 import logging
 from typing import Dict, Any, List, Optional, Tuple, Union, Callable, Type
-from dataclasses import dataclass, field
 import time
+from pydantic import Field
 import json
 from pathlib import Path
 import inspect
 import warnings
 
-logger = logging.getLogger(__name__)
+from .base import BaseOptimizationModel
 
-@dataclass
-class ValidationResult:
+
+class ValidationResult(BaseOptimizationModel):
     """Validation result container."""
     # Basic info
     test_name: str
@@ -31,21 +31,12 @@ class ValidationResult:
     gpu_memory_used_mb: float = 0.0
     
     # Details
-    details: Dict[str, Any] = field(default_factory=dict)
-    timestamp: float = field(default_factory=time.time)
+    details: Dict[str, Any] = Field(default_factory=dict)
+    timestamp: float = Field(default_factory=time.time)
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
-        return {
-            'test_name': self.test_name,
-            'passed': self.passed,
-            'message': self.message,
-            'execution_time': self.execution_time,
-            'memory_used_mb': self.memory_used_mb,
-            'gpu_memory_used_mb': self.gpu_memory_used_mb,
-            'details': self.details,
-            'timestamp': self.timestamp
-        }
+        return self.model_dump()
 
 class TensorValidator:
     """Advanced tensor validation utilities."""
@@ -715,6 +706,7 @@ if __name__ == "__main__":
     # Get validation report
     report = validation_suite.get_validation_report()
     print(f"Validation report: {report['success_rate']:.2%} success rate")
+
 
 
 

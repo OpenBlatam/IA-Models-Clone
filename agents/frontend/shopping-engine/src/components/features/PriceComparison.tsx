@@ -27,6 +27,88 @@ const getTrendIcon = (price: number, average: number) => {
     return <Minus className="w-4 h-4 text-text-muted" />;
 };
 
+interface PriceComparisonRowProps {
+    priceItem: VendorPrice;
+    index: number;
+    isBestDeal: boolean;
+    averagePrice?: number;
+}
+
+const PriceComparisonRow = ({
+    priceItem,
+    index,
+    isBestDeal,
+    averagePrice,
+}: PriceComparisonRowProps) => {
+    return (
+        <motion.tr
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.05 }}
+            className={`
+                border-b border-white/5 hover:bg-card-hover transition-colors
+                ${isBestDeal ? 'bg-accent-success/10' : ''}
+            `}
+        >
+            <td className="py-4 px-4">
+                <div className="flex items-center gap-2">
+                    {isBestDeal && (
+                        <Star className="w-4 h-4 text-accent-warning fill-accent-warning" aria-hidden="true" />
+                    )}
+                    <a
+                        href={priceItem.vendor_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-text hover:text-primary transition-colors flex items-center gap-1"
+                        tabIndex={0}
+                    >
+                        {priceItem.vendor}
+                        <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
+                    </a>
+                </div>
+            </td>
+            <td className="py-4 px-4 text-right">
+                <div>
+                    <span className="font-bold text-text">
+                        {priceItem.currency} ${priceItem.price.toLocaleString()}
+                    </span>
+                    {priceItem.original_price && priceItem.original_price > priceItem.price && (
+                        <span className="ml-2 text-sm text-text-muted line-through">
+                            ${priceItem.original_price.toLocaleString()}
+                        </span>
+                    )}
+                </div>
+            </td>
+            <td className="py-4 px-4 text-right">
+                {priceItem.discount_percentage ? (
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-accent-success/20 text-accent-success text-sm font-medium">
+                        <Percent className="w-3 h-3" aria-hidden="true" />
+                        {priceItem.discount_percentage}% OFF
+                    </span>
+                ) : (
+                    <span className="text-text-muted">—</span>
+                )}
+            </td>
+            <td className="py-4 px-4 text-center">
+                {averagePrice !== undefined && getTrendIcon(priceItem.price, averagePrice)}
+            </td>
+            <td className="py-4 px-4 text-center">
+                <span className={`
+                    text-sm font-medium
+                    ${priceItem.availability === 'In Stock' || priceItem.availability === 'in_stock'
+                        ? 'text-accent-success'
+                        : priceItem.availability === 'Limited' || priceItem.availability === 'limited'
+                            ? 'text-accent-warning'
+                            : 'text-accent-error'
+                    }
+                `}>
+                    {priceItem.availability}
+                </span>
+            </td>
+        </motion.tr>
+    );
+};
+
 export const PriceComparison = ({
     prices,
     bestDeal,
@@ -90,78 +172,15 @@ export const PriceComparison = ({
                                 </tr>
                             </thead>
                             <tbody>
-                                {prices.map((priceItem, index) => {
-                                    const isBestDeal = bestDeal && priceItem.vendor === bestDeal.vendor;
-
-                                    return (
-                                        <motion.tr
-                                            key={`${priceItem.vendor}-${index}`}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: index * 0.05 }}
-                                            className={`
-                        border-b border-white/5 hover:bg-card-hover transition-colors
-                        ${isBestDeal ? 'bg-accent-success/10' : ''}
-                      `}
-                                        >
-                                            <td className="py-4 px-4">
-                                                <div className="flex items-center gap-2">
-                                                    {isBestDeal && (
-                                                        <Star className="w-4 h-4 text-accent-warning fill-accent-warning" aria-hidden="true" />
-                                                    )}
-                                                    <a
-                                                        href={priceItem.vendor_url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="font-medium text-text hover:text-primary transition-colors flex items-center gap-1"
-                                                        tabIndex={0}
-                                                    >
-                                                        {priceItem.vendor}
-                                                        <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td className="py-4 px-4 text-right">
-                                                <div>
-                                                    <span className="font-bold text-text">
-                                                        {priceItem.currency} ${priceItem.price.toLocaleString()}
-                                                    </span>
-                                                    {priceItem.original_price && priceItem.original_price > priceItem.price && (
-                                                        <span className="ml-2 text-sm text-text-muted line-through">
-                                                            ${priceItem.original_price.toLocaleString()}
-                                                        </span>
-                                                    )}
-                                                </div>
-                                            </td>
-                                            <td className="py-4 px-4 text-right">
-                                                {priceItem.discount_percentage ? (
-                                                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-accent-success/20 text-accent-success text-sm font-medium">
-                                                        <Percent className="w-3 h-3" aria-hidden="true" />
-                                                        {priceItem.discount_percentage}% OFF
-                                                    </span>
-                                                ) : (
-                                                    <span className="text-text-muted">—</span>
-                                                )}
-                                            </td>
-                                            <td className="py-4 px-4 text-center">
-                                                {priceRange && getTrendIcon(priceItem.price, priceRange.average)}
-                                            </td>
-                                            <td className="py-4 px-4 text-center">
-                                                <span className={`
-                          text-sm font-medium
-                          ${priceItem.availability === 'In Stock' || priceItem.availability === 'in_stock'
-                                                        ? 'text-accent-success'
-                                                        : priceItem.availability === 'Limited' || priceItem.availability === 'limited'
-                                                            ? 'text-accent-warning'
-                                                            : 'text-accent-error'
-                                                    }
-                        `}>
-                                                    {priceItem.availability}
-                                                </span>
-                                            </td>
-                                        </motion.tr>
-                                    );
-                                })}
+                                {prices.map((priceItem, index) => (
+                                    <PriceComparisonRow
+                                        key={`${priceItem.vendor}-${index}`}
+                                        priceItem={priceItem}
+                                        index={index}
+                                        isBestDeal={!!(bestDeal && priceItem.vendor === bestDeal.vendor)}
+                                        averagePrice={priceRange?.average}
+                                    />
+                                ))}
                             </tbody>
                         </table>
                     </div>

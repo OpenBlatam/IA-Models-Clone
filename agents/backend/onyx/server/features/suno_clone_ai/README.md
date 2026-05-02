@@ -1,66 +1,68 @@
-# Suno Clone AI - Sistema de Generación de Música con IA
+# Suno Clone AI — AI Music Generation System
+
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
 ## 🚀 Overview
 
-Suno Clone AI es un sistema completo de generación de música con inteligencia artificial que permite a los usuarios crear canciones mediante chat, similar a Suno AI. Los usuarios pueden describir en lenguaje natural lo que quieren y el sistema generará la canción correspondiente.
+Suno Clone AI is a complete AI music generation system that allows users to create songs via chat, similar to Suno AI. Users can describe what they want in natural language, and the system generates the corresponding song.
 
-## ✨ Características Principales
+## ✨ Key Features
 
-### 🎵 Generación de Música
-- **Generación desde Chat**: Los usuarios pueden escribir en lenguaje natural lo que quieren
-- **Múltiples Modelos**: Soporte para MusicGen (small, medium, large)
-- **Procesamiento Inteligente**: Extracción automática de género, mood, tempo e instrumentos
-- **Mejora con IA**: Uso de OpenAI para mejorar prompts de generación
-- **Caché Inteligente**: Sistema de caché para evitar regeneraciones innecesarias
-- **Procesamiento Automático**: Normalización y fade in/out automáticos
-- **🚀 Ultra-Rápido**: Optimizaciones avanzadas con torch.compile, mixed precision, y caché (hasta 5-10x más rápido)
+### 🎵 Music Generation
+- **Chat Generation** — Users can write requests in natural language
+- **Multiple Models** — Support for MusicGen (small, medium, large)
+- **Intelligent Processing** — Automatic extraction of genre, mood, tempo, and instruments
+- **AI Enhancement** — Uses OpenAI to improve generation prompts
+- **Smart Cache** — Caching system to avoid unnecessary regenerations
+- **Automatic Processing** — Automatic normalization and fade in/out
+- **🚀 Ultra-Fast** — Advanced optimizations with `torch.compile`, mixed precision, and caching (up to 5–10× faster)
 
-### 💬 Chat Inteligente
-- **Procesamiento de Lenguaje Natural**: Interpreta solicitudes en lenguaje natural
-- **Historial de Conversación**: Mantiene contexto de conversaciones previas
-- **Extracción Automática**: Identifica automáticamente:
-  - Género musical
-  - Estado de ánimo
+### 💬 Intelligent Chat
+- **NLP** — Interprets natural language requests
+- **Conversation History** — Maintains context of previous conversations
+- **Automatic Extraction** — Automatically identifies:
+  - Musical genre
+  - Mood
   - Tempo/BPM
-  - Instrumentos
-  - Duración
+  - Instruments
+  - Duration
 
-### 🎛️ Control Avanzado
-- **Parámetros Personalizables**: Control sobre duración, temperatura, top-k, top-p
-- **Múltiples Formatos**: Generación en WAV con calidad configurable
-- **Background Processing**: Generación asíncrona de canciones
+### 🎛️ Advanced Control
+- **Customizable Parameters** — Control over duration, temperature, top-k, top-p
+- **Multiple Formats** — WAV generation with configurable quality
+- **Background Processing** — Asynchronous song generation
 
-### 📊 Gestión de Canciones
-- **Almacenamiento**: Base de datos SQLite para metadata
-- **Historial**: Guarda todas las canciones generadas
-- **Descarga**: Endpoint para descargar archivos de audio
-- **Búsqueda**: Filtrado por usuario, fecha, etc.
-- **Edición Avanzada**: Reverb, EQ, cambio de tempo/pitch
-- **Mezcla**: Combinar múltiples canciones
-- **Análisis**: Análisis detallado de características de audio
+### 📊 Song Management
+- **Storage** — SQLite database for metadata
+- **History** — Saves all generated songs
+- **Download** — Endpoint to download audio files
+- **Search** — Filtering by user, date, etc.
+- **Advanced Editing** — Reverb, EQ, tempo/pitch change
+- **Mixing** — Combine multiple songs
+- **Analysis** — Detailed audio feature analysis
 
-### 📈 Analytics y Métricas
-- **Estadísticas Generales**: Tracking completo del sistema
-- **Métricas por Usuario**: Estadísticas individuales
-- **Performance Tracking**: Tiempos de generación y uso
-- **Prompts Populares**: Análisis de uso más frecuente
+### 📈 Analytics & Metrics
+- **General Stats** — Full system tracking
+- **User Metrics** — Individual statistics
+- **Performance Tracking** — Generation times and usage
+- **Popular Prompts** — Frequent usage analysis
 
-## 📦 Instalación
+## 📦 Installation
 
-### Requisitos Previos
+### Prerequisites
 - Python 3.8+
-- CUDA (opcional, para GPU)
-- FFmpeg (para procesamiento de audio)
+- CUDA (optional, for GPU)
+- FFmpeg (for audio processing)
 
-### Instalación de Dependencias
+### Dependency Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Configuración
+### Configuration
 
-Crea un archivo `.env` en el directorio raíz:
+Create a `.env` file in the root directory:
 
 ```env
 # API Configuration
@@ -68,7 +70,7 @@ API_HOST=0.0.0.0
 API_PORT=8020
 DEBUG=False
 
-# OpenAI (opcional, para mejorar prompts)
+# OpenAI (optional, to enhance prompts)
 OPENAI_API_KEY=your-openai-api-key
 OPENAI_MODEL=gpt-4
 
@@ -87,34 +89,34 @@ DATABASE_URL=sqlite:///./suno_clone.db
 SECRET_KEY=your-secret-key-change-in-production
 ```
 
-## 🎯 Uso Rápido
+## 🎯 Quick Start
 
-### Iniciar el Servidor
+### Start the Server
 
 ```bash
 python main.py
 ```
 
-O con uvicorn:
+Or with uvicorn:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8020
 ```
 
-### Ejemplos de Uso
+### Usage Examples
 
-#### 1. Crear Canción desde Chat
+#### 1. Create Song via Chat
 
 ```bash
 curl -X POST "http://localhost:8020/suno/chat/create-song" \
   -H "Content-Type: application/json" \
   -d '{
-    "message": "Quiero una canción de rock energética con guitarra y batería, 2 minutos de duración",
+    "message": "I want an energetic rock song with guitar and drums, 2 minutes long",
     "user_id": "user123"
   }'
 ```
 
-#### 2. Generar Canción Directamente
+#### 2. Generate Song Directly
 
 ```bash
 curl -X POST "http://localhost:8020/suno/generate" \
@@ -127,13 +129,13 @@ curl -X POST "http://localhost:8020/suno/generate" \
   }'
 ```
 
-#### 3. Listar Canciones
+#### 3. List Songs
 
 ```bash
 curl "http://localhost:8020/suno/songs?user_id=user123"
 ```
 
-#### 4. Descargar Canción
+#### 4. Download Song
 
 ```bash
 curl "http://localhost:8020/suno/songs/{song_id}/download" --output song.wav
@@ -142,90 +144,82 @@ curl "http://localhost:8020/suno/songs/{song_id}/download" --output song.wav
 ## 📚 API Endpoints
 
 ### Chat
-- `POST /suno/chat/create-song` - Crea canción desde mensaje de chat
-- `GET /suno/chat/history/{user_id}` - Obtiene historial de chat
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/suno/chat/create-song` | Create song from chat message |
+| `GET` | `/suno/chat/history/{user_id}` | Get chat history |
 
-### Canciones
-- `GET /suno/songs` - Lista todas las canciones
-- `GET /suno/songs/{song_id}` - Obtiene información de una canción
-- `GET /suno/songs/{song_id}/download` - Descarga archivo de audio
-- `DELETE /suno/songs/{song_id}` - Elimina una canción
-- `POST /suno/songs/{song_id}/edit` - Edita una canción con efectos
-- `POST /suno/songs/mix` - Mezcla múltiples canciones
-- `GET /suno/songs/{song_id}/analyze` - Analiza características de audio
+### Songs
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/suno/songs` | List all songs |
+| `GET` | `/suno/songs/{song_id}` | Get song info |
+| `GET` | `/suno/songs/{song_id}/download` | Download audio file |
+| `DELETE` | `/suno/songs/{song_id}` | Delete a song |
+| `POST` | `/suno/songs/{song_id}/edit` | Edit song with effects |
+| `POST` | `/suno/songs/mix` | Mix multiple songs |
+| `GET` | `/suno/songs/{song_id}/analyze` | Analyze audio features |
 
-### Generación
-- `POST /suno/generate` - Genera canción desde prompt
-- `GET /suno/generate/status/{task_id}` - Obtiene estado de generación
+### Generation
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/suno/generate` | Generate song from prompt |
+| `GET` | `/suno/generate/status/{task_id}` | Get generation status |
 
-### Modelos
-- `GET /suno/models` - Lista modelos disponibles
-- `GET /suno/models/{model_id}` - Información de un modelo
+### Models
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/suno/models` | List available models |
+| `GET` | `/suno/models/{model_id}` | Model information |
 
-### Métricas
-- `GET /suno/metrics/stats` - Estadísticas generales del sistema
-- `GET /suno/metrics/user/{user_id}` - Estadísticas de usuario
-
-### Caché
-- `GET /suno/cache/stats` - Estadísticas del caché
-- `DELETE /suno/cache/clear` - Limpiar caché
-
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ```
 suno_clone_ai/
-├── api/                 # Endpoints de API
-│   └── song_api.py     # Endpoints principales
-├── core/               # Lógica de negocio
-│   ├── music_generator.py    # Generador de música
-│   ├── chat_processor.py     # Procesador de chat
-│   ├── cache_manager.py      # Gestor de caché
-│   ├── audio_processor.py    # Procesador de audio avanzado
-│   └── error_handler.py      # Manejo centralizado de errores
-├── services/            # Servicios
-│   ├── song_service.py       # Gestión de canciones
-│   └── metrics_service.py    # Servicio de métricas
-├── config/             # Configuración
+├── api/                 # API Endpoints
+│   └── song_api.py     # Main endpoints
+├── core/               # Business logic
+│   ├── music_generator.py    # Music generator
+│   ├── chat_processor.py     # Chat processor
+│   ├── cache_manager.py      # Cache manager
+│   ├── audio_processor.py    # Advanced audio processor
+│   └── error_handler.py      # Centralized error handling
+├── services/            # Services
+│   ├── song_service.py       # Song management
+│   └── metrics_service.py    # Metrics service
+├── config/             # Configuration
 │   └── settings.py           # Settings
 ├── middleware/         # Middleware
 │   ├── logging_middleware.py  # Logging
 │   └── rate_limiter.py        # Rate limiting
-├── utils/             # Utilidades
-│   └── validators.py          # Validadores reutilizables
-├── main.py            # Servidor principal
-├── requirements.txt   # Dependencias
-├── README.md          # Documentación principal
-├── QUICK_START.md     # Guía rápida
-└── ADVANCED_FEATURES.md # Funcionalidades avanzadas
+├── utils/             # Utilities
+│   └── validators.py          # Reusable validators
+├── main.py            # Main server
+├── requirements.txt   # Dependencies
+├── README.md          # Main documentation
+├── QUICK_START.md     # Quick start guide
+└── ADVANCED_FEATURES.md # Advanced features
 ```
 
-## 🔧 Configuración Avanzada
+## 🔧 Advanced Configuration
 
-### Modelos Disponibles
+### Available Models
 
-- **facebook/musicgen-small**: Modelo pequeño y rápido (~300MB)
-- **facebook/musicgen-medium**: Modelo balanceado, por defecto (~1.5GB)
-- **facebook/musicgen-large**: Modelo grande con mejor calidad (~3GB)
+- **facebook/musicgen-small**: Small and fast model (~300MB)
+- **facebook/musicgen-medium**: Balanced model, default (~1.5GB)
+- **facebook/musicgen-large**: Large model with better quality (~3GB)
 
-### Parámetros de Generación
+### Generation Parameters
 
-- `temperature`: Controla la creatividad (default: 1.0)
-- `top_k`: Número de tokens a considerar (default: 250)
+- `temperature`: Controls creativity (default: 1.0)
+- `top_k`: Number of tokens to consider (default: 250)
 - `top_p`: Nucleus sampling (default: 0.0)
 - `cfg_coef`: Guidance scale (default: 3.0)
 
-## 🚀 Despliegue
+## 🚀 Deployment
 
-### Docker (Próximamente)
-
-```bash
-docker build -t suno-clone-ai .
-docker run -p 8020:8020 suno-clone-ai
-```
-
-### Producción
-
-Para producción, usar un servidor ASGI como Gunicorn:
+### Production
+For production, use an ASGI server like Gunicorn:
 
 ```bash
 gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8020
@@ -233,68 +227,19 @@ gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8020
 
 ## 📊 Performance
 
-- **Generación Estándar**: ~10-30 segundos dependiendo del modelo y duración
-- **Generación Ultra-Rápida**: ~2-6 segundos con todas las optimizaciones activadas (5-10x más rápido)
-- **GPU**: Acelera significativamente la generación (requerido para máximo rendimiento)
-- **Cache**: Redis opcional para caching de resultados + caché en memoria/disco integrado
-- **Optimizaciones**: torch.compile, mixed precision (FP16), batch processing, async inference
+- **Standard Generation**: ~10–30 seconds depending on model and duration
+- **Ultra-Fast Generation**: ~2–6 seconds with all optimizations enabled (5–10× faster)
+- **GPU**: Significantly accelerates generation (required for max performance)
+- **Cache**: Optional Redis for results caching + integrated memory/disk cache
+- **Optimizations**: `torch.compile`, mixed precision (FP16), batch processing, async inference
 
-### 🚀 Uso del Generador Ultra-Rápido
+## 🔒 Security
 
-```python
-from core.ultra_fast_generator import get_ultra_fast_generator
-
-# Generador con todas las optimizaciones
-generator = get_ultra_fast_generator(
-    compile_mode="max-autotune",  # Máxima velocidad
-    use_cache=True
-)
-
-# Generación rápida
-audio = generator.generate_from_text(
-    text="Upbeat electronic music",
-    duration=30
-)
-
-# Generación asíncrona (para APIs)
-import asyncio
-audio = await generator.generate_async(
-    text="Calm acoustic guitar",
-    duration=30
-)
-
-# Generación por lotes (más eficiente)
-texts = ["Rock song", "Jazz piece", "Electronic beat"]
-audio_list = generator.generate_batch(texts, duration=30)
-```
-
-Ver [SPEED_OPTIMIZATIONS.md](SPEED_OPTIMIZATIONS.md) para más detalles sobre optimizaciones de velocidad.
-
-Ver [ADVANCED_OPTIMIZATIONS.md](ADVANCED_OPTIMIZATIONS.md) para optimizaciones avanzadas adicionales (streaming, procesamiento paralelo, etc.).
-
-Ver [ULTRA_OPTIMIZATIONS.md](ULTRA_OPTIMIZATIONS.md) para optimizaciones ultra avanzadas (ONNX, TensorRT, quantización, smart cache, etc.).
-
-Ver [API_OPTIMIZATIONS.md](API_OPTIMIZATIONS.md) para optimizaciones de capa de API (serialización, compresión, queries, requests, etc.).
-
-Ver [SYSTEM_OPTIMIZATIONS.md](SYSTEM_OPTIMIZATIONS.md) para optimizaciones de sistema (base de datos, almacenamiento, monitoreo, etc.).
-
-Ver [FINAL_OPTIMIZATIONS.md](FINAL_OPTIMIZATIONS.md) para resumen completo de todas las optimizaciones (seguridad, escalabilidad, deployment, etc.).
-
-Ver [COMPLETE_OPTIMIZATIONS.md](COMPLETE_OPTIMIZATIONS.md) para referencia completa de todas las optimizaciones implementadas.
-
-Ver [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) para resumen ejecutivo de todas las optimizaciones y métricas de mejora.
-
-Ver [ALL_OPTIMIZATIONS.md](ALL_OPTIMIZATIONS.md) para referencia completa de todos los 28+ módulos de optimización implementados.
-
-Ver [ULTIMATE_OPTIMIZATIONS.md](ULTIMATE_OPTIMIZATIONS.md) para referencia ultimate de todos los 31+ módulos incluyendo costos, compliance y serverless.
-
-## 🔒 Seguridad
-
-- **Rate Limiting**: Protección contra abuso con límites configurables
-- **Validación Exhaustiva**: Validación de todos los inputs con Pydantic
-- **Sanitización**: Limpieza automática de datos peligrosos
-- **Error Handling**: Manejo seguro de errores sin exponer información sensible
-- **Health Checks**: Monitoreo completo del estado del sistema
+- **Rate Limiting** — Protection against abuse with configurable limits
+- **Exhaustive Validation** — Validation of all inputs with Pydantic
+- **Sanitization** — Automatic cleaning of dangerous data
+- **Error Handling** — Safe error handling without exposing sensitive info
+- **Health Checks** — Complete system status monitoring
 
 ## 🧪 Testing
 
@@ -302,32 +247,14 @@ Ver [ULTIMATE_OPTIMIZATIONS.md](ULTIMATE_OPTIMIZATIONS.md) para referencia ultim
 pytest tests/
 ```
 
-## 📝 Licencia
+## 📝 License
 
-Ver LICENSE file para detalles.
+See LICENSE file.
 
-## 🤝 Contribución
+## 🤝 Contribution
 
-Contribuciones son bienvenidas! Por favor ver CONTRIBUTING.md para guías.
+Contributions are welcome! Please see CONTRIBUTING.md.
 
-## 📧 Soporte
+---
 
-Para soporte, abrir un issue o contactar al equipo de desarrollo.
-
-## 🆕 Roadmap
-
-- [ ] Soporte para más modelos (MusicLM, AudioLM, etc.)
-- [ ] Generación de letras con IA
-- [ ] Mezcla y masterización automática
-- [ ] Integración con servicios de streaming
-- [ ] Frontend web interactivo
-- [ ] API de WebSocket para streaming en tiempo real
-- [ ] Soporte para múltiples voces
-- [ ] Generación colaborativa
-
-## 📖 Documentación Adicional
-
-- [QUICK_START.md](QUICK_START.md) - Guía de inicio rápido
-- [ADVANCED_FEATURES.md](ADVANCED_FEATURES.md) - Funcionalidades avanzadas (caché, edición, métricas)
-- [IMPROVEMENTS.md](IMPROVEMENTS.md) - Mejoras implementadas (seguridad, validación, robustez)
-
+[← Back to Main README](../README.md)

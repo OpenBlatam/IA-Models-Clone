@@ -2,6 +2,9 @@
 
 A comprehensive document generation system that creates professional documents based on user queries and exports them in multiple formats (PDF, MD, Word, HTML) with high-quality formatting and styling.
 
+> Part of the [Blatam Academy Integrated Platform](../README.md)
+
+
 ## Features
 
 ### 🚀 Core Functionality

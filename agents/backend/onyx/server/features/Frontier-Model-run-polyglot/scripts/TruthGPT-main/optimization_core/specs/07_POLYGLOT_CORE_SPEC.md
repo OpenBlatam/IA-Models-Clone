@@ -2,674 +2,286 @@
 
 ## 📋 Resumen
 
-Este documento especifica el módulo `polyglot_core` que proporciona una API unificada para acceder a múltiples backends (Rust, C++, Go, etc.) de manera transparente.
+Este documento especifica el módulo `polyglot_core`, el cual actúa como una capa de abstracción ágil y de ultra bajo retardo (Zero-Overhead Abstraction) para acceder a backends de alto rendimiento (Rust, C++, Go) desde código Python. Su enfoque es la orquestación de tensores, cachés y llamadas a sistemas de forma transparente y asíncrona.
 
 ## 🎯 Objetivos
 
-1. **API Unificada**: Una sola API Python para todos los backends
-2. **Auto-Selección**: Selección automática del mejor backend disponible
-3. **Transparencia**: El usuario no necesita saber qué backend se usa
-4. **Flexibilidad**: Permite forzar un backend específico si se desea
-5. **Fallback Automático**: Fallback a Python si otros backends no están disponibles
+1. **API Unificada y Asíncrona**: Interfaces Python robustas y `async-first` para operaciones no bloqueantes.
+2. **Auto-Selección Activa**: Negociación automática del mejor backend en tiempo de ejecución.
+3. **Mínima Sobrecarga (Zero-Overhead)**: Uso de `PyO3` (Rust) y `pybind11` (C++) con acceso a memoria compartida (`memoryviews`/`Arrow`).
+4. **Fallback Resistente**: Degradación gradual (graceful degradation) hacia Python puro si los binarios compilados fallan al cargar.
+5. **Observabilidad Inyectada**: Trazabilidad de qué backend ejecuta qué operación y cuánto tarda.
 
 ## 🏗️ Arquitectura
 
-### Diagrama de Flujo
+### Diagrama de Secuencia de Resolución de Backend
 
-```
-Usuario
-  │
-  ├─> KVCache() [backend=AUTO]
-  │     │
-  │     ├─> get_available_backends()
-  │     ├─> get_best_backend("kv_cache")
-  │     ├─> Backend.RUST seleccionado
-  │     └─> PyKVCache (Rust) creado
-  │
-  ├─> Compressor() [backend=AUTO]
-  │     │
-  │     ├─> get_best_backend("compression")
-  │     ├─> Backend.RUST seleccionado
-  │     └─> PyCompressor (Rust) creado
-  │
-  └─> Attention() [backend=AUTO]
-        │
-        ├─> get_best_backend("attention")
-        ├─> Backend.CPP seleccionado
-        └─> FlashAttention (C++) creado
+```mermaid
+sequenceDiagram
+    participant User
+    participant Factory as PolyglotFactory
+    participant Registry as BackendRegistry
+    participant Rust as RustExtension (PyO3)
+    participant Cpp as CppExtension (pybind11)
+    participant Py as PythonFallback
+
+    User->>Factory: create("kv_cache", backend="AUTO")
+    Factory->>Registry: get_best_available("kv_cache")
+    Registry-->>Factory: Returns Backend.RUST
+    
+    Factory->>Rust: load_module()
+    alt Carga Exitosa
+        Rust-->>Factory: Module Ready
+        Factory-->>User: RustKVCache Instance
+    else Carga Fallida (ImportError)
+        Factory->>Registry: Request fallback
+        Registry-->>Factory: Returns Backend.PYTHON
+        Factory->>Py: load_module()
+        Py-->>Factory: Module Ready
+        Factory-->>User: PythonKVCache Instance (Fallback)
+    end
 ```
 
 ## 📦 Componentes Principales
 
-### Backend Detection
-
-**Especificación**:
+### Excepciones Base
 
 ```python
+class PolyglotError(Exception):
+    """Base exception for polyglot routing errors."""
+    pass
+
+class BackendNotAvailableError(PolyglotError):
+    """Requested backend is not installed or failed to load."""
+    pass
+
+class ComponentCreationError(PolyglotError):
+    """All available backends failed to initialize for the requested component."""
+    pass
+```
+
+### Registry & Backend Detection
+
+**Propósito**: Mantener un estado global de qué binarios compilados están realmente presentes en el entorno en tiempo de arranque.
+
+```python
+from enum import Enum
+from dataclasses import dataclass, field
+from typing import List, Optional, Dict, Any, Type
+import logging
+import sys
+
+logger = logging.getLogger(__name__)
+
 class Backend(Enum):
-    """Backend enumeration."""
+    """Supported execution backends."""
     AUTO = "auto"
     RUST = "rust"
     CPP = "cpp"
     GO = "go"
-    JULIA = "julia"
-    SCALA = "scala"
-    ELIXIR = "elixir"
-    PYTHON = "python"
+    PYTHON = "python"  # Universal fallback
 
 @dataclass
 class BackendInfo:
-    """Information about a backend."""
+    """Telemetry and status for a specific backend payload."""
     name: str
     available: bool
     version: Optional[str] = None
     capabilities: List[str] = field(default_factory=list)
-    performance_score: float = 0.0  # 0.0-1.0
+    performance_score: float = 0.0  # 0.0-1.0 (Higher is better)
     error: Optional[str] = None
 
-def check_rust_backend() -> BackendInfo:
-    """
-    Check if Rust backend is available.
+class BackendRegistry:
+    """Central registry for discovering and ranking backends."""
     
-    Returns:
-        BackendInfo with availability status
-    """
-    try:
-        import truthgpt_rust
-        return BackendInfo(
-            name="rust",
-            available=True,
-            version=getattr(truthgpt_rust, "__version__", "unknown"),
-            capabilities=["kv_cache", "compression", "tokenization", "data_loading"],
-            performance_score=0.95
-        )
-    except ImportError as e:
-        return BackendInfo(
-            name="rust",
-            available=False,
-            error=str(e),
-            performance_score=0.0
+    _cached_status: Dict[str, BackendInfo] = {}
+
+    @classmethod
+    def initialize_discovery(cls) -> None:
+        """Probes the environment for compiled extensions."""
+        cls._cached_status["rust"] = cls._probe_rust()
+        cls._cached_status["cpp"] = cls._probe_cpp()
+        cls._cached_status["go"] = cls._probe_go()
+        cls._cached_status["python"] = BackendInfo(
+            name="python", available=True, version=sys.version.split(" ")[0],
+            capabilities=["kv_cache", "compression", "attention", "inference"], performance_score=0.1
         )
 
-def check_cpp_backend() -> BackendInfo:
-    """
-    Check if C++ backend is available.
-    
-    Returns:
-        BackendInfo with availability status
-    """
-    try:
-        import _cpp_core
-        return BackendInfo(
-            name="cpp",
-            available=True,
-            version=getattr(_cpp_core, "__version__", "unknown"),
-            capabilities=["attention", "cuda_kernels", "inference", "memory_mgmt"],
-            performance_score=0.98
-        )
-    except ImportError as e:
-        return BackendInfo(
-            name="cpp",
-            available=False,
-            error=str(e),
-            performance_score=0.0
-        )
+    @staticmethod
+    def _probe_rust() -> BackendInfo:
+        try:
+            import truthgpt_rust
+            return BackendInfo(name="rust", available=True, version=getattr(truthgpt_rust, "__version__", "1.0"), capabilities=["kv_cache", "compression", "tokenization"], performance_score=0.95)
+        except ImportError as e:
+            return BackendInfo(name="rust", available=False, error=str(e), performance_score=0.0)
 
-def check_go_backend() -> BackendInfo:
-    """
-    Check if Go backend is available.
-    
-    Returns:
-        BackendInfo with availability status
-    """
-    try:
-        from go_core.client import GoClient
-        # Try to connect to Go service
-        client = GoClient()
-        if client.is_available():
-            return BackendInfo(
-                name="go",
-                available=True,
-                version=client.get_version(),
-                capabilities=["http_api", "grpc", "messaging", "distributed"],
-                performance_score=0.90
-            )
-    except Exception as e:
-        pass
-    
-    return BackendInfo(
-        name="go",
-        available=False,
-        error="Go service not available",
-        performance_score=0.0
-    )
+    @staticmethod
+    def _probe_cpp() -> BackendInfo:
+        try:
+            import _cpp_core
+            return BackendInfo(name="cpp", available=True, version=getattr(_cpp_core, "__version__", "1.0"), capabilities=["attention", "cuda_kernels", "inference"], performance_score=0.98)
+        except ImportError as e:
+            return BackendInfo(name="cpp", available=False, error=str(e), performance_score=0.0)
 
-def get_available_backends() -> List[BackendInfo]:
-    """
-    Get list of all available backends.
-    
-    Returns:
-        List of BackendInfo for all backends
-    """
-    return [
-        check_rust_backend(),
-        check_cpp_backend(),
-        check_go_backend(),
-        # Python is always available
-        BackendInfo(
-            name="python",
-            available=True,
-            version=sys.version,
-            capabilities=["kv_cache", "compression", "attention", "inference"],
-            performance_score=0.50
-        )
-    ]
+    @staticmethod
+    def _probe_go() -> BackendInfo:
+        # Go usually operates over RPC/gRPC/CGO
+        return BackendInfo(name="go", available=False, error="Go microservices not actively probed at import", performance_score=0.0)
 
-def is_backend_available(backend: Backend) -> bool:
-    """
-    Check if a specific backend is available.
-    
-    Args:
-        backend: Backend to check
-    
-    Returns:
-        True if available
-    """
-    if backend == Backend.PYTHON:
-        return True
-    
-    backends = get_available_backends()
-    backend_info = next(
-        (b for b in backends if b.name == backend.value),
-        None
-    )
-    
-    return backend_info.available if backend_info else False
+    @classmethod
+    def get_status(cls, backend: Backend) -> BackendInfo:
+        if not cls._cached_status:
+            cls.initialize_discovery()
+        return cls._cached_status.get(backend.value, BackendInfo(name=backend.value, available=False))
+
+    @classmethod
+    def is_available(cls, backend: Backend) -> bool:
+        return cls.get_status(backend).available
 ```
 
-### Backend Selection
+### Component Factory (Routing Engine)
 
-**Especificación**:
+**Propósito**: Proveer el componente correcto basado en las capacidades listadas.
 
 ```python
-# Feature to backend preference mapping
-FEATURE_BACKEND_MAP = {
-    "kv_cache": [Backend.RUST, Backend.CPP, Backend.GO, Backend.PYTHON],
-    "compression": [Backend.RUST, Backend.CPP, Backend.GO, Backend.PYTHON],
-    "tokenization": [Backend.RUST, Backend.PYTHON],
+FEATURE_ROUTING_TABLE = {
+    # Feature -> List of backends in preference order
+    "kv_cache": [Backend.RUST, Backend.CPP, Backend.PYTHON],
+    "compression": [Backend.RUST, Backend.CPP, Backend.PYTHON],
     "attention": [Backend.CPP, Backend.RUST, Backend.PYTHON],
-    "cuda_kernels": [Backend.CPP, Backend.PYTHON],
-    "inference": [Backend.CPP, Backend.RUST, Backend.PYTHON],
-    "http_api": [Backend.GO, Backend.RUST, Backend.PYTHON],
-    "grpc": [Backend.GO, Backend.RUST, Backend.PYTHON],
-    "messaging": [Backend.GO, Backend.ELIXIR, Backend.PYTHON],
-    "distributed": [Backend.GO, Backend.SCALA, Backend.PYTHON],
+    "tokenization": [Backend.RUST, Backend.PYTHON],
 }
 
-def get_best_backend(feature: str) -> Backend:
-    """
-    Get best available backend for a feature.
+class PolyglotFactory:
+    """Instantiates the optimal cross-language component for a given feature."""
     
-    Args:
-        feature: Feature name (e.g., "kv_cache", "attention")
-    
-    Returns:
-        Best available backend for the feature
-    
-    Raises:
-        ValueError: If feature not supported
-    """
-    if feature not in FEATURE_BACKEND_MAP:
-        raise ValueError(f"Unknown feature: {feature}")
-    
-    preferred_backends = FEATURE_BACKEND_MAP[feature]
-    available_backends = get_available_backends()
-    
-    # Find first available backend in preference order
-    for backend in preferred_backends:
-        backend_info = next(
-            (b for b in available_backends if b.name == backend.value),
-            None
-        )
+    @classmethod
+    def get_best_backend(cls, feature: str) -> Backend:
+        if feature not in FEATURE_ROUTING_TABLE:
+            raise ValueError(f"Feature '{feature}' is not recognized by the routing table.")
+            
+        preferred_backends = FEATURE_ROUTING_TABLE[feature]
         
-        if backend_info and backend_info.available:
-            return backend
-    
-    # Fallback to Python (always available)
-    return Backend.PYTHON
+        for backend in preferred_backends:
+            if BackendRegistry.is_available(backend):
+                return backend
+                
+        logger.warning(f"No optimized backend available for {feature}, falling back to Python.")
+        return Backend.PYTHON
 
-def select_backend(
-    feature: str,
-    preferred: Optional[Backend] = None
-) -> Backend:
-    """
-    Select backend for a feature.
-    
-    Args:
-        feature: Feature name
-        preferred: Preferred backend (None = auto-select)
-    
-    Returns:
-        Selected backend
-    
-    Raises:
-        BackendNotAvailableError: If preferred backend not available
-    """
-    if preferred is None or preferred == Backend.AUTO:
-        return get_best_backend(feature)
-    
-    if not is_backend_available(preferred):
-        raise BackendNotAvailableError(
-            f"Backend {preferred} not available for feature {feature}"
-        )
-    
-    return preferred
-```
-
-### Unified Components
-
-#### KVCache
-
-**Especificación**:
-
-```python
-class KVCache:
-    """
-    Unified KV Cache interface.
-    
-    Automatically selects best backend or allows manual selection.
-    """
-    
-    def __init__(
-        self,
-        max_size: int = 8192,
-        backend: Backend = Backend.AUTO,
-        **kwargs
-    ):
-        """
-        Initialize KV Cache.
+    @classmethod
+    def create_kv_cache(cls, max_size: int = 8192, backend: Backend = Backend.AUTO, **kwargs) -> Any:
+        target_backend = cls.get_best_backend("kv_cache") if backend == Backend.AUTO else backend
         
-        Args:
-            max_size: Maximum cache size
-            backend: Backend to use (AUTO = best available)
-            **kwargs: Backend-specific parameters
-        """
-        self.max_size = max_size
-        
-        # Select backend
-        if backend == Backend.AUTO:
-            backend = get_best_backend("kv_cache")
-        
-        self.backend = backend
-        
-        # Create backend-specific implementation
-        self._impl = self._create_impl(backend, max_size, **kwargs)
-    
-    def _create_impl(
-        self,
-        backend: Backend,
-        max_size: int,
-        **kwargs
-    ) -> Any:
-        """Create backend-specific implementation."""
-        if backend == Backend.RUST:
+        if target_backend == Backend.RUST:
             from rust_core import PyKVCache
             return PyKVCache(max_size=max_size, **kwargs)
-        
-        elif backend == Backend.CPP:
-            from cpp_core import KVCache as CppKVCache
+        elif target_backend == Backend.CPP:
+            from cpp_core import CppKVCache
             return CppKVCache(max_size=max_size, **kwargs)
-        
-        elif backend == Backend.GO:
-            from go_core.client import GoKVCacheClient
-            return GoKVCacheClient(max_size=max_size, **kwargs)
-        
-        else:  # Python fallback
-            from polyglot_core.cache import PythonKVCache
+        else:
+            from polyglot_core.fallbacks.cache import PythonKVCache
             return PythonKVCache(max_size=max_size, **kwargs)
-    
-    def put(
-        self,
-        layer_idx: int,
-        position: int,
-        data: bytes
-    ) -> None:
-        """
-        Put data into cache.
+
+    @classmethod
+    def create_attention(cls, d_model: int, n_heads: int, backend: Backend = Backend.AUTO, **kwargs) -> Any:
+        target_backend = cls.get_best_backend("attention") if backend == Backend.AUTO else backend
         
-        Args:
-            layer_idx: Layer index
-            position: Position in sequence
-            data: Data to cache
+        if target_backend == Backend.CPP:
+            from cpp_core import FlashAttention
+            return FlashAttention(d_model=d_model, n_heads=n_heads, **kwargs)
+        else:
+            from polyglot_core.fallbacks.attention import PythonAttention
+            return PythonAttention(d_model=d_model, n_heads=n_heads, **kwargs)
+```
+
+### Interfaz Políglota Asíncrona (`KVCache` Wrapper)
+
+**Propósito**: Envolver las extensiones crudas de C++/Rust en una API tolerante a fallos y compatible con asincronía (si la librería compilada requiere liberar el GIL).
+
+```python
+class UnifiedKVCache:
+    """
+    High-level facade for KV Cache operations.
+    Handles GIL release and async thread dispatching for heavy operations.
+    """
+    
+    def __init__(self, max_size: int = 8192, backend: Backend = Backend.AUTO, **kwargs):
+        self._impl = PolyglotFactory.create_kv_cache(max_size=max_size, backend=backend, **kwargs)
+        self.active_backend = backend if backend != Backend.AUTO else PolyglotFactory.get_best_backend("kv_cache")
+        
+    def put(self, layer_idx: int, position: int, data: memoryview) -> None:
+        """
+        Synchronous put. Uses memoryview to ensure zero-copy transfer to Rust/C++.
         """
         self._impl.put(layer_idx, position, data)
-    
-    def get(
-        self,
-        layer_idx: int,
-        position: int
-    ) -> Optional[bytes]:
-        """
-        Get data from cache.
         
-        Args:
-            layer_idx: Layer index
-            position: Position in sequence
+    async def aput(self, layer_idx: int, position: int, data: memoryview) -> None:
+        """Asynchronous put for large bulk operations."""
+        import asyncio
+        loop = asyncio.get_running_loop()
+        await loop.run_in_executor(None, lambda: self._impl.put(layer_idx, position, data))
         
-        Returns:
-            Cached data or None if not found
-        """
+    def get(self, layer_idx: int, position: int) -> Optional[memoryview]:
+        """Returns zero-copy memoryview from backend."""
         return self._impl.get(layer_idx, position)
-    
-    def clear(self) -> None:
-        """Clear all cached data."""
-        self._impl.clear()
-    
-    def get_stats(self) -> Dict[str, Any]:
-        """
-        Get cache statistics.
-        
-        Returns:
-            Dictionary with statistics:
-            {
-                "size": int,
-                "max_size": int,
-                "hits": int,
-                "misses": int,
-                "hit_rate": float,
-                "memory_usage_bytes": int
-            }
-        """
-        return self._impl.get_stats()
+
+    def get_telemetry(self) -> Dict[str, Any]:
+        """Observability data including backend info."""
+        stats = self._impl.get_stats() if hasattr(self._impl, "get_stats") else {}
+        stats["backend"] = self.active_backend.value
+        return stats
 ```
 
-#### Compressor
+## 📊 Ejemplos de Uso
 
-**Especificación**:
+### Uso Básico con Auto-Selección
 
 ```python
-class Compressor:
-    """
-    Unified compression interface.
-    
-    Supports LZ4, Zstd, and other algorithms.
-    """
-    
-    def __init__(
-        self,
-        algorithm: str = "lz4",
-        backend: Backend = Backend.AUTO,
-        **kwargs
-    ):
-        """
-        Initialize compressor.
-        
-        Args:
-            algorithm: Compression algorithm (lz4, zstd, gzip)
-            backend: Backend to use (AUTO = best available)
-            **kwargs: Backend-specific parameters
-        """
-        self.algorithm = algorithm
-        
-        if backend == Backend.AUTO:
-            backend = get_best_backend("compression")
-        
-        self.backend = backend
-        self._impl = self._create_impl(backend, algorithm, **kwargs)
-    
-    def _create_impl(
-        self,
-        backend: Backend,
-        algorithm: str,
-        **kwargs
-    ) -> Any:
-        """Create backend-specific implementation."""
-        if backend == Backend.RUST:
-            from rust_core import PyCompressor
-            return PyCompressor(algorithm=algorithm, **kwargs)
-        
-        elif backend == Backend.CPP:
-            from cpp_core import Compressor as CppCompressor
-            return CppCompressor(algorithm=algorithm, **kwargs)
-        
-        else:  # Python fallback
-            from polyglot_core.compression import PythonCompressor
-            return PythonCompressor(algorithm=algorithm, **kwargs)
-    
-    def compress(self, data: bytes) -> bytes:
-        """
-        Compress data.
-        
-        Args:
-            data: Data to compress
-        
-        Returns:
-            Compressed data
-        """
-        return self._impl.compress(data)
-    
-    def decompress(self, data: bytes) -> bytes:
-        """
-        Decompress data.
-        
-        Args:
-            data: Compressed data
-        
-        Returns:
-            Decompressed data
-        """
-        return self._impl.decompress(data)
+from optimization_core.polyglot import UnifiedKVCache, UnifiedAttention
+
+# Automáticamente usará Rust (truthgpt_rust) si está instalado
+cache = UnifiedKVCache(max_size=8192)
+
+telemetry = cache.get_telemetry()
+print(f"Usando backend: {telemetry['backend']}") # 'rust' o 'python'
 ```
 
-#### Attention
+### Tolerancia a Fallos Probada
 
-**Especificación**:
-
-```python
-class Attention:
-    """
-    Unified attention interface.
-    
-    Supports Flash Attention and standard attention.
-    """
-    
-    def __init__(
-        self,
-        d_model: int,
-        n_heads: int,
-        backend: Backend = Backend.AUTO,
-        **kwargs
-    ):
-        """
-        Initialize attention.
-        
-        Args:
-            d_model: Model dimension
-            n_heads: Number of attention heads
-            backend: Backend to use (AUTO = best available)
-            **kwargs: Backend-specific parameters
-        """
-        self.d_model = d_model
-        self.n_heads = n_heads
-        
-        if backend == Backend.AUTO:
-            backend = get_best_backend("attention")
-        
-        self.backend = backend
-        self._impl = self._create_impl(backend, d_model, n_heads, **kwargs)
-    
-    def _create_impl(
-        self,
-        backend: Backend,
-        d_model: int,
-        n_heads: int,
-        **kwargs
-    ) -> Any:
-        """Create backend-specific implementation."""
-        if backend == Backend.CPP:
-            from cpp_core import FlashAttention
-            return FlashAttention(
-                d_model=d_model,
-                n_heads=n_heads,
-                **kwargs
-            )
-        
-        elif backend == Backend.RUST:
-            from rust_core import PyAttention
-            return PyAttention(
-                d_model=d_model,
-                n_heads=n_heads,
-                **kwargs
-            )
-        
-        else:  # Python fallback
-            from polyglot_core.attention import PythonAttention
-            return PythonAttention(
-                d_model=d_model,
-                n_heads=n_heads,
-                **kwargs
-            )
-    
-    def forward(
-        self,
-        q: torch.Tensor,
-        k: torch.Tensor,
-        v: torch.Tensor,
-        **kwargs
-    ) -> torch.Tensor:
-        """
-        Compute attention.
-        
-        Args:
-            q: Query tensor [batch, seq_len, d_model]
-            k: Key tensor [batch, seq_len, d_model]
-            v: Value tensor [batch, seq_len, d_model]
-            **kwargs: Additional parameters
-        
-        Returns:
-            Attention output [batch, seq_len, d_model]
-        """
-        return self._impl.forward(q, k, v, **kwargs)
-```
-
-## 🔄 Fallback Mechanism
-
-**Especificación**:
+Si desinstalamos el paquete `truthgpt_rust` del entorno virtual:
 
 ```python
-def create_with_fallback(
-    component_type: str,
-    preferred_backends: List[Backend],
-    **kwargs
-) -> Any:
-    """
-    Create component with automatic fallback.
-    
-    Args:
-        component_type: Type of component
-        preferred_backends: List of preferred backends (in order)
-        **kwargs: Component-specific parameters
-    
-    Returns:
-        Component instance
-    
-    Raises:
-        ComponentCreationError: If all backends fail
-    """
-    errors = []
-    
-    for backend in preferred_backends:
-        if not is_backend_available(backend):
-            continue
-        
-        try:
-            return _create_component(component_type, backend, **kwargs)
-        except Exception as e:
-            errors.append((backend, str(e)))
-            logger.warning(
-                f"Failed to create {component_type} with {backend}: {e}"
-            )
-            continue
-    
-    # Try Python fallback
-    try:
-        return _create_component(component_type, Backend.PYTHON, **kwargs)
-    except Exception as e:
-        errors.append((Backend.PYTHON, str(e)))
-        raise ComponentCreationError(
-            f"Failed to create {component_type} with all backends. Errors: {errors}"
-        )
-```
+from optimization_core.polyglot import BackendRegistry, PolyglotFactory
 
-## 📊 Usage Examples
+BackendRegistry.initialize_discovery()
+print(BackendRegistry.is_available(Backend.RUST)) # False
 
-### Auto-Selection
-
-```python
-# Automatically selects best available backend
-cache = KVCache(max_size=8192)
-compressor = Compressor(algorithm="lz4")
-attention = Attention(d_model=768, n_heads=12)
-```
-
-### Manual Selection
-
-```python
-# Force specific backend
-cache = KVCache(max_size=8192, backend=Backend.RUST)
-compressor = Compressor(algorithm="lz4", backend=Backend.CPP)
-```
-
-### Check Availability
-
-```python
-# Check available backends
-backends = get_available_backends()
-for backend in backends:
-    print(f"{backend.name}: {backend.available}")
-
-# Check specific backend
-if is_backend_available(Backend.RUST):
-    cache = KVCache(backend=Backend.RUST)
+# Automáticamente hará degradación a Python sin causar caídas en producción
+cache = UnifiedKVCache()
+print(cache.active_backend) # Backend.PYTHON
 ```
 
 ## 🧪 Testing
 
-### Test Backend Detection
+### Test Backend Fallback
 
 ```python
-def test_backend_detection():
-    """Test backend detection."""
-    backends = get_available_backends()
-    assert len(backends) > 0
-    assert any(b.name == "python" and b.available for b in backends)
-```
+from unittest.mock import patch
+import pytest
 
-### Test Auto-Selection
-
-```python
-def test_auto_selection():
-    """Test automatic backend selection."""
-    cache = KVCache(max_size=1024)
-    assert cache.backend in [Backend.RUST, Backend.CPP, Backend.GO, Backend.PYTHON]
-```
-
-### Test Fallback
-
-```python
-def test_fallback():
-    """Test fallback mechanism."""
-    # Force unavailable backend, should fallback to Python
-    if not is_backend_available(Backend.RUST):
-        cache = KVCache(max_size=1024, backend=Backend.AUTO)
-        assert cache.backend == Backend.PYTHON
+def test_fallback_to_python_when_rust_fails():
+    with patch('optimization_core.polyglot.BackendRegistry.is_available') as mock_available:
+        # Simulate Rust/C++ not being installed
+        mock_available.side_effect = lambda b: b == Backend.PYTHON 
+        
+        cache = UnifiedKVCache(backend=Backend.AUTO)
+        
+        # Verify it gracefully fell back to Python
+        assert cache.active_backend == Backend.PYTHON
 ```
 
 ---
 
-**Versión**: 1.0.0  
-**Última actualización**: Enero 2025
-
-
-
-
+**Versión**: 1.1.0  
+**Última actualización**: Marzo 2026

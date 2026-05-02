@@ -1,6 +1,7 @@
 'use client';
 
 import { forwardRef, type InputHTMLAttributes } from 'react';
+import { cn } from '@/src/lib/utils';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
@@ -13,7 +14,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
     (
         {
-            className = '',
+            className,
             label,
             error,
             hint,
@@ -29,7 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         const hasError = !!error;
 
         return (
-            <div className={`w-full ${className}`}>
+            <div className={cn("w-full", className)}>
                 {label && (
                     <label
                         htmlFor={inputId}
@@ -48,20 +49,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                         ref={ref}
                         id={inputId}
                         disabled={disabled}
-                        className={`
-              w-full px-4 py-3 rounded-xl
-              bg-card border text-text
-              placeholder:text-text-muted/50
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background
-              transition-all duration-200
-              disabled:opacity-50 disabled:cursor-not-allowed
-              ${leftIcon ? 'pl-10' : ''}
-              ${rightIcon ? 'pr-10' : ''}
-              ${hasError
-                                ? 'border-accent-error/50 focus:ring-accent-error focus:border-accent-error'
-                                : 'border-white/10 focus:ring-primary focus:border-primary/50'
-                            }
-            `}
+                        className={cn(
+                            "w-full px-4 py-3 rounded-xl",
+                            "bg-card border text-text",
+                            "placeholder:text-text-muted/50",
+                            "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background",
+                            "transition-all duration-200",
+                            "disabled:opacity-50 disabled:cursor-not-allowed",
+                            leftIcon && "pl-10",
+                            rightIcon && "pr-10",
+                            hasError 
+                                ? "border-accent-error/50 focus:ring-accent-error focus:border-accent-error"
+                                : "border-white/10 focus:ring-primary focus:border-primary/50"
+                        )}
                         aria-invalid={hasError}
                         aria-describedby={hasError ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
                         {...props}

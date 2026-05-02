@@ -1,5 +1,5 @@
 import unittest
-from agents.backend.onyx.server.features.lovable.web_gen_system.generator import DynamicUIGenerator
+from ..generator import DynamicUIGenerator
 
 class TestDynamicUIGenerator(unittest.TestCase):
     def setUp(self):

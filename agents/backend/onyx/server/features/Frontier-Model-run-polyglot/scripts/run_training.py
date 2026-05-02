@@ -138,7 +138,13 @@ def main_with_config():
     script_args = config_to_args(config)
     
     # Run training
-    main(script_args)
+    from .core.sys5.telemetry import tracked
+    
+    @tracked(phase="Training")
+    def _run_main_tracked(args):
+        main(args)
+        
+    _run_main_tracked(script_args)
 
 if __name__ == "__main__":
     main_with_config() 

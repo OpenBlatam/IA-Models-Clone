@@ -20,7 +20,7 @@ import random
 # Import library recommender components
 import sys
 sys.path.append('..')
-from core.library_recommender import LibraryRecommender
+from modules.base.core_system.core.library_recommender import LibraryRecommender
 
 class TestLibraryRecommenderComprehensive(unittest.TestCase):
     """Comprehensive tests for library recommender."""
@@ -142,3 +142,4 @@ class TestLibraryRecommenderComprehensive(unittest.TestCase):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     unittest.main()
+

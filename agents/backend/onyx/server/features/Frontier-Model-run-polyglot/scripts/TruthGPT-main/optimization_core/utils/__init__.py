@@ -4,6 +4,11 @@ Shared utilities for the entire optimization_core module.
 Provides common utilities for validation, error handling, configuration,
 and other cross-cutting concerns.
 """
+from .base import (
+    BaseOptimizationModel,
+    CudaResourceManager,
+    system_metrics_collector,
+)
 from .shared_validators import (
     validate_not_none,
     validate_not_empty,
@@ -248,6 +253,10 @@ from .notification_utils import (
 )
 
 __all__ = [
+    # Base utilities
+    "BaseOptimizationModel",
+    "CudaResourceManager",
+    "system_metrics_collector",
     # Validators
     "validate_not_none",
     "validate_not_empty",
@@ -453,3 +462,4 @@ __all__ = [
     "get_notification_manager",
     "notify",
 ]
+

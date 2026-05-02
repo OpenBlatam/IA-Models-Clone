@@ -948,13 +948,7 @@ export default function KanbanPage() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
+
 
   // Aplicar modo oscuro
   useEffect(() => {
@@ -1068,6 +1062,14 @@ export default function KanbanPage() {
     
     setMilestones(newMilestones);
   }, [tasks]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("min-h-screen transition-colors", darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black")}>
@@ -2810,28 +2812,7 @@ export default function KanbanPage() {
         </div>
       )}
       
-      {/* Verificar recordatorios */}
-      {useEffect(() => {
-        const checkReminders = () => {
-          const now = new Date();
-          reminders.forEach(reminder => {
-            const reminderTime = new Date(reminder.time);
-            if (reminderTime <= now && reminderTime > new Date(now.getTime() - 60000)) {
-              const task = tasks.find(t => t.id === reminder.taskId);
-              addNotification(
-                'warning',
-                'Recordatorio',
-                reminder.message
-              );
-              // Remover recordatorio después de notificar
-              setReminders(prev => prev.filter(r => r.id !== reminder.id));
-            }
-          });
-        };
-        
-        const interval = setInterval(checkReminders, 30000); // Verificar cada 30 segundos
-        return () => clearInterval(interval);
-      }, [reminders, tasks, addNotification])}
+
       
       {/* Panel de búsqueda avanzada */}
       {showAdvancedSearch && (

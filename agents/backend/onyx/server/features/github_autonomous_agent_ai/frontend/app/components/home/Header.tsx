@@ -59,7 +59,7 @@ export function Header() {
   }, [menuOpen, closeMenu]);
 
   return (
-    <motion.header 
+    <motion.header
       className="relative z-10 bg-white"
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -67,8 +67,8 @@ export function Header() {
     >
       <div className="max-w-[1920px] mx-auto px-4 md:px-6 lg:px-8 py-3.5 md:py-4">
         <div className="flex items-center justify-between">
-          <motion.a 
-            href="/" 
+          <motion.a
+            href="/"
             className="flex items-center gap-2.5 text-base text-black hover:opacity-80 transition-opacity duration-200 ease-in-out no-underline font-normal leading-normal"
             aria-label="Home - bulk"
             whileHover={{ scale: 1.01 }}
@@ -77,7 +77,7 @@ export function Header() {
           >
             <Logo size="sm" showText={true} gradientId="gradient-header" />
           </motion.a>
-          
+
           <nav className="hidden md:flex items-center gap-7 lg:gap-8" aria-label="Main navigation">
             {NAV_ITEMS.map((item, index) => (
               <motion.button
@@ -87,8 +87,8 @@ export function Header() {
                 onClick={item.onClick}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  delay: index * 0.1, 
+                transition={{
+                  delay: index * 0.1,
                   duration: 0.3,
                   type: "spring",
                   stiffness: 300,
@@ -100,8 +100,8 @@ export function Header() {
                 {item.label}
               </motion.button>
             ))}
-            <motion.a 
-              href="#overview" 
+            <motion.a
+              href="#overview"
               className="text-black hover:opacity-70 transition-opacity duration-200 ease-in-out font-normal text-sm leading-normal focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded no-underline"
               aria-label="See overview"
               whileHover={{ opacity: 0.7 }}
@@ -110,22 +110,22 @@ export function Header() {
             >
               See overview
             </motion.a>
-            <motion.button 
-              className="bg-black text-white px-4 py-2 rounded-md hover:bg-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors duration-200 ease-in-out font-normal text-sm leading-normal flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
-              aria-label="Download bulk"
+            <motion.a
+              href="/agent-control"
+              className="bg-black text-white px-4 py-2 rounded-md hover:bg-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors duration-200 ease-in-out font-normal text-sm leading-normal flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap no-underline"
+              aria-label="Open Agent Control"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              type="button"
             >
-              Download
+              Agent Control
               <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </motion.button>
+            </motion.a>
           </nav>
 
-          <motion.button 
+          <motion.button
             ref={menuButtonRef}
             className={clsx(
               "md:hidden text-black hover:opacity-70 transition-opacity duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded",
@@ -151,7 +151,7 @@ export function Header() {
 
         <AnimatePresence>
           {menuOpen && (
-            <motion.nav 
+            <motion.nav
               ref={mobileMenuRef}
               id="mobile-menu"
               className="md:hidden mt-4 space-y-2 pb-4"
@@ -181,8 +181,8 @@ export function Header() {
               <div className="pt-2 pb-2 space-y-3 border-t border-gray-200 mt-2">
                 <div className="text-black text-sm font-normal">una ia que no para agentes que no paran</div>
                 <div className="text-black text-sm font-normal">Explora cómo bulk funciona para ti</div>
-                <a 
-                  href="#overview" 
+                <a
+                  href="#overview"
                   className="block text-black hover:opacity-70 underline transition-opacity duration-200 ease-in-out text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded"
                   onClick={closeMenu}
                   aria-label="See overview"
@@ -190,16 +190,16 @@ export function Header() {
                   See overview
                 </a>
               </div>
-              <motion.button 
-                className="block w-full text-left bg-black text-white px-4 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+              <motion.a
+                href="/agent-control"
+                className="block w-full text-center bg-black text-white px-4 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed no-underline"
                 onClick={closeMenu}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                type="button"
-                aria-label="Download bulk"
+                aria-label="Open Agent Control"
               >
-                Download
-              </motion.button>
+                Agent Control
+              </motion.a>
             </motion.nav>
           )}
         </AnimatePresence>

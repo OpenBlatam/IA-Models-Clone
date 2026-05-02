@@ -3,7 +3,7 @@ Configuration utilities for the entire optimization_core module.
 
 Provides utilities for loading, validating, and managing configuration.
 
-This module re-exports functionality from core.config_utils for backward compatibility.
+This module re-exports functionality from modules.base.core_system.core.config_utils for backward compatibility.
 New code should import directly from optimization_core.core.config_utils.
 """
 
@@ -322,4 +322,5 @@ __all__ = [
     'flatten_config',
     'unflatten_config',
 ]
+
 

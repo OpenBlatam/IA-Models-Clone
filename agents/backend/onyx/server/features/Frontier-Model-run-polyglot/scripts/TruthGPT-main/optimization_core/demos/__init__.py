@@ -62,3 +62,4 @@ def get_demo_info(demo_name: str) -> dict[str, any]:
         'available': demo_name in _import_cache or True,
     }
 
+

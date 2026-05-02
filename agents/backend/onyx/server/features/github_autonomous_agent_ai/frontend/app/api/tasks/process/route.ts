@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     const { taskId } = await validateRequest(request);
     const task = await findAndValidateTask(taskId);
     const processing = await loadProcessingSet();
-    
+
     if (await shouldSkipProcessing(taskId, task, processing)) {
       return NextResponse.json(
         { message: 'La tarea ya está siendo procesada' },
@@ -29,12 +29,12 @@ export async function POST(request: NextRequest) {
 
     await prepareTaskForProcessing(taskId, task, processing);
     const requestOrigin = extractRequestOrigin(request);
-    
+
     startBackgroundProcessing(taskId, task, requestOrigin);
-    
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Procesamiento iniciado en background' 
+
+    return NextResponse.json({
+      success: true,
+      message: 'Procesamiento iniciado en background'
     });
   } catch (error: any) {
     return handleProcessingError(error);
@@ -60,7 +60,7 @@ async function validateRequest(request: NextRequest): Promise<{ taskId: string }
  */
 async function findAndValidateTask(taskId: string): Promise<any> {
   const task = await taskStorage.findTask(taskId);
-  
+
   if (!task) {
     throw new Error('Tarea no encontrada');
   }
@@ -192,17 +192,81 @@ function startBackgroundProcessing(
  */
 function handleProcessingError(error: any): NextResponse {
   console.error('❌ [API] Error starting task processing:', error);
-  
+
   return NextResponse.json(
-    { 
-      error: 'Error al iniciar procesamiento', 
+    {
+      error: 'Error al iniciar procesamiento',
       details: error.message,
       name: error.name,
       stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     },
-    { status: error.message === 'Se requiere taskId' ? 400 : 
-             error.message === 'Tarea no encontrada' ? 404 : 500 }
+    {
+      status: error.message === 'Se requiere taskId' ? 400 :
+        error.message === 'Tarea no encontrada' ? 404 : 500
+    }
   );
+}
+
+/**
+ * Intentar delegar el procesamiento al backend unificado.
+ * Retorna true si el backend manejó la tarea, false para fallback local.
+ */
+async function tryBackendProcessing(taskId: string, task: any): Promise<boolean> {
+  const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8030';
+
+  try {
+    console.log(`🔄 [BACKEND-UNIFIED] Intentando delegar tarea ${taskId} al backend unificado (${backendUrl})...`);
+
+    // Verificar que el backend esté disponible
+    const healthResponse = await fetch(`${backendUrl}/health`, {
+      signal: AbortSignal.timeout(5000),
+    });
+
+    if (!healthResponse.ok) {
+      console.warn(`⚠️ [BACKEND-UNIFIED] Backend no saludable (${healthResponse.status}), usando fallback local`);
+      return false;
+    }
+
+    // Iniciar el agente si no está corriendo
+    await fetch(`${backendUrl}/api/v1/agent/start`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal: AbortSignal.timeout(5000),
+    });
+
+    // Crear o actualizar la tarea en el backend
+    const [owner, repo] = (task.repository || '').split('/');
+    if (owner && repo) {
+      try {
+        await fetch(`${backendUrl}/api/v1/tasks/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            repository_owner: owner,
+            repository_name: repo,
+            instruction: task.instruction,
+            metadata: {
+              frontendTaskId: taskId,
+              model: task.model || 'deepseek-chat',
+            },
+          }),
+          signal: AbortSignal.timeout(10000),
+        });
+        console.log(`✅ [BACKEND-UNIFIED] Tarea creada/delegada al backend unificado`);
+      } catch (createError: any) {
+        console.warn(`⚠️ [BACKEND-UNIFIED] Error creando tarea en backend (no-crítico):`, createError.message);
+      }
+    }
+
+    console.log(`✅ [BACKEND-UNIFIED] Backend disponible y agente iniciado`);
+    // El backend manejará el procesamiento, pero seguimos con el fallback local 
+    // para mantener la funcionalidad de streaming del frontend
+    return false; // Retornar false para usar también el procesamiento local de streaming
+
+  } catch (error: any) {
+    console.warn(`⚠️ [BACKEND-UNIFIED] Backend no disponible (${error.message}), usando procesamiento local`);
+    return false;
+  }
 }
 
 /**
@@ -211,7 +275,10 @@ function handleProcessingError(error: any): NextResponse {
 async function processTaskInBackground(taskId: string, task: any, requestOrigin?: string | null): Promise<void> {
   try {
     logProcessingStart(taskId, task);
-    
+
+    // Intentar delegar al backend unificado primero
+    await tryBackendProcessing(taskId, task);
+
     const baseUrl = resolveBaseUrl(requestOrigin);
     const model = task.model || 'deepseek-chat';
     const context = buildTaskContext(task);
@@ -238,11 +305,11 @@ function logProcessingStart(taskId: string, task: any): void {
  */
 function resolveBaseUrl(requestOrigin?: string | null): string {
   const baseUrl = requestOrigin || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
-  
+
   if (baseUrl.includes(':3000') && !baseUrl.includes('3001')) {
     console.warn(`⚠️ [BACKEND] La URL base usa el puerto 3000, pero debería usar 3001 para el frontend`);
   }
-  
+
   return baseUrl;
 }
 
@@ -275,11 +342,11 @@ async function processStreamWithMonitoring(
 ): Promise<void> {
   const abortController = new AbortController();
   const checkStopInterval = setupStopMonitoring(taskId, abortController, checkIfStopped);
-  
+
   try {
     const response = await fetchStreamResponse(apiEndpoint, task, context, model, abortController);
     await validateStreamResponse(response, apiEndpoint);
-    
+
     const reader = await getStreamReader(response);
     const { accumulatedContent, streamResult } = await processStreamContent(
       taskId,
@@ -287,7 +354,7 @@ async function processStreamWithMonitoring(
       checkIfStopped,
       abortController
     );
-    
+
     await handleStreamResult(taskId, task, accumulatedContent, streamResult, requestOrigin);
   } finally {
     clearInterval(checkStopInterval);
@@ -333,7 +400,7 @@ async function fetchStreamResponse(
   abortController: AbortController
 ): Promise<Response> {
   console.log(`📤 [BACKEND] Llamando a ${apiEndpoint}...`);
-  
+
   const fetchStartTime = Date.now();
   const response = await fetch(apiEndpoint, {
     method: 'POST',
@@ -346,10 +413,10 @@ async function fetchStreamResponse(
     }),
     signal: abortController.signal,
   });
-  
+
   const fetchTime = Date.now() - fetchStartTime;
   console.log(`📥 [BACKEND] Respuesta recibida en ${fetchTime}ms: ${response.status} ${response.statusText}`);
-  
+
   return response;
 }
 
@@ -363,21 +430,21 @@ async function validateStreamResponse(
   const contentType = response.headers.get('content-type');
   const isStream = contentType?.includes('text/event-stream') || contentType?.includes('stream');
   const isJson = contentType?.includes('application/json');
-  
+
   if (!response.ok) {
     const errorText = await extractErrorFromResponse(response, isJson);
     throw new Error(`Error en API de DeepSeek: ${response.statusText} - ${errorText}`);
   }
-  
+
   if (isJson && !isStream) {
     const errorMessage = await extractJsonError(response, apiEndpoint);
     throw new Error(`Error: ${errorMessage}. El endpoint debería devolver un stream, no JSON. Verifica que la URL ${apiEndpoint} sea correcta y que el servidor esté corriendo.`);
   }
-  
+
   if (!response.body) {
     throw new Error('La respuesta del stream no tiene body');
   }
-  
+
   if (!isStream) {
     console.warn(`⚠️ [BACKEND] Content-Type inesperado: ${contentType}`);
   }
@@ -443,7 +510,7 @@ async function processStreamContent(
   let accumulatedContent = '';
   const contentRef = { value: '' };
   const progressInterval = setupProgressMonitoring(taskId, () => accumulatedContent, abortController);
-  
+
   try {
     const streamResult = await processStream({
       taskId,
@@ -458,11 +525,11 @@ async function processStreamContent(
       checkStopped: checkIfStopped,
       minContentLength: 500,
     });
-    
+
     if (contentRef.value.length > accumulatedContent.length) {
       accumulatedContent = contentRef.value;
     }
-    
+
     return { accumulatedContent, streamResult };
   } finally {
     clearInterval(progressInterval);
@@ -478,24 +545,24 @@ function setupProgressMonitoring(
   abortController: AbortController
 ): NodeJS.Timeout {
   let lastUpdate = Date.now();
-  
+
   return setInterval(async () => {
     const now = Date.now();
     const accumulatedContent = getContent();
-    
+
     if (now - lastUpdate > 2000 && accumulatedContent.length > 0) {
       try {
         const currentTask = await taskStorage.findTask(taskId);
         if (!currentTask) {
           return;
         }
-        
+
         if (currentTask.status === 'stopped') {
           console.log(`🛑 [BACKEND] Tarea ${taskId} fue detenida durante actualización de progreso`);
           abortController.abort();
           return;
         }
-        
+
         await taskStorage.updateTask(taskId, {
           streamingContent: accumulatedContent,
           status: 'processing',
@@ -521,14 +588,14 @@ async function handleStreamResult(
   requestOrigin?: string | null
 ): Promise<void> {
   console.log(`📊 [BACKEND] Stream procesado: ${accumulatedContent.length} caracteres, ${streamResult.chunksReceived} chunks, éxito: ${streamResult.success}`);
-  
+
   if (!streamResult.success) {
     await handleUnsuccessfulStream(taskId, accumulatedContent, streamResult);
     return;
   }
 
   const finalContentLength = Math.max(accumulatedContent.length, streamResult.contentLength);
-  
+
   if (finalContentLength < 500) {
     await handleInsufficientContent(taskId, task, accumulatedContent);
     return;
@@ -536,7 +603,7 @@ async function handleStreamResult(
 
   await saveFinalProgress(taskId, accumulatedContent);
   await processStreamResult(taskId, task, accumulatedContent);
-  
+
   const finalTaskState = await taskStorage.findTask(taskId);
   await handleTaskProcessingCompletion(taskId, finalTaskState, requestOrigin);
 }
@@ -551,13 +618,13 @@ async function handleUnsuccessfulStream(
 ): Promise<void> {
   console.error(`❌ [BACKEND] Stream no fue exitoso para tarea ${taskId}`);
   console.error(`❌ [BACKEND] Razón: ${streamResult.error || 'Contenido insuficiente'}`);
-  
+
   const currentTask = await taskStorage.findTask(taskId);
   if (currentTask?.status === 'stopped') {
     await cleanupProcessingOnStop(taskId);
     return;
   }
-  
+
   if (streamResult.error && accumulatedContent.length < 500) {
     await taskStorage.updateTask(taskId, {
       status: 'failed',
@@ -575,7 +642,7 @@ async function saveFinalProgress(taskId: string, accumulatedContent: string): Pr
   if (accumulatedContent.length === 0) {
     return;
   }
-  
+
   try {
     const currentTask = await taskStorage.findTask(taskId);
     if (currentTask && currentTask.status !== 'stopped') {
@@ -604,7 +671,7 @@ async function handleProcessingError(taskId: string, error: any): Promise<void> 
   }
 
   const isCriticalError = isCriticalProcessingError(error);
-  
+
   if (isCriticalError) {
     await taskStorage.updateTask(taskId, {
       status: 'failed',
@@ -624,10 +691,10 @@ async function handleProcessingError(taskId: string, error: any): Promise<void> 
  * Determina si un error es crítico
  */
 function isCriticalProcessingError(error: any): boolean {
-  return error.name === 'TypeError' || 
-         error.message?.includes('fetch failed') ||
-         error.message?.includes('network') ||
-         error.message?.includes('timeout');
+  return error.name === 'TypeError' ||
+    error.message?.includes('fetch failed') ||
+    error.message?.includes('network') ||
+    error.message?.includes('timeout');
 }
 
 /**
@@ -714,13 +781,13 @@ async function scheduleProcessingRestart(
   setTimeout(async () => {
     try {
       const checkTask = await taskStorage.findTask(taskId);
-      
+
       if (!shouldRestartProcessing(checkTask)) {
         return;
       }
 
       console.log(`🔄 [BACKEND] Reiniciando procesamiento para tarea ${taskId}...`);
-      
+
       // Reiniciar procesamiento llamando a processTaskInBackground nuevamente
       await processTaskInBackground(taskId, checkTask, requestOrigin);
     } catch (error: any) {
@@ -752,7 +819,7 @@ async function handleInsufficientContent(
   accumulatedContent: string
 ): Promise<void> {
   console.log(`🔄 [BACKEND] Reintentando procesamiento de tarea ${taskId}...`);
-  
+
   await taskStorage.updateTask(taskId, {
     status: 'processing',
     streamingContent: accumulatedContent,
@@ -805,7 +872,7 @@ async function processStreamResult(
   try {
     const cleanContent = accumulatedContent.trim();
     console.log(`📝 [BACKEND] Contenido limpio: ${cleanContent.length} caracteres`);
-    
+
     // Intentar extraer JSON del contenido
     const jsonMatch = extractPartialJSON(cleanContent);
     if (jsonMatch) {
@@ -841,7 +908,7 @@ async function processStreamResult(
 
   // IMPORTANTE: Asegurar que el plan esté completamente procesado antes de cambiar el status
   // El status se mantiene en 'processing' hasta que TODO esté listo
-  
+
   // Verificar si la tarea fue detenida antes de procesar el plan
   const taskBeforePlan = await taskStorage.findTask(taskId);
   if (taskBeforePlan?.status === 'stopped') {
@@ -866,7 +933,7 @@ async function processStreamResult(
       filesToCreate: plan.files_to_create?.length || 0,
       filesToModify: plan.files_to_modify?.length || 0,
     });
-    
+
     try {
       console.log(`🔄 [BACKEND] Preparando acciones del plan...`);
       actions = githubExecutor.prepareActionsFromPlan(plan);
@@ -874,7 +941,7 @@ async function processStreamResult(
 
       console.log(`✅ [BACKEND] Plan completamente procesado: ${actions.length} acciones preparadas`);
       console.log(`✅ [BACKEND] Commit message: ${finalCommitMessage.substring(0, 100)}...`);
-      
+
       // Verificar nuevamente si fue detenida antes de cambiar el status
       const taskBeforeStatusChange = await taskStorage.findTask(taskId);
       if (taskBeforeStatusChange?.status === 'stopped') {
@@ -913,7 +980,7 @@ async function processStreamResult(
           actions: actions,
         },
       });
-      
+
       console.log(`✅ [BACKEND] Tarea ${taskId} lista para aprobación (${actions.length} acciones)`);
       console.log(`✅ [BACKEND] El usuario ahora puede ver el plan y decidir si aprobar o rechazar`);
     } catch (planError: any) {
@@ -939,7 +1006,7 @@ async function processStreamResult(
     console.log(`ℹ️ [BACKEND] Tarea ${taskId} completada sin plan de archivos`);
     console.log(`🔄 [BACKEND] Manteniendo status en 'processing' - NO se detiene automáticamente`);
     console.log(`🔄 [BACKEND] La tarea continuará procesando hasta que el usuario presione pausa`);
-    
+
     // NO cambiar a 'completed' - mantener en 'processing' para que continúe
     // Solo actualizar el contenido y resultado, pero mantener el status activo
     await taskStorage.updateTask(taskId, {
@@ -951,10 +1018,10 @@ async function processStreamResult(
         code: code,
       },
     });
-    
+
     console.log(`✅ [BACKEND] Tarea ${taskId} actualizada con contenido - continúa en 'processing'`);
     console.log(`✅ [BACKEND] El usuario puede presionar pausa cuando desee detenerla`);
   }
-  
+
   console.log(`✅ [BACKEND] Procesamiento de resultado completado para tarea ${taskId}`);
 }

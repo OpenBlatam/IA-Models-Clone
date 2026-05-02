@@ -2,12 +2,13 @@
 Optimization Profiles for Different Use Cases
 """
 
-from dataclasses import dataclass
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Dict, Any
 
-@dataclass
-class OptimizationProfile:
+class OptimizationProfile(BaseModel):
     """Optimization profile configuration."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     name: str
     memory_optimizations: Dict[str, Any]
     computational_optimizations: Dict[str, Any]
@@ -89,7 +90,7 @@ def apply_optimization_profile(model, profile_name: str = 'balanced'):
     profile = profiles[profile_name]
     
     from .memory_optimizations import create_memory_optimizer
-    from .computational_optimizations import create_computational_optimizer
+    from ..optimizers.techniques.computational_optimizations import create_computational_optimizer
     
     memory_optimizer = create_memory_optimizer(profile.memory_optimizations)
     computational_optimizer = create_computational_optimizer(profile.computational_optimizations)
@@ -98,3 +99,4 @@ def apply_optimization_profile(model, profile_name: str = 'balanced'):
     model = computational_optimizer.optimize_model(model)
     
     return model, profile
+

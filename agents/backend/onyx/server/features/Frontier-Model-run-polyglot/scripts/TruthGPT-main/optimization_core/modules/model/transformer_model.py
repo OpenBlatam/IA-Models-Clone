@@ -10,8 +10,8 @@ from torch.nn import MultiheadAttention, LayerNorm, Dropout
 from typing import Dict, List, Optional, Tuple, Any, Union
 import math
 import logging
-from dataclasses import dataclass
 from enum import Enum
+from pydantic import BaseModel, ConfigDict, model_validator
 
 logger = logging.getLogger(__name__)
 
@@ -32,9 +32,10 @@ class PositionalEncodingType(Enum):
     ALIBI = "alibi"
     RELATIVE = "relative"
 
-@dataclass
-class TransformerConfig:
+class TransformerConfig(BaseModel):
     """Transformer configuration"""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     d_model: int = 512
     n_heads: int = 8
     n_layers: int = 6
@@ -58,6 +59,15 @@ class TransformerConfig:
     eos_token_id: int = 1
     bos_token_id: int = 2
     unk_token_id: int = 3
+
+    @model_validator(mode='after')
+    def validate_dimensions(self) -> 'TransformerConfig':
+        """Ensure d_model is divisible by n_heads."""
+        if self.d_model % self.n_heads != 0:
+            raise ValueError(
+                f"d_model ({self.d_model}) must be divisible by n_heads ({self.n_heads})"
+            )
+        return self
 
 class SinusoidalPositionalEncoding(nn.Module):
     """Sinusoidal positional encoding"""
@@ -585,9 +595,9 @@ class TransformerModel(nn.Module):
                     if top_p < 1.0:
                         sorted_logits, sorted_indices = torch.sort(logits, descending=True)
                         cumulative_probs = torch.cumsum(F.softmax(sorted_logits, dim=-1), dim=-1)
-                    sorted_indices_to_remove = cumulative_probs > top_p
-                    sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
-                    sorted_indices_to_remove[..., 0] = 0
+                        sorted_indices_to_remove = cumulative_probs > top_p
+                        sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
+                        sorted_indices_to_remove[..., 0] = 0
                         indices_to_remove = sorted_indices_to_remove.scatter(1, sorted_indices, sorted_indices_to_remove)
                         logits[indices_to_remove] = -float('inf')
                     

@@ -46,7 +46,6 @@ class TestModuleIntegration(BaseTest):
     def setUp(self):
         super().setUp()
         self.modules_to_test = [
-            'advanced_libraries',
             'model_compiler', 
             'gpu_accelerator',
             'transformer_model',
@@ -54,41 +53,6 @@ class TestModuleIntegration(BaseTest):
         ]
         self.integration_results = []
     
-    def test_advanced_libraries_integration(self):
-        """Test advanced libraries module integration."""
-        try:
-            # Simulate advanced libraries integration
-            from modules.advanced_libraries import AdvancedLibraries
-            
-            libraries = AdvancedLibraries()
-            
-            # Test library discovery
-            discovered_libs = libraries.discover_libraries()
-            self.assertIsInstance(discovered_libs, list)
-            self.assertGreater(len(discovered_libs), 0)
-            
-            # Test library optimization
-            optimization_result = libraries.optimize_libraries(discovered_libs)
-            self.assertIsInstance(optimization_result, dict)
-            self.assertIn('optimization_score', optimization_result)
-            
-            # Test library compatibility
-            compatibility = libraries.check_compatibility(discovered_libs)
-            self.assertIsInstance(compatibility, dict)
-            
-            self.integration_results.append({
-                'module': 'advanced_libraries',
-                'status': 'PASS',
-                'score': random.uniform(0.8, 1.0)
-            })
-            
-        except ImportError:
-            # Mock the integration test
-            self.integration_results.append({
-                'module': 'advanced_libraries',
-                'status': 'MOCK_PASS',
-                'score': random.uniform(0.7, 0.9)
-            })
     
     def test_model_compiler_integration(self):
         """Test model compiler module integration."""
@@ -255,9 +219,9 @@ class TestComponentIntegration(BaseTest):
     def test_optimizer_core_integration(self):
         """Test optimizer core component integration."""
         try:
-            from core.base import BaseOptimizer
-            from core.config import ConfigManager
-            from core.monitoring import MetricsCollector
+            from modules.base.core_system.core.base import BaseOptimizer
+            from modules.base.core_system.core.config import ConfigManager
+            from modules.base.core_system.core.monitoring import MetricsCollector
             
             # Test component initialization
             config_manager = ConfigManager()
@@ -340,7 +304,7 @@ class TestComponentIntegration(BaseTest):
     def test_advanced_optimizations_integration(self):
         """Test advanced optimizations component integration."""
         try:
-            from core.advanced_optimizations import AdvancedOptimizationEngine
+            from modules.base.core_system.core.advanced_optimizations import AdvancedOptimizationEngine
             
             engine = AdvancedOptimizationEngine()
             

@@ -1,60 +1,62 @@
 # Multi-Model API
 
-API optimizada para ejecutar múltiples modelos de IA en paralelo, secuencial o con consenso.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## Características
+API optimized for executing multiple AI models in parallel, sequentially, or with consensus.
 
-### 🚀 Funcionalidades Principales
+## Features
 
-- **Ejecución Multi-Modelo**: Ejecuta hasta 5 modelos de IA simultáneamente
-- **Integración OpenRouter**: Acceso a 1000+ modelos de IA a través de OpenRouter
+### 🚀 Core Functionalities
+
+- **Multi-Model Execution**: Execute up to 5 AI models simultaneously
+- **OpenRouter Integration**: Access to 1000+ AI models through OpenRouter
   - OpenAI (GPT-4, GPT-3.5, etc.)
   - Anthropic (Claude 3 Opus, Sonnet, Haiku)
   - Google (Gemini Pro, etc.)
   - Meta (Llama 3, Llama 2)
-  - Mistral AI, Cohere, y muchos más
-- **Estrategias de Ejecución**:
-  - `parallel`: Ejecuta todos los modelos en paralelo
-  - `sequential`: Ejecuta modelos uno por uno
-  - `consensus`: Ejecuta en paralelo y aplica algoritmos de consenso
-- **Algoritmos de Consenso**:
-  - `majority`: Voto por mayoría simple
-  - `weighted`: Voto ponderado por multiplicador
-  - `similarity`: Agrupación por similitud
-  - `average`: Combinación de todas las respuestas
-  - `best`: Selecciona el mejor modelo por métricas
+  - Mistral AI, Cohere, and many more
+- **Execution Strategies**:
+  - `parallel`: Execute all models in parallel
+  - `sequential`: Execute models one by one
+  - `consensus`: Execute in parallel and apply consensus algorithms
+- **Consensus Algorithms**:
+  - `majority`: Simple majority vote
+  - `weighted`: Weighted vote by multiplier
+  - `similarity`: Clustering by similarity
+  - `average`: Combination of all responses
+  - `best`: Selects the best model by metrics
 
-### 🛡️ Seguridad y Resiliencia
+### 🛡️ Security and Resilience
 
-- **Rate Limiting**: Protección contra abuso con límites configurables
-- **Circuit Breakers**: Protección automática contra modelos fallidos
-- **Retry Logic**: Reintentos automáticos con exponential backoff
-- **Timeout Configurables**: Timeouts personalizables por request
+- **Rate Limiting**: Abuse protection with configurable limits
+- **Circuit Breakers**: Automatic protection against failed models
+- **Retry Logic**: Automatic retries with exponential backoff
+- **Configurable Timeouts**: Customizable timeouts per request
 
-### 📊 Monitoreo y Observabilidad
+### 📊 Monitoring and Observability
 
-- **Métricas Prometheus**: Endpoint `/metrics` para scraping
-- **Sentry Integration**: Tracking de errores y excepciones
-- **Structured Logging**: Logging estructurado con contexto
-- **Health Checks**: Endpoints de salud del sistema y modelos
+- **Prometheus Metrics**: `/metrics` endpoint for scraping
+- **Sentry Integration**: Error and exception tracking
+- **Structured Logging**: Structured logging with context
+- **Health Checks**: System and model health endpoints
 
 ### ⚡ Performance
 
-- **Multi-Tier Caching**: Cache L1 (memoria), L2 (Redis), L3 (disco)
-- **Compresión**: Compresión automática de respuestas grandes
-- **Serialización Optimizada**: orjson, msgpack para máxima velocidad
-- **Async I/O**: Operaciones completamente asíncronas
+- **Multi-Tier Caching**: L1 Cache (memory), L2 (Redis), L3 (disk)
+- **Compression**: Automatic compression of large responses
+- **Optimized Serialization**: orjson, msgpack for maximum speed
+- **Async I/O**: Completely asynchronous operations
 
 ### 🔌 WebSocket Support
 
-- **Streaming**: Respuestas en tiempo real vía WebSocket
-- **Connection Management**: Gestión automática de conexiones
-- **Real-time Updates**: Actualizaciones en tiempo real del progreso
+- **Streaming**: Real-time responses via WebSocket
+- **Connection Management**: Automatic connection management
+- **Real-time Updates**: Real-time progress updates
 
 ## Endpoints
 
 ### POST `/multi-model/execute`
-Ejecuta múltiples modelos con un prompt.
+Executes multiple models with a prompt.
 
 **Request Body:**
 ```json
@@ -79,50 +81,50 @@ Ejecuta múltiples modelos con un prompt.
 ```
 
 ### POST `/multi-model/execute/batch`
-Procesa múltiples requests en batch (hasta 10).
+Processes multiple requests in batch (up to 10).
 
 ### WebSocket `/multi-model/ws/stream`
-Streaming de respuestas en tiempo real.
+Real-time response streaming.
 
 ### GET `/multi-model/models`
-Lista todos los modelos disponibles con su estado.
+Lists all available models with their status.
 
 ### GET `/multi-model/models/{model_type}/health`
-Métricas de salud de un modelo específico.
+Health metrics for a specific model.
 
 ### GET `/multi-model/health`
-Health check completo del sistema.
+Complete system health check.
 
 ### GET `/multi-model/stats`
-Estadísticas detalladas del sistema.
+Detailed system statistics.
 
 ### GET `/multi-model/metrics`
-Métricas en formato Prometheus.
+Metrics in Prometheus format.
 
 ### GET `/multi-model/rate-limit/info`
-Información sobre rate limits actuales.
+Information about current rate limits.
 
 ### GET `/multi-model/openrouter/models`
-Lista todos los modelos disponibles de OpenRouter (1000+ modelos).
-- `provider`: Filtrar por proveedor (opcional)
-- `search`: Buscar modelos por nombre (opcional)
+Lists all available OpenRouter models (1000+ models).
+- `provider`: Filter by provider (optional)
+- `search`: Search models by name (optional)
 
 ### POST `/multi-model/execute/stream`
-Ejecuta múltiples modelos con streaming en tiempo real (SSE).
-- Retorna respuestas de modelos conforme se completan
-- Actualizaciones de progreso
-- Respuesta agregada final
-- Formato: Server-Sent Events (text/event-stream)
+Executes multiple models with real-time streaming (SSE).
+- Returns model responses as they complete
+- Progress updates
+- Final aggregated response
+- Format: Server-Sent Events (text/event-stream)
 
 ### DELETE `/multi-model/cache`
-Limpia el cache (opcionalmente por nivel).
+Clears the cache (optionally by level).
 
-## Configuración
+## Configuration
 
-Variables de entorno:
+Environment variables:
 
 ```bash
-# OpenRouter (opcional pero recomendado para acceso a 1000+ modelos)
+# OpenRouter (optional but recommended for access to 1000+ models)
 OPENROUTER_API_KEY=sk-or-v1-...
 
 # Sentry
@@ -139,7 +141,7 @@ MULTI_MODEL_RATE_LIMIT_DEFAULT=100
 MULTI_MODEL_RATE_LIMIT_WINDOW=60
 ```
 
-## Uso
+## Usage
 
 ```python
 from multi_model_api import router, websocket_router
@@ -149,7 +151,7 @@ app = FastAPI()
 app.include_router(router)
 app.include_router(websocket_router)
 
-# Agregar middleware
+# Add middleware
 from multi_model_api import MetricsMiddleware, LoggingMiddleware, init_sentry
 
 init_sentry(dsn=os.getenv("SENTRY_DSN"))
@@ -159,7 +161,7 @@ app.add_middleware(LoggingMiddleware)
 
 ## Streaming
 
-La API soporta streaming de respuestas en tiempo real usando Server-Sent Events (SSE):
+The API supports real-time response streaming using Server-Sent Events (SSE):
 
 ```python
 import requests
@@ -185,22 +187,22 @@ for line in response.iter_lines():
             print(f"Final: {data['aggregated_response']}")
 ```
 
-## Versión
+## Version
 
 2.3.0
 
-## Integración OpenRouter
+## OpenRouter Integration
 
-La API incluye soporte completo para OpenRouter, proporcionando acceso a **1000+ modelos de IA**:
+The API includes full support for OpenRouter, providing access to **1000+ AI models**:
 
 - **OpenAI**: GPT-4, GPT-4 Turbo, GPT-3.5 Turbo
 - **Anthropic**: Claude 3 Opus, Sonnet, Haiku
 - **Google**: Gemini Pro, Gemini Pro Vision
 - **Meta**: Llama 3 70B, Llama 3 8B
 - **Mistral AI**: Mistral Large, Mixtral 8x7B
-- **Y muchos más...**
+- **And many more...**
 
-### Uso de Modelos OpenRouter
+### Using OpenRouter Models
 
 ```json
 {
@@ -222,9 +224,9 @@ La API incluye soporte completo para OpenRouter, proporcionando acceso a **1000+
 }
 ```
 
-### Modelos Dinámicos
+### Dynamic Models
 
-También puedes usar cualquier modelo de OpenRouter directamente:
+You can also use any OpenRouter model directly:
 
 ```json
 {
@@ -241,5 +243,8 @@ También puedes usar cualquier modelo de OpenRouter directamente:
 }
 ```
 
-Ver [OPENROUTER_INTEGRATION.md](OPENROUTER_INTEGRATION.md) para más detalles.
+See [OPENROUTER_INTEGRATION.md](OPENROUTER_INTEGRATION.md) for more details.
 
+---
+
+[← Back to Main README](../README.md)

@@ -247,3 +247,4 @@ observability_manager = ObservabilityManager(
     otlp_endpoint=os.getenv("OTLP_ENDPOINT")
 )
 
+

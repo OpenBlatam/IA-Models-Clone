@@ -21,7 +21,10 @@ import math
 import numpy as np
 import logging
 
-from ..core.paper_base import BasePaperModule, BasePaperConfig
+try:
+    from ..core.paper_base import BasePaperModule, BasePaperConfig
+except (ImportError, ValueError):
+    from paper_base import BasePaperModule, BasePaperConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -266,5 +269,6 @@ if __name__ == "__main__":
     print(f"✅ LongRoPE2 test:")
     print(f"   Output shape: {output.shape}")
     print(f"   Evolutionary optimized: {metadata['evolutionary_optimized']}")
+
 
 

@@ -9,6 +9,7 @@ import numpy as np
 import logging
 from typing import Dict, Any, List, Optional, Tuple, Union, Callable
 from dataclasses import dataclass, field
+from pydantic import Field
 from contextlib import contextmanager
 import time
 from pathlib import Path
@@ -19,8 +20,10 @@ from enum import Enum
 
 logger = logging.getLogger(__name__)
 
-@dataclass
-class TruthGPTMetrics:
+from .base import BaseOptimizationModel, system_metrics_collector
+
+
+class TruthGPTMetrics(BaseOptimizationModel):
     """TruthGPT metrics container."""
     # Performance metrics
     inference_time: float = 0.0
@@ -49,33 +52,9 @@ class TruthGPTMetrics:
     temperature: float = 0.0
     
     # Metadata
-    timestamp: float = field(default_factory=time.time)
+    timestamp: float = Field(default_factory=time.time)
     model_name: str = "truthgpt"
     device: str = "cpu"
-    
-    def to_dict(self) -> Dict[str, Any]:
-        """Convert to dictionary for serialization."""
-        return {
-            'inference_time': self.inference_time,
-            'throughput': self.throughput,
-            'latency': self.latency,
-            'memory_used_mb': self.memory_used_mb,
-            'memory_peak_mb': self.memory_peak_mb,
-            'gpu_memory_used_mb': self.gpu_memory_used_mb,
-            'gpu_memory_peak_mb': self.gpu_memory_peak_mb,
-            'model_size_mb': self.model_size_mb,
-            'parameter_count': self.parameter_count,
-            'trainable_parameters': self.trainable_parameters,
-            'accuracy': self.accuracy,
-            'loss': self.loss,
-            'perplexity': self.perplexity,
-            'cpu_usage': self.cpu_usage,
-            'gpu_utilization': self.gpu_utilization,
-            'temperature': self.temperature,
-            'timestamp': self.timestamp,
-            'model_name': self.model_name,
-            'device': self.device
-        }
 
 class TruthGPTMonitor:
     """TruthGPT monitoring utilities."""
@@ -131,10 +110,8 @@ class TruthGPTMonitor:
     
     def _collect_metrics(self) -> TruthGPTMetrics:
         """Collect TruthGPT metrics."""
-        # System metrics
-        import psutil
-        cpu_usage = psutil.cpu_percent(interval=0.1)
-        memory = psutil.virtual_memory()
+        # Use helper for standardized system metrics
+        sys_metrics = system_metrics_collector()
         
         # GPU metrics
         gpu_utilization = 0.0
@@ -149,11 +126,11 @@ class TruthGPTMonitor:
                 gpu_utilization = torch.cuda.utilization()
         
         return TruthGPTMetrics(
-            memory_used_mb=memory.used / (1024 * 1024),
-            memory_peak_mb=memory.used / (1024 * 1024),
+            memory_used_mb=sys_metrics["memory_used_gb"] * 1024,
+            memory_peak_mb=sys_metrics["memory_used_gb"] * 1024,
             gpu_memory_used_mb=gpu_memory_used,
             gpu_memory_peak_mb=gpu_memory_peak,
-            cpu_usage=cpu_usage,
+            cpu_usage=sys_metrics["cpu_percent"],
             gpu_utilization=gpu_utilization,
             temperature=temperature,
             model_name=self.model_name,
@@ -219,7 +196,7 @@ class TruthGPTMonitor:
     
     def save_metrics(self, filepath: str) -> None:
         """Save metrics to file."""
-        metrics_data = [metrics.to_dict() for metrics in self.metrics_history]
+        metrics_data = [metrics.model_dump() for metrics in self.metrics_history]
         with open(filepath, 'w') as f:
             json.dump(metrics_data, f, indent=2)
         self.logger.info(f"📊 Metrics saved to {filepath}")
@@ -436,9 +413,9 @@ class TruthGPTDashboard:
         dashboard_data = {
             'timestamp': time.time(),
             'model_name': self.monitor.model_name,
-            'latest_metrics': latest_metrics.to_dict() if latest_metrics else {},
+            'latest_metrics': latest_metrics.model_dump() if latest_metrics else {},
             'analytics_report': analytics_report,
-            'metrics_history': [m.to_dict() for m in self.monitor.metrics_history[-100:]],  # Last 100 metrics
+            'metrics_history': [m.model_dump() for m in self.monitor.metrics_history[-100:]],  # Last 100 metrics
             'summary': self._generate_dashboard_summary(latest_metrics, analytics_report)
         }
         

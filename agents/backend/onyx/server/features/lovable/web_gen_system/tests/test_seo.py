@@ -1,6 +1,6 @@
 import unittest
 from bs4 import BeautifulSoup
-from agents.backend.onyx.server.features.lovable.web_gen_system.seo import SEOOptimizer
+from ..seo import SEOOptimizer
 
 class TestSEOOptimizer(unittest.TestCase):
     def setUp(self):

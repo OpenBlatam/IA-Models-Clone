@@ -1,47 +1,49 @@
 # 🚀 OS Content System
 
-**Sistema avanzado de generación y gestión de contenido con IA, optimizado para alto rendimiento y escalabilidad.**
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 📋 Tabla de Contenidos
+**Advanced content generation and management system with AI, optimized for high performance and scalability.**
 
-- [Características](#-características)
-- [Arquitectura](#-arquitectura)
-- [Instalación](#-instalación)
-- [Configuración](#-configuración)
-- [Uso](#-uso)
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Architecture](#-architecture)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
 - [API](#-api)
 - [Testing](#-testing)
-- [Despliegue](#-despliegue)
-- [Contribución](#-contribución)
-- [Licencia](#-licencia)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-## ✨ Características
+## ✨ Features
 
-### 🎯 **Funcionalidades Principales**
-- **Generación de Contenido con IA**: Integración con modelos avanzados de lenguaje
-- **Procesamiento de Video**: Pipeline optimizado para generación y edición de video
-- **Sistema de Matemáticas**: Plataforma unificada para cálculos y análisis matemático
-- **Procesamiento de Audio**: Generación y manipulación de audio con IA
-- **API RESTful**: Interfaz completa con documentación automática
+### 🎯 **Key Functionalities**
+- **AI Content Generation**: Integration with advanced language models
+- **Video Processing**: Optimized pipeline for video generation and editing
+- **Math System**: Unified platform for mathematical calculations and analysis
+- **Audio Processing**: AI audio generation and manipulation
+- **RESTful API**: Complete interface with automatic documentation
 
-### 🚀 **Características Técnicas**
-- **Arquitectura Limpia**: Implementación de Clean Architecture y SOLID principles
-- **Procesamiento Asíncrono**: Manejo eficiente de tareas concurrentes
-- **Sistema de Caché Multi-nivel**: L1 (memoria), L2 (Redis), L3 (disco)
-- **Monitoreo Avanzado**: Métricas en tiempo real con Prometheus y Grafana
-- **Logging Estructurado**: Sistema de logs con contexto y análisis de rendimiento
-- **Testing Automatizado**: Suite completo de pruebas unitarias e integración
+### 🚀 **Technical Features**
+- **Clean Architecture**: Implementation of Clean Architecture and SOLID principles
+- **Asynchronous Processing**: Efficient handling of concurrent tasks
+- **Multi-Level Cache System**: L1 (memory), L2 (Redis), L3 (disk)
+- **Advanced Monitoring**: Real-time metrics with Prometheus and Grafana
+- **Structured Logging**: Logging system with context and performance analysis
+- **Automated Testing**: Complete suite of unit and integration tests
 
-### 🔧 **Optimizaciones de Rendimiento**
-- **GPU Acceleration**: Soporte para CUDA y optimizaciones de hardware
-- **Compresión Inteligente**: Múltiples algoritmos de compresión (ZSTD, LZ4, Brotli)
-- **Load Balancing**: Distribución inteligente de carga
-- **CDN Integration**: Gestión de contenido distribuido
-- **Memory Management**: Gestión automática de memoria y limpieza
+### 🔧 **Performance Optimizations**
+- **GPU Acceleration**: Support for CUDA and hardware optimizations
+- **Intelligent Compression**: Multiple compression algorithms (ZSTD, LZ4, Brotli)
+- **Load Balancing**: Intelligent load distribution
+- **CDN Integration**: Distributed content management
+- **Memory Management**: Automatic memory management and cleanup
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
-### **Diagrama de Arquitectura**
+### **Architecture Diagram**
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Frontend Layer                           │
@@ -62,85 +64,85 @@
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### **Componentes Principales**
+### **Core Components**
 
 #### **1. Core Services**
-- **ContentGenerator**: Generación inteligente de contenido
-- **MediaProcessor**: Procesamiento de audio y video
-- **MathEngine**: Motor matemático unificado
-- **NLPService**: Procesamiento de lenguaje natural
+- **ContentGenerator**: Intelligent content generation
+- **MediaProcessor**: Audio and video processing
+- **MathEngine**: Unified math engine
+- **NLPService**: Natural language processing
 
 #### **2. Infrastructure**
-- **CacheManager**: Gestión de caché multi-nivel
-- **AsyncProcessor**: Procesamiento asíncrono de tareas
-- **LoadBalancer**: Balanceo de carga inteligente
-- **PerformanceMonitor**: Monitoreo de rendimiento
+- **CacheManager**: Multi-level cache management
+- **AsyncProcessor**: Asynchronous task processing
+- **LoadBalancer**: Intelligent load balancing
+- **PerformanceMonitor**: Performance monitoring
 
 #### **3. Data Layer**
-- **PostgreSQL**: Base de datos principal
-- **Redis**: Caché y sesiones
-- **Elasticsearch**: Búsqueda y análisis
-- **MongoDB**: Almacenamiento de documentos
+- **PostgreSQL**: Main database
+- **Redis**: Cache and sessions
+- **Elasticsearch**: Search and analysis
+- **MongoDB**: Document storage
 
-## 🛠️ Instalación
+## 🛠️ Installation
 
-### **Requisitos del Sistema**
-- **Python**: 3.8 o superior
-- **RAM**: Mínimo 8GB, recomendado 16GB+
-- **GPU**: Opcional, NVIDIA CUDA compatible
-- **Sistema**: Linux, macOS, o Windows 10+
+### **System Requirements**
+- **Python**: 3.8 or higher
+- **RAM**: Minimum 8GB, recommended 16GB+
+- **GPU**: Optional, NVIDIA CUDA compatible
+- **System**: Linux, macOS, or Windows 10+
 
-### **Instalación Rápida**
+### **Quick Install**
 
-#### **1. Clonar el Repositorio**
+#### **1. Clone Repository**
 ```bash
 git clone <repository-url>
 cd os-content-system
 ```
 
-#### **2. Ejecutar Setup Automático**
+#### **2. Run Automatic Setup**
 ```bash
-# Setup completo con tests
+# Full setup with tests
 python setup.py
 
-# Setup sin tests (más rápido)
+# Setup without tests (faster)
 python setup.py --skip-tests
 ```
 
-#### **3. Configuración Manual (Alternativa)**
+#### **3. Manual Configuration (Alternative)**
 ```bash
-# Crear entorno virtual
+# Create virtual environment
 python -m venv venv
 
-# Activar entorno virtual
+# Activate virtual environment
 # Windows
 venv\Scripts\activate
 # Unix/Linux/macOS
 source venv/bin/activate
 
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Configurar variables de entorno
+# Configure environment variables
 cp env.example .env
-# Editar .env con tus configuraciones
+# Edit .env with your configurations
 ```
 
-### **Verificación de Instalación**
+### **Verify Installation**
 ```bash
-# Verificar instalación
-python -c "import fastapi, torch, transformers; print('✅ Instalación exitosa')"
+# Verify installation
+python -c "import fastapi, torch, transformers; print('✅ Successful installation')"
 
-# Ejecutar tests básicos
+# Run basic tests
 python test_suite.py
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### **Variables de Entorno Principales**
+### **Main Environment Variables**
 
 ```bash
-# Configuración de la Aplicación
+# Application Configuration
 ENVIRONMENT=development
 APP_NAME="OS Content System"
 APP_VERSION=1.0.0
@@ -165,7 +167,7 @@ REDIS_PORT=6379
 SECRET_KEY=your-super-secret-key-here
 ```
 
-### **Archivos de Configuración**
+### **Configuration Files**
 
 #### **config.py**
 ```python
@@ -184,64 +186,64 @@ logger = get_logger("my_service")
 log_with_context("INFO", "Operation completed", user_id=123, duration=0.5)
 ```
 
-## 🚀 Uso
+## 🚀 Usage
 
-### **Iniciar el Sistema**
+### **Start System**
 
 #### **Windows**
 ```bash
-# Opción 1: Script automático
+# Option 1: Automatic script
 start.bat
 
-# Opción 2: Manual
+# Option 2: Manual
 venv\Scripts\activate
 python main.py
 ```
 
 #### **Unix/Linux/macOS**
 ```bash
-# Opción 1: Script automático
+# Option 1: Automatic script
 ./start.sh
 
-# Opción 2: Manual
+# Option 2: Manual
 source venv/bin/activate
 python main.py
 ```
 
-### **Acceso al Sistema**
+### **System Access**
 - **API**: http://localhost:8000
-- **Documentación**: http://localhost:8000/docs
+- **Documentation**: http://localhost:8000/docs
 - **Health Check**: http://localhost:8000/health
-- **Métricas**: http://localhost:9090
+- **Metrics**: http://localhost:9090
 
-### **Ejemplos de Uso**
+### **Usage Examples**
 
-#### **Generar Contenido**
+#### **Generate Content**
 ```python
 import requests
 
-# Generar texto
+# Generate text
 response = requests.post("http://localhost:8000/api/generate/text", json={
-    "prompt": "Escribe un artículo sobre IA",
+    "prompt": "Write an article about AI",
     "max_length": 500
 })
 
-# Generar video
+# Generate video
 response = requests.post("http://localhost:8000/api/generate/video", json={
-    "script": "Script para el video",
+    "script": "Script for the video",
     "duration": 60
 })
 ```
 
-#### **Procesar Media**
+#### **Process Media**
 ```python
-# Procesar audio
+# Process audio
 response = requests.post("http://localhost:8000/api/process/audio", json={
     "operation": "enhance",
     "file_path": "/path/to/audio.mp3"
 })
 
-# Procesar video
+# Process video
 response = requests.post("http://localhost:8000/api/process/video", json={
     "operation": "compress",
     "file_path": "/path/to/video.mp4"
@@ -250,37 +252,37 @@ response = requests.post("http://localhost:8000/api/process/video", json={
 
 ## 🔌 API
 
-### **Endpoints Principales**
+### **Main Endpoints**
 
-#### **Generación de Contenido**
-- `POST /api/generate/text` - Generar texto
-- `POST /api/generate/video` - Generar video
-- `POST /api/generate/audio` - Generar audio
-- `POST /api/generate/image` - Generar imagen
+#### **Content Generation**
+- `POST /api/generate/text` - Generate text
+- `POST /api/generate/video` - Generate video
+- `POST /api/generate/audio` - Generate audio
+- `POST /api/generate/image` - Generate image
 
-#### **Procesamiento de Media**
-- `POST /api/process/video` - Procesar video
-- `POST /api/process/audio` - Procesar audio
-- `POST /api/process/image` - Procesar imagen
+#### **Media Processing**
+- `POST /api/process/video` - Process video
+- `POST /api/process/audio` - Process audio
+- `POST /api/process/image` - Process image
 
-#### **Sistema de Matemáticas**
-- `POST /api/math/calculate` - Cálculos matemáticos
-- `POST /api/math/optimize` - Optimización matemática
-- `POST /api/math/analyze` - Análisis matemático
+#### **Math System**
+- `POST /api/math/calculate` - Mathematical calculations
+- `POST /api/math/optimize` - Mathematical optimization
+- `POST /api/math/analyze` - Mathematical analysis
 
-#### **Gestión del Sistema**
-- `GET /health` - Estado del sistema
-- `GET /metrics` - Métricas de rendimiento
-- `GET /status` - Estado detallado
+#### **System Management**
+- `GET /health` - System status
+- `GET /metrics` - Performance metrics
+- `GET /status` - Detailed status
 
-### **Ejemplos de Respuestas**
+### **Response Examples**
 
-#### **Generación de Texto**
+#### **Text Generation**
 ```json
 {
   "success": true,
   "data": {
-    "text": "Artículo generado sobre IA...",
+    "text": "Generated article about AI...",
     "tokens_used": 150,
     "processing_time": 2.5
   },
@@ -291,7 +293,7 @@ response = requests.post("http://localhost:8000/api/process/video", json={
 }
 ```
 
-#### **Estado del Sistema**
+#### **System Status**
 ```json
 {
   "status": "healthy",
@@ -312,66 +314,66 @@ response = requests.post("http://localhost:8000/api/process/video", json={
 
 ## 🧪 Testing
 
-### **Ejecutar Tests**
+### **Run Tests**
 
-#### **Suite Completa**
+#### **Full Suite**
 ```bash
 python test_suite.py
 ```
 
-#### **Tests Específicos**
+#### **Specific Tests**
 ```bash
-# Solo tests unitarios
+# Unit tests only
 pytest test_suite.py::TestConfig -v
 
-# Solo tests de rendimiento
+# Performance tests only
 pytest test_suite.py::TestPerformance -v
 
-# Tests de integración
+# Integration tests
 pytest test_suite.py::TestIntegration -v
 ```
 
-#### **Tests con Cobertura**
+#### **Tests with Coverage**
 ```bash
 pytest test_suite.py --cov=. --cov-report=html
 ```
 
-### **Tipos de Tests**
+### **Test Types**
 
-- **Unit Tests**: Pruebas de componentes individuales
-- **Integration Tests**: Pruebas de integración entre servicios
-- **Performance Tests**: Pruebas de rendimiento y benchmarks
-- **Error Handling Tests**: Pruebas de manejo de errores
+- **Unit Tests**: Tests of individual components
+- **Integration Tests**: Tests of integration between services
+- **Performance Tests**: Performance tests and benchmarks
+- **Error Handling Tests**: Error handling tests
 
-## 🚀 Despliegue
+## 🚀 Deployment
 
-### **Despliegue Local**
+### **Local Deployment**
 
 #### **Docker Compose**
 ```bash
-# Construir y ejecutar
+# Build and run
 docker-compose up -d
 
-# Ver logs
+# View logs
 docker-compose logs -f
 
-# Detener servicios
+# Stop services
 docker-compose down
 ```
 
 #### **Kubernetes**
 ```bash
-# Aplicar configuración
+# Apply configuration
 kubectl apply -f k8s/
 
-# Verificar estado
+# Verify status
 kubectl get pods
 kubectl get services
 ```
 
-### **Despliegue en Producción**
+### **Production Deployment**
 
-#### **Variables de Entorno de Producción**
+#### **Production Environment Variables**
 ```bash
 ENVIRONMENT=production
 API_DEBUG=false
@@ -380,73 +382,73 @@ LOG_LEVEL=WARNING
 PROMETHEUS_ENABLED=true
 ```
 
-#### **Monitoreo de Producción**
-- **Prometheus**: Métricas del sistema
-- **Grafana**: Dashboards y visualización
-- **Sentry**: Monitoreo de errores
-- **ELK Stack**: Logs y análisis
+#### **Production Monitoring**
+- **Prometheus**: System metrics
+- **Grafana**: Dashboards and visualization
+- **Sentry**: Error monitoring
+- **ELK Stack**: Logs and analysis
 
-## 📊 Monitoreo y Logs
+## 📊 Monitoring and Logs
 
-### **Sistema de Logs**
+### **Log System**
 
-#### **Tipos de Logs**
+#### **Log Types**
 - **Application Logs**: `logs/os_content.log`
 - **Error Logs**: `logs/os_content_error.log`
 - **Structured Logs**: `logs/os_content_structured.log`
 
-#### **Niveles de Log**
-- **DEBUG**: Información detallada para desarrollo
-- **INFO**: Información general del sistema
-- **WARNING**: Advertencias que no impiden funcionamiento
-- **ERROR**: Errores que afectan funcionalidad
-- **CRITICAL**: Errores críticos del sistema
+#### **Log Levels**
+- **DEBUG**: Detailed information for development
+- **INFO**: General system information
+- **WARNING**: Warnings that do not prevent operation
+- **ERROR**: Errors that affect functionality
+- **CRITICAL**: Critical system errors
 
-### **Métricas de Rendimiento**
+### **Performance Metrics**
 
-#### **Métricas del Sistema**
-- Uso de CPU y memoria
-- I/O de disco y red
-- Tiempo de respuesta de API
-- Tasa de errores
+#### **System Metrics**
+- CPU and memory usage
+- Disk and network I/O
+- API response time
+- Error rate
 
-#### **Métricas de Aplicación**
-- Tiempo de procesamiento
-- Uso de caché
-- Cola de tareas
-- Estado de servicios
+#### **Application Metrics**
+- Processing time
+- Cache usage
+- Task queue
+- Services status
 
-## 🔧 Desarrollo
+## 🔧 Development
 
-### **Estructura del Proyecto**
+### **Project Structure**
 ```
 os-content-system/
-├── main.py                 # Punto de entrada principal
-├── config.py              # Sistema de configuración
-├── logger.py              # Sistema de logging
-├── requirements.txt       # Dependencias de Python
-├── setup.py              # Script de instalación
-├── test_suite.py         # Suite de pruebas
-├── env.example           # Variables de entorno de ejemplo
-├── README.md             # Este archivo
-├── logs/                 # Directorio de logs
-├── data/                 # Directorio de datos
-├── models/               # Modelos de IA
-├── cache/                # Directorio de caché
-└── docs/                 # Documentación adicional
+├── main.py                 # Main entry point
+├── config.py              # Configuration system
+├── logger.py              # Logging system
+├── requirements.txt       # Python dependencies
+├── setup.py              # Installation script
+├── test_suite.py         # Test suite
+├── env.example           # Example environment variables
+├── README.md             # This file
+├── logs/                 # Logs directory
+├── data/                 # Data directory
+├── models/               # AI models
+├── cache/                # Cache directory
+└── docs/                 # Additional documentation
 ```
 
-### **Flujo de Desarrollo**
+### **Development Workflow**
 
-#### **1. Configurar Entorno**
+#### **1. Setup Environment**
 ```bash
-# Clonar y configurar
+# Clone and setup
 git clone <repo>
 cd os-content-system
 python setup.py --skip-tests
 ```
 
-#### **2. Activar Entorno Virtual**
+#### **2. Activate Virtual Environment**
 ```bash
 # Windows
 venv\Scripts\activate
@@ -455,127 +457,127 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-#### **3. Instalar Dependencias de Desarrollo**
+#### **3. Install Development Dependencies**
 ```bash
 pip install -r requirements.txt
 pip install pytest pytest-asyncio pytest-cov
 ```
 
-#### **4. Ejecutar Tests**
+#### **4. Run Tests**
 ```bash
 python test_suite.py
 ```
 
-#### **5. Desarrollo Local**
+#### **5. Local Development**
 ```bash
 python main.py
 ```
 
-### **Convenciones de Código**
+### **Code Conventions**
 
-#### **Estilo de Código**
-- **PEP 8**: Estilo de código Python
-- **Type Hints**: Anotaciones de tipo obligatorias
-- **Docstrings**: Documentación de funciones y clases
-- **Error Handling**: Manejo robusto de errores
+#### **Code Style**
+- **PEP 8**: Python code style
+- **Type Hints**: Mandatory type annotations
+- **Docstrings**: Function and class documentation
+- **Error Handling**: Robust error handling
 
-#### **Estructura de Commits**
+#### **Commit Structure**
 ```
-feat: nueva funcionalidad de generación de video
-fix: corrección en el manejo de errores de caché
-docs: actualización de la documentación de API
-test: añadidos tests para el sistema de logging
-refactor: refactorización del motor de caché
+feat: new video generation feature
+fix: fix in cache error handling
+docs: API documentation update
+test: added tests for logging system
+refactor: cache engine refactor
 ```
 
-## 🤝 Contribución
+## 🤝 Contributing
 
-### **Cómo Contribuir**
+### **How to Contribute**
 
-#### **1. Fork del Repositorio**
-- Haz fork del proyecto en GitHub
-- Clona tu fork localmente
+#### **1. Fork Repository**
+- Fork the project on GitHub
+- Clone your fork locally
 
-#### **2. Crear Rama de Feature**
+#### **2. Create Feature Branch**
 ```bash
-git checkout -b feature/nueva-funcionalidad
+git checkout -b feature/new-feature
 ```
 
-#### **3. Desarrollo**
-- Implementa tu funcionalidad
-- Añade tests apropiados
-- Verifica que todos los tests pasen
+#### **3. Development**
+- Implement your feature
+- Add appropriate tests
+- Verify that all tests pass
 
-#### **4. Commit y Push**
+#### **4. Commit and Push**
 ```bash
 git add .
-git commit -m "feat: descripción de la funcionalidad"
-git push origin feature/nueva-funcionalidad
+git commit -m "feat: feature description"
+git push origin feature/new-feature
 ```
 
 #### **5. Pull Request**
-- Crea un Pull Request en GitHub
-- Describe los cambios realizados
-- Espera la revisión del código
+- Create a Pull Request on GitHub
+- Describe the changes made
+- Wait for code review
 
-### **Guidelines de Contribución**
+### **Contribution Guidelines**
 
-#### **Código**
-- Sigue las convenciones de estilo establecidas
-- Incluye tests para nueva funcionalidad
-- Mantén la cobertura de tests alta
-- Documenta funciones y clases nuevas
+#### **Code**
+- Follow established style conventions
+- Include tests for new functionality
+- Keep test coverage high
+- Document new functions and classes
 
-#### **Documentación**
-- Actualiza README.md si es necesario
-- Documenta nuevas APIs
-- Incluye ejemplos de uso
-- Mantén la documentación actualizada
+#### **Documentation**
+- Update README.md if necessary
+- Document new APIs
+- Include usage examples
+- Keep documentation updated
 
 #### **Testing**
-- Todos los tests deben pasar
-- Nueva funcionalidad debe tener tests
-- Mantén la cobertura de tests >90%
-- Incluye tests de integración cuando sea apropiado
+- All tests must pass
+- New functionality must have tests
+- Keep test coverage >90%
+- Include integration tests where appropriate
 
-## 📚 Recursos Adicionales
+## 📚 Additional Resources
 
-### **Documentación**
+### **Documentation**
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [Pydantic Documentation](https://pydantic-docs.helpmanual.io/)
 - [Python AsyncIO](https://docs.python.org/3/library/asyncio.html)
 
-### **Herramientas Relacionadas**
-- **MLflow**: Gestión de experimentos de ML
-- **Ray**: Computación distribuida
-- **Dask**: Procesamiento de datos paralelo
-- **Optuna**: Optimización de hiperparámetros
+### **Related Tools**
+- **MLflow**: ML experiment management
+- **Ray**: Distributed computing
+- **Dask**: Parallel data processing
+- **Optuna**: Hyperparameter optimization
 
-### **Comunidad**
-- **Discord**: [Link al servidor]
-- **GitHub Issues**: [Link a issues]
-- **Documentation**: [Link a docs]
+### **Community**
+- **Discord**: [Link to server]
+- **GitHub Issues**: [Link to issues]
+- **Documentation**: [Link to docs]
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-- **FastAPI**: Framework web moderno y rápido
-- **Pydantic**: Validación de datos con Python
-- **Transformers**: Modelos de IA de Hugging Face
-- **PyTorch**: Framework de deep learning
-- **Comunidad Open Source**: Por todas las contribuciones
+- **FastAPI**: Modern and fast web framework
+- **Pydantic**: Data validation with Python
+- **Transformers**: Hugging Face AI models
+- **PyTorch**: Deep learning framework
+- **Open Source Community**: For all contributions
 
 ---
 
-**¿Necesitas ayuda?** 
+**Need help?**
 - 📧 Email: support@oscontent.com
-- 💬 Discord: [Link al servidor]
-- 📖 Docs: [Link a documentación]
-- 🐛 Issues: [Link a GitHub Issues]
+- 💬 Discord: [Link to server]
+- 📖 Docs: [Link to documentation]
+- 🐛 Issues: [Link to GitHub Issues]
 
 ---
 
-**⭐ Si este proyecto te es útil, ¡déjanos una estrella en GitHub!**
+**⭐ If this project is useful to you, leave us a star on GitHub!**

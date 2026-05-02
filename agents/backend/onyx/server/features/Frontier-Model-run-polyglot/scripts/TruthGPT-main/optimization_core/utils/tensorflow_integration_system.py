@@ -6,7 +6,7 @@ Integrates all TensorFlow optimizations for maximum performance and efficiency
 import tensorflow as tf
 import numpy as np
 from typing import Dict, Any, List, Optional, Tuple, Union, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, ConfigDict
 import time
 import logging
 import threading
@@ -44,9 +44,10 @@ class TensorFlowIntegrationLevel(Enum):
     DIVINE = "divine"        # Divine integration
     OMNIPOTENT = "omnipotent" # Omnipotent integration
 
-@dataclass
-class TensorFlowIntegrationResult:
+class TensorFlowIntegrationResult(BaseModel):
     """Result of TensorFlow integration optimization."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     optimized_model: tf.keras.Model
     speed_improvement: float
     memory_reduction: float
@@ -548,3 +549,4 @@ def example_tensorflow_integration():
 if __name__ == "__main__":
     # Run example
     result = example_tensorflow_integration()
+

@@ -35,7 +35,7 @@ warnings.filterwarnings('ignore')
 # Import advanced optimization techniques
 import sys
 sys.path.append('..')
-from core.advanced_optimizations import (
+from modules.base.core_system.core.advanced_optimizations import (
     AdvancedOptimizationEngine, OptimizationTechnique, OptimizationMetrics,
     NeuralArchitectureSearch, QuantumInspiredOptimizer, EvolutionaryOptimizer,
     MetaLearningOptimizer, create_advanced_optimization_engine,
@@ -998,3 +998,4 @@ if __name__ == '__main__':
             print(f"  - {test}: {traceback}")
     
     print(f"\n{'='*60}")
+

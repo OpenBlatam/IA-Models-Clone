@@ -14,7 +14,7 @@ class VisualCriticAgent(BaseAgent):
         Analyzes the visual layout and aesthetics of the generated code.
         """
         try:
-            code_structure = context.get("code_structure", {})
+            code_structure = context.shared_memory.get("code_structure", {})
             self.log("Analyzing visual layout and aesthetics...")
             
             feedback = self.analyze_layout(code_structure)

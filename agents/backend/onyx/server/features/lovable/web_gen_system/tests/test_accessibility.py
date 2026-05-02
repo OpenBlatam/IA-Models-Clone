@@ -1,5 +1,5 @@
 import unittest
-from agents.backend.onyx.server.features.lovable.web_gen_system.accessibility import WebAccessibilityEnhancer
+from ..accessibility import WebAccessibilityEnhancer
 
 class TestWebAccessibilityEnhancer(unittest.TestCase):
     def setUp(self):

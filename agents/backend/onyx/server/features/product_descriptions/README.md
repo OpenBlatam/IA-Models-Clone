@@ -1,76 +1,79 @@
 # Product Descriptions Generation System
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema avanzado para generación de descripciones de productos con múltiples características, optimizaciones avanzadas, y arquitectura modular.
+## 📋 Description
 
-## 🚀 Características Principales
+Advanced system for product description generation with multiple features, advanced optimizations, and modular architecture.
 
-- **Generación de Descripciones**: Sistema completo para crear descripciones de productos
-- **Optimizaciones Avanzadas**: Múltiples sistemas de optimización
-- **Arquitectura Modular**: Diseño modular y escalable
-- **Interfaces Gradio**: Interfaces interactivas
-- **Sistema de Caché**: Sistema de caché optimizado
-- **Async Operations**: Operaciones asíncronas
-- **Seguridad**: Principios de seguridad integrados
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Description Generation**: Complete system for creating product descriptions
+- **Advanced Optimizations**: Multiple optimization systems
+- **Modular Architecture**: Modular and scalable design
+- **Gradio Interfaces**: Interactive interfaces
+- **Cache System**: Optimized cache system
+- **Async Operations**: Asynchronous operations
+- **Security**: Integrated security principles
+
+## 📁 Structure
 
 ```
 product_descriptions/
-├── api/                    # Endpoints de API
-├── core/                   # Lógica central
-├── decorators/              # Decoradores
-├── landing_pages/           # Páginas de aterrizaje
-├── middleware/              # Middleware
-├── ml_models/              # Modelos ML
-├── models/                  # Modelos de datos
-├── operations/              # Operaciones
-├── refactored_api/          # API refactorizada
-├── routes/                  # Rutas
+├── api/                    # API Endpoints
+├── core/                   # Core logic
+├── decorators/             # Decorators
+├── landing_pages/          # Landing pages
+├── middleware/             # Middleware
+├── ml_models/              # ML Models
+├── models/                 # Data models
+├── operations/             # Operations
+├── refactored_api/         # Refactored API
+├── routes/                 # Routes
 └── tests/                  # Tests
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
-# Instalación modular
+# Modular installation
 pip install -r requirements-modular.txt
 
-# Para producción
+# For production
 pip install -r requirements-production.txt
 
-# Con optimizaciones
+# With optimizations
 pip install -r requirements-pytorch-comprehensive.txt
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
 ```python
 from product_descriptions.main import ProductDescriptionGenerator
 
-# Inicializar generador
+# Initialize generator
 generator = ProductDescriptionGenerator()
 
-# Generar descripción
+# Generate description
 description = generator.generate(
-    product_name="Producto Innovador",
-    features=["característica 1", "característica 2"],
+    product_name="Innovative Product",
+    features=["feature 1", "feature 2"],
     target_audience="startups"
 )
 ```
 
-## 📚 Documentación
+## 📚 Documentation
 
 - [Product Descriptions Summary](PRODUCT_DESCRIPTIONS_SUMMARY.md)
-- [Arquitectura Modular](ARQUITECTURA_MODULAR_COMPLETA.md)
+- [Modular Architecture](ARQUITECTURA_MODULAR_COMPLETA.md)
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Blatam AI**: Motor de IA
-- **Business Agents**: Para automatización
-- **Export IA**: Para exportación
+This module integrates with:
+- **Blatam AI**: AI Engine
+- **Business Agents**: For automation
+- **Export AI**: For export
 
+---
 
-
+[← Back to Main README](../README.md)

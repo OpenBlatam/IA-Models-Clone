@@ -298,3 +298,4 @@ def run_comprehensive_benchmarks(models: Dict[str, nn.Module],
         'benchmark_report': report,
         'config': config
     }
+

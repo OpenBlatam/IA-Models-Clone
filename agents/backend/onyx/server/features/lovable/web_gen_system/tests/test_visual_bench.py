@@ -1,6 +1,6 @@
 import unittest
-from agents.backend.onyx.server.features.lovable.web_gen_system.agents import VisualCriticAgent
-from agents.backend.onyx.server.features.lovable.web_gen_system.evaluation.benchmarker import WebGenBench
+from ..agents import VisualCriticAgent
+from ..evaluation.benchmarker import WebGenBench
 
 class TestVisualAndBench(unittest.TestCase):
     

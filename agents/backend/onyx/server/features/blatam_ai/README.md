@@ -1,77 +1,80 @@
 # Blatam AI Engine
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Motor principal de IA de Blatam Academy con soporte completo para transformers, LLMs, fine-tuning, y múltiples mecanismos de atención. Sistema de alto rendimiento diseñado para procesamiento eficiente de modelos de lenguaje.
+## 📋 Description
 
-## 🚀 Características Principales
+Blatam Academy's core AI engine with full support for transformers, LLMs, fine-tuning, and multiple attention mechanisms. High-performance system designed for efficient language model processing.
 
-- **Transformers Integration**: Integración completa con Hugging Face Transformers
-- **LLM Engine**: Motor optimizado para modelos de lenguaje grandes
-- **Fine-tuning Efficient**: Fine-tuning eficiente con soporte para LoRA
-- **Attention Mechanisms**: Múltiples mecanismos de atención
-- **Tokenization Engine**: Motor de tokenización optimizado
-- **Training Engine**: Sistema de entrenamiento completo
-- **LangChain Integration**: Integración con LangChain
-- **Autograd Engine**: Motor de diferenciación automática
-- **Ultra Speed**: Optimizaciones de velocidad ultra
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Transformers Integration** — Full integration with Hugging Face Transformers
+- **LLM Engine** — Optimized engine for Large Language Models
+- **Efficient Fine-tuning** — Efficient fine-tuning with LoRA support
+- **Attention Mechanisms** — Multiple attention mechanisms
+- **Tokenization Engine** — Optimized tokenization engine
+- **Training Engine** — Complete training system
+- **LangChain Integration** — Integration with LangChain
+- **Autograd Engine** — Automatic differentiation engine
+- **Ultra Speed** — Ultra speed optimizations
+
+## 📁 Structure
 
 ```
 blatam_ai/
-├── core/                   # Núcleo del sistema
-├── engines/                # Motores especializados
-├── factories/              # Factories para creación de objetos
-├── services/               # Servicios de negocio
-└── utils/                  # Utilidades
+├── core/                   # System core
+├── engines/                # Specialized engines
+├── factories/              # Object creation factories
+├── services/               # Business services
+└── utils/                  # Utilities
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
-# Instalación básica
+# Basic installation
 pip install -r requirements.txt
 
-# Con NLP
+# With NLP
 pip install -r requirements-nlp.txt
 
-# Con LangChain
+# With LangChain
 pip install -r requirements-langchain.txt
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
 ```python
 from blatam_ai.transformers_llm_engine import TransformersLLMEngine
 from blatam_ai.nlp_engine import NLPEngine
 
-# Inicializar motor LLM
+# Initialize LLM engine
 llm_engine = TransformersLLMEngine()
 
-# Generar texto
-result = llm_engine.generate(prompt="Escribe sobre IA")
+# Generate text
+result = llm_engine.generate(prompt="Write about AI")
 
-# Usar NLP engine
+# Use NLP engine
 nlp = NLPEngine()
-analysis = nlp.analyze(text="Texto a analizar")
+analysis = nlp.analyze(text="Text to analyze")
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este motor es utilizado por:
-- **Business Agents**: Para procesamiento NLP
-- **Blog Posts**: Para generación de contenido
-- **Copywriting**: Para creación de copy
-- **Export IA**: Para exportación inteligente
-- Todos los módulos que requieren procesamiento con IA
+This engine is used by:
+- **[Business Agents](../business_agents/README.md)** — For NLP processing
+- **[Blog Posts](../blog_posts/README.md)** — For content generation
+- **[Copywriting](../copywriting/README.md)** — For copy creation
+- **[Export IA](../export_ia/README.md)** — For intelligent export
+- All modules requiring AI processing
 
-## 📊 Rendimiento
+## 📊 Performance
 
-- Optimizado para velocidad ultra
-- Soporte para múltiples GPUs
-- Cache eficiente de modelos
-- Procesamiento en batch optimizado
+- Optimized for ultra speed
+- Multi-GPU support
+- Efficient model caching
+- Optimized batch processing
 
+---
 
-
+[← Back to Main README](../README.md)

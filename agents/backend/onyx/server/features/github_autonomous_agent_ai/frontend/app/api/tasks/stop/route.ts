@@ -66,6 +66,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Intentar detener via backend unificado
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8030';
+    try {
+      const backendResponse = await fetch(`${backendUrl}/api/v1/agent/stop`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task_id: taskId }),
+        signal: AbortSignal.timeout(5000),
+      });
+      if (backendResponse.ok) {
+        console.log(`✅ [API] Tarea ${taskId} detenida en backend unificado`);
+      }
+    } catch (backendError: any) {
+      console.warn(`⚠️ [API] Backend unificado no disponible para stop:`, backendError.message);
+    }
+
     const tasks = await loadTasks();
     const taskIndex = tasks.findIndex((t: any) => t.id === taskId);
 
@@ -90,8 +106,8 @@ export async function POST(request: NextRequest) {
     };
     await saveTasks(tasks);
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       message: 'Tarea detenida exitosamente',
       task: tasks[taskIndex]
     });

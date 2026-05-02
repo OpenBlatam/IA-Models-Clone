@@ -31,6 +31,12 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 
 console = Console()
 
+# System 5.0+ Integration
+try:
+    from .core.sys5.events import event_bus, EventType
+except (ImportError, ValueError):
+    event_bus = None
+
 class LogLevel(Enum):
     """Log levels."""
     DEBUG = "DEBUG"
@@ -234,6 +240,21 @@ class StructuredLogger:
                 if additional_data:
                     scope.set_context("additional_data", additional_data)
                 sentry_sdk.capture_exception(error)
+        
+        # System 5.0+ Event Emission
+        if event_bus:
+            try:
+                # Use current loop if available (for async contexts)
+                loop = asyncio.get_event_loop()
+                if loop.is_running():
+                    loop.create_task(event_bus.emit(EventType.ERROR, {
+                        "error": str(error),
+                        "type": error_type.value,
+                        "component": component
+                    }))
+                else:
+                    asyncio.run(event_bus.emit(EventType.ERROR, {"error": str(error)}))
+            except: pass
     
     def log_performance(self, metrics: PerformanceMetrics):
         """Log performance metrics."""

@@ -1,67 +1,69 @@
 # Social Media Identity Clone AI
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema de IA avanzado que clona la identidad de perfiles de redes sociales (TikTok, Instagram, YouTube) extrayendo todo el contenido, análisis de videos, posts y comentarios para crear un perfil de identidad completo y generar contenido auténtico basado en esa identidad clonada.
+## 📋 Description
 
-## 🚀 Características Principales
+Advanced AI system that clones the identity of social media profiles (TikTok, Instagram, YouTube) by extracting all content, analyzing videos, posts, and comments to create a complete identity profile and generate authentic content based on that cloned identity.
 
-### 1. **Extracción de Perfiles**
-- ✅ Extracción completa de perfiles de TikTok
-- ✅ Extracción completa de perfiles de Instagram
-- ✅ Extracción completa de perfiles de YouTube
-- ✅ Captura de metadatos del perfil (bio, seguidores, posts, etc.)
+## 🚀 Key Features
 
-### 2. **Análisis de Contenido**
-- ✅ Transcripción automática de videos
-- ✅ Análisis de scripts y diálogos
-- ✅ Extracción de temas y patrones
-- ✅ Análisis de estilo de comunicación
-- ✅ Detección de tono y personalidad
+### 1. **Profile Extraction**
+- ✅ Complete profile extraction from TikTok
+- ✅ Complete profile extraction from Instagram
+- ✅ Complete profile extraction from YouTube
+- ✅ Profile metadata capture (bio, followers, posts, etc.)
 
-### 3. **Construcción de Identidad**
-- ✅ Creación de perfil de identidad completo
-- ✅ Análisis de patrones de comportamiento
-- ✅ Identificación de valores y creencias
-- ✅ Mapeo de estilo de comunicación
-- ✅ Construcción de base de conocimiento personalizada
+### 2. **Content Analysis**
+- ✅ Automatic video transcription
+- ✅ Script and dialogue analysis
+- ✅ Theme and pattern extraction
+- ✅ Communication style analysis
+- ✅ Tone and personality detection
 
-### 4. **Generación de Contenido**
-- ✅ Generación de posts basados en identidad
-- ✅ Generación de scripts de video
-- ✅ Generación de captions para Instagram/TikTok
-- ✅ Generación de descripciones de YouTube
-- ✅ Mantenimiento de coherencia con identidad original
+### 3. **Identity Construction**
+- ✅ Complete identity profile creation
+- ✅ Behavioral pattern analysis
+- ✅ Identification of values and beliefs
+- ✅ Communication style mapping
+- ✅ Personalized knowledge base construction
 
-## 📁 Estructura del Proyecto
+### 4. **Content Generation**
+- ✅ Identity-based post generation
+- ✅ Video script generation
+- ✅ Instagram/TikTok caption generation
+- ✅ YouTube description generation
+- ✅ Maintenance of consistency with original identity
+
+## 📁 Project Structure
 
 ```
 social_media_identity_clone_ai/
-├── __init__.py                 # Exports principales
-├── README.md                   # Documentación principal
-├── requirements.txt            # Dependencias
-├── config/                     # Configuraciones
+├── __init__.py                 # Main exports
+├── README.md                   # Main documentation
+├── requirements.txt            # Dependencies
+├── config/                     # Configurations
 │   ├── __init__.py
 │   └── settings.py
-├── core/                       # Modelos y entidades
+├── core/                       # Models and entities
 │   ├── __init__.py
 │   └── models.py
-├── services/                   # Servicios principales
+├── services/                   # Main services
 │   ├── __init__.py
-│   ├── profile_extractor.py   # Extracción de perfiles
-│   ├── identity_analyzer.py   # Análisis de identidad
-│   ├── content_generator.py   # Generación de contenido
-│   └── video_processor.py     # Procesamiento de videos
-├── connectors/                 # Conectores a APIs
+│   ├── profile_extractor.py   # Profile extraction
+│   ├── identity_analyzer.py   # Identity analysis
+│   ├── content_generator.py   # Content generation
+│   └── video_processor.py     # Video processing
+├── connectors/                 # API Connectors
 │   ├── __init__.py
 │   ├── tiktok_connector.py
 │   ├── instagram_connector.py
 │   └── youtube_connector.py
-├── api/                        # API REST
+├── api/                        # REST API
 │   ├── __init__.py
 │   ├── main.py
 │   └── routes.py
-├── utils/                      # Utilidades
+├── utils/                      # Utilities
 │   ├── __init__.py
 │   ├── text_processor.py
 │   └── video_transcriber.py
@@ -70,37 +72,37 @@ social_media_identity_clone_ai/
     └── test_services.py
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Configurar variables de entorno
+# Configure environment variables
 cp .env.example .env
-# Editar .env con tus credenciales de APIs
+# Edit .env with your API credentials
 ```
 
-## 💻 Uso Básico
+## 💻 Basic Usage
 
-### Extraer Perfil y Crear Identidad
+### Extract Profile and Create Identity
 
 ```python
 from social_media_identity_clone_ai import ProfileExtractor, IdentityAnalyzer
 
-# Inicializar extractor
+# Initialize extractor
 extractor = ProfileExtractor()
 
-# Extraer perfil de TikTok
+# Extract TikTok profile
 tiktok_profile = await extractor.extract_tiktok_profile("username")
 
-# Extraer perfil de Instagram
+# Extract Instagram profile
 instagram_profile = await extractor.extract_instagram_profile("username")
 
-# Extraer perfil de YouTube
+# Extract YouTube profile
 youtube_profile = await extractor.extract_youtube_profile("channel_id")
 
-# Analizar y crear identidad
+# Analyze and build identity
 analyzer = IdentityAnalyzer()
 identity = await analyzer.build_identity(
     tiktok_profile=tiktok_profile,
@@ -109,72 +111,72 @@ identity = await analyzer.build_identity(
 )
 ```
 
-### Generar Contenido
+### Generate Content
 
 ```python
 from social_media_identity_clone_ai import ContentGenerator
 
-# Inicializar generador
+# Initialize generator
 generator = ContentGenerator(identity_profile=identity)
 
-# Generar post para Instagram
+# Generate Instagram post
 instagram_post = await generator.generate_instagram_post(
     topic="fitness",
     style="motivational"
 )
 
-# Generar script para TikTok
+# Generate TikTok script
 tiktok_script = await generator.generate_tiktok_script(
     topic="cooking",
-    duration=60  # segundos
+    duration=60  # seconds
 )
 
-# Generar descripción para YouTube
+# Generate YouTube description
 youtube_description = await generator.generate_youtube_description(
-    video_title="Mi Rutina de Mañana",
+    video_title="My Morning Routine",
     tags=["productivity", "morning routine"]
 )
 ```
 
-## 🔗 Integración con API
+## 🔗 Integration with API
 
-### Endpoints Principales
+### Main Endpoints
 
-- `POST /api/v1/extract-profile` - Extraer perfil de red social
-- `POST /api/v1/build-identity` - Construir perfil de identidad
-- `POST /api/v1/generate-content` - Generar contenido basado en identidad
-- `GET /api/v1/identity/{id}` - Obtener perfil de identidad
+- `POST /api/v1/extract-profile` - Extract social media profile
+- `POST /api/v1/build-identity` - Build identity profile
+- `POST /api/v1/generate-content` - Generate content based on identity
+- `GET /api/v1/identity/{id}` - Get identity profile
 - `GET /api/v1/health` - Health check
 
-## 🔒 Seguridad y Privacidad
+## 🔒 Security and Privacy
 
-- ✅ Respeto a términos de servicio de plataformas
-- ✅ Manejo seguro de datos personales
-- ✅ Encriptación de perfiles almacenados
-- ✅ Rate limiting para evitar abusos
-- ✅ Autenticación requerida para uso
+- ✅ Compliance with platform terms of service
+- ✅ Secure handling of personal data
+- ✅ Encryption of stored profiles
+- ✅ Rate limiting to avoid abuse
+- ✅ Authentication required for use
 
-## 📊 Modelos de IA Utilizados
+## 📊 AI Models Used
 
-- **OpenAI GPT-4** - Análisis de identidad y generación de contenido
-- **Whisper** - Transcripción de videos
-- **BERT/DistilBERT** - Análisis de sentimiento y estilo
-- **Custom Fine-tuned Models** - Modelos especializados por plataforma
+- **OpenAI GPT-4** - Identity analysis and content generation
+- **Whisper** - Video transcription
+- **BERT/DistilBERT** - Sentiment and style analysis
+- **Custom Fine-tuned Models** - Platform-specialized models
 
 ## 🚀 Roadmap
 
-- [ ] Soporte para Twitter/X
-- [ ] Soporte para LinkedIn
-- [ ] Análisis de imágenes y visuales
-- [ ] Generación de imágenes con estilo del perfil
-- [ ] Dashboard web para gestión
-- [ ] API de webhooks para notificaciones
-- [ ] Integración con schedulers de contenido
+- [ ] Support for Twitter/X
+- [ ] Support for LinkedIn
+- [ ] Image and visual analysis
+- [ ] Image generation with profile style
+- [ ] Web dashboard for management
+- [ ] Webhook API for notifications
+- [ ] Integration with content schedulers
 
-## 📝 Licencia
+## 📄 License
 
-Propietaria - Blatam Academy
+Proprietary — Blatam Academy
 
+---
 
-
-
+[← Back to Main README](../README.md)

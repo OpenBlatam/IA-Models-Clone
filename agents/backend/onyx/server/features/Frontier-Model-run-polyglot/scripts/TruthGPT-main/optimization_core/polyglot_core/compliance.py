@@ -278,3 +278,4 @@ def log_audit_event(
     """Convenience function to log audit event."""
     _global_audit_logger.log(event_type, user, resource, action, **kwargs)
 
+

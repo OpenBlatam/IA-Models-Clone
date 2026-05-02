@@ -35,6 +35,17 @@ import mlflow
 
 console = Console()
 
+# System 5.0+ Integration
+try:
+    from .core.sys5.events import event_bus, EventType
+    from .core.sys5.registry import registry
+    from .core.sys5.telemetry import TelemetryService
+except (ImportError, ValueError):
+    # Fallback for standalone usage
+    event_bus = None
+    registry = None
+    TelemetryService = None
+
 class MetricType(Enum):
     """Types of metrics to track."""
     TRAINING_LOSS = "training_loss"
@@ -169,6 +180,10 @@ class MetricsCollector:
         # Performance profiling
         self.profiler: Optional[torch.profiler.profile] = None
         self.profiling_active = False
+        
+        # System 5.0+ Registry
+        if registry and not registry.get("TelemetryService"):
+            registry.register("TelemetryService", self)
         
     def start_monitoring(self, interval: float = 5.0):
         """Start background system monitoring."""
@@ -391,6 +406,13 @@ class MetricsCollector:
                 "gpu_utilization": metrics.gpu_utilization or 0.0,
                 "cpu_usage": metrics.cpu_usage or 0.0
             }, step=metrics.step)
+        
+        # System 5.0+ Event Emission
+        if event_bus:
+            asyncio.run_coroutine_threadsafe(
+                event_bus.emit(EventType.TELEMETRY, asdict(metrics)),
+                asyncio.get_event_loop()
+            )
         
         # Check for training alerts
         self._check_training_alerts(metrics)

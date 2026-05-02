@@ -7,25 +7,23 @@ import logging
 import threading
 import time
 from typing import Callable, Any, Optional, List, Dict
-from dataclasses import dataclass
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor, Future
+from pydantic import Field
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class WorkerTask:
+from .base import BaseOptimizationModel
+
+
+class WorkerTask(BaseOptimizationModel):
     """Worker task definition."""
-    func: Callable
-    args: tuple = ()
-    kwargs: Dict[str, Any] = None
-    task_id: Optional[str] = None
     
-    def __post_init__(self):
-        """Initialize kwargs if None."""
-        if self.kwargs is None:
-            self.kwargs = {}
+    func: Callable
+    args: tuple = Field(default_factory=tuple)
+    kwargs: Dict[str, Any] = Field(default_factory=dict)
+    task_id: Optional[str] = None
 
 
 class WorkerPool:
@@ -171,6 +169,7 @@ def create_worker_pool(
         Worker pool
     """
     return WorkerPool(num_workers, max_queue_size)
+
 
 
 

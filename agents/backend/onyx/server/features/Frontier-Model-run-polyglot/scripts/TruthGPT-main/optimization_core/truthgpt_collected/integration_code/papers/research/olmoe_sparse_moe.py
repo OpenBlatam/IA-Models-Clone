@@ -436,3 +436,4 @@ if __name__ == "__main__":
     print(f"   Routing entropy: {metrics['routing_entropy']:.4f}")
     print(f"   Active experts: {metrics['num_experts_per_tok']}/{metrics['num_experts']}")
 
+

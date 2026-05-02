@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20" height="100" viewBox="0 0 20 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pajilla -->
+  <path d="M10 0 L10 100" stroke="#FF5733" stroke-width="4" stroke-linecap="round"/>
+  <!-- Detalles de la pajilla -->
+  <circle cx="10" cy="10" r="3" fill="#FF5733"/>
+  <circle cx="10" cy="90" r="3" fill="#FF5733"/>
+</svg> 

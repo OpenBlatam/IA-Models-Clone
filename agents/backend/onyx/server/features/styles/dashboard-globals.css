@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dashboard Theme Inspired by ia-curso.netlify.app/applicants */
+:root,
+.dashboard-dark {
+  --dashboard-bg: #181830;
+  --dashboard-card: #232346;
+  --dashboard-primary: #6C63FF;
+  --dashboard-accent: #00E6A0;
+  --dashboard-pink: #FF5A7A;
+  --dashboard-blue: #00CFFF;
+  --dashboard-text: #E0E0FF;
+  --dashboard-muted: #8a8ab8;
+  --dashboard-border: #232346;
+  --dashboard-radius: 1.25rem;
+  --dashboard-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+  --dashboard-font: 'Fira Mono', 'JetBrains Mono', 'Menlo', monospace;
+}
+
+.dashboard-light {
+  --dashboard-bg: #F8FAFF;
+  --dashboard-card: #FFFFFF;
+  --dashboard-primary: #6C63FF;
+  --dashboard-accent: #00E6A0;
+  --dashboard-pink: #FF5A7A;
+  --dashboard-blue: #00CFFF;
+  --dashboard-text: #232346;
+  --dashboard-muted: #7a7a9a;
+  --dashboard-border: #E3E6F0;
+  --dashboard-radius: 1.25rem;
+  --dashboard-shadow: 0 8px 32px 0 rgba(108,99,255,0.08);
+  --dashboard-font: 'Fira Mono', 'JetBrains Mono', 'Menlo', monospace;
+}
+
+body, .dashboard-root {
+  background: var(--dashboard-bg);
+  color: var(--dashboard-text);
+  font-family: var(--dashboard-font), monospace;
+}
+
+.dashboard-card {
+  background: var(--dashboard-card);
+  border-radius: var(--dashboard-radius);
+  box-shadow: var(--dashboard-shadow);
+  border: 1px solid var(--dashboard-border);
+  color: var(--dashboard-text);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-title {
+  color: var(--dashboard-primary);
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-btn {
+  background: linear-gradient(90deg, var(--dashboard-primary), var(--dashboard-accent));
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 4px 24px 0 rgba(108,99,255,0.15);
+  transition: background 0.2s, transform 0.2s;
+}
+.dashboard-btn:hover {
+  background: linear-gradient(90deg, var(--dashboard-pink), var(--dashboard-blue));
+  transform: translateY(-2px) scale(1.03);
+}
+
+.dashboard-input, .dashboard-select {
+  background: var(--dashboard-card);
+  border: 1px solid var(--dashboard-border);
+  color: var(--dashboard-text);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-label {
+  color: var(--dashboard-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.dashboard-link {
+  color: var(--dashboard-primary);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.dashboard-link:hover {
+  color: var(--dashboard-pink);
+}
+
+/* Utility classes for grid, flex, etc. */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.dashboard-flex {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Animations */
+@keyframes dashboard-fade-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dashboard-animate-in {
+  animation: dashboard-fade-in 0.7s cubic-bezier(0.4,0,0.2,1) both;
+} 

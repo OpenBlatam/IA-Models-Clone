@@ -1,267 +1,269 @@
 # Cursor Agent 24/7 🤖
 
-Agente persistente que escucha comandos desde la ventana de Cursor y los ejecuta continuamente, incluso cuando la computadora está apagada (como servicio).
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🚀 Características
+Persistent agent that listens for commands from the Cursor window and executes them continuously, even when the computer is off (as a service).
+
+## 🚀 Features
 
 ### Core Features
-- ✅ **Escucha comandos desde Cursor**: Se activa automáticamente cuando escribes algo en Cursor
-- ✅ **Ejecución continua**: Ejecuta tareas sin parar, 24/7
-- ✅ **Control simple**: Botón para iniciar/detener fácilmente
-- ✅ **Servicio persistente**: Puede correr en background como servicio del sistema
-- ✅ **API REST**: Control completo vía API
+- ✅ **Listens to Cursor commands**: Automatically activates when you type something in Cursor
+- ✅ **Continuous execution**: Executes tasks non-stop, 24/7
+- ✅ **Simple control**: Easy start/stop button
+- ✅ **Persistent service**: Can run in background as system service
+- ✅ **REST API**: Full control via API
 
 ### Advanced Features
-- ✅ **Serverless Ready**: Soporte para AWS Lambda, Azure Functions, GCP Functions
-- ✅ **API Gateway**: Integración con Kong y AWS API Gateway
-- ✅ **High Performance**: JSON parsing 3-10x más rápido, compresión avanzada
-- ✅ **Circuit Breakers**: Resiliencia automática con circuit breakers
-- ✅ **Rate Limiting**: Rate limiting distribuido con Redis
+- ✅ **Serverless Ready**: Support for AWS Lambda, Azure Functions, GCP Functions
+- ✅ **API Gateway**: Integration with Kong and AWS API Gateway
+- ✅ **High Performance**: JSON parsing 3-10x faster, advanced compression
+- ✅ **Circuit Breakers**: Automatic resilience with circuit breakers
+- ✅ **Rate Limiting**: Distributed rate limiting with Redis
 - ✅ **Service Discovery**: Consul, etcd, Kubernetes DNS
-- ✅ **Elasticsearch**: Búsqueda avanzada integrada
-- ✅ **Webhooks**: Sistema completo de webhooks
-- ✅ **Bulk Operations**: Operaciones en lote optimizadas
-- ✅ **Interfaz web**: Panel de control simple y moderno
-- ✅ **Estado persistente**: Guarda el estado incluso después de reiniciar
-- ✅ **WebSocket**: Comunicación en tiempo real
-- ✅ **Notificaciones**: Sistema de notificaciones avanzado
-- ✅ **Métricas**: Recopilación y análisis de métricas
-- ✅ **Health Checks**: Monitoreo de salud del sistema
-- ✅ **Rate Limiting**: Control de tasa de requests
-- ✅ **Exportación de datos**: Exportar tareas y métricas
-- ✅ **Programación de tareas**: Ejecutar tareas en horarios específicos
-- ✅ **Backups**: Sistema de respaldos automáticos
-- ✅ **Plugins**: Sistema extensible de plugins
-- ✅ **Autenticación**: Sistema de autenticación y autorización
-- ✅ **Caché**: Caché de resultados de comandos
-- ✅ **Templates**: Plantillas de comandos reutilizables
-- ✅ **Validación**: Validación y sanitización de comandos
-- ✅ **Event Bus**: Sistema de eventos pub/sub
-- ✅ **Clustering**: Soporte básico para múltiples instancias
-- ✅ **Logging avanzado**: Sistema de logging profesional
-- ✅ **Middleware**: Middleware para seguridad y logging
-- ✅ **Scripts de mantenimiento**: Herramientas de mantenimiento automatizado
-- ✅ **Monitor en tiempo real**: Monitor visual del estado del agente
-- ✅ **Procesamiento con IA**: Procesamiento inteligente de comandos con LLMs
-- ✅ **Búsqueda semántica**: Búsqueda de comandos usando embeddings
-- ✅ **Aprendizaje de patrones**: Aprende de comandos exitosos para mejorar
-- ✅ **Generación de código**: Genera código automáticamente desde descripciones
-- ✅ **Resumen automático**: Resume resultados largos automáticamente
-- ✅ **LLM Pipeline**: Pipeline profesional con PyTorch y Transformers
-- ✅ **Fine-tuning**: Soporte para fine-tuning de modelos
-- ✅ **Interfaz Gradio**: Interfaz web interactiva con Gradio
-- ✅ **Completar Código**: Completa código automáticamente
-- ✅ **Explicar Código**: Explica código en lenguaje natural
-- ✅ **Corregir Código**: Corrige código con errores
-- ✅ **Soporte GPU**: Detección automática y uso de GPU
-- ✅ **Mixed Precision**: Soporte para entrenamiento con float16
-- ✅ **Arquitectura Modular**: Separación clara de modelos, datos, entrenamiento y evaluación
-- ✅ **Configuraciones YAML**: Gestión de hiperparámetros en archivos YAML
-- ✅ **Experiment Tracking**: Preparado para WandB/TensorBoard
-- ✅ **Callbacks System**: Sistema de callbacks para entrenamiento
-- ✅ **Checkpointing**: Guardado automático de modelos
-- ✅ **🤖 Personalidad Devin**: Sistema de personalidad inteligente con razonamiento
-- ✅ **🔒 Seguridad Mejorada**: Detección y protección de secretos
-- ✅ **📚 Comprensión de Código**: Sistema LSP-like para entender el código base
-- ✅ **💬 Comunicación Inteligente**: Comunicación estratégica con el usuario
-- ✅ **⚠️ Reporte de Problemas**: Detección y reporte automático de problemas de entorno
-- ✅ **🔧 Sistema de Comandos Devin**: Comandos estructurados estilo Devin
-- ✅ **📋 Sistema de Planificación**: Gestión de planes de trabajo con pasos y dependencias
-- ✅ **🛠️ Gestor de Herramientas**: Detección automática de herramientas del sistema
-- ✅ **📐 Analizador de Convenciones**: Detecta y sigue convenciones de código del proyecto
-- ✅ **✅ Verificador de Cambios**: Verifica que todos los cambios están completos antes de reportar
-- ✅ **📚 Verificación de Librerías**: Verifica librerías en requirements.txt antes de usar
-- ✅ **🧪 Ejecutor de Tests**: Ejecuta tests automáticamente antes de reportar cambios
-- ✅ **🔗 Rastreador de Referencias**: Rastrea y verifica referencias a código modificado
-- ✅ **⚡ Ejecutor Paralelo**: Ejecuta comandos en paralelo cuando no tienen dependencias
-- ✅ **🔍 Analizador de Contexto**: Analiza contexto del código antes de hacer cambios
-- ✅ **✅ Verificador de Completitud**: Verifica que se cumplieron todos los requisitos
-- ✅ **🔄 Gestor de Iteraciones**: Gestiona iteraciones hasta que los cambios sean correctos
-- ✅ **🔍 Verificador Crítico**: Verificación crítica antes de reportar al usuario
-- ✅ **🧠 Sistema de Triggers de Razonamiento**: Activa razonamiento automático en decisiones críticas
-- ✅ **🎯 Verificador de Intención**: Verifica que se cumplió la intención del usuario
-- ✅ **🔄 Integración Automática**: Integración automática en flujo de tareas
-- ✅ **🛡️ Protector de Tests**: Previene modificación de tests a menos que se solicite explícitamente
-- ✅ **🔗 Integración con CI**: Usa CI para testing cuando hay problemas de entorno
-- ✅ **🔀 Gestor de Git**: Gestión de Git siguiendo las reglas específicas de Devin
-- ✅ **📍 Verificador de Múltiples Ubicaciones**: Verifica que todas las ubicaciones fueron editadas
-- ✅ **🌐 Integración con Navegador**: Inspecciona páginas web sin asumir contenido
-- ✅ **📋 Verificador de Planificación**: Verifica que se tiene toda la información antes de sugerir un plan
+- ✅ **Elasticsearch**: Integrated advanced search
+- ✅ **Webhooks**: Complete webhooks system
+- ✅ **Bulk Operations**: Optimized batch operations
+- ✅ **Web interface**: Simple and modern control panel
+- ✅ **Persistent state**: Saves state even after restart
+- ✅ **WebSocket**: Real-time communication
+- ✅ **Notifications**: Advanced notification system
+- ✅ **Metrics**: Metrics collection and analysis
+- ✅ **Health Checks**: System health monitoring
+- ✅ **Rate Limiting**: Request rate control
+- ✅ **Data export**: Export tasks and metrics
+- ✅ **Task scheduling**: Execute tasks at specific times
+- ✅ **Backups**: Automatic backup system
+- ✅ **Plugins**: Extensible plugin system
+- ✅ **Authentication**: Authentication and authorization system
+- ✅ **Cache**: Command result cache
+- ✅ **Templates**: Reusable command templates
+- ✅ **Validation**: Command validation and sanitization
+- ✅ **Event Bus**: Pub/sub event system
+- ✅ **Clustering**: Basic support for multiple instances
+- ✅ **Advanced Logging**: Professional logging system
+- ✅ **Middleware**: Middleware for security and logging
+- ✅ **Maintenance scripts**: Automated maintenance tools
+- ✅ **Real-time monitor**: Visual agent status monitor
+- ✅ **AI Processing**: Intelligent command processing with LLMs
+- ✅ **Semantic search**: Command search using embeddings
+- ✅ **Pattern learning**: Learns from successful commands to improve
+- ✅ **Code generation**: Automatically generates code from descriptions
+- ✅ **Auto summary**: Summarizes long results automatically
+- ✅ **LLM Pipeline**: Professional pipeline with PyTorch and Transformers
+- ✅ **Fine-tuning**: Support for model fine-tuning
+- ✅ **Gradio Interface**: Interactive web interface with Gradio
+- ✅ **Code Completion**: Auto-completes code
+- ✅ **Explain Code**: Explains code in natural language
+- ✅ **Fix Code**: Fixes code with errors
+- ✅ **GPU Support**: Automatic GPU detection and usage
+- ✅ **Mixed Precision**: Support for training with float16
+- ✅ **Modular Architecture**: Clear separation of models, data, training and evaluation
+- ✅ **YAML Configurations**: Hyperparameter management in YAML files
+- ✅ **Experiment Tracking**: Ready for WandB/TensorBoard
+- ✅ **Callbacks System**: Callbacks system for training
+- ✅ **Checkpointing**: Automatic model saving
+- ✅ **🤖 Devin Personality**: Intelligent personality system with reasoning
+- ✅ **🔒 Enhanced Security**: Secret detection and protection
+- ✅ **📚 Code Understanding**: LSP-like system to understand codebase
+- ✅ **💬 Intelligent Communication**: Strategic communication with user
+- ✅ **⚠️ Issue Reporting**: Automatic environment issue detection and reporting
+- ✅ **🔧 Devin Command System**: Structured Devin-style commands
+- ✅ **📋 Planning System**: Work plan management with steps and dependencies
+- ✅ **🛠️ Tool Manager**: Automatic system tool detection
+- ✅ **📐 Convention Analyzer**: Detects and follows project code conventions
+- ✅ **✅ Change Verifier**: Verifies all changes are complete before reporting
+- ✅ **📚 Library Verification**: Verifies libraries in requirements.txt before use
+- ✅ **🧪 Test Runner**: Automatically runs tests before reporting changes
+- ✅ **🔗 Reference Tracker**: Tracks and verifies references to modified code
+- ✅ **⚡ Parallel Executor**: Executes commands in parallel when no dependencies
+- ✅ **🔍 Context Analyzer**: Analyzes code context before making changes
+- ✅ **✅ Completeness Verifier**: Verifies all requirements are met
+- ✅ **🔄 Iteration Manager**: Manages iterations until changes are correct
+- ✅ **🔍 Critical Verifier**: Critical verification before reporting to user
+- ✅ **🧠 Reasoning Trigger System**: Activates automatic reasoning on critical decisions
+- ✅ **🎯 Intent Verifier**: Verifies user intent fulfillment
+- ✅ **🔄 Automatic Integration**: Automatic integration into task flow
+- ✅ **🛡️ Test Protector**: Prevents test modification unless explicitly requested
+- ✅ **🔗 CI Integration**: Uses CI for testing when environment issues exist
+- ✅ **🔀 Git Manager**: Git management following specific Devin rules
+- ✅ **📍 Multiple Location Verifier**: Verifies all locations were edited
+- ✅ **🌐 Browser Integration**: Inspects web pages without assuming content
+- ✅ **📋 Planning Verifier**: Verifies all information is available before suggesting plan
 
-## 📦 Instalación
+## 📦 Installation
 
-### 🐳 Docker (Recomendado - Más Fácil)
+### 🐳 Docker (Recommended - Easiest)
 
 ```bash
-# Clonar o navegar al directorio
+# Clone or navigate to directory
 cd agents/backend/onyx/server/features/cursor_agent_24_7
 
-# Iniciar con Docker Compose
+# Start with Docker Compose
 docker-compose up
 
-# O usar Makefile
+# Or use Makefile
 make quick-start
 ```
 
-Ver [DOCKER.md](DOCKER.md) para documentación completa de Docker.
+See [DOCKER.md](DOCKER.md) for complete Docker documentation.
 
-### Instalación Local (Sin Docker)
+### Local Installation (No Docker)
 
 ```bash
 cd agents/backend/onyx/server/features/cursor_agent_24_7
 pip install -r requirements.txt
 ```
 
-### Instalación Mínima (Solo lo esencial)
+### Minimal Installation (Essentials Only)
 
 ```bash
 pip install -r requirements-minimal.txt
 ```
 
-### Instalación para Desarrollo
+### Development Installation
 
 ```bash
 pip install -r requirements-dev.txt
 ```
 
-### Instalación Rápida con UV (Más rápido que pip)
+### Fast Installation with UV (Faster than pip)
 
 ```bash
-# Instalar UV
+# Install UV
 pip install uv
 
-# Instalar dependencias
+# Install dependencies
 uv pip install -r requirements.txt
 ```
 
-### Notas de Instalación
+### Installation Notes
 
-- **Python 3.10+** requerido (recomendado 3.12+)
-- Algunas librerías requieren compilación (orjson, etc.)
-- Para mejor rendimiento: `pip install --no-cache-dir -r requirements.txt`
-- En Windows, algunas librerías pueden requerir Visual C++ Build Tools
+- **Python 3.10+** required (3.12+ recommended)
+- Some libraries require compilation (orjson, etc.)
+- For best performance: `pip install --no-cache-dir -r requirements.txt`
+- On Windows, some libraries may require Visual C++ Build Tools
 
-## 🎯 Uso Rápido
+## 🎯 Quick Usage
 
-### 🐳 Docker (Recomendado)
+### 🐳 Docker (Recommended)
 
 ```bash
-# Inicio rápido con Docker Compose
+# Quick start with Docker Compose
 docker-compose up
 
-# O con Makefile
+# Or with Makefile
 make quick-start
 
-# Stack completo (API + Workers + Redis)
+# Full stack (API + Workers + Redis)
 make dev
 
-# Producción
+# Production
 make prod
 ```
 
-Ver [DOCKER.md](DOCKER.md) para más opciones de Docker.
+See [DOCKER.md](DOCKER.md) for more Docker options.
 
-### ⚡ Comando Simple (Sin Docker)
+### ⚡ Simple Command (No Docker)
 
 ```bash
-# Iniciar API en puerto 8024 (default)
+# Start API on port 8024 (default)
 python run.py
 
-# O con opciones
+# Or with options
 python run.py --port 8080
 python run.py --aws
 python run.py --mode service
 ```
 
-Luego abre tu navegador en: `http://localhost:8024`
+Then open your browser at: `http://localhost:8024`
 
-### Modo API (Alternativa)
+### API Mode (Alternative)
 
 ```bash
 python main.py --mode api --port 8024
 ```
 
-### Modo Servicio
+### Service Mode
 
 ```bash
 python run.py --mode service
-# O
+# Or
 python main.py --mode service
 ```
 
-> 💡 **Tip**: Usa Docker para la mejor experiencia. Ver [DOCKER.md](DOCKER.md) para más información.
+> 💡 **Tip**: Use Docker for the best experience. See [DOCKER.md](DOCKER.md) for more information.
 
-## 🖥️ Interfaz Web
+## 🖥️ Web Interface
 
-Al iniciar en modo API, tendrás acceso a una interfaz web simple con:
+When starting in API mode, you will have access to a simple web interface with:
 
-- **Botón Iniciar**: Inicia el agente
-- **Botón Pausar**: Pausa temporalmente el agente
-- **Botón Detener**: Detiene completamente el agente
-- **Campo de comando**: Escribe comandos y presiona Enter para agregarlos
-- **Lista de tareas**: Ver todas las tareas ejecutadas
+- **Start Button**: Starts the agent
+- **Pause Button**: Temporarily pauses the agent
+- **Stop Button**: Completely stops the agent
+- **Command Field**: Type commands and press Enter to add them
+- **Task List**: View all executed tasks
 
 ## 📡 API Endpoints
 
-### Control del Agente
+### Agent Control
 
-- `POST /api/start` - Iniciar el agente
-- `POST /api/stop` - Detener el agente
-- `POST /api/pause` - Pausar el agente
-- `POST /api/resume` - Reanudar el agente
-- `GET /api/status` - Obtener estado del agente
+- `POST /api/start` - Start the agent
+- `POST /api/stop` - Stop the agent
+- `POST /api/pause` - Pause the agent
+- `POST /api/resume` - Resume the agent
+- `GET /api/status` - Get agent status
 
-### Tareas
+### Tasks
 
-- `POST /api/tasks` - Agregar una nueva tarea
+- `POST /api/tasks` - Add a new task
   ```json
   {
-    "command": "tu comando aquí"
+    "command": "your command here"
   }
   ```
-- `GET /api/tasks?limit=50` - Obtener lista de tareas
+- `GET /api/tasks?limit=50` - Get task list
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-Puedes configurar el agente editando `AgentConfig`:
+You can configure the agent by editing `AgentConfig`:
 
 ```python
 from cursor_agent_24_7.core.agent import AgentConfig, CursorAgent
 
 config = AgentConfig(
-    check_interval=1.0,  # Segundos entre checks
-    max_concurrent_tasks=5,  # Máximo de tareas simultáneas
-    task_timeout=300.0,  # Timeout por tarea (segundos)
-    auto_restart=True,  # Reiniciar automáticamente en caso de error
-    persistent_storage=True,  # Guardar estado en disco
-    storage_path="./data/agent_state.json"  # Ruta del archivo de estado
+    check_interval=1.0,  # Seconds between checks
+    max_concurrent_tasks=5,  # Maximum concurrent tasks
+    task_timeout=300.0,  # Timeout per task (seconds)
+    auto_restart=True,  # Automatically restart on error
+    persistent_storage=True,  # Save state to disk
+    storage_path="./data/agent_state.json"  # State file path
 )
 
 agent = CursorAgent(config)
 ```
 
-## 🛠️ Ejecutar como Servicio del Sistema
+## 🛠️ Run as System Service
 
 ### Windows
 
-Usar **NSSM** (Non-Sucking Service Manager):
+Use **NSSM** (Non-Sucking Service Manager):
 
 ```bash
-# Instalar NSSM
-# Descargar de: https://nssm.cc/download
+# Install NSSM
+# Download from: https://nssm.cc/download
 
-# Crear servicio
-nssm install CursorAgent24_7 "C:\Python\python.exe" "C:\ruta\al\main.py" --mode service
+# Create service
+nssm install CursorAgent24_7 "C:\Python\python.exe" "C:\path\to\main.py" --mode service
 
-# Iniciar servicio
+# Start service
 nssm start CursorAgent24_7
 ```
 
-O usar **Task Scheduler** de Windows.
+Or use Windows **Task Scheduler**.
 
 ### Linux (systemd)
 
-Crear archivo `/etc/systemd/system/cursor-agent-24-7.service`:
+Create file `/etc/systemd/system/cursor-agent-24-7.service`:
 
 ```ini
 [Unit]
@@ -270,9 +272,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=tu_usuario
-WorkingDirectory=/ruta/al/cursor_agent_24_7
-ExecStart=/usr/bin/python3 /ruta/al/cursor_agent_24_7/main.py --mode service
+User=your_user
+WorkingDirectory=/path/to/cursor_agent_24_7
+ExecStart=/usr/bin/python3 /path/to/cursor_agent_24_7/main.py --mode service
 Restart=always
 RestartSec=10
 
@@ -280,7 +282,7 @@ RestartSec=10
 WantedBy=multi-user.target
 ```
 
-Luego:
+Then:
 
 ```bash
 sudo systemctl daemon-reload
@@ -290,7 +292,7 @@ sudo systemctl start cursor-agent-24-7
 
 ### macOS (launchd)
 
-Crear archivo `~/Library/LaunchAgents/com.cursor.agent24-7.plist`:
+Create file `~/Library/LaunchAgents/com.cursor.agent24-7.plist`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -302,7 +304,7 @@ Crear archivo `~/Library/LaunchAgents/com.cursor.agent24-7.plist`:
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
-        <string>/ruta/al/cursor_agent_24_7/main.py</string>
+        <string>/path/to/cursor_agent_24_7/main.py</string>
         <string>--mode</string>
         <string>service</string>
     </array>
@@ -314,171 +316,174 @@ Crear archivo `~/Library/LaunchAgents/com.cursor.agent24-7.plist`:
 </plist>
 ```
 
-Luego:
+Then:
 
 ```bash
 launchctl load ~/Library/LaunchAgents/com.cursor.agent24-7.plist
 ```
 
-## 🔌 Integración con Cursor API
+## 🔌 Cursor API Integration
 
-**TODO**: Actualmente el agente está preparado para integrarse con la API de Cursor, pero la integración real necesita ser implementada.
+**TODO**: Currently the agent is prepared to integrate with the Cursor API, but the actual integration needs to be implemented.
 
-Para integrar:
+To integrate:
 
-1. Obtener acceso a la API de Cursor
-2. Implementar `CommandListener._listen_loop()` para recibir comandos reales
-3. Implementar `TaskExecutor._run_command()` para ejecutar comandos reales
+1. Obtain access to the Cursor API
+2. Implement `CommandListener._listen_loop()` to receive real commands
+3. Implement `TaskExecutor._run_command()` to execute real commands
 
-## 📊 Estado Persistente
+## 📊 Persistent State
 
-El agente guarda su estado en `./data/agent_state.json` por defecto. Esto incluye:
+The agent saves its state to `./data/agent_state.json` by default. This includes:
 
-- Estado actual del agente
-- Todas las tareas (pendientes, en ejecución, completadas, fallidas)
-- Resultados y errores
+- Current agent status
+- All tasks (pending, running, completed, failed)
+- Results and errors
 
-Al reiniciar, el agente carga automáticamente el estado guardado.
+Upon restart, the agent automatically loads the saved state.
 
-## 🛠️ Scripts de Utilidad
+## 🛠️ Utility Scripts
 
-### Monitor en Tiempo Real
+### Real-Time Monitor
 
-Monitorea el estado del agente en tiempo real:
+Monitor the agent state in real-time:
 
 ```bash
 python scripts/monitor.py
 ```
 
-O con intervalo personalizado:
+Or with custom interval:
 
 ```bash
 python scripts/monitor.py --interval 1.0
 ```
 
-### Mantenimiento
+### Maintenance
 
-Ejecutar tareas de mantenimiento:
+Execute maintenance tasks:
 
 ```bash
-# Limpiar tareas antiguas
+# Cleanup old tasks
 python scripts/maintenance.py cleanup --days 30
 
-# Verificar salud
+# Check health
 python scripts/maintenance.py health
 
-# Generar reporte
+# Generate report
 python scripts/maintenance.py report
 
-# Ejecutar todo
+# Run everything
 python scripts/maintenance.py all
 ```
 
-### Instalación como Servicio
+### Install as Service
 
-Instalar el agente como servicio del sistema:
+Install the agent as a system service:
 
 ```bash
 python scripts/install_service.py
 ```
 
-### Interfaz Gradio
+### Gradio Interface
 
-Lanzar la interfaz web interactiva con Gradio:
+Launch interactive Gradio web interface:
 
 ```bash
 python scripts/launch_gradio.py
 ```
 
-Con link público:
+With public link:
 
 ```bash
 python scripts/launch_gradio.py --share
 ```
 
-La interfaz estará disponible en `http://localhost:7860`
+The interface will be available at `http://localhost:7860`
 
-## 🤖 Mejoras Devin
+## 🤖 Devin Improvements
 
-El agente ahora incluye un sistema completo de personalidad Devin que lo hace más inteligente, seguro y profesional:
+The agent now includes a complete Devin personality system making it smarter, safer, and more professional:
 
-- **Sistema de Personalidad Devin**: Comportamiento similar a Devin con razonamiento interno
-- **Comunicación Estratégica**: Comunica con el usuario cuando es necesario
-- **Reporte de Problemas de Entorno**: Detecta y reporta problemas automáticamente
-- **Modos de Operación**: Modo planificación y modo estándar
-- **Comprensión de Código**: Sistema LSP-like para entender el código base
-- **Seguridad Mejorada**: Detección y protección de secretos
+- **Devin Personality System**: Devin-like behavior with internal reasoning
+- **Strategic Communication**: Communicates with user when necessary
+- **Environment Issue Reporting**: Automatically detects and reports issues
+- **Operation Modes**: Planning mode and standard mode
+- **Code Understanding**: LSP-like system to understand the codebase
+- **Enhanced Security**: Secret detection and protection
 
-Ver **[DEVIN_IMPROVEMENTS.md](DEVIN_IMPROVEMENTS.md)** para más detalles.
+See **[DEVIN_IMPROVEMENTS.md](DEVIN_IMPROVEMENTS.md)** for more details.
 
-## 📚 Documentación Adicional
+## 📚 Additional Documentation
 
-### 🚀 Despliegue y Orquestación
-- **[ORCHESTRATION.md](ORCHESTRATION.md)**: Guía completa de orquestación (Docker, K8s, ECS)
-- **[ORCHESTRATION_QUICK_START.md](ORCHESTRATION_QUICK_START.md)**: Inicio rápido de orquestación
-- **[DOCKER.md](DOCKER.md)**: Docker Compose completo
-- **[AWS_DEPLOYMENT.md](aws/AWS_DEPLOYMENT.md)**: Despliegue en AWS
-- **[DEPLOYMENT.md](DEPLOYMENT.md)**: Guía de despliegue general
+### 🚀 Deployment and Orchestration
+- **[ORCHESTRATION.md](ORCHESTRATION.md)**: Complete orchestration guide (Docker, K8s, ECS)
+- **[ORCHESTRATION_QUICK_START.md](ORCHESTRATION_QUICK_START.md)**: Orchestration quick start
+- **[DOCKER.md](DOCKER.md)**: Complete Docker Compose
+- **[AWS_DEPLOYMENT.md](aws/AWS_DEPLOYMENT.md)**: AWS Deployment
+- **[DEPLOYMENT.md](DEPLOYMENT.md)**: General deployment guide
 
-### 🏗️ Arquitectura y Características
-- **[ARCHITECTURE.md](ARCHITECTURE.md)**: Arquitectura completa del sistema
-- **[ADVANCED_FEATURES.md](ADVANCED_FEATURES.md)**: Características avanzadas
-- **[MORE_IMPROVEMENTS.md](MORE_IMPROVEMENTS.md)**: Mejoras adicionales
-- **[FINAL_IMPROVEMENTS.md](FINAL_IMPROVEMENTS.md)**: Mejoras finales (Service Discovery, Elasticsearch)
-- **[API_IMPROVEMENTS.md](API_IMPROVEMENTS.md)**: Mejoras de API (Webhooks, Bulk, Cache)
-- **[LIBRARIES_IMPROVEMENTS.md](LIBRARIES_IMPROVEMENTS.md)**: Mejoras de librerías (Serverless, Performance)
-- **[MODULAR_ARCHITECTURE.md](MODULAR_ARCHITECTURE.md)**: Arquitectura modular
+### 🏗️ Architecture and Features
+- **[ARCHITECTURE.md](ARCHITECTURE.md)**: Complete system architecture
+- **[ADVANCED_FEATURES.md](ADVANCED_FEATURES.md)**: Advanced features
+- **[MORE_IMPROVEMENTS.md](MORE_IMPROVEMENTS.md)**: Additional improvements
+- **[FINAL_IMPROVEMENTS.md](FINAL_IMPROVEMENTS.md)**: Final improvements (Service Discovery, Elasticsearch)
+- **[API_IMPROVEMENTS.md](API_IMPROVEMENTS.md)**: API improvements (Webhooks, Bulk, Cache)
+- **[LIBRARIES_IMPROVEMENTS.md](LIBRARIES_IMPROVEMENTS.md)**: Library improvements (Serverless, Performance)
+- **[MODULAR_ARCHITECTURE.md](MODULAR_ARCHITECTURE.md)**: Modular architecture
 
-### 🤖 Funcionalidades
-- **[DEVIN_IMPROVEMENTS.md](DEVIN_IMPROVEMENTS.md)**: Mejoras basadas en Devin
-- **[FEATURES.md](FEATURES.md)**: Lista completa de características
-- **[AI_FEATURES.md](AI_FEATURES.md)**: Funcionalidades de IA y Machine Learning
-- **[ADVANCED_AI.md](ADVANCED_AI.md)**: Funcionalidades avanzadas de Deep Learning
+### 🤖 Capabilities
+- **[DEVIN_IMPROVEMENTS.md](DEVIN_IMPROVEMENTS.md)**: Devin-based improvements
+- **[FEATURES.md](FEATURES.md)**: Full list of features
+- **[AI_FEATURES.md](AI_FEATURES.md)**: AI and Machine Learning features
+- **[ADVANCED_AI.md](ADVANCED_AI.md)**: Advanced Deep Learning features
 
-### 📖 Referencias
-- **[EXAMPLES.md](EXAMPLES.md)**: Ejemplos de uso
-- **[API_REFERENCE.md](API_REFERENCE.md)**: Referencia completa de la API
-- **[COMMANDS.md](COMMANDS.md)**: Comandos disponibles
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Solución de problemas
-- **[LIBRARIES.md](LIBRARIES.md)**: Documentación de librerías usadas
-- **[QUICK_START.md](QUICK_START.md)**: Guía de inicio rápido
+### 📖 References
+- **[EXAMPLES.md](EXAMPLES.md)**: Usage examples
+- **[API_REFERENCE.md](API_REFERENCE.md)**: Complete API reference
+- **[COMMANDS.md](COMMANDS.md)**: Available commands
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Troubleshooting
+- **[LIBRARIES.md](LIBRARIES.md)**: Documentation of used libraries
+- **[QUICK_START.md](QUICK_START.md)**: Quick start guide
 
 ## 🐛 Troubleshooting
 
-Para troubleshooting detallado, consulta [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+For detailed troubleshooting, consult [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
-### Problemas Comunes
+### Common Issues
 
-**El agente no inicia:**
-- Verifica que el puerto 8024 esté disponible
-- Revisa los logs: `tail -f logs/agent.log`
-- Asegúrate de tener todas las dependencias instaladas
+**Agent doesn't start:**
+- Verify port 8024 is available
+- Check logs: `tail -f logs/agent.log`
+- Ensure all dependencies are installed
 
-**Las tareas no se ejecutan:**
-- Verifica que el agente esté en estado "running": `curl http://localhost:8024/api/status`
-- Revisa los logs para ver errores de ejecución
-- Verifica health: `curl http://localhost:8024/api/health`
+**Tasks not executing:**
+- Verify agent is in "running" state: `curl http://localhost:8024/api/status`
+- Check logs for execution errors
+- Verify health: `curl http://localhost:8024/api/health`
 
-**El servicio no persiste:**
-- Verifica los permisos de escritura en el directorio de datos
-- Revisa la configuración del servicio del sistema
-- Asegúrate de que `persistent_storage=True` en la configuración
+**Service persistence failing:**
+- Verify write permissions in data directory
+- Check system service configuration
+- Ensure `persistent_storage=True` in configuration
 
-## 📝 Licencia
+## 📝 License
 
-Parte del proyecto Blatam Academy.
+Part of the Blatam Academy project.
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome. Please:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
+1. Fork the project
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## 📞 Soporte
+## 📞 Support
 
-Para soporte, abre un issue en el repositorio o contacta al equipo de Blatam Academy.
+For support, open an issue in the repository or contact the Blatam Academy team.
 
+---
+
+[← Back to Main README](../README.md)

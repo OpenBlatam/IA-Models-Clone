@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import Dict, List, Optional, Any, Tuple, Union, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime
 from enum import Enum
 import logging
@@ -48,8 +48,7 @@ class AlgorithmType(Enum):
     NEUROMORPHIC_ML = "neuromorphic_ml"
     OPTICAL_ML = "optical_ml"
 
-@dataclass
-class MLOptimizationConfig:
+class MLOptimizationConfig(BaseModel):
     """Machine learning optimization configuration."""
     level: MLOptimizationLevel = MLOptimizationLevel.ML_ADVANCED
     algorithm_type: AlgorithmType = AlgorithmType.DEEP_LEARNING
@@ -64,9 +63,10 @@ class MLOptimizationConfig:
     max_iterations: int = 10000
     max_workers: int = 4
 
-@dataclass
-class MLOptimizationResult:
+class MLOptimizationResult(BaseModel):
     """Machine learning optimization result."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     success: bool
     optimization_time: float
     optimized_model: Any
@@ -75,7 +75,7 @@ class MLOptimizationResult:
     optimization_applied: List[str]
     hyperparameters: Dict[str, Any]
     error_message: Optional[str] = None
-    timestamp: datetime = field(default_factory=datetime.now)
+    timestamp: datetime = Field(default_factory=datetime.now)
 
 class UltraMachineLearningOptimizer:
     """Ultra machine learning optimizer with intelligent algorithm selection."""
@@ -613,3 +613,4 @@ if __name__ == "__main__":
     
     optimizer.cleanup()
     print("\nUltra Machine Learning optimization completed")
+

@@ -785,3 +785,4 @@ def create_performance_config(**kwargs) -> PerformanceConfig:
     """Create a performance configuration."""
     return PerformanceConfig(**kwargs)
 
+

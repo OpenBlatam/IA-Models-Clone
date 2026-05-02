@@ -64,6 +64,17 @@ import sentry_sdk
 import torch.profiler
 from torch.utils.tensorboard import SummaryWriter
 
+# System 5.0+ Integration
+try:
+    from .core.sys5.telemetry import tracked
+    from .core.sys5.registry import registry
+    from .core.sys5.events import event_bus, EventType
+except (ImportError, ValueError):
+    def tracked(phase="General"):
+        return lambda f: f
+    registry = None
+    event_bus = None
+
 from abc import ABC, abstractmethod
 
 # Suppress warnings
@@ -220,6 +231,7 @@ class KalmanFilter:
         self.momentum = 0.9
         self.velocity = 0.0
         
+    @tracked(phase="Optimization")
     def update(self, measurement: float) -> float:
         # Prediction with momentum
         mu_pred = self.mu + self.momentum * self.velocity
@@ -296,6 +308,12 @@ def setup_environment():
         logger.info("Error tracking initialized successfully")
     except Exception as e:
         logger.warning(f"Failed to initialize error tracking: {e}")
+    
+    # System 5.0+ Registry Setup
+    if registry and not registry.get("TelemetryService"):
+        from .core.sys5.telemetry import TelemetryService
+        registry.register("TelemetryService", TelemetryService())
+        logger.info("System 5.0+ TelemetryService registered")
 
 def setup_deepseek_optimizations(model: PreTrainedModel, config: DeepSeekConfig):
     """Setup DeepSeek-specific optimizations for the model."""
@@ -449,6 +467,7 @@ def setup_distributed_training(args: KFGRPOScriptArguments):
         )
         logger.info(f"Distributed training initialized with {args.distributed_world_size} processes")
 
+@tracked(phase="Training")
 def main(script_args: KFGRPOScriptArguments, training_args: Any, model_args: Any) -> None:
     """Main training function."""
     # Setup environment

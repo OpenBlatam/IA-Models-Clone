@@ -18,7 +18,7 @@ import copy
 import time
 import logging
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel
 from enum import Enum
 import json
 import pickle
@@ -71,8 +71,7 @@ class LearningRateSchedule(Enum):
     ADAPTIVE = "adaptive"
     PERFORMANCE_BASED = "performance_based"
 
-@dataclass
-class AdaptationConfig:
+class AdaptationConfig(BaseModel):
     """Configuration for real-time adaptation."""
     adaptation_mode: AdaptationMode = AdaptationMode.CONTINUOUS
     adaptation_strategy: AdaptationStrategy = AdaptationStrategy.ONLINE_LEARNING
@@ -82,10 +81,10 @@ class AdaptationConfig:
     min_learning_rate: float = 1e-6
     max_learning_rate: float = 0.01
     adaptation_threshold: float = 0.1
-    adaptation_frequency: int = 100  # samples
+    adaptation_frequency: int = 100
     memory_size: int = 10000
     batch_size: int = 32
-    update_frequency: int = 10  # samples
+    update_frequency: int = 10
     performance_window: int = 100
     drift_detection_window: int = 1000
     device: str = "auto"
@@ -778,3 +777,4 @@ def example_real_time_adaptation():
 if __name__ == "__main__":
     # Run example
     example_real_time_adaptation()
+

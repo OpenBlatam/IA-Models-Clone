@@ -1,60 +1,62 @@
-# Addiction Recovery AI - Version 3.4.0
+# Addiction Recovery AI — v3.4.0
 
-## 🚀 Sistema Completo de IA para Recuperación de Adicciones
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema completo, modular, ultra-rápido y listo para producción con todas las mejores prácticas de deep learning.
+## 🚀 Complete AI System for Addiction Recovery
 
-## ✨ Características Principales
+A complete, modular, ultra-fast, production-ready system built with all deep learning best practices.
+
+## ✨ Key Features
 
 ### 🧠 Deep Learning
-- Modelos avanzados con arquitecturas optimizadas
-- Mixed precision training (FP16)
-- Model compilation con torch.compile
+- Advanced model architectures
+- Mixed-precision training (FP16)
+- Model compilation with `torch.compile`
 - Quantization (INT8/INT4)
 - LoRA fine-tuning
 
-### ⚡ Velocidad
-- Ultra-fast inference (5-10x más rápido)
-- Async processing (2-3x throughput)
-- Intelligent caching (10-100x para repetidos)
+### ⚡ Speed
+- Ultra-fast inference (5–10× faster)
+- Async processing (2–3× throughput)
+- Intelligent caching (10–100× for repeated queries)
 - Pipeline optimization
 - Memory optimization
 
-### 🏗️ Arquitectura
-- Ultra-modular con componentes reutilizables
-- Base classes y interfaces claras
+### 🏗️ Architecture
+- Ultra-modular with reusable components
+- Clear base classes and interfaces
 - Factory patterns
 - Plugin system
 - Configuration management
 
-### 🎯 Producción
+### 🎯 Production
 - Experiment tracking (TensorBoard/WandB)
 - Checkpoint management
 - Comprehensive evaluation
 - Production scripts
 - Health monitoring
 
-### 🔒 Calidad
+### 🔒 Quality
 - Input/output validation
 - Automated testing
 - Health monitoring
 - Robust error handling
 - Security features
 
-### 📊 Utilidades
+### 📊 Utilities
 - Structured logging
 - Benchmarking
 - Visualization
 - Model export (ONNX/TorchScript)
 - Serialization
 
-## 📦 Instalación
+## 📦 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# O instalar solo lo esencial
+# Or install only essentials
 pip install torch transformers diffusers gradio
 ```
 
@@ -82,58 +84,54 @@ if is_valid:
     progress = engine.predict(torch.tensor([features]))
 ```
 
-## 📚 Documentación Completa
+## 📚 Documentation
 
-### ⭐ Guías Principales (Recomendadas)
-- **[REFACTORING_STATUS.md](REFACTORING_STATUS.md)** ⭐ - Estado de refactorización
-- **[DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)** ⭐ - Índice completo de documentación
-- **[ENTRY_POINTS_GUIDE.md](ENTRY_POINTS_GUIDE.md)** - Entry points
-- **[API_GUIDE.md](API_GUIDE.md)** - Estructura API
-- **[HEALTH_CHECKS_GUIDE.md](HEALTH_CHECKS_GUIDE.md)** - Health checks
-- **[UTILITIES_GUIDE.md](UTILITIES_GUIDE.md)** - Utilidades
-- **[CONFIG_GUIDE.md](CONFIG_GUIDE.md)** - Configuración
-- **[MIDDLEWARE_GUIDE.md](MIDDLEWARE_GUIDE.md)** - Middleware
-- **[DEPENDENCIES_GUIDE.md](DEPENDENCIES_GUIDE.md)** - Dependencias
-- **[SERVICES_GUIDE.md](SERVICES_GUIDE.md)** - Servicios
-- **[SCHEMAS_GUIDE.md](SCHEMAS_GUIDE.md)** - Schemas
-- **[CORE_GUIDE.md](CORE_GUIDE.md)** - Componentes core
-- **[EXPORTS_GUIDE.md](EXPORTS_GUIDE.md)** - Exports
-- **[TESTING_GUIDE.md](TESTING_GUIDE.md)** - Testing
-- **[EXAMPLES_GUIDE.md](EXAMPLES_GUIDE.md)** - Ejemplos
-- **[SCRIPTS_GUIDE.md](SCRIPTS_GUIDE.md)** - Scripts
-- **[DEPRECATED_FILES_GUIDE.md](DEPRECATED_FILES_GUIDE.md)** - Archivos deprecados
-- **[INFRASTRUCTURE_GUIDE.md](INFRASTRUCTURE_GUIDE.md)** - Infrastructure
-- **[MICROSERVICES_GUIDE.md](MICROSERVICES_GUIDE.md)** - Microservices
-- **[AWS_GUIDE.md](AWS_GUIDE.md)** - AWS
-- **[ERROR_HANDLING_GUIDE.md](ERROR_HANDLING_GUIDE.md)** - Error handling
-- **[HANDLERS_GUIDE.md](HANDLERS_GUIDE.md)** - Handlers
-- **[PERFORMANCE_GUIDE.md](PERFORMANCE_GUIDE.md)** - Performance
-- **[SCALABILITY_GUIDE.md](SCALABILITY_GUIDE.md)** - Scalability
-- **[OPTIMIZATION_GUIDE.md](OPTIMIZATION_GUIDE.md)** - Optimization
-- **[PERFORMANCE_GUIDE.md](PERFORMANCE_GUIDE.md)** - Performance
-- **[SCALABILITY_GUIDE.md](SCALABILITY_GUIDE.md)** - Scalability
-- **[OPTIMIZATION_GUIDE.md](OPTIMIZATION_GUIDE.md)** - Optimization
-- **[TRAINING_GUIDE.md](TRAINING_GUIDE.md)** - Training
+### ⭐ Primary Guides (Recommended)
 
-### Documentación Histórica
-- [Complete Guide](COMPLETE_GUIDE.md) - Guía completa de uso
-- [Best Practices](BEST_PRACTICES.md) - Mejores prácticas
-- [Deep Learning Enhancements](DEEP_LEARNING_ENHANCEMENTS.md) - Mejoras de deep learning
-- [Speed Optimizations](SPEED_OPTIMIZATIONS_V2.md) - Optimizaciones de velocidad
-- [Ultra Speed](ULTRA_SPEED_V2.md) - Optimizaciones ultra-rápidas
-- [Modular Architecture](MODULAR_ARCHITECTURE_V2.md) - Arquitectura modular
-- [Ultra Modular](ULTRA_MODULAR_V2.md) - Arquitectura ultra-modular
-- [Production Features](PRODUCTION_FEATURES.md) - Features de producción
-- [Quality Improvements](QUALITY_IMPROVEMENTS.md) - Mejoras de calidad
-- [Final Summary](FINAL_IMPROVEMENTS_SUMMARY.md) - Resumen final
-- **[REFACTORING_HISTORY.md](REFACTORING_HISTORY.md)** - Historia de refactorización
-- **[REFACTORING_SUMMARY_COMPLETE.md](REFACTORING_SUMMARY_COMPLETE.md)** - Resumen completo
-- **[REFACTORING_FINAL_SUMMARY.md](REFACTORING_FINAL_SUMMARY.md)** ⭐ - Resumen final completo
-- **[REFACTORING_COMPLETE.md](REFACTORING_COMPLETE.md)** ⭐ - Refactorización completa
+| Guide | Description |
+|-------|-------------|
+| [REFACTORING_STATUS.md](REFACTORING_STATUS.md) ⭐ | Refactoring status |
+| [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) ⭐ | Complete documentation index |
+| [ENTRY_POINTS_GUIDE.md](ENTRY_POINTS_GUIDE.md) | Entry points |
+| [API_GUIDE.md](API_GUIDE.md) | API structure |
+| [HEALTH_CHECKS_GUIDE.md](HEALTH_CHECKS_GUIDE.md) | Health checks |
+| [UTILITIES_GUIDE.md](UTILITIES_GUIDE.md) | Utilities |
+| [CONFIG_GUIDE.md](CONFIG_GUIDE.md) | Configuration |
+| [MIDDLEWARE_GUIDE.md](MIDDLEWARE_GUIDE.md) | Middleware |
+| [DEPENDENCIES_GUIDE.md](DEPENDENCIES_GUIDE.md) | Dependencies |
+| [SERVICES_GUIDE.md](SERVICES_GUIDE.md) | Services |
+| [SCHEMAS_GUIDE.md](SCHEMAS_GUIDE.md) | Schemas |
+| [CORE_GUIDE.md](CORE_GUIDE.md) | Core components |
+| [EXPORTS_GUIDE.md](EXPORTS_GUIDE.md) | Exports |
+| [TESTING_GUIDE.md](TESTING_GUIDE.md) | Testing |
+| [EXAMPLES_GUIDE.md](EXAMPLES_GUIDE.md) | Examples |
+| [SCRIPTS_GUIDE.md](SCRIPTS_GUIDE.md) | Scripts |
+| [INFRASTRUCTURE_GUIDE.md](INFRASTRUCTURE_GUIDE.md) | Infrastructure |
+| [MICROSERVICES_GUIDE.md](MICROSERVICES_GUIDE.md) | Microservices |
+| [AWS_GUIDE.md](AWS_GUIDE.md) | AWS deployment |
+| [ERROR_HANDLING_GUIDE.md](ERROR_HANDLING_GUIDE.md) | Error handling |
+| [PERFORMANCE_GUIDE.md](PERFORMANCE_GUIDE.md) | Performance |
+| [SCALABILITY_GUIDE.md](SCALABILITY_GUIDE.md) | Scalability |
+| [OPTIMIZATION_GUIDE.md](OPTIMIZATION_GUIDE.md) | Optimization |
+| [TRAINING_GUIDE.md](TRAINING_GUIDE.md) | Training |
 
-## 🎯 Uso Avanzado
+### Historical Documentation
+- [Complete Guide](COMPLETE_GUIDE.md) — Full usage guide
+- [Best Practices](BEST_PRACTICES.md) — Best practices
+- [Deep Learning Enhancements](DEEP_LEARNING_ENHANCEMENTS.md) — DL improvements
+- [Speed Optimizations](SPEED_OPTIMIZATIONS_V2.md) — Speed optimizations
+- [Ultra Speed](ULTRA_SPEED_V2.md) — Ultra-fast optimizations
+- [Modular Architecture](MODULAR_ARCHITECTURE_V2.md) — Modular architecture
+- [Ultra Modular](ULTRA_MODULAR_V2.md) — Ultra-modular architecture
+- [Production Features](PRODUCTION_FEATURES.md) — Production features
+- [Quality Improvements](QUALITY_IMPROVEMENTS.md) — Quality improvements
+- [Final Summary](FINAL_IMPROVEMENTS_SUMMARY.md) — Final summary
+- [Refactoring History](REFACTORING_HISTORY.md) — Refactoring history
+- [Refactoring Complete](REFACTORING_COMPLETE.md) ⭐ — Complete refactoring
 
-### Pipeline Integrado
+## 🎯 Advanced Usage
+
+### Integrated Pipeline
 ```python
 from addiction_recovery_ai import create_integrated_pipeline
 
@@ -148,7 +146,7 @@ output = pipeline.predict(input)
 health = pipeline.get_health_status()
 ```
 
-### Training Completo
+### Complete Training
 ```python
 from addiction_recovery_ai import (
     TrainerFactory,
@@ -163,7 +161,7 @@ checkpoint_manager = create_checkpoint_manager("checkpoints")
 trainer.train(optimizer, criterion, num_epochs=50)
 ```
 
-### Exportación
+### Model Export
 ```python
 from addiction_recovery_ai import export_to_onnx, export_to_torchscript
 
@@ -171,74 +169,84 @@ export_to_onnx(model, input_shape=(1, 10), output_path="model.onnx")
 export_to_torchscript(model, input_shape=(1, 10), output_path="model.pt")
 ```
 
-## 📊 Módulos Disponibles
+## 📊 Available Modules
 
 ### Core Models
-- `RecoverySentimentAnalyzer` - Análisis de sentimiento
-- `RecoveryProgressPredictor` - Predicción de progreso
-- `RelapseRiskPredictor` - Predicción de riesgo de recaída
-- `LLMRecoveryCoach` - Coaching con LLM
+| Module | Description |
+|--------|-------------|
+| `RecoverySentimentAnalyzer` | Sentiment analysis |
+| `RecoveryProgressPredictor` | Progress prediction |
+| `RelapseRiskPredictor` | Relapse risk prediction |
+| `LLMRecoveryCoach` | LLM-based coaching |
 
 ### Optimization
-- `UltraFastInference` - Inferencia ultra-rápida
-- `AsyncInferenceEngine` - Inferencia asíncrona
-- `EmbeddingCache` - Caché de embeddings
-- `MemoryOptimizer` - Optimización de memoria
+| Module | Description |
+|--------|-------------|
+| `UltraFastInference` | Ultra-fast inference |
+| `AsyncInferenceEngine` | Async inference |
+| `EmbeddingCache` | Embedding caching |
+| `MemoryOptimizer` | Memory optimization |
 
 ### Production
-- `ExperimentTracker` - Tracking de experimentos
-- `CheckpointManager` - Gestión de checkpoints
-- `ModelEvaluator` - Evaluación completa
-- `SystemHealthMonitor` - Monitoreo de salud
+| Module | Description |
+|--------|-------------|
+| `ExperimentTracker` | Experiment tracking |
+| `CheckpointManager` | Checkpoint management |
+| `ModelEvaluator` | Comprehensive evaluation |
+| `SystemHealthMonitor` | System health monitoring |
 
 ### Quality
-- `InputValidator` - Validación de inputs
-- `ModelTester` - Testing de modelos
-- `ModelHealthMonitor` - Monitoreo de modelos
-- `ErrorHandler` - Manejo de errores
+| Module | Description |
+|--------|-------------|
+| `InputValidator` | Input validation |
+| `ModelTester` | Model testing |
+| `ModelHealthMonitor` | Model health monitoring |
+| `ErrorHandler` | Error handling |
 
-## 🎓 Ejemplos
+## 🎓 Examples
 
-Ver carpeta `examples/`:
-- `quick_start.py` - Inicio rápido
-- `complete_workflow.py` - Workflow completo
+See the `examples/` folder:
+- `quick_start.py` — Quick start
+- `complete_workflow.py` — Complete workflow
 
 ## 🔧 Scripts
 
-- `scripts/train_model.py` - Script de entrenamiento
-- `scripts/inference_server.py` - Servidor de inferencia
+- `scripts/train_model.py` — Training script
+- `scripts/inference_server.py` — Inference server
 
 ## 📈 Performance
 
-- **Single Inference**: 5-10x más rápido
-- **Batch Inference**: 4-5x más rápido
-- **Cached Inference**: 10-100x más rápido (repetidos)
-- **Memory Usage**: 1.7x menos memoria
-- **Model Size**: 4x más pequeño (con quantization)
+| Metric | Improvement |
+|--------|-------------|
+| **Single Inference** | 5–10× faster |
+| **Batch Inference** | 4–5× faster |
+| **Cached Inference** | 10–100× faster (repeated) |
+| **Memory Usage** | 1.7× less memory |
+| **Model Size** | 4× smaller (with quantization) |
 
-## 🏆 Características Destacadas
+## 🏆 Highlights
 
-✅ **Ultra-Modular**: Componentes reutilizables  
-✅ **Ultra-Rápido**: 5-10x más rápido  
-✅ **Ultra-Robusto**: Validación, testing, monitoreo  
-✅ **Production Ready**: Listo para deployment  
-✅ **Well Documented**: Documentación completa  
-✅ **Best Practices**: Sigue estándares de la industria  
+✅ **Ultra-Modular** — Reusable components  
+✅ **Ultra-Fast** — 5–10× faster  
+✅ **Ultra-Robust** — Validation, testing, monitoring  
+✅ **Production Ready** — Deployment-ready  
+✅ **Well Documented** — Comprehensive documentation  
+✅ **Best Practices** — Industry-standard patterns  
 
-## 📝 Licencia
+## 📝 License
 
-Ver archivo LICENSE
+See LICENSE file.
 
-## 👥 Contribución
+## 👥 Contributing
 
-Las contribuciones son bienvenidas. Por favor, lee CONTRIBUTING.md
+Contributions are welcome. Please read CONTRIBUTING.md.
 
-## 📧 Contacto
+## 📧 Contact
 
-Para preguntas o soporte, abre un issue en el repositorio.
+For questions or support, open an issue in the repository.
 
 ---
 
-**Version**: 3.4.0  
-**Status**: Production Ready ✅  
-**Last Updated**: 2025
+**Version**: 3.4.0 · **Status**: Production Ready ✅ · **Last Updated**: 2025
+
+[← Back to Main README](../README.md)

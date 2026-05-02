@@ -15,7 +15,7 @@ class MobileDeviceAgent(BaseAgent):
         Simulates mobile-specific interactions with visual perception.
         """
         try:
-            action = context.get("action")
+            action = context.shared_memory.get("action")
             if not action:
                 return {"status": "skipped"}
 

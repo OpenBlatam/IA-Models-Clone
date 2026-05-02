@@ -700,3 +700,4 @@ def example_comprehensive_benchmark():
 if __name__ == "__main__":
     # Run example
     suite = example_comprehensive_benchmark()
+

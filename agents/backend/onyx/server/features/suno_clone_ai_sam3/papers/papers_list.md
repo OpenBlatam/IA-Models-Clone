@@ -1,4 +1,4 @@
-# Suno Clone AI SAM3 - Research Papers Library (100 Papers)
+# Suno Clone AI SAM3 - Research Papers Library (150 Papers)
 
 Location: `agents\backend\onyx\server\features\suno_clone_ai_sam3\papers\`
 
@@ -181,3 +181,138 @@ Location: `agents\backend\onyx\server\features\suno_clone_ai_sam3\papers\`
 | 98 | Tango 2: Aligning DPO for T2A | Tango-2.pdf | 2404.09956 |
 | 99 | Beyond Single-Audio: Multi-Audio Processing | Multi-Audio-LLM.pdf | 2410.02641 |
 | 100 | Audio Hallucination: A Survey | Audio-Hallucination.pdf | 2403.04708 |
+
+## Batch 21 — Watermarking & Spatial
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 101 | AudioSeal: Proactive Audio Watermarking | AudioSeal.pdf | 2401.17264 |
+| 102 | Learning Representations from Audio-Visual Alignment | Spatial-Audio-Alignment.pdf | 2011.01819 |
+| 103 | Wav2Shape: Hearing the Shape of a Drum | Wav2Shape.pdf | 2004.04787 |
+| 104 | Self-supervised 2.5D Spatial Sound for Video | 2.5D-Spatial-Sound.pdf | 1812.01550 |
+| 105 | Neural Audio Fingerprint | Neural-Audio-Fingerprint.pdf | 2010.11910 |
+
+## Batch 22 — Steganography & Detection
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 106 | Hide and Speak: Speech Steganography | Hide-and-Speak.pdf | 1902.03083 |
+| 107 | Audio Deepfake Detection: A Survey | Audio-Deepfake-Survey.pdf | 2308.14970 |
+| 108 | Deep Neural Networks based Invisible Steganography | Audio-in-Image-Steganography.pdf | 2102.09173 |
+| 109 | The Sound of Pixels | Sound-of-Pixels.pdf | 1804.03160 |
+| 110 | Self-Supervised 2.5D Visual Sound | Self-Supervised-Binaural.pdf | 1904.09240 |
+
+## Batch 23 — Bio-acoustic & Environmental
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 111 | animal2vec & MeerKAT: Bioacoustic Transformer | animal2vec.pdf | 2406.01253 |
+| 112 | Environmental Sound Synthesis from Imitations | Environmental-Sound-Imitation.pdf | 2305.00302 |
+| 113 | Heart Sound Analysis in the Deep Learning Era | Heart-Sound-Survey.pdf | 2301.09362 |
+| 114 | Scaper: A Library for Soundscape Synthesis | Scaper-Sound-Synthesis.pdf | 1705.04011 |
+| 115 | Deep Learning for Underwater Acoustic Recognition | Underwater-Audio-Recognition.pdf | 2103.04546 |
+
+## Batch 24 — Efficiency & Long Context
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 116 | Reformer: The Efficient Transformer | Reformer-Efficient-Transformer.pdf | 2001.04451 |
+| 117 | Streaming Conformer: Reliable Streaming ASR | Streaming-Conformer.pdf | 2010.13840 |
+| 118 | Longformer: The Long-Document Transformer | Longformer.pdf | 2004.05150 |
+| 119 | Audio Streaming Survey | Audio-Streaming-Survey.pdf | 2401.03156 |
+| 120 | Efficient Audio-LLM via Low-rank Adaptation | Efficient-Audio-LLM.pdf | 2405.15687 |
+
+## Batch 25 — Audio for Robotics
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 121 | ManiWAV: Learning Robot Manipulation from Audio | ManiWAV.pdf | 2406.19464 |
+| 122 | Audio-VLA: Adding Contact Audio Perception | Audio-VLA.pdf | 2511.09958 |
+| 123 | Learning to See by Looking at Noise | See-by-Looking-at-Noise.pdf | 2106.05963 |
+| 124 | Enhancing Audio-Visual Association with SSCL | SS-AVRL.pdf | 2307.03154 |
+| 125 | Learning to See by Listening | See-by-Listening.pdf | 1805.07828 |
+
+## Batch 26 — Deep Reasoning & Scaling
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 126 | Audio-Reasoner: Improving Reasoning Capability | Audio-Reasoner.pdf | 2503.02318 |
+| 127 | video-SALMONN 2: Captioning-Enhanced | video-SALMONN-2.pdf | 2410.06682 |
+| 128 | LTU-AS: Joint Audio and Speech Understanding | LTU-AS.pdf | 2309.14405 |
+| 129 | HEAR: Holistic Evaluation of Audio Representations | HEAR-Benchmark.pdf | 2203.03022 |
+| 130 | Co-Speech Gesture Generation Review | Co-Speech-Gesture-Review.pdf | 2301.05339 |
+
+## Batch 27 — Translation & Multilingual
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 131 | Translatotron 3: Unsupervised Speech-to-Speech | Translatotron-3.pdf | 2305.17547 |
+| 132 | SeamlessM4T v2: Multilingual Translation | SeamlessM4T-v2.pdf | 2312.05187 |
+| 133 | Scaling Speech Technology (MMS) | Meta-MMS.pdf | 2305.13516 |
+| 134 | OpenVoice: Versatile Instant Voice Cloning | OpenVoice.pdf | 2312.01479 |
+| 135 | VALL-E X: Cross-lingual Neural TTS | VALL-E-X.pdf | 2303.03926 |
+
+## Batch 28 — Forensics & Signal Processing
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 136 | Audio Deepfake Detection Survey | Audio-Deepfake-Forensics.pdf | 2401.17142 |
+| 137 | ASVspoof 2021 Survey: Spelled/Deepfake | ASVspoof-2021-Survey.pdf | 2210.02437 |
+| 138 | Array Geometry-Robust Neural Beamformer | Neural-Beamforming.pdf | 2308.11890 |
+| 139 | SELD-CRNN: Sound Event Localization | SELD-CRNN.pdf | 1907.03191 |
+| 140 | SELD with Distance Estimation | SELD-Distance.pdf | 2305.16109 |
+
+## Batch 29 — Accessibility & Health
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 141 | Audio Description Generation (Review) | Audio-Description-Review.pdf | 2410.08860 |
+| 142 | The Order in Speech Disorder (Review) | Speech-Disorder-Review.pdf | 2503.04802 |
+| 143 | Digital Voicing of Silent Speech (EMG) | Digital-Voicing-EMG.pdf | 2010.02960 |
+| 144 | COVID-19 Crowdsourced Respiratory Sound | COVID-19-Sound-Diagnosis.pdf | 2006.05919 |
+| 145 | How Can Generative AI Enhance Blind Well-being | Generative-AI-Accessibility.pdf | 2402.07919 |
+
+## Batch 30 — Transfer & Core Directions
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 146 | Audio-Genie: Zero-Shot Audio Transfer | Audio-Genie.pdf | 2405.15687 |
+| 147 | Multi-Task Signal Processing | Multi-Task-Signal-Processing.pdf | 2404.02058 |
+| 148 | Survey on Speech Large Language Models | Speech-LLM-Survey.pdf | 2402.13239 |
+| 149 | Neural Voice Conversion Survey | Neural-Voice-Conversion-Survey.pdf | 2008.05641 |
+| 150 | Future of Generative Audio | Future-of-Generative-Audio.pdf | 2411.14627 |
+
+## Batch 31 � Music Understanding & Tokenization
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 151 | ChatMusician: Understanding Music Intrinsically | ChatMusician.pdf | 2402.16153 |
+| 152 | MU-LLaMA: Music Understanding & Captioning | MU-LLaMA.pdf | 2308.11276 |
+| 153 | SpeechGPT: Cross-Modal Conversational LLM | SpeechGPT.pdf | 2305.11000 |
+| 154 | WavTokenizer: Efficient Discrete Codec | WavTokenizer.pdf | 2408.16532 |
+| 155 | SNAC: Multi-Scale Neural Audio Codec | SNAC.pdf | 2410.14411 |
+
+## Batch 32 � Advanced TTS & Vocoders
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 156 | Parler-TTS: Natural Language Guidance | Parler-TTS.pdf | 2402.01912 |
+| 157 | DiffWave: Versatile Diffusion Synthesis | DiffWave.pdf | 2009.09761 |
+| 158 | Vocos: Closing Gap Time-Frequency Domain | Vocos.pdf | 2306.00814 |
+| 159 | Fish-Speech: Unified LLM for TTS | Fish-Speech.pdf | 2411.01156 |
+| 160 | MARS6-TTS: Hierarchical Codec TTS | MARS6-TTS.pdf | 2501.05787 |
+
+## Batch 33 � Optimized Diffusion & Codecs
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 161 | DAC-JAX: High-Fidelity Audio Compression | DAC-JAX.pdf | 2405.11554 |
+| 162 | Efficient Diffusion Models Survey | Efficient-Diffusion-Survey.pdf | 2502.06805 |
+| 163 | Qwen2-Audio v2: Universal Understanding | Qwen2-Audio-v2.pdf | 2407.10759 |
+| 164 | WaveGrad: Estimating Gradients for Generation | WaveGrad.pdf | 2009.00713 |
+| 165 | PriorGrad: Adaptive Prior for Diffusion | PriorGrad.pdf | 2106.06406 |
+
+## Batch 34 � Multimodal Giants
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 166 | InternLM-XComposer2: Vision-Language-Audio | InternLM-XComposer2.pdf | 2401.16420 |
+| 167 | Gemini Audio: Multimodal Understanding | Gemini-Audio.pdf | 2312.11805 |
+| 168 | GPT-4o Audio: Omni Model Capabilities | GPT-4o-Audio.pdf | 2303.08774 |
+| 169 | GAMA: General Audio Multimodal Assistant | Gama.pdf | 2406.11768 |
+| 170 | Audio Flamingo v2: In-Context Learning | Audio-Flamingo-v2.pdf | 2405.18616 |
+
+## Batch 35 � Agents, Surveys & Benchmarks
+| # | Paper | File | arXiv |
+|---|-------|------|-------|
+| 171 | Music Agent: Autonomous Composition | Music-Agent.pdf | 2310.11954 |
+| 172 | Speech Generation Survey (LLM Era) | SpeechGen-Survey.pdf | 2305.13225 |
+| 173 | Neural Audio Codec Survey | Audio-Codec-Survey.pdf | 2407.17929 |
+| 174 | Multi-Channel Target Speaker Extraction | Multi-Channel-TSE.pdf | 2309.06480 |
+| 175 | TTS Arena: Benchmarking TTS Models | TTS-Arena.pdf | 2407.12707 |

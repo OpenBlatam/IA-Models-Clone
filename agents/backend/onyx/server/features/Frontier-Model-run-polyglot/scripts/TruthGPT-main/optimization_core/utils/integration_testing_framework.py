@@ -17,7 +17,7 @@ import pytest
 import numpy as np
 import torch
 import torch.nn as nn
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 from enum import Enum
 from typing import Dict, List, Optional, Any, Union, Callable, Tuple
 import json
@@ -69,26 +69,27 @@ class TestPriority(Enum):
     HIGH = 3
     CRITICAL = 4
 
-@dataclass
-class TestCase:
+class TestCase(BaseModel):
     """Test case data structure"""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     test_id: str
     test_name: str
     test_type: TestType
     priority: TestPriority
     description: str
-    test_function: Callable
-    setup_function: Optional[Callable] = None
-    teardown_function: Optional[Callable] = None
+    test_function: Any  # Callable
+    setup_function: Optional[Any] = None  # Optional[Callable]
+    teardown_function: Optional[Any] = None  # Optional[Callable]
     timeout: float = 300.0
     retry_count: int = 0
-    dependencies: List[str] = field(default_factory=list)
-    tags: List[str] = field(default_factory=list)
+    dependencies: List[str] = Field(default_factory=list)
+    tags: List[str] = Field(default_factory=list)
     expected_result: Optional[Any] = None
-    performance_thresholds: Dict[str, float] = field(default_factory=dict)
+    performance_thresholds: Dict[str, float] = Field(default_factory=dict)
 
-@dataclass
-class TestResult:
+
+class TestResult(BaseModel):
     """Test result data structure"""
     test_id: str
     test_name: str
@@ -97,20 +98,22 @@ class TestResult:
     end_time: Optional[datetime] = None
     duration: float = 0.0
     error_message: Optional[str] = None
-    performance_metrics: Dict[str, float] = field(default_factory=dict)
+    performance_metrics: Dict[str, float] = Field(default_factory=dict)
     output: str = ""
     retry_count: int = 0
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
-@dataclass
-class TestSuite:
+
+class TestSuite(BaseModel):
     """Test suite data structure"""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     suite_id: str
     suite_name: str
     description: str
-    test_cases: List[TestCase]
-    setup_function: Optional[Callable] = None
-    teardown_function: Optional[Callable] = None
+    test_cases: List[Any]  # List[TestCase]
+    setup_function: Optional[Any] = None  # Optional[Callable]
+    teardown_function: Optional[Any] = None  # Optional[Callable]
     parallel_execution: bool = True
     max_parallel_tests: int = 4
 
@@ -839,3 +842,4 @@ if __name__ == "__main__":
     
     # Cleanup
     testing_framework.cleanup()
+

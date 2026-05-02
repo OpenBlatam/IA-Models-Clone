@@ -1,212 +1,214 @@
-# Analizador de Documentos Inteligente
+# Intelligent Document Analyzer
 
-Sistema avanzado de análisis de documentos con capacidades de fine-tuning y aprendizaje adaptativo. Proporciona análisis completo de documentos incluyendo clasificación, resumen, extracción de información, análisis de sentimiento y más.
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-## 🚀 Características
+Advanced document analysis system with fine-tuning capabilities and adaptive learning. Provides comprehensive document analysis including classification, summarization, information extraction, sentiment analysis, and more.
 
-- **Análisis Multi-Tarea**: Clasificación, resumen, extracción de keywords, análisis de sentimiento, reconocimiento de entidades, modelado de temas
-- **Fine-Tuning**: Sistema completo para entrenar modelos personalizados en tus propios datos
-- **Multi-Formato**: Soporta PDF, DOCX, TXT, HTML, Markdown, JSON, XML, CSV
-- **API REST**: Endpoints completos para integración fácil
-- **Embeddings**: Generación de embeddings para búsqueda semántica y comparación
-- **Question-Answering**: Respuesta a preguntas sobre documentos
-- **Sistema de Caché**: Caché inteligente con múltiples backends (memoria, disco, Redis)
-- **Procesamiento por Lotes**: Procesamiento paralelo optimizado para múltiples documentos
-- **Rate Limiting**: Protección contra abuso con rate limiting configurable
-- **Métricas y Monitoring**: Sistema completo de métricas de rendimiento y estadísticas
-- **Optimizaciones de Rendimiento**: Procesamiento paralelo, caching, y optimizaciones de memoria
-- **Comparación de Documentos**: Comparación semántica y detección de similitud
-- **Extracción Estructurada**: Extracción de información según schemas personalizados
-- **Análisis de Estilo**: Análisis de legibilidad, complejidad y calidad de escritura
-- **Exportación Multi-formato**: Exporta resultados en JSON, CSV, Markdown, HTML
-- **Búsqueda Semántica**: Encuentra documentos similares usando embeddings
-- **Detección de Plagio**: Detecta posible plagio comparando con corpus de referencia
-- **Motor de Búsqueda Semántica Avanzada**: Búsqueda híbrida con índices vectoriales
-- **Automatización de Workflows**: Workflows personalizables para análisis automatizados
-- **Bases de Datos Vectoriales**: Integración con Pinecone, Weaviate, Chroma, Qdrant, Milvus
-- **Detección de Anomalías**: Detección automática de anomalías e inconsistencias
-- **Análisis Predictivo**: Forecasting y predicciones basadas en tendencias históricas
-- **Análisis de Imágenes**: Detección de objetos, OCR, análisis de colores en imágenes
-- **Sistema de Alertas**: Alertas configurables con reglas personalizadas
-- **Auditoría Completa**: Registro de todas las acciones del sistema
-- **WebSockets**: Updates en tiempo real vía WebSocket
+## 🚀 Features
 
-## 📋 Requisitos
+- **Multi-Task Analysis** — Classification, summarization, keyword extraction, sentiment analysis, entity recognition, topic modeling
+- **Fine-Tuning** — Complete system to train custom models on your own data
+- **Multi-Format** — Supports PDF, DOCX, TXT, HTML, Markdown, JSON, XML, CSV
+- **REST API** — Complete endpoints for easy integration
+- **Embeddings** — Generation of embeddings for semantic search and comparison
+- **Question-Answering** — Answer questions about documents
+- **Caching System** — Smart cache with multiple backends (memory, disk, Redis)
+- **Batch Processing** — Optimized parallel processing for multiple documents
+- **Rate Limiting** — Protection against abuse with configurable rate limiting
+- **Metrics and Monitoring** — Complete performance metrics and statistics system
+- **Performance Optimizations** — Parallel processing, caching, and memory optimizations
+- **Document Comparison** — Semantic comparison and similarity detection
+- **Structured Extraction** — Information extraction according to custom schemas
+- **Style Analysis** — Analysis of readability, complexity, and writing quality
+- **Multi-format Export** — Export results in JSON, CSV, Markdown, HTML
+- **Semantic Search** — Find similar documents using embeddings
+- **Plagiarism Detection** — Detect possible plagiarism by comparing with reference corpus
+- **Advanced Semantic Search Engine** — Hybrid search with vector indexes
+- **Workflow Automation** — Customizable workflows for automated analysis
+- **Vector Databases** — Integration with Pinecone, Weaviate, Chroma, Qdrant, Milvus
+- **Anomaly Detection** — Automatic detection of anomalies and inconsistencies
+- **Predictive Analysis** — Forecasting and predictions based on historical trends
+- **Image Analysis** — Object detection, OCR, color analysis in images
+- **Alert System** — Configurable alerts with custom rules
+- **Full Audit** — Log of all system actions
+- **WebSockets** — Real-time updates via WebSocket
+
+## 📋 Requirements
 
 - Python 3.8+
-- CUDA (opcional, para GPU)
-- 8GB+ RAM recomendado
-- 10GB+ espacio en disco para modelos
+- CUDA (optional, for GPU)
+- 8GB+ RAM recommended
+- 10GB+ disk space for models
 
-## 🛠️ Instalación
+## 🛠️ Installation
 
-### 1. Instalar dependencias
+### 1. Install dependencies
 
 ```bash
 cd analizador_de_documentos
 pip install -r requirements.txt
 ```
 
-### 2. Configurar variables de entorno (opcional)
+### 2. Configure environment variables (optional)
 
-Crear archivo `.env`:
+Create `.env` file:
 
 ```env
 HOST=0.0.0.0
 PORT=8000
 MODEL_NAME=bert-base-multilingual-cased
-DEVICE=cuda  # o cpu
+DEVICE=cuda  # or cpu
 ```
 
-## 🚀 Uso Rápido
+## 🚀 Quick Usage
 
-### Iniciar servidor
+### Start server
 
 ```bash
 python main.py
 ```
 
-El servidor estará disponible en `http://localhost:8000`
+Server will be available at `http://localhost:8000`
 
-### Documentación API
+### API Documentation
 
-Visita `http://localhost:8000/docs` para la documentación interactiva de la API.
+Visit `http://localhost:8000/docs` for interactive API documentation.
 
-## 📖 Uso de la API
+## 📖 API Usage
 
-### Analizar un documento
+### Analyze a document
 
 ```bash
 curl -X POST "http://localhost:8000/api/analizador-documentos/analyze" \
   -H "Content-Type: application/json" \
   -d '{
-    "document_content": "Este es un documento sobre inteligencia artificial...",
+    "document_content": "This is a document about artificial intelligence...",
     "tasks": ["classification", "summarization", "keywords"]
   }'
 ```
 
-### Clasificar texto
+### Classify text
 
 ```bash
 curl -X POST "http://localhost:8000/api/analizador-documentos/classify" \
   -H "Content-Type: application/json" \
   -d '{
-    "text": "Este documento trata sobre tecnología"
+    "text": "This document is about technology"
   }'
 ```
 
-### Generar resumen
+### Generate summary
 
 ```bash
 curl -X POST "http://localhost:8000/api/analizador-documentos/summarize" \
   -H "Content-Type: application/json" \
   -d '{
-    "text": "Texto largo a resumir...",
+    "text": "Long text to summarize...",
     "max_length": 150,
     "min_length": 30
   }'
 ```
 
-### Subir y analizar archivo
+### Upload and analyze file
 
 ```bash
 curl -X POST "http://localhost:8000/api/analizador-documentos/analyze/upload" \
-  -F "file=@documento.pdf" \
+  -F "file=@document.pdf" \
   -F "tasks=classification,summarization"
 ```
 
 ## 🔧 Fine-Tuning
 
-### Preparar datos de entrenamiento
+### Prepare training data
 
-Los datos deben estar en formato JSON:
+Data must be in JSON format:
 
 ```json
 [
-  {"text": "Texto ejemplo 1", "label": 0},
-  {"text": "Texto ejemplo 2", "label": 1},
+  {"text": "Example text 1", "label": 0},
+  {"text": "Example text 2", "label": 1},
   ...
 ]
 ```
 
-### Entrenar modelo
+### Train model
 
 ```bash
 python training/train_model.py \
-  --data datos_entrenamiento.json \
+  --data training_data.json \
   --num-labels 3 \
   --epochs 5 \
   --batch-size 16 \
   --learning-rate 2e-5
 ```
 
-### Crear datos de ejemplo
+### Create sample data
 
 ```bash
 python training/train_model.py \
   --create-sample \
-  --data datos_ejemplo.json \
+  --data sample_data.json \
   --sample-size 100
 ```
 
-### Usar modelo fine-tuned
+### Use fine-tuned model
 
 ```python
 from core.document_analyzer import DocumentAnalyzer
 
 analyzer = DocumentAnalyzer(
-    fine_tuned_model_path="./models/fine_tuned/model_entrenado"
+    fine_tuned_model_path="./models/fine_tuned/trained_model"
 )
 
 result = await analyzer.analyze_document(
-    document_content="Texto a analizar..."
+    document_content="Text to analyze..."
 )
 ```
 
-## 📚 Estructura del Proyecto
+## 📚 Project Structure
 
 ```
 analizador_de_documentos/
 ├── core/
-│   ├── document_analyzer.py      # Analizador principal
-│   ├── fine_tuning_model.py       # Sistema de fine-tuning
-│   ├── document_processor.py      # Procesador de documentos
-│   └── embedding_generator.py     # Generador de embeddings
+│   ├── document_analyzer.py      # Main analyzer
+│   ├── fine_tuning_model.py       # Fine-tuning system
+│   ├── document_processor.py      # Document processor
+│   └── embedding_generator.py     # Embedding generator
 ├── api/
-│   └── routes.py                  # Endpoints REST API
+│   └── routes.py                  # REST API Endpoints
 ├── training/
-│   └── train_model.py             # Script de entrenamiento
+│   └── train_model.py             # Training script
 ├── config/
-│   └── config.yaml                # Configuración
-├── models/                         # Modelos guardados
-│   ├── cache/                      # Cache de modelos
-│   └── fine_tuned/                 # Modelos fine-tuned
-├── main.py                         # Aplicación principal
-├── requirements.txt                # Dependencias
-└── README.md                       # Esta documentación
+│   └── config.yaml                # Configuration
+├── models/                         # Saved models
+│   ├── cache/                      # Model cache
+│   └── fine_tuned/                 # Fine-tuned models
+├── main.py                         # Main application
+├── requirements.txt                # Dependencies
+└── README.md                       # This documentation
 ```
 
-## 🎯 Tareas de Análisis Disponibles
+## 🎯 Available Analysis Tasks
 
-- **classification**: Clasificar documento en categorías
-- **summarization**: Generar resumen del documento
-- **keyword_extraction**: Extraer palabras clave
-- **sentiment**: Análisis de sentimiento
-- **entity_recognition**: Reconocimiento de entidades nombradas
-- **topic_modeling**: Extracción de temas
-- **question_answering**: Responder preguntas sobre el documento
+- **classification**: Classify document into categories
+- **summarization**: Generate document summary
+- **keyword_extraction**: Extract keywords
+- **sentiment**: Sentiment analysis
+- **entity_recognition**: Named entity recognition
+- **topic_modeling**: Topic extraction
+- **question_answering**: Answer questions about the document
 
-## 🔌 Integración con Python
+## 🔌 Python Integration
 
 ```python
 from core.document_analyzer import DocumentAnalyzer, AnalysisTask
 
-# Inicializar analizador
+# Initialize analyzer
 analyzer = DocumentAnalyzer()
 
-# Analizar documento
+# Analyze document
 result = await analyzer.analyze_document(
-    document_content="Texto del documento...",
+    document_content="Document text...",
     tasks=[
         AnalysisTask.CLASSIFICATION,
         AnalysisTask.SUMMARIZATION,
@@ -214,36 +216,36 @@ result = await analyzer.analyze_document(
     ]
 )
 
-print(f"Resumen: {result.summary}")
+print(f"Summary: {result.summary}")
 print(f"Keywords: {result.keywords}")
-print(f"Clasificación: {result.classification}")
+print(f"Classification: {result.classification}")
 ```
 
-## 🚀 Nuevas Características Mejoradas
+## 🚀 New Enhanced Features
 
-### Sistema de Caché
+### Caching System
 
-El sistema ahora incluye caché inteligente que mejora significativamente el rendimiento:
+The system now includes smart caching that significantly improves performance:
 
 ```python
-# Configurar backend de caché (memoria, disco, redis, auto)
+# Configure cache backend (memory, disk, redis, auto)
 import os
-os.environ["CACHE_BACKEND"] = "redis"  # o "memory", "disk", "auto"
+os.environ["CACHE_BACKEND"] = "redis"  # or "memory", "disk", "auto"
 
-# El caché se usa automáticamente en todas las operaciones
+# Cache is used automatically in all operations
 ```
 
-### Procesamiento por Lotes
+### Batch Processing
 
-Procesa múltiples documentos en paralelo:
+Process multiple documents in parallel:
 
 ```bash
 curl -X POST "http://localhost:8000/api/analizador-documentos/batch/analyze" \
   -H "Content-Type: application/json" \
   -d '{
     "documents": [
-      {"content": "Documento 1...", "document_id": "doc1"},
-      {"content": "Documento 2...", "document_id": "doc2"}
+      {"content": "Document 1...", "document_id": "doc1"},
+      {"content": "Document 2...", "document_id": "doc2"}
     ],
     "tasks": ["classification", "summarization"],
     "max_workers": 10,
@@ -251,39 +253,39 @@ curl -X POST "http://localhost:8000/api/analizador-documentos/batch/analyze" \
   }'
 ```
 
-### Métricas y Monitoring
+### Metrics and Monitoring
 
-Accede a métricas de rendimiento en tiempo real:
+Access performance metrics in real-time:
 
 ```bash
-# Ver todas las métricas
+# View all metrics
 curl http://localhost:8000/api/analizador-documentos/metrics/
 
-# Ver estadísticas de rendimiento
+# View performance statistics
 curl http://localhost:8000/api/analizador-documentos/metrics/performance
 
-# Health check detallado
+# Detailed health check
 curl http://localhost:8000/api/analizador-documentos/metrics/health
 ```
 
 ### Rate Limiting
 
-Protección automática contra abuso:
+Automatic protection against abuse:
 
-- Límite por defecto: 50 peticiones por minuto por IP
-- Configurable por endpoint
-- Headers de rate limit en respuestas
+- Default limit: 50 requests per minute per IP
+- Configurable per endpoint
+- Rate limit headers in responses
 
-## 📊 Modelos Soportados
+## 📊 Supported Models
 
-- `bert-base-multilingual-cased` (por defecto)
+- `bert-base-multilingual-cased` (default)
 - `distilbert-base-multilingual-cased`
 - `xlm-roberta-base`
-- Cualquier modelo compatible con HuggingFace Transformers
+- Any HuggingFace Transformers compatible model
 
-## 🎓 Fine-Tuning Avanzado
+## 🎓 Advanced Fine-Tuning
 
-### Configuración personalizada
+### Custom configuration
 
 ```python
 from core.fine_tuning_model import FineTuningModel, FineTuningConfig
@@ -295,15 +297,15 @@ config = FineTuningConfig(
     batch_size=32,
     learning_rate=3e-5,
     num_epochs=10,
-    output_dir="./mi_modelo_personalizado"
+    output_dir="./my_custom_model"
 )
 
 model = FineTuningModel(config=config)
 
-# Preparar datos
+# Prepare data
 train_dataset, eval_dataset = model.prepare_dataset(texts, labels)
 
-# Entrenar
+# Train
 results = model.train(train_dataset, eval_dataset)
 ```
 
@@ -311,15 +313,15 @@ results = model.train(train_dataset, eval_dataset)
 
 ### Error: CUDA out of memory
 
-Reducir `batch_size` en la configuración o usar CPU:
+Reduce `batch_size` in configuration or use CPU:
 
 ```python
 analyzer = DocumentAnalyzer(device="cpu")
 ```
 
-### Error: Modelo no encontrado
+### Error: Model not found
 
-Los modelos se descargan automáticamente la primera vez. Si hay problemas, descargar manualmente:
+Models are downloaded automatically the first time. If there are issues, download manually:
 
 ```python
 from transformers import AutoTokenizer, AutoModel
@@ -327,40 +329,34 @@ tokenizer = AutoTokenizer.from_pretrained("model-name")
 model = AutoModel.from_pretrained("model-name")
 ```
 
-### Documentos muy largos
+### Very long documents
 
-El sistema procesa documentos grandes automáticamente dividiéndolos en chunks. Para documentos muy largos (>10MB), considerar pre-procesamiento.
+The system processes large documents automatically by splitting them into chunks. For very large documents (>10MB), consider pre-processing.
 
-## 📝 Ejemplos
+## 📝 Examples
 
-Ver carpeta `examples/` para ejemplos completos de uso.
+See `examples/` folder for full usage examples.
 
-## 🤝 Contribuir
+## 🤝 Contribution
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome. Please:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
+1. Fork the project
+2. Create a branch for your feature
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto es parte de Blatam Academy.
+Proprietary — Blatam Academy
 
-## 🔗 Referencias
+## 🔗 References
 
 - [HuggingFace Transformers](https://huggingface.co/transformers/)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [PyTorch Documentation](https://pytorch.org/docs/)
 
-## 📧 Soporte
-
-Para soporte y preguntas, contacta al equipo de Blatam Academy.
-
 ---
 
-**Versión**: 1.0.0  
-**Última actualización**: 2024
-
+[← Back to Main README](../README.md)

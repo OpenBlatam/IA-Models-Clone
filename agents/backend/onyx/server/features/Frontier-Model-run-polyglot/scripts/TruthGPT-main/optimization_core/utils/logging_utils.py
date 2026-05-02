@@ -148,3 +148,4 @@ class TrainingLogger:
             extra = " | ".join(f"{k}: {v}" for k, v in kwargs.items())
             message = f"{message} | {extra}"
         self.logger.info(message)
+

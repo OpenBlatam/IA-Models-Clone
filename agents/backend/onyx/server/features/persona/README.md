@@ -1,54 +1,57 @@
 # Persona Management System
 
-## 📋 Descripción
+> Part of the [Blatam Academy Integrated Platform](../README.md)
 
-Sistema para gestión de personas/perfiles con modelos, esquemas, servicios y API RESTful.
+## 📋 Description
 
-## 🚀 Características Principales
+System for persona/profile management with models, schemas, services, and RESTful API.
 
-- **Gestión de Personas**: Creación y gestión de perfiles/personas
-- **Modelos de Datos**: Modelos bien definidos
-- **Esquemas Pydantic**: Validación de datos
-- **Servicios**: Servicios de negocio
-- **API RESTful**: Interfaz API para integración
+## 🚀 Key Features
 
-## 📁 Estructura
+- **Persona Management**: Creation and management of profiles/personas
+- **Data Models**: Well-defined data models
+- **Pydantic Schemas**: Data validation
+- **Services**: Business services
+- **RESTful API**: API interface for integration
+
+## 📁 Structure
 
 ```
 persona/
-├── models.py              # Modelos de datos
-├── schemas.py            # Esquemas Pydantic
-├── service.py            # Servicios de negocio
-└── api.py                # Endpoints de API
+├── models.py              # Data models
+├── schemas.py             # Pydantic schemas
+├── service.py             # Business services
+└── api.py                 # API endpoints
 ```
 
-## 🔧 Instalación
+## 🔧 Installation
 
-Este módulo requiere las dependencias del sistema principal.
+This module requires the main system dependencies.
 
-## 💻 Uso
+## 💻 Usage
 
 ```python
 from persona.service import PersonaService
 from persona.schemas import PersonaCreate
 
-# Inicializar servicio
+# Initialize service
 service = PersonaService()
 
-# Crear persona
+# Create persona
 persona = service.create(PersonaCreate(
-    name="Juan Pérez",
-    email="juan@example.com",
+    name="John Doe",
+    email="john@example.com",
     role="content_creator"
 ))
 ```
 
-## 🔗 Integración
+## 🔗 Integration
 
-Este módulo se integra con:
-- **Brand Voice**: Para gestión de voces de marca
-- **Business Agents**: Para agentes personalizados
-- **Integration System**: Para orquestación
+This module integrates with:
+- **Brand Voice**: For brand voice management
+- **Business Agents**: For custom agents
+- **Integration System**: For orchestration
 
+---
 
-
+[← Back to Main README](../README.md)

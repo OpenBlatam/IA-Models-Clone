@@ -11,7 +11,7 @@ from torch.cuda.amp import autocast, GradScaler
 import numpy as np
 import logging
 from typing import Dict, Any, List, Optional, Tuple, Union, Callable, TypeVar
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field, ConfigDict
 from contextlib import contextmanager, asynccontextmanager
 import time
 import asyncio
@@ -43,9 +43,10 @@ logger = logging.getLogger(__name__)
 T = TypeVar('T')
 
 # Enhanced configuration with more options
-@dataclass
-class TruthGPTEnhancedConfig:
+class TruthGPTEnhancedConfig(BaseModel):
     """Enhanced TruthGPT configuration with advanced options."""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     # Model configuration
     model_name: str = "truthgpt"
     model_size: str = "base"  # base, large, xl, xxl
@@ -106,52 +107,7 @@ class TruthGPTEnhancedConfig:
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
-        return {
-            'model_name': self.model_name,
-            'model_size': self.model_size,
-            'precision': self.precision,
-            'device': self.device,
-            'optimization_level': self.optimization_level,
-            'enable_quantization': self.enable_quantization,
-            'enable_pruning': self.enable_pruning,
-            'enable_distillation': self.enable_distillation,
-            'enable_parallel_processing': self.enable_parallel_processing,
-            'enable_memory_optimization': self.enable_memory_optimization,
-            'enable_attention_optimization': self.enable_attention_optimization,
-            'enable_kernel_fusion': self.enable_kernel_fusion,
-            'enable_graph_optimization': self.enable_graph_optimization,
-            'target_latency_ms': self.target_latency_ms,
-            'target_memory_gb': self.target_memory_gb,
-            'target_throughput': self.target_throughput,
-            'max_batch_size': self.max_batch_size,
-            'max_sequence_length': self.max_sequence_length,
-            'learning_rate': self.learning_rate,
-            'weight_decay': self.weight_decay,
-            'batch_size': self.batch_size,
-            'max_epochs': self.max_epochs,
-            'warmup_steps': self.warmup_steps,
-            'max_grad_norm': self.max_grad_norm,
-            'gradient_accumulation_steps': self.gradient_accumulation_steps,
-            'enable_monitoring': self.enable_monitoring,
-            'enable_profiling': self.enable_profiling,
-            'enable_metrics': self.enable_metrics,
-            'log_level': self.log_level,
-            'metrics_interval': self.metrics_interval,
-            'enable_tensorboard': self.enable_tensorboard,
-            'enable_wandb': self.enable_wandb,
-            'enable_auto_scaling': self.enable_auto_scaling,
-            'enable_dynamic_optimization': self.enable_dynamic_optimization,
-            'enable_microservices': self.enable_microservices,
-            'enable_distributed': self.enable_distributed,
-            'enable_fault_tolerance': self.enable_fault_tolerance,
-            'enable_caching': self.enable_caching,
-            'enable_compression': self.enable_compression,
-            'enable_encryption': self.enable_encryption,
-            'enable_validation': self.enable_validation,
-            'enable_error_recovery': self.enable_error_recovery,
-            'max_retries': self.max_retries,
-            'timeout_seconds': self.timeout_seconds
-        }
+        return self.model_dump()
 
 class TruthGPTPerformanceProfiler:
     """Enhanced performance profiler for TruthGPT models."""
@@ -954,5 +910,6 @@ if __name__ == "__main__":
     optimized_model = quick_enhanced_truthgpt_optimization(model, "ultra", "fp16", "auto")
     
     print("✅ Enhanced TruthGPT optimization completed!")
+
 
 

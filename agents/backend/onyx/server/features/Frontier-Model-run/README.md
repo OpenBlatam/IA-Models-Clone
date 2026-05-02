@@ -1,5 +1,16 @@
 # Frontier Model Training - Enhanced Documentation
 
+<div align="center">
+
+![Status](https://img.shields.io/badge/status-production--ready-success.svg)
+![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)
+![ML](https://img.shields.io/badge/framework-PyTorch--Transformers-orange.svg)
+![Optimization](https://img.shields.io/badge/optimization-DeepSpeed--AMP-blue.svg)
+
+</div>
+
+---
+
 ## Overview
 
 The Frontier Model Training system is a comprehensive framework for training large language models with advanced optimization techniques, monitoring, and deployment capabilities. This enhanced version includes improved configuration management, error handling, performance monitoring, testing, and deployment automation.
@@ -796,9 +807,13 @@ pre-commit install
 
 ### Running Tests
 
-```bash
-# Run all tests
-python test_framework.py --run-tests --coverage
+---
+
+<div align="center">
+  <b>Built with ❤️ by Blatam Academy</b><br>
+  Part of the Onyx Server Architecture<br>
+  <a href="../README.md">← Back to Main README</a>
+</div>
 
 # Run specific test suite
 python test_framework.py --run-tests --test-suite unit_tests

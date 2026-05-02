@@ -18,7 +18,7 @@ import copy
 import time
 import logging
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
-from dataclasses import dataclass, field
+from pydantic import BaseModel, model_validator
 from enum import Enum
 import json
 import pickle
@@ -73,8 +73,7 @@ class NodeRole(Enum):
     AGGREGATOR = "aggregator"
     VALIDATOR = "validator"
 
-@dataclass
-class FederationConfig:
+class FederationConfig(BaseModel):
     """Configuration for federated learning."""
     federation_type: FederationType = FederationType.HORIZONTAL
     aggregation_method: AggregationMethod = AggregationMethod.FEDAVG
@@ -86,8 +85,8 @@ class FederationConfig:
     local_epochs: int = 5
     learning_rate: float = 0.01
     batch_size: int = 32
-    epsilon: float = 1.0  # Differential privacy parameter
-    delta: float = 1e-5   # Differential privacy parameter
+    epsilon: float = 1.0
+    delta: float = 1e-5
     noise_multiplier: float = 1.0
     clipping_norm: float = 1.0
     secure_aggregation_threshold: int = 3
@@ -95,9 +94,10 @@ class FederationConfig:
     device: str = "auto"
     log_level: str = "INFO"
     output_dir: str = "./federated_results"
-    
-    def __post_init__(self):
-        """Post-initialization validation."""
+
+    @model_validator(mode='after')
+    def validate_config(self) -> 'FederationConfig':
+        """Validate configuration."""
         if self.num_rounds < 1:
             raise ValueError("Number of rounds must be at least 1")
         if self.num_participants < 1:
@@ -108,9 +108,9 @@ class FederationConfig:
             raise ValueError("Epsilon must be positive")
         if self.delta <= 0:
             raise ValueError("Delta must be positive")
+        return self
 
-@dataclass
-class NodeConfig:
+class NodeConfig(BaseModel):
     """Configuration for federated learning node."""
     node_id: str
     role: NodeRole = NodeRole.PARTICIPANT
@@ -720,3 +720,4 @@ def example_federated_learning():
 if __name__ == "__main__":
     # Run example
     example_federated_learning()
+
