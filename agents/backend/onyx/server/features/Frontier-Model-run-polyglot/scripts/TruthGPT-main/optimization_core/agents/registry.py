@@ -95,12 +95,23 @@ class ComponentRegistry:
         from .embodied_rl.rl_agent import RLAgent
         from .system_intelligence.system_agent import SystemAgent
         from .system_intelligence.research_agent import ResearchAgent
+        from .system_intelligence.evolution_architect import EvolutionArchitect
         
         # New Industrial Specialized Agents (Wrappers)
         from .multi_agentes.planning_agent import PlanningAgent
         from .code_interpreter import CodeInterpreterAgent as CodeArchitectAgent
         from .blockchain.blockchain_agent import BlockchainAgent
         from .data_analysis import DataAnalysisAgent
+        
+        # Formal Verification & Mathematics
+        try:
+            from .formal_verification.math_agent import MathVerificationAgent, MATH_TOOLS
+            # Register math tools
+            for tool_name, tool_cls in MATH_TOOLS.items():
+                self._tools[tool_name] = tool_cls
+        except ImportError as e:
+            logger.warning("MathVerificationAgent not available: %s", e)
+            MathVerificationAgent = None
         
         # Standardize on snake_case for all agents to avoid duplicates with client.py
         self._agents = {
@@ -117,7 +128,13 @@ class ComponentRegistry:
             "sota_integrator": ResearchAgent,
             "security_analyst": SystemAgent,
             "defi_expert": BlockchainAgent,
+            "evolution_architect": EvolutionArchitect,
         }
+        
+        # Add MathVerificationAgent if available
+        if MathVerificationAgent is not None:
+            self._agents["math_verifier"] = MathVerificationAgent
+
 
     # --- Tool Management ---
 

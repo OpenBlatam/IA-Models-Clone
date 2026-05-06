@@ -14,7 +14,7 @@ import torch.nn as nn
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from pydantic import BaseModel, Field, ConfigDict, computed_field
 
-from optimization_core.trainers.config import ModelConfig, HardwareConfig, TrainingConfig
+from .config import ModelConfig, HardwareConfig, TrainingConfig
 
 try:
     from peft import LoraConfig, get_peft_model, TaskType

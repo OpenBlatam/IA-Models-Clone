@@ -75,6 +75,9 @@ class ResearchAgent(BaseAgent):
             with console.status("[bold cyan]Refining Temporal Research Intent...[/bold cyan]"):
                 refined_query = await llm(refine_prompt)
                 refined_query = refined_query.strip().strip("'").strip('"')
+                if "[EMERGENCY MOCK]" in refined_query:
+                    logger.warning("ResearchAgent: Using original prompt as refined query due to LLM failure.")
+                    refined_query = prompt
                 logger.info(f"Refined Query: {refined_query}")
             
             # Step 2: Determine Search Source & Temporal Filters

@@ -15,7 +15,7 @@ from transformers import (
 )
 from pydantic import BaseModel, Field, ConfigDict
 
-from optimization_core.trainers.config import TrainingConfig
+from .config import TrainingConfig
 from optimization_core.factories.optimizer import OPTIMIZERS
 
 logger = logging.getLogger(__name__)

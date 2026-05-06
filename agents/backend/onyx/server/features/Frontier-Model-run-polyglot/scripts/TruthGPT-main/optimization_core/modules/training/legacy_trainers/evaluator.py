@@ -15,7 +15,7 @@ from torch.utils.data import DataLoader
 from torch.amp import autocast
 from pydantic import BaseModel, Field, ConfigDict, computed_field
 
-from optimization_core.trainers.config import TrainingConfig
+from .config import TrainingConfig
 
 
 logger = logging.getLogger(__name__)

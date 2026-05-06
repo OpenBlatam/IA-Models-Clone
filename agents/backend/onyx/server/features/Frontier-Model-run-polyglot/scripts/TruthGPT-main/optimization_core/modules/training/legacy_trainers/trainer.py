@@ -30,15 +30,15 @@ from transformers import (
 )
 from pydantic import BaseModel
 # from optimization_core.adapters import create_adapter, ObjectStore
-from optimization_core.trainers.model_manager import ModelManager, ParallelMode
-from optimization_core.trainers.data_manager import DataManager
-from optimization_core.trainers.optimizer_manager import OptimizerManager
-from optimization_core.trainers.ema_manager import EMAManager
-from optimization_core.trainers.checkpoint_manager import CheckpointManager
+from .model_manager import ModelManager, ParallelMode
+from .data_manager import DataManager
+from .optimizer_manager import OptimizerManager
+from .ema_manager import EMAManager
+from .checkpoint_manager import CheckpointManager
 
-from optimization_core.trainers.config import TrainerConfig, TrainingConfig
-from optimization_core.trainers.evaluator import Evaluator, EvaluationResult, MetricStrategy
-from optimization_core.trainers.callbacks import Callback
+from .config import TrainerConfig, TrainingConfig
+from .evaluator import Evaluator, EvaluationResult, MetricStrategy
+from .callbacks import Callback
 from optimization_core.utils.logging_utils import TrainingLogger
 
 try:

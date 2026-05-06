@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 from pydantic import BaseModel, Field, ConfigDict
 
-from optimization_core.trainers.config import CheckpointConfig
+from .config import CheckpointConfig
 
 logger = logging.getLogger(__name__)
 

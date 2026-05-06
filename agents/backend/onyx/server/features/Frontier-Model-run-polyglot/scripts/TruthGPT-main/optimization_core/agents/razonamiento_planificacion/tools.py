@@ -1,13 +1,20 @@
+"""
+System 5.9 — Agent Tools.
+
+BaseTool ABC and built-in tool implementations for the ReAct agent loop.
+"""
+
 import os
 import sys
+import json
 import asyncio
 import subprocess
 import logging
 import httpx
-from typing import Callable, Any, Optional
+from typing import Any, Callable, Dict, Optional
 from abc import ABC, abstractmethod
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("agents.tools")
 
 class ToolResult:
     """
@@ -85,17 +92,82 @@ class SystemBashTool(BaseTool):
 
 class WebSearchTool(BaseTool):
     """
-    Realiza una búsqueda web y extrae información relevante. 
-    Acepta una consulta (query) y devuelve un resumen de los resultados.
+    Web search via DuckDuckGo with automatic degradation.
+
+    Strategies (in order):
+    1. ``duckduckgo_search`` library
+    2. HTTP fallback to DuckDuckGo Lite
+    3. Graceful degradation advisory after *_DEGRADED_THRESHOLD* consecutive failures
     """
+
     name = "web_search"
+    _DEGRADED_THRESHOLD = 3
+
+    def __init__(self) -> None:
+        self._failures: int = 0
 
     async def run(self, query: str) -> str:
-        # Mock de búsqueda (en prod usar DuckDuckGo API o similar)
-        logger.info(f"Buscando en la web: {query}")
-        if "bitcoin" in query.lower():
-            return "Resumen Web: El precio de Bitcoin sigue volátil, rondando los $60k-$70k USD según los últimos reportes de CoinMarketCap."
-        return f"No se encontraron resultados específicos para '{query}'."
+        logger.info("web_search: %s", query)
+
+        if self._failures >= self._DEGRADED_THRESHOLD:
+            return (
+                f"[TOOL DEGRADED] web_search ha fallado {self._failures} "
+                f"veces consecutivas. Usa tu conocimiento interno. "
+                f"Query: '{query}'"
+            )
+
+        # Strategy 1: duckduckgo_search library
+        result = await self._try_ddgs(query)
+        if result is not None:
+            return result
+
+        # Strategy 2: HTTP fallback
+        result = await self._try_http(query)
+        if result is not None:
+            return result
+
+        # All failed
+        self._failures += 1
+        return (
+            f"Sin resultados para '{query}'. "
+            f"[Fallos: {self._failures}/{self._DEGRADED_THRESHOLD}]. "
+            f"Usa tu conocimiento interno."
+        )
+
+    async def _try_ddgs(self, query: str) -> Optional[str]:
+        try:
+            from duckduckgo_search import DDGS
+            with DDGS() as ddgs:
+                hits = list(ddgs.text(query, max_results=5))
+                if hits:
+                    self._failures = 0
+                    lines = [
+                        f"{i}. **{h.get('title', '—')}**\n"
+                        f"   {h.get('body', '')}\n"
+                        f"   Link: {h.get('href', 'N/A')}"
+                        for i, h in enumerate(hits, 1)
+                    ]
+                    return f"Resultados para '{query}':\n\n" + "\n\n".join(lines)
+        except ImportError:
+            logger.info("duckduckgo_search not installed, trying HTTP.")
+        except Exception as exc:
+            logger.warning("DDGS failed: %s", exc)
+        return None
+
+    async def _try_http(self, query: str) -> Optional[str]:
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                resp = await client.get(
+                    "https://lite.duckduckgo.com/lite/",
+                    params={"q": query},
+                    headers={"User-Agent": "TruthGPT/5.9"},
+                )
+                if resp.status_code == 200 and len(resp.text) > 500:
+                    self._failures = 0
+                    return f"Resultados (raw) para '{query}':\n{resp.text[:2000]}"
+        except Exception as exc:
+            logger.warning("HTTP fallback failed: %s", exc)
+        return None
 
 class WebReaderTool(BaseTool):
     """
@@ -158,25 +230,54 @@ class FileReadTool(BaseTool):
 
 class FileWriteTool(BaseTool):
     """
-    Escribe contenido en un archivo local.
-    Acepta un formato específico: ruta:::contenido
-    Ejemplo: /ruta/al/archivo.txt:::Este es el contenido.
+    Write content to a local file.
+
+    Accepts two formats:
+    1. ``ruta:::contenido``
+    2. ``{"path": "…", "content": "…"}``
     """
+
     name = "file_write"
 
     async def run(self, cmd: str) -> str:
+        filepath, content = self._parse(cmd)
+        if filepath is None:
+            return content  # contains the error message
         try:
-            parts = cmd.split(":::", 1)
-            if len(parts) != 2:
-                return "Error: Formato inválido. Use 'ruta:::contenido'."
-            filepath, content = parts
-            filepath = filepath.strip()
             os.makedirs(os.path.dirname(os.path.abspath(filepath)), exist_ok=True)
-            with open(filepath, 'w', encoding='utf-8') as f:
-                f.write(content)
+            with open(filepath, "w", encoding="utf-8") as fh:
+                fh.write(content)
             return f"Éxito: Contenido escrito en '{filepath}'."
-        except Exception as e:
-            return f"Error al escribir archivo: {str(e)}"
+        except Exception as exc:
+            return f"Error al escribir archivo: {exc}"
+
+    @staticmethod
+    def _parse(cmd: str):
+        """Return ``(filepath, content)`` or ``(None, error_message)``."""
+        stripped = cmd.strip()
+
+        # Strategy 1: JSON dict
+        if stripped.startswith("{"):
+            try:
+                d = json.loads(stripped)
+                if isinstance(d, dict):
+                    fp = d.get("path") or d.get("filepath") or d.get("file")
+                    ct = d.get("content") or d.get("text") or d.get("data")
+                    if fp and ct is not None:
+                        return fp.strip(), ct
+            except (json.JSONDecodeError, TypeError):
+                pass
+
+        # Strategy 2: path:::content
+        parts = cmd.split(":::", 1)
+        if len(parts) == 2:
+            return parts[0].strip(), parts[1]
+
+        return None, (
+            "Error: Formato inválido. Use:\n"
+            "  1. ruta:::contenido\n"
+            '  2. {"path": "ruta", "content": "contenido"}'
+        )
 
 class PythonExecutionTool(BaseTool):
     """

@@ -36,7 +36,6 @@ dev = [
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
-python-source = "python"
 module-name = "truthgpt_rust"
 
 [tool.pytest.ini_options]

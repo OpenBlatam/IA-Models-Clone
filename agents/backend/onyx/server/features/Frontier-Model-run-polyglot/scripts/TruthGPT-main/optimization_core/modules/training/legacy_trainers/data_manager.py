@@ -10,7 +10,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 from pydantic import BaseModel, Field, ConfigDict
 
-from optimization_core.trainers.config import TrainingConfig, HardwareConfig
+from .config import TrainingConfig, HardwareConfig
 from optimization_core.factories.collate import COLLATE
 
 logger = logging.getLogger(__name__)

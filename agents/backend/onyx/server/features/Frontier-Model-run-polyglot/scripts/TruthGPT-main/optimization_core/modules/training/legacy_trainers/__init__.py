@@ -12,7 +12,7 @@ This module provides:
 - GenericTrainer: Main training orchestrator
 """
 
-from optimization_core.trainers.config import (
+from .config import (
     TrainerConfig,
     ModelConfig,
     TrainingConfig,
@@ -20,12 +20,13 @@ from optimization_core.trainers.config import (
     CheckpointConfig,
     EMAConfig,
 )
-from optimization_core.trainers.model_manager import ModelManager
-from optimization_core.trainers.optimizer_manager import OptimizerManager
-from optimization_core.trainers.data_manager import DataManager
-from optimization_core.trainers.ema_manager import EMAManager
-from optimization_core.trainers.evaluator import Evaluator, EvaluationResult, EvaluationMetrics, MetricStrategy
-from optimization_core.trainers.checkpoint_manager import CheckpointManager
+from .model_manager import ModelManager
+from .optimizer_manager import OptimizerManager
+from .data_manager import DataManager
+from .ema_manager import EMAManager
+from .evaluator import Evaluator, EvaluationResult, EvaluationMetrics, MetricStrategy
+from .checkpoint_manager import CheckpointManager
+
 
 # Import trainer last to avoid circular dependencies
 try:

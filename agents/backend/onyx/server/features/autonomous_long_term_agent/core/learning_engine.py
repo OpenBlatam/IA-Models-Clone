@@ -5,9 +5,22 @@ Implements concepts from "AI Autonomy: Self-initiated Open-world Continual Learn
 
 import asyncio
 import logging
+import sys
+import os
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, List
 from dataclasses import dataclass
+
+# Add project root to sys.path to ensure optimization_core is accessible
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../../../../../.."))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+try:
+    from optimization_core.core.forensic_memory import forensic_memory
+except ImportError:
+    # Fallback if path logic fails
+    forensic_memory = None
 
 logger = logging.getLogger(__name__)
 
@@ -31,14 +44,28 @@ class LearningEngine:
     def __init__(
         self,
         adaptation_rate: float = 0.1,
-        learning_enabled: bool = True
+        learning_enabled: bool = True,
+        agent_id: str = "default_learning_agent"
     ):
         self.adaptation_rate = adaptation_rate
         self.learning_enabled = learning_enabled
+        self.agent_id = agent_id
         self._learning_history: List[LearningEvent] = []
         self._adaptation_params: Dict[str, Any] = {}
         self._performance_metrics: Dict[str, float] = {}
         self._lock = asyncio.Lock()
+        
+        # Load state from Forensic Memory
+        self._load_persistent_state()
+    
+    def _load_persistent_state(self):
+        """Recover learning history and parameters from forensic memory."""
+        if forensic_memory:
+            state = forensic_memory.load_agent_state(f"learning_engine_{self.agent_id}")
+            if state:
+                self._adaptation_params = state.get("adaptation_params", {})
+                self._performance_metrics = state.get("performance_metrics", {})
+                logger.info(f"🏛️ LearningEngine restored state for {self.agent_id}")
     
     async def record_event(
         self,
@@ -59,9 +86,25 @@ class LearningEngine:
         
         async with self._lock:
             self._learning_history.append(event)
-            # Keep only last 1000 events
+            # Keep only last 1000 events in memory
             if len(self._learning_history) > 1000:
                 self._learning_history = self._learning_history[-1000:]
+            
+            # Persist to Forensic Memory
+            if forensic_memory:
+                forensic_memory.record_event(
+                    source=f"LearningEngine_{self.agent_id}",
+                    event_type=event_type,
+                    data={"context": context, "outcome": outcome},
+                    impact_score=1.0 if outcome == "failure" else 0.1
+                )
+                
+                # Periodically save state
+                if len(self._learning_history) % 10 == 0:
+                    forensic_memory.save_agent_state(f"learning_engine_{self.agent_id}", {
+                        "adaptation_params": self._adaptation_params,
+                        "performance_metrics": self._performance_metrics
+                    })
         
         # Trigger self-initiated learning if conditions are met
         await self._check_learning_opportunity(event)
