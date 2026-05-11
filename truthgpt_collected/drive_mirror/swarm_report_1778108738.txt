@@ -1,0 +1,63 @@
+Aquí tienes las mejores respuestas sugeridas para la aplicación de Y Combinator de TruthGPT, basadas en las fortalezas del producto y buenas prácticas de YC:
+
+**Company name:** TruthGPT
+
+**Describe what your company does in 50 characters or less:**
+"AI veraz y auditable para empresas"
+
+**Company URL:** https://truthgpt.ai (o el dominio que tengas)
+
+**What is your company going to make?**
+"TruthGPT es un asistente empresarial de IA que garantiza respuestas sin alucinaciones, con trazabilidad completa de fuentes. A diferencia de ChatGPT o Claude, cada respuesta incluye un dossier verificable que permite auditoría y cumplimiento normativo (GDPR, SOX). Está diseñado para industrias reguladas: finanzas, salud, legal y periodismo."
+
+**Where do you live now, and where would the company be based after YC?**
+"Buenos Aires, Argentina / San Francisco, USA"
+
+**Explain your decision regarding location:**
+"El equipo está en Buenos Aires, pero después de YC nos mudaríamos a SF para estar cerca del ecosistema startup y talento empresarial. El desarrollo remoto es factible, pero la presencia en EE.UU. facilita ventas enterprise."
+
+**Progress:**
+"Tenemos un MVP funcional con un modelo local (TruthGPT-7B) que genera respuestas con citas. Lo hemos probado con 50 usuarios beta en el sector legal y financiero. Actualmente estamos en etapa pre-seed."
+
+**How long have each of you been working on this?**
+"Trabajamos a tiempo completo desde enero 2025 (3 meses). Antes estuvimos 6 meses a tiempo parcial investigando arquitecturas de verificación."
+
+**What tech stack are you using?**
+"Backend: Python, FastAPI, PostgreSQL / Vector DB (Chroma). Modelos: fine-tuning de LLaMA-3-8B con RLHF, más un módulo de verificación de hechos usando búsqueda en tiempo real (DuckDuckGo/Bing). Herramientas de IA: Claude Code para generación de código, Cursor para debugging. Planeamos integrar modelos más grandes (GPT-4o, Claude Opus) como fallback."
+
+**Are people using your product?**
+"Sí, tenemos 50 usuarios beta activos, 10 de ellos empresas pequeñas que lo usan para compliance y auditoría."
+
+**Do you have revenue?**
+"Sí, $500/mes de prueba piloto con un bufete de abogados. Planeamos modelo freemium: 10 consultas/día gratis, luego $20/mes para profesionales, $200/mes para equipos."
+
+**Why did you pick this idea?**
+"Porque el 78% de los líderes empresariales desconfían de la IA por alucinaciones (Gartner 2024). Tenemos experiencia en NLP y compliance financiero. Validamos el problema entrevistando a 30 CTOs: el 90% dijo que pagaría por una IA verificable."
+
+**Who are your competitors?**
+"Competidores: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google). Entendemos que ellos priorizan fluidez sobre veracidad. Nosotros ofrecemos transparencia total: cada respuesta incluye enlaces a fuentes y un score de confianza. Además, nuestro modelo está entrenado para decir 'no sé' cuando no está seguro."
+
+**How do you will make money?**
+"SaaS freemium. Upsell: plan enterprise con logs de auditoría, integración API, y cumplimiento SOX/GDPR. Mercado total: $8B para IA en cumplimiento para 2027. Estimamos ingresos anuales de $2M en año 1 con 100 clientes enterprise."
+
+**Which category best applies?**
+"Enterprise/B2B AI, Compliance & RegTech"
+
+**Have you formed any legal entity?**
+"Sí, LLC en Delaware (registrada marzo 2025)."
+
+**Have you taken any investment?**
+"No, autofinanciado."
+
+**Are you currently fundraising?**
+"Sí, buscamos $500k seed para expandir equipo y mejorar el modelo."
+
+**What convinced you to apply to Y Combinator?**
+"La red de YC es invaluable para ventas enterprise y para conectar con reguladores. Además, el programa de 3 meses nos ayudará a refinar el product-market fit."
+
+**How did you hear about Y Combinator?**
+"Por el podcast de YC y recomendación de un ex-alumno."
+
+**Batch Preference:** Summer 2026
+
+Recuerda que estas respuestas son sugerencias; adáptalas a tu situación real. ¡Mucho éxito!

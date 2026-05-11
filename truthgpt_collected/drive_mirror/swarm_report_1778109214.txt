@@ -1,0 +1,53 @@
+Aquí tienes las mejores respuestas para la aplicación de Y Combinator de TruthGPT (fundadores: Adán y Pablo):
+
+**Company name:** TruthGPT
+
+**Describe what your company does in 50 characters or less:**
+"IA empresarial sin alucinaciones, con fuentes verificables"
+
+**Company URL:** https://truthgpt.ai
+
+**What is your company going to make?**
+TruthGPT es un asistente de IA para empresas que necesita transparencia total: cada respuesta incluye citas verificables, enlaces a fuentes y un puntaje de confianza. Está diseñado para industrias reguladas (legal, finanzas, salud, compliance). A diferencia de ChatGPT o Claude, nunca inventa información y admite "no lo sé" cuando no tiene certeza.
+
+**Where do you live now, and where would the company be based after YC?**
+Buenos Aires, Argentina / San Francisco, USA
+
+**Explain your decision regarding location:**
+El equipo desarrolla desde Buenos Aires, pero para escalar ventas enterprise y networking, la base después de YC sería San Francisco.
+
+**How far along are you?**
+MVP funcional con modelo local (TruthGPT-7B) + motor de verificación en tiempo real. 50 usuarios beta activos (abogados, contadores, periodistas). $500/mes de revenue piloto con un bufete.
+
+**How long have each of you been working on this? How much full-time?**
+Tiempo completo desde enero 2025 (3 meses). Antes 6 meses a tiempo parcial investigando arquitecturas de verificación de hechos.
+
+**What tech stack are you using?**
+Backend: Python, FastAPI, PostgreSQL, ChromaDB (vector). Modelos: fine-tuning de LLaMA-3-8B con RLHF + búsqueda DuckDuckGo/Bing. IA coding tools: Claude Code, Cursor. Planeamos integrar GPT-4o y Claude Opus como fallback.
+
+**Are people using your product?** Sí (50 beta users, 10 empresas).
+
+**Do you have revenue?** Sí ($500/mes).
+
+**Why did you pick this idea?**
+Porque el 78% de líderes empresariales desconfía de la IA por alucinaciones (Gartner 2024). Experiencia de los fundadores en NLP y compliance. Validado con 30 CTOs: 90% pagaría por IA verificable.
+
+**Who are your competitors?**
+ChatGPT, Claude, Gemini. Ellos priorizan fluidez sobre verdad. Nosotros ofrecemos trazabilidad completa y negativa honesta.
+
+**How do you make money?**
+SaaS freemium: 10 consultas/día gratis, $20/mes profesional, $200/mes equipo, $2000/mes enterprise con auditoría. Mercado: $8B en IA para cumplimiento en 2027.
+
+**Which category applies?** Enterprise/B2B AI, Compliance & RegTech
+
+**Legal entity formed?** Sí, LLC en Delaware.
+
+**Taken investment?** No.
+
+**Fundraising?** Sí, $500k seed.
+
+**Why YC?** Red de contactos enterprise y regulatoria. Recomendación de ex-alumno.
+
+**Batch Preference:** Summer 2026
+
+Recuerda grabar el video de fundadores (1 minuto) y completar los perfiles en la plataforma YC.
