@@ -1,0 +1,133 @@
+# Core dependencies
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+pydantic>=2.9.0
+pydantic-settings>=2.6.0
+
+# Spotify API
+requests>=2.32.0
+aiohttp>=3.11.0
+
+# Authentication
+PyJWT>=2.9.0
+cryptography>=43.0.0
+
+# Audio processing (requerido para análisis ML avanzado)
+librosa>=0.10.2
+numpy>=1.26.0
+scipy>=1.14.0
+soundfile>=0.12.0  # For audio I/O
+
+# Deep Learning - PyTorch ecosystem
+torch>=2.5.0
+torchaudio>=2.5.0  # For audio processing
+torchvision>=0.20.0  # For vision models if needed
+transformers>=4.45.0  # Latest transformers with better model support
+accelerate>=1.1.0  # For distributed training and mixed precision
+bitsandbytes>=0.43.0  # For quantization (8-bit, 4-bit)
+peft>=0.12.0  # For LoRA, AdaLoRA, QLoRA fine-tuning
+trl>=0.9.0  # For RLHF and supervised fine-tuning
+
+# Diffusion Models
+diffusers>=0.30.0  # Latest diffusers with better pipelines
+safetensors>=0.4.0  # For safe model loading
+
+# ML utilities
+scikit-learn>=1.5.0
+scikit-optimize>=0.10.0  # For hyperparameter optimization
+
+# Training and Experiment Tracking
+wandb>=0.17.0  # Weights & Biases for experiment tracking
+tensorboard>=2.17.0  # TensorBoard for visualization
+mlflow>=2.14.0  # MLflow for model management
+optuna>=3.7.0  # For hyperparameter optimization
+
+# Visualization
+gradio>=4.44.0  # Latest Gradio with better UI components
+matplotlib>=3.9.0
+seaborn>=0.13.0
+plotly>=5.24.0  # For interactive visualizations
+
+# Configuration
+pyyaml>=6.0.2
+omegaconf>=2.3.0  # For advanced configuration management
+
+# LLM and Text Processing
+sentence-transformers>=3.0.0  # Latest sentence transformers
+tokenizers>=0.19.0  # Fast tokenization
+
+# Performance and Optimization
+ninja>=1.11.0  # For faster compilation
+flash-attn>=2.6.0  # For faster attention (optional, requires CUDA)
+xformers>=0.0.27  # For memory-efficient attention (optional)
+
+# Data Processing
+datasets>=2.20.0  # HuggingFace datasets
+pandas>=2.2.0
+
+# Report Generation
+jinja2>=3.1.4
+markdown>=3.7.0
+
+# System Monitoring
+psutil>=6.0.0
+gpustat>=1.1.0  # For GPU monitoring
+
+# Utilities
+python-dotenv>=1.0.1
+tqdm>=4.66.0  # Progress bars
+rich>=13.7.0  # Beautiful terminal output
+
+# Testing
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
+pytest-cov>=6.0.0  # Coverage reporting
+
+# Type checking (optional, for development)
+mypy>=1.11.0
+types-requests>=2.32.0
+
+# Advanced Microservices & Serverless Features
+# Security & OAuth2
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# OpenTelemetry & Distributed Tracing
+opentelemetry-api>=1.21.0
+opentelemetry-sdk>=1.21.0
+opentelemetry-instrumentation-fastapi>=0.42b0
+opentelemetry-exporter-otlp-proto-grpc>=1.21.0
+
+# Message Brokers
+pika>=1.3.2  # RabbitMQ
+kafka-python>=2.0.2  # Kafka
+redis>=5.0.0  # Redis Pub/Sub
+
+# Async Workers
+celery>=5.3.4
+rq>=1.15.1
+flower>=2.0.1
+
+# Structured Logging
+python-json-logger>=2.0.7
+structlog>=23.2.0
+
+# Database Adapters
+boto3>=1.28.0  # AWS DynamoDB
+azure-cosmos>=4.5.0  # Azure Cosmos DB
+
+# Search & Cache
+elasticsearch>=8.10.0
+pymemcache>=4.0.0
+
+# Service Discovery
+python-consul>=1.1.0
+kubernetes>=28.1.0
+
+# AWS Lambda Support
+mangum>=0.17.0
+
+# Note: For serverless deployments, also install:
+# pip install -r deployment/requirements-serverless.txt
+

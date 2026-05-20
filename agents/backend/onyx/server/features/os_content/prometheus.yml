@@ -1,0 +1,77 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # OS Content API instances
+  - job_name: 'os-content-api'
+    static_configs:
+      - targets: 
+        - 'os-content-api-1:8000'
+        - 'os-content-api-2:8000'
+        - 'os-content-api-3:8000'
+    metrics_path: '/os-content/metrics'
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # Redis
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+
+  # Nginx
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:80']
+    metrics_path: '/nginx_status'
+
+  # Node Exporter (if available)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # Docker containers
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['docker.for.mac.localhost:9323']
+    metrics_path: '/metrics'
+
+  # Custom metrics endpoints
+  - job_name: 'cache-stats'
+    static_configs:
+      - targets: ['os-content-api-1:8000']
+    metrics_path: '/os-content/cache/stats'
+    scrape_interval: 60s
+
+  - job_name: 'processor-stats'
+    static_configs:
+      - targets: ['os-content-api-1:8000']
+    metrics_path: '/os-content/processor/stats'
+    scrape_interval: 60s
+
+  - job_name: 'load-balancer-stats'
+    static_configs:
+      - targets: ['os-content-api-1:8000']
+    metrics_path: '/os-content/load-balancer/stats'
+    scrape_interval: 60s
+
+  - job_name: 'cdn-stats'
+    static_configs:
+      - targets: ['os-content-api-1:8000']
+    metrics_path: '/os-content/cdn/stats'
+    scrape_interval: 60s
+
+  - job_name: 'nlp-stats'
+    static_configs:
+      - targets: ['os-content-api-1:8000']
+    metrics_path: '/os-content/nlp/stats'
+    scrape_interval: 60s 

@@ -1,0 +1,46 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/Lambda", "Invocations", {"stat": "Sum"}],
+          [".", "Errors", {"stat": "Sum"}],
+          [".", "Duration", {"stat": "Average"}],
+          [".", "Throttles", {"stat": "Sum"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Lambda Function Metrics"
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApiGateway", "Count", {"stat": "Sum"}],
+          [".", "4XXError", {"stat": "Sum"}],
+          [".", "5XXError", {"stat": "Sum"}],
+          [".", "Latency", {"stat": "Average"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "API Gateway Metrics"
+      }
+    },
+    {
+      "type": "log",
+      "properties": {
+        "query": "SOURCE '/aws/lambda/music-analyzer-ai-production' | fields @timestamp, @message\n| filter @message like /ERROR/\n| sort @timestamp desc\n| limit 20",
+        "region": "us-east-1",
+        "title": "Error Logs"
+      }
+    }
+  ]
+}
+
+
+
+

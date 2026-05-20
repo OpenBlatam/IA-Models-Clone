@@ -1,0 +1,76 @@
+---
+# Ansible Playbook for Music Analyzer AI
+# Refactored with roles for modularity and reusability
+
+- name: Deploy Music Analyzer AI
+  hosts: all
+  become: yes
+  vars:
+    app_name: music-analyzer-ai
+    deployment_user: "{{ ansible_user }}"
+    app_directory: "/opt/{{ app_name }}"
+    docker_compose_version: "2.23.0"
+    
+  tasks:
+    - name: Include environment-specific variables
+      include_vars: "{{ inventory_dir }}/group_vars/{{ group_names[0] }}/vars.yml"
+      when: group_names | length > 0
+
+    - name: Ensure system packages are updated
+      block:
+        - name: Update apt cache (Debian/Ubuntu)
+          apt:
+            update_cache: yes
+            cache_valid_time: 3600
+          when: ansible_os_family == "Debian"
+          
+        - name: Update yum cache (RedHat/Amazon)
+          yum:
+            update_cache: yes
+          when: ansible_os_family == "RedHat"
+
+    - name: Install required system packages
+      package:
+        name:
+          - curl
+          - wget
+          - git
+          - python3
+          - python3-pip
+        state: present
+
+    - name: Install and configure Docker
+      include_role:
+        name: docker
+      tags:
+        - docker
+        - setup
+
+    - name: Deploy application
+      include_role:
+        name: deployment
+      vars:
+        docker_compose_file: "{{ docker_compose_file | default('docker-compose.yml') }}"
+        env_file: "{{ env_file | default('.env') }}"
+        deployment_scripts:
+          - deploy.sh
+          - health-check.sh
+        docker_images:
+          - backend-image.tar.gz
+          - frontend-image.tar.gz
+      tags:
+        - deploy
+        - application
+
+  handlers:
+    - name: restart docker
+      systemd:
+        name: docker
+        state: restarted
+        
+    - name: restart application
+      docker_compose_v2:
+        project_src: "{{ app_directory }}"
+        state: restarted
+      become_user: "{{ deployment_user }}"
+

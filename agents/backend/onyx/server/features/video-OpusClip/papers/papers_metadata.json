@@ -1,0 +1,1136 @@
+[
+  {
+    "title": "A Deep Neural Network Model for Short-Term Load Forecast Based on Long Short-Term Memory Network and Convolutional Neural Network",
+    "doi": "10.3390/en11123493",
+    "authors": [
+      "Tian",
+      "Ma",
+      "Zhang"
+    ],
+    "year": 2018,
+    "journal": "Energies",
+    "citations": 337
+  },
+  {
+    "title": "Deep Reinforcement Learning for Unsupervised Video Summarization With Diversity-Representativeness Reward",
+    "doi": "10.1609/aaai.v32i1.12255",
+    "authors": [
+      "Zhou",
+      "Qiao",
+      "Xiang"
+    ],
+    "year": 2018,
+    "journal": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "citations": 296
+  },
+  {
+    "title": "TransAnomaly: Video Anomaly Detection Using Video Vision Transformer",
+    "doi": "10.1109/access.2021.3109102",
+    "authors": [
+      "Yuan",
+      "Cai",
+      "Zhou"
+    ],
+    "year": 2021,
+    "journal": "IEEE Access",
+    "citations": 78
+  },
+  {
+    "title": "Video Summarization by Learning Deep Side Semantic Embedding",
+    "doi": "10.1109/tcsvt.2017.2771247",
+    "authors": [
+      "Yuan",
+      "Mei",
+      "Cui"
+    ],
+    "year": 2019,
+    "journal": "IEEE Transactions on Circuits and Systems for Video Technology",
+    "citations": 66
+  },
+  {
+    "title": "Learning multiscale hierarchical attention for video summarization",
+    "doi": "10.1016/j.patcog.2021.108312",
+    "authors": [
+      "Zhu",
+      "Lu",
+      "Han"
+    ],
+    "year": 2022,
+    "journal": "Pattern Recognition",
+    "citations": 60
+  },
+  {
+    "title": "TR-DETR: Task-Reciprocal Transformer for Joint Moment Retrieval and Highlight Detection",
+    "doi": "10.1609/aaai.v38i5.28304",
+    "authors": [
+      "Sun",
+      "Zhou",
+      "Chen"
+    ],
+    "year": 2024,
+    "journal": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "citations": 33
+  },
+  {
+    "title": "Joint specular highlight detection and removal in single images via Unet-Transformer",
+    "doi": "10.1007/s41095-022-0273-9",
+    "authors": [
+      "Wu",
+      "Guo",
+      "Zhuang"
+    ],
+    "year": 2023,
+    "journal": "Computational Visual Media",
+    "citations": 33
+  },
+  {
+    "title": "Deep Reinforcement Learning for Query-Conditioned Video Summarization",
+    "doi": "10.3390/app9040750",
+    "authors": [
+      "Zhang",
+      "Kampffmeyer",
+      "Zhao"
+    ],
+    "year": 2019,
+    "journal": "Applied Sciences",
+    "citations": 32
+  },
+  {
+    "title": "Video Summarization for Multiple Sports Using Deep Learning",
+    "doi": "10.5565/rev/elcvia.1286",
+    "authors": [
+      "Guntuboina",
+      "Porwal",
+      "Jain"
+    ],
+    "year": 2021,
+    "journal": "ELCVIA Electronic Letters on Computer Vision and Image Analysis",
+    "citations": 31
+  },
+  {
+    "title": "Improving Video Vision Transformer for Deepfake Video Detection Using Facial Landmark, Depthwise Separable Convolution and Self Attention",
+    "doi": "10.1109/access.2024.3352890",
+    "authors": [
+      "Ramadhani",
+      "Munir",
+      "Utama"
+    ],
+    "year": 2024,
+    "journal": "IEEE Access",
+    "citations": 30
+  },
+  {
+    "title": "A Deep Ranking Model for Spatio-Temporal Highlight Detection From a 360◦ Video",
+    "doi": "10.1609/aaai.v32i1.12335",
+    "authors": [
+      "Yu",
+      "Lee",
+      "Na"
+    ],
+    "year": 2018,
+    "journal": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "citations": 30
+  },
+  {
+    "title": "Video Summarization Using Highlight Detection and Pairwise Deep Ranking Model",
+    "doi": "10.1016/j.procs.2020.03.203",
+    "authors": [
+      "Sridevi",
+      "Kharde"
+    ],
+    "year": 2020,
+    "journal": "Procedia Computer Science",
+    "citations": 29
+  },
+  {
+    "title": "Topic-aware video summarization using multimodal transformer",
+    "doi": "10.1016/j.patcog.2023.109578",
+    "authors": [
+      "Zhu",
+      "Zhao",
+      "Hua"
+    ],
+    "year": 2023,
+    "journal": "Pattern Recognition",
+    "citations": 28
+  },
+  {
+    "title": "Unsupervised video summarization using deep Non-Local video summarization networks",
+    "doi": "10.1016/j.neucom.2022.11.028",
+    "authors": [
+      "Zang",
+      "Yu",
+      "Song"
+    ],
+    "year": 2023,
+    "journal": "Neurocomputing",
+    "citations": 20
+  },
+  {
+    "title": "Adaptive learning rate clipping stabilizes learning",
+    "doi": "10.1088/2632-2153/ab81e2",
+    "authors": [
+      "Ede",
+      "Beanland"
+    ],
+    "year": 2020,
+    "journal": "Machine Learning: Science and Technology",
+    "citations": 20
+  },
+  {
+    "title": "Static Video Summarization Using Video Coding Features with Frame-Level Temporal Subsampling and Deep Learning",
+    "doi": "10.3390/app13106065",
+    "authors": [
+      "Issa",
+      "Shanableh"
+    ],
+    "year": 2023,
+    "journal": "Applied Sciences",
+    "citations": 17
+  },
+  {
+    "title": "Real-Time Short-Term Voltage Stability Assessment Using Combined Temporal Convolutional Neural Network and Long Short-Term Memory Neural Network",
+    "doi": "10.3390/app12136333",
+    "authors": [
+      "Adhikari",
+      "Naetiladdanon",
+      "Sangswang"
+    ],
+    "year": 2022,
+    "journal": "Applied Sciences",
+    "citations": 16
+  },
+  {
+    "title": "CViT: A Convolution Vision Transformer for Video Abnormal Behavior Detection and Localization",
+    "doi": "10.1007/s42979-023-02294-y",
+    "authors": [
+      "Roka",
+      "Diwakar"
+    ],
+    "year": 2023,
+    "journal": "SN Computer Science",
+    "citations": 16
+  },
+  {
+    "title": "Attention Over Attention: An Enhanced Supervised Video Summarization Approach",
+    "doi": "10.1016/j.procs.2023.01.211",
+    "authors": [
+      "Puthige",
+      "Hussain",
+      "Gupta"
+    ],
+    "year": 2023,
+    "journal": "Procedia Computer Science",
+    "citations": 16
+  },
+  {
+    "title": "Video summarization via knowledge-aware multimodal deep networks",
+    "doi": "10.1016/j.knosys.2024.111670",
+    "authors": [
+      "Xie",
+      "Chen",
+      "Zhao"
+    ],
+    "year": 2024,
+    "journal": "Knowledge-Based Systems",
+    "citations": 16
+  },
+  {
+    "title": "Multi video summarization using query based deep optimization algorithm",
+    "doi": "10.1007/s13042-023-01852-3",
+    "authors": [
+      "Ansari",
+      "Zafar"
+    ],
+    "year": 2023,
+    "journal": "International Journal of Machine Learning and Cybernetics",
+    "citations": 15
+  },
+  {
+    "title": "Video Sparse Transformer With Attention-Guided Memory for Video Object Detection",
+    "doi": "10.1109/access.2022.3184031",
+    "authors": [
+      "Fujitake",
+      "Sugimoto"
+    ],
+    "year": 2022,
+    "journal": "IEEE Access",
+    "citations": 14
+  },
+  {
+    "title": "RETRACTED ARTICLE: Analysis of sports image detection technology based on machine learning",
+    "doi": "10.1186/s13640-019-0409-8",
+    "authors": [
+      "Yang"
+    ],
+    "year": 2019,
+    "journal": "EURASIP Journal on Image and Video Processing",
+    "citations": 14
+  },
+  {
+    "title": "AI-Based Video Clipping of Soccer Events",
+    "doi": "10.3390/make3040049",
+    "authors": [
+      "Valand",
+      "Kadragic",
+      "Hicks"
+    ],
+    "year": 2021,
+    "journal": "Machine Learning and Knowledge Extraction",
+    "citations": 13
+  },
+  {
+    "title": "Emotion Detection-Based Video Recommendation System Using Machine Learning and Deep Learning Framework",
+    "doi": "10.1007/s42979-022-01619-7",
+    "authors": [
+      "Bokhare",
+      "Kothari"
+    ],
+    "year": 2023,
+    "journal": "SN Computer Science",
+    "citations": 13
+  },
+  {
+    "title": "Deep active learning for misinformation detection using geometric deep learning",
+    "doi": "10.1016/j.osnem.2023.100244",
+    "authors": [
+      "Barnabò",
+      "Siciliano",
+      "Castillo"
+    ],
+    "year": 2023,
+    "journal": "Online Social Networks and Media",
+    "citations": 11
+  },
+  {
+    "title": "Short‐term prediction of photovoltaic power generation based on neural network prediction model",
+    "doi": "10.1002/ese3.1314",
+    "authors": [
+      "Chai",
+      "Liu",
+      "He"
+    ],
+    "year": 2023,
+    "journal": "Energy Science &amp; Engineering",
+    "citations": 11
+  },
+  {
+    "title": "TLDW: Extreme Multimodal Summarization of News Videos",
+    "doi": "10.1109/tcsvt.2023.3296196",
+    "authors": [
+      "Tang",
+      "Hu",
+      "Zhang"
+    ],
+    "year": 2024,
+    "journal": "IEEE Transactions on Circuits and Systems for Video Technology",
+    "citations": 11
+  },
+  {
+    "title": "Cardiomyopathy -induced arrhythmia classification and pre-fall alert generation using Convolutional Neural Network and Long Short-Term Memory model",
+    "doi": "10.1007/s12065-020-00454-0",
+    "authors": [
+      "Thirugnanam",
+      "Pasupuleti"
+    ],
+    "year": 2021,
+    "journal": "Evolutionary Intelligence",
+    "citations": 10
+  },
+  {
+    "title": "Spatio-temporal knowledge distilled video vision transformer (STKD-VViT) for multimodal deepfake detection",
+    "doi": "10.1016/j.neucom.2024.129256",
+    "authors": [
+      "Usmani",
+      "Kumar",
+      "Sadhya"
+    ],
+    "year": 2025,
+    "journal": "Neurocomputing",
+    "citations": 10
+  },
+  {
+    "title": "Multimodal emotional analysis through hierarchical video summarization and face tracking",
+    "doi": "10.1007/s11042-021-11010-y",
+    "authors": [
+      "Thiruthuvanathan",
+      "Krishnan"
+    ],
+    "year": 2022,
+    "journal": "Multimedia Tools and Applications",
+    "citations": 10
+  },
+  {
+    "title": "Spam detection for Youtube video comments using machine learning approaches",
+    "doi": "10.1016/j.mlwa.2024.100550",
+    "authors": [
+      "Xiao",
+      "Liang"
+    ],
+    "year": 2024,
+    "journal": "Machine Learning with Applications",
+    "citations": 8
+  },
+  {
+    "title": "HyV-Summ: Social media video summarization on custom dataset using hybrid techniques",
+    "doi": "10.1016/j.neucom.2024.128852",
+    "authors": [
+      "Paul",
+      "Roy",
+      "Mitra"
+    ],
+    "year": 2025,
+    "journal": "Neurocomputing",
+    "citations": 7
+  },
+  {
+    "title": "[Retracted] Personalized Marketing Recommendation System of New Media Short Video Based on Deep Neural Network Data Fusion",
+    "doi": "10.1155/2021/3638071",
+    "authors": [
+      "Huang"
+    ],
+    "year": 2021,
+    "journal": "Journal of Sensors",
+    "citations": 7
+  },
+  {
+    "title": "Wanet: weight and attention network for video summarization",
+    "doi": "10.1007/s44163-024-00101-y",
+    "authors": [
+      "Basu",
+      "Pramanik",
+      "Sarkar"
+    ],
+    "year": 2024,
+    "journal": "Discover Artificial Intelligence",
+    "citations": 7
+  },
+  {
+    "title": "Perceptual quality assessment of video using machine learning algorithm",
+    "doi": "10.1007/s11760-019-01494-5",
+    "authors": [
+      "Mustafa",
+      "Hameed"
+    ],
+    "year": 2019,
+    "journal": "Signal, Image and Video Processing",
+    "citations": 7
+  },
+  {
+    "title": "The short video platform recommendation mechanism based on the improved neural network algorithm to the mainstream media",
+    "doi": "10.1016/j.sasc.2024.200171",
+    "authors": [
+      "Qi"
+    ],
+    "year": 2024,
+    "journal": "Systems and Soft Computing",
+    "citations": 6
+  },
+  {
+    "title": "User preference-aware video highlight detection via deep reinforcement learning",
+    "doi": "10.1007/s11042-020-08668-1",
+    "authors": [
+      "Wang",
+      "Wang",
+      "Wu"
+    ],
+    "year": 2020,
+    "journal": "Multimedia Tools and Applications",
+    "citations": 6
+  },
+  {
+    "title": "Modality-Aware Heterogeneous Graph for Joint Video Moment Retrieval and Highlight Detection",
+    "doi": "10.1109/tcsvt.2024.3389024",
+    "authors": [
+      "Wang",
+      "Feng",
+      "Zhang"
+    ],
+    "year": 2024,
+    "journal": "IEEE Transactions on Circuits and Systems for Video Technology",
+    "citations": 6
+  },
+  {
+    "title": "Design of an Integrated Model for Video Summarization Using Multimodal Fusion and YOLO for Crime Scene Analysis",
+    "doi": "10.1109/access.2025.3538282",
+    "authors": [
+      "Veesam",
+      "Satish"
+    ],
+    "year": 2025,
+    "journal": "IEEE Access",
+    "citations": 6
+  },
+  {
+    "title": "A two-stage attention augmented fully convolutional network-based dynamic video summarization",
+    "doi": "10.1007/s00530-023-01154-2",
+    "authors": [
+      "Gupta",
+      "Sharma"
+    ],
+    "year": 2023,
+    "journal": "Multimedia Systems",
+    "citations": 6
+  },
+  {
+    "title": "Effective Video Summarization Using Channel Attention-Assisted Encoder–Decoder Framework",
+    "doi": "10.3390/sym16060680",
+    "authors": [
+      "Alharbi",
+      "Habib",
+      "Albattah"
+    ],
+    "year": 2024,
+    "journal": "Symmetry",
+    "citations": 6
+  },
+  {
+    "title": "Implicit embedding based multi modal attention network for Cricket video summarization",
+    "doi": "10.1016/j.engappai.2025.110428",
+    "authors": [
+      "Pattnaik",
+      "Narwal"
+    ],
+    "year": 2025,
+    "journal": "Engineering Applications of Artificial Intelligence",
+    "citations": 6
+  },
+  {
+    "title": "Evaluation metrics for video captioning: A survey",
+    "doi": "10.1016/j.mlwa.2023.100488",
+    "authors": [
+      "Inácio",
+      "Lopes"
+    ],
+    "year": 2023,
+    "journal": "Machine Learning with Applications",
+    "citations": 6
+  },
+  {
+    "title": "Video Summarization Using Deep Learning for Cricket Highlights Generation",
+    "doi": "10.3329/jsr.v14i2.56856",
+    "authors": [
+      "Gaikwad",
+      "Sarap",
+      "Dhande"
+    ],
+    "year": 2022,
+    "journal": "Journal of Scientific Research",
+    "citations": 5
+  },
+  {
+    "title": "Object of Interest and Unsupervised Learning-based Framework for an Effective Video Summarization Using Deep Learning",
+    "doi": "10.1080/03772063.2023.2220693",
+    "authors": [
+      "Negi",
+      "Kumar",
+      "Saini"
+    ],
+    "year": 2024,
+    "journal": "IETE Journal of Research",
+    "citations": 5
+  },
+  {
+    "title": "A GA-PSO Hybrid Algorithm Based Neural Network Modeling Technique for Short-term Wind Power Forecasting",
+    "doi": "10.1080/21563306.2018.12029913",
+    "authors": [
+      "Semero",
+      "Zhang",
+      "Zheng"
+    ],
+    "year": 2018,
+    "journal": "Distributed Generation &amp; Alternative Energy Journal",
+    "citations": 5
+  },
+  {
+    "title": "Unsupervised Modality-Transferable Video Highlight Detection With Representation Activation Sequence Learning",
+    "doi": "10.1109/tip.2024.3372469",
+    "authors": [
+      "Li",
+      "Sun",
+      "Xiao"
+    ],
+    "year": 2024,
+    "journal": "IEEE Transactions on Image Processing",
+    "citations": 5
+  },
+  {
+    "title": "DeepFake Video Detection using Vision Transformer",
+    "doi": "10.21608/ijicis.2024.272675.1324",
+    "authors": [
+      "Hussien",
+      "Mohamed"
+    ],
+    "year": 2024,
+    "journal": "International Journal of Intelligent Computing and Information Sciences",
+    "citations": 5
+  },
+  {
+    "title": "VATMAN: Integrating Video-Audio-Text for Multimodal Abstractive SummarizatioN via Crossmodal Multi-Head Attention Fusion",
+    "doi": "10.1109/access.2024.3447737",
+    "authors": [
+      "Baek",
+      "Kim",
+      "Lee"
+    ],
+    "year": 2024,
+    "journal": "IEEE Access",
+    "citations": 5
+  },
+  {
+    "title": "MBA: A Multimodal Bilinear Attention Model with Residual Connection for Abstractive Multimodal Summarization",
+    "doi": "10.1088/1742-6596/1856/1/012070",
+    "authors": [
+      "Ye",
+      "Yue",
+      "Liu"
+    ],
+    "year": 2021,
+    "journal": "Journal of Physics: Conference Series",
+    "citations": 5
+  },
+  {
+    "title": "SUM-GAN-GEA: Video Summarization Using GAN with Gaussian Distribution and External Attention",
+    "doi": "10.3390/electronics11213523",
+    "authors": [
+      "Yu",
+      "Yu",
+      "Wang"
+    ],
+    "year": 2022,
+    "journal": "Electronics",
+    "citations": 5
+  },
+  {
+    "title": "Novel Genetic Optimization Techniques for Accurate Social Media Data Summarization and Classification Using Deep Learning Models",
+    "doi": "10.3390/technologies12100199",
+    "authors": [
+      "Ghanem",
+      "Padma",
+      "Abdulwahab"
+    ],
+    "year": 2024,
+    "journal": "Technologies",
+    "citations": 4
+  },
+  {
+    "title": "Smart IOT based Short Term Forecasting of Power Generation Systems and Quality Improvement Using Resilient Back Propagation Neural Network",
+    "doi": "10.47059/revistageintec.v11i3.2004",
+    "authors": [
+      "S"
+    ],
+    "year": 2021,
+    "journal": "Revista Gestão Inovação e Tecnologias",
+    "citations": 4
+  },
+  {
+    "title": "A data-driven short video international communication model based on indicator system communication network and attention BiLSTM neural network",
+    "doi": "10.1038/s41598-024-65098-x",
+    "authors": [
+      "Song",
+      "Liu"
+    ],
+    "year": 2024,
+    "journal": "Scientific Reports",
+    "citations": 4
+  },
+  {
+    "title": "Deep-learning-based short-term photovoltaic power generation forecasting using improved self-organization map neural network",
+    "doi": "10.1063/5.0091454",
+    "authors": [
+      "Junhuathon",
+      "Chayakulkheeree"
+    ],
+    "year": 2022,
+    "journal": "Journal of Renewable and Sustainable Energy",
+    "citations": 4
+  },
+  {
+    "title": "Short-term prediction model of photovoltaic power generation based on rough set-BP neural network",
+    "doi": "10.1088/1742-6596/1871/1/012010",
+    "authors": [
+      "Ma",
+      "Pang",
+      "Xie"
+    ],
+    "year": 2021,
+    "journal": "Journal of Physics: Conference Series",
+    "citations": 4
+  },
+  {
+    "title": "MCT-VHD: Multi-modal contrastive transformer for video highlight detection",
+    "doi": "10.1016/j.jvcir.2024.104162",
+    "authors": [
+      "Jiang",
+      "Luo",
+      "Guo"
+    ],
+    "year": 2024,
+    "journal": "Journal of Visual Communication and Image Representation",
+    "citations": 4
+  },
+  {
+    "title": "Compressed video ensemble based pseudo-labeling for semi-supervised action recognition",
+    "doi": "10.1016/j.mlwa.2022.100336",
+    "authors": [
+      "Terao",
+      "Noguchi",
+      "Iizuka"
+    ],
+    "year": 2022,
+    "journal": "Machine Learning with Applications",
+    "citations": 4
+  },
+  {
+    "title": "Modified Neural Network-based Object Classification in Video Surveillance System",
+    "doi": "10.47164/ijngc.v13i3.890",
+    "authors": [
+      "Bhardwaj",
+      "Rao"
+    ],
+    "year": 2022,
+    "journal": "International Journal of Next-Generation Computing",
+    "citations": 3
+  },
+  {
+    "title": "Deliberation on object-aware video style transfer network with long–short temporal and depth-consistent constraints",
+    "doi": "10.1007/s00521-020-05630-y",
+    "authors": [
+      "Liu",
+      "Jiang",
+      "Pan"
+    ],
+    "year": 2021,
+    "journal": "Neural Computing and Applications",
+    "citations": 3
+  },
+  {
+    "title": "Trip Generation Prediction Based on the Convolutional Neural Network-Multidimensional Long-Short Term Memory Neural Network Model at Grid Cell Scale",
+    "doi": "10.1109/access.2021.3083683",
+    "authors": [
+      "Xiao",
+      "Lu",
+      "Sun"
+    ],
+    "year": 2021,
+    "journal": "IEEE Access",
+    "citations": 3
+  },
+  {
+    "title": "SwinVid: Enhancing Video Object Detection Using Swin Transformer",
+    "doi": "10.32604/csse.2024.039436",
+    "authors": [
+      "Maharek",
+      "Abozeid",
+      "Orban"
+    ],
+    "year": 2024,
+    "journal": "Computer Systems Science and Engineering",
+    "citations": 3
+  },
+  {
+    "title": "TGBFormer: Transformer-GraphFormer Blender Network for Video Object Detection",
+    "doi": "10.1609/aaai.v39i6.32703",
+    "authors": [
+      "Qi",
+      "Wang"
+    ],
+    "year": 2025,
+    "journal": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "citations": 3
+  },
+  {
+    "title": "Video Summarization Based on Multimodal Features",
+    "doi": "10.4018/ijmdem.2020100104",
+    "authors": [
+      "Zhang",
+      "Liu",
+      "Liu"
+    ],
+    "year": 2020,
+    "journal": "International Journal of Multimedia Data Engineering and Management",
+    "citations": 3
+  },
+  {
+    "title": "Scalable Anomaly Detection Framework in Video Surveillance Using Keyframe Extraction and Machine Learning Algorithms",
+    "doi": "10.5373/jardcs/v12i7/20202020",
+    "authors": [
+      "Kotkar"
+    ],
+    "year": 2020,
+    "journal": "Journal of Advanced Research in Dynamical and Control Systems",
+    "citations": 3
+  },
+  {
+    "title": "Condensing Video Content: Deep Learning Advancements and Challenges in Video Summarization Innovations",
+    "doi": "10.1109/access.2025.3526068",
+    "authors": [
+      "Shamsi",
+      "Sindhu"
+    ],
+    "year": 2025,
+    "journal": "IEEE Access",
+    "citations": 2
+  },
+  {
+    "title": "Efficient video summarization through MobileNetSSD: a robust deep learning-based framework for efficient video summarization focused on objects of interest",
+    "doi": "10.1007/s11042-024-20372-y",
+    "authors": [
+      "Yarrarapu",
+      "Leelavathy",
+      "Haritha"
+    ],
+    "year": 2024,
+    "journal": "Multimedia Tools and Applications",
+    "citations": 2
+  },
+  {
+    "title": "An integrated framework for abnormal event detection and video summarization using deep learning",
+    "doi": "10.19101/ijatee.2021.875854",
+    "authors": [],
+    "year": 2022,
+    "journal": "International Journal of Advanced Technology and Engineering Exploration",
+    "citations": 2
+  },
+  {
+    "title": "Optimized deep learning enabled lecture audio video summarization",
+    "doi": "10.1016/j.jvcir.2024.104309",
+    "authors": [
+      "Chandan Kaur",
+      "Ragha"
+    ],
+    "year": 2024,
+    "journal": "Journal of Visual Communication and Image Representation",
+    "citations": 2
+  },
+  {
+    "title": "Short-term power generation load forecasting based on LSTM neural network",
+    "doi": "10.1088/1742-6596/2247/1/012033",
+    "authors": [
+      "Huang",
+      "Tong",
+      "Zuo"
+    ],
+    "year": 2022,
+    "journal": "Journal of Physics: Conference Series",
+    "citations": 2
+  },
+  {
+    "title": "Short-term photovoltaic power generation power prediction method based on SOA-BP neural network",
+    "doi": "10.1088/1742-6596/2378/1/012095",
+    "authors": [
+      "Wang",
+      "Liang"
+    ],
+    "year": 2022,
+    "journal": "Journal of Physics: Conference Series",
+    "citations": 2
+  },
+  {
+    "title": "Multi-scale motion perception fall detection algorithm based on video swin transformer",
+    "doi": "10.1007/s11760-025-04358-3",
+    "authors": [
+      "Cai",
+      "Wang",
+      "Jiao"
+    ],
+    "year": 2025,
+    "journal": "Signal, Image and Video Processing",
+    "citations": 2
+  },
+  {
+    "title": "Small target detection model based on swin transformer and multiscale fusion",
+    "doi": "10.1007/s11760-025-04512-x",
+    "authors": [
+      "Wang",
+      "Li"
+    ],
+    "year": 2025,
+    "journal": "Signal, Image and Video Processing",
+    "citations": 2
+  },
+  {
+    "title": "Integrate the Temporal Scheme for Unsupervised Video Summarization via Attention Mechanism",
+    "doi": "10.1109/access.2025.3546149",
+    "authors": [
+      "Bang",
+      "Viet"
+    ],
+    "year": 2025,
+    "journal": "IEEE Access",
+    "citations": 2
+  },
+  {
+    "title": "Capturing spatiotemporal dependencies with competitive set attention for video summarization",
+    "doi": "10.1007/s00371-025-03865-1",
+    "authors": [
+      "Arafat",
+      "Singh"
+    ],
+    "year": 2025,
+    "journal": "The Visual Computer",
+    "citations": 2
+  },
+  {
+    "title": "Retraction Note: Analysis of sports image detection technology based on machine learning",
+    "doi": "10.1186/s13640-022-00594-6",
+    "authors": [
+      "Yang"
+    ],
+    "year": 2022,
+    "journal": "EURASIP Journal on Image and Video Processing",
+    "citations": 2
+  },
+  {
+    "title": "Surgical Resection and Clipping of an Atherosclerotic Partially Calcified Middle Cerebral Artery Trifurcation Aneurysm with Clipping of an Anterior Communicating Artery Aneurysm: 2-Dimensional Operative Video",
+    "doi": "10.1016/j.wneu.2022.05.077",
+    "authors": [
+      "Nagaraj",
+      "Raju",
+      "Jumah"
+    ],
+    "year": 2022,
+    "journal": "World Neurosurgery",
+    "citations": 2
+  },
+  {
+    "title": "The Effect of Animated Video Media, Social Media, Mobile Learning of Students Learning Interest",
+    "doi": "10.2139/ssrn.3767945",
+    "authors": [
+      "Almira Salsabila Majid",
+      "Usman"
+    ],
+    "year": null,
+    "journal": "SSRN Electronic Journal",
+    "citations": 1
+  },
+  {
+    "title": "Detection of Deepfake Video Using Residual Neural Network and Long Short-Term Memory",
+    "doi": "10.47164/ijngc.v14i1.1046",
+    "authors": [
+      "Karandikar",
+      "Thakare",
+      "Sah"
+    ],
+    "year": 2023,
+    "journal": "International Journal of Next-Generation Computing",
+    "citations": 1
+  },
+  {
+    "title": "Long-term and short-term traffic flow prediction with different weather conditions using optimized wheel-graph attention based neural network",
+    "doi": "10.1016/j.future.2025.108198",
+    "authors": [
+      "Arunachalam"
+    ],
+    "year": 2026,
+    "journal": "Future Generation Computer Systems",
+    "citations": 1
+  },
+  {
+    "title": "Short-Beam Shear Strength of New-Generation Glass Fiber-Reinforced Polymer Bars Under Harsh Environment: Experimental Study and Artificial Neural Network Prediction Model",
+    "doi": "10.3390/polym16233358",
+    "authors": [
+      "Al-Zahrani"
+    ],
+    "year": 2024,
+    "journal": "Polymers",
+    "citations": 1
+  },
+  {
+    "title": "A GA-PSO Hybrid Algorithm Based Neural Network Modeling Technique for Short-term Wind Power Forecasting",
+    "doi": "10.13052/dgaej2156-3306.3342",
+    "authors": [
+      "Semero",
+      "Zhang",
+      "Zheng"
+    ],
+    "year": 2018,
+    "journal": "Distributed Generation &amp; Alternative Energy Journal",
+    "citations": 1
+  },
+  {
+    "title": "HACSPT: a hybrid adaptive contrastive self-paced transformer for video anomaly detection",
+    "doi": "10.1007/s11760-025-04747-8",
+    "authors": [
+      "Shah",
+      "Chauhan"
+    ],
+    "year": 2025,
+    "journal": "Signal, Image and Video Processing",
+    "citations": 1
+  },
+  {
+    "title": "Advanced Detection of Violence From Video: Performance Evaluation of Transformer and State of the Art of Convolution of Neural Network Transformer",
+    "doi": "10.1109/access.2025.3564435",
+    "authors": [
+      "Alshalawi",
+      "Abdul",
+      "Muhammad"
+    ],
+    "year": 2025,
+    "journal": "IEEE Access",
+    "citations": 1
+  },
+  {
+    "title": "Noisy-label propagation for Video Anomaly Detection with Graph Transformer Network",
+    "doi": "10.25073/2588-1086/vnucsce.659",
+    "authors": [
+      "TA",
+      "Do"
+    ],
+    "year": 2023,
+    "journal": "VNU Journal of Science: Computer Science and Communication Engineering",
+    "citations": 1
+  },
+  {
+    "title": "A Framework for Video Summarization using Visual Attention Technique",
+    "doi": "10.17485/ijst/v17i15.456",
+    "authors": [
+      "",
+      "Dhanushree",
+      "Priya"
+    ],
+    "year": 2024,
+    "journal": "Indian Journal Of Science And Technology",
+    "citations": 1
+  },
+  {
+    "title": "SportSummarizer: A unified multimodal fusion transformer for context-aware sports video summarization",
+    "doi": "10.1016/j.neucom.2025.131011",
+    "authors": [
+      "Minola Davids",
+      "Arul Edwin Raj",
+      "Seldev Christopher"
+    ],
+    "year": 2025,
+    "journal": "Neurocomputing",
+    "citations": 1
+  },
+  {
+    "title": "Multimodal data fusion towards video summarization applications",
+    "doi": "10.1007/s11042-025-21035-2",
+    "authors": [
+      "Shettar",
+      "Katti",
+      "Mallibhat"
+    ],
+    "year": 2025,
+    "journal": "Multimedia Tools and Applications",
+    "citations": 1
+  },
+  {
+    "title": "Enhancement of students learning outcome by supplementing Self-directed learning with video clipping.",
+    "doi": "10.29309/tpmj/2020.27.07.3661",
+    "authors": [
+      "Sadiq",
+      "Ali"
+    ],
+    "year": 2020,
+    "journal": "The Professional Medical Journal",
+    "citations": 1
+  },
+  {
+    "title": "ViCTer: A semi-supervised video character tracker",
+    "doi": "10.1016/j.mlwa.2023.100460",
+    "authors": [
+      "Li",
+      "Wang",
+      "Zhang"
+    ],
+    "year": 2023,
+    "journal": "Machine Learning with Applications",
+    "citations": 1
+  },
+  {
+    "title": "Machine Learning Algorithms for Cloud Security",
+    "doi": "10.14738/aivp.114.15210",
+    "authors": [],
+    "year": 2023,
+    "journal": "Advances in Image and Video Processing",
+    "citations": 1
+  },
+  {
+    "title": "Object Detection In Video Streaming Using Machine Learning And Cnn Techniques",
+    "doi": "10.53555/jaz.v45is4.4183",
+    "authors": [
+      "Vaidya"
+    ],
+    "year": 2024,
+    "journal": "Journal of Advanced Zoology",
+    "citations": 1
+  },
+  {
+    "title": "Smart Video Summarization Using Deep Learning",
+    "doi": "10.55248/gengpi.6.0825.3146",
+    "authors": [
+      "Ramya",
+      "priyamvada"
+    ],
+    "year": 2025,
+    "journal": "International Journal of Research Publication and Reviews",
+    "citations": 0
+  },
+  {
+    "title": "Deep Learning for Video Summarization",
+    "doi": "10.55041/isjem04127",
+    "authors": [
+      "Mohite"
+    ],
+    "year": 2025,
+    "journal": "International Scientific Journal of Engineering and Management",
+    "citations": 0
+  },
+  {
+    "title": "Video Summarization Using Deep Learning",
+    "doi": "10.22214/ijraset.2025.67254",
+    "authors": [
+      "Kumar"
+    ],
+    "year": 2025,
+    "journal": "International Journal for Research in Applied Science and Engineering Technology",
+    "citations": 0
+  },
+  {
+    "title": "Query-Based Video Summarization System Based on Light Weight Deep  Learning Model",
+    "doi": "10.22266/ijies2022.1231.24",
+    "authors": [],
+    "year": 2022,
+    "journal": "International Journal of Intelligent Engineering and Systems",
+    "citations": 0
+  },
+  {
+    "title": "GARNN-AE-LSTM: A Multimodal Deep Learning Approach for High-Accuracy Video Summarization",
+    "doi": "10.3791/69097",
+    "authors": [
+      "Jin",
+      "Sharudin"
+    ],
+    "year": 2025,
+    "journal": "Journal of Visualized Experiments",
+    "citations": 0
+  },
+  {
+    "title": "Deep Learning-based Video Summarization",
+    "doi": "10.18517/ijaseit.11.6.12888",
+    "authors": [
+      "Seo",
+      "Suh",
+      "Jeong"
+    ],
+    "year": 2021,
+    "journal": "International Journal on Advanced Science, Engineering and Information Technology",
+    "citations": 0
+  },
+  {
+    "title": "Static video summarization based on genetic algorithm and deep learning approach",
+    "doi": "10.1007/s11042-024-19421-3",
+    "authors": [
+      "Benoughidene",
+      "Titouna",
+      "Boughida"
+    ],
+    "year": 2024,
+    "journal": "Multimedia Tools and Applications",
+    "citations": 0
+  }
+]

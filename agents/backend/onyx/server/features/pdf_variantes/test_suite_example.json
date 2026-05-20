@@ -1,0 +1,34 @@
+{
+  "name": "Basic API Test Suite",
+  "description": "Basic tests for API endpoints",
+  "tests": [
+    {
+      "type": "health",
+      "name": "Health Check"
+    },
+    {
+      "type": "endpoint",
+      "name": "Root Endpoint",
+      "method": "GET",
+      "endpoint": "/",
+      "expected_status": 200
+    },
+    {
+      "type": "endpoint",
+      "name": "API Docs",
+      "method": "GET",
+      "endpoint": "/docs",
+      "expected_status": 200
+    },
+    {
+      "type": "endpoint",
+      "name": "OpenAPI Schema",
+      "method": "GET",
+      "endpoint": "/openapi.json",
+      "expected_status": 200
+    }
+  ]
+}
+
+
+

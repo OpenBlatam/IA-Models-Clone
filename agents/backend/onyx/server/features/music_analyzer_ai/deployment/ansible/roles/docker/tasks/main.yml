@@ -1,0 +1,88 @@
+---
+# Docker installation and configuration role
+# Idempotent tasks for Docker setup
+
+- name: Check if Docker is installed
+  command: docker --version
+  register: docker_version_result
+  changed_when: false
+  failed_when: false
+
+- name: Install Docker dependencies (Debian/Ubuntu)
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+    update_cache: yes
+  when: 
+    - ansible_os_family == "Debian"
+    - docker_version_result.rc != 0
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when:
+    - ansible_os_family == "Debian"
+    - docker_version_result.rc != 0
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+  when:
+    - ansible_os_family == "Debian"
+    - docker_version_result.rc != 0
+
+- name: Install Docker (Debian/Ubuntu)
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+    state: present
+    update_cache: yes
+  when:
+    - ansible_os_family == "Debian"
+    - docker_version_result.rc != 0
+  notify: restart docker
+
+- name: Install Docker (RedHat/Amazon)
+  yum:
+    name: docker
+    state: present
+  when:
+    - ansible_os_family == "RedHat"
+    - docker_version_result.rc != 0
+  notify: restart docker
+
+- name: Start and enable Docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+  when: docker_version_result.rc != 0
+
+- name: Verify Docker installation
+  command: docker info
+  changed_when: false
+  register: docker_info_result
+
+- name: Display Docker version
+  debug:
+    msg: "Docker installed successfully: {{ docker_info_result.stdout_lines[0] }}"
+
+
+
+
