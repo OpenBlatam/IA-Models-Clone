@@ -1,0 +1,38 @@
+# Production Transformers Requirements
+# ===================================
+
+# Core PyTorch with CUDA support
+torch==2.1.1+cu118
+torchvision==0.16.1+cu118
+torchaudio==2.1.1+cu118
+
+# Transformers and NLP
+transformers==4.35.2
+tokenizers==0.15.0
+sentence-transformers==2.2.2
+datasets==2.14.6
+
+# Diffusion models
+diffusers==0.24.0
+accelerate==0.24.1
+xformers==0.0.22.post7
+
+# Performance optimization
+onnxruntime-gpu==1.16.3
+optimum==1.14.1
+optimum[onnxruntime-gpu]==1.14.1
+
+# Utilities
+numpy==1.25.2
+orjson==3.9.10
+cachetools==5.3.2
+psutil==5.9.6
+
+# Monitoring and logging
+structlog==23.2.0
+prometheus-client==0.19.0
+
+# Development and testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-benchmark==4.0.0 

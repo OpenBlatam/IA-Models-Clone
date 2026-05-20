@@ -1,0 +1,59 @@
+# Ejemplo de manifest para recurso filesystem
+resource_id: example_files
+name: Example Filesystem Resource
+type: filesystem
+connector_type: filesystem
+description: Example filesystem resource for demonstration purposes
+version: "1.0.0"
+
+permissions:
+  read: true
+  write: false
+  delete: false
+  admin: false
+
+required_scopes:
+  - read
+
+endpoint: null
+
+connection_config:
+  base_path: "./examples/data"
+  allowed_extensions:
+    - ".txt"
+    - ".py"
+    - ".json"
+    - ".yaml"
+    - ".md"
+
+data_schema:
+  type: object
+  properties:
+    content:
+      type: string
+    path:
+      type: string
+    size:
+      type: integer
+    encoding:
+      type: string
+      default: "utf-8"
+
+supported_operations:
+  - read
+  - list
+  - search
+  - metadata
+
+max_context_size: 4096
+
+rate_limit:
+  requests_per_minute: 60
+  requests_per_hour: 1000
+
+metadata:
+  tags:
+    - example
+    - filesystem
+  category: storage
+

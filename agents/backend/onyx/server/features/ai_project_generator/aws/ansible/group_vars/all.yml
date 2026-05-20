@@ -1,0 +1,50 @@
+---
+# Common variables for all hosts
+
+# Project configuration
+project_name: "ai-project-generator"
+environment: "production"
+
+# Application configuration
+app_user: ubuntu
+app_dir: /opt/ai-project-generator
+python_version: "3.11"
+app_port: 8020
+
+# Deployment configuration
+use_docker: true
+use_systemd: false
+create_env_file: true
+
+# Git configuration (if using git deployment)
+# git_repository_url: "https://github.com/your-org/ai-project-generator.git"
+# git_branch: "main"
+
+# Redis configuration
+redis_url: "redis://localhost:6379"
+redis_maxmemory: "512mb"
+
+# MCP Configuration
+mcp_secret_key: "CHANGE_THIS_IN_PRODUCTION"
+mcp_enable_tracing: "true"
+mcp_enable_metrics: "true"
+
+# AWS configuration
+aws_region: "us-east-1"
+
+# Security
+secret_key: "CHANGE_THIS_TO_A_SECURE_RANDOM_STRING"
+allowed_hosts: "*"
+debug: false
+
+# Logging
+log_level: "INFO"
+
+# Performance
+workers: 4
+max_workers: 8
+
+# Additional environment variables
+# additional_env_vars:
+#   CUSTOM_VAR: "value"
+

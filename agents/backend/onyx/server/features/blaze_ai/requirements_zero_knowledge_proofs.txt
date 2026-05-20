@@ -1,0 +1,51 @@
+# Blaze AI Zero-Knowledge Proofs Module Requirements
+# Core dependencies for cryptographic operations and zero-knowledge proofs
+
+# Cryptographic libraries
+py-ecc>=6.0.0
+cryptography>=41.0.0
+pycryptodome>=3.19.0
+ecdsa>=0.18.0
+
+# Zero-knowledge proof libraries
+zksnark>=0.1.0
+stark>=0.1.0
+bulletproofs>=0.1.0
+
+# Mathematical and computational libraries
+numpy>=1.24.0
+scipy>=1.10.0
+sympy>=1.12.0
+gmpy2>=2.1.0
+
+# Async and networking
+aiohttp>=3.8.0
+asyncio-mqtt>=0.11.0
+websockets>=11.0.0
+
+# Data handling
+pydantic>=2.0.0
+marshmallow>=3.19.0
+msgpack>=1.0.0
+
+# Monitoring and metrics
+prometheus-client>=0.16.0
+structlog>=23.0.0
+psutil>=5.9.0
+
+# Testing
+pytest>=7.3.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+pytest-mock>=3.10.0
+
+# Code quality
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.3.0
+
+# Additional cryptographic tools
+libsnark>=0.1.0
+circom>=0.1.0
+snarkjs>=0.1.0
+

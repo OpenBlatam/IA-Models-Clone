@@ -1,0 +1,18 @@
+# Terraform Backend Configuration Example
+# Copy this file to backend.hcl and configure with your values
+
+bucket         = "ai-project-generator-terraform-state-production"
+key            = "terraform.tfstate"
+region         = "us-east-1"
+dynamodb_table = "ai-project-generator-terraform-state-lock-production"
+encrypt        = true
+
+# Optional: KMS key for encryption
+# kms_key_id = "alias/terraform-state-key"
+
+# Optional: Profile
+# profile = "default"
+
+# Optional: Role ARN for cross-account access
+# role_arn = "arn:aws:iam::ACCOUNT_ID:role/terraform-backend-role"
+

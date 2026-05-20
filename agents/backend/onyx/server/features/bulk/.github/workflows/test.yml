@@ -1,0 +1,101 @@
+name: Test API BUL
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install requests websockets colorama
+    
+    - name: Start API server
+      run: |
+        python api_frontend_ready.py &
+        sleep 5
+    
+    - name: Run basic tests
+      run: python test_api_responses.py
+      continue-on-error: true
+    
+    - name: Run advanced tests
+      run: python test_api_advanced.py
+      continue-on-error: true
+    
+    - name: Run security tests
+      run: python test_security.py
+      continue-on-error: true
+    
+    - name: Run benchmark
+      run: python test_benchmark.py --iterations 5
+      continue-on-error: true
+    
+    - name: Generate CI reports
+      run: python test_ci_integration.py --format all
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results
+        path: |
+          test_results.json
+          test_results.csv
+          test_dashboard.html
+          junit.xml
+          gl-test-report.json
+          benchmark_results.json
+    
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: junit.xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

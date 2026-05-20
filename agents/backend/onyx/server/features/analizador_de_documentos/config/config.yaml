@@ -1,0 +1,68 @@
+# Configuración del Analizador de Documentos
+# ===========================================
+
+model:
+  name: "bert-base-multilingual-cased"
+  device: "auto"  # auto, cuda, cpu
+  cache_dir: "./models/cache"
+  fine_tuned_path: null  # Ruta a modelo fine-tuned (opcional)
+
+fine_tuning:
+  default_model: "bert-base-multilingual-cased"
+  default_num_labels: 2
+  default_epochs: 3
+  default_batch_size: 16
+  default_learning_rate: 2e-5
+  default_max_length: 512
+  output_dir: "./models/fine_tuned"
+
+analysis:
+  default_tasks:
+    - classification
+    - summarization
+    - keyword_extraction
+    - sentiment
+  max_content_length: 10000
+  summary_max_length: 150
+  summary_min_length: 30
+  keywords_top_k: 10
+  topics_num_topics: 3
+
+document_processing:
+  supported_formats:
+    - pdf
+    - docx
+    - txt
+    - html
+    - markdown
+    - json
+    - xml
+    - csv
+  max_file_size_mb: 50
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  workers: 1
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: null  # null para solo console, o ruta a archivo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

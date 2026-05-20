@@ -1,0 +1,33 @@
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+skip-string-normalization = true
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = [
+  "E",  # pycodestyle errors
+  "F",  # pyflakes
+  "I",  # isort
+  "UP", # pyupgrade
+  "N",  # pep8-naming
+  "B",  # flake8-bugbear
+  "ANN", # flake8-annotations (encourage explicit types in APIs)
+]
+ignore = [
+  "E203", # whitespace before ':' (black compat)
+]
+exclude = [
+  ".venv",
+  "venv",
+  "build",
+  "dist",
+  "__pycache__",
+]
+
+

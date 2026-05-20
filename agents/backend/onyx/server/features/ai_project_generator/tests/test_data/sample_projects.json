@@ -1,0 +1,31 @@
+{
+  "simple_chat": {
+    "description": "A simple chat AI system",
+    "ai_type": "chat",
+    "features": ["api"],
+    "backend_framework": "fastapi",
+    "frontend_framework": "react"
+  },
+  "complex_vision": {
+    "description": "A complex vision AI system with object detection, image classification, and real-time processing",
+    "ai_type": "vision",
+    "features": ["auth", "database", "file_upload", "websocket"],
+    "backend_framework": "fastapi",
+    "frontend_framework": "react"
+  },
+  "audio_processing": {
+    "description": "An audio AI system that processes voice commands and generates responses",
+    "ai_type": "audio",
+    "features": ["file_upload", "streaming"],
+    "backend_framework": "fastapi",
+    "frontend_framework": "react"
+  },
+  "recommendation_engine": {
+    "description": "A recommendation system for e-commerce using machine learning",
+    "ai_type": "recommendation",
+    "features": ["database", "cache", "queue"],
+    "backend_framework": "fastapi",
+    "frontend_framework": "react"
+  }
+}
+

@@ -1,0 +1,51 @@
+# AI Video System - Production Requirements
+# Essential dependencies for production deployment
+
+# Core dependencies
+aiohttp>=3.8.0,<4.0.0
+aiofiles>=0.8.0,<1.0.0
+
+# Web scraping and content extraction
+beautifulsoup4>=4.9.0,<5.0.0
+newspaper3k>=0.2.8,<1.0.0
+trafilatura>=5.0.0,<6.0.0
+lxml>=4.6.0,<5.0.0
+requests>=2.25.0,<3.0.0
+urllib3>=1.26.0,<2.0.0
+
+# Configuration and serialization
+pyyaml>=6.0,<7.0.0
+pydantic>=1.8.0,<2.0.0
+python-dotenv>=0.19.0,<1.0.0
+msgspec>=0.15.0,<1.0.0
+
+# Data processing and validation
+jsonschema>=3.2.0,<4.0.0
+numpy>=1.21.0,<2.0.0
+
+# Logging and monitoring
+structlog>=21.1.0,<22.0.0
+prometheus-client>=0.12.0,<1.0.0
+
+# Security
+cryptography>=3.4.0,<4.0.0
+
+# Performance and optimization
+psutil>=5.8.0,<6.0.0
+
+# Optional: Database support (uncomment if needed)
+# sqlalchemy>=1.4.0,<2.0.0
+# redis>=4.0.0,<5.0.0
+
+# Optional: Cloud storage (uncomment if needed)
+# boto3>=1.20.0,<2.0.0
+# google-cloud-storage>=1.42.0,<2.0.0
+
+# Optional: Machine learning (uncomment if needed)
+# scikit-learn>=1.0.0,<2.0.0
+# transformers>=4.15.0,<5.0.0
+
+# Optional: Image and video processing (uncomment if needed)
+# pillow>=8.3.0,<9.0.0
+# opencv-python>=4.5.0,<5.0.0
+# moviepy>=1.0.3,<2.0.0 

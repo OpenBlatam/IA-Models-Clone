@@ -1,0 +1,122 @@
+# Core Dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.23
+alembic==1.13.0
+psycopg2-binary==2.9.9
+redis==5.0.1
+
+# AI/ML Dependencies
+torch==2.1.0
+transformers==4.35.2
+tokenizers==0.15.0
+accelerate==0.24.1
+bitsandbytes==0.41.3
+peft==0.6.2
+trl==0.7.4
+
+# NLP Dependencies
+nltk==3.8.1
+spacy==3.7.2
+textstat==0.7.3
+sentence-transformers==2.2.2
+langdetect==1.0.9
+
+# Data Processing
+numpy==1.24.3
+pandas==2.1.3
+scikit-learn==1.3.2
+scipy==1.11.4
+
+# Template Engine
+jinja2==3.1.2
+markdown==3.5.1
+html2text==2020.1.16
+
+# Format Conversion
+pypdf2==3.0.1
+python-docx==1.1.0
+openpyxl==3.1.2
+pillow==10.1.0
+
+# HTTP Client
+httpx==0.25.2
+aiohttp==3.9.1
+requests==2.31.0
+
+# Async Support
+asyncio==3.4.3
+aiofiles==23.2.1
+
+# Monitoring & Metrics
+prometheus-client==0.19.0
+psutil==5.9.6
+aiocache==0.12.2
+
+# Resilience
+tenacity==8.2.3
+circuitbreaker==2.0.0
+
+# Logging
+structlog==23.2.0
+colorama==0.4.6
+
+# Security
+cryptography==41.0.7
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
+# Email
+emails==0.6.0
+
+# WebSocket
+websockets==12.0
+
+# Caching
+aiocache==0.12.2
+diskcache==5.6.3
+memory-profiler==0.61.0
+slowapi==0.1.7
+limits==3.7.0
+
+# Compression
+lz4==4.3.2
+snappy==0.6.1
+brotli==1.1.0
+
+# Batch processing
+celery==5.3.4
+kombu==5.3.4
+
+# Async processing
+asyncio-throttle==1.0.2
+
+# Configuration
+python-dotenv==1.0.0
+pydantic-settings==2.1.0
+
+# Development
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Production
+gunicorn==21.2.0
+supervisor==4.2.5
+mangum==0.17.0
+
+# Optional: GPU Support
+# torch-audio==2.1.0
+# torch-vision==0.16.0
+
+# Optional: Advanced ML
+# optuna==3.4.0
+# ray[tune]==2.8.0
+# wandb==0.16.0

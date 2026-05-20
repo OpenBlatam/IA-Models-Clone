@@ -1,0 +1,65 @@
+# Training Configuration
+# Following PyTorch/Transformers best practices
+
+model:
+  event_duration:
+    input_dim: 32
+    hidden_dims: [128, 64, 32]
+    dropout_rate: 0.2
+    use_batch_norm: true
+  
+  routine_completion:
+    input_dim: 16
+    lstm_hidden: 64
+    lstm_layers: 2
+    fc_dims: [128, 64]
+    dropout_rate: 0.2
+  
+  optimal_time:
+    input_dim: 24
+    hidden_dim: 128
+    num_hours: 24
+    dropout_rate: 0.2
+
+training:
+  batch_size: 32
+  max_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"  # adam, sgd, adamw
+  scheduler_type: "step"  # step, cosine
+  scheduler_step_size: 10
+  scheduler_gamma: 0.1
+  
+  # Mixed precision training
+  use_mixed_precision: true
+  
+  # Gradient clipping
+  grad_clip: 1.0
+  
+  # Early stopping
+  early_stopping_patience: 10
+  
+  # Checkpointing
+  checkpoint_interval: 10
+  checkpoint_dir: "checkpoints"
+
+data:
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+  num_workers: 0
+  pin_memory: false
+  normalize: true
+
+device: "auto"  # auto, cpu, cuda
+
+experiment:
+  tracking: true
+  experiment_dir: "experiments"
+  use_wandb: false
+  wandb_project: "artist-manager-ai"
+
+
+
+
