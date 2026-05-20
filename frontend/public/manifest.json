@@ -1,0 +1,44 @@
+{
+  "name": "BUL - Business Document Generator",
+  "short_name": "BUL",
+  "description": "Generador de documentos de negocio con IA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Generar Documento",
+      "short_name": "Generar",
+      "description": "Crear un nuevo documento",
+      "url": "/?view=generate",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Tareas",
+      "short_name": "Tareas",
+      "description": "Ver todas las tareas",
+      "url": "/?view=tasks",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
+
+

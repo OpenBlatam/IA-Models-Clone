@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  github-autonomous-agent:
+    build: .
+    ports:
+      - "8025:8025"
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - API_PORT=8025
+      - STORAGE_PATH=/app/data
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+
+
+

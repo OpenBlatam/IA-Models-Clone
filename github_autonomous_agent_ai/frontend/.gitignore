@@ -1,0 +1,7 @@
+# ... existing code ...
+# Tests
+/tests/results/
+/playwright-report/
+/test-results/
+/coverage/
+

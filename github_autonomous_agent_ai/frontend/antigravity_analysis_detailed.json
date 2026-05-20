@@ -1,0 +1,486 @@
+{
+  "summary": {
+    "total_elements": 204,
+    "url": "https://antigravity.google/",
+    "title": "Google Antigravity",
+    "roles_found": {
+      "generic": 133,
+      "main": 2,
+      "banner": 1,
+      "link": 20,
+      "navigation": 2,
+      "button": 24,
+      "menu": 3,
+      "menuitem": 6,
+      "section": 6,
+      "list": 1,
+      "listitem": 5,
+      "contentinfo": 1
+    }
+  },
+  "header_details": {
+    "ref": "ref-fzwtgndnhrs",
+    "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]",
+    "children_count": 57,
+    "buttons_in_header": [
+      {
+        "role": "button",
+        "name": "Product",
+        "ref": "ref-q4203yu028g",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Use Cases",
+        "ref": "ref-383eatrvg3c",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Pricing",
+        "ref": "ref-vyj7d3r0bh",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Blog",
+        "ref": "ref-y9is78ww96",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Resources",
+        "ref": "ref-u9djlu09j4c",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Download download",
+        "ref": "ref-znl279o4zb",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[1]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "menu",
+        "ref": "ref-0h3r00voy3qq",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Product",
+        "ref": "ref-ph4zez3dqv",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "U e Ca e keyboard_arrow_down",
+        "ref": "ref-87zw60g9hjs",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[1]"
+      },
+      {
+        "role": "button",
+        "name": "Pricing",
+        "ref": "ref-zjg76138xw",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[3]"
+      },
+      {
+        "role": "button",
+        "name": "Blog",
+        "ref": "ref-bn66drm0rn",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[4]"
+      },
+      {
+        "role": "button",
+        "name": "Re ource keyboard_arrow_down",
+        "ref": "ref-r3f2vtsgfpk",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[5]"
+      }
+    ],
+    "links_in_header": [
+      {
+        "role": "link",
+        "name": "Google Antigravity",
+        "ref": "ref-m6iyfwbnez",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "link",
+        "name": "See overview",
+        "ref": "ref-sty9fewk7z",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[2]/generic[0]"
+      }
+    ]
+  },
+  "hero_section_details": {
+    "ref": "ref-604v2kr6tt2",
+    "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]",
+    "children_count": 0,
+    "buttons_in_hero": [],
+    "links_in_hero": []
+  },
+  "navigation_items": [],
+  "buttons": [
+    {
+      "name": "Product",
+      "ref": "ref-q4203yu028g",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Use Cases",
+      "ref": "ref-383eatrvg3c",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Pricing",
+      "ref": "ref-vyj7d3r0bh",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Blog",
+      "ref": "ref-y9is78ww96",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Resources",
+      "ref": "ref-u9djlu09j4c",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Download download",
+      "ref": "ref-znl279o4zb",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[1]/generic[0]"
+    },
+    {
+      "name": "menu",
+      "ref": "ref-0h3r00voy3qq",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Product",
+      "ref": "ref-ph4zez3dqv",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[0]"
+    },
+    {
+      "name": "U e Ca e keyboard_arrow_down",
+      "ref": "ref-87zw60g9hjs",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[1]"
+    },
+    {
+      "name": "Pricing",
+      "ref": "ref-zjg76138xw",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[3]"
+    },
+    {
+      "name": "Blog",
+      "ref": "ref-bn66drm0rn",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[4]"
+    },
+    {
+      "name": "Re ource keyboard_arrow_down",
+      "ref": "ref-r3f2vtsgfpk",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[5]"
+    },
+    {
+      "name": "Download for Window",
+      "ref": "ref-1jkubuqiums",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Explore u e ca e",
+      "ref": "ref-3crigswzubi",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "name": "clo e",
+      "ref": "ref-czy58nm5kw9",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "keyboard_arrow_left",
+      "ref": "ref-omwtluyci9s",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "keyboard_arrow_right",
+      "ref": "ref-p5svgicjhj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "name": "Download",
+      "ref": "ref-chrsnmqsfe8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Notify me",
+      "ref": "ref-vsbqk81tdnt",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "View blog",
+      "ref": "ref-dxyzzowy0ow",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "keyboard_arrow_left",
+      "ref": "ref-73yqpxy3gid",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+    },
+    {
+      "name": "keyboard_arrow_right",
+      "ref": "ref-ea3ja49nlg",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+    },
+    {
+      "name": "Download for x64",
+      "ref": "ref-pmju6h6nh8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Download for ARM64",
+      "ref": "ref-idi3vlca0hj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    }
+  ],
+  "links": [
+    {
+      "name": "Google Antigravity",
+      "ref": "ref-m6iyfwbnez",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "See overview",
+      "ref": "ref-sty9fewk7z",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[2]/generic[0]"
+    },
+    {
+      "name": "Explore Product",
+      "ref": "ref-7xwrexe72pj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "name": "View ca e",
+      "ref": "ref-ik114aux1li",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+    },
+    {
+      "name": "View ca e",
+      "ref": "ref-k6jabyvlab",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[2]"
+    },
+    {
+      "name": "View ca e",
+      "ref": "ref-hd0wmjl8frf",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[2]"
+    },
+    {
+      "name": "Nano Banana Pro in Google Antigravity Nov 20, 2025 Product Read blog",
+      "ref": "ref-vubhc62t93r",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "Introducing Google Antigravity Nov 18, 2025 Product Read blog",
+      "ref": "ref-7o0skwqhcik",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "name": "Download",
+      "ref": "ref-rop5ii2pps",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "name": "Product",
+      "ref": "ref-55n1ccsd815",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+    },
+    {
+      "name": "Doc",
+      "ref": "ref-w0o4akfymz",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]"
+    },
+    {
+      "name": "Changelog",
+      "ref": "ref-d0hnxe9lhv6",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[4]"
+    },
+    {
+      "name": "Blog",
+      "ref": "ref-cl7utistf24",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+    },
+    {
+      "name": "Pricing",
+      "ref": "ref-edmi71b2468",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[2]"
+    },
+    {
+      "name": "U e Ca e",
+      "ref": "ref-jyxa0ebhtjo",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]"
+    },
+    {
+      "name": "Google",
+      "ref": "ref-lqd92huiphc",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "name": "About Google",
+      "ref": "ref-5sbf0yjcwqy",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[0]"
+    },
+    {
+      "name": "Google Product",
+      "ref": "ref-nvcd1zvw6ml",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[1]"
+    },
+    {
+      "name": "Privacy",
+      "ref": "ref-pdmm48cxc6k",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[2]"
+    },
+    {
+      "name": "Term",
+      "ref": "ref-2pn33nn58oe",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[3]"
+    }
+  ],
+  "sections": [
+    {
+      "name": "",
+      "ref": "ref-sgrzz4ggazr",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]"
+    },
+    {
+      "name": "",
+      "ref": "ref-9xphziua4ts",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]"
+    },
+    {
+      "name": "",
+      "ref": "ref-1glcqt2dm0z",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]"
+    },
+    {
+      "name": "",
+      "ref": "ref-1yni8h5sc2a",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]"
+    },
+    {
+      "name": "",
+      "ref": "ref-cfmcynmwv5",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]"
+    },
+    {
+      "name": "",
+      "ref": "ref-io54vrrha09",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]"
+    }
+  ],
+  "footer_details": {
+    "ref": "ref-2gk3w55jzjp",
+    "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]",
+    "children_count": 0,
+    "links_in_footer": []
+  },
+  "statistics": {
+    "total_buttons": 24,
+    "total_links": 20,
+    "total_sections": 6,
+    "total_navigation_items": 2,
+    "total_menu_items": 6,
+    "total_list_items": 5,
+    "button_names": [
+      "Product",
+      "Use Cases",
+      "Pricing",
+      "Blog",
+      "Resources",
+      "Download download",
+      "menu",
+      "Product",
+      "U e Ca e keyboard_arrow_down",
+      "Pricing",
+      "Blog",
+      "Re ource keyboard_arrow_down",
+      "Download for Window",
+      "Explore u e ca e",
+      "clo e",
+      "keyboard_arrow_left",
+      "keyboard_arrow_right",
+      "Download",
+      "Notify me",
+      "View blog",
+      "keyboard_arrow_left",
+      "keyboard_arrow_right",
+      "Download for x64",
+      "Download for ARM64"
+    ],
+    "link_names": [
+      "Google Antigravity",
+      "See overview",
+      "Explore Product",
+      "View ca e",
+      "View ca e",
+      "View ca e",
+      "Nano Banana Pro in Google Antigravity Nov 20, 2025 Product Read blog",
+      "Introducing Google Antigravity Nov 18, 2025 Product Read blog",
+      "Download",
+      "Product",
+      "Doc",
+      "Changelog",
+      "Blog",
+      "Pricing",
+      "U e Ca e",
+      "Google",
+      "About Google",
+      "Google Product",
+      "Privacy",
+      "Term"
+    ],
+    "unique_button_names": [
+      "Product",
+      "Pricing",
+      "keyboard_arrow_left",
+      "Download for x64",
+      "menu",
+      "clo e",
+      "Download download",
+      "Re ource keyboard_arrow_down",
+      "Download for Window",
+      "Resources",
+      "Blog",
+      "keyboard_arrow_right",
+      "Download",
+      "Use Cases",
+      "Notify me",
+      "Explore u e ca e",
+      "U e Ca e keyboard_arrow_down",
+      "View blog",
+      "Download for ARM64"
+    ],
+    "unique_link_names": [
+      "Product",
+      "Google Product",
+      "Pricing",
+      "Download",
+      "Term",
+      "View ca e",
+      "Doc",
+      "Changelog",
+      "U e Ca e",
+      "Google",
+      "Introducing Google Antigravity Nov 18, 2025 Product Read blog",
+      "About Google",
+      "Explore Product",
+      "Privacy",
+      "Nano Banana Pro in Google Antigravity Nov 20, 2025 Product Read blog",
+      "Google Antigravity",
+      "See overview",
+      "Blog"
+    ],
+    "path_analysis": {
+      "max_depth": 21,
+      "min_depth": 1,
+      "avg_depth": 13.392156862745098
+    }
+  }
+}

@@ -1,0 +1,203 @@
+# ============================================================================
+# GitHub Autonomous Agent - Docker Compose
+# ============================================================================
+# Orquestación de servicios para desarrollo y producción
+#
+# Uso:
+#   Desarrollo: docker-compose up -d
+#   Producción: docker-compose --profile production up -d
+#   Ver logs: docker-compose logs -f app
+#   Detener: docker-compose down
+#
+# Servicios incluidos:
+#   - app: Aplicación FastAPI principal
+#   - worker: Celery worker para tareas asíncronas
+#   - beat: Celery beat scheduler
+#   - flower: Monitor de Celery (desarrollo)
+#   - db: PostgreSQL database
+#   - redis: Redis para cache y cola de tareas
+#   - nginx: Reverse proxy (solo producción)
+# ============================================================================
+
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # Aplicación Principal - FastAPI
+  # ==========================================================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: github-autonomous-agent
+    ports:
+      - "8030:8030"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8030
+      - DEBUG=False
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/github_agent
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    env_file:
+      - .env
+    volumes:
+      - ./storage:/app/storage
+      - ./logs:/app/logs
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - github-agent-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8030/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ==========================================================================
+  # Celery Worker - Procesamiento de Tareas Asíncronas
+  # ==========================================================================
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: github-autonomous-agent-worker
+    command: celery -A core.worker worker --loglevel=info --concurrency=4
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/github_agent
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    env_file:
+      - .env
+    volumes:
+      - ./storage:/app/storage
+      - ./logs:/app/logs
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - github-agent-network
+
+  # ==========================================================================
+  # Celery Beat - Scheduler de Tareas Periódicas
+  # ==========================================================================
+  beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: github-autonomous-agent-beat
+    command: celery -A core.worker beat --loglevel=info
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/github_agent
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - github-agent-network
+
+  # ==========================================================================
+  # Flower - Monitor Web de Celery (Solo Desarrollo)
+  # ==========================================================================
+  # Acceso: http://localhost:5555
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: github-autonomous-agent-flower
+    command: celery -A core.worker flower --port=5555
+    ports:
+      - "5555:5555"
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - github-agent-network
+
+  # ==========================================================================
+  # PostgreSQL Database
+  # ==========================================================================
+  db:
+    image: postgres:15-alpine
+    container_name: github-autonomous-agent-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=github_agent
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - github-agent-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================================================
+  # Redis - Cache y Cola de Tareas
+  # ==========================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: github-autonomous-agent-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - github-agent-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes
+
+  # ==========================================================================
+  # Nginx - Reverse Proxy (Solo Producción)
+  # ==========================================================================
+  # Usar: docker-compose --profile production up -d
+  nginx:
+    image: nginx:alpine
+    container_name: github-autonomous-agent-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - github-agent-network
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  github-agent-network:
+    driver: bridge
+
+

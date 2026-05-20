@@ -1,0 +1,571 @@
+name: 🚀 Ultra Advanced CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, feature/*, hotfix/* ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM for security scans
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+      force_deploy:
+        description: 'Force deployment even if tests fail'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  PYTHON_VERSION: '3.11'
+  NODE_VERSION: '18'
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+jobs:
+  # 🔍 Code Quality and Security Analysis
+  code_quality:
+    name: 🔍 Code Quality & Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      quality_score: ${{ steps.quality.outputs.score }}
+      security_score: ${{ steps.security.outputs.score }}
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    - name: 🧹 Code Formatting Check
+      run: |
+        black --check --diff .
+        isort --check-only --diff .
+        flake8 .
+    
+    - name: 🔍 Type Checking
+      run: |
+        mypy gamma_app/ --ignore-missing-imports
+    
+    - name: 📊 Code Quality Analysis
+      id: quality
+      run: |
+        # Run SonarQube analysis
+        sonar-scanner \
+          -Dsonar.projectKey=gamma-app \
+          -Dsonar.organization=${{ secrets.SONAR_ORG }} \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.python.coverage.reportPaths=coverage.xml \
+          -Dsonar.python.bandit.reportPaths=bandit-report.json
+        
+        # Extract quality score
+        QUALITY_SCORE=$(curl -s "${{ secrets.SONAR_HOST }}/api/measures/component?component=gamma-app&metricKeys=quality_gate_status" \
+          -u "${{ secrets.SONAR_TOKEN }}:" | jq -r '.component.measures[0].value')
+        echo "score=$QUALITY_SCORE" >> $GITHUB_OUTPUT
+    
+    - name: 🔒 Security Scanning
+      id: security
+      run: |
+        # Bandit security scan
+        bandit -r gamma_app/ -f json -o bandit-report.json
+        
+        # Safety check for known vulnerabilities
+        safety check --json --output safety-report.json
+        
+        # Semgrep security scan
+        semgrep --config=auto --json --output=semgrep-report.json .
+        
+        # Trivy vulnerability scan
+        trivy fs --format json --output trivy-report.json .
+        
+        # Calculate security score
+        SECURITY_SCORE=100
+        if [ -s bandit-report.json ]; then
+          HIGH_ISSUES=$(jq '.results | map(select(.issue_severity == "HIGH")) | length' bandit-report.json)
+          SECURITY_SCORE=$((SECURITY_SCORE - HIGH_ISSUES * 10))
+        fi
+        echo "score=$SECURITY_SCORE" >> $GITHUB_OUTPUT
+    
+    - name: 📤 Upload Security Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+          semgrep-report.json
+          trivy-report.json
+
+  # 🧪 Comprehensive Testing
+  testing:
+    name: 🧪 Comprehensive Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: code_quality
+    strategy:
+      matrix:
+        test-type: [unit, integration, performance, security, e2e]
+        python-version: ['3.9', '3.10', '3.11']
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: gamma_app_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+        pip install -r requirements-test.txt
+    
+    - name: 🗄️ Setup Test Database
+      run: |
+        alembic upgrade head
+        python scripts/seed_test_data.py
+    
+    - name: 🧪 Run ${{ matrix.test-type }} Tests
+      run: |
+        case "${{ matrix.test-type }}" in
+          "unit")
+            pytest tests/unit/ -v --cov=gamma_app --cov-report=xml --cov-report=html
+            ;;
+          "integration")
+            pytest tests/integration/ -v --cov=gamma_app --cov-report=xml
+            ;;
+          "performance")
+            pytest tests/performance/ -v --benchmark-only --benchmark-save=performance
+            ;;
+          "security")
+            pytest tests/security/ -v --tb=short
+            ;;
+          "e2e")
+            pytest tests/e2e/ -v --tb=short
+            ;;
+        esac
+    
+    - name: 📊 Upload Test Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-${{ matrix.test-type }}-py${{ matrix.python-version }}
+        path: |
+          coverage.xml
+          htmlcov/
+          .benchmarks/
+          test-results.xml
+
+  # 🏗️ Build and Package
+  build:
+    name: 🏗️ Build & Package
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: [code_quality, testing]
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🐳 Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: 🔐 Login to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 📦 Extract Metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+          type=raw,value={{version}},enable={{is_default_branch}}
+    
+    - name: 🏗️ Build Multi-arch Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: |
+          BUILDKIT_INLINE_CACHE=1
+          VERSION=${{ github.sha }}
+          BUILD_DATE=${{ github.event.head_commit.timestamp }}
+    
+    - name: 🔍 Scan Built Image
+      run: |
+        trivy image --format json --output trivy-image-report.json \
+          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        
+        # Check for critical vulnerabilities
+        CRITICAL_VULNS=$(jq '.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL") | .VulnerabilityID' trivy-image-report.json | wc -l)
+        if [ "$CRITICAL_VULNS" -gt 0 ]; then
+          echo "❌ Critical vulnerabilities found in image"
+          exit 1
+        fi
+    
+    - name: 📤 Upload Image Scan Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: image-scan-report
+        path: trivy-image-report.json
+
+  # 🚀 Deployment
+  deploy:
+    name: 🚀 Deploy to ${{ github.event.inputs.environment || 'staging' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [build]
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    environment: ${{ github.event.inputs.environment || 'staging' }}
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: 📦 Install Deployment Tools
+      run: |
+        pip install ansible kubernetes docker-compose
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x kubectl
+        sudo mv kubectl /usr/local/bin/
+    
+    - name: 🔐 Configure Deployment Secrets
+      run: |
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
+        export KUBECONFIG=kubeconfig
+        
+        # Create secrets
+        kubectl create secret generic gamma-app-secrets \
+          --from-literal=database-url="${{ secrets.DATABASE_URL }}" \
+          --from-literal=redis-url="${{ secrets.REDIS_URL }}" \
+          --from-literal=openai-api-key="${{ secrets.OPENAI_API_KEY }}" \
+          --from-literal=anthropic-api-key="${{ secrets.ANTHROPIC_API_KEY }}" \
+          --dry-run=client -o yaml | kubectl apply -f -
+    
+    - name: 🚀 Deploy to Kubernetes
+      run: |
+        export KUBECONFIG=kubeconfig
+        
+        # Update image tag in deployment manifests
+        sed -i "s|IMAGE_TAG|${{ github.sha }}|g" k8s/deployment.yaml
+        sed -i "s|ENVIRONMENT|${{ github.event.inputs.environment || 'staging' }}|g" k8s/deployment.yaml
+        
+        # Apply deployment
+        kubectl apply -f k8s/
+        
+        # Wait for rollout
+        kubectl rollout status deployment/gamma-app-${{ github.event.inputs.environment || 'staging' }} --timeout=600s
+        
+        # Verify deployment
+        kubectl get pods -l app=gamma-app-${{ github.event.inputs.environment || 'staging' }}
+    
+    - name: 🏥 Health Check
+      run: |
+        export KUBECONFIG=kubeconfig
+        
+        # Get service URL
+        SERVICE_URL=$(kubectl get service gamma-app-${{ github.event.inputs.environment || 'staging' }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        
+        # Wait for service to be ready
+        for i in {1..30}; do
+          if curl -f "http://$SERVICE_URL:8000/health"; then
+            echo "✅ Health check passed"
+            break
+          fi
+          echo "⏳ Waiting for service to be ready... ($i/30)"
+          sleep 10
+        done
+    
+    - name: 📊 Update Deployment Status
+      run: |
+        # Update deployment status in monitoring system
+        curl -X POST "${{ secrets.MONITORING_WEBHOOK }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "deployment_id": "${{ github.sha }}",
+            "status": "success",
+            "environment": "${{ github.event.inputs.environment || 'staging' }}",
+            "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+            "commit": "${{ github.sha }}",
+            "author": "${{ github.actor }}"
+          }'
+
+  # 📊 Performance Testing
+  performance_test:
+    name: 📊 Performance Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [deploy]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: 📦 Install Performance Testing Tools
+      run: |
+        pip install locust k6
+    
+    - name: 🚀 Run Load Tests
+      run: |
+        # Get service URL
+        SERVICE_URL="${{ secrets.STAGING_URL }}"
+        
+        # Run Locust load tests
+        locust -f tests/performance/locustfile.py \
+          --host=http://$SERVICE_URL:8000 \
+          --users=100 \
+          --spawn-rate=10 \
+          --run-time=5m \
+          --headless \
+          --html=locust-report.html \
+          --csv=locust-results
+    
+    - name: 📊 Run K6 Performance Tests
+      run: |
+        # Run K6 tests
+        k6 run tests/performance/k6-load-test.js \
+          --out json=performance-results.json \
+          --summary-export=performance-summary.json
+    
+    - name: 📤 Upload Performance Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-results
+        path: |
+          locust-report.html
+          locust-results_*
+          performance-results.json
+          performance-summary.json
+
+  # 🔍 Security Monitoring
+  security_monitoring:
+    name: 🔍 Security Monitoring
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [deploy]
+    if: always()
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🔍 Run Security Monitoring
+      run: |
+        # Check for security issues in deployed application
+        curl -f "${{ secrets.STAGING_URL }}/api/v2/security/analytics" \
+          -H "Authorization: Bearer ${{ secrets.API_TOKEN }}" \
+          -o security-analytics.json
+        
+        # Check for vulnerabilities
+        VULNERABILITIES=$(jq '.vulnerabilities | length' security-analytics.json)
+        if [ "$VULNERABILITIES" -gt 0 ]; then
+          echo "⚠️ $VULNERABILITIES vulnerabilities detected"
+          # Send alert to security team
+          curl -X POST "${{ secrets.SECURITY_WEBHOOK }}" \
+            -H "Content-Type: application/json" \
+            -d '{"vulnerabilities": '$VULNERABILITIES', "report": "'$(cat security-analytics.json)'"}'
+        fi
+    
+    - name: 📤 Upload Security Analytics
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-analytics
+        path: security-analytics.json
+
+  # 📈 Monitoring and Alerting
+  monitoring:
+    name: 📈 Monitoring & Alerting
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [deploy, performance_test, security_monitoring]
+    if: always()
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 📊 Setup Monitoring
+      run: |
+        # Configure Prometheus targets
+        curl -X POST "${{ secrets.PROMETHEUS_URL }}/api/v1/targets" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "targets": ["${{ secrets.STAGING_URL }}:8000"],
+            "labels": {
+              "job": "gamma-app",
+              "environment": "${{ github.event.inputs.environment || 'staging' }}",
+              "version": "${{ github.sha }}"
+            }
+          }'
+        
+        # Configure Grafana dashboard
+        curl -X POST "${{ secrets.GRAFANA_URL }}/api/dashboards/db" \
+          -H "Authorization: Bearer ${{ secrets.GRAFANA_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d @monitoring/grafana-dashboard.json
+    
+    - name: 🚨 Setup Alerting Rules
+      run: |
+        # Configure Prometheus alerting rules
+        curl -X POST "${{ secrets.PROMETHEUS_URL }}/api/v1/rules" \
+          -H "Content-Type: application/json" \
+          -d @monitoring/alerting-rules.json
+    
+    - name: 📱 Send Deployment Notification
+      run: |
+        # Send Slack notification
+        curl -X POST "${{ secrets.SLACK_WEBHOOK }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "text": "🚀 Deployment completed successfully!",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Gamma App Deployment*\n\n*Environment:* ${{ github.event.inputs.environment || 'staging' }}\n*Version:* `${{ github.sha }}`\n*Author:* ${{ github.actor }}\n*Status:* ✅ Success"
+                }
+              }
+            ]
+          }'
+
+  # 🧹 Cleanup
+  cleanup:
+    name: 🧹 Cleanup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [monitoring]
+    if: always()
+    
+    steps:
+    - name: 🧹 Cleanup Old Images
+      run: |
+        # Clean up old Docker images from registry
+        curl -X DELETE "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:old-tag" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
+    
+    - name: 🗑️ Cleanup Test Resources
+      run: |
+        # Clean up test resources
+        kubectl delete pods -l test=true --ignore-not-found=true
+        kubectl delete services -l test=true --ignore-not-found=true
+
+  # 📋 Summary
+  summary:
+    name: 📋 Pipeline Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [code_quality, testing, build, deploy, performance_test, security_monitoring, monitoring]
+    if: always()
+    
+    steps:
+    - name: 📊 Generate Pipeline Summary
+      run: |
+        echo "## 🚀 CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Stage | Status | Duration |" >> $GITHUB_STEP_SUMMARY
+        echo "|-------|--------|----------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Code Quality | ${{ needs.code_quality.result }} | - |" >> $GITHUB_STEP_SUMMARY
+        echo "| Testing | ${{ needs.testing.result }} | - |" >> $GITHUB_STEP_SUMMARY
+        echo "| Build | ${{ needs.build.result }} | - |" >> $GITHUB_STEP_SUMMARY
+        echo "| Deploy | ${{ needs.deploy.result }} | - |" >> $GITHUB_STEP_SUMMARY
+        echo "| Performance | ${{ needs.performance_test.result }} | - |" >> $GITHUB_STEP_SUMMARY
+        echo "| Security | ${{ needs.security_monitoring.result }} | - |" >> $GITHUB_STEP_SUMMARY
+        echo "| Monitoring | ${{ needs.monitoring.result }} | - |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Overall Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Author:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Environment:** ${{ github.event.inputs.environment || 'staging' }}" >> $GITHUB_STEP_SUMMARY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
