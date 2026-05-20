@@ -1,0 +1,42 @@
+# Requirements Optimized for Production
+# Minimal dependencies for maximum performance
+
+# Core (Essential)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+orjson>=3.10.0
+python-dotenv>=1.0.0
+
+# Database
+sqlalchemy>=2.0.36
+alembic>=1.13.0
+
+# Deep Learning (Production)
+torch>=2.5.0
+transformers>=4.46.0
+tokenizers>=0.19.0
+accelerate>=1.1.0
+sentence-transformers>=3.1.0
+
+# Performance
+numpy>=2.1.0
+orjson>=3.10.0
+
+# Utilities
+pyyaml>=6.0.2
+tqdm>=4.66.0
+
+
+
+
+
+
+
+
+
+
+
+
+

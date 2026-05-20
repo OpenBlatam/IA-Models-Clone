@@ -1,0 +1,12 @@
+# Core ML libraries
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+
+# System monitoring
+psutil>=5.8.0
+
+# Utilities
+pathlib2>=2.3.7
+
+

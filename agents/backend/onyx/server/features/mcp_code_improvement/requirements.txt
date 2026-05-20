@@ -1,0 +1,40 @@
+# Dependencias del Servidor MCP para Mejora de Código
+# Python 3.8+
+
+# Análisis de código
+pylint>=2.17.0
+black>=23.0.0
+isort>=5.12.0
+mypy>=1.0.0
+flake8>=6.0.0
+radon>=5.1.0  # Para métricas de complejidad
+
+# Seguridad
+bandit>=1.7.5
+safety>=2.3.0
+
+# Detección de duplicación
+pylint>=2.17.0  # Incluye detección básica
+jedi>=0.18.0  # Para análisis estático
+
+# Testing (opcional, para generar tests)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Utilidades
+pathspec>=0.11.0
+gitpython>=3.1.0  # Para análisis de git
+
+# Protocolo MCP (si se usa una librería específica)
+# mcp>=0.1.0  # Descomentar cuando esté disponible
+
+
+
+
+
+
+
+
+
+
+

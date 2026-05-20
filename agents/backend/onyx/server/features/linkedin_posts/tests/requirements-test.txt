@@ -1,0 +1,43 @@
+# Test Dependencies for LinkedIn Posts
+# ===================================
+
+# Core testing framework
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+pytest-html>=3.1.0
+pytest-xdist>=3.0.0
+
+# Mocking and test utilities
+unittest-mock>=1.0.0
+responses>=0.23.0
+httpx>=0.24.0
+
+# Performance and load testing
+psutil>=5.9.0
+locust>=2.15.0
+
+# API testing
+fastapi>=0.100.0
+fastapi-testclient>=0.3.0
+
+# Database testing
+pytest-django>=4.5.0
+factory-boy>=3.2.0
+
+# Coverage and reporting
+coverage>=7.2.0
+pytest-json-report>=1.5.0
+
+# Async testing
+aiohttp>=3.8.0
+asyncio-mqtt>=0.13.0
+
+# Development tools
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Optional: Performance monitoring
+memory-profiler>=0.60.0
+py-spy>=0.3.0 

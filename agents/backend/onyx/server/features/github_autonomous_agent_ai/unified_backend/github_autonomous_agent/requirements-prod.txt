@@ -1,0 +1,61 @@
+# ============================================================================
+# GitHub Autonomous Agent - Production Dependencies
+# ============================================================================
+# Instalar con: pip install -r requirements-prod.txt
+# Solo para entornos de producción
+# ============================================================================
+
+# Incluir dependencias base
+-r requirements.txt
+
+# ----------------------------------------------------------------------------
+# Production Server
+# ----------------------------------------------------------------------------
+gunicorn>=21.2.0,<22.0.0           # WSGI server (backup si no usas uvicorn)
+# uvicorn[standard] ya incluido en requirements.txt base
+
+# ----------------------------------------------------------------------------
+# Monitoring & Observability
+# ----------------------------------------------------------------------------
+sentry-sdk>=2.0.0,<3.0.0           # Error tracking y monitoring
+# prometheus-client ya incluido en requirements.txt base
+opentelemetry-api>=1.22.0,<2.0.0   # OpenTelemetry API
+opentelemetry-sdk>=1.22.0,<2.0.0   # OpenTelemetry SDK
+opentelemetry-instrumentation-fastapi>=0.42b0,<1.0.0  # Instrumentación FastAPI
+
+# ----------------------------------------------------------------------------
+# Security & Compliance
+# ----------------------------------------------------------------------------
+# cryptography ya incluido en requirements.txt base
+python-keyring>=24.3.0,<25.0.0      # Gestión segura de credenciales
+auditwheel>=6.0.0,<7.0.0            # Para builds de wheels (solo Linux)
+
+# ----------------------------------------------------------------------------
+# Performance & Optimization
+# ----------------------------------------------------------------------------
+orjson>=3.10.0,<4.0.0               # JSON parser más rápido (opcional)
+ujson>=5.9.0,<6.0.0                 # JSON parser alternativo rápido
+msgpack>=1.0.7,<2.0.0               # Serialización binaria eficiente
+
+# ----------------------------------------------------------------------------
+# Database Production Drivers
+# ----------------------------------------------------------------------------
+# Descomentar según tu base de datos de producción:
+# asyncpg>=0.29.0                    # PostgreSQL async (ya en base como opcional)
+# psycopg2-binary>=2.9.9             # PostgreSQL sync (alternativa)
+# pymysql>=1.1.0                     # MySQL driver
+# aiomysql>=0.2.0                    # MySQL async driver
+
+# ----------------------------------------------------------------------------
+# Caching & Session Management
+# ----------------------------------------------------------------------------
+# redis ya incluido en requirements.txt base
+hiredis>=2.3.0,<3.0.0              # Parser Redis más rápido (opcional)
+
+# ----------------------------------------------------------------------------
+# Backup & Recovery (Opcional - descomentar según necesidad)
+# ----------------------------------------------------------------------------
+# boto3>=1.34.0,<2.0.0              # AWS SDK (para backups a S3)
+# google-cloud-storage>=2.14.0,<3.0.0  # Google Cloud Storage
+# azure-storage-blob>=12.19.0,<13.0.0  # Azure Blob Storage
+

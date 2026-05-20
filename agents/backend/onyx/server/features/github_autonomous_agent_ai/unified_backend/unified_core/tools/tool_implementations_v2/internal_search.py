@@ -1,0 +1,174 @@
+from typing import cast
+
+from agents import function_tool
+from agents import RunContextWrapper
+
+from unified_core.agents.agent_search.dr.models import InferenceSection
+from unified_core.agents.agent_search.dr.models import IterationAnswer
+from unified_core.agents.agent_search.dr.models import IterationInstructions
+from unified_core.agents.agent_search.dr.utils import convert_inference_sections_to_search_docs
+from unified_core.chat.models import LlmDoc
+from unified_core.chat.stop_signal_checker import is_connected
+from unified_core.chat.turn.models import ChatTurnContext
+from unified_core.db.engine.sql_engine import get_session_with_current_tenant
+from unified_core.db.tools import get_tool_by_name
+from unified_core.server.query_and_chat.streaming_models import Packet
+from unified_core.server.query_and_chat.streaming_models import SearchToolDelta
+from unified_core.server.query_and_chat.streaming_models import SearchToolStart
+from unified_core.tools.models import SearchToolOverrideKwargs
+from unified_core.tools.tool_implementations.search.search_tool import (
+    SEARCH_RESPONSE_SUMMARY_ID,
+)
+from unified_core.tools.tool_implementations.search.search_tool import SearchResponseSummary
+from unified_core.tools.tool_implementations.search.search_tool import SearchTool
+from unified_core.tools.tool_implementations.search.search_utils import section_to_llm_doc
+from unified_core.tools.tool_implementations_v2.tool_accounting import tool_accounting
+from unified_core.utils.threadpool_concurrency import FunctionCall
+from unified_core.utils.threadpool_concurrency import run_functions_in_parallel
+
+
+@tool_accounting
+def _internal_search_core(
+    run_context: RunContextWrapper[ChatTurnContext],
+    queries: list[str],
+    search_tool: SearchTool,
+) -> list[LlmDoc]:
+    """Core internal search logic that can be tested with dependency injection"""
+    index = run_context.context.current_run_step
+    run_context.context.run_dependencies.emitter.emit(
+        Packet(
+            ind=index,
+            obj=SearchToolStart(
+                type="internal_search_tool_start", is_internet_search=False
+            ),
+        )
+    )
+    run_context.context.run_dependencies.emitter.emit(
+        Packet(
+            ind=index,
+            obj=SearchToolDelta(
+                type="internal_search_tool_delta", queries=queries, documents=[]
+            ),
+        )
+    )
+    run_context.context.iteration_instructions.append(
+        IterationInstructions(
+            iteration_nr=index,
+            plan="plan",
+            purpose="Searching internally for information",
+            reasoning=f"I am now using Internal Search to gather information on {queries}",
+        )
+    )
+
+    def execute_single_query(query: str, parallelization_nr: int) -> list[LlmDoc]:
+        """Execute a single query and return the retrieved documents as LlmDocs"""
+        retrieved_llm_docs_for_query: list[LlmDoc] = []
+
+        with get_session_with_current_tenant() as search_db_session:
+            for tool_response in search_tool.run(
+                query=query,
+                override_kwargs=SearchToolOverrideKwargs(
+                    force_no_rerank=True,
+                    alternate_db_session=search_db_session,
+                    skip_query_analysis=True,
+                    original_query=query,
+                ),
+            ):
+                if not is_connected(
+                    run_context.context.chat_session_id,
+                    run_context.context.run_dependencies.redis_client,
+                ):
+                    break
+                # get retrieved docs to send to the rest of the graph
+                if tool_response.id == SEARCH_RESPONSE_SUMMARY_ID:
+                    response = cast(SearchResponseSummary, tool_response.response)
+                    # TODO: just a heuristic to not overload context window -- carried over from existing DR flow
+                    docs_to_feed_llm = 15
+                    retrieved_sections: list[InferenceSection] = response.top_sections[
+                        :docs_to_feed_llm
+                    ]
+
+                    # Convert InferenceSections to LlmDocs for return value
+                    retrieved_llm_docs_for_query = [
+                        section_to_llm_doc(section) for section in retrieved_sections
+                    ]
+
+                    run_context.context.run_dependencies.emitter.emit(
+                        Packet(
+                            ind=index,
+                            obj=SearchToolDelta(
+                                type="internal_search_tool_delta",
+                                queries=[],
+                                documents=convert_inference_sections_to_search_docs(
+                                    retrieved_sections, is_internet=False
+                                ),
+                            ),
+                        )
+                    )
+                    run_context.context.aggregated_context.cited_documents.extend(
+                        retrieved_sections
+                    )
+                    run_context.context.aggregated_context.global_iteration_responses.append(
+                        IterationAnswer(
+                            tool=SearchTool.__name__,
+                            tool_id=get_tool_by_name(
+                                SearchTool.__name__,
+                                run_context.context.run_dependencies.db_session,
+                            ).id,
+                            iteration_nr=index,
+                            parallelization_nr=parallelization_nr,
+                            question=query,
+                            reasoning=f"I am now using Internal Search to gather information on {query}",
+                            answer="",
+                            cited_documents={
+                                i: inference_section
+                                for i, inference_section in enumerate(
+                                    retrieved_sections
+                                )
+                            },
+                            queries=[query],
+                        )
+                    )
+                    break
+
+        return retrieved_llm_docs_for_query
+
+    # Execute all queries in parallel using run_functions_in_parallel
+    function_calls = [
+        FunctionCall(func=execute_single_query, args=(query, i))
+        for i, query in enumerate(queries)
+    ]
+    search_results_dict = run_functions_in_parallel(function_calls)
+
+    # Aggregate all results from all queries
+    all_retrieved_docs: list[LlmDoc] = []
+    for result_id in search_results_dict:
+        retrieved_docs = search_results_dict[result_id]
+        if retrieved_docs:
+            all_retrieved_docs.extend(retrieved_docs)
+
+    # Set flag to include citation requirements since we retrieved documents
+    run_context.context.should_cite_documents = (
+        run_context.context.should_cite_documents or bool(all_retrieved_docs)
+    )
+
+    return all_retrieved_docs
+
+
+@function_tool
+def internal_search(
+    run_context: RunContextWrapper[ChatTurnContext], queries: list[str]
+) -> str:
+    """
+    Tool for searching over the user's internal knowledge base.
+    """
+    search_pipeline_instance = run_context.context.run_dependencies.search_pipeline
+    if search_pipeline_instance is None:
+        raise RuntimeError("Search tool not available in context")
+
+    # Call the core function
+    retrieved_docs = _internal_search_core(
+        run_context, queries, search_pipeline_instance
+    )
+
+    return str(retrieved_docs)

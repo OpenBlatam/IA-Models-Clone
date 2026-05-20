@@ -1,0 +1,171 @@
+# Model Configuration for AI Services
+# This file defines models, hyperparameters, and settings for all AI services
+
+# Embedding Models
+embedding:
+  default_model: "sentence-transformers/all-MiniLM-L6-v2"
+  alternatives:
+    - name: "sentence-transformers/all-mpnet-base-v2"
+      dimension: 768
+      description: "Higher quality, larger model"
+    - name: "sentence-transformers/all-MiniLM-L6-v2"
+      dimension: 384
+      description: "Fast, efficient model (default)"
+    - name: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+      dimension: 384
+      description: "Multilingual support"
+  batch_size: 32
+  normalize: true
+  max_length: 512
+
+# Sentiment Analysis Models
+sentiment:
+  default_model: "cardiffnlp/twitter-roberta-base-sentiment-latest"
+  alternatives:
+    - name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
+      description: "Twitter-trained sentiment model"
+    - name: "nlptown/bert-base-multilingual-uncased-sentiment"
+      description: "Multilingual sentiment model"
+    - name: "distilbert-base-uncased-finetuned-sst-2-english"
+      description: "Fast, efficient sentiment model"
+  batch_size: 16
+  max_length: 512
+
+# Content Moderation Models
+moderation:
+  default_model: "unitary/toxic-bert"
+  alternatives:
+    - name: "unitary/toxic-bert"
+      description: "Toxicity detection model"
+    - name: "martin-ha/toxic-comment-model"
+      description: "Alternative toxicity model"
+    - name: "unitary/unbiased-toxic-roberta"
+      description: "Unbiased toxicity detection"
+  batch_size: 16
+  max_length: 512
+  threshold: 0.7
+  categories:
+    - toxic
+    - severe_toxic
+    - obscene
+    - threat
+    - insult
+    - identity_hate
+
+# Text Generation Models
+text_generation:
+  default_model: "gpt2"
+  alternatives:
+    - name: "gpt2"
+      description: "Small, fast model"
+      max_length: 1024
+    - name: "gpt2-medium"
+      description: "Medium-sized model"
+      max_length: 1024
+    - name: "distilgpt2"
+      description: "Distilled, faster model"
+      max_length: 1024
+  generation:
+    max_length: 200
+    min_length: 10
+    temperature: 0.7
+    top_p: 0.9
+    top_k: 50
+    repetition_penalty: 1.1
+    do_sample: true
+    num_return_sequences: 1
+
+# Diffusion Models (for future image generation)
+diffusion:
+  default_model: "runwayml/stable-diffusion-v1-5"
+  alternatives:
+    - name: "runwayml/stable-diffusion-v1-5"
+      description: "Stable Diffusion v1.5"
+    - name: "stabilityai/stable-diffusion-2-1"
+      description: "Stable Diffusion v2.1"
+    - name: "stabilityai/stable-diffusion-xl-base-1.0"
+      description: "Stable Diffusion XL"
+  scheduler: "DPMSolverMultistepScheduler"
+  num_inference_steps: 50
+  guidance_scale: 7.5
+  image_size: 512
+
+# Training Configuration
+training:
+  batch_size: 8
+  learning_rate: 2e-5
+  num_epochs: 3
+  warmup_steps: 500
+  weight_decay: 0.01
+  gradient_accumulation_steps: 4
+  max_grad_norm: 1.0
+  save_steps: 500
+  eval_steps: 500
+  logging_steps: 100
+
+# Fine-tuning (LoRA/P-tuning)
+fine_tuning:
+  method: "lora"  # Options: lora, p_tuning, full
+  lora:
+    r: 16
+    alpha: 32
+    dropout: 0.1
+    target_modules: ["q_proj", "v_proj"]
+  p_tuning:
+    num_virtual_tokens: 20
+    encoder_hidden_size: 128
+
+# Device and Performance
+device:
+  use_gpu: true
+  use_mixed_precision: true
+  device_map: "auto"
+  max_memory: null  # null for auto, or dict like {0: "20GB", 1: "20GB"}
+
+# Model Caching
+cache:
+  cache_dir: "./models_cache"
+  use_cache: true
+  offline: false
+
+# Experiment Tracking
+tracking:
+  enabled: true
+  backend: "wandb"  # Options: wandb, tensorboard, mlflow
+  project_name: "lovable-community-ai"
+  experiment_name: null  # null for auto-generated
+  log_model: true
+  log_artifacts: true
+
+# Data Processing
+data:
+  max_sequence_length: 512
+  padding: "max_length"
+  truncation: true
+  return_tensors: "pt"
+  num_workers: 4
+  pin_memory: true
+
+# Evaluation Metrics
+evaluation:
+  metrics:
+    - accuracy
+    - f1
+    - precision
+    - recall
+  average: "weighted"  # Options: micro, macro, weighted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

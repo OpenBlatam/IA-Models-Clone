@@ -1,0 +1,142 @@
+{
+  "common": {
+    "welcome": "Bienvenido",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "actions": "Acciones",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "view": "Ver"
+  },
+  "auth": {
+    "signIn": "Iniciar Sesión",
+    "signOut": "Cerrar Sesión",
+    "signUp": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "signInWithGoogle": "Iniciar sesión con Google",
+    "signInWithEmail": "Iniciar sesión con Email",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "invalidCredentials": "Correo electrónico o contraseña inválidos",
+    "signInError": "Ocurrió un error. Por favor intenta de nuevo."
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "quotes": "Cotizaciones",
+    "bookings": "Reservas",
+    "shipments": "Envíos",
+    "tracking": "Seguimiento",
+    "containers": "Contenedores",
+    "invoices": "Facturas",
+    "insurance": "Seguros",
+    "documents": "Documentos",
+    "alerts": "Alertas",
+    "reports": "Reportes"
+  },
+  "quotes": {
+    "title": "Cotizaciones",
+    "createQuote": "Crear Cotización",
+    "quoteId": "ID de Cotización",
+    "origin": "Origen",
+    "destination": "Destino",
+    "cargo": "Carga",
+    "transportationMode": "Modo de Transporte",
+    "price": "Precio",
+    "validUntil": "Válido Hasta",
+    "selectOption": "Seleccionar Opción",
+    "loading": "Cargando cotizaciones..."
+  },
+  "bookings": {
+    "title": "Reservas",
+    "createBooking": "Crear Reserva",
+    "bookingId": "ID de Reserva",
+    "bookingReference": "Referencia de Reserva",
+    "status": "Estado",
+    "estimatedDeparture": "Salida Estimada",
+    "estimatedArrival": "Llegada Estimada",
+    "loading": "Cargando reservas..."
+  },
+  "shipments": {
+    "title": "Envíos",
+    "createShipment": "Crear Envío",
+    "shipmentId": "ID de Envío",
+    "trackingNumber": "Número de Seguimiento",
+    "currentStatus": "Estado Actual",
+    "origin": "Origen",
+    "destination": "Destino",
+    "updateStatus": "Actualizar Estado"
+  },
+  "tracking": {
+    "title": "Seguimiento",
+    "trackShipment": "Rastrear Envío",
+    "enterTrackingNumber": "Ingrese Número de Seguimiento",
+    "trackingHistory": "Historial de Seguimiento",
+    "currentLocation": "Ubicación Actual",
+    "estimatedArrival": "Llegada Estimada",
+    "noTrackingInfo": "No hay información de seguimiento disponible"
+  },
+  "containers": {
+    "title": "Contenedores",
+    "createContainer": "Crear Contenedor",
+    "containerId": "ID de Contenedor",
+    "containerNumber": "Número de Contenedor",
+    "containerType": "Tipo de Contenedor",
+    "status": "Estado",
+    "updateStatus": "Actualizar Estado",
+    "updateGPS": "Actualizar Ubicación GPS"
+  },
+  "invoices": {
+    "title": "Facturas",
+    "createInvoice": "Crear Factura",
+    "invoiceId": "ID de Factura",
+    "invoiceNumber": "Número de Factura",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "tax": "Impuesto",
+    "dueDate": "Fecha de Vencimiento",
+    "status": "Estado",
+    "payNow": "Pagar Ahora"
+  },
+  "insurance": {
+    "title": "Seguros",
+    "createInsurance": "Crear Seguro",
+    "coverageType": "Tipo de Cobertura",
+    "coverageAmount": "Monto de Cobertura",
+    "premium": "Prima",
+    "policyNumber": "Número de Póliza"
+  },
+  "documents": {
+    "title": "Documentos",
+    "uploadDocument": "Subir Documento",
+    "documentType": "Tipo de Documento",
+    "fileName": "Nombre del Archivo",
+    "uploadedAt": "Subido el",
+    "download": "Descargar"
+  },
+  "alerts": {
+    "title": "Alertas",
+    "noAlerts": "No hay alertas",
+    "markAsRead": "Marcar como Leído",
+    "priority": "Prioridad"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "overview": "Resumen",
+    "activeShipments": "Envíos Activos",
+    "pendingQuotes": "Cotizaciones Pendientes",
+    "recentBookings": "Reservas Recientes",
+    "alerts": "Alertas"
+  }
+}

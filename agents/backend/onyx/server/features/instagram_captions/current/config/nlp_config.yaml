@@ -1,0 +1,234 @@
+# Optimized NLP System Configuration v15.0
+# Production-ready configuration with best practices
+
+# Model Configuration
+model:
+  name: "gpt2"
+  max_length: 512
+  vocab_size: 50257
+  hidden_size: 768
+  num_layers: 12
+  num_attention_heads: 12
+  intermediate_size: 3072
+  dropout: 0.1
+  activation_function: "gelu"
+  layer_norm_eps: 1e-5
+  initializer_range: 0.02
+
+# Training Configuration
+training:
+  batch_size: 16
+  learning_rate: 2e-5
+  num_epochs: 3
+  warmup_steps: 500
+  weight_decay: 0.01
+  gradient_accumulation_steps: 4
+  max_grad_norm: 1.0
+  lr_scheduler: "cosine"
+  optimizer: "adamw"
+  betas: [0.9, 0.999]
+  eps: 1e-8
+
+# Optimization Configuration
+optimization:
+  fp16: true
+  mixed_precision: true
+  gradient_checkpointing: false
+  dataloader_pin_memory: true
+  dataloader_num_workers: 4
+  prefetch_factor: 2
+  persistent_workers: true
+
+# Hardware Configuration
+hardware:
+  device: "auto"  # auto, cuda, cpu
+  cuda_visible_devices: "0"
+  memory_efficient_attention: true
+  use_flash_attention: false
+  compile_model: false
+
+# Data Configuration
+data:
+  train_file: "data/train.txt"
+  validation_file: "data/val.txt"
+  test_file: "data/test.txt"
+  max_seq_length: 512
+  truncation: true
+  padding: "max_length"
+  return_tensors: "pt"
+  text_column: "text"
+  label_column: "label"
+
+# Generation Configuration
+generation:
+  max_length: 100
+  min_length: 10
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 50
+  do_sample: true
+  num_beams: 1
+  repetition_penalty: 1.1
+  length_penalty: 1.0
+  no_repeat_ngram_size: 3
+  early_stopping: true
+  pad_token_id: 50256
+  eos_token_id: 50256
+
+# Sentiment Analysis Configuration
+sentiment:
+  model_name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
+  batch_size: 32
+  max_length: 128
+  return_all_scores: false
+
+# Text Classification Configuration
+classification:
+  model_name: "facebook/bart-large-mnli"
+  batch_size: 16
+  max_length: 256
+  hypothesis_template: "This text is about {}."
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8150
+  workers: 1
+  reload: false
+  log_level: "info"
+  cors_origins: ["*"]
+  rate_limit: 1000
+  timeout: 60
+
+# Demo Configuration
+demo:
+  host: "0.0.0.0"
+  port: 8151
+  share: false
+  debug: true
+  theme: "soft"
+  show_error: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/nlp_system.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+  console: true
+  file_handler: true
+
+# Monitoring Configuration
+monitoring:
+  enable_metrics: true
+  metrics_port: 8152
+  health_check_interval: 30
+  memory_monitoring: true
+  gpu_monitoring: true
+  performance_tracking: true
+
+# Checkpointing Configuration
+checkpointing:
+  save_dir: "checkpoints"
+  save_steps: 1000
+  save_total_limit: 2
+  save_strategy: "steps"
+  evaluation_strategy: "steps"
+  eval_steps: 500
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  greater_is_better: false
+
+# Experiment Tracking
+experiment_tracking:
+  enable_wandb: false
+  wandb_project: "nlp-system-v15"
+  wandb_entity: null
+  enable_tensorboard: true
+  tensorboard_dir: "runs"
+  log_metrics: true
+  log_artifacts: true
+
+# Security Configuration
+security:
+  api_key_required: true
+  api_key_header: "X-API-Key"
+  rate_limiting: true
+  max_requests_per_minute: 100
+  enable_cors: true
+  allowed_origins: ["*"]
+
+# Performance Configuration
+performance:
+  enable_caching: true
+  cache_size: 1000
+  cache_ttl: 3600
+  enable_compression: true
+  compression_level: 6
+  enable_profiling: false
+  profile_dir: "profiles"
+
+# Error Handling
+error_handling:
+  max_retries: 3
+  retry_delay: 1
+  timeout: 30
+  graceful_shutdown: true
+  error_logging: true
+  fallback_responses: true
+
+# Development Configuration
+development:
+  debug_mode: false
+  verbose_logging: false
+  enable_tests: true
+  test_coverage: true
+  linting: true
+  type_checking: true
+
+# Production Configuration
+production:
+  environment: "production"
+  enable_monitoring: true
+  enable_alerting: true
+  backup_enabled: true
+  auto_scaling: false
+  load_balancing: false
+  ssl_enabled: false
+
+# Model Variants
+model_variants:
+  gpt2:
+    name: "gpt2"
+    max_length: 512
+    batch_size: 16
+  gpt2_medium:
+    name: "gpt2-medium"
+    max_length: 512
+    batch_size: 8
+  gpt2_large:
+    name: "gpt2-large"
+    max_length: 512
+    batch_size: 4
+  bert_base:
+    name: "bert-base-uncased"
+    max_length: 512
+    batch_size: 16
+  t5_base:
+    name: "t5-base"
+    max_length: 512
+    batch_size: 8
+
+# Environment Variables
+environment:
+  CUDA_VISIBLE_DEVICES: "0"
+  TOKENIZERS_PARALLELISM: "false"
+  TRANSFORMERS_CACHE: "./cache"
+  HF_HOME: "./cache"
+  TORCH_HOME: "./cache"
+
+
+
+
+

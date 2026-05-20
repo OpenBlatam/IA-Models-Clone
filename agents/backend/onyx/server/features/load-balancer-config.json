@@ -1,0 +1,7 @@
+[
+  {
+    "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:670683041397:targetgroup/blatam-tg/d893b34b6358e2c3",
+    "containerName": "blatam-academy",
+    "containerPort": 3000
+  }
+]

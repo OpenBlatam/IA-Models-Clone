@@ -1,0 +1,102 @@
+# Core Framework
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+starlette==0.41.0
+
+# Data Validation & Settings
+pydantic==2.9.2
+pydantic-settings==2.5.2
+pydantic-extra-types==2.6.0
+
+# Database - Async Support
+sqlalchemy==2.0.36
+alembic==1.13.2
+asyncpg==0.30.0  # PostgreSQL async driver
+aiomysql==0.2.0  # MySQL async driver
+aiosqlite==0.20.0  # SQLite async driver
+psycopg2-binary==2.9.10  # PostgreSQL sync driver (for migrations)
+
+# Caching & Redis
+redis==5.2.0
+hiredis==2.3.2  # Faster Redis protocol parser
+aioredis==2.0.1  # Async Redis client
+
+# HTTP Client
+httpx==0.27.2
+httpcore==1.0.5
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+cryptography==43.0.1
+python-multipart==0.0.12
+
+# File Handling
+aiofiles==24.1.0
+python-magic==0.4.27  # File type detection
+
+# Logging
+loguru==0.7.2
+
+# Environment & Configuration
+python-dotenv==1.0.1
+
+# Monitoring & Observability
+prometheus-client==0.21.0  # Metrics
+structlog==24.4.0  # Structured logging
+
+# Task Queue (optional, for background jobs)
+celery==5.4.0
+redis==5.2.0  # Already included above
+
+# Email
+aiosmtplib==3.0.2  # Async SMTP client
+email-validator==2.2.0
+
+# Date & Time
+python-dateutil==2.9.0.post0
+pytz==2024.2
+
+# Utilities
+typing-extensions==4.12.2
+orjson==3.10.7  # Fast JSON serialization
+ujson==5.10.0  # Alternative fast JSON
+
+# Testing
+pytest==8.3.3
+pytest-asyncio==0.24.0
+pytest-cov==6.0.0
+httpx==0.27.2  # Already included above
+faker==30.0.0  # Test data generation
+
+# Development Tools
+black==24.8.0  # Code formatting
+ruff==0.6.9  # Fast linter
+mypy==1.11.2  # Type checking
+pre-commit==3.8.0  # Git hooks
+
+# API Documentation
+python-multipart==0.0.12  # Already included above
+
+# Rate Limiting
+slowapi==0.1.9  # Rate limiting for FastAPI
+
+# Background Tasks
+apscheduler==3.10.4  # Advanced Python Scheduler
+
+# Data Validation & Serialization
+marshmallow==3.23.1  # Alternative serialization (optional)
+
+# Geospatial (for logistics)
+geopy==2.4.1  # Geocoding and distance calculations
+shapely==2.0.5  # Geometric operations
+
+# Performance
+orjson==3.10.7  # Already included above
+msgpack==1.1.0  # Binary serialization
+
+# Health Checks
+healthcheck==1.3.3
+
+# CORS & Security
+python-cors==1.0.0  # CORS middleware (FastAPI has built-in, but this is an alternative)

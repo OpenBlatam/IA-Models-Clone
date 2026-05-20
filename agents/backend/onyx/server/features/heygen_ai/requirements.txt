@@ -1,0 +1,22 @@
+# HeyGen AI - Main Requirements
+# This file references modular requirements for different components
+
+# Base requirements (core dependencies)
+-r requirements/base.txt
+
+# Machine Learning requirements
+-r requirements/ml.txt
+
+# Web framework requirements  
+-r requirements/web.txt
+
+# Enterprise features (optional)
+# -r requirements/enterprise.txt
+
+# Development tools (optional)
+# -r requirements/dev.txt
+
+# Additional core dependencies
+psutil>=5.9.0
+tqdm>=4.65.0
+colorama>=0.4.6

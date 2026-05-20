@@ -1,0 +1,37 @@
+export const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+export const API_ENDPOINTS = {
+  health: '/api/v1/health',
+  models: '/api/v1/models',
+  categories: '/api/v1/categories',
+  generateFromText: '/api/v1/generate-from-text',
+  generateFromImage: '/api/v1/generate-from-image',
+  generateCombined: '/api/v1/generate-combined',
+  generateFromMultipleImages: '/api/v1/generate-from-multiple-images',
+  manuals: '/api/v1/manuals',
+  manualDetail: (id: number) => `/api/v1/manuals/${id}`,
+  recentManuals: '/api/v1/manuals/recent',
+  statistics: '/api/v1/statistics',
+  search: '/api/v1/search',
+  semanticSearch: '/api/v1/search/semantic',
+  advancedSearch: '/api/v1/search/advanced',
+  searchSuggestions: '/api/v1/search/suggestions',
+  rating: (id: number) => `/api/v1/manuals/${id}/rating`,
+  ratings: (id: number) => `/api/v1/manuals/${id}/ratings`,
+  favorite: (id: number) => `/api/v1/manuals/${id}/favorite`,
+  checkFavorite: (id: number) => `/api/v1/manuals/${id}/favorite/check`,
+  userFavorites: (userId: string) => `/api/v1/users/${userId}/favorites`,
+  popularManuals: '/api/v1/recommendations/popular',
+  topRatedManuals: '/api/v1/recommendations/top-rated',
+  similarManuals: (id: number) => `/api/v1/recommendations/similar/${id}`,
+  trendingManuals: '/api/v1/recommendations/trending',
+  cacheStats: '/api/v1/cache/stats',
+  clearCache: '/api/v1/cache/clear',
+  comprehensiveStats: '/api/v1/analytics/comprehensive',
+  trends: '/api/v1/analytics/trends',
+  exportMarkdown: (id: number) => `/api/v1/manuals/${id}/export/markdown`,
+  exportText: (id: number) => `/api/v1/manuals/${id}/export/text`,
+  exportJson: (id: number) => `/api/v1/manuals/${id}/export/json`,
+} as const;
+
