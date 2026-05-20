@@ -1,0 +1,24 @@
+{
+  "test_task": {
+    "task_id": "test_task",
+    "user_id": "user",
+    "prompt": "prompt",
+    "interval_seconds": 0.1,
+    "repeat": true,
+    "max_runs": 0,
+    "last_run_time": null,
+    "run_count": 0,
+    "cancelled": false
+  },
+  "test": {
+    "task_id": "test",
+    "user_id": "u",
+    "prompt": "p",
+    "interval_seconds": 0.1,
+    "repeat": true,
+    "max_runs": 0,
+    "last_run_time": null,
+    "run_count": 0,
+    "cancelled": false
+  }
+}

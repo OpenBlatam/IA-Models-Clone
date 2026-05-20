@@ -1,0 +1,8 @@
+{
+  "user_id": "test_user",
+  "iteration": 5,
+  "trace_id": "trace_123",
+  "timestamp": 1778560035.6407802,
+  "last_prompt_snippet": "Hello swarm",
+  "status": "active"
+}

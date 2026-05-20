@@ -1,0 +1,140 @@
+{
+  "mcpServers": {
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR-FIRECRAWL-API-KEY"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "context7-mcp"],
+      "env": {
+        "CONTEXT7_API_KEY": "YOUR-CONTEXT7-API-KEY"
+      },
+      "description": "Acceso a documentación actualizada de librerías Python de IA (PyTorch, TensorFlow, HuggingFace, FastAPI)"
+    },
+    "docfork": {
+      "command": "npx",
+      "args": ["-y", "docfork-mcp"],
+      "description": "Documentación de repositorios GitHub directamente en Cursor - perfecto para modelos de HuggingFace"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "sequential-thinking-mcp"],
+      "description": "Pensamiento secuencial para debugging complejo de modelos de IA y análisis de código"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://user:password@localhost:5432/dbname"
+      ],
+      "description": "Consultas a bases de datos para almacenar resultados de modelos, métricas, experimentos"
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sqlite",
+        "${workspaceFolder}/data/experiments.db"
+      ],
+      "description": "Base de datos local para experimentos de ML, métricas, resultados de entrenamiento"
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "YOUR-SLACK-BOT-TOKEN"
+      },
+      "description": "Notificaciones de entrenamiento completado, alertas de errores, compartir resultados"
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-notion"],
+      "env": {
+        "NOTION_API_KEY": "YOUR-NOTION-API-KEY"
+      },
+      "description": "Documentación de experimentos, notas de investigación, tracking de modelos"
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gdrive"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "YOUR-GOOGLE-CLIENT-ID",
+        "GOOGLE_CLIENT_SECRET": "YOUR-GOOGLE-CLIENT-SECRET"
+      },
+      "description": "Almacenamiento de modelos grandes, datasets, checkpoints en Google Drive"
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "YOUR-BRAVE-API-KEY"
+      },
+      "description": "Búsqueda privada de papers, documentación técnica, soluciones a problemas de ML"
+    },
+    "tavily": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-tavily"],
+      "env": {
+        "TAVILY_API_KEY": "YOUR-TAVILY-API-KEY"
+      },
+      "description": "Búsqueda AI-powered para investigación de modelos, papers, mejores prácticas"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "description": "Automatización para testing de interfaces de modelos, scraping de datos de entrenamiento"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR-GITHUB-TOKEN"
+      },
+      "description": "Acceso a repositorios de modelos, HuggingFace, clonación de proyectos open-source"
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git"],
+      "description": "Versionado de modelos, experimentos, gestión de branches para diferentes arquitecturas"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ],
+      "description": "Navegación entre 50+ features, acceso a modelos, datasets, configuraciones"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Memoria persistente para contexto de conversaciones sobre modelos y experimentos"
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "description": "Descarga de datasets, modelos, archivos de configuración desde URLs"
+    },
+    "puppeteer-core": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer-core"],
+      "description": "Versión ligera de Puppeteer para automatización básica"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

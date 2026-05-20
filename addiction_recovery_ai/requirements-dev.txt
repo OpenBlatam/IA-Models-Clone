@@ -1,0 +1,75 @@
+# ============================================================================
+# Development Dependencies
+# ============================================================================
+
+# Include production dependencies
+-r requirements.txt
+
+# ----------------------------------------------------------------------------
+# Development Tools
+# ----------------------------------------------------------------------------
+ipython>=8.20.0                    # Enhanced Python shell
+ipdb>=0.13.13                       # IPython debugger
+jupyter>=1.0.0                      # Jupyter notebooks
+
+# ----------------------------------------------------------------------------
+# Code Quality
+# ----------------------------------------------------------------------------
+black>=24.1.0                       # Code formatter
+ruff>=0.1.9                         # Fast linter (replaces flake8, isort, etc.)
+mypy>=1.8.0                         # Type checking
+pylint>=3.0.3                       # Code analysis
+isort>=5.13.2                       # Import sorter (if not using ruff)
+
+# ----------------------------------------------------------------------------
+# Testing
+# ----------------------------------------------------------------------------
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+pytest-xdist>=3.5.0                 # Parallel test execution
+pytest-timeout>=2.2.0                # Test timeout
+faker>=22.0.0
+
+# ----------------------------------------------------------------------------
+# Security Scanning
+# ----------------------------------------------------------------------------
+safety>=2.3.5                       # Check for known security vulnerabilities
+bandit>=1.7.5                       # Security linter
+semgrep>=1.45.0                     # Static analysis for security
+
+# ----------------------------------------------------------------------------
+# Documentation
+# ----------------------------------------------------------------------------
+mkdocs>=1.5.3
+mkdocs-material>=9.5.0
+mkdocs-swagger-ui-tag>=0.6.7        # Swagger UI for MkDocs
+
+# ----------------------------------------------------------------------------
+# Monitoring & Debugging
+# ----------------------------------------------------------------------------
+memory-profiler>=0.61.0             # Memory profiling
+py-spy>=0.3.14                      # Sampling profiler
+sentry-sdk>=2.0.0                   # Error tracking (optional)
+
+# ----------------------------------------------------------------------------
+# Local Development
+# ----------------------------------------------------------------------------
+watchfiles>=0.21.0                  # File watching for auto-reload
+python-dotenv>=1.0.1                # Environment variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

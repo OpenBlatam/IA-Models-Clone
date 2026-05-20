@@ -1,0 +1,226 @@
+{
+  "9538fca8-6a9": [
+    {
+      "span_id": "afa4a8a4",
+      "trace_id": "9538fca8-6a9",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1778525725.7635436,
+      "end_time": 1778525728.7658014,
+      "metadata": {},
+      "duration_ms": 3002.26
+    },
+    {
+      "span_id": "013c160d",
+      "trace_id": "9538fca8-6a9",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "truthgpt y crealo mejor que no haya ghost codigo y cosasd irreales C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\Frontier-Model-run-polyglot\\scripts\\TruthGPT-main\\optimization_core\n--------------------------------------\n\nUSER: descubrir e integrar papers de busca todo el codigo harcodeado de truthgpt y crealo mejor que no haya ghost codigo y cosasd irreales C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\Frontier-Model-run-polyglot\\scripts\\TruthGPT-main\\optimization_core\nTRUTHGPT: ",
+      "output_data": "{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}",
+      "status": "ok",
+      "start_time": 1778525725.7646112,
+      "end_time": 1778525728.7019517,
+      "metadata": {},
+      "duration_ms": 2937.34
+    }
+  ],
+  "e02b1796-cd4": [
+    {
+      "span_id": "9c1b1fca",
+      "trace_id": "e02b1796-cd4",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1778525728.82744,
+      "end_time": 1778525729.5560522,
+      "metadata": {},
+      "duration_ms": 728.61
+    },
+    {
+      "span_id": "3bf7b3d2",
+      "trace_id": "e02b1796-cd4",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "ific user info recorded.\n===========================\n\n--- MEMORIA PRIVADA (orchestrator_fusion) ---\nUSER: Context from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\n--------------------------------------\n\nUSER: Context from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\nTRUTHGPT: ",
+      "output_data": "{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}",
+      "status": "ok",
+      "start_time": 1778525728.8282068,
+      "end_time": 1778525729.4400263,
+      "metadata": {},
+      "duration_ms": 611.82
+    }
+  ],
+  "b72e8346-3cc": [
+    {
+      "span_id": "e7539c00",
+      "trace_id": "b72e8346-3cc",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1778525729.622689,
+      "end_time": 1778525730.340241,
+      "metadata": {},
+      "duration_ms": 717.55
+    },
+    {
+      "span_id": "c38e0e35",
+      "trace_id": "b72e8346-3cc",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "ext from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\nASSISTANT: ⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n--------------------------------------\n\nUSER: Context from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\nTRUTHGPT: ",
+      "output_data": "{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}",
+      "status": "ok",
+      "start_time": 1778525729.6237311,
+      "end_time": 1778525730.2067733,
+      "metadata": {},
+      "duration_ms": 583.04
+    }
+  ],
+  "4475bfd4-91d": [
+    {
+      "span_id": "600e568d",
+      "trace_id": "4475bfd4-91d",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1778525730.4754148,
+      "end_time": 1778525731.1545904,
+      "metadata": {},
+      "duration_ms": 679.18
+    },
+    {
+      "span_id": "e7bb02d3",
+      "trace_id": "4475bfd4-91d",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "ext from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\nASSISTANT: ⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n--------------------------------------\n\nUSER: Context from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\nTRUTHGPT: ",
+      "output_data": "{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}",
+      "status": "ok",
+      "start_time": 1778525730.4763556,
+      "end_time": 1778525731.0461652,
+      "metadata": {},
+      "duration_ms": 569.81
+    }
+  ],
+  "fdc8f291-c31": [
+    {
+      "span_id": "0c947ebc",
+      "trace_id": "fdc8f291-c31",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1778525731.8004115,
+      "end_time": 1778525732.4467852,
+      "metadata": {},
+      "duration_ms": 646.37
+    },
+    {
+      "span_id": "7795df3b",
+      "trace_id": "fdc8f291-c31",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": " ⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n--------------------------------------\n\nUSER: Context from previous phase:\n{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}\n\nTask: Continue executing based on this.\nTRUTHGPT: ",
+      "output_data": "{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}",
+      "status": "ok",
+      "start_time": 1778525731.8017201,
+      "end_time": 1778525732.3739674,
+      "metadata": {},
+      "duration_ms": 572.25
+    }
+  ],
+  "73d49d5e-d3c": [
+    {
+      "span_id": "23b9e4a3",
+      "trace_id": "73d49d5e-d3c",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1778525732.5064464,
+      "end_time": 1778525733.1632328,
+      "metadata": {},
+      "duration_ms": 656.79
+    },
+    {
+      "span_id": "95943618",
+      "trace_id": "73d49d5e-d3c",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "ext from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\nASSISTANT: ⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n--------------------------------------\n\nUSER: Context from previous phase:\n⚠️ API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexión de red.\n\nTask: Continue executing based on this.\nTRUTHGPT: ",
+      "output_data": "{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}",
+      "status": "ok",
+      "start_time": 1778525732.5073514,
+      "end_time": 1778525733.1052709,
+      "metadata": {},
+      "duration_ms": 597.92
+    }
+  ],
+  "44518c16-2ac": [
+    {
+      "span_id": "ca3a674f",
+      "trace_id": "44518c16-2ac",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1778525841.6949208,
+      "end_time": 1778525842.358232,
+      "metadata": {},
+      "duration_ms": 663.31
+    },
+    {
+      "span_id": "5486a872",
+      "trace_id": "44518c16-2ac",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "Agent. You specialize in Web3, DeFi auditing, and Smart Contract interaction.\nYou MUST use tools (check_eth_balance, check_token_balance, audit_smart_contract, get_gas_status) to interact with the blockchain and get real data. NEVER hallucinate values.\n\n=== CORE WORKING MEMORY ===\n[AGENT PERSONA]:\nNo specific persona defined.\n\n[USER PROFILE]:\nNo specific user info recorded.\n===========================\n\n--- MEMORIA PRIVADA (cli) ---\nUSER: \n--------------------------------------\n\nUSER: \nTRUTHGPT: ",
+      "output_data": "{\"thought\": \"CRITICAL: LLM API unreachable. Last error: Illegal header value b'Bearer '\", \"tool\": null, \"tool_input\": null, \"final_answer\": \"\\u26a0\\ufe0f API no disponible (Illegal header value b'Bearer '). Verifica saldo, API key o conexi\\u00f3n de red.\", \"handoff\": null}",
+      "status": "ok",
+      "start_time": 1778525841.6962907,
+      "end_time": 1778525842.2785354,
+      "metadata": {},
+      "duration_ms": 582.24
+    }
+  ]
+}

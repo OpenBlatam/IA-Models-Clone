@@ -1,0 +1,125 @@
+{
+  "mcpServers": {
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR-FIRECRAWL-API-KEY"
+      },
+      "priority": "CRITICAL",
+      "reason": "Web scraping para documentación, investigación de APIs externas (Spotify, OpenAI, etc.) y contenido para tus 50+ modelos de IA"
+    },
+    "apidog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apidog/mcp-server"
+      ],
+      "env": {
+        "APIDOG_ACCESS_TOKEN": "YOUR-APIDOG-ACCESS-TOKEN",
+        "APIDOG_PROJECT_ID": "YOUR-PROJECT-ID"
+      },
+      "priority": "HIGH",
+      "reason": "Documentación de tus múltiples APIs FastAPI, generación de clientes para integraciones, gestión de OpenAPI specs"
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR-GITHUB-TOKEN"
+      },
+      "priority": "HIGH",
+      "reason": "Gestión de repositorios, issues, PRs para github_autonomous_agent y gestión de código de tus 50+ features"
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
+      "priority": "HIGH",
+      "reason": "Operaciones Git diarias, commits, branches para tu arquitectura de microservicios"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ],
+      "priority": "HIGH",
+      "reason": "Navegación entre tus 50+ features, lectura de documentación extensa (40+ guías), gestión de archivos de configuración"
+    },
+    "opik": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "opik-mcp"
+      ],
+      "env": {
+        "OPIK_API_KEY": "YOUR-OPIK-API-KEY"
+      },
+      "priority": "MEDIUM",
+      "reason": "Búsqueda en tiempo real de documentación técnica, mejores prácticas para FastAPI, Python, Docker, Kubernetes"
+    },
+    "browserbase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@browserbase/mcp-server"
+      ],
+      "env": {
+        "BROWSERBASE_API_KEY": "YOUR-BROWSERBASE-API-KEY",
+        "BROWSERBASE_PROJECT_ID": "YOUR-PROJECT-ID"
+      },
+      "priority": "MEDIUM",
+      "reason": "Testing de tus aplicaciones web, screenshots de interfaces, automatización para features de frontend"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "priority": "MEDIUM",
+      "reason": "Automatización de navegador para testing E2E, scraping de contenido para tus features de generación"
+    },
+    "magic-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "magic-mcp-server"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "YOUR-OPENAI-API-KEY"
+      },
+      "priority": "MEDIUM",
+      "reason": "Generación de contenido para blog_posts, facebook_posts, instagram_captions, copywriting, product_descriptions"
+    },
+    "duckduckgo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "duckduckgo-mcp-server"
+      ],
+      "priority": "LOW",
+      "reason": "Búsqueda rápida sin API key, investigación de tecnologías, búsqueda de soluciones técnicas"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

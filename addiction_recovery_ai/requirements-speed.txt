@@ -1,0 +1,28 @@
+# ============================================================================
+# Speed Optimization Dependencies
+# Additional packages for maximum performance
+# ============================================================================
+
+# Fast JSON (2-3x faster than standard json)
+orjson>=3.9.10                    # Fastest JSON (Rust-based)
+# ujson>=5.9.0                    # Alternative fast JSON
+
+# Fast Event Loop (2-4x faster than asyncio)
+uvloop>=0.19.0                    # Ultra-fast event loop (Linux/macOS)
+
+# Binary Serialization (faster than JSON)
+msgpack>=1.0.7                     # Binary serialization
+
+# Advanced Compression (better than gzip)
+Brotli>=1.1.0                      # Brotli compression (better ratio than gzip)
+
+# Ultra-Fast Caching
+redis>=5.0.0                       # Redis for ultra-fast distributed caching
+hiredis>=2.2.3                     # C-based Redis client (faster)
+
+# Memory Profiling
+psutil>=5.9.6                      # System and process utilities
+
+# Performance Monitoring
+py-spy>=0.3.14                     # Sampling profiler
+

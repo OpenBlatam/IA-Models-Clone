@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  tests:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile.test
+    container_name: truthgpt-tests
+    volumes:
+      - ../:/app
+      - test-results:/app/test-results
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTEST_CURRENT_TEST=""
+    command: pytest tests/core/ -v --html=test-results/report.html --self-contained-html
+    networks:
+      - test-network
+
+  tests-unit:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile.test
+    container_name: truthgpt-tests-unit
+    volumes:
+      - ../:/app
+      - test-results:/app/test-results
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: pytest tests/core/unit/ -v
+    networks:
+      - test-network
+
+  tests-integration:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile.test
+    container_name: truthgpt-tests-integration
+    volumes:
+      - ../:/app
+      - test-results:/app/test-results
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: pytest tests/core/integration/ -v
+    networks:
+      - test-network
+
+  tests-coverage:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile.test
+    container_name: truthgpt-tests-coverage
+    volumes:
+      - ../:/app
+      - coverage-results:/app/coverage-results
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: pytest tests/core/ --cov=.. --cov-report=html --cov-report=term
+    networks:
+      - test-network
+
+volumes:
+  test-results:
+  coverage-results:
+
+networks:
+  test-network:
+    driver: bridge
+
+# Uso:
+# docker-compose -f tests/docker-compose.test.yml up tests
+# docker-compose -f tests/docker-compose.test.yml up tests-unit
+# docker-compose -f tests/docker-compose.test.yml up tests-coverage
+# docker-compose -f tests/docker-compose.test.yml down
+

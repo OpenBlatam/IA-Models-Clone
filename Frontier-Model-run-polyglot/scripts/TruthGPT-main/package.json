@@ -1,0 +1,23 @@
+{
+    "name": "truthgpt-optimization-core",
+    "version": "1.0.0",
+    "description": "TruthGPT Optimization Core - Universal Installer & Runner",
+    "scripts": {
+        "setup": "node ./scripts/install_wrapper.js",
+        "start": "node ./scripts/run_wrapper.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ai",
+        "machine-learning",
+        "pytorch",
+        "optimization",
+        "installer"
+    ],
+    "author": "TruthGPT Team",
+    "license": "MIT",
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "private": true
+}

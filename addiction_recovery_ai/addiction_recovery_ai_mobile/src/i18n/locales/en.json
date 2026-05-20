@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close"
+  },
+  "auth": {
+    "welcome": "Welcome",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "userId": "User ID",
+    "password": "Password",
+    "email": "Email",
+    "name": "Name",
+    "loginSubtitle": "Sign in to continue",
+    "registerSubtitle": "Create an account to get started",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loginError": "Error signing in",
+    "registerError": "Error registering"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": "Hello",
+    "daysSober": "Days Sober",
+    "currentStreak": "Current Streak",
+    "progress": "Progress",
+    "riskLevel": "Risk Level",
+    "achievements": "Recent Achievements",
+    "reminders": "Reminders",
+    "low": "Low",
+    "moderate": "Moderate",
+    "high": "High",
+    "critical": "Critical"
+  },
+  "progress": {
+    "title": "My Progress",
+    "logEntry": "Log Entry",
+    "cancel": "Cancel",
+    "mood": "Mood",
+    "cravingsLevel": "Cravings Level (0-10)",
+    "notes": "Notes (Optional)",
+    "howDoYouFeel": "How do you feel today?",
+    "stats": "Statistics",
+    "totalDays": "Total Days",
+    "relapses": "Relapses",
+    "averageCravings": "Average Cravings",
+    "commonTriggers": "Most Common Triggers"
+  },
+  "assessment": {
+    "title": "Addiction Assessment",
+    "subtitle": "Complete this assessment to get a personalized plan",
+    "addictionType": "Addiction Type",
+    "severity": "Severity",
+    "frequency": "Frequency",
+    "durationYears": "Duration (years)",
+    "dailyCost": "Daily Cost",
+    "previousAttempts": "Previous Attempts",
+    "results": "Assessment Results",
+    "severityScore": "Severity Score",
+    "recommendations": "Recommendations",
+    "nextSteps": "Next Steps",
+    "newAssessment": "New Assessment"
+  }
+}
+

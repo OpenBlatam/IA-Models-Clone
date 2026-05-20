@@ -1,0 +1,35 @@
+"""
+API Constants
+=============
+
+Constants used throughout the API.
+"""
+
+# Model limits
+MAX_LAYERS = 100
+MAX_MODEL_NAME_LENGTH = 100
+MAX_BATCH_DELETE = 100
+MAX_BATCH_PREDICT = 10
+
+# Default values
+DEFAULT_MODEL_DIR = "models"
+DEFAULT_CACHE_TTL = 300
+DEFAULT_RATE_LIMIT_PER_MINUTE = 60
+
+# Operation history limits
+MAX_OPERATION_HISTORY = 100
+DEFAULT_OPERATION_HISTORY_LIMIT = 50
+
+# Search limits
+MAX_SEARCH_RESULTS = 1000
+DEFAULT_SEARCH_LIMIT = 50
+
+# Data validation
+MAX_MODEL_SIZE_MB = 100
+MAX_TRAINING_SAMPLES = 1000000
+MAX_BATCH_SIZE = 10000
+
+# Conversion constants
+BYTES_PER_KB = 1024
+BYTES_PER_MB = BYTES_PER_KB * 1024
+
