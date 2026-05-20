@@ -1,0 +1,19 @@
+---
+# Ansible Lint Configuration
+profile: production
+skip_list:
+  - yaml[line-length]
+  - name[casing]
+  - name[template]
+  - name[play]
+  - experimental[all]
+  - jinja[spacing]
+exclude_paths:
+  - .cache/
+  - .github/
+  - node_modules/
+  - venv/
+  - .venv/
+verbosity: 1
+use_default_rules: true
+

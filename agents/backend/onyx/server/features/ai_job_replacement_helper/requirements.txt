@@ -1,0 +1,103 @@
+# FastAPI Core
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+python-multipart>=0.0.12
+
+# HTTP & Async Clients
+httpx>=0.27.0
+aiofiles>=24.1.0
+requests>=2.31.0
+
+# LinkedIn API Integration
+linkedin-api>=2.0.0
+python-linkedin-v2>=0.8.0
+
+# Database
+sqlalchemy>=2.0.0
+alembic>=1.13.0
+asyncpg>=0.29.0  # PostgreSQL async driver
+aiosqlite>=0.19.0  # SQLite async driver
+
+# Authentication & Security
+PyJWT>=2.9.0
+cryptography>=43.0.0
+passlib[bcrypt]>=1.7.4
+python-jose[cryptography]>=3.3.0
+
+# Caching
+redis>=5.0.0
+hiredis>=2.2.0
+
+# Utilities
+python-dotenv>=1.0.1
+click>=8.1.7
+rich>=13.7.0
+pyyaml>=6.0.1
+
+# Logging
+structlog>=24.2.0
+
+# Data Processing
+numpy>=1.24.0
+pandas>=2.1.0
+
+# AI/ML for Recommendations
+scikit-learn>=1.3.0
+sentence-transformers>=2.2.0
+
+# Deep Learning & LLMs
+torch>=2.0.0
+transformers>=4.30.0
+diffusers>=0.21.0
+gradio>=4.0.0
+accelerate>=0.20.0
+peft>=0.5.0  # Para LoRA
+bitsandbytes>=0.41.0  # Para cuantización
+datasets>=2.14.0  # Para datasets de HuggingFace
+tokenizers>=0.13.0
+sentence-transformers>=2.2.0  # Para embeddings
+
+# Experiment Tracking
+wandb>=0.15.0  # Weights & Biases
+tensorboard>=2.13.0  # TensorBoard
+
+# Training Utilities
+tqdm>=4.65.0  # Progress bars
+
+# Hyperparameter Optimization
+optuna>=3.0.0  # Hyperparameter optimization
+
+# Image Processing
+Pillow>=10.0.0  # Image processing for diffusion models
+
+# Model Interpretability
+shap>=0.42.0  # SHAP values for model interpretability
+
+# Visualization
+matplotlib>=3.7.0  # Plotting
+seaborn>=0.12.0  # Statistical visualizations
+
+# Date & Time
+python-dateutil>=2.8.2
+pytz>=2024.1
+
+# Testing
+pytest>=8.3.0
+pytest-asyncio>=0.23.7
+pytest-cov>=4.1.0
+faker>=24.0.0
+
+# Code Quality
+black>=24.4.0
+ruff>=0.4.0
+mypy>=1.10.0
+
+# Type Hints
+typing-extensions>=4.12.0
+
+# Monitoring
+prometheus-client>=0.19.0
+psutil>=5.9.0
+
