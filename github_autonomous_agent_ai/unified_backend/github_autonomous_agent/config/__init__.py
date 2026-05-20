@@ -1,0 +1,5 @@
+"""Configuración del módulo."""
+
+
+
+

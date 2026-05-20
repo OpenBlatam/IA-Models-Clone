@@ -1,0 +1,90 @@
+[package]
+name = "agent_core"
+version = "0.1.0"
+edition = "2021"
+authors = ["GitHub Autonomous Agent Team"]
+description = "High-performance Rust core for GitHub Autonomous Agent - batch processing, search, cache, and text processing"
+license = "MIT"
+
+[lib]
+name = "agent_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Python bindings
+pyo3 = { version = "0.21", features = ["extension-module", "abi3-py38"] }
+
+# Async runtime
+tokio = { version = "1.35", features = ["full", "rt-multi-thread"] }
+futures = "0.3"
+async-trait = "0.1"
+
+# Parallel processing
+rayon = "1.8"
+crossbeam = "0.8"
+parking_lot = "0.12"
+
+# Text/Regex processing
+regex = "1.10"
+unicode-segmentation = "1.10"
+aho-corasick = "1.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Cryptography & Hashing
+sha2 = "0.10"
+blake3 = "1.5"
+xxhash-rust = { version = "0.8", features = ["xxh3", "xxh64"] }
+base64 = "0.22"
+rand = "0.8"
+
+# Collections & Data structures
+hashbrown = { version = "0.14", features = ["serde"] }
+priority-queue = "2.0"
+dashmap = "5.5"
+lru = "0.12"
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+tracing = "0.1"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# UUID
+uuid = { version = "1.7", features = ["v4", "serde"] }
+
+# System info
+num_cpus = "1.16"
+
+[dev-dependencies]
+criterion = "0.5"
+tempfile = "3.10"
+tokio-test = "0.4"
+
+[features]
+default = []
+full = ["metrics", "tracing-support"]
+metrics = []
+tracing-support = []
+
+[[bench]]
+name = "benchmarks"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+
+[profile.bench]
+lto = true
+opt-level = 3
+
