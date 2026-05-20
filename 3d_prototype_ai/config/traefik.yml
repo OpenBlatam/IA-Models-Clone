@@ -1,0 +1,82 @@
+# Traefik Reverse Proxy Configuration
+# ====================================
+
+api:
+  dashboard: true
+  insecure: false
+  debug: true
+
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  
+  websecure:
+    address: ":443"
+    http:
+      tls:
+        options: default
+
+# Rate limiting
+rateLimit:
+  average: 100
+  period: 1s
+  burst: 50
+
+# Circuit breaker
+circuitBreaker:
+  expression: "NetworkErrorRatio() > 0.30"
+
+# Retry
+retry:
+  attempts: 3
+  initialInterval: 100ms
+
+# TLS options
+tls:
+  options:
+    default:
+      minVersion: "VersionTLS12"
+      cipherSuites:
+        - "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+        - "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305"
+        - "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+      sslProtocols:
+        - "TLSv1.2"
+        - "TLSv1.3"
+
+# Providers
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    network: "3d-prototype-ai-network"
+  
+  file:
+    filename: /etc/traefik/dynamic.yml
+    watch: true
+
+# Metrics
+metrics:
+  prometheus:
+    entryPoint: web
+    addEntryPointsLabels: true
+    addServicesLabels: true
+
+# Logging
+log:
+  level: INFO
+  format: json
+
+accessLog:
+  format: json
+  filePath: /var/log/traefik/access.log
+
+
+
+

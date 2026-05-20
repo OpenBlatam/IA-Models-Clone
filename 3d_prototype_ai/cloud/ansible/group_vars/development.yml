@@ -1,0 +1,32 @@
+---
+# Development environment variables
+# Inherits from all.yml and overrides for development
+
+# Environment identifier
+environment: development
+
+# Instance configuration
+instance_type: t3.small
+min_instances: 1
+max_instances: 1
+
+# Security - most permissive for development
+ssh_allowed_cidr_blocks:
+  - "0.0.0.0/0"
+
+# Monitoring - minimal for development
+monitoring_interval: 120
+log_retention_days: 7
+enable_alerts: false
+
+# Backup - minimal for development
+backup_schedule: "0 4 * * 0"  # Weekly on Sunday at 4 AM
+backup_retention_days: 14
+
+# Application settings
+debug_mode: true
+log_level: "DEBUG"
+
+# High availability - disabled for development
+enable_health_checks: false
+

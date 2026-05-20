@@ -1,0 +1,42 @@
+# Environment files
+.env
+*.env
+!*.env.example
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.tfplan
+
+# Ansible
+*.retry
+.vault_pass
+
+# SSH keys
+*.pem
+*.key
+id_rsa*
+*.ppk
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+

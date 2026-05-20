@@ -1,0 +1,93 @@
+# Autonomous SAM3 Agent Configuration
+# ====================================
+
+# OpenRouter Configuration
+openrouter:
+  api_key: ${OPENROUTER_API_KEY}  # Set via environment variable
+  model: "anthropic/claude-3.5-sonnet"  # Default model
+  timeout: 60.0
+  max_retries: 3
+  retry_delay: 1.0
+
+# SAM3 Configuration
+sam3:
+  model_path: null  # null = download from HuggingFace
+  device: "cuda"  # "cuda" or "cpu"
+  eval_mode: true
+  load_from_hf: true
+
+# Agent Configuration
+agent:
+  max_parallel_tasks: 10
+  max_generations: 100
+  output_dir: "autonomous_agent_output"
+  debug: false
+  
+  # Auto-restart settings
+  auto_restart: true
+  max_restart_attempts: 5
+  restart_backoff_seconds: [5, 10, 30, 60, 300]  # Exponential backoff
+
+# Dynamic Scaling Configuration
+scaling:
+  enabled: true
+  min_workers: 2
+  max_workers: 20
+  scale_up_threshold: 0.8  # Scale up when queue is 80% full
+  scale_down_threshold: 0.2  # Scale down when queue is 20% full
+  cooldown_seconds: 30
+
+# Health Monitoring Configuration
+health:
+  enabled: true
+  check_interval_seconds: 30
+  max_memory_percent: 90.0
+  max_cpu_percent: 95.0
+  max_gpu_percent: 95.0
+  alert_on_degraded: true
+  alert_on_unhealthy: true
+
+# Web Dashboard Configuration
+dashboard:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8080
+  auth_required: false
+
+# Task Manager Configuration
+task_manager:
+  storage_dir: "task_storage"
+  max_pending_tasks: 1000
+
+# Task Scheduler Configuration
+scheduler:
+  enabled: true
+  storage_path: "scheduled_tasks.json"
+
+# Parallel Executor Configuration
+parallel_executor:
+  max_workers: 10
+  min_workers: 2
+  queue_timeout: 1.0
+
+# Distributed Execution (Optional)
+distributed:
+  enabled: false
+  coordinator_url: null
+  node_id: null
+  heartbeat_interval: 10
+  node_timeout: 30
+
+# Plugin System Configuration
+plugins:
+  enabled: true
+  plugin_dir: "plugins"
+  auto_load: true
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "autonomous_agent.log"
+  max_size_mb: 100
+  backup_count: 5

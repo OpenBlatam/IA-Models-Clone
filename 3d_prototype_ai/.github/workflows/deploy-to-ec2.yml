@@ -1,0 +1,880 @@
+name: Deploy to EC2 on Push to Main
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'agents/backend/onyx/server/features/3d_prototype_ai/**'
+      - '.github/workflows/deploy-to-ec2.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+      skip_tests:
+        description: 'Skip tests'
+        required: false
+        default: false
+        type: boolean
+      force_deploy:
+        description: 'Force deployment even if tests fail'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  AWS_REGION: us-east-1
+  PYTHON_VERSION: '3.11'
+  PROJECT_PATH: agents/backend/onyx/server/features/3d_prototype_ai
+
+jobs:
+  validate:
+    name: Validate Code
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      should_deploy: ${{ steps.check.outputs.should_deploy }}
+      changed_files: ${{ steps.check.outputs.changed_files }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Check if deployment needed
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ github.event.inputs.force_deploy }}" = "true" ]; then
+            echo "should_deploy=true" >> $GITHUB_OUTPUT
+            echo "changed_files=all" >> $GITHUB_OUTPUT
+          else
+            # Check if there are actual code changes
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} 2>/dev/null | grep -E "(agents/backend/onyx/server/features/3d_prototype_ai|\.github/workflows)" || echo "")
+            if [ -n "$CHANGED_FILES" ]; then
+              echo "should_deploy=true" >> $GITHUB_OUTPUT
+              echo "changed_files=${CHANGED_FILES}" >> $GITHUB_OUTPUT
+            else
+              echo "should_deploy=false" >> $GITHUB_OUTPUT
+              echo "changed_files=" >> $GITHUB_OUTPUT
+            fi
+          fi
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - name: Install Python dependencies
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov black flake8 mypy
+      
+      - name: Code formatting check
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          black --check . || echo "⚠️ Code formatting issues found"
+        continue-on-error: true
+      
+      - name: Lint Python code
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics || true
+      
+      - name: Validate scripts
+        working-directory: ${{ env.PROJECT_PATH }}/cloud
+        run: |
+          chmod +x scripts/*.sh scripts/lib/*.sh 2>/dev/null || true
+          if command -v shellcheck &> /dev/null; then
+            shellcheck scripts/*.sh scripts/lib/*.sh || true
+          else
+            echo "ℹ️ shellcheck not installed, skipping"
+          fi
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+      
+      - name: Validate Terraform
+        working-directory: ${{ env.PROJECT_PATH }}/cloud/terraform
+        run: |
+          terraform init -backend=false -upgrade
+          terraform validate
+          terraform fmt -check -recursive
+        continue-on-error: true
+      
+      - name: Validate Ansible
+        working-directory: ${{ env.PROJECT_PATH }}/cloud/ansible
+        run: |
+          pip install ansible ansible-lint
+          ansible-playbook --syntax-check playbooks/deploy.yml || true
+          if command -v ansible-lint &> /dev/null; then
+            ansible-lint playbooks/deploy.yml || true
+          fi
+        continue-on-error: true
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: validate
+    if: |
+      (needs.validate.outputs.should_deploy == 'true') &&
+      (${{ !inputs.skip_tests || !github.event.inputs.skip_tests }})
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+      
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - name: Install dependencies
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov pytest-asyncio pytest-mock pytest-xdist
+      
+      - name: Run unit tests
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pytest tests/ -v \
+            --cov=. \
+            --cov-report=xml \
+            --cov-report=html \
+            --cov-report=term \
+            --tb=short \
+            -n auto \
+            --maxfail=5
+      
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        if: always()
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+        continue-on-error: true
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.python-version }}
+          path: |
+            htmlcov/
+            coverage.xml
+          retention-days: 30
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: validate
+    if: needs.validate.outputs.should_deploy == 'true'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '0'
+          ignore-unfixed: false
+      
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+      
+      - name: Run Bandit security linter
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install bandit[toml]
+          bandit -r . -f json -o bandit-report.json -ll || true
+        continue-on-error: true
+      
+      - name: Upload security reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-reports
+          path: |
+            trivy-results.sarif
+            bandit-report.json
+          retention-days: 90
+
+  build-docker:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [validate, test]
+    if: |
+      (needs.validate.outputs.should_deploy == 'true') &&
+      (success() || ${{ inputs.force_deploy || false }})
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: |
+            image=moby/buildkit:latest
+            network=host
+      
+      - name: Login to Docker Hub (optional)
+        if: ${{ secrets.DOCKER_USERNAME != '' }}
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: 3d-prototype-ai
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+      
+      - name: Build production image
+        working-directory: ${{ env.PROJECT_PATH }}
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile.production
+          push: false
+          tags: 3d-prototype-ai:latest,3d-prototype-ai:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            BUILD_DATE=${{ github.event.head_commit.timestamp }}
+            VCS_REF=${{ github.sha }}
+            VERSION=${{ github.ref_name }}
+      
+      - name: Test Docker image
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          docker run --rm 3d-prototype-ai:latest python --version
+          docker run --rm 3d-prototype-ai:latest curl --version
+          docker run --rm 3d-prototype-ai:latest ls -la /app
+      
+      - name: Save Docker image
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: docker-image
+          path: /tmp/docker-image.tar
+          retention-days: 1
+        continue-on-error: true
+
+  get-instance-info:
+    name: Get EC2 Instance Information
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [validate]
+    if: needs.validate.outputs.should_deploy == 'true'
+    outputs:
+      instance_id: ${{ steps.get-instance.outputs.instance_id }}
+      instance_ip: ${{ steps.get-instance.outputs.instance_ip }}
+      instance_found: ${{ steps.get-instance.outputs.instance_found }}
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Get EC2 instance information
+        id: get-instance
+        working-directory: ${{ env.PROJECT_PATH }}/cloud
+        run: |
+          set -e
+          INSTANCE_ID=""
+          INSTANCE_IP=""
+          
+          # Try to get instance from Terraform state
+          if [ -f "terraform/terraform.tfstate" ]; then
+            cd terraform
+            if command -v terraform &> /dev/null; then
+              INSTANCE_ID=$(terraform output -raw instance_id 2>/dev/null || echo "")
+              INSTANCE_IP=$(terraform output -raw instance_public_ip 2>/dev/null || echo "")
+            fi
+            cd ..
+          fi
+          
+          # If not found, try to find by tags
+          if [ -z "$INSTANCE_ID" ] || [ "$INSTANCE_ID" = "null" ] || [ "$INSTANCE_ID" = "" ]; then
+            echo "🔍 Trying to find instance by tags..."
+            ENV_TAG="${{ inputs.environment || 'prod' }}"
+            INSTANCE_INFO=$(aws ec2 describe-instances \
+              --filters "Name=tag:Project,Values=3D-Prototype-AI" \
+                        "Name=tag:Environment,Values=${ENV_TAG}" \
+                        "Name=instance-state-name,Values=running" \
+              --query 'Reservations[0].Instances[0].[InstanceId,PublicIpAddress]' \
+              --output text \
+              --region ${{ env.AWS_REGION }} 2>/dev/null || echo "None None")
+            
+            INSTANCE_ID=$(echo "$INSTANCE_INFO" | awk '{print $1}')
+            INSTANCE_IP=$(echo "$INSTANCE_INFO" | awk '{print $2}')
+          fi
+          
+          if [ -z "$INSTANCE_ID" ] || [ "$INSTANCE_ID" = "None" ] || [ "$INSTANCE_ID" = "null" ]; then
+            echo "❌ ERROR: Could not find EC2 instance"
+            echo "Please ensure:"
+            echo "  1. Instance is running"
+            echo "  2. Instance has tags: Project=3D-Prototype-AI, Environment=${ENV_TAG}"
+            echo "  3. AWS credentials have EC2 describe permissions"
+            echo "instance_found=false" >> $GITHUB_OUTPUT
+            echo "instance_id=" >> $GITHUB_OUTPUT
+            echo "instance_ip=" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          echo "✅ Found instance: $INSTANCE_ID at $INSTANCE_IP"
+          echo "instance_found=true" >> $GITHUB_OUTPUT
+          echo "instance_id=$INSTANCE_ID" >> $GITHUB_OUTPUT
+          echo "instance_ip=$INSTANCE_IP" >> $GITHUB_OUTPUT
+
+  pre-deploy-check:
+    name: Pre-Deployment Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [get-instance-info]
+    if: needs.get-instance-info.outputs.instance_found == 'true'
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Check instance status
+        run: |
+          INSTANCE_ID="${{ needs.get-instance-info.outputs.instance_id }}"
+          STATUS=$(aws ec2 describe-instance-status \
+            --instance-ids $INSTANCE_ID \
+            --query 'InstanceStatuses[0].InstanceState.Name' \
+            --output text \
+            --region ${{ env.AWS_REGION }} 2>/dev/null || echo "unknown")
+          
+          if [ "$STATUS" != "running" ]; then
+            echo "❌ ERROR: Instance is not running. Status: $STATUS"
+            exit 1
+          fi
+          
+          echo "✅ Instance status: $STATUS"
+      
+      - name: Check instance health
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          
+          # Check if instance is reachable
+          if ping -c 1 -W 2 $INSTANCE_IP > /dev/null 2>&1; then
+            echo "✅ Instance is reachable"
+          else
+            echo "⚠️ WARNING: Instance may not be reachable (this may be normal if ping is blocked)"
+          fi
+      
+      - name: Check disk space
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          
+          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+          
+          ssh -i /tmp/deploy_key \
+            -o StrictHostKeyChecking=no \
+            -o ConnectTimeout=5 \
+            -o UserKnownHostsFile=/dev/null \
+            ubuntu@${INSTANCE_IP} \
+            "df -h / | tail -1" || echo "⚠️ Could not check disk space"
+          
+          rm -f /tmp/deploy_key
+
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [validate, test, security-scan, build-docker, get-instance-info, pre-deploy-check]
+    if: |
+      (needs.validate.outputs.should_deploy == 'true') &&
+      (needs.get-instance-info.outputs.instance_found == 'true') &&
+      (success() || ${{ inputs.force_deploy || false }})
+    environment:
+      name: ${{ inputs.environment || 'production' }}
+      url: http://${{ needs.get-instance-info.outputs.instance_ip }}:8030
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ needs.get-instance-info.outputs.instance_ip }} >> ~/.ssh/known_hosts 2>/dev/null || true
+      
+      - name: Wait for instance to be ready
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          echo "⏳ Waiting for instance to be ready..."
+          
+          MAX_ATTEMPTS=30
+          ATTEMPT=0
+          
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            if ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=no \
+              -o ConnectTimeout=5 \
+              -o UserKnownHostsFile=/dev/null \
+              ubuntu@${INSTANCE_IP} \
+              "echo 'Instance ready'" 2>/dev/null; then
+              echo "✅ Instance is ready!"
+              break
+            fi
+            ATTEMPT=$((ATTEMPT + 1))
+            echo "⏳ Waiting... ($ATTEMPT/$MAX_ATTEMPTS)"
+            sleep 10
+          done
+          
+          if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
+            echo "❌ Instance did not become ready in time"
+            exit 1
+          fi
+      
+      - name: Create backup before deployment
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          BACKUP_TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            ubuntu@${INSTANCE_IP} << EOF
+set -e
+cd /opt/3d-prototype-ai
+
+BACKUP_FILE="/tmp/app_backup_\${BACKUP_TIMESTAMP}.tar.gz"
+echo "📦 Creating backup: \${BACKUP_FILE}"
+
+if [ -f "docker-compose.yml" ]; then
+  echo "Using Docker for backup..."
+  docker-compose exec -T api tar -czf \${BACKUP_FILE} . 2>/dev/null || \
+  tar -czf \${BACKUP_FILE} storage/ logs/ .env docker-compose.yml 2>/dev/null || true
+else
+  echo "Creating backup without Docker..."
+  tar -czf \${BACKUP_FILE} storage/ logs/ .env 2>/dev/null || true
+fi
+
+if [ -f "\${BACKUP_FILE}" ]; then
+  BACKUP_SIZE=\$(du -h \${BACKUP_FILE} | cut -f1)
+  echo "✅ Backup created: \${BACKUP_FILE} (Size: \${BACKUP_SIZE})"
+else
+  echo "⚠️ Warning: Backup creation may have failed"
+fi
+EOF
+      
+      - name: Deploy application files
+        timeout-minutes: 10
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          PROJECT_PATH="${{ env.PROJECT_PATH }}"
+          
+          echo "🚀 Deploying to ${INSTANCE_IP}..."
+          echo "📁 Project path: ${PROJECT_PATH}"
+          
+          # Copy application files with rsync
+          rsync -avz \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
+            --exclude='.git' \
+            --exclude='__pycache__' \
+            --exclude='*.pyc' \
+            --exclude='.env' \
+            --exclude='cloud/' \
+            --exclude='*.md' \
+            --exclude='tests/' \
+            --exclude='.github/' \
+            --exclude='.pytest_cache/' \
+            --exclude='.coverage' \
+            --exclude='htmlcov/' \
+            --exclude='.mypy_cache/' \
+            --exclude='.ruff_cache/' \
+            --delete \
+            --progress \
+            ${PROJECT_PATH}/ \
+            ubuntu@${INSTANCE_IP}:/opt/3d-prototype-ai/
+          
+          echo "✅ Files deployed successfully"
+      
+      - name: Update application on instance
+        timeout-minutes: 15
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          COMMIT_SHA="${{ github.sha }}"
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          COMMIT_AUTHOR="${{ github.event.head_commit.author.name }}"
+          
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            ubuntu@${INSTANCE_IP} << REMOTE_EOF
+set -e
+cd /opt/3d-prototype-ai
+
+echo "=========================================="
+echo "🚀 Deploying Application"
+echo "=========================================="
+echo "Commit: ${COMMIT_SHA}"
+echo "Author: ${COMMIT_AUTHOR}"
+echo "Message: ${COMMIT_MSG}"
+echo "Time: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "=========================================="
+
+# Set ownership
+sudo chown -R ubuntu:ubuntu /opt/3d-prototype-ai
+
+# Update with Docker Compose if available
+if [ -f "docker-compose.yml" ]; then
+  echo "🐳 Updating with Docker Compose..."
+  
+  # Pull latest images
+  docker-compose pull || echo "⚠️ Image pull failed, continuing..."
+  
+  # Build and start services
+  echo "🔨 Building and starting services..."
+  docker-compose up -d --build --remove-orphans
+  
+  # Show service status
+  echo "📊 Service status:"
+  docker-compose ps
+  
+  # Wait for services to be ready
+  echo "⏳ Waiting for services to start..."
+  sleep 15
+  
+  # Health check with retries
+  MAX_RETRIES=10
+  RETRY=0
+  HEALTHY=false
+  
+  while [ \$RETRY -lt \$MAX_RETRIES ]; do
+    if docker-compose exec -T api curl -f http://localhost:8030/health > /dev/null 2>&1; then
+      echo "✅ Application is healthy (attempt \$((RETRY + 1)))"
+      HEALTHY=true
+      break
+    fi
+    RETRY=\$((RETRY + 1))
+    echo "⏳ Health check attempt \$RETRY/\$MAX_RETRIES..."
+    sleep 5
+  done
+  
+  if [ "\$HEALTHY" != "true" ]; then
+    echo "❌ Health check failed after \$MAX_RETRIES attempts"
+    echo "📋 Recent logs:"
+    docker-compose logs --tail=100
+    exit 1
+  fi
+else
+  # Update without Docker
+  echo "🐍 Updating without Docker..."
+  
+  # Update Python dependencies
+  if [ -f "requirements.txt" ]; then
+    if [ ! -d "venv" ]; then
+      python3 -m venv venv
+    fi
+    source venv/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements.txt
+  fi
+  
+  # Restart systemd service
+  sudo systemctl daemon-reload
+  sudo systemctl restart 3d-prototype-ai || true
+  
+  # Wait for service to start
+  sleep 10
+  
+  # Health check with retries
+  MAX_RETRIES=10
+  RETRY=0
+  HEALTHY=false
+  
+  while [ \$RETRY -lt \$MAX_RETRIES ]; do
+    if curl -f http://localhost:8030/health > /dev/null 2>&1; then
+      echo "✅ Application is healthy (attempt \$((RETRY + 1)))"
+      HEALTHY=true
+      break
+    fi
+    RETRY=\$((RETRY + 1))
+    echo "⏳ Health check attempt \$RETRY/\$MAX_RETRIES..."
+    sleep 5
+  done
+  
+  if [ "\$HEALTHY" != "true" ]; then
+    echo "❌ Health check failed after \$MAX_RETRIES attempts"
+    echo "📋 Recent logs:"
+    sudo journalctl -u 3d-prototype-ai -n 100 --no-pager
+    exit 1
+  fi
+fi
+
+echo "=========================================="
+echo "✅ Deployment completed successfully!"
+echo "=========================================="
+REMOTE_EOF
+      
+      - name: Verify deployment
+        timeout-minutes: 5
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          APP_PORT="8030"
+          
+          echo "🔍 Verifying deployment..."
+          
+          # Wait a bit for service to fully start
+          sleep 5
+          
+          # Health check with retries
+          MAX_ATTEMPTS=10
+          ATTEMPT=0
+          
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            if curl -f -m 10 "http://${INSTANCE_IP}:${APP_PORT}/health" > /dev/null 2>&1; then
+              echo "✅ Deployment verified - Application is healthy"
+              
+              # Get application info
+              echo "📊 Application info:"
+              curl -s "http://${INSTANCE_IP}:${APP_PORT}/health" | jq . 2>/dev/null || \
+              curl -s "http://${INSTANCE_IP}:${APP_PORT}/health" || echo "Health endpoint responded"
+              
+              exit 0
+            fi
+            
+            ATTEMPT=$((ATTEMPT + 1))
+            echo "⏳ Verification attempt ${ATTEMPT}/${MAX_ATTEMPTS}..."
+            sleep 5
+          done
+          
+          echo "❌ Deployment verification failed"
+          exit 1
+      
+      - name: Rollback on failure
+        if: failure()
+        timeout-minutes: 10
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          
+          echo "🔄 Deployment failed, attempting rollback..."
+          
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            ubuntu@${INSTANCE_IP} << 'ROLLBACK_EOF' || true
+set -e
+cd /opt/3d-prototype-ai
+
+# Find latest backup
+BACKUP_FILE=$(ls -t /tmp/app_backup_*.tar.gz 2>/dev/null | head -1)
+
+if [ -n "${BACKUP_FILE}" ] && [ -f "${BACKUP_FILE}" ]; then
+  echo "📦 Restoring from backup: ${BACKUP_FILE}"
+  
+  if [ -f "docker-compose.yml" ]; then
+    docker-compose down || true
+    tar -xzf "${BACKUP_FILE}" -C /opt/3d-prototype-ai
+    docker-compose up -d
+    echo "✅ Rollback completed with Docker"
+  else
+    sudo systemctl stop 3d-prototype-ai || true
+    tar -xzf "${BACKUP_FILE}" -C /opt/3d-prototype-ai
+    sudo systemctl start 3d-prototype-ai
+    echo "✅ Rollback completed with systemd"
+  fi
+  
+  # Verify rollback
+  sleep 5
+  if curl -f http://localhost:8030/health > /dev/null 2>&1; then
+    echo "✅ Rollback verified - Application is healthy"
+  else
+    echo "⚠️ Rollback completed but health check failed"
+  fi
+else
+  echo "❌ No backup found, cannot rollback"
+fi
+ROLLBACK_EOF
+
+  post-deploy:
+    name: Post-Deployment Tasks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [deploy]
+    if: success()
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Update deployment tags
+        run: |
+          INSTANCE_ID="${{ needs.get-instance-info.outputs.instance_id }}"
+          DEPLOYMENT_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          
+          aws ec2 create-tags \
+            --resources $INSTANCE_ID \
+            --tags \
+              Key=LastDeployment,Value="${DEPLOYMENT_TIME}" \
+              Key=LastDeploymentCommit,Value="${{ github.sha }}" \
+              Key=LastDeploymentBy,Value="${{ github.actor }}" \
+              Key=LastDeploymentBranch,Value="${{ github.ref_name }}" \
+            --region ${{ env.AWS_REGION }}
+          
+          echo "✅ Updated deployment tags"
+      
+      - name: Cleanup old backups
+        run: |
+          INSTANCE_IP="${{ needs.get-instance-info.outputs.instance_ip }}"
+          
+          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+          
+          ssh -i /tmp/deploy_key \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            ubuntu@${INSTANCE_IP} << 'EOF' || true
+# Keep only last 5 backups
+cd /tmp
+BACKUP_COUNT=$(ls -1 app_backup_*.tar.gz 2>/dev/null | wc -l)
+if [ $BACKUP_COUNT -gt 5 ]; then
+  ls -t app_backup_*.tar.gz | tail -n +6 | xargs rm -f
+  echo "🧹 Cleaned up old backups (kept 5 most recent)"
+else
+  echo "ℹ️ No cleanup needed ($BACKUP_COUNT backups)"
+fi
+EOF
+          
+          rm -f /tmp/deploy_key
+
+  notify:
+    name: Notify Deployment Status
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    needs: [deploy, post-deploy]
+    if: always()
+    steps:
+      - name: Deployment success summary
+        if: success()
+        run: |
+          echo "✅ =========================================="
+          echo "✅ Deployment to EC2 completed successfully!"
+          echo "✅ =========================================="
+          echo ""
+          echo "📍 Instance: ${{ needs.get-instance-info.outputs.instance_ip }}"
+          echo "🌐 Application URL: http://${{ needs.get-instance-info.outputs.instance_ip }}:8030"
+          echo "🏥 Health Check: http://${{ needs.get-instance-info.outputs.instance_ip }}/health"
+          echo "📚 API Docs: http://${{ needs.get-instance-info.outputs.instance_ip }}/docs"
+          echo ""
+          echo "📝 Commit: ${{ github.sha }}"
+          echo "👤 Author: ${{ github.actor }}"
+          echo "💬 Message: ${{ github.event.head_commit.message }}"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo ""
+          echo "✅ =========================================="
+      
+      - name: Deployment failure summary
+        if: failure()
+        run: |
+          echo "❌ =========================================="
+          echo "❌ Deployment to EC2 failed!"
+          echo "❌ =========================================="
+          echo ""
+          echo "📍 Instance: ${{ needs.get-instance-info.outputs.instance_ip }}"
+          echo "📝 Commit: ${{ github.sha }}"
+          echo "👤 Author: ${{ github.actor }}"
+          echo ""
+          echo "⚠️ Check the logs above for details"
+          echo "🔄 Rollback was attempted automatically"
+          echo ""
+          echo "❌ =========================================="
+          exit 1
+      
+      - name: Send Slack notification
+        if: always() && secrets.SLACK_WEBHOOK_URL != ''
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: |
+            🚀 Deployment to EC2 ${{ job.status }}!
+            
+            Environment: ${{ inputs.environment || 'production' }}
+            Instance: ${{ needs.get-instance-info.outputs.instance_ip }}
+            Application: http://${{ needs.get-instance-info.outputs.instance_ip }}:8030
+            
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+            Message: ${{ github.event.head_commit.message }}
+            Branch: ${{ github.ref_name }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          username: 'GitHub Actions'
+          icon_emoji: ':rocket:'
+          channel: '#deployments'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

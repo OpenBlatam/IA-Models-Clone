@@ -1,0 +1,2 @@
+cd C:\blatam-academy\agents\backend\onyx\server\features\Frontier-Model-run-polyglot\scripts\TruthGPT-main\optimization_core
+python continuous_agent.py

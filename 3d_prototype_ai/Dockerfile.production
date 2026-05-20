@@ -1,0 +1,114 @@
+# Production Dockerfile for 3D Prototype AI
+# Multi-stage build following DevOps best practices
+# Optimized for security, performance, and maintainability
+
+# ============================================================================
+# Stage 1: Builder - Compile dependencies and build artifacts
+# ============================================================================
+FROM python:3.11-slim as builder
+
+# Build arguments
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
+# Labels for metadata
+LABEL maintainer="Blatam Academy" \
+      org.opencontainers.image.title="3D Prototype AI" \
+      org.opencontainers.image.description="3D Prototype AI Application" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.revision="${VCS_REF}" \
+      org.opencontainers.image.vendor="Blatam Academy"
+
+# Environment variables for build
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_DEFAULT_TIMEOUT=100
+
+# Install system dependencies for building Python packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    make \
+    libffi-dev \
+    libssl-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and set working directory
+WORKDIR /build
+
+# Copy requirements first for better layer caching
+COPY requirements.txt .
+
+# Install Python dependencies to user directory
+RUN pip install --user --no-cache-dir --upgrade pip setuptools wheel && \
+    pip install --user --no-cache-dir -r requirements.txt
+
+# ============================================================================
+# Stage 2: Runtime - Minimal production image
+# ============================================================================
+FROM python:3.11-slim as runtime
+
+# Environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PATH="/home/appuser/.local/bin:$PATH" \
+    PYTHONPATH="/app" \
+    APP_PORT=8030 \
+    APP_HOST=0.0.0.0
+
+# Create non-root user for security
+RUN groupadd -r appuser && \
+    useradd -r -g appuser -d /home/appuser -s /bin/bash appuser && \
+    mkdir -p /home/appuser && \
+    chown -R appuser:appuser /home/appuser
+
+# Install only runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
+
+# Copy Python dependencies from builder
+COPY --from=builder --chown=appuser:appuser /root/.local /home/appuser/.local
+
+# Set working directory
+WORKDIR /app
+
+# Create necessary directories with proper permissions
+RUN mkdir -p /app/storage/prototypes \
+    /app/storage/backups \
+    /app/logs \
+    /app/tmp && \
+    chown -R appuser:appuser /app
+
+# Copy application code
+COPY --chown=appuser:appuser . .
+
+# Switch to non-root user
+USER appuser
+
+# Expose application port
+EXPOSE 8030
+
+# Health check configuration
+HEALTHCHECK --interval=30s \
+            --timeout=10s \
+            --start-period=40s \
+            --retries=3 \
+            CMD curl -f http://localhost:${APP_PORT}/health || exit 1
+
+# Default command
+CMD ["python", "-m", "uvicorn", "api.prototype_api:app", \
+     "--host", "0.0.0.0", \
+     "--port", "8030", \
+     "--workers", "4", \
+     "--worker-class", "uvicorn.workers.UvicornWorker", \
+     "--access-log", \
+     "--log-level", "info"]
+

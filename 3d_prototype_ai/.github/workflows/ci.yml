@@ -1,0 +1,181 @@
+name: CI - Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - 'agents/backend/onyx/server/features/3d_prototype_ai/**'
+  push:
+    branches:
+      - develop
+      - feature/**
+    paths:
+      - 'agents/backend/onyx/server/features/3d_prototype_ai/**'
+
+env:
+  PYTHON_VERSION: '3.11'
+  PROJECT_PATH: agents/backend/onyx/server/features/3d_prototype_ai
+
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: Install linting tools
+        run: |
+          pip install black flake8 mypy pylint isort
+      
+      - name: Check code formatting with Black
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: black --check . || true
+      
+      - name: Check import sorting with isort
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: isort --check-only . || true
+      
+      - name: Lint with Flake8
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics || true
+      
+      - name: Type check with mypy
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: mypy . --ignore-missing-imports || true
+        continue-on-error: true
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+      
+      - name: Install dependencies
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov pytest-asyncio pytest-mock pytest-xdist
+      
+      - name: Run tests with coverage
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pytest tests/ -v \
+            --cov=. \
+            --cov-report=xml \
+            --cov-report=html \
+            --cov-report=term \
+            --tb=short \
+            -n auto
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov
+        continue-on-error: true
+      
+      - name: Upload coverage HTML
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: htmlcov/
+          retention-days: 30
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+      
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+      
+      - name: Run Bandit security linter
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          pip install bandit[toml]
+          bandit -r . -f json -o bandit-report.json || true
+        continue-on-error: true
+      
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bandit-report
+          path: bandit-report.json
+          retention-days: 30
+
+  validate-infrastructure:
+    name: Validate Infrastructure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+      
+      - name: Terraform Format Check
+        working-directory: ${{ env.PROJECT_PATH }}/cloud/terraform
+        run: terraform fmt -check -recursive
+      
+      - name: Terraform Init
+        working-directory: ${{ env.PROJECT_PATH }}/cloud/terraform
+        run: terraform init -backend=false -upgrade
+      
+      - name: Terraform Validate
+        working-directory: ${{ env.PROJECT_PATH }}/cloud/terraform
+        run: terraform validate
+      
+      - name: Terraform Plan (dry-run)
+        working-directory: ${{ env.PROJECT_PATH }}/cloud/terraform
+        run: |
+          terraform plan -out=tfplan -input=false || true
+        continue-on-error: true
+      
+      - name: Validate Ansible
+        working-directory: ${{ env.PROJECT_PATH }}/cloud/ansible
+        run: |
+          pip install ansible ansible-lint
+          ansible-playbook --syntax-check playbooks/deploy.yml || true
+          ansible-lint playbooks/deploy.yml || true
+        continue-on-error: true

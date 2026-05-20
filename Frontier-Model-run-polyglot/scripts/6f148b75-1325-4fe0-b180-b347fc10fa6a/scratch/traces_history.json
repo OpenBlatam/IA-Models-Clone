@@ -1,0 +1,53 @@
+{
+  "bd0c8da1-c69": [
+    {
+      "span_id": "7d4004e8",
+      "trace_id": "bd0c8da1-c69",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779121832.7402422,
+      "end_time": 1779121849.3222723,
+      "metadata": {},
+      "duration_ms": 16582.03
+    }
+  ],
+  "1234f186-8be": [
+    {
+      "span_id": "218c0528",
+      "trace_id": "1234f186-8be",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779121875.5359826,
+      "end_time": 1779121876.4300017,
+      "metadata": {},
+      "duration_ms": 894.02
+    }
+  ],
+  "2017fdc6-0de": [
+    {
+      "span_id": "d5ed14a4",
+      "trace_id": "2017fdc6-0de",
+      "parent_id": null,
+      "name": "process_message",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779121908.9170642,
+      "end_time": 1779121909.9262486,
+      "metadata": {},
+      "duration_ms": 1009.18
+    }
+  ]
+}

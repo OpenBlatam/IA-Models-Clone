@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include CONTRIBUTING.md
+include pyproject.toml
+recursive-include audio_separator *.py
+recursive-include examples *.py
+recursive-include scripts *.py
+
