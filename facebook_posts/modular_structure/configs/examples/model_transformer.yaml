@@ -1,0 +1,63 @@
+# 🧠 Transformer Model Configuration
+# YAML configuration for Transformer/BERT-style models
+# Implements the convention: "Use configuration files (e.g., YAML) for hyperparameters and model settings"
+
+# Model Architecture
+model_type: "transformer"
+architecture: "bert"
+hidden_size: 768
+num_layers: 12
+dropout_rate: 0.1
+
+# Transformer-Specific Parameters
+attention_heads: 12
+sequence_length: 512
+activation_function: "gelu"
+normalization: "layer_norm"
+
+# Pre-trained Model Settings
+pretrained: true
+pretrained_model_name: "bert-base-uncased"
+freeze_backbone: false
+freeze_layers: 
+  - "embeddings"  # Optionally freeze embeddings
+
+# Model Initialization
+weight_init: "xavier_uniform"
+bias_init: "zeros"
+init_std: 0.02
+
+# Device and Optimization
+device: "auto"
+mixed_precision: true
+gradient_checkpointing: true  # Important for large transformers
+memory_efficient: true
+
+# Transformer Configuration
+transformer_config:
+  vocab_size: 30522
+  max_position_embeddings: 512
+  num_attention_heads: 12
+  intermediate_size: 3072
+  attention_dropout: 0.1
+  hidden_dropout: 0.1
+  position_embedding_type: "absolute"
+  use_cache: false
+  classifier_dropout: 0.1
+
+# Fine-tuning Configuration
+classification_config:
+  num_classes: 2  # Binary classification example
+  class_weights: null
+  label_smoothing: 0.0
+  pooling_strategy: "cls"  # cls, mean, max
+
+# Environment Variables for Model Paths
+# model_cache_dir: "${TRANSFORMERS_CACHE:./cache}"
+# model_save_path: "${MODEL_SAVE_PATH:./models/transformer}"
+
+
+
+
+
+

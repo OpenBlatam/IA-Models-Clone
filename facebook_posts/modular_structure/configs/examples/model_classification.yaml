@@ -1,0 +1,53 @@
+# 🧠 Classification Model Configuration
+# This demonstrates YAML-based configuration for model settings
+# Implements the convention: "Use configuration files (e.g., YAML) for hyperparameters and model settings"
+
+# Model Architecture
+model_type: "classification"
+architecture: "resnet18"
+input_size: [3, 224, 224]
+output_size: 10
+hidden_size: 512
+num_layers: 4
+dropout_rate: 0.2
+
+# Activation and Normalization
+activation_function: "relu"
+normalization: "batch_norm"
+
+# Pre-trained Model Settings
+pretrained: true
+pretrained_model_name: "resnet18"
+freeze_backbone: false
+freeze_layers: []
+
+# Model Initialization
+weight_init: "xavier_uniform"
+bias_init: "zeros"
+init_std: 0.02
+
+# Device and Precision
+device: "auto"  # Will auto-detect best available device
+mixed_precision: true
+compile_model: false
+
+# Memory Optimization
+gradient_checkpointing: false
+memory_efficient: true
+
+# Classification-Specific Configuration
+classification_config:
+  num_classes: 10
+  class_weights: null
+  label_smoothing: 0.1
+
+# Environment Variables Support (examples)
+# You can use ${VAR_NAME:default_value} syntax
+# model_save_path: "${MODEL_SAVE_PATH:./models}"
+# log_level: "${LOG_LEVEL:INFO}"
+
+
+
+
+
+

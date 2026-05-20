@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "blatam-code-improvement": {
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_code_improvement.server"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/agents/backend/onyx/server/features"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

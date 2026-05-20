@@ -1,0 +1,58 @@
+# IoT Engine Dependencies
+# Motor de Internet de las Cosas
+
+# IoT Protocols
+paho-mqtt==1.6.1
+aiocoap==0.4.4
+websockets==12.0
+pymodbus==3.5.2
+opcua==0.98.13
+
+# Network and Communication
+aiohttp==3.9.1
+requests==2.31.0
+httpx==0.25.2
+websocket-client==1.6.4
+
+# Data Processing
+numpy==1.24.3
+pandas==2.0.3
+scipy==1.11.4
+
+# Time Series
+influxdb-client==1.38.0
+timescaledb==0.1.0
+
+# Serial Communication
+pyserial==3.5
+pyserial-asyncio==0.6
+
+# JSON and Data
+pydantic==2.5.2
+orjson==3.9.10
+msgpack==1.0.7
+
+# Async Support
+asyncio-throttle==1.0.2
+aiofiles==23.2.1
+aioredis==2.0.1
+
+# Utilities
+python-dotenv==1.0.0
+click==8.1.7
+rich==13.7.0
+schedule==1.2.0
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-mock==3.12.0
+
+# Development
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+
+
+

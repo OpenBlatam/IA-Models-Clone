@@ -1,0 +1,26 @@
+# Dockerfile para AWS Lambda con Python 3.11
+# ============================================
+FROM public.ecr.aws/lambda/python:3.11
+
+# Instalar dependencias del sistema
+RUN yum install -y gcc g++ && \
+    yum clean all
+
+# Copiar requirements
+COPY requirements-lambda.txt ${LAMBDA_TASK_ROOT}/
+
+# Instalar dependencias Python
+RUN pip install --no-cache-dir -r requirements-lambda.txt -t ${LAMBDA_TASK_ROOT}
+
+# Copiar código de la aplicación
+COPY . ${LAMBDA_TASK_ROOT}
+
+# Configurar handler
+ENV PYTHONPATH=${LAMBDA_TASK_ROOT}
+
+# Handler Lambda
+CMD ["lambda_handler.handler"]
+
+
+
+

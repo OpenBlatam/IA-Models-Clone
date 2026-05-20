@@ -1,0 +1,55 @@
+# ============================================================================
+# REQUIREMENTS OPTIMIZED - Versión optimizada para producción
+# ============================================================================
+# Esta versión incluye solo las dependencias esenciales para producción
+# Usar cuando se necesite minimizar el tamaño del contenedor o cold start
+
+# ============================================================================
+# CORE FRAMEWORK - Mínimo esencial
+# ============================================================================
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+starlette>=0.37.0
+mangum>=0.18.0                      # Para AWS Lambda
+
+# ============================================================================
+# ASYNC & PERFORMANCE - Esenciales
+# ============================================================================
+httpx>=0.27.0
+aioredis>=2.0.1
+orjson>=3.10.7                      # JSON más rápido
+redis[hiredis]>=5.2.0
+
+# ============================================================================
+# MONITORING - Mínimo necesario
+# ============================================================================
+prometheus-client>=0.20.0
+opentelemetry-api>=1.27.0
+opentelemetry-sdk>=1.27.0
+opentelemetry-instrumentation-fastapi>=0.45b0
+structlog>=24.2.0
+
+# ============================================================================
+# SECURITY - Esenciales
+# ============================================================================
+cryptography>=43.0.0
+PyJWT>=2.9.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# ============================================================================
+# MESSAGE QUEUES - Si se necesita
+# ============================================================================
+celery[redis]>=5.4.0
+
+# ============================================================================
+# UTILITIES - Mínimo
+# ============================================================================
+python-dotenv>=1.0.1
+tenacity>=8.2.3
+
+
+
+

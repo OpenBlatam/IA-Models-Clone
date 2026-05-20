@@ -1,0 +1,83 @@
+# High-Performance Copywriting Module Requirements
+# Optimized for speed, memory efficiency, and scalability
+
+# Core FastAPI & Performance
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic[email]==2.5.0
+pydantic-settings==2.1.0
+
+# Ultra-Fast JSON & Serialization
+orjson==3.9.10              # 5x faster than standard json
+msgspec==0.18.4             # Ultra-fast serialization
+ujson==5.8.0                # Alternative fast JSON
+
+# High-Performance HTTP & Async
+httpx==0.25.2               # Modern async HTTP client
+aiohttp==3.9.1              # Alternative async HTTP
+aiofiles==23.2.0            # Async file operations
+asyncio-throttle==1.0.2     # Async rate limiting
+
+# Caching & Redis
+redis==5.0.1                # Redis client
+aioredis==2.0.1             # Async Redis
+diskcache==5.6.3            # Disk-based caching
+cachetools==5.3.2           # Memory caching utilities
+
+# Database & ORM Performance
+sqlalchemy[asyncio]==2.0.23 # Async SQLAlchemy
+asyncpg==0.29.0             # Ultra-fast PostgreSQL driver
+aiosqlite==0.19.0           # Async SQLite
+
+# Performance Monitoring & Logging
+structlog==23.2.0           # Structured logging
+prometheus-client==0.19.0   # Metrics collection
+prometheus-fastapi-instrumentator==6.1.0
+py-spy==0.3.14              # Profiling
+memory-profiler==0.61.0     # Memory profiling
+
+# Rate Limiting & Security
+slowapi==0.1.9              # Rate limiting for FastAPI
+python-jose[cryptography]==3.3.0  # JWT tokens
+passlib[bcrypt]==1.7.4      # Password hashing
+cryptography==41.0.7        # Security utilities
+
+# Data Processing & Analysis
+polars==0.19.19             # Ultra-fast dataframes (20x faster than pandas)
+pyarrow==14.0.1             # Columnar data format
+numpy==1.24.4               # Optimized numerical computing
+scipy==1.11.4               # Scientific computing
+
+# Text Processing & NLP
+spacy==3.7.2                # Fast NLP processing
+textstat==0.7.3             # Text statistics
+langdetect==1.0.9           # Language detection
+ftfy==6.1.1                 # Text fixing
+
+# Background Tasks & Queue
+celery[redis]==5.3.4        # Task queue
+kombu==5.3.4                # Message transport
+billiard==4.2.0             # Process pool
+
+# Validation & Utilities
+email-validator==2.1.0      # Email validation
+python-multipart==0.0.6     # Form data parsing
+python-dotenv==1.0.0        # Environment variables
+typer==0.9.0                # CLI interface
+
+# Testing & Development
+pytest==7.4.3              # Testing framework
+pytest-asyncio==0.21.1     # Async testing
+httpx==0.25.2               # HTTP testing
+faker==20.1.0               # Test data generation
+
+# Optional AI/LLM Integration
+openai==1.3.7               # OpenAI API
+anthropic==0.7.7            # Anthropic Claude API
+transformers==4.35.2        # HuggingFace models
+torch==2.1.1                # PyTorch (for local models)
+
+# Optional Advanced Features
+dramatiq[redis]==1.15.0     # Alternative task queue
+arq==0.25.0                 # Another async task queue
+uvloop==0.19.0              # Ultra-fast event loop (Unix only) 

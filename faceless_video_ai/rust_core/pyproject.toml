@@ -1,0 +1,48 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "faceless_video_core"
+version = "0.1.0"
+description = "High-performance Rust core for Faceless Video AI"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Text Processing",
+]
+keywords = ["video", "processing", "ai", "rust", "crypto", "performance"]
+authors = [
+    {name = "Faceless Video AI Team"}
+]
+
+[project.urls]
+Homepage = "https://github.com/blatam-academy/faceless-video-ai"
+Documentation = "https://github.com/blatam-academy/faceless-video-ai#readme"
+Repository = "https://github.com/blatam-academy/faceless-video-ai"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+python-source = "python"
+module-name = "faceless_video_core"
+strip = true
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-benchmark>=4.0",
+]
+
+
+
+

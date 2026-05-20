@@ -1,0 +1,19 @@
+# ============================================================================
+# Dermatology AI - Locked Dependencies (Production)
+# Generated with: pip-compile requirements.txt
+# Use this for exact version reproducibility in production
+# ============================================================================
+#
+# To regenerate this file:
+#   pip install pip-tools
+#   pip-compile requirements.txt
+#
+# To update dependencies:
+#   pip-compile --upgrade requirements.txt
+#
+# ============================================================================
+# NOTE: This file should be generated, not manually edited
+# ============================================================================
+
+
+

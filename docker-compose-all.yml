@@ -1,0 +1,399 @@
+version: '3.8'
+
+# =============================
+# Multi-Service Compose for Features
+# =============================
+# - Each service is isolated, uses env vars, healthchecks, and resource limits
+# - Use .env file for secrets and config
+# - Logging and restart policies included
+
+services:
+  product_descriptions:
+    build: ./product_descriptions
+    container_name: product_descriptions
+    ports:
+      - "8010:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  instagram_captions:
+    build: ./instagram_captions
+    container_name: instagram_captions
+    ports:
+      - "8011:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  ads:
+    build: ./ads
+    container_name: ads
+    ports:
+      - "8012:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  video_opusclip:
+    build: ./video-OpusClip
+    container_name: video_opusclip
+    ports:
+      - "8013:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  heygen_ai:
+    build: ./heygen_ai
+    container_name: heygen_ai
+    ports:
+      - "8014:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  blog_posts:
+    build: ./blog_posts
+    container_name: blog_posts
+    ports:
+      - "8015:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  ai_video:
+    build: ./ai_video
+    container_name: ai_video
+    ports:
+      - "8016:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  notebooklm_ai:
+    build: ./notebooklm_ai
+    container_name: notebooklm_ai
+    ports:
+      - "8017:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  seo:
+    build: ./seo
+    container_name: seo
+    ports:
+      - "8018:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  linkedin_posts:
+    build: ./linkedin_posts
+    container_name: linkedin_posts
+    ports:
+      - "8019:8000"
+    environment:
+      - ENVIRONMENT=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  document_workflow_chain:
+    build: ./document_workflow_chain
+    container_name: document_workflow_chain
+    ports:
+      - "8020:8000"
+    environment:
+      - ENVIRONMENT=production
+      - AI_CLIENT_TYPE=${AI_CLIENT_TYPE:-mock}
+      - AI_API_KEY=${AI_API_KEY}
+      - AI_MODEL=${AI_MODEL:-gpt-4}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/document-workflow-chain/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+  ai_history_comparison:
+    build: ./ai_history_comparison
+    container_name: ai_history_comparison
+    ports:
+      - "8021:8000"
+    environment:
+      - ENVIRONMENT=production
+      - AI_PROVIDER=${AI_PROVIDER:-openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - REDIS_URL=redis://redis:6379
+      - DB_PATH=/app/data/ai_history.db
+      - MIN_DOCUMENTS_FOR_INSIGHTS=5
+      - MIN_DOCUMENTS_FOR_RECOMMENDATIONS=3
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+
+  cosmic_transcendence:
+    build: ./bul/cosmic_transcendence
+    container_name: cosmic_transcendence
+    ports:
+      - "8022:8000"
+      - "8023:8501"  # Streamlit interface
+    environment:
+      - ENVIRONMENT=production
+      - AI_PROVIDER=${AI_PROVIDER:-openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OUTPUT_DIR=/app/generated_specs
+      - MAX_DOCUMENTS=10
+      - DEFAULT_AI_PROVIDER=openai
+    volumes:
+      - cosmic_specs_data:/app/generated_specs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/bulk-specs/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+
+  gamma_app:
+    build: ./gamma_app
+    container_name: gamma_app
+    ports:
+      - "8030:8000"  # Main API
+      - "8031:9090"  # Metrics
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://gamma_user:gamma_password@postgres:5432/gamma_db
+      - REDIS_URL=redis://redis:6379
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - SECRET_KEY=${SECRET_KEY:-gamma-secret-key-2024}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+    volumes:
+      - gamma_uploads:/app/uploads
+      - gamma_data:/app/data
+      - gamma_logs:/app/logs
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+
+# =============================
+# Volumes, networks, and secrets can be added here for further modularity
+# =============================
+
+volumes:
+  cosmic_specs_data:
+    driver: local
+  gamma_uploads:
+    driver: local
+  gamma_data:
+    driver: local
+  gamma_logs:
+    driver: local 

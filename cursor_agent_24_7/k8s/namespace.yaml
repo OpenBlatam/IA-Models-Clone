@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cursor-agent
+  labels:
+    name: cursor-agent
+    environment: production
+
+
+
+

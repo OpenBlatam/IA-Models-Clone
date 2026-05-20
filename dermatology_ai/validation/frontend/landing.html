@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermatology AI - Análisis de Piel con Inteligencia Artificial</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .landing {
+            max-width: 100%;
+            margin: 0;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 30px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .features {
+            padding: 60px 30px;
+            background: #f8f9fa;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .how-it-works {
+            padding: 60px 30px;
+            background: white;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        .step {
+            text-align: center;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        .testimonials {
+            padding: 60px 30px;
+            background: #f8f9fa;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: #333;
+        }
+        .pricing {
+            padding: 60px 30px;
+            background: white;
+            text-align: center;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        .pricing-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 40px 30px;
+            transition: transform 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .pricing-card.featured {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+        }
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .faq {
+            padding: 60px 30px;
+            background: #f8f9fa;
+        }
+        .faq-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>🧴 Dermatology AI</h1>
+            <p>Análisis de Piel con Inteligencia Artificial</p>
+            <p style="font-size: 1rem; opacity: 0.8;">Obtén métricas detalladas y recomendaciones personalizadas en segundos</p>
+            <a href="index.html" class="cta-button">Probar Gratis Ahora</a>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <h2 class="section-title">✨ Características</h2>
+            <p class="section-subtitle">Todo lo que necesitas para cuidar tu piel</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Análisis Completo</h3>
+                    <p>Métricas detalladas de textura, hidratación, elasticidad y más</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Detección de Condiciones</h3>
+                    <p>Identifica acné, rosácea, hiperpigmentación y otras condiciones</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Recomendaciones Personalizadas</h3>
+                    <p>Rutinas de skincare adaptadas a tu tipo de piel</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Resultados Rápidos</h3>
+                    <p>Análisis completo en menos de 10 segundos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2 class="section-title">🚀 Cómo Funciona</h2>
+            <p class="section-subtitle">Simple, rápido y efectivo</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sube una Foto</h3>
+                    <p>Sube una foto de tu piel desde tu dispositivo</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Análisis con IA</h3>
+                    <p>Nuestra IA analiza tu piel en segundos</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Obtén Resultados</h3>
+                    <p>Recibe métricas detalladas y recomendaciones</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <h2 class="section-title">💬 Lo que Dicen Nuestros Usuarios</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Los resultados fueron muy precisos y las recomendaciones me ayudaron a mejorar mi rutina de skincare."
+                    </div>
+                    <div class="testimonial-author">- María, 28 años</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Me encantó lo fácil que es usar. Subí una foto y en segundos tuve un análisis completo."
+                    </div>
+                    <div class="testimonial-author">- Juan, 35 años</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Finalmente una herramienta que me ayuda a entender qué necesita mi piel realmente."
+                    </div>
+                    <div class="testimonial-author">- Ana, 42 años</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="pricing">
+            <h2 class="section-title">💰 Precios</h2>
+            <p class="section-subtitle">Elige el plan que mejor se adapte a ti</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Gratis</h3>
+                    <div class="pricing-price">$0</div>
+                    <ul class="pricing-features">
+                        <li>1 análisis por mes</li>
+                        <li>Resultados básicos</li>
+                        <li>Recomendaciones generales</li>
+                    </ul>
+                    <a href="index.html" class="cta-button" style="background: #667eea; color: white;">Comenzar</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Premium</h3>
+                    <div class="pricing-price">$9.99<span style="font-size: 1rem;">/mes</span></div>
+                    <ul class="pricing-features">
+                        <li>Análisis ilimitados</li>
+                        <li>Resultados completos</li>
+                        <li>Recomendaciones personalizadas</li>
+                        <li>Seguimiento de progreso</li>
+                    </ul>
+                    <a href="index.html" class="cta-button">Comenzar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <h2 class="section-title">❓ Preguntas Frecuentes</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">¿Es gratis?</div>
+                    <div class="faq-answer">Sí, puedes probarlo gratis con 1 análisis por mes. Si necesitas más, puedes actualizar a Premium.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Mis fotos son privadas?</div>
+                    <div class="faq-answer">Sí, todas las fotos se procesan de forma segura y privada. No compartimos tus datos con terceros.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué tan preciso es?</div>
+                    <div class="faq-answer">Utilizamos tecnología de IA avanzada para análisis precisos. Sin embargo, no reemplaza la consulta con un dermatólogo.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Puedo cancelar en cualquier momento?</div>
+                    <div class="faq-answer">Sí, puedes cancelar tu suscripción en cualquier momento sin penalizaciones.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Dermatology AI. Todos los derechos reservados.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Desarrollado con ❤️ para cuidar tu piel</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
