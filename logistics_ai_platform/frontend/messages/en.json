@@ -1,0 +1,144 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "view": "View",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "actions": "Actions",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "view": "View"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithEmail": "Sign in with Email",
+    "forgotPassword": "Forgot Password?",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "invalidCredentials": "Invalid email or password",
+    "signInError": "An error occurred. Please try again."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "quotes": "Quotes",
+    "bookings": "Bookings",
+    "shipments": "Shipments",
+    "tracking": "Tracking",
+    "containers": "Containers",
+    "invoices": "Invoices",
+    "insurance": "Insurance",
+    "documents": "Documents",
+    "alerts": "Alerts",
+    "reports": "Reports"
+  },
+  "quotes": {
+    "title": "Quotes",
+    "createQuote": "Create Quote",
+    "quoteId": "Quote ID",
+    "origin": "Origin",
+    "destination": "Destination",
+    "cargo": "Cargo",
+    "transportationMode": "Transportation Mode",
+    "price": "Price",
+    "validUntil": "Valid Until",
+    "selectOption": "Select Option",
+    "loading": "Loading quotes..."
+  },
+  "bookings": {
+    "title": "Bookings",
+    "createBooking": "Create Booking",
+    "bookingId": "Booking ID",
+    "bookingReference": "Booking Reference",
+    "status": "Status",
+    "estimatedDeparture": "Estimated Departure",
+    "estimatedArrival": "Estimated Arrival",
+    "loading": "Loading bookings..."
+  },
+  "shipments": {
+    "title": "Shipments",
+    "createShipment": "Create Shipment",
+    "shipmentId": "Shipment ID",
+    "trackingNumber": "Tracking Number",
+    "currentStatus": "Current Status",
+    "origin": "Origin",
+    "destination": "Destination",
+    "updateStatus": "Update Status"
+  },
+  "tracking": {
+    "title": "Tracking",
+    "trackShipment": "Track Shipment",
+    "enterTrackingNumber": "Enter Tracking Number",
+    "trackingHistory": "Tracking History",
+    "currentLocation": "Current Location",
+    "estimatedArrival": "Estimated Arrival",
+    "noTrackingInfo": "No tracking information available"
+  },
+  "containers": {
+    "title": "Containers",
+    "createContainer": "Create Container",
+    "containerId": "Container ID",
+    "containerNumber": "Container Number",
+    "containerType": "Container Type",
+    "status": "Status",
+    "updateStatus": "Update Status",
+    "updateGPS": "Update GPS Location"
+  },
+  "invoices": {
+    "title": "Invoices",
+    "createInvoice": "Create Invoice",
+    "invoiceId": "Invoice ID",
+    "invoiceNumber": "Invoice Number",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "dueDate": "Due Date",
+    "status": "Status",
+    "payNow": "Pay Now"
+  },
+  "insurance": {
+    "title": "Insurance",
+    "createInsurance": "Create Insurance",
+    "coverageType": "Coverage Type",
+    "coverageAmount": "Coverage Amount",
+    "premium": "Premium",
+    "policyNumber": "Policy Number"
+  },
+  "documents": {
+    "title": "Documents",
+    "uploadDocument": "Upload Document",
+    "documentType": "Document Type",
+    "fileName": "File Name",
+    "uploadedAt": "Uploaded At",
+    "download": "Download"
+  },
+  "alerts": {
+    "title": "Alerts",
+    "noAlerts": "No alerts",
+    "markAsRead": "Mark as Read",
+    "priority": "Priority"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "activeShipments": "Active Shipments",
+    "pendingQuotes": "Pending Quotes",
+    "recentBookings": "Recent Bookings",
+    "alerts": "Alerts"
+  }
+}
+

@@ -1,0 +1,584 @@
+{
+  "mcpServers": {
+    "blatam-code-improvement": {
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_code_improvement.server"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/agents/backend/onyx/server/features"
+      }
+    }
+  },
+  
+  "_metadata": {
+    "mcpVersion": "2024-11-05",
+    "name": "blatam-code-improvement-server",
+    "version": "1.0.0",
+    "description": "Servidor MCP para análisis y mejora de código del sistema Blatam Academy",
+    "author": "Blatam Academy",
+    "license": "MIT"
+  },
+  
+  "_serverInfo": {
+    "capabilities": {
+      "tools": true,
+      "resources": true,
+      "prompts": true,
+      "sampling": false
+    },
+    
+    "tools": [
+    {
+      "name": "analyze_code_quality",
+      "description": "Analiza la calidad del código en un directorio o archivo específico, detectando problemas de estilo, complejidad ciclomática, y violaciones de mejores prácticas",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Ruta al archivo o directorio a analizar"
+          },
+          "language": {
+            "type": "string",
+            "enum": ["python", "javascript", "typescript", "rust", "julia", "all"],
+            "description": "Lenguaje de programación a analizar",
+            "default": "all"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["complexity", "duplication", "security", "performance", "style", "architecture", "all"]
+            },
+            "description": "Tipos de análisis a realizar",
+            "default": ["all"]
+          }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "detect_code_duplication",
+      "description": "Detecta código duplicado en el proyecto, identificando patrones repetitivos y oportunidades de refactorización",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "minLines": {
+            "type": "number",
+            "description": "Número mínimo de líneas para considerar duplicación",
+            "default": 5
+          },
+          "threshold": {
+            "type": "number",
+            "description": "Umbral de similitud (0-1)",
+            "default": 0.8
+          },
+          "excludePatterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Patrones de archivos a excluir",
+            "default": ["__pycache__", "node_modules", ".git", "venv"]
+          }
+        }
+      }
+    },
+    {
+      "name": "suggest_refactoring",
+      "description": "Sugiere refactorizaciones específicas basadas en patrones identificados y mejores prácticas",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Ruta al archivo a refactorizar"
+          },
+          "refactoringType": {
+            "type": "string",
+            "enum": ["extract_method", "extract_class", "simplify_conditionals", "remove_duplication", "improve_naming", "optimize_imports", "all"],
+            "description": "Tipo de refactorización a sugerir",
+            "default": "all"
+          },
+          "apply": {
+            "type": "boolean",
+            "description": "Si es true, aplica los cambios automáticamente",
+            "default": false
+          }
+        },
+        "required": ["filePath"]
+      }
+    },
+    {
+      "name": "analyze_architecture",
+      "description": "Analiza la arquitectura del proyecto, detectando violaciones de principios SOLID, Clean Architecture, y patrones de diseño",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "featurePath": {
+            "type": "string",
+            "description": "Ruta a la feature o módulo a analizar"
+          },
+          "checkCleanArchitecture": {
+            "type": "boolean",
+            "description": "Verificar conformidad con Clean Architecture",
+            "default": true
+          },
+          "checkSOLID": {
+            "type": "boolean",
+            "description": "Verificar principios SOLID",
+            "default": true
+          },
+          "checkDependencies": {
+            "type": "boolean",
+            "description": "Analizar dependencias entre módulos",
+            "default": true
+          }
+        },
+        "required": ["featurePath"]
+      }
+    },
+    {
+      "name": "optimize_performance",
+      "description": "Identifica oportunidades de optimización de performance: cache, async/await, queries, etc.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Ruta al archivo a optimizar"
+          },
+          "optimizationTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["cache", "async", "database", "memory", "cpu", "io", "all"]
+            },
+            "description": "Tipos de optimización a buscar",
+            "default": ["all"]
+          },
+          "profile": {
+            "type": "boolean",
+            "description": "Ejecutar profiling para identificar cuellos de botella",
+            "default": false
+          }
+        },
+        "required": ["filePath"]
+      }
+    },
+    {
+      "name": "check_security",
+      "description": "Analiza el código en busca de vulnerabilidades de seguridad: SQL injection, XSS, secrets hardcodeados, etc.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Ruta al archivo o directorio a analizar"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical", "all"],
+            "description": "Nivel mínimo de severidad a reportar",
+            "default": "medium"
+          },
+          "checkSecrets": {
+            "type": "boolean",
+            "description": "Buscar secrets y API keys hardcodeados",
+            "default": true
+          },
+          "checkInjection": {
+            "type": "boolean",
+            "description": "Buscar vulnerabilidades de inyección",
+            "default": true
+          }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "improve_documentation",
+      "description": "Analiza y mejora la documentación del código: docstrings, comentarios, READMEs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Ruta al archivo a documentar"
+          },
+          "addDocstrings": {
+            "type": "boolean",
+            "description": "Agregar docstrings faltantes",
+            "default": true
+          },
+          "improveComments": {
+            "type": "boolean",
+            "description": "Mejorar comentarios existentes",
+            "default": true
+          },
+          "generateREADME": {
+            "type": "boolean",
+            "description": "Generar o actualizar README si falta",
+            "default": false
+          }
+        },
+        "required": ["filePath"]
+      }
+    },
+    {
+      "name": "analyze_dependencies",
+      "description": "Analiza las dependencias del proyecto: versiones, conflictos, vulnerabilidades, dependencias no usadas",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "checkVulnerabilities": {
+            "type": "boolean",
+            "description": "Verificar vulnerabilidades conocidas",
+            "default": true
+          },
+          "checkUnused": {
+            "type": "boolean",
+            "description": "Identificar dependencias no usadas",
+            "default": true
+          },
+          "checkConflicts": {
+            "type": "boolean",
+            "description": "Verificar conflictos de versiones",
+            "default": true
+          },
+          "suggestUpdates": {
+            "type": "boolean",
+            "description": "Sugerir actualizaciones disponibles",
+            "default": true
+          }
+        }
+      }
+    },
+    {
+      "name": "standardize_code_style",
+      "description": "Estandariza el estilo de código según las mejores prácticas: PEP 8, ESLint, etc.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Ruta al archivo a estandarizar"
+          },
+          "language": {
+            "type": "string",
+            "enum": ["python", "javascript", "typescript", "rust", "julia"],
+            "description": "Lenguaje de programación"
+          },
+          "apply": {
+            "type": "boolean",
+            "description": "Aplicar cambios automáticamente",
+            "default": false
+          },
+          "configFile": {
+            "type": "string",
+            "description": "Ruta a archivo de configuración de estilo (opcional)"
+          }
+        },
+        "required": ["filePath", "language"]
+      }
+    },
+    {
+      "name": "detect_anti_patterns",
+      "description": "Detecta anti-patrones comunes: código muerto, funciones demasiado largas, acoplamiento fuerte, etc.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Ruta al archivo o directorio a analizar"
+          },
+          "antiPatterns": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["dead_code", "god_object", "long_method", "long_parameter_list", "feature_envy", "data_clumps", "primitive_obsession", "all"]
+            },
+            "description": "Anti-patrones a detectar",
+            "default": ["all"]
+          }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "optimize_imports",
+      "description": "Optimiza y organiza los imports: elimina no usados, agrupa por tipo, ordena alfabéticamente",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Ruta al archivo a optimizar"
+          },
+          "removeUnused": {
+            "type": "boolean",
+            "description": "Eliminar imports no usados",
+            "default": true
+          },
+          "organize": {
+            "type": "boolean",
+            "description": "Organizar imports por tipo",
+            "default": true
+          },
+          "apply": {
+            "type": "boolean",
+            "description": "Aplicar cambios automáticamente",
+            "default": false
+          }
+        },
+        "required": ["filePath"]
+      }
+    },
+    {
+      "name": "generate_tests",
+      "description": "Genera tests unitarios y de integración basados en el código existente",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Ruta al archivo para el cual generar tests"
+          },
+          "testType": {
+            "type": "string",
+            "enum": ["unit", "integration", "both"],
+            "description": "Tipo de tests a generar",
+            "default": "both"
+          },
+          "framework": {
+            "type": "string",
+            "enum": ["pytest", "unittest", "jest", "auto"],
+            "description": "Framework de testing a usar",
+            "default": "auto"
+          },
+          "coverage": {
+            "type": "number",
+            "description": "Cobertura objetivo (0-100)",
+            "default": 80,
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "required": ["filePath"]
+      }
+    },
+    {
+      "name": "migrate_to_clean_architecture",
+      "description": "Ayuda a migrar código existente a Clean Architecture siguiendo los patrones del proyecto",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "featurePath": {
+            "type": "string",
+            "description": "Ruta a la feature a migrar"
+          },
+          "createStructure": {
+            "type": "boolean",
+            "description": "Crear estructura de directorios Clean Architecture",
+            "default": true
+          },
+          "migrateCode": {
+            "type": "boolean",
+            "description": "Migrar código existente a nueva estructura",
+            "default": true
+          },
+          "generateInterfaces": {
+            "type": "boolean",
+            "description": "Generar interfaces y contratos",
+            "default": true
+          }
+        },
+        "required": ["featurePath"]
+      }
+    },
+    {
+      "name": "analyze_feature_consistency",
+      "description": "Analiza la consistencia entre features, detectando inconsistencias en estructura, patrones y convenciones",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "compareWith": {
+            "type": "string",
+            "description": "Feature de referencia para comparar (ej: instagram_captions)",
+            "default": "instagram_captions"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Lista de features a analizar (vacío = todas)"
+          }
+        }
+      }
+    },
+    {
+      "name": "optimize_config_files",
+      "description": "Optimiza y unifica archivos de configuración, detectando duplicación y oportunidades de consolidación",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "configType": {
+            "type": "string",
+            "enum": ["settings", "docker", "requirements", "all"],
+            "description": "Tipo de archivos de configuración a optimizar",
+            "default": "all"
+          },
+          "consolidate": {
+            "type": "boolean",
+            "description": "Consolidar configuraciones similares",
+            "default": false
+          }
+        }
+      }
+    },
+    {
+      "name": "detect_unified_patterns",
+      "description": "Detecta patrones que pueden ser unificados (como los optimizadores en suno_clone_ai) y sugiere refactorización",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "patternType": {
+            "type": "string",
+            "enum": ["optimizers", "routers", "configs", "services", "all"],
+            "description": "Tipo de patrón a detectar",
+            "default": "all"
+          },
+          "minOccurrences": {
+            "type": "number",
+            "description": "Número mínimo de ocurrencias para considerar unificación",
+            "default": 3
+          }
+        }
+      }
+    }
+  ],
+  
+  "resources": [
+    {
+      "uri": "codebase://best-practices",
+      "name": "Mejores Prácticas del Proyecto",
+      "description": "Guía de mejores prácticas específicas del proyecto Blatam Academy",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "codebase://architecture-patterns",
+      "name": "Patrones Arquitectónicos",
+      "description": "Documentación de patrones arquitectónicos usados en el proyecto",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "codebase://refactoring-opportunities",
+      "name": "Oportunidades de Refactorización",
+      "description": "Lista de oportunidades identificadas para refactorización",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "codebase://anti-patterns",
+      "name": "Anti-Patrones a Evitar",
+      "description": "Lista de anti-patrones comunes y cómo evitarlos",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "codebase://code-quality-standards",
+      "name": "Estándares de Calidad de Código",
+      "description": "Estándares y métricas de calidad de código del proyecto",
+      "mimeType": "text/markdown"
+    }
+  ],
+  
+  "prompts": [
+    {
+      "name": "improve_code_quality",
+      "description": "Prompt para mejorar la calidad general del código",
+      "arguments": [
+        {
+          "name": "filePath",
+          "description": "Ruta al archivo a mejorar",
+          "required": true
+        },
+        {
+          "name": "focusAreas",
+          "description": "Áreas en las que enfocarse",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "refactor_code",
+      "description": "Prompt para refactorizar código siguiendo mejores prácticas",
+      "arguments": [
+        {
+          "name": "filePath",
+          "description": "Ruta al archivo a refactorizar",
+          "required": true
+        },
+        {
+          "name": "refactoringGoal",
+          "description": "Objetivo de la refactorización",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "optimize_performance",
+      "description": "Prompt para optimizar performance del código",
+      "arguments": [
+        {
+          "name": "filePath",
+          "description": "Ruta al archivo a optimizar",
+          "required": true
+        },
+        {
+          "name": "bottleneck",
+          "description": "Cuello de botella específico a optimizar",
+          "required": false
+        }
+      ]
+    }
+  ],
+  
+  "_metadata": {
+    "project": {
+      "name": "Blatam Academy",
+      "type": "AI Platform",
+      "languages": ["python", "javascript", "typescript", "rust", "julia"],
+      "architecture": "Microservices / Clean Architecture",
+      "features": 50
+    },
+    "codebase": {
+      "rootPath": "${workspace}/agents/backend/onyx/server/features",
+      "mainLanguages": ["python"],
+      "frameworks": ["FastAPI", "React", "Rust", "Julia"],
+      "patterns": ["Clean Architecture", "SOLID", "Repository Pattern", "Factory Pattern"]
+    },
+    "improvement": {
+      "focusAreas": [
+        "Code Quality",
+        "Architecture Consistency",
+        "Performance Optimization",
+        "Security",
+        "Documentation",
+        "Test Coverage",
+        "Code Duplication",
+        "Dependency Management"
+      ],
+      "standards": [
+        "PEP 8 (Python)",
+        "ESLint (JavaScript/TypeScript)",
+        "Clean Architecture",
+        "SOLID Principles",
+        "DRY (Don't Repeat Yourself)",
+        "KISS (Keep It Simple, Stupid)"
+      ]
+    }
+  }
+}
+

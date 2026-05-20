@@ -1,0 +1,111 @@
+version: '3.8'
+
+services:
+  # API Gateway
+  api-gateway:
+    image: kong:latest
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /kong/declarative/kong.yml
+    volumes:
+      - ./api-gateway/kong/kong.yml:/kong/declarative/kong.yml
+    networks:
+      - msa-network
+
+  # Inference Services
+  vllm-service:
+    build: ./services/inference/vllm-service
+    ports:
+      - "8001:8001"
+    environment:
+      - MODEL_NAME=gpt2
+      - PORT=8001
+    networks:
+      - msa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optimization Services
+  kv-cache-service:
+    build: ./services/optimization/kv-cache-service
+    ports:
+      - "8010:8010"
+    networks:
+      - msa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8010/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Message Queue
+  nats:
+    image: nats:latest
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    networks:
+      - msa-network
+
+  # Service Discovery
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.9
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    environment:
+      - ETCD_NAME=etcd0
+      - ETCD_DATA_DIR=/etcd-data
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+    networks:
+      - msa-network
+
+  # Cache
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - msa-network
+
+  # Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infrastructure/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - msa-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - msa-network
+
+networks:
+  msa-network:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+

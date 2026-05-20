@@ -1,0 +1,186 @@
+# Default values for music-analyzer-ai
+replicaCount: 2
+
+# Backend configuration
+backend:
+  image:
+    repository: ghcr.io/blatam-academy/music-analyzer-ai-backend
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+  
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+  
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+  
+  env:
+    - name: ENVIRONMENT
+      value: "production"
+    - name: LOG_LEVEL
+      value: "INFO"
+    - name: DATABASE_URL
+      valueFrom:
+        secretKeyRef:
+          name: music-analyzer-ai-secrets
+          key: database-url
+    - name: REDIS_URL
+      valueFrom:
+        secretKeyRef:
+          name: music-analyzer-ai-secrets
+          key: redis-url
+    - name: SPOTIFY_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: music-analyzer-ai-secrets
+          key: spotify-client-id
+    - name: SPOTIFY_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: music-analyzer-ai-secrets
+          key: spotify-client-secret
+
+# Frontend configuration
+frontend:
+  image:
+    repository: ghcr.io/blatam-academy/music-analyzer-ai-frontend
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 3000
+  
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+  
+  env:
+    - name: NEXT_PUBLIC_MUSIC_API_URL
+      value: "http://music-analyzer-ai-backend:8000"
+    - name: NODE_ENV
+      value: "production"
+
+# Ingress configuration
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  hosts:
+    - host: music-analyzer-ai.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+        - path: /api
+          pathType: Prefix
+  tls:
+    - secretName: music-analyzer-ai-tls
+      hosts:
+        - music-analyzer-ai.example.com
+
+# PostgreSQL configuration
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: ""
+    existingSecret: "music-analyzer-ai-secrets"
+    secretKeys:
+      adminPasswordKey: "postgres-password"
+  persistence:
+    enabled: true
+    size: 20Gi
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# Redis configuration
+redis:
+  enabled: true
+  auth:
+    enabled: true
+    existingSecret: "music-analyzer-ai-secrets"
+    existingSecretPasswordKey: "redis-password"
+  master:
+    persistence:
+      enabled: true
+      size: 8Gi
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+
+# Monitoring
+monitoring:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    scrapeTimeout: 10s
+
+# Security
+security:
+  podSecurityPolicy:
+    enabled: false
+  networkPolicy:
+    enabled: true
+  serviceAccount:
+    create: true
+    annotations: {}
+
+# Health checks
+healthChecks:
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: 8000
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+  
+  readinessProbe:
+    httpGet:
+      path: /health/ready
+      port: 8000
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+
+
+

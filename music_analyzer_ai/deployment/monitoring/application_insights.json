@@ -1,0 +1,42 @@
+{
+  "name": "Music Analyzer AI - Application Insights",
+  "description": "Monitoring configuration for Azure Application Insights",
+  "queries": [
+    {
+      "name": "Request Rate",
+      "query": "requests | summarize count() by bin(timestamp, 1m) | render timechart"
+    },
+    {
+      "name": "Error Rate",
+      "query": "requests | where success == false | summarize count() by bin(timestamp, 1m) | render timechart"
+    },
+    {
+      "name": "Response Time",
+      "query": "requests | summarize avg(duration), percentile(duration, 50), percentile(duration, 95), percentile(duration, 99) by bin(timestamp, 1m) | render timechart"
+    },
+    {
+      "name": "Top Errors",
+      "query": "exceptions | summarize count() by type | top 10 by count_ desc"
+    },
+    {
+      "name": "Dependencies",
+      "query": "dependencies | summarize count(), avg(duration) by target | top 10 by count_ desc"
+    }
+  ],
+  "alerts": [
+    {
+      "name": "High Error Rate",
+      "condition": "requests | where success == false | summarize count() by bin(timestamp, 5m) | where count_ > 10",
+      "action": "Send email notification"
+    },
+    {
+      "name": "High Response Time",
+      "condition": "requests | summarize avg(duration) by bin(timestamp, 5m) | where avg_duration > 5000",
+      "action": "Send email notification"
+    }
+  ]
+}
+
+
+
+

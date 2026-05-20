@@ -1,0 +1,12 @@
+---
+# Handlers for deployment role
+
+- name: restart application
+  docker_compose_v2:
+    project_src: "{{ app_directory }}"
+    state: restarted
+  become_user: "{{ deployment_user }}"
+
+
+
+

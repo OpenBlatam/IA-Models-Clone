@@ -1,0 +1,80 @@
+export const EDITOR_CONSTANTS = {
+  AUTO_SAVE_INTERVAL: 30000, // 30 segundos
+  DEFAULT_GRID_SIZE: 20,
+  DEFAULT_ZOOM_LEVELS: {
+    MIN: 0.1,
+    MAX: 2,
+    STEP: 0.1,
+  },
+  SHORTCUTS: {
+    SAVE: ['ctrl+s', 'cmd+s'],
+    UNDO: ['ctrl+z', 'cmd+z'],
+    REDO: ['ctrl+shift+z', 'cmd+shift+z'],
+    TOGGLE_GRID: ['ctrl+g', 'cmd+g'],
+    ZOOM_IN: ['ctrl+=', 'cmd+='],
+    ZOOM_OUT: ['ctrl+-', 'cmd+-'],
+    RESET_ZOOM: ['ctrl+0', 'cmd+0'],
+  },
+  TEMPLATE_CATEGORIES: {
+    PRESENTATION: 'presentation',
+    DOCUMENT: 'document',
+    DESIGN: 'design',
+    DATA: 'data',
+    PLANNING: 'planning',
+  },
+  SHAPE_TYPES: {
+    RECTANGLE: 'rectangle',
+    TEXT: 'text',
+    IMAGE: 'image',
+    LINE: 'line',
+    ARROW: 'arrow',
+    FRAME: 'frame',
+    ELLIPSE: 'ellipse',
+    DIAMOND: 'diamond',
+    STAR: 'star',
+    POLYGON: 'polygon',
+  },
+  DEFAULT_COLORS: {
+    PRIMARY: '#000000',
+    SECONDARY: '#ffffff',
+    ACCENT: '#3b82f6',
+    BACKGROUND: '#ffffff',
+    GRID: '#e5e7eb',
+  },
+  DEFAULT_STYLES: {
+    FONT_SIZES: {
+      SMALL: 's',
+      MEDIUM: 'm',
+      LARGE: 'l',
+      XLARGE: 'xl',
+    },
+    LINE_STYLES: {
+      SOLID: 'solid',
+      DASHED: 'dashed',
+      DOTTED: 'dotted',
+    },
+    SHADOW_TYPES: {
+      NONE: 'none',
+      SMALL: 'small',
+      MEDIUM: 'medium',
+      LARGE: 'large',
+    },
+  },
+  EXPORT_FORMATS: {
+    PNG: 'png',
+    JPG: 'jpg',
+    SVG: 'svg',
+    PDF: 'pdf',
+  },
+  COLLABORATION: {
+    MAX_USERS: 10,
+    CURSOR_COLORS: [
+      '#FF0000',
+      '#00FF00',
+      '#0000FF',
+      '#FFFF00',
+      '#FF00FF',
+      '#00FFFF',
+    ],
+  },
+} as const; 

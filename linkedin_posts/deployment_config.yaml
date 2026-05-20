@@ -1,0 +1,71 @@
+# 🚀 Enhanced LinkedIn Optimizer v4.0 - Deployment Configuration
+# ================================================================
+
+# Environment Configuration
+environment: "production"  # Options: production, staging, development
+
+# Network Configuration
+host: "0.0.0.0"          # Bind to all interfaces
+port: 8000                # Service port
+metrics_port: 9090        # Metrics endpoint port
+
+# Resource Limits
+workers: 4                # Number of worker processes
+max_memory_mb: 2048      # Maximum memory usage (MB)
+max_cpu_percent: 80      # Maximum CPU usage (%)
+
+# Service Configuration
+enable_monitoring: true   # Enable system monitoring
+enable_logging: true      # Enable comprehensive logging
+enable_backup: true       # Enable automatic backups
+backup_interval_hours: 24 # Backup frequency
+
+# Security Configuration
+security_level: "production"  # Security level
+ssl_enabled: false           # Enable SSL/TLS
+ssl_cert_path: ""            # SSL certificate path
+ssl_key_path: ""             # SSL private key path
+
+# Database Configuration
+database_url: ""             # Database connection string
+redis_url: ""                # Redis connection string
+
+# Logging Configuration
+log_level: "INFO"            # Log level (DEBUG, INFO, WARNING, ERROR)
+
+# Performance Tuning
+cache_size_mb: 512          # Cache size in MB
+max_concurrent_requests: 100 # Maximum concurrent requests
+request_timeout_seconds: 30  # Request timeout
+
+# Monitoring Configuration
+monitoring_interval_seconds: 60  # Health check interval
+alert_thresholds:
+  memory_percent: 85        # Memory usage alert threshold
+  cpu_percent: 80           # CPU usage alert threshold
+  disk_percent: 90          # Disk usage alert threshold
+
+# Backup Configuration
+backup_retention_days: 7    # Number of days to keep backups
+backup_compression: true    # Enable backup compression
+backup_encryption: true     # Enable backup encryption
+
+# Scaling Configuration
+auto_scaling:
+  enabled: true             # Enable auto-scaling
+  min_instances: 2          # Minimum instances
+  max_instances: 10         # Maximum instances
+  scale_up_threshold: 70    # Scale up when usage > 70%
+  scale_down_threshold: 30  # Scale down when usage < 30%
+
+# External Services
+external_services:
+  email_service: ""         # Email service for notifications
+  sms_service: ""           # SMS service for alerts
+  webhook_url: ""           # Webhook for external notifications
+
+# Custom Settings
+custom:
+  optimization_rules: []     # Custom optimization rules
+  content_filters: []        # Content filtering rules
+  audience_targeting: {}     # Audience targeting configuration

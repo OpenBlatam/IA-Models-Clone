@@ -1,0 +1,25 @@
+# Security Toolkit Dependencies
+# Core dependencies
+fastapi==0.104.1vicornstandard]==0.24.0ntic==2.5.0
+structlog==23.2 Network and async
+httpx==00.25.2
+asyncssh==2.132
+aiohttp==3.90.1y and cryptography
+cryptography==410
+python-josecryptography]==3.3
+passlib[bcrypt]==1.7.4 Port scanning and network tools
+python-nmap==070.1
+scapy==2.5ng and performance
+redis==50.1aiocache==0.12.2
+
+# Monitoring and metrics
+prometheus-client==00.19
+
+# Testing
+pytest==7.43
+pytest-asyncio==0.21.15.2 Development tools
+black==23.110
+flake8==6.1=1.7
+# Optional: Cloud secret management
+boto3==1.340
+azure-identity==10.150oogle-cloud-secret-manager==2.16.4 

@@ -1,0 +1,116 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info
+dist
+build
+*.egg
+.venv
+venv/
+env/
+ENV/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov
+.tox
+.hypothesis
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Data (exclude from image, use volumes)
+data/
+checkpoints/
+models/
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Deployment files (keep only what's needed)
+deployment/.github/
+deployment/scripts/
+deployment/aws/
+deployment/azure/
+deployment/monitoring/
+*.tf
+*.tfstate
+*.tfvars
+
+# Frontend (if not needed in container)
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+frontend/build/
+
+# Mobile app
+mobile_app/node_modules/
+mobile_app/.expo/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# ML/AI
+*.pth
+*.pt
+*.h5
+*.ckpt
+*.pkl
+*.joblib
+
+# Large files
+*.zip
+*.tar.gz
+*.rar
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+
+
+

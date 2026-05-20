@@ -1,0 +1,22 @@
+"""
+Interfaces Module
+
+User interfaces for AI services:
+- Gradio interfaces
+- Web demos
+"""
+
+import sys
+from pathlib import Path
+
+# Add parent directory to path for imports
+parent_dir = Path(__file__).parent.parent
+if str(parent_dir) not in sys.path:
+    sys.path.insert(0, str(parent_dir))
+
+from gradio_interface import GradioInterface
+
+__all__ = [
+    "GradioInterface",
+]
+

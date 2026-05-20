@@ -1,0 +1,261 @@
+# Azure Pipelines CI/CD for Music Analyzer AI
+# Multi-stage pipeline with quality gates
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+      - feature/*
+  paths:
+    include:
+      - agents/backend/onyx/server/features/music_analyzer_ai/*
+
+pr:
+  branches:
+    include:
+      - main
+      - develop
+  paths:
+    include:
+      - agents/backend/onyx/server/features/music_analyzer_ai/*
+
+variables:
+  - group: music-analyzer-ai-variables
+  - name: pythonVersion
+    value: '3.11'
+  - name: nodeVersion
+    value: '20.x'
+  - name: backendPath
+    value: 'agents/backend/onyx/server/features/music_analyzer_ai'
+  - name: frontendPath
+    value: 'agents/backend/onyx/server/features/music_analyzer_ai/frontend'
+  - name: dockerRegistry
+    value: 'ghcr.io'
+  - name: imageRepository
+    value: '$(Build.Repository.Name)'
+
+stages:
+  # ============================================================================
+  # Stage 1: Build and Test
+  # ============================================================================
+  - stage: BuildAndTest
+    displayName: 'Build and Test'
+    jobs:
+      - job: BackendBuild
+        displayName: 'Build Backend'
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '$(pythonVersion)'
+            
+          - script: |
+              python -m pip install --upgrade pip
+              pip install -r $(backendPath)/requirements.txt
+              pip install pytest pytest-cov black flake8 mypy
+            displayName: 'Install Dependencies'
+            
+          - script: |
+              black --check $(backendPath)
+              flake8 $(backendPath)
+              mypy $(backendPath)
+            displayName: 'Code Quality Checks'
+            continueOnError: true
+            
+          - script: |
+              pytest $(backendPath)/tests \
+                --cov=$(backendPath) \
+                --cov-report=xml \
+                --cov-report=html \
+                -v
+            displayName: 'Run Tests'
+            
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/test-results.xml'
+            condition: always()
+            
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'Cobertura'
+              summaryFileLocation: '$(backendPath)/coverage.xml'
+            condition: always()
+      
+      - job: FrontendBuild
+        displayName: 'Build Frontend'
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '$(nodeVersion)'
+            
+          - script: |
+              cd $(frontendPath)
+              npm ci
+            displayName: 'Install Dependencies'
+            
+          - script: |
+              cd $(frontendPath)
+              npm run lint
+              npm run type-check
+            displayName: 'Code Quality Checks'
+            continueOnError: true
+            
+          - script: |
+              cd $(frontendPath)
+              npm test -- --coverage --watchAll=false
+            displayName: 'Run Tests'
+            
+          - script: |
+              cd $(frontendPath)
+              npm run build
+            displayName: 'Build Application'
+            
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '$(frontendPath)/test-results.xml'
+            condition: always()
+  
+  # ============================================================================
+  # Stage 2: Security Scan
+  # ============================================================================
+  - stage: SecurityScan
+    displayName: 'Security Scanning'
+    dependsOn: BuildAndTest
+    condition: succeeded()
+    jobs:
+      - job: SecurityScan
+        displayName: 'Security Scan'
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '$(pythonVersion)'
+            
+          - script: |
+              pip install safety bandit
+              safety check --json --file $(backendPath)/requirements.txt
+              bandit -r $(backendPath) -f json
+            displayName: 'Run Security Scans'
+            continueOnError: true
+            
+          - task: PublishSecurityAnalysisLogs@1
+            inputs:
+              toolName: 'Bandit'
+            condition: always()
+  
+  # ============================================================================
+  # Stage 3: Docker Build
+  # ============================================================================
+  - stage: DockerBuild
+    displayName: 'Docker Build'
+    dependsOn: [BuildAndTest, SecurityScan]
+    condition: succeeded()
+    jobs:
+      - job: BuildImages
+        displayName: 'Build Docker Images'
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        steps:
+          - task: Docker@2
+            displayName: 'Build Backend Image'
+            inputs:
+              containerRegistry: '$(dockerRegistry)'
+              repository: '$(imageRepository)/music-analyzer-ai-backend'
+              command: 'buildAndPush'
+              Dockerfile: '$(backendPath)/deployment/Dockerfile'
+              tags: |
+                $(Build.BuildId)
+                latest
+              
+          - task: Docker@2
+            displayName: 'Build Frontend Image'
+            inputs:
+              containerRegistry: '$(dockerRegistry)'
+              repository: '$(imageRepository)/music-analyzer-ai-frontend'
+              command: 'buildAndPush'
+              Dockerfile: '$(frontendPath)/Dockerfile'
+              tags: |
+                $(Build.BuildId)
+                latest
+  
+  # ============================================================================
+  # Stage 4: Deploy to Staging
+  # ============================================================================
+  - stage: DeployStaging
+    displayName: 'Deploy to Staging'
+    dependsOn: DockerBuild
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    jobs:
+      - deployment: DeployStaging
+        displayName: 'Deploy to Staging'
+        environment: 'staging'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: Kubernetes@1
+                  displayName: 'Deploy to Kubernetes'
+                  inputs:
+                    connectionType: 'Kubernetes Service Connection'
+                    namespace: 'staging'
+                    command: 'apply'
+                    arguments: '-f $(backendPath)/deployment/kubernetes/'
+                    
+                - task: AzureWebApp@1
+                  displayName: 'Deploy to Azure App Service'
+                  inputs:
+                    azureSubscription: 'Azure-Service-Connection'
+                    appName: 'music-analyzer-ai-staging'
+                    package: '$(Pipeline.Workspace)/**/*.zip'
+  
+  # ============================================================================
+  # Stage 5: Deploy to Production
+  # ============================================================================
+  - stage: DeployProduction
+    displayName: 'Deploy to Production'
+    dependsOn: DeployStaging
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: DeployProduction
+        displayName: 'Deploy to Production'
+        environment: 'production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: Kubernetes@1
+                  displayName: 'Deploy to Kubernetes'
+                  inputs:
+                    connectionType: 'Kubernetes Service Connection'
+                    namespace: 'production'
+                    command: 'apply'
+                    arguments: '-f $(backendPath)/deployment/kubernetes/'
+                    
+                - task: AzureWebApp@1
+                  displayName: 'Deploy to Azure App Service'
+                  inputs:
+                    azureSubscription: 'Azure-Service-Connection'
+                    appName: 'music-analyzer-ai-production'
+                    package: '$(Pipeline.Workspace)/**/*.zip'
+                    
+                - task: AzureAppServiceManage@0
+                  displayName: 'Health Check'
+                  inputs:
+                    azureSubscription: 'Azure-Service-Connection'
+                    action: 'Start Azure App Service'
+                    appName: 'music-analyzer-ai-production'
+
+
+
+

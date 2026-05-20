@@ -1,0 +1,47 @@
+# ============================================================================
+# ML & AI Dependencies - Install only if ML features are needed
+# ============================================================================
+# Install with: pip install -r requirements-ml.txt
+
+# Core ML
+torch>=2.5.0,<3.0.0
+transformers>=4.46.0,<5.0.0
+accelerate>=1.1.0,<2.0.0
+
+# Model Optimization
+peft>=0.12.0,<0.13.0
+bitsandbytes>=0.44.0,<0.45.0
+
+# Embeddings & Search
+sentence-transformers>=3.1.0,<4.0.0
+faiss-cpu>=1.8.0,<2.0.0
+# faiss-gpu>=1.8.0,<2.0.0  # Use this instead of faiss-cpu if GPU available
+
+# Image Generation
+diffusers>=0.33.0,<0.34.0
+
+# ML Utilities
+numpy>=1.26.4,<2.0.0
+scikit-learn>=1.5.2,<2.0.0
+tqdm>=4.66.5,<5.0.0
+
+# ML Evaluation Metrics
+nltk>=3.9.1,<4.0.0
+rouge-score>=0.1.2,<0.2.0
+bert-score>=0.3.13,<0.4.0
+
+# ML Experiment Tracking (optional)
+wandb>=0.18.0,<0.19.0
+tensorboard>=2.18.0,<3.0.0
+
+# ML UI (optional)
+gradio>=5.0.0,<6.0.0
+
+# ONNX Runtime (optional - for model optimization)
+# onnxruntime>=1.20.0,<2.0.0  # CPU version
+# onnxruntime-gpu>=1.20.0,<2.0.0  # GPU version
+
+# Advanced ML Optimizations (optional - requires CUDA)
+# flash-attn>=2.6.0,<3.0.0  # Requires CUDA and specific PyTorch version
+# nvidia-tensorrt>=10.0.0,<11.0.0  # Requires CUDA
+

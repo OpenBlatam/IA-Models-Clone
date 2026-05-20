@@ -1,0 +1,161 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "jsx": "react-native",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/services/*": [
+        "./src/services/*"
+      ],
+      "@/services/track/*": [
+        "./src/services/track/*"
+      ],
+      "@/services/analysis/*": [
+        "./src/services/analysis/*"
+      ],
+      "@/services/recommendations/*": [
+        "./src/services/recommendations/*"
+      ],
+      "@/services/discovery/*": [
+        "./src/services/discovery/*"
+      ],
+      "@/services/trends/*": [
+        "./src/services/trends/*"
+      ],
+      "@/services/artist/*": [
+        "./src/services/artist/*"
+      ],
+      "@/services/history/*": [
+        "./src/services/history/*"
+      ],
+      "@/services/health/*": [
+        "./src/services/health/*"
+      ],
+      "@/types/*": [
+        "./src/types/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
+      ],
+      "@/utils/validation/*": [
+        "./src/utils/validation/*"
+      ],
+      "@/utils/formatting/*": [
+        "./src/utils/formatting/*"
+      ],
+      "@/utils/storage/*": [
+        "./src/utils/storage/*"
+      ],
+      "@/utils/async/*": [
+        "./src/utils/async/*"
+      ],
+      "@/utils/array/*": [
+        "./src/utils/array/*"
+      ],
+      "@/utils/object/*": [
+        "./src/utils/object/*"
+      ],
+      "@/utils/string/*": [
+        "./src/utils/string/*"
+      ],
+      "@/utils/date/*": [
+        "./src/utils/date/*"
+      ],
+      "@/utils/math/*": [
+        "./src/utils/math/*"
+      ],
+      "@/utils/performance/*": [
+        "./src/utils/performance/*"
+      ],
+      "@/utils/error/*": [
+        "./src/utils/error/*"
+      ],
+      "@/contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@/hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@/hooks/api/*": [
+        "./src/hooks/api/*"
+      ],
+      "@/hooks/ui/*": [
+        "./src/hooks/ui/*"
+      ],
+      "@/hooks/device/*": [
+        "./src/hooks/device/*"
+      ],
+      "@/hooks/performance/*": [
+        "./src/hooks/performance/*"
+      ],
+      "@/hooks/data/*": [
+        "./src/hooks/data/*"
+      ],
+      "@/hooks/navigation/*": [
+        "./src/hooks/navigation/*"
+      ],
+      "@/hooks/gestures/*": [
+        "./src/hooks/gestures/*"
+      ],
+      "@/hooks/utils/*": [
+        "./src/hooks/utils/*"
+      ],
+      "@/constants/*": [
+        "./src/constants/*"
+      ],
+      "@/constants/api/*": [
+        "./src/constants/api/*"
+      ],
+      "@/constants/theme/*": [
+        "./src/constants/theme/*"
+      ],
+      "@/stores/*": [
+        "./src/stores/*"
+      ],
+      "@/stores/music/*": [
+        "./src/stores/music/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,82 @@
+---
+# Application deployment role
+# Handles application deployment tasks
+
+- name: Ensure application directory exists
+  file:
+    path: "{{ app_directory }}"
+    state: directory
+    owner: "{{ deployment_user }}"
+    group: "{{ deployment_user }}"
+    mode: '0755'
+
+- name: Copy Docker Compose file
+  copy:
+    src: "{{ docker_compose_file }}"
+    dest: "{{ app_directory }}/docker-compose.yml"
+    mode: '0644'
+  when: docker_compose_file is defined
+
+- name: Copy environment file
+  copy:
+    src: "{{ env_file }}"
+    dest: "{{ app_directory }}/.env"
+    mode: '0600'
+    owner: "{{ deployment_user }}"
+    group: "{{ deployment_user }}"
+  when: env_file is defined
+  no_log: true
+
+- name: Copy deployment scripts
+  copy:
+    src: "{{ item }}"
+    dest: "{{ app_directory }}/{{ item | basename }}"
+    mode: '0755'
+  loop: "{{ deployment_scripts | default([]) }}"
+  when: deployment_scripts is defined
+
+- name: Load Docker images
+  command: docker load < {{ app_directory }}/{{ item }}.tar.gz
+  become_user: "{{ deployment_user }}"
+  args:
+    chdir: "{{ app_directory }}"
+  register: docker_load_result
+  changed_when: "'Loaded image' in docker_load_result.stdout"
+  loop: "{{ docker_images | default([]) }}"
+  when: docker_images is defined
+  ignore_errors: yes
+
+- name: Deploy with Docker Compose
+  docker_compose_v2:
+    project_src: "{{ app_directory }}"
+    state: present
+    pull: "{{ docker_pull | default(false) }}"
+    recreate: "{{ docker_recreate | default('always') }}"
+  become_user: "{{ deployment_user }}"
+  register: compose_result
+
+- name: Wait for services to be healthy
+  uri:
+    url: "http://localhost:{{ backend_port | default(8000) }}/health"
+    method: GET
+    status_code: 200
+  register: health_check_result
+  until: health_check_result.status == 200
+  retries: 10
+  delay: 5
+  ignore_errors: yes
+
+- name: Verify deployment
+  block:
+    - name: Check container status
+      command: docker ps --filter "name={{ app_name }}" --format "{{.Names}} {{.Status}}"
+      register: container_status
+      changed_when: false
+      
+    - name: Display container status
+      debug:
+        msg: "{{ container_status.stdout_lines }}"
+
+
+
+

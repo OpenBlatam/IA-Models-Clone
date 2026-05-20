@@ -1,0 +1,62 @@
+version: '3.8'
+
+# Default docker-compose.yml - Use docker-compose.dev.yml for development
+# or docker-compose.prod.yml for production
+
+services:
+  music-analyzer-ai:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    container_name: music-analyzer-ai
+    ports:
+      - "8010:8010"
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - CACHE_ENABLED=true
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///./music_analyzer.db}
+    volumes:
+      - ../data:/app/data
+      - ../checkpoints:/app/checkpoints
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8010/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - music-analyzer-network
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: music-analyzer-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - music-analyzer-network
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  music-analyzer-network:
+    driver: bridge
+

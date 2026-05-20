@@ -1,0 +1,61 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./"
+
+[build.environment]
+  NODE_VERSION = "18.19.1"
+  NPM_VERSION = "10.2.4"
+  NEXT_TELEMETRY_DISABLED = "1"
+  AUTH_SECRET='32mwUMnlOtkH1H8irIqxlaL80KvgdjUlbg2IovnhL1s='
+  GOOGLE_CLIENT_ID='766657034501-2fcprad0507agtsvn5gvgvpv0ggqm80i.apps.googleusercontent.com'
+  GOOGLE_CLIENT_SECRET='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'
+  DATABASE_URL='postgresql://neondb_owner:npg_ejg2Yr1EZMOw@ep-dark-sky-a5c88yly-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require'
+  NPM_CONFIG_PRODUCTION = "false"
+  NPM_CONFIG_AUDIT = "false"
+  NPM_CONFIG_FUND = "false"
+  NPM_CONFIG_OPTIONAL = "true"
+  NEXT_PUBLIC_SITE_URL = "https://blatam-academy.netlify.app"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@prisma/client"]
+
+[build.processing.optimize]
+  bundle = true
+  minify = true
+  compress = true
+  cache = true
+
+[[build.cache]]
+  path = "node_modules"
+  ttl = 3600
+
+[[build.cache]]
+  path = ".next/cache"
+  ttl = 3600 

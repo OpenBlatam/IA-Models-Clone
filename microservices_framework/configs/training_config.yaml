@@ -1,0 +1,46 @@
+# Training Service Configuration
+
+service:
+  name: "training_service"
+  port: 8003
+  host: "0.0.0.0"
+
+training:
+  default_num_epochs: 3
+  default_batch_size: 4
+  default_learning_rate: 5e-5
+  default_weight_decay: 0.01
+  default_warmup_steps: 100
+  default_max_grad_norm: 1.0
+  default_gradient_accumulation_steps: 1
+  default_save_steps: 500
+  default_logging_steps: 10
+  default_fp16: true
+  default_bf16: false
+  dataloader_num_workers: 0
+
+lora:
+  default_enabled: false
+  default_r: 8
+  default_alpha: 16
+  default_dropout: 0.1
+  default_bias: "none"
+
+output:
+  default_output_dir: "./trained_models"
+  checkpoint_dir: "./checkpoints"
+  save_total_limit: 3
+
+experiment_tracking:
+  use_wandb: false
+  use_tensorboard: true
+  tensorboard_log_dir: "./logs/tensorboard"
+  wandb_project: null
+  wandb_entity: null
+
+logging:
+  level: "INFO"
+  format: "json"
+
+
+

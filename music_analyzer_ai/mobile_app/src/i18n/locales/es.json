@@ -1,0 +1,51 @@
+{
+  "common": {
+    "search": "Buscar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "favorites": "Favoritos",
+    "history": "Historial",
+    "recommendations": "Recomendaciones",
+    "settings": "Configuración"
+  },
+  "search": {
+    "title": "Buscar Música",
+    "placeholder": "Buscar canciones, artistas...",
+    "noResults": "No se encontraron resultados",
+    "noResultsMessage": "Intenta buscar una canción o artista diferente",
+    "recentSearches": "Búsquedas Recientes"
+  },
+  "analysis": {
+    "title": "Análisis",
+    "musicalAnalysis": "Análisis Musical",
+    "technicalFeatures": "Características Técnicas",
+    "coaching": "Coaching",
+    "keySignature": "Tonalidad",
+    "tempo": "Tempo",
+    "timeSignature": "Compás",
+    "scale": "Escala",
+    "energy": "Energía",
+    "danceability": "Bailabilidad",
+    "valence": "Valencia",
+    "acousticness": "Acústica",
+    "tips": "Consejos",
+    "step": "Paso"
+  },
+  "track": {
+    "duration": "Duración",
+    "popularity": "Popularidad",
+    "album": "Álbum",
+    "artists": "Artistas"
+  },
+  "errors": {
+    "networkError": "Error de red. Por favor verifica tu conexión.",
+    "serverError": "Error del servidor. Por favor intenta más tarde.",
+    "notFound": "Recurso no encontrado.",
+    "unknownError": "Ocurrió un error inesperado."
+  }
+}
+

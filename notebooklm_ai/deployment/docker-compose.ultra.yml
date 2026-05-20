@@ -1,0 +1,226 @@
+version: '3.8'
+
+services:
+  # Ultra Performance Boost API
+  ultra-boost-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.ultra
+    container_name: ultra-boost-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+      - ENABLE_GPU=true
+      - MAX_BATCH_SIZE=32
+      - BATCH_TIMEOUT_MS=100
+      - ENABLE_QUANTIZATION=true
+      - MODEL_CACHE_SIZE=20
+      - PREDICTION_CACHE_SIZE=100000
+    volumes:
+      - ./model_cache:/app/model_cache
+      - ./logs:/app/logs
+    depends_on:
+      - redis
+      - prometheus
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+        reservations:
+          memory: 4G
+          cpus: '2.0'
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: ultra-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+
+  # Prometheus for metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ultra-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - ultra-network
+    restart: unless-stopped
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ultra-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=ultra_boost_2024
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./config/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./config/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+  # Nginx for load balancing
+  nginx:
+    image: nginx:alpine
+    container_name: ultra-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/ssl:/etc/nginx/ssl
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    depends_on:
+      - ultra-boost-api
+
+  # ML Model Service
+  ml-model-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.ml
+    container_name: ultra-ml-service
+    ports:
+      - "8001:8001"
+    environment:
+      - MODEL_CACHE_DIR=/app/model_cache
+      - ENABLE_GPU=true
+      - MAX_MODELS=10
+      - ENABLE_QUANTIZATION=true
+    volumes:
+      - ./model_cache:/app/model_cache
+      - ./models:/app/models
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+          cpus: '8.0'
+        reservations:
+          memory: 8G
+          cpus: '4.0'
+
+  # NLP Processing Service
+  nlp-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.nlp
+    container_name: ultra-nlp-service
+    ports:
+      - "8002:8002"
+    environment:
+      - NLP_CACHE_SIZE=10000
+      - ENABLE_BATCH_PROCESSING=true
+      - MAX_BATCH_SIZE=16
+    volumes:
+      - ./nlp_cache:/app/nlp_cache
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    depends_on:
+      - redis
+
+  # Background Task Worker
+  task-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: ultra-task-worker
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - MAX_WORKERS=8
+      - TASK_TIMEOUT=300
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    depends_on:
+      - redis
+    deploy:
+      replicas: 2
+
+  # Health Check Service
+  health-check:
+    image: curlimages/curl:latest
+    container_name: ultra-health-check
+    command: >
+      sh -c "
+      while true; do
+        curl -f http://ultra-boost-api:8000/health || echo 'API health check failed'
+        curl -f http://ml-model-service:8001/health || echo 'ML service health check failed'
+        curl -f http://nlp-service:8002/health || echo 'NLP service health check failed'
+        sleep 30
+      done
+      "
+    networks:
+      - ultra-network
+    restart: unless-stopped
+    depends_on:
+      - ultra-boost-api
+      - ml-model-service
+      - nlp-service
+
+  # Log Aggregator
+  log-aggregator:
+    image: fluent/fluentd:v1.16
+    container_name: ultra-log-aggregator
+    volumes:
+      - ./config/fluentd.conf:/fluentd/etc/fluent.conf
+      - ./logs:/fluentd/log
+    networks:
+      - ultra-network
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  ultra-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16 

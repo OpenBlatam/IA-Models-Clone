@@ -1,0 +1,39 @@
+# 🚀 ENHANCED LINKEDIN OPTIMIZER v4.0 - MINIMAL DEPENDENCIES
+# =============================================================
+# Essential dependencies for the web dashboard
+
+# Web Framework & Dashboard
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+python-multipart>=0.0.6
+aiofiles>=23.1.0
+websockets>=11.0.0
+
+# Core Python packages
+python-dateutil>=2.8.2
+typing-extensions>=4.5.0
+
+# Basic AI/ML (optional - for enhanced features)
+torch>=2.0.0
+transformers>=4.30.0
+spacy>=3.6.0
+
+# Data Science (optional - for analytics)
+numpy>=1.24.0
+pandas>=2.0.0
+
+# System monitoring
+psutil>=5.9.0
+
+# HTTP & API
+requests>=2.31.0
+urllib3>=2.0.0
+
+# Configuration & Environment
+python-dotenv>=1.0.0
+click>=8.1.0
+
+# Testing (optional)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
