@@ -1,0 +1,44 @@
+---
+# Nginx installation and configuration role
+
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Remove default Nginx site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: reload nginx
+
+- name: Configure Nginx site
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/{{ project_name }}
+    owner: root
+    group: root
+    mode: '0644'
+  notify: reload nginx
+
+- name: Enable Nginx site
+  file:
+    src: /etc/nginx/sites-available/{{ project_name }}
+    dest: /etc/nginx/sites-enabled/{{ project_name }}
+    state: link
+  notify: reload nginx
+
+- name: Test Nginx configuration
+  command: nginx -t
+  register: nginx_test
+  changed_when: false
+  failed_when: nginx_test.rc != 0
+
+- name: Start and enable Nginx
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+

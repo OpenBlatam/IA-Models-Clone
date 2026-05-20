@@ -1,0 +1,106 @@
+{
+  "mcpServers": {
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR-FIRECRAWL-API-KEY"
+      }
+    },
+    "apidog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apidog/mcp-server"
+      ],
+      "env": {
+        "APIDOG_ACCESS_TOKEN": "YOUR-APIDOG-ACCESS-TOKEN",
+        "APIDOG_PROJECT_ID": "YOUR-PROJECT-ID"
+      }
+    },
+    "browserbase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@browserbase/mcp-server"
+      ],
+      "env": {
+        "BROWSERBASE_API_KEY": "YOUR-BROWSERBASE-API-KEY",
+        "BROWSERBASE_PROJECT_ID": "YOUR-PROJECT-ID"
+      }
+    },
+    "magic-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "magic-mcp-server"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "YOUR-OPENAI-API-KEY"
+      }
+    },
+    "opik": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "opik-mcp"
+      ],
+      "env": {
+        "OPIK_API_KEY": "YOUR-OPIK-API-KEY"
+      }
+    },
+    "figma-context": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@figma/mcp-server"
+      ],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "YOUR-FIGMA-ACCESS-TOKEN"
+      }
+    },
+    "duckduckgo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "duckduckgo-mcp-server"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ]
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR-GITHUB-TOKEN"
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    }
+  }
+}
+

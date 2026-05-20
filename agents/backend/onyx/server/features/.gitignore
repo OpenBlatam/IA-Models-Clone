@@ -1,0 +1,53 @@
+# Build and dependency artifacts
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+dist/
+build/
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+.env
+.env.*
+
+# Models and Checkpoints
+checkpoints/
+**/checkpoints/
+models/
+**/models/
+.cache/
+**/.cache/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.joblib
+*.h5
+*.incomplete
+
+# Large Data
+data/
+**/data/
+datasets/
+**/datasets/
+*.csv
+*.jsonl
+*.parquet
+
+# Large external submodules
+tensorflow-master/
+pytorch-main/
+
+# SQLite temp files
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Temporary conversation/session directories
+**/[0-9a-f]*-*[0-9a-f]*

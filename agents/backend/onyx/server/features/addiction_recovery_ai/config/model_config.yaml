@@ -1,0 +1,115 @@
+# Model Configuration
+# YAML configuration for models
+
+models:
+  sentiment_analyzer:
+    type: "RecoverySentimentAnalyzer"
+    model_name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
+    device: "cuda"  # or "cpu"
+    use_mixed_precision: true
+    max_length: 512
+    compile: true
+    compile_mode: "max-autotune"
+  
+  progress_predictor:
+    type: "RecoveryProgressPredictor"
+    input_features: 10
+    hidden_size: 128
+    num_layers: 3
+    dropout: 0.2
+    use_residual: true
+    activation: "gelu"
+    device: "cuda"
+    use_mixed_precision: true
+  
+  relapse_predictor:
+    type: "RelapseRiskPredictor"
+    input_size: 5
+    hidden_size: 128
+    num_layers: 2
+    dropout: 0.2
+    bidirectional: true
+    use_attention: true
+    device: "cuda"
+    use_mixed_precision: true
+  
+  llm_coach:
+    type: "LLMRecoveryCoach"
+    model_name: "gpt2"
+    device: "cuda"
+    use_gpu: true
+  
+  diffusion_visualizer:
+    type: "RecoveryProgressVisualizer"
+    model_name: "runwayml/stable-diffusion-v1-5"
+    device: "cuda"
+    use_mixed_precision: true
+    scheduler_type: "dpm"
+
+training:
+  batch_size: 32
+  num_epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 1
+  use_mixed_precision: true
+  early_stopping_patience: 10
+  monitor_metric: "loss"
+  mode: "min"
+  
+  optimizer:
+    type: "AdamW"
+    lr: 0.001
+    betas: [0.9, 0.999]
+    eps: 1e-8
+    weight_decay: 0.0001
+  
+  scheduler:
+    type: "ReduceLROnPlateau"
+    mode: "min"
+    factor: 0.5
+    patience: 5
+    verbose: true
+
+data:
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2
+  persistent_workers: true
+
+inference:
+  batch_size: 64
+  use_cache: true
+  cache_size: 1000
+  use_quantization: false
+  quantization_type: "int8"
+
+debugging:
+  detect_anomaly: false
+  check_gradients: true
+  check_outputs: true
+  profile_memory: true
+  profile_performance: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "recovery_ai.log"
+
+
+
+
+
+
+
+
+
+
+
+
+

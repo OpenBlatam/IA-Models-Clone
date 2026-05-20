@@ -1,0 +1,59 @@
+---
+# Monitoring and logging configuration role
+
+- name: Install monitoring tools
+  apt:
+    name:
+      - htop
+      - iotop
+      - net-tools
+      - jq
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Install CloudWatch agent
+  get_url:
+    url: "https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb"
+    dest: /tmp/amazon-cloudwatch-agent.deb
+    mode: '0644'
+
+- name: Install CloudWatch agent package
+  dpkg:
+    deb: /tmp/amazon-cloudwatch-agent.deb
+    state: present
+  ignore_errors: yes
+
+- name: Configure CloudWatch agent
+  template:
+    src: cloudwatch-config.json.j2
+    dest: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart cloudwatch-agent
+  when: cloudwatch_enabled | default(true)
+
+- name: Start and enable CloudWatch agent
+  systemd:
+    name: amazon-cloudwatch-agent
+    state: started
+    enabled: yes
+  when: cloudwatch_enabled | default(true)
+
+- name: Configure log rotation
+  template:
+    src: logrotate.conf.j2
+    dest: /etc/logrotate.d/{{ project_name }}
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Create monitoring scripts directory
+  file:
+    path: /opt/{{ project_name }}/scripts
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: '0755'
+

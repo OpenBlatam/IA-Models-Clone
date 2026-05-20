@@ -1,0 +1,174 @@
+{
+  "mcpServers": {
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR-FIRECRAWL-API-KEY"
+      },
+      "forProjects": [
+        "music_analyzer_ai",
+        "analizador_de_documentos",
+        "suno_clone_ai",
+        "dermatology_ai",
+        "blog_posts",
+        "facebook_posts",
+        "instagram_captions",
+        "copywriting"
+      ],
+      "useCase": "Scraping de documentación de APIs (Spotify, OpenAI, HuggingFace), contenido para entrenamiento de modelos, investigación de datasets"
+    },
+    "opik": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "opik-mcp"
+      ],
+      "env": {
+        "OPIK_API_KEY": "YOUR-OPIK-API-KEY"
+      },
+      "forProjects": [
+        "music_analyzer_ai",
+        "analizador_de_documentos",
+        "suno_clone_ai",
+        "robot_movement_ai",
+        "quality_control_ai"
+      ],
+      "useCase": "Búsqueda en tiempo real de documentación técnica: Transformers, PyTorch, TensorFlow, FastAPI, mejores prácticas de ML"
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR-GITHUB-TOKEN"
+      },
+      "forProjects": [
+        "github_autonomous_agent",
+        "github_autonomous_agent_ai",
+        "all_projects"
+      ],
+      "useCase": "Acceso a repositorios de modelos (HuggingFace, Facebook MusicGen), issues, PRs, gestión de código de modelos de IA"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ],
+      "forProjects": [
+        "all_projects"
+      ],
+      "useCase": "Navegación entre 50+ features de IA, lectura de datasets, acceso a modelos entrenados, configuración de entrenamiento"
+    },
+    "magic-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "magic-mcp-server"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "YOUR-OPENAI-API-KEY"
+      },
+      "forProjects": [
+        "blog_posts",
+        "facebook_posts",
+        "instagram_captions",
+        "copywriting",
+        "product_descriptions",
+        "email_sequence"
+      ],
+      "useCase": "Generación de contenido para features de marketing, transformación de texto, resúmenes de documentación"
+    },
+    "apidog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apidog/mcp-server"
+      ],
+      "env": {
+        "APIDOG_ACCESS_TOKEN": "YOUR-APIDOG-ACCESS-TOKEN",
+        "APIDOG_PROJECT_ID": "YOUR-PROJECT-ID"
+      },
+      "forProjects": [
+        "music_analyzer_ai",
+        "analizador_de_documentos",
+        "suno_clone_ai",
+        "all_api_projects"
+      ],
+      "useCase": "Documentación de APIs FastAPI, generación de clientes Python para integraciones, gestión de endpoints de modelos de IA"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "forProjects": [
+        "ai_video",
+        "faceless_video_ai",
+        "social_video_transcriber_ai",
+        "quality_control_ai"
+      ],
+      "useCase": "Automatización de navegador para testing de interfaces, scraping de videos, captura de contenido multimedia"
+    },
+    "browserbase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@browserbase/mcp-server"
+      ],
+      "env": {
+        "BROWSERBASE_API_KEY": "YOUR-BROWSERBASE-API-KEY",
+        "BROWSERBASE_PROJECT_ID": "YOUR-PROJECT-ID"
+      },
+      "forProjects": [
+        "ai_video",
+        "faceless_video_ai",
+        "quality_control_ai",
+        "dermatology_ai"
+      ],
+      "useCase": "Screenshots de interfaces, testing de aplicaciones web de IA, automatización de workflows de procesamiento"
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
+      "forProjects": [
+        "all_projects"
+      ],
+      "useCase": "Gestión de versiones de modelos, commits de código de entrenamiento, branches para experimentos de ML"
+    },
+    "duckduckgo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "duckduckgo-mcp-server"
+      ],
+      "forProjects": [
+        "research_paper_code_improver",
+        "ai_project_generator",
+        "all_research_projects"
+      ],
+      "useCase": "Búsqueda rápida de papers, documentación de librerías Python, soluciones a problemas de ML sin API key"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

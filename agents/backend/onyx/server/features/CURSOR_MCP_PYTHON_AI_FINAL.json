@@ -1,0 +1,105 @@
+{
+  "mcpServers": {
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR-FIRECRAWL-API-KEY"
+      }
+    },
+    "opik": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "opik-mcp"
+      ],
+      "env": {
+        "OPIK_API_KEY": "YOUR-OPIK-API-KEY"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR-GITHUB-TOKEN"
+      }
+    },
+    "apidog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apidog/mcp-server"
+      ],
+      "env": {
+        "APIDOG_ACCESS_TOKEN": "YOUR-APIDOG-ACCESS-TOKEN",
+        "APIDOG_PROJECT_ID": "YOUR-PROJECT-ID"
+      }
+    },
+    "magic-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "magic-mcp-server"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "YOUR-OPENAI-API-KEY"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ]
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ]
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "browserbase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@browserbase/mcp-server"
+      ],
+      "env": {
+        "BROWSERBASE_API_KEY": "YOUR-BROWSERBASE-API-KEY",
+        "BROWSERBASE_PROJECT_ID": "YOUR-PROJECT-ID"
+      }
+    },
+    "duckduckgo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "duckduckgo-mcp-server"
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

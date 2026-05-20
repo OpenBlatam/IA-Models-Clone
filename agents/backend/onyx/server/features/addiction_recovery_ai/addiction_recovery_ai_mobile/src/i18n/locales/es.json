@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar"
+  },
+  "auth": {
+    "welcome": "Bienvenido",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "userId": "ID de Usuario",
+    "password": "Contraseña",
+    "email": "Email",
+    "name": "Nombre",
+    "loginSubtitle": "Inicia sesión para continuar",
+    "registerSubtitle": "Regístrate para comenzar",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "loginError": "Error al iniciar sesión",
+    "registerError": "Error al registrarse"
+  },
+  "dashboard": {
+    "title": "Inicio",
+    "greeting": "Hola",
+    "daysSober": "Días Sobrio",
+    "currentStreak": "Racha Actual",
+    "progress": "Progreso",
+    "riskLevel": "Nivel de Riesgo",
+    "achievements": "Logros Recientes",
+    "reminders": "Recordatorios",
+    "low": "Bajo",
+    "moderate": "Moderado",
+    "high": "Alto",
+    "critical": "Crítico"
+  },
+  "progress": {
+    "title": "Mi Progreso",
+    "logEntry": "Registrar Entrada",
+    "cancel": "Cancelar",
+    "mood": "Estado de Ánimo",
+    "cravingsLevel": "Nivel de Ansias (0-10)",
+    "notes": "Notas (Opcional)",
+    "howDoYouFeel": "¿Cómo te sientes hoy?",
+    "stats": "Estadísticas",
+    "totalDays": "Días Totales",
+    "relapses": "Recaídas",
+    "averageCravings": "Ansias Promedio",
+    "commonTriggers": "Triggers Más Comunes"
+  },
+  "assessment": {
+    "title": "Evaluación de Adicción",
+    "subtitle": "Completa esta evaluación para obtener un plan personalizado",
+    "addictionType": "Tipo de Adicción",
+    "severity": "Severidad",
+    "frequency": "Frecuencia",
+    "durationYears": "Duración (años)",
+    "dailyCost": "Costo Diario",
+    "previousAttempts": "Intentos Previos",
+    "results": "Resultados de la Evaluación",
+    "severityScore": "Puntuación de Severidad",
+    "recommendations": "Recomendaciones",
+    "nextSteps": "Próximos Pasos",
+    "newAssessment": "Nueva Evaluación"
+  }
+}
+

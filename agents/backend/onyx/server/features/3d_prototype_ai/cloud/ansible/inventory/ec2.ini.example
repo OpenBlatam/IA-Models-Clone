@@ -1,0 +1,14 @@
+[ec2]
+# EC2 instance inventory
+# Update with your instance IP or use dynamic inventory
+
+# Example static inventory:
+# instance1 ansible_host=1.2.3.4 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/your-key.pem
+
+# For dynamic inventory, use:
+# ansible-inventory -i ec2.py --list
+
+[ec2:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+

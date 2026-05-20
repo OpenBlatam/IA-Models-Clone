@@ -1,0 +1,18 @@
+[Unit]
+Description={{ project_name }} Application
+After=network.target
+
+[Service]
+Type=simple
+User={{ app_user }}
+WorkingDirectory={{ app_dir }}
+Environment="PATH=/usr/bin:/usr/local/bin:{{ app_dir }}/venv/bin"
+ExecStart={{ app_dir }}/venv/bin/python -m uvicorn main:app --host {{ app_host }} --port {{ app_port }}
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

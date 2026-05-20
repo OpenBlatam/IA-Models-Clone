@@ -1,0 +1,156 @@
+---
+# Improved Ansible Playbook for 3D Prototype AI Deployment
+# Uses roles for better organization and reusability
+
+- name: Deploy 3D Prototype AI on EC2
+  hosts: all
+  become: yes
+  vars:
+    app_user: ubuntu
+    app_dir: /opt/3d-prototype-ai
+    app_port: 8030
+    app_host: "0.0.0.0"
+    project_name: "3d-prototype-ai"
+    use_docker: "{{ use_docker | default(true) }}"
+    cloudwatch_enabled: "{{ cloudwatch_enabled | default(true) }}"
+    
+  pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+    
+    - name: Install essential packages
+      apt:
+        name:
+          - curl
+          - wget
+          - git
+          - unzip
+          - python3
+          - python3-pip
+          - python3-venv
+          - build-essential
+          - supervisor
+          - htop
+          - net-tools
+          - jq
+        state: present
+      when: ansible_os_family == "Debian"
+    
+    - name: Create application directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: '0755'
+      loop:
+        - "{{ app_dir }}"
+        - "{{ app_dir }}/storage/prototypes"
+        - "{{ app_dir }}/storage/backups"
+        - "{{ app_dir }}/logs"
+  
+  roles:
+    - role: security
+      tags: [security, hardening]
+    
+    - role: docker
+      when: use_docker | default(true)
+      tags: [docker, infrastructure]
+    
+    - role: nginx
+      tags: [nginx, infrastructure]
+    
+    - role: monitoring
+      when: cloudwatch_enabled | default(true)
+      tags: [monitoring, observability]
+  
+  tasks:
+    - name: Copy application files
+      synchronize:
+        src: "{{ playbook_dir }}/../../"
+        dest: "{{ app_dir }}"
+        delete: yes
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=__pycache__"
+          - "--exclude=*.pyc"
+          - "--exclude=.env"
+          - "--exclude=cloud/"
+      delegate_to: localhost
+      become: no
+    
+    - name: Set ownership of application directory
+      file:
+        path: "{{ app_dir }}"
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        recurse: yes
+    
+    - name: Create Python virtual environment
+      command: python3 -m venv {{ app_dir }}/venv
+      args:
+        creates: "{{ app_dir }}/venv"
+      when: not use_docker | default(true)
+    
+    - name: Install Python dependencies
+      pip:
+        requirements: "{{ app_dir }}/requirements.txt"
+        virtualenv: "{{ app_dir }}/venv"
+      when: not use_docker | default(true)
+    
+    - name: Deploy with Docker Compose
+      block:
+        - name: Pull Docker images
+          docker_compose:
+            project_src: "{{ app_dir }}"
+            pull: yes
+          become_user: "{{ app_user }}"
+        
+        - name: Start Docker Compose services
+          docker_compose:
+            project_src: "{{ app_dir }}"
+            state: present
+          become_user: "{{ app_user }}"
+      when: use_docker | default(true)
+    
+    - name: Create systemd service
+      template:
+        src: systemd-service.j2
+        dest: /etc/systemd/system/{{ project_name }}.service
+      when: not use_docker | default(true)
+      notify: restart app
+    
+    - name: Enable and start systemd service
+      systemd:
+        name: "{{ project_name }}"
+        enabled: yes
+        state: started
+        daemon_reload: yes
+      when: not use_docker | default(true)
+    
+    - name: Wait for application to be ready
+      uri:
+        url: "http://localhost:{{ app_port }}/health"
+        status_code: 200
+      register: result
+      until: result.status == 200
+      retries: 30
+      delay: 5
+      ignore_errors: yes
+    
+    - name: Display deployment information
+      debug:
+        msg:
+          - "Application deployed successfully!"
+          - "Application URL: http://{{ ansible_default_ipv4.address }}:{{ app_port }}"
+          - "Health Check: http://{{ ansible_default_ipv4.address }}/health"
+          - "API Docs: http://{{ ansible_default_ipv4.address }}/docs"
+  
+  handlers:
+    - name: restart app
+      systemd:
+        name: "{{ project_name }}"
+        state: restarted

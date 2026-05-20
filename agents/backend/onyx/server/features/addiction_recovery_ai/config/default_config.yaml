@@ -1,0 +1,54 @@
+# Default Configuration for Addiction Recovery AI
+
+model:
+  use_gpu: true
+  device: "auto"  # auto, cuda, cpu
+  batch_size: 32
+  max_sequence_length: 30
+  input_features: 10
+  hidden_size: 128
+  dropout: 0.2
+
+training:
+  learning_rate: 0.001
+  batch_size: 32
+  num_epochs: 10
+  use_mixed_precision: true
+  gradient_accumulation: 1
+  early_stopping:
+    enabled: true
+    patience: 5
+    min_delta: 0.001
+
+optimization:
+  use_jit: true
+  use_quantization: true
+  use_compile: true
+  cache_size: 1000
+  batch_size: 32
+
+serving:
+  max_batch_size: 32
+  max_queue_size: 100
+  num_workers: 2
+  timeout: 10.0
+  enable_caching: true
+
+security:
+  rate_limit: 100
+  rate_window: 60.0
+  enable_api_keys: true
+  block_duration: 300.0
+
+monitoring:
+  enable_profiling: true
+  log_level: "INFO"
+  metrics_file: "metrics.csv"
+  health_check_interval: 60.0
+
+features:
+  sentiment_analysis: true
+  progress_prediction: true
+  relapse_risk: true
+  ai_coaching: true
+

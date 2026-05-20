@@ -1,0 +1,113 @@
+# Traefik Dynamic Configuration
+# ===============================
+
+http:
+  middlewares:
+    # Rate limiting
+    api-rate-limit:
+      rateLimit:
+        average: 100
+        period: 1s
+        burst: 50
+    
+    auth-rate-limit:
+      rateLimit:
+        average: 5
+        period: 1s
+        burst: 3
+    
+    # Security headers
+    security-headers:
+      headers:
+        customRequestHeaders:
+          X-Request-ID: "{{ uuid }}"
+        customResponseHeaders:
+          X-Frame-Options: "DENY"
+          X-Content-Type-Options: "nosniff"
+          X-XSS-Protection: "1; mode=block"
+          Strict-Transport-Security: "max-age=31536000; includeSubDomains"
+          Content-Security-Policy: "default-src 'self'"
+    
+    # CORS
+    cors:
+      headers:
+        accessControlAllowMethods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        accessControlAllowOriginList:
+          - "*"
+        accessControlAllowHeaders:
+          - Authorization
+          - Content-Type
+        accessControlMaxAge: 86400
+    
+    # Compression
+    compress:
+      compress: {}
+    
+    # Circuit breaker
+    circuit-breaker:
+      circuitBreaker:
+        expression: "NetworkErrorRatio() > 0.30"
+    
+    # Retry
+    retry:
+      retry:
+        attempts: 3
+        initialInterval: 100ms
+
+  routers:
+    api:
+      rule: "Host(`api.3dprototype.ai`)"
+      entryPoints:
+        - websecure
+      service: api-service
+      middlewares:
+        - security-headers
+        - cors
+        - compress
+        - api-rate-limit
+      tls:
+        certResolver: letsencrypt
+    
+    api-auth:
+      rule: "Host(`api.3dprototype.ai`) && PathPrefix(`/api/v1/auth/`)"
+      entryPoints:
+        - websecure
+      service: api-service
+      middlewares:
+        - security-headers
+        - cors
+        - auth-rate-limit
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    api-service:
+      loadBalancer:
+        servers:
+          - url: "http://api:8030"
+          - url: "http://api:8031"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+
+tls:
+  certificates:
+    - certFile: /etc/traefik/certs/cert.pem
+      keyFile: /etc/traefik/certs/key.pem
+  
+  options:
+    default:
+      minVersion: "VersionTLS12"
+      sslProtocols:
+        - "TLSv1.2"
+        - "TLSv1.3"
+
+
+
+
