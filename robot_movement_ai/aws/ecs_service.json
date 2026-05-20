@@ -1,0 +1,54 @@
+{
+  "serviceName": "robot-movement-ai-service",
+  "cluster": "robot-movement-ai-cluster",
+  "taskDefinition": "robot-movement-ai",
+  "desiredCount": 2,
+  "launchType": "FARGATE",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-xxxxxxxxxxxxxxxxx",
+        "subnet-yyyyyyyyyyyyyyyyy"
+      ],
+      "securityGroups": [
+        "sg-xxxxxxxxxxxxxxxxx"
+      ],
+      "assignPublicIp": "ENABLED"
+    }
+  },
+  "loadBalancers": [
+    {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:REGION:ACCOUNT_ID:targetgroup/robot-movement-ai-tg/xxxxxxxxxxxxx",
+      "containerName": "robot-movement-ai",
+      "containerPort": 8010
+    }
+  ],
+  "serviceRegistries": [],
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 100,
+    "deploymentCircuitBreaker": {
+      "enable": true,
+      "rollback": true
+    }
+  },
+  "enableExecuteCommand": true,
+  "enableLogging": true,
+  "platformVersion": "LATEST",
+  "propagateTags": "SERVICE"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
