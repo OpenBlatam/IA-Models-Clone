@@ -1,0 +1,243 @@
+# ============================================================================
+# Addiction Recovery AI - Production Dependencies
+# Optimized for FastAPI, Microservices, and Serverless Deployment
+# Latest versions as of 2025
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Core Framework
+# ----------------------------------------------------------------------------
+fastapi>=0.115.0                    # Modern FastAPI with latest features
+uvicorn[standard]>=0.32.0           # ASGI server with HTTP/2 support
+pydantic>=2.9.0                     # Data validation (v2 with performance improvements)
+pydantic-settings>=2.5.0            # Settings management
+python-multipart>=0.0.12            # File uploads support
+
+# ----------------------------------------------------------------------------
+# API & HTTP
+# ----------------------------------------------------------------------------
+httpx>=0.27.0                       # Modern async HTTP client (replaces requests)
+aiohttp>=3.11.0                     # Async HTTP client/server
+starlette>=0.41.0                   # FastAPI's underlying framework
+mangum>=0.18.0                      # AWS Lambda adapter for FastAPI
+
+# ----------------------------------------------------------------------------
+# AWS Serverless & Cloud Services
+# ----------------------------------------------------------------------------
+boto3>=1.35.0                       # AWS SDK (latest with new features)
+botocore>=1.35.0                    # AWS SDK core
+aws-xray-sdk>=2.14.0               # AWS X-Ray tracing
+aws-lambda-powertools>=3.0.0       # AWS Lambda utilities (logging, tracing, metrics)
+
+# ----------------------------------------------------------------------------
+# Observability & Monitoring
+# ----------------------------------------------------------------------------
+# OpenTelemetry (Industry Standard)
+opentelemetry-api>=1.28.0
+opentelemetry-sdk>=1.28.0
+opentelemetry-instrumentation-fastapi>=0.47b0
+opentelemetry-instrumentation-httpx>=0.47b0
+opentelemetry-instrumentation-boto3>=0.47b0
+opentelemetry-exporter-otlp-proto-grpc>=1.28.0
+opentelemetry-propagators-aws>=1.2.0
+
+# Prometheus Metrics
+prometheus-client>=0.21.0           # Prometheus metrics exporter
+
+# Structured Logging
+structlog>=24.4.0                   # Structured logging (better than loguru)
+python-json-logger>=3.2.0          # JSON log formatter
+
+# ----------------------------------------------------------------------------
+# Security & Authentication
+# ----------------------------------------------------------------------------
+# OAuth2 & JWT
+python-jose[cryptography]>=3.3.0   # JWT and JWE support
+PyJWT>=2.9.0                        # JWT encoding/decoding
+cryptography>=43.0.0                # Cryptographic primitives (latest)
+passlib[bcrypt]>=1.7.4              # Password hashing
+bcrypt>=4.2.0                       # Bcrypt algorithm
+
+# Security Headers & Validation
+secure>=0.4.0                       # Security headers middleware
+email-validator>=2.2.0              # Email validation
+
+# ----------------------------------------------------------------------------
+# Database & ORM
+# ----------------------------------------------------------------------------
+sqlalchemy>=2.0.36                  # Modern SQLAlchemy 2.0 (async support)
+alembic>=1.14.0                     # Database migrations
+asyncpg>=0.30.0                     # Async PostgreSQL driver (fastest)
+psycopg2-binary>=2.9.10             # PostgreSQL adapter (sync)
+aiosqlite>=0.20.0                   # Async SQLite driver
+
+# ----------------------------------------------------------------------------
+# Caching & Message Queues
+# ----------------------------------------------------------------------------
+redis>=5.2.0                        # Redis client (latest with async support)
+hiredis>=2.4.0                      # Fast Redis parser (C extension)
+redis[hiredis]>=5.2.0               # Redis with hiredis support
+
+# Celery for Background Tasks (Alternative to SQS)
+celery>=5.4.0                       # Distributed task queue
+celery[redis]>=5.4.0                # Redis broker for Celery
+kombu>=5.4.0                        # Messaging library for Celery
+
+# ----------------------------------------------------------------------------
+# AI & Machine Learning - Deep Learning Core
+# ----------------------------------------------------------------------------
+# PyTorch - Deep Learning Framework
+torch>=2.5.0                        # PyTorch (latest with torch.compile support)
+torchvision>=0.20.0                 # Computer vision utilities
+torchaudio>=2.5.0                   # Audio processing utilities
+
+# Transformers - Pre-trained Models & LLMs
+transformers>=4.45.0                # HuggingFace Transformers (latest)
+tokenizers>=0.20.0                  # Fast tokenizers
+accelerate>=1.1.0                   # Multi-GPU and mixed precision training
+sentencepiece>=0.2.0                # SentencePiece tokenizer
+peft>=0.10.0                        # Parameter-Efficient Fine-Tuning (LoRA, P-tuning)
+
+# Diffusion Models - Image Generation
+diffusers>=0.30.0                   # HuggingFace Diffusers (Stable Diffusion, etc.)
+safetensors>=0.4.5                  # Safe tensor serialization
+xformers>=0.0.28                    # Memory-efficient attention (optional, for speed)
+
+# Gradio - Interactive Interfaces
+gradio>=5.0.0                       # Modern Gradio for interactive demos
+gradio-client>=1.0.0                # Gradio client library
+
+# Experiment Tracking & Visualization
+tensorboard>=2.18.0                 # TensorBoard for experiment tracking
+wandb>=0.18.0                       # Weights & Biases (alternative to TensorBoard)
+tqdm>=4.67.0                        # Progress bars
+
+# Model Optimization & Quantization
+onnx>=1.17.0                        # ONNX model format
+onnxruntime>=1.20.0                 # ONNX runtime
+optimum>=1.20.0                     # HuggingFace optimization toolkit
+
+# Model Interpretability
+shap>=0.46.0                        # SHAP values for model explanations
+lime>=0.2.0.1                       # LIME explanations
+
+# Hyperparameter Optimization
+optuna>=4.0.0                       # Hyperparameter optimization framework
+
+# OpenAI & LLM APIs
+openai>=1.54.0                      # OpenAI API client (latest)
+langchain>=0.3.0                    # LLM framework
+langchain-openai>=0.2.0             # LangChain OpenAI integration
+tiktoken>=0.9.0                     # Fast BPE tokenizer for OpenAI
+
+# Data Processing
+numpy>=2.1.0                        # Numerical computing (latest)
+pandas>=2.2.3                       # Data analysis (latest with performance improvements)
+scipy>=1.14.0                       # Scientific computing
+scikit-learn>=1.5.0                 # Machine learning utilities (for cross-validation)
+
+# Configuration Management
+pyyaml>=6.0.2                       # YAML configuration files
+
+# ----------------------------------------------------------------------------
+# Data Validation & Serialization
+# ----------------------------------------------------------------------------
+orjson>=3.10.0                      # Fast JSON library (C extension, 2-3x faster)
+msgpack>=1.1.0                      # Binary serialization (faster than JSON)
+
+# ----------------------------------------------------------------------------
+# Date & Time
+# ----------------------------------------------------------------------------
+python-dateutil>=2.9.0             # Date utilities
+pytz>=2024.2                        # Timezone support
+pendulum>=3.1.0                     # Better datetime library (modern alternative)
+
+# ----------------------------------------------------------------------------
+# Utilities
+# ----------------------------------------------------------------------------
+python-dotenv>=1.0.1                # Environment variables
+click>=8.1.7                        # CLI framework
+rich>=13.9.0                        # Rich terminal output (better than print)
+typer>=0.15.0                       # Modern CLI with type hints (FastAPI for CLIs)
+
+# ----------------------------------------------------------------------------
+# Performance & Optimization
+# ----------------------------------------------------------------------------
+uvloop>=0.20.0                      # Ultra-fast event loop (Linux/macOS only)
+
+# ----------------------------------------------------------------------------
+# Testing
+# ----------------------------------------------------------------------------
+pytest>=8.3.0                       # Testing framework (latest)
+pytest-asyncio>=0.24.0              # Async test support
+pytest-cov>=6.0.0                   # Coverage reporting
+pytest-mock>=3.14.0                 # Mocking utilities
+pytest-xdist>=3.6.0                 # Parallel test execution
+faker>=33.0.0                       # Fake data generation
+
+# ----------------------------------------------------------------------------
+# Development Tools
+# ----------------------------------------------------------------------------
+black>=24.10.0                      # Code formatter (latest)
+ruff>=0.8.0                         # Fast linter (replaces flake8, isort, etc.)
+mypy>=1.13.0                        # Type checking
+pre-commit>=3.9.0                   # Git hooks
+ipython>=8.29.0                     # Enhanced Python shell
+
+# ----------------------------------------------------------------------------
+# Documentation
+# ----------------------------------------------------------------------------
+mkdocs>=1.6.0                       # Documentation generator
+mkdocs-material>=9.6.0              # Material theme for MkDocs
+
+# ----------------------------------------------------------------------------
+# Visualization (Optional)
+# ----------------------------------------------------------------------------
+matplotlib>=3.9.0                   # Plotting library
+seaborn>=0.13.2                     # Statistical visualization
+
+# ----------------------------------------------------------------------------
+# Report Generation (Optional)
+# ----------------------------------------------------------------------------
+reportlab>=4.2.0                    # PDF generation
+jinja2>=3.1.4                       # Template engine
+weasyprint>=62.0                    # HTML to PDF (modern alternative)
+
+# ----------------------------------------------------------------------------
+# Optional: Advanced Features
+# ----------------------------------------------------------------------------
+# GraphQL Support
+strawberry-graphql>=0.220.0         # Modern GraphQL library (type-safe)
+
+# WebSocket Support (already in FastAPI, but enhanced)
+websockets>=14.0                    # WebSocket library
+
+# Rate Limiting
+slowapi>=0.1.9                      # Rate limiting for FastAPI
+limits>=3.13.0                      # Rate limiting library
+
+# Background Jobs
+apscheduler>=3.11.0                 # Advanced Python Scheduler
+
+# Health Checks
+healthcheck>=1.3.3                  # Health check utilities
+psutil>=5.9.0                        # System and process utilities
+
+# Additional Best Practices
+tenacity>=9.0.0                     # Retry library with exponential backoff
+cachetools>=5.5.0                   # Extensible memoizing collections
+python-rapidjson>=1.15              # Fast JSON library (alternative to orjson)
+
+# ----------------------------------------------------------------------------
+# Production Dependencies (Optional)
+# ----------------------------------------------------------------------------
+# Gunicorn (for non-serverless deployments)
+gunicorn>=23.0.0                    # WSGI HTTP Server
+gevent>=24.11.0                     # Coroutine-based networking library
+
+# ----------------------------------------------------------------------------
+# Security Scanning (Development)
+# ----------------------------------------------------------------------------
+# safety>=3.3.0                     # Check for known security vulnerabilities
+# bandit>=1.7.8                     # Security linter
+# semgrep>=1.45.0                   # Static analysis for security
