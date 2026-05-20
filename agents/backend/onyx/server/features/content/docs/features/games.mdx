@@ -1,0 +1,383 @@
+---
+title: Game System
+description: Learn how to implement a Duolingo-like game system in your application.
+---
+
+# Game System Implementation
+
+This guide will help you implement a gamified learning system similar to Duolingo, including progress tracking, achievements, and interactive exercises.
+
+## Core Features
+
+### 1. User Progress Tracking
+
+```typescript
+interface UserProgress {
+  userId: string;
+  level: number;
+  experience: number;
+  streak: number;
+  lastActive: Date;
+  completedLessons: string[];
+  achievements: Achievement[];
+}
+```
+
+### 2. Lesson Structure
+
+```typescript
+interface Lesson {
+  id: string;
+  title: string;
+  description: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  exercises: Exercise[];
+  requiredLevel: number;
+  experienceReward: number;
+}
+```
+
+### 3. Exercise Types
+
+```typescript
+interface Exercise {
+  id: string;
+  type: 'multiple-choice' | 'translation' | 'listening' | 'speaking';
+  question: string;
+  correctAnswer: string;
+  options?: string[];
+  audioUrl?: string;
+  points: number;
+}
+```
+
+## Implementation Steps
+
+### 1. Database Schema
+
+```prisma
+model UserProgress {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  level           Int      @default(1)
+  experience      Int      @default(0)
+  streak          Int      @default(0)
+  lastActive      DateTime @default(now())
+  completedLessons String[]
+  achievements    Achievement[]
+  user            User     @relation(fields: [userId], references: [id])
+}
+
+model Lesson {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  difficulty      String
+  exercises       Exercise[]
+  requiredLevel   Int
+  experienceReward Int
+}
+
+model Exercise {
+  id              String   @id @default(cuid())
+  type            String
+  question        String
+  correctAnswer   String
+  options         String[]
+  audioUrl        String?
+  points          Int
+  lesson          Lesson   @relation(fields: [lessonId], references: [id])
+  lessonId        String
+}
+
+model Achievement {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  icon            String
+  userProgress    UserProgress @relation(fields: [userProgressId], references: [id])
+  userProgressId  String
+}
+```
+
+### 2. Progress Tracking
+
+```typescript
+// lib/game/progress.ts
+export async function updateUserProgress(
+  userId: string,
+  completedExercise: Exercise
+) {
+  const userProgress = await prisma.userProgress.findUnique({
+    where: { userId },
+  });
+
+  if (!userProgress) {
+    throw new Error("User progress not found");
+  }
+
+  // Update experience
+  const newExperience = userProgress.experience + completedExercise.points;
+  
+  // Check for level up
+  const newLevel = calculateLevel(newExperience);
+  
+  // Update streak
+  const newStreak = updateStreak(userProgress.lastActive);
+
+  return prisma.userProgress.update({
+    where: { userId },
+    data: {
+      experience: newExperience,
+      level: newLevel,
+      streak: newStreak,
+      lastActive: new Date(),
+    },
+  });
+}
+```
+
+### 3. Exercise Validation
+
+```typescript
+// lib/game/exercise.ts
+export async function validateExercise(
+  exerciseId: string,
+  userAnswer: string
+): Promise<{
+  correct: boolean;
+  points: number;
+  feedback: string;
+}> {
+  const exercise = await prisma.exercise.findUnique({
+    where: { id: exerciseId },
+  });
+
+  if (!exercise) {
+    throw new Error("Exercise not found");
+  }
+
+  const isCorrect = exercise.correctAnswer.toLowerCase() === userAnswer.toLowerCase();
+  
+  return {
+    correct: isCorrect,
+    points: isCorrect ? exercise.points : 0,
+    feedback: isCorrect ? "Correct!" : `Incorrect. The correct answer was: ${exercise.correctAnswer}`,
+  };
+}
+```
+
+### 4. Achievement System
+
+```typescript
+// lib/game/achievements.ts
+export async function checkAchievements(userId: string) {
+  const userProgress = await prisma.userProgress.findUnique({
+    where: { userId },
+    include: { achievements: true },
+  });
+
+  if (!userProgress) {
+    throw new Error("User progress not found");
+  }
+
+  const newAchievements = [];
+
+  // Check for level achievements
+  if (userProgress.level >= 5 && !hasAchievement(userProgress, "level_5")) {
+    newAchievements.push(createAchievement("level_5", "Reached Level 5"));
+  }
+
+  // Check for streak achievements
+  if (userProgress.streak >= 7 && !hasAchievement(userProgress, "week_streak")) {
+    newAchievements.push(createAchievement("week_streak", "7 Day Streak"));
+  }
+
+  // Add new achievements
+  if (newAchievements.length > 0) {
+    await prisma.userProgress.update({
+      where: { userId },
+      data: {
+        achievements: {
+          create: newAchievements,
+        },
+      },
+    });
+  }
+
+  return newAchievements;
+}
+```
+
+## UI Components
+
+### 1. Progress Bar
+
+```tsx
+// components/game/progress-bar.tsx
+export function ProgressBar({ 
+  currentExperience, 
+  nextLevelExperience 
+}: ProgressBarProps) {
+  const progress = (currentExperience / nextLevelExperience) * 100;
+
+  return (
+    <div className="w-full h-4 bg-gray-200 rounded-full">
+      <div 
+        className="h-full bg-green-500 rounded-full transition-all duration-300"
+        style={{ width: `${progress}%` }}
+      />
+    </div>
+  );
+}
+```
+
+### 2. Exercise Card
+
+```tsx
+// components/game/exercise-card.tsx
+export function ExerciseCard({ exercise }: ExerciseCardProps) {
+  const [userAnswer, setUserAnswer] = useState("");
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
+
+  const handleSubmit = async () => {
+    const result = await validateExercise(exercise.id, userAnswer);
+    setFeedback(result);
+    
+    if (result.correct) {
+      await updateUserProgress(exercise.points);
+    }
+  };
+
+  return (
+    <div className="p-6 bg-white rounded-lg shadow-md">
+      <h3 className="text-xl font-bold mb-4">{exercise.question}</h3>
+      
+      {exercise.type === "multiple-choice" && (
+        <div className="space-y-2">
+          {exercise.options?.map((option) => (
+            <button
+              key={option}
+              onClick={() => setUserAnswer(option)}
+              className="w-full p-3 text-left border rounded-md hover:bg-gray-50"
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {exercise.type === "translation" && (
+        <input
+          type="text"
+          value={userAnswer}
+          onChange={(e) => setUserAnswer(e.target.value)}
+          className="w-full p-3 border rounded-md"
+          placeholder="Type your answer..."
+        />
+      )}
+
+      {feedback && (
+        <div className={`mt-4 p-3 rounded-md ${
+          feedback.correct ? "bg-green-100" : "bg-red-100"
+        }`}>
+          {feedback.feedback}
+        </div>
+      )}
+
+      <button
+        onClick={handleSubmit}
+        className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+      >
+        Check Answer
+      </button>
+    </div>
+  );
+}
+```
+
+## Best Practices
+
+1. **Performance Optimization**
+   - Cache user progress and achievements
+   - Use optimistic updates for better UX
+   - Implement proper error handling
+
+2. **Security**
+   - Validate all user inputs
+   - Implement rate limiting for exercise submissions
+   - Secure achievement unlocking logic
+
+3. **User Experience**
+   - Provide immediate feedback
+   - Show progress animations
+   - Implement sound effects for correct/incorrect answers
+   - Add celebration animations for achievements
+
+4. **Accessibility**
+   - Ensure keyboard navigation
+   - Provide alternative text for images
+   - Support screen readers
+   - Include proper ARIA labels
+
+## Example Usage
+
+```tsx
+// app/learn/[lessonId]/page.tsx
+export default function LessonPage({ params }: { params: { lessonId: string } }) {
+  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [currentExercise, setCurrentExercise] = useState(0);
+
+  useEffect(() => {
+    // Load lesson exercises
+    loadExercises(params.lessonId);
+  }, [params.lessonId]);
+
+  const handleExerciseComplete = async (result: ExerciseResult) => {
+    // Update progress
+    await updateUserProgress(result);
+    
+    // Check achievements
+    const newAchievements = await checkAchievements();
+    
+    // Show celebration if needed
+    if (newAchievements.length > 0) {
+      showAchievementCelebration(newAchievements);
+    }
+    
+    // Move to next exercise
+    if (currentExercise < exercises.length - 1) {
+      setCurrentExercise(prev => prev + 1);
+    } else {
+      // Complete lesson
+      await completeLesson(params.lessonId);
+    }
+  };
+
+  return (
+    <div className="container mx-auto py-8">
+      <ProgressBar />
+      
+      <div className="mt-8">
+        <ExerciseCard
+          exercise={exercises[currentExercise]}
+          onComplete={handleExerciseComplete}
+        />
+      </div>
+      
+      <AchievementList />
+    </div>
+  );
+}
+```
+
+## Next Steps
+
+1. Implement more exercise types
+2. Add social features (leaderboards, friends)
+3. Create a reward system
+4. Add daily challenges
+5. Implement a review system
+6. Add offline support
+
+Would you like me to explain any part in more detail or help you implement a specific feature? 

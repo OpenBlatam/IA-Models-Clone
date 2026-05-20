@@ -1,0 +1,46 @@
+# Prometheus Configuration
+# ========================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'cursor-agent-24-7'
+    environment: 'production'
+
+scrape_configs:
+  # API Metrics
+  - job_name: 'cursor-agent-api'
+    static_configs:
+      - targets: ['api:8024']
+        labels:
+          service: 'api'
+          component: 'fastapi'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Celery Worker Metrics (si está habilitado)
+  - job_name: 'cursor-agent-worker'
+    static_configs:
+      - targets: ['worker:5555']  # Flower metrics
+        labels:
+          service: 'worker'
+          component: 'celery'
+    scrape_interval: 15s
+
+  # Redis Metrics (requiere redis_exporter)
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+        labels:
+          service: 'redis'
+    scrape_interval: 15s
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+
+
+

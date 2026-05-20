@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cursor-agent-beat
+  namespace: cursor-agent
+  labels:
+    app: cursor-agent-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cursor-agent-beat
+  template:
+    metadata:
+      labels:
+        app: cursor-agent-beat
+    spec:
+      containers:
+      - name: beat
+        image: cursor-agent-24-7:latest
+        imagePullPolicy: Always
+        command:
+        - celery
+        - -A
+        - core.celery_worker.celery_app
+        - beat
+        - --loglevel=info
+        envFrom:
+        - configMapRef:
+            name: cursor-agent-config
+        - secretRef:
+            name: cursor-agent-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+
+
+

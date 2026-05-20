@@ -1,0 +1,62 @@
+# ============================================================================
+# Dermatology AI - GPU-Enabled Dependencies
+# For systems with CUDA/GPU support
+# Includes all from requirements.txt plus GPU-optimized packages
+# ============================================================================
+
+# Include base requirements
+-r requirements.txt
+
+# ============================================================================
+# GPU-Accelerated Libraries
+# ============================================================================
+
+# PyTorch with CUDA
+torch>=2.5.0+cu121                    # PyTorch with CUDA 12.1
+torchvision>=0.20.0+cu121             # Torchvision with CUDA
+torchaudio>=2.5.0+cu121                # Torchaudio with CUDA
+
+# ONNX Runtime with GPU
+onnxruntime-gpu>=1.19.0                # ONNX Runtime with GPU support
+
+# CUDA Toolkit (if needed)
+# cudatoolkit>=12.1.0                  # Uncomment if needed
+
+# cuDNN (usually comes with PyTorch)
+# cudnn>=8.9.0                         # Uncomment if needed separately
+
+# ============================================================================
+# GPU-Accelerated Computer Vision
+# ============================================================================
+opencv-contrib-python>=4.10.0         # OpenCV with GPU support
+cupy-cuda12x>=13.0.0                   # NumPy-like library for GPU (CUDA 12.x)
+# cupy-cuda11x>=13.0.0                 # For CUDA 11.x (uncomment if needed)
+
+# ============================================================================
+# GPU-Accelerated ML Libraries
+# ============================================================================
+# RAPIDS (Optional - for large-scale data processing)
+# cudf>=24.04.0                        # GPU DataFrame library
+# cuml>=24.04.0                        # GPU ML algorithms
+
+# ============================================================================
+# Installation Notes:
+# ============================================================================
+# 1. Install CUDA toolkit first:
+#    - Download from: https://developer.nvidia.com/cuda-downloads
+#    - Verify: nvidia-smi
+#
+# 2. Install PyTorch with CUDA:
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#
+# 3. Verify GPU:
+#    python -c "import torch; print(torch.cuda.is_available())"
+#
+# 4. For Docker:
+#    Use nvidia/cuda base images:
+#    FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+#
+# ============================================================================
+
+
+

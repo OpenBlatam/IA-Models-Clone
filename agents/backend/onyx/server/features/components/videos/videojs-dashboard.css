@@ -1,0 +1,39 @@
+.dashboard-videojs-player {
+  border-radius: 0.75rem !important; /* rounded-xl */
+  background: #18181b !important; /* bg-zinc-900 */
+}
+
+.video-js {
+  font-size: 1rem;
+  color: #fff;
+  background: #18181b !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 2px 16px 0 #0002;
+}
+
+.vjs-control-bar {
+  background: linear-gradient(to top, #18181b 90%, transparent 100%) !important;
+  border-radius: 0 0 0.75rem 0.75rem !important;
+}
+
+.vjs-big-play-button {
+  border-radius: 9999px !important;
+  background: #18181b !important;
+  border: 2px solid #2563eb !important; /* blue-600 */
+  color: #fff !important;
+  font-size: 2rem !important;
+  width: 4rem !important;
+  height: 4rem !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.vjs-slider {
+  background: #27272a !important; /* bg-zinc-800 */
+}
+
+.vjs-play-progress,
+.vjs-volume-level {
+  background: #2563eb !important; /* blue-600 */
+} 

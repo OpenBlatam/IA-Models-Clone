@@ -1,0 +1,82 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back"
+  },
+  "posts": {
+    "title": "Posts",
+    "create": "Create Post",
+    "edit": "Edit Post",
+    "content": "Content",
+    "platforms": "Platforms",
+    "schedule": "Schedule",
+    "tags": "Tags",
+    "publish": "Publish",
+    "publishNow": "Publish Now",
+    "cancel": "Cancel Post",
+    "scheduled": "Scheduled",
+    "published": "Published",
+    "cancelled": "Cancelled",
+    "noPosts": "No posts found",
+    "createFirst": "Create your first post to get started"
+  },
+  "templates": {
+    "title": "Templates",
+    "create": "Create Template",
+    "name": "Template Name",
+    "content": "Content",
+    "variables": "Variables",
+    "category": "Category",
+    "noTemplates": "No templates found",
+    "createFirst": "Create your first template to reuse content"
+  },
+  "memes": {
+    "title": "Memes",
+    "upload": "Upload Meme",
+    "caption": "Caption",
+    "category": "Category",
+    "noMemes": "No memes found"
+  },
+  "platforms": {
+    "title": "Platforms",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "connected": "Connected",
+    "notConnected": "Not Connected"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "totalPosts": "Total Posts",
+    "totalEngagement": "Total Engagement",
+    "avgEngagementRate": "Avg Engagement Rate",
+    "bestPerforming": "Best Performing Posts"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "upcomingPosts": "Upcoming Posts",
+    "engagement": "Engagement"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "noEvents": "No events scheduled for this day"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error. Please check your connection",
+    "unauthorized": "Unauthorized. Please login again",
+    "notFound": "Resource not found",
+    "validation": "Please check your input"
+  }
+}
+
+

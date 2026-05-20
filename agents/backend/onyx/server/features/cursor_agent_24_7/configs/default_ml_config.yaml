@@ -1,0 +1,47 @@
+# Default ML Configuration
+# ========================
+
+# Model Configuration
+model:
+  name: "gpt2"
+  type: "causal"  # causal, seq2seq
+  max_length: 512
+
+# Training Configuration
+training:
+  learning_rate: 5e-5
+  weight_decay: 0.01
+  num_epochs: 3
+  batch_size: 8
+  warmup_steps: 100
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  use_mixed_precision: true
+
+# Data Configuration
+data:
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  num_workers: 0
+
+# Device Configuration
+device:
+  type: "auto"  # auto, cpu, cuda
+  use_cuda: true
+
+# Output Configuration
+output:
+  dir: "./checkpoints"
+  save_steps: 500
+  eval_steps: 500
+  logging_steps: 100
+
+# Experiment Tracking
+tracking:
+  use_wandb: false
+  wandb_project: null
+  wandb_run_name: null
+
+
+

@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "id": "1",
+      "name": "Alice",
+      "city": "New York",
+      "age": 30
+    },
+    {
+      "id": "2",
+      "name": "Bob",
+      "city": "Los Angeles",
+      "age": 25
+    },
+    {
+      "id": "3",
+      "name": "Charlie",
+      "city": "New York",
+      "age": 35
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+# ============================================================================
+# Git Ignore - Dermatology AI
+# ============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Requirements backups
+.requirements-backup/
+requirements-frozen.*.txt
+
+# Dependency analysis
+dependency-analysis.json
+dependency-visualization.json
+dependency-visualization.png
+REQUIREMENTS_REPORT.md
+
+# Security reports
+bandit-report.json
+safety-report.json
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# ML Models
+models/*.pth
+models/*.pt
+models/*.onnx
+models/*.h5
+*.ckpt
+checkpoints/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Docker
+.dockerignore
+
+# Lock files (optional - uncomment if you want to track them)
+# requirements-lock.txt
+
+
+

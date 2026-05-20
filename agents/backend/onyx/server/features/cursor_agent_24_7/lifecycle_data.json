@@ -1,0 +1,10 @@
+{
+  "records": [
+    {
+      "id": "1",
+      "name": "Test User",
+      "status": "active",
+      "last_login": "2024-01-01"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cursor-agent-worker
+  namespace: cursor-agent
+  labels:
+    app: cursor-agent-worker
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: cursor-agent-worker
+  template:
+    metadata:
+      labels:
+        app: cursor-agent-worker
+    spec:
+      containers:
+      - name: worker
+        image: cursor-agent-24-7:latest
+        imagePullPolicy: Always
+        command:
+        - celery
+        - -A
+        - core.celery_worker.celery_app
+        - worker
+        - --loglevel=info
+        - --concurrency=4
+        - --queues=default,tasks,heavy,notifications
+        envFrom:
+        - configMapRef:
+            name: cursor-agent-config
+        - secretRef:
+            name: cursor-agent-secrets
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "2000m"
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+        - name: logs
+          mountPath: /app/logs
+      volumes:
+      - name: data
+        emptyDir: {}
+      - name: logs
+        emptyDir: {}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cursor-agent-worker-hpa
+  namespace: cursor-agent
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cursor-agent-worker
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+
+
+

@@ -1,0 +1,153 @@
+---
+title: Instalación de Herramientas
+description: Guía de instalación de las herramientas necesarias para el curso de Marketing con IA.
+date: 2024-03-20
+---
+
+<Steps>
+
+### Crear el Proyecto
+
+Comienza creando un nuevo proyecto Next.js usando `create-next-app`:
+
+```bash
+npx create-next-app marketing-ai-project --example "https://github.com/mickasmt/next-saas-stripe-starter"
+```
+
+O despliega directamente con Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmickasmt%2Fnext-saas-stripe-starter)
+
+<Callout type="warning" twClass="mt-4">
+  La forma más rápida de crear tu repositorio, pero el despliegue fallará porque
+  necesitas agregar tus variables de entorno localmente en tu proyecto. Sigue la
+  documentación para eso.
+</Callout>
+
+### Instalar Dependencias
+
+Entra en la carpeta e instala las dependencias del proyecto:
+
+```bash
+cd marketing-ai-project
+pnpm install
+```
+
+### Crear archivo `.env`
+
+Copia/pega el contenido de `.env.example` en el archivo `.env`:
+
+```md title=".env"
+# Configuración de la Aplicación
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# Autenticación
+AUTH_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GITHUB_OAUTH_TOKEN=
+
+# Base de Datos
+DATABASE_URL=
+
+# Email
+RESEND_API_KEY=
+EMAIL_FROM=
+
+# Stripe
+STRIPE_API_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+# Planes de Stripe
+NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID=
+NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID=
+NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID=
+NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID=
+
+# APIs de IA para Marketing
+OPENAI_API_KEY=
+GOOGLE_ANALYTICS_ID=
+FACEBOOK_PIXEL_ID=
+```
+
+### Configuración de Herramientas de IA
+
+#### 1. OpenAI API
+1. Regístrate en [OpenAI](https://platform.openai.com)
+2. Crea una nueva API key
+3. Agrega la key a tu archivo `.env`
+
+#### 2. Google Analytics
+1. Crea una cuenta en [Google Analytics](https://analytics.google.com)
+2. Configura una nueva propiedad
+3. Obtén tu ID de seguimiento
+4. Agrega el ID a tu archivo `.env`
+
+#### 3. Facebook Pixel
+1. Crea una cuenta en [Facebook Business](https://business.facebook.com)
+2. Configura un nuevo Pixel
+3. Obtén tu ID de Pixel
+4. Agrega el ID a tu archivo `.env`
+
+### Instalación de Dependencias Adicionales
+
+Instala las bibliotecas necesarias para el análisis de marketing:
+
+```bash
+pnpm add @marketing-ai/sdk @analytics/google @analytics/facebook-pixel
+```
+
+### Configuración de la Base de Datos
+
+1. Crea una cuenta en [PlanetScale](https://planetscale.com) o [Supabase](https://supabase.com)
+2. Crea una nueva base de datos
+3. Obtén la URL de conexión
+4. Agrega la URL a tu archivo `.env`
+
+### Configuración de Email
+
+1. Regístrate en [Resend](https://resend.com)
+2. Crea una nueva API key
+3. Configura tu dominio de email
+4. Agrega la key y el email a tu archivo `.env`
+
+### Configuración de Stripe
+
+1. Crea una cuenta en [Stripe](https://stripe.com)
+2. Obtén tus API keys
+3. Configura los planes de suscripción:
+   - Pro Mensual: $1,500 MXN
+   - Pro Anual: $14,400 MXN
+   - Business Mensual: $3,000 MXN
+   - Business Anual: $28,800 MXN
+4. Agrega los IDs de los planes a tu archivo `.env`
+
+### Verificación de la Instalación
+
+Ejecuta el siguiente comando para verificar que todo esté configurado correctamente:
+
+```bash
+pnpm run dev
+```
+
+<Callout type="info" twClass="mt-4">
+  Asegúrate de que todas las variables de entorno estén configuradas antes de
+  iniciar el servidor de desarrollo. La aplicación verificará la presencia de
+  todas las variables necesarias al iniciar.
+</Callout>
+
+### Próximos Pasos
+
+Una vez que hayas completado la instalación:
+
+1. Verifica que puedes iniciar sesión
+2. Prueba la creación de una campaña de marketing
+3. Verifica la integración con las APIs de IA
+4. Comprueba que los análisis se están registrando correctamente
+
+<Callout type="warning" twClass="mt-4">
+  Recuerda que estás en un entorno de desarrollo. Las APIs de IA y los servicios
+  de análisis pueden tener costos asociados en producción.
+</Callout>
+
+</Steps> 

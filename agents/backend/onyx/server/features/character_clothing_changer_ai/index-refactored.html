@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Clothing Changer AI - Avanzado</title>
+    
+    <!-- CSS Modules - Refactored Structure -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/components.css">
+    <link rel="stylesheet" href="static/css/themes.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>👔 Character Clothing Changer AI</h1>
+            <p>Cambia la ropa de tus personajes con IA usando Flux2</p>
+        </header>
+
+        <main class="content">
+            <div class="status-bar">
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Verificando conexión...</span>
+                </div>
+                <button class="toggle-advanced" id="toggleAdvancedBtn">Opciones Avanzadas</button>
+            </div>
+
+            <form id="clothingForm">
+                <section class="form-section">
+                    <h2>📸 Imagen del Personaje</h2>
+                    <div class="form-group">
+                        <div class="file-upload">
+                            <input type="file" id="imageInput" accept="image/*" required>
+                            <label for="imageInput" class="file-upload-label" id="fileLabel">
+                                <div class="file-upload-icon">📁</div>
+                                <div>Haz clic o arrastra una imagen aquí</div>
+                                <div style="font-size: 12px; margin-top: 5px; color: #666;">PNG, JPG, JPEG</div>
+                            </label>
+                        </div>
+                        <img id="preview" class="preview-image" style="display: none;" alt="Preview">
+                        <div id="imageAnalysis" class="image-analysis" style="display: none;"></div>
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <h2>👗 Descripción de la Ropa</h2>
+                    <div class="form-group">
+                        <label for="clothingDescription">Describe la nueva ropa que quieres:</label>
+                        <textarea id="clothingDescription"
+                            placeholder="Ej: a red elegant dress, a blue casual t-shirt, a black leather jacket"
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="characterName">Nombre del Personaje (opcional):</label>
+                        <input type="text" id="characterName" placeholder="Ej: MyCharacter">
+                    </div>
+                </section>
+
+                <section class="advanced-options" id="advancedOptions">
+                    <h3>⚙️ Opciones Avanzadas</h3>
+                    <div class="grid">
+                        <div class="form-group">
+                            <label for="prompt">Prompt Completo (opcional):</label>
+                            <textarea id="prompt" placeholder="Prompt personalizado"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="negativePrompt">Prompt Negativo (opcional):</label>
+                            <textarea id="negativePrompt" placeholder="Ej: blurry, low quality"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="numSteps">Pasos de Inferencia:</label>
+                            <input type="number" id="numSteps" min="1" max="100" value="50">
+                        </div>
+                        <div class="form-group">
+                            <label for="guidanceScale">Guidance Scale:</label>
+                            <input type="number" id="guidanceScale" min="1" max="20" step="0.1" value="7.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="strength">Fuerza de Inpainting:</label>
+                            <input type="number" id="strength" min="0" max="1" step="0.1" value="0.8">
+                        </div>
+                        <div class="form-group">
+                            <label for="saveTensor">Guardar Tensor:</label>
+                            <select id="saveTensor">
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <button type="submit" class="btn" id="submitBtn">🚀 Cambiar Ropa</button>
+            </form>
+
+            <nav class="tabs" role="tablist">
+                <button class="tab active" data-tab="result" role="tab">✨ Resultado</button>
+                <button class="tab" data-tab="comparison" role="tab">🔄 Comparación</button>
+                <button class="tab" data-tab="gallery" role="tab">🖼️ Galería</button>
+                <button class="tab" data-tab="history" role="tab">📜 Historial</button>
+                <button class="tab" data-tab="stats" role="tab">📊 Estadísticas</button>
+            </nav>
+
+            <div class="results" id="results">
+                <section id="resultTab" class="tab-content active" role="tabpanel">
+                    <h2>✨ Resultado</h2>
+                    <div id="resultContent"></div>
+                </section>
+                <section id="comparisonTab" class="tab-content" role="tabpanel">
+                    <h2>🔄 Comparación Antes/Después</h2>
+                    <div id="comparisonContent" class="comparison-container"></div>
+                </section>
+                <section id="galleryTab" class="tab-content" role="tabpanel">
+                    <h2>🖼️ Galería de Resultados</h2>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="gallerySearch"
+                            placeholder="Buscar en galería... (Ctrl+K)" aria-label="Buscar en galería">
+                        <span class="search-icon" aria-hidden="true">🔍</span>
+                    </div>
+                    <div class="sort-controls">
+                        <button class="sort-btn active" data-sort="desc">📅 Más recientes</button>
+                        <button class="sort-btn" data-sort="asc">📅 Más antiguos</button>
+                    </div>
+                    <div id="galleryContent" class="gallery"></div>
+                </section>
+                <section id="historyTab" class="tab-content" role="tabpanel">
+                    <h2>📜 Historial de Procesamientos</h2>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="historySearch"
+                            placeholder="Buscar en historial... (Ctrl+K)" aria-label="Buscar en historial">
+                        <span class="search-icon" aria-hidden="true">🔍</span>
+                    </div>
+                    <div id="historyContent" class="history-panel"></div>
+                </section>
+                <section id="statsTab" class="tab-content" role="tabpanel">
+                    <h2>📊 Estadísticas</h2>
+                    <div id="statsContent"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <aside class="theme-selector" aria-label="Selector de tema">
+        <button class="theme-btn" id="themeBtn" aria-label="Cambiar tema">🎨</button>
+        <div class="theme-menu" id="themeMenu" role="menu">
+            <div class="theme-option" data-theme="default" role="menuitem">🌙 Claro</div>
+            <div class="theme-option" data-theme="dark" role="menuitem">🌚 Oscuro</div>
+            <div class="theme-option" data-theme="purple" role="menuitem">💜 Púrpura</div>
+            <div class="theme-option" data-theme="blue" role="menuitem">💙 Azul</div>
+        </div>
+    </aside>
+
+    <!-- Module Loader V2 - Load first -->
+    <script src="static/js/core/module-loader-v2.js"></script>
+
+    <!-- Core Modules -->
+    <script src="static/js/core/config.js"></script>
+    <script src="static/js/core/storage.js"></script>
+    <script src="static/js/core/logger.js"></script>
+    <script src="static/js/core/event-bus.js"></script>
+    <script src="static/js/core/state-manager.js"></script>
+    <script src="static/js/core/error-handler.js"></script>
+    <script src="static/js/core/hot-reload.js"></script>
+    <script src="static/js/core/plugin-system.js"></script>
+
+    <!-- Utils Modules -->
+    <script src="static/js/utils/cache.js"></script>
+    <script src="static/js/utils/api.js"></script>
+    <script src="static/js/utils/utils.js"></script>
+    <script src="static/js/utils/form-data-builder.js"></script>
+    <script src="static/js/utils/debounce.js"></script>
+    <script src="static/js/utils/validator.js"></script>
+    <script src="static/js/utils/constants.js"></script>
+    <script src="static/js/utils/performance-optimizer.js"></script>
+
+    <!-- UI Modules -->
+    <script src="static/js/ui/ui.js"></script>
+    <script src="static/js/ui/image-analyzer.js"></script>
+    <script src="static/js/ui/progress.js"></script>
+    <script src="static/js/ui/comparison.js"></script>
+    <script src="static/js/ui/gallery.js"></script>
+    <script src="static/js/ui/history.js"></script>
+    <script src="static/js/ui/form.js"></script>
+
+    <!-- Features Modules -->
+    <script src="static/js/features/notifications.js"></script>
+    <script src="static/js/features/favorites.js"></script>
+    <script src="static/js/features/filters.js"></script>
+    <script src="static/js/features/shortcuts.js"></script>
+    <script src="static/js/features/stats.js"></script>
+    <script src="static/js/features/advanced-analytics.js"></script>
+
+    <!-- Renderers Modules -->
+    <script src="static/js/renderers/item-renderer.js"></script>
+    <script src="static/js/renderers/modal-viewer.js"></script>
+    <script src="static/js/renderers/image-stats-calculator.js"></script>
+    <script src="static/js/renderers/file-downloader.js"></script>
+    <script src="static/js/renderers/config-exporter.js"></script>
+    <script src="static/js/renderers/search-filter.js"></script>
+    <script src="static/js/renderers/stats-calculator.js"></script>
+
+    <!-- Main Application -->
+    <script src="static/js/app.js"></script>
+</body>
+
+</html>
+

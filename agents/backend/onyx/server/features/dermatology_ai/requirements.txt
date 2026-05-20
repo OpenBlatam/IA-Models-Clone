@@ -1,0 +1,378 @@
+# ============================================================================
+# Dermatology AI - Production Dependencies
+# Optimized for FastAPI, Microservices & Serverless
+# Version: 2.2 (Final Enhanced Version)
+# 
+# Quick Start:
+#   Production:    pip install -r requirements.txt
+#   Optimized:     pip install -r requirements-optimized.txt  (Recommended)
+#   Development:   pip install -r requirements-dev.txt
+#   Minimal:       pip install -r requirements-minimal.txt
+#   GPU Support:   pip install -r requirements-gpu.txt
+#   Docker:        pip install -r requirements-docker.txt
+#
+# Using Makefile (Recommended):
+#   make install       # Production
+#   make install-opt   # Optimized
+#   make install-dev   # Development
+#   make check         # Security check
+#   make test          # Run tests
+#
+# Documentation:
+#   - DEPENDENCIES_GUIDE.md - Detailed guide
+#   - DEPENDENCY_MANAGEMENT.md - Complete management
+#   - QUICK_START_DEPS.md - Quick start
+#   - DEPENDENCIES_SUMMARY.md - Summary
+#
+# Tools Available:
+#   - Makefile: 30+ convenient commands
+#   - Scripts: 7 automation scripts
+#   - Pre-commit: Automatic validation
+#   - Dependabot: Automatic updates
+# ============================================================================
+
+# ============================================================================
+# Core FastAPI Stack (Latest Stable)
+# ============================================================================
+fastapi>=0.115.0                      # Modern async web framework
+uvicorn[standard]>=0.32.0             # ASGI server with standard extras
+starlette>=0.41.0                     # FastAPI base framework
+pydantic>=2.9.0                       # Data validation (v2 with performance improvements)
+pydantic-settings>=2.5.0              # Settings management with Pydantic
+python-multipart>=0.0.12              # Form data parsing & file uploads
+
+# ============================================================================
+# Authentication & Security (Enterprise-Grade)
+# ============================================================================
+python-jose[cryptography]>=3.3.0      # JWT/OAuth2 tokens (cryptography backend)
+passlib[bcrypt]>=1.7.4                # Password hashing with bcrypt
+cryptography>=43.0.0                  # Cryptographic primitives
+slowapi>=0.1.9                        # Rate limiting (Redis-backed)
+itsdangerous>=2.2.0                   # Secure token generation
+
+# ============================================================================
+# Database & ORM (Multi-Database Support)
+# ============================================================================
+# SQLAlchemy & Migrations
+sqlalchemy>=2.0.36                    # Modern ORM (v2.0+ with async support)
+alembic>=1.14.0                       # Database migrations
+sqlalchemy-utils>=0.41.2              # SQLAlchemy utilities
+
+# PostgreSQL
+asyncpg>=0.30.0                       # Async PostgreSQL driver (fastest)
+psycopg2-binary>=2.9.10               # PostgreSQL adapter (sync fallback)
+
+# SQLite
+aiosqlite>=0.20.0                     # Async SQLite driver
+
+# NoSQL Databases
+motor>=3.6.0                          # Async MongoDB driver
+pymongo>=4.10.0                       # MongoDB driver
+boto3>=1.35.0                         # AWS SDK (DynamoDB, S3, etc.)
+azure-cosmos>=4.5.1                   # Azure Cosmos DB
+
+# ============================================================================
+# Caching & State Management
+# ============================================================================
+redis[hiredis]>=5.2.0                 # Redis client with hiredis (fast C parser)
+hiredis>=2.3.2                        # Fast Redis protocol parser
+aiocache>=0.12.2                      # Async caching framework
+cachetools>=5.4.0                     # In-memory caching utilities
+
+# ============================================================================
+# Message Brokers (Event-Driven Architecture)
+# ============================================================================
+# RabbitMQ
+aio-pika>=9.4.0                       # Async RabbitMQ client
+pika>=1.3.3                           # RabbitMQ client (sync fallback)
+
+# Kafka
+aiokafka>=0.11.0                      # Async Kafka client
+kafka-python>=2.0.2                  # Kafka client (sync fallback)
+
+# Celery (Distributed Task Queue)
+celery[redis]>=5.4.0                  # Celery with Redis broker
+flower>=2.0.1                         # Celery monitoring tool
+
+# ============================================================================
+# HTTP Clients & API Communication
+# ============================================================================
+httpx>=0.27.2                         # Modern async HTTP client (better than aiohttp)
+aiohttp>=3.11.0                       # Async HTTP client/server
+requests>=2.32.0                      # Sync HTTP client (fallback)
+httpcore>=1.0.7                       # Low-level HTTP implementation
+
+# ============================================================================
+# Observability & Monitoring (Production Essential)
+# ============================================================================
+# Prometheus Metrics
+prometheus-client>=0.21.0             # Prometheus metrics exporter
+
+# OpenTelemetry (Distributed Tracing)
+opentelemetry-api>=1.27.0             # OpenTelemetry API
+opentelemetry-sdk>=1.27.0             # OpenTelemetry SDK
+opentelemetry-instrumentation-fastapi>=0.47b0    # FastAPI auto-instrumentation
+opentelemetry-instrumentation-httpx>=0.47b0       # HTTPX instrumentation
+opentelemetry-instrumentation-sqlalchemy>=0.47b0  # SQLAlchemy instrumentation
+opentelemetry-instrumentation-redis>=0.47b0       # Redis instrumentation
+opentelemetry-exporter-otlp>=1.27.0   # OTLP exporter (Jaeger, Tempo, etc.)
+opentelemetry-exporter-prometheus>=1.27.0         # Prometheus exporter
+
+# Structured Logging
+structlog>=24.4.0                     # Structured logging (better than standard logging)
+python-json-logger>=3.2.1            # JSON formatter for logging
+colorlog>=6.9.0                       # Colored console logging (dev)
+
+# ============================================================================
+# Performance & Optimization
+# ============================================================================
+uvloop>=0.20.0                        # Ultra-fast event loop (Linux/macOS)
+orjson>=3.10.10                       # Fastest JSON library (Rust-based)
+ujson>=5.10.0                         # Fast JSON parser (C-based)
+msgpack>=1.1.0                        # Binary serialization (faster than JSON)
+psutil>=6.1.0                         # System and process utilities
+py-spy>=0.3.14                        # Sampling profiler (production-safe)
+
+# ============================================================================
+# Image Processing & Computer Vision
+# ============================================================================
+Pillow>=11.0.0                        # Image processing (PIL fork)
+numpy>=2.1.0                          # Numerical computing
+opencv-python>=4.10.0                 # Computer vision library
+scipy>=1.14.0                         # Scientific computing
+scikit-image>=0.24.0                  # Image processing algorithms
+
+# ============================================================================
+# Deep Learning & ML (Production-Ready)
+# ============================================================================
+# PyTorch Ecosystem
+torch>=2.5.0                          # PyTorch deep learning framework
+torchvision>=0.20.0                  # Computer vision models and datasets
+torchaudio>=2.5.0                     # Audio processing (if needed)
+torchmetrics>=1.4.0                   # Metrics for PyTorch models
+pytorch-lightning>=2.3.0              # High-level PyTorch wrapper (optional)
+
+# Transformers & LLMs
+transformers>=4.45.0                  # Hugging Face transformers library
+tokenizers>=0.19.0                    # Fast tokenizers
+accelerate>=1.1.0                     # Multi-GPU and mixed precision training
+peft>=0.12.0                          # Parameter-Efficient Fine-Tuning (LoRA, etc.)
+bitsandbytes>=0.44.0                  # 8-bit optimizers and quantization
+
+# Diffusion Models
+diffusers>=0.30.0                     # Hugging Face diffusers library
+safetensors>=0.4.5                   # Safe tensor serialization
+
+# Vision & Computer Vision
+timm>=1.1.0                           # PyTorch Image Models (pre-trained models)
+albumentations>=1.4.0                 # Advanced image augmentations
+segmentation-models-pytorch>=0.3.0    # Segmentation models
+
+# Gradio Integration
+gradio>=5.0.0                         # Interactive ML demos and UIs
+
+# Experiment Tracking & Monitoring
+wandb>=0.17.0                         # Weights & Biases experiment tracking
+tensorboard>=2.18.0                   # TensorBoard logging
+mlflow>=2.14.0                        # MLflow experiment tracking (optional)
+
+# Model Optimization
+onnx>=1.16.0                          # ONNX model format
+onnxruntime>=1.19.0                   # ONNX runtime for inference
+onnxruntime-gpu>=1.19.0               # ONNX runtime with GPU support (optional)
+
+# Traditional ML
+scikit-learn>=1.5.2                  # Machine learning utilities
+
+# Data Processing for ML
+datasets>=3.0.0                       # Hugging Face datasets library
+
+# ============================================================================
+# Data Processing & Export
+# ============================================================================
+pandas>=2.2.3                         # Data analysis and manipulation
+openpyxl>=3.1.5                       # Excel file support
+xlsxwriter>=3.2.0                     # Excel writing
+reportlab>=4.2.5                      # PDF generation
+weasyprint>=62.3                      # HTML to PDF (better than reportlab)
+jinja2>=3.1.4                         # Template engine
+
+# ============================================================================
+# Validation & Serialization
+# ============================================================================
+email-validator>=2.2.0                # Email validation
+phonenumbers>=8.13.0                  # Phone number validation
+python-dateutil>=2.9.0                # Date/time utilities
+pytz>=2024.2                          # Timezone support
+
+# ============================================================================
+# Testing (Production Quality)
+# ============================================================================
+pytest>=8.3.3                         # Testing framework
+pytest-asyncio>=0.24.0                # Async test support
+pytest-cov>=6.0.0                     # Coverage reporting
+pytest-mock>=3.14.0                   # Mocking utilities
+pytest-timeout>=2.3.1                 # Test timeout
+faker>=33.1.0                         # Fake data generation
+freezegun>=1.5.0                      # Time mocking
+
+# ============================================================================
+# Development & Code Quality
+# ============================================================================
+black>=24.10.0                        # Code formatter
+ruff>=0.7.0                           # Fast linter (replaces flake8, isort, etc.)
+mypy>=1.11.0                          # Static type checker
+pre-commit>=4.0.0                     # Git hooks framework
+ipython>=8.29.0                       # Enhanced Python shell
+
+# ============================================================================
+# Configuration & Environment
+# ============================================================================
+python-dotenv>=1.0.1                  # Environment variable management
+dynaconf>=3.3.0                       # Advanced configuration management
+pyyaml>=6.0.2                         # YAML parsing (required for config module)
+toml>=0.10.2                          # TOML parsing
+
+# ============================================================================
+# Serverless & Cloud Deployment
+# ============================================================================
+mangum>=0.18.1                        # ASGI adapter for AWS Lambda
+aws-lambda-powertools>=2.40.0          # AWS Lambda best practices
+azure-functions>=1.18.0               # Azure Functions support (optional)
+
+# ============================================================================
+# Service Mesh & API Gateway
+# ============================================================================
+# Note: Service mesh integration typically handled at infrastructure level
+# These are for programmatic access if needed
+kubernetes>=29.0.0                    # Kubernetes client (if needed)
+
+# ============================================================================
+# Visualization (Optional)
+# ============================================================================
+matplotlib>=3.9.2                     # Plotting library
+seaborn>=0.13.2                       # Statistical visualization
+plotly>=5.24.0                        # Interactive visualizations
+
+# ============================================================================
+# Search & Analytics
+# ============================================================================
+elasticsearch>=8.15.0                 # Elasticsearch client (read-heavy workloads)
+elasticsearch-dsl>=8.15.0             # Elasticsearch DSL
+
+# ============================================================================
+# Utilities
+# ============================================================================
+tenacity>=9.0.0                       # Retry library (better than custom)
+backoff>=2.2.1                        # Exponential backoff decorator
+python-slugify>=8.0.4                # URL-friendly strings
+validators>=0.34.0                    # Common validators
+python-magic>=0.4.27                  # File type detection
+chardet>=5.2.0                        # Character encoding detection
+
+# ============================================================================
+# Health Checks & Readiness
+# ============================================================================
+healthcheck>=1.3.3                    # Health check utilities
+django-health-check>=3.19.0            # Comprehensive health checks (can be used standalone)
+
+# ============================================================================
+# Optional: GraphQL Support
+# ============================================================================
+# strawberry-graphql[fastapi]>=0.215.0  # GraphQL support (uncomment if needed)
+
+# ============================================================================
+# Optional: gRPC Support
+# ============================================================================
+# grpcio>=1.62.0                        # gRPC server (uncomment if needed)
+# grpcio-tools>=1.62.0                  # Protocol buffer compiler (uncomment if needed)
+# grpcio-reflection>=1.62.0             # gRPC reflection (uncomment if needed)
+
+# ============================================================================
+# Production Notes & Best Practices
+# ============================================================================
+# 1. Version Management:
+#    - All versions are minimum versions (>=) for flexibility
+#    - Use `pip-compile` or `poetry` for exact version pinning in production
+#    - Consider using `pip-tools` to generate requirements-lock.txt
+#    - Use `make compile` or `.pip-requirements-update.sh compile`
+#
+# 2. Installation Options:
+#    - Production:        pip install -r requirements.txt
+#    - Optimized:         pip install -r requirements-optimized.txt (~500 MB)
+#    - Development:       pip install -r requirements-dev.txt
+#    - Minimal:           pip install -r requirements-minimal.txt (~50 MB)
+#    - GPU Support:       pip install -r requirements-gpu.txt
+#    - Docker:            pip install -r requirements-docker.txt
+#    - Or use Makefile:   make install / make install-opt / etc.
+#
+# 3. Serverless Deployment:
+#    - Use `mangum` adapter for AWS Lambda
+#    - Optimize with multi-stage Docker builds for containers
+#    - Consider using Lambda Layers for large dependencies
+#    - Use requirements-optimized.txt for smaller package size
+#
+# 4. Performance:
+#    - Use `uvloop` on Linux/macOS for better async performance
+#    - Use `orjson` for fastest JSON serialization
+#    - Enable Redis caching for production
+#    - Use ONNX Runtime for optimized ML inference
+#
+# 5. Security:
+#    - Regularly update: make outdated or pip list --outdated
+#    - Check vulnerabilities: make check or safety check
+#    - Use `safety` or `pip-audit` to check for vulnerabilities
+#    - Pin critical security packages to specific versions
+#    - Review security advisories regularly
+#
+# 6. Monitoring:
+#    - Enable OpenTelemetry for distributed tracing
+#    - Use Prometheus metrics for monitoring
+#    - Set up structured logging with structlog
+#    - Monitor dependency updates with Dependabot/Renovate
+#
+# 7. Database:
+#    - Use asyncpg for PostgreSQL (fastest)
+#    - Use connection pooling for production
+#    - Consider read replicas for read-heavy workloads
+#    - Use Redis for caching frequently accessed data
+#
+# 8. ML/AI:
+#    - Use ONNX for optimized inference (smaller, faster)
+#    - Consider quantization for smaller models
+#    - Use GPU runtime for production inference (requirements-gpu.txt)
+#    - Use requirements-optimized.txt if only inference needed
+#
+# 9. Docker:
+#    - Use requirements-docker.txt for containerized deployments
+#    - Use multi-stage builds to reduce image size
+#    - Use opencv-python-headless (no GUI dependencies)
+#    - See Dockerfile examples in DEPENDENCIES_GUIDE.md
+#
+# 10. Development:
+#     - Use `make` commands for common tasks (see Makefile)
+#     - Use pre-commit hooks: make pre-commit
+#     - Run tests: make test or make test-cov
+#     - Format code: make format
+#     - Type check: make type-check
+#
+# ============================================================================
+# Quick Reference Commands
+# ============================================================================
+# Using Makefile (recommended):
+#   make install          # Install production deps
+#   make install-opt      # Install optimized deps
+#   make check            # Check vulnerabilities
+#   make test             # Run tests
+#   make format           # Format code
+#
+# Using scripts:
+#   ./.pip-requirements-update.sh install
+#   ./.pip-requirements-update.sh check
+#
+# Direct pip:
+#   pip install -r requirements.txt
+#   pip install -r requirements-optimized.txt
+#
+# See DEPENDENCIES_GUIDE.md for comprehensive documentation
+# ============================================================================

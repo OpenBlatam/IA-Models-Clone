@@ -1,0 +1,34 @@
+{
+  "mcpServers": {
+    "blatam-code-improvement": {
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_code_improvement.server"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/agents/backend/onyx/server/features"
+      }
+    },
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR-API-KEY"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
