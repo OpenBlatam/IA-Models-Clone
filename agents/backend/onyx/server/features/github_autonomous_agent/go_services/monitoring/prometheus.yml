@@ -1,0 +1,28 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'go-services'
+    static_configs:
+      - targets: ['localhost:8080']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+
+  - job_name: 'go-services-health'
+    static_configs:
+      - targets: ['localhost:8080']
+    metrics_path: '/health'
+    scrape_interval: 30s
+
+
+
+
+
+
+
+
+
+
+
+

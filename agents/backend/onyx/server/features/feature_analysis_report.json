@@ -1,0 +1,1875 @@
+[
+  {
+    "name": "3d_prototype_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\3d_prototype_ai",
+    "title": "3D Prototype Ai",
+    "has_readme": true,
+    "readme_content": "# \ud83c\udfc6 3D Prototype AI \u2014 Complete Enterprise System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83c\udf89 World-Class Enterprise System\n\nComplete 3D prototype generation system with **8",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "3D Prototype AI - Main Entry Point\n===================================\n\nPunto de entrada principal para el generador de prototipos 3D.\n\nUso:\n    python main.py"
+  },
+  {
+    "name": "Frontier-Model-run",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\Frontier-Model-run",
+    "title": "Frontier-Model-Run",
+    "has_readme": true,
+    "readme_content": "# Frontier Model Training - Enhanced Documentation\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-production--ready-success.svg)\n![Version](https://img.shields.io/badge/version-4",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "Frontier-Model-run-copy",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\Frontier-Model-run-copy",
+    "title": "Frontier-Model-Run-Copy",
+    "has_readme": true,
+    "readme_content": "# Feature Backups & Clones\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-backup-yellow.svg)\n![Type](https://img.shields.io/badge/type-system--copy-blue.svg)\n\n**Reserved director",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "Frontier-Model-run-polyglot",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\Frontier-Model-run-polyglot",
+    "title": "Frontier-Model-Run-Polyglot",
+    "has_readme": true,
+    "readme_content": "# Frontier Model Training - Polyglot Edition\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-production--ready-success.svg)\n![Version](https://img.shields.io/badge/version-4.1.0-b",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "TruthGPT-chatGPT-main (1)",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\TruthGPT-chatGPT-main (1)",
+    "title": "Truthgpt-Chatgpt-Main (1)",
+    "has_readme": true,
+    "readme_content": "# External Reference Repositories\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-external--reference-blue.svg)\n![Type](https://img.shields.io/badge/type-third--party--integrated-",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "addiction_recovery_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\addiction_recovery_ai",
+    "title": "Addiction Recovery Ai",
+    "has_readme": true,
+    "readme_content": "# Addiction Recovery AI \u2014 v3.4.0\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Complete AI System for Addiction Recovery\n\nA complete, modular, ultra-fast, production-ready sy",
+    "tech_stack": [
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Servidor principal para Addiction Recovery AI\nRefactored to use modular app factory pattern"
+  },
+  {
+    "name": "addition_removal_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\addition_removal_ai",
+    "title": "Addition Removal Ai",
+    "has_readme": true,
+    "readme_content": "# Addition Removal AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Description\n\nIntelligent AI system specialized in managing content, data, or element additions and removal",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Addition Removal AI - Main Entry Point\n=======================================\n\nPunto de entrada principal para el sistema de IA de adiciones y eliminaciones."
+  },
+  {
+    "name": "additional_content",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\additional_content",
+    "title": "Additional Content",
+    "has_readme": true,
+    "readme_content": "# Additional Content Service\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Type](https://img.shields.io/badge/module-content--management-orange.svg)\n![Vers",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "ads",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ads",
+    "title": "Ads",
+    "has_readme": true,
+    "readme_content": "# AI-Powered Ad Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAn advanced system for generating advertisements using diffusion models and trans",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "\ud83d\ude80 ADS System - Main Entry Point\n\nMain entry point for the refactored advertising system that demonstrates\nthe consolidated architecture and Clean Architecture principles."
+  },
+  {
+    "name": "advanced_ai_models",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\advanced_ai_models",
+    "title": "Advanced Ai Models",
+    "has_readme": true,
+    "readme_content": "# Advanced AI Models\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.5-blue.svg)\n![Python](https://img.shield",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Advanced AI Models Module - Deep Learning, Transformers, Diffusion Models & LLMs\n=================================================================================\n\nOptimized with latest PyTorch, Transformers, Diffusers, and Gradio libraries.\n\nFeatures:\n- Advanced transformer models with custom attention mechanisms\n- Stable Diffusion pipelines for image generation\n- Large Language Models (LLMs) with LoRA fine-tuning\n- Vision transformers for image classification\n- Distributed training capabilities\n- Model optimization and inference engines\n- Gradio interfaces for easy interaction"
+  },
+  {
+    "name": "agent_q",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\agent_q",
+    "title": "Agent Q",
+    "has_readme": true,
+    "readme_content": "# Agent Q\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nQ-Learning based autonomous agent system.\n\n## \ud83d\ude80 Features\n\n- **Q-Learning Implementation**: Core agent log",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "agents",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\agents",
+    "title": "Agents",
+    "has_readme": true,
+    "readme_content": "# Agents Directory\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-core-blue.svg)\n![Type](https://img.shields.io/badge/Layer-Business%20Logic-green.svg)\n\n**The central hub for all",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Agents package."
+  },
+  {
+    "name": "ai_detector_multimodal",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_detector_multimodal",
+    "title": "Ai Detector Multimodal",
+    "has_readme": true,
+    "readme_content": "# AI Detector Multimodal\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI-generated content detector with multimodal forensic analysis.\n\n## Features\n\n- \u2705 AI-generated text detecti",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "AI Detector Multimodal - Detector de contenido generado por IA\n================================================================\n\nDetecta cualquier input o output creado por IA con an\u00e1lisis forense.\nSistema avanzado de detecci\u00f3n multimodal que analiza texto, im\u00e1genes y audio."
+  },
+  {
+    "name": "ai_document_classifier",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_document_classifier",
+    "title": "Ai Document Classifier",
+    "has_readme": true,
+    "readme_content": "# AI Document Classifier\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)\n![License](https://img.",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Main FastAPI Application for AI Document Classifier\n==================================================\n\nThis is the main entry point for the AI Document Classifier service."
+  },
+  {
+    "name": "ai_document_processor",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_document_processor",
+    "title": "Ai Document Processor",
+    "has_readme": true,
+    "readme_content": "# Advanced AI Document Processor\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAn advanced document processing system with AI/ML capabilities, OCR, content analysis, and batch pro",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Advanced AI Document Processor Application"
+  },
+  {
+    "name": "ai_history_comparison",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_history_comparison",
+    "title": "Ai History Comparison",
+    "has_readme": true,
+    "readme_content": "# AI History Analyzer and Model Comparison System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Advanced AI History Analysis System\n\nThis module provides a comprehensive syst",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "AI History Comparison System - Main Application\n\nThis is the main application entry point for the AI History Comparison system.\nIt sets up the FastAPI application, middleware, and routes."
+  },
+  {
+    "name": "ai_integration_system",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_integration_system",
+    "title": "Ai Integration System",
+    "has_readme": true,
+    "readme_content": "# AI Integration System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nA comprehensive system for integrating AI-generated content directly with CMS, CRM, and marketing platforms i",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "AI Integration System - Main Application Entry Point\nFastAPI application with all endpoints and middleware configured"
+  },
+  {
+    "name": "ai_job_replacement_helper",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_job_replacement_helper",
+    "title": "Ai Job Replacement Helper",
+    "has_readme": true,
+    "readme_content": "# \ud83c\udfaf AI Job Replacement Helper\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nIntelligent system that helps people when AI displaces their job. Includes gamification, personalized g",
+    "tech_stack": [
+      "Python",
+      "Docker",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "AI Job Replacement Helper - Main Entry Point\n=============================================\n\nPunto de entrada principal para el sistema de ayuda cuando una IA te quita tu trabajo."
+  },
+  {
+    "name": "ai_project_generator",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_project_generator",
+    "title": "Ai Project Generator",
+    "has_readme": true,
+    "readme_content": "# AI Project Generator \ud83d\ude80\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAutomatic AI project generator that creates complete backend and frontend structures based on user descripti",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "AI Project Generator - Main Entry Point\n========================================\n\nPunto de entrada principal para el generador autom\u00e1tico de proyectos de IA.\n\nUso f\u00e1cil:\n    python main.py\n\nO con configuraci\u00f3n personalizada, edita este archivo."
+  },
+  {
+    "name": "ai_trading_platform",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_trading_platform",
+    "title": "Ai Trading Platform",
+    "has_readme": true,
+    "readme_content": "# AI Trading Platform\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nFrontend interface for the AI Trading Platform.\n\n## \ud83d\ude80 Features\n\n- **Trading Dashboard**: Visu",
+    "tech_stack": [
+      "Node.js"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "ai_tutor_educacional_openrouter",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_tutor_educacional_openrouter",
+    "title": "Ai Tutor Educacional Openrouter",
+    "has_readme": true,
+    "readme_content": "# AI Educational Tutor with Open Router\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nIntelligent educational tutor system using Open Router to provide personalized educational as",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for AI Tutor Educacional."
+  },
+  {
+    "name": "ai_video",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ai_video",
+    "title": "Ai Video",
+    "has_readme": true,
+    "readme_content": "# AI Video Processing System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nComplete AI video processing system, including advanced optimizations, multi-GPU suppo",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils",
+      "os_content"
+    ],
+    "description": "AI Video - Sistema de generaci\u00f3n y procesamiento de video con IA\n================================================================\n\nSistema completo para generaci\u00f3n, procesamiento y an\u00e1lisis de videos usando IA."
+  },
+  {
+    "name": "analizador_de_documentos",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\analizador_de_documentos",
+    "title": "Analizador De Documentos",
+    "has_readme": true,
+    "readme_content": "# Intelligent Document Analyzer\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAdvanced document analysis system with fine-tuning capabilities and adaptive learning. Provides compr",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Aplicaci\u00f3n Principal - Analizador de Documentos Inteligente\n============================================================\n\nServidor FastAPI para el sistema de an\u00e1lisis de documentos."
+  },
+  {
+    "name": "artist_manager_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\artist_manager_ai",
+    "title": "Artist Manager Ai",
+    "has_readme": true,
+    "readme_content": "# Artist Manager AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI system for comprehensive artist management that helps fulfill routines, calendars, protocols, and provides war",
+    "tech_stack": [
+      "Docker",
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Artist Manager AI\n=================\n\nSistema de IA para gesti\u00f3n de artistas que ayuda a cumplir:\n- Rutinas diarias\n- Calendarios de eventos\n- Protocolos de comportamiento\n- Recomendaciones de vestimenta\n- Recordatorios y notificaciones"
+  },
+  {
+    "name": "audio_timeline_completion_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\audio_timeline_completion_ai",
+    "title": "Audio Timeline Completion Ai",
+    "has_readme": true,
+    "readme_content": "# Audio Timeline Completion AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for completing audio timelines.\n\n## \ud83d\ude80 Features\n\n- **Audio Completion**: Au",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "autonomous_long_term_agent",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\autonomous_long_term_agent",
+    "title": "Autonomous Long Term Agent",
+    "has_readme": true,
+    "readme_content": "# Autonomous Long-Term Agent\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAutonomous agent that runs continuously until explicitly stopped. Implements research concepts on long-t",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Autonomous Long-Term Agent - Main Application"
+  },
+  {
+    "name": "blatam_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\blatam_ai",
+    "title": "Blatam Ai",
+    "has_readme": true,
+    "readme_content": "# Blatam AI Engine\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nBlatam Academy's core AI engine with full support for transformers, LLMs, fine-tuning, and multi",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "\ud83c\udfd7\ufe0f BLATAM AI - OPTIMIZED MODULAR ARCHITECTURE v6.0.0\n====================================================\n\nSistema AI modular ultra-optimizado para producci\u00f3n:\n- \ud83c\udfd7\ufe0f Arquitectura modular limpia y eficiente\n- \ud83d\udd27 Separaci\u00f3n clara de responsabilidades  \n- \ud83c\udfaf Interfaces bien definidas y tipadas\n- \ud83c\udfed Factory patterns optimizados\n- \u2699\ufe0f Configuraci\u00f3n centralizada y validada\n- \ud83d\udcca Dependency injection mejorado\n- \ud83d\ude80 Performance optimizations\n- \ud83e\uddf9 C\u00f3digo limpio y mantenible"
+  },
+  {
+    "name": "blaze_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\blaze_ai",
+    "title": "Blaze Ai",
+    "has_readme": true,
+    "readme_content": "# \ud83d\ude80 Blaze AI - Advanced Modular System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n**Blaze AI v7.2.0** is a completely modular and optimized artificial intelligence system, desi",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Enhanced Blaze AI - Enterprise-Grade AI System\nRefactored for better maintainability and organization\n\nThis module provides a production-ready AI platform with advanced features\nincluding security, monitoring, rate limiting, and error handling."
+  },
+  {
+    "name": "blog_posts",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\blog_posts",
+    "title": "Blog Posts",
+    "has_readme": true,
+    "readme_content": "# Blog Posts Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAdvanced blog post generation system powered by multiple AI models, featuring quantu",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Main FastAPI application with improved architecture"
+  },
+  {
+    "name": "body_enhancement_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\body_enhancement_ai",
+    "title": "Body Enhancement Ai",
+    "has_readme": true,
+    "readme_content": "# Body Enhancement AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for body enhancement visualization and analysis.\n\n## \ud83d\ude80 Features\n\n- **Body Analysis*",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "brand_voice",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\brand_voice",
+    "title": "Brand Voice",
+    "has_readme": true,
+    "readme_content": "# Brand Voice AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n**Ultimate Brand Voice AI System** is a cutting-edge, enterprise-grade platform that leverages advanced deep learnin",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Brand Voice Feature Module\n===========================\n\nAI-powered brand voice analysis and generation system."
+  },
+  {
+    "name": "bul",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\bul",
+    "title": "Bul",
+    "has_readme": true,
+    "readme_content": "# BUL Ultimate System\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-production--ready-success.svg)\n![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)\n![Features](ht",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "BUL API - Production Main Application\n====================================\n\nReal-world BUL API implementation following FastAPI best practices:\n- Functional programming approach\n- RORO pattern implementation\n- Early returns and guard clauses\n- Async/await throughout\n- Production-ready error handling"
+  },
+  {
+    "name": "bulk",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\bulk",
+    "title": "Bulk",
+    "has_readme": true,
+    "readme_content": "# BUL \u2014 Business Unlimited\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-3.0-blue.svg)\n![Python](https://img.",
+    "tech_stack": [
+      "Python",
+      "Node.js",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "BUL Main Entry Point\n====================\n\nMain entry point for the Business Unlimited system.\nProvides CLI interface and starts the continuous processor and API server."
+  },
+  {
+    "name": "bulk_chat",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\bulk_chat",
+    "title": "Bulk Chat",
+    "has_readme": true,
+    "readme_content": "# Bulk Chat - Proactive Continuous Chat System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n**Bulk Chat** is a proactive, continuous chat system similar to ChatGPT, but with the ",
+    "tech_stack": [
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Bulk Chat - Main Entry Point\n=============================\n\nPunto de entrada principal para el sistema de chat continuo proactivo."
+  },
+  {
+    "name": "bulk_truthgpt",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\bulk_truthgpt",
+    "title": "Bulk Truthgpt",
+    "has_readme": true,
+    "readme_content": "# Bulk TruthGPT AI System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Overview\n\nThe Bulk TruthGPT AI System is a comprehensive, adaptive AI system that integrates all Truth",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Bulk TruthGPT Main Application\n=============================\n\nFastAPI application for continuous document generation using TruthGPT architecture.\nRefactored for improved architecture, performance, and maintainability."
+  },
+  {
+    "name": "burnout_prevention_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\burnout_prevention_ai",
+    "title": "Burnout Prevention Ai",
+    "has_readme": true,
+    "readme_content": "# Burnout Prevention AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI system for burnout prevention and management in the workplace, helping identify early signs and provide cu",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Burnout Prevention AI - Main Application\n========================================\nServidor principal para el sistema de prevenci\u00f3n de burnout."
+  },
+  {
+    "name": "business_agents",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\business_agents",
+    "title": "Business Agents",
+    "has_readme": true,
+    "readme_content": "# Business Agents Module\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)\n![License](https://img.",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Business Agents System - Main Application\n=========================================\n\nFastAPI application entry point for the Business Agents system."
+  },
+  {
+    "name": "character_clothing_changer_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\character_clothing_changer_ai",
+    "title": "Character Clothing Changer Ai",
+    "has_readme": true,
+    "readme_content": "# \ud83d\udc54 Character Clothing Changer AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI-powered tool for changing clothing in character images using Flux2 and DeepSeek models.\n\n## \ud83d\ude80 Qu",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Character Clothing Changer AI - Main Entry Point\n================================================="
+  },
+  {
+    "name": "character_clothing_changer_ai_openrouter_truthgpt",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\character_clothing_changer_ai_openrouter_truthgpt",
+    "title": "Character Clothing Changer Ai Openrouter Truthgpt",
+    "has_readme": true,
+    "readme_content": "# Character Clothing Changer AI - OpenRouter & TruthGPT\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAdvanced AI-powered character clothing changer that integrates:\n- **ComfyUI**",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main Entry Point\n================\n\nFastAPI application for Character Clothing Changer AI with OpenRouter and TruthGPT.\n\nThis application provides:\n- RESTful API for clothing change operations\n- Integration with OpenRouter for prompt optimization\n- Integration with TruthGPT for advanced processing\n- ComfyUI workflow execution\n- Health check endpoints"
+  },
+  {
+    "name": "character_consistency_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\character_consistency_ai",
+    "title": "Character Consistency Ai",
+    "has_readme": true,
+    "readme_content": "# Character Consistency AI - Flux2-based Model\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nFlux2-based model for generating character consistency safe tensors. It accepts one or",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main Entry Point - Character Consistency AI\n==============================================\n\nRun the character consistency AI service."
+  },
+  {
+    "name": "color_grading_ai_truthgpt",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\color_grading_ai_truthgpt",
+    "title": "Color Grading Ai Truthgpt",
+    "has_readme": true,
+    "readme_content": "# Color Grading AI TruthGPT\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nComplete automatic color grading system with enterprise architecture, integrated with OpenRouter and Trut",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Main entry point for Color Grading AI TruthGPT\n===============================================\n\nRun the agent for color grading operations."
+  },
+  {
+    "name": "comfyui_tensors",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\comfyui_tensors",
+    "title": "Comfyui Tensors",
+    "has_readme": true,
+    "readme_content": "# ComfyUI Tensors\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-placeholder-grey.svg)\n![Type](https://img.shields.io/badge/type-data--store-blue.svg)\n\n**Reserved storage for Com",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "community_manager_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\community_manager_ai",
+    "title": "Community Manager Ai",
+    "has_readme": true,
+    "readme_content": "# Community Manager AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nComplete automated social media management system with AI.\n\n## \ud83c\udfaf Key Features\n\n- **Meme Management**: Creation",
+    "tech_stack": [
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Main Entry Point - Punto de Entrada Principal\n===============================================\n\nScript principal para ejecutar la aplicaci\u00f3n."
+  },
+  {
+    "name": "contabilidad_mexicana_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\contabilidad_mexicana_ai",
+    "title": "Contabilidad Mexicana Ai",
+    "has_readme": true,
+    "readme_content": "# Mexican Accounting AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI system to solve Mexican accounting and tax problems based on [Contarely](https://contarely.com/). Provides",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for Contabilidad Mexicana AI API"
+  },
+  {
+    "name": "contabilidad_mexicana_ai_sam3",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\contabilidad_mexicana_ai_sam3",
+    "title": "Contabilidad Mexicana Ai Sam3",
+    "has_readme": true,
+    "readme_content": "# Mexican Accounting AI SAM3\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nMexican accounting system with SAM3 architecture, integrated with OpenRouter and TruthGPT.\n\n## Features\n",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for Contabilidad Mexicana AI SAM3\n===================================================\n\nRun the agent in continuous 24/7 mode."
+  },
+  {
+    "name": "content",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\content",
+    "title": "Content",
+    "has_readme": true,
+    "readme_content": "# Static & Dynamic Content\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Type](https://img.shields.io/badge/type-markdown--mdx-blue.svg)\n![Env](https://img",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "content_modules",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\content_modules",
+    "title": "Content Modules",
+    "has_readme": true,
+    "readme_content": "# Content Modules\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.1-blue.svg)\n![Python](https://img.shields.i",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "\ud83d\udcdd CONTENT MODULES - Advanced Content Generation System\n=======================================================\n\nA comprehensive, well-structured system for organizing and managing content generation modules.\nFeatures advanced categorization, performance monitoring, and enterprise-ready architecture.\n\nOrganizes all content generators by categories:\n- \ud83d\udcf1 Social Media: Instagram, Facebook, Twitter, LinkedIn\n- \ud83d\udcf0 Editorial: Blog posts, Articles, Copywriting\n- \ud83d\udcb0 Marketing: Ads, Copy, Key messages, Email sequences\n- \ud83d\udecd\ufe0f E-commerce: Product descriptions, Reviews\n- \ud83d\udcf9 Multimedia: Videos, Captions, Image processing\n- \ud83d\udd27 Technical: SEO, Documentation, AI models\n- \ud83d\ude80 Enterprise: Advanced AI, Ultra-extreme features"
+  },
+  {
+    "name": "content_redundancy_detector",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\content_redundancy_detector",
+    "title": "Content Redundancy Detector",
+    "has_readme": true,
+    "readme_content": "# Advanced Content Redundancy Detector\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nFunctional, scalable, and optimized system to detect redundancy in text content with advanced ",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Content Redundancy Detector - Functional FastAPI Application\nFollowing best practices: functional programming, RORO pattern, async operations\n\nREFACTORED: Now uses centralized core modules for better organization"
+  },
+  {
+    "name": "copywriting",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\copywriting",
+    "title": "Copywriting",
+    "has_readme": true,
+    "readme_content": "# Copywriting Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAdvanced copywriting generation system with multiple optimized versions, modular ar",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Production Copywriting System\n============================\n\nMain entry point for the production copywriting system."
+  },
+  {
+    "name": "copywriting_system",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\copywriting_system",
+    "title": "Copywriting System",
+    "has_readme": true,
+    "readme_content": "# Copywriting System\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.1-blue.svg)\n![License](https://img.shiel",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "core",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\core",
+    "title": "Core",
+    "has_readme": true,
+    "readme_content": "# Core - Core System Components\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nCentral system components including application factories, declarative routes, func",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "cursor_agent_24_7",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\cursor_agent_24_7",
+    "title": "Cursor Agent 24 7",
+    "has_readme": true,
+    "readme_content": "# Cursor Agent 24/7 \ud83e\udd16\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nPersistent agent that listens for commands from the Cursor window and executes them continuously, even when the",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Cursor Agent 24/7 - Main Entry Point\n=====================================\n\nPunto de entrada principal para el agente persistente."
+  },
+  {
+    "name": "cursor_backend_clone",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\cursor_backend_clone",
+    "title": "Cursor Backend Clone",
+    "has_readme": true,
+    "readme_content": "# Cursor Agent 24/7\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.4-blue.svg)\n![Python](https://img.shields",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Cursor Agent 24/7 - Main Entry Point\n=====================================\n\nPunto de entrada principal para el agente persistente."
+  },
+  {
+    "name": "cybersec_toolkit",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\cybersec_toolkit",
+    "title": "Cybersec Toolkit",
+    "has_readme": true,
+    "readme_content": "# CyberSec Toolkit\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-3.0-blue.svg)\n![License](https://img.shields",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "dermatology_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\dermatology_ai",
+    "title": "Dermatology Ai",
+    "has_readme": true,
+    "readme_content": "# Dermatology AI \u2014 Skin Analysis & Skincare System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Description\n\nAdvanced AI system for skin quality analysis via photos or video",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Dermatology AI - FastAPI Server Optimized for Microservices & Serverless.\n\nVersion: 7.1.0 - Fully Modular Architecture with Plugin System"
+  },
+  {
+    "name": "document_set",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\document_set",
+    "title": "Document Set",
+    "has_readme": true,
+    "readme_content": "# Document Set Management\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-1.8-blue.svg)\n![Python](https://img.s",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils"
+    ],
+    "description": "Document Set Feature Module\n============================\n\nAI-powered document set management and processing system."
+  },
+  {
+    "name": "document_workflow_chain",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\document_workflow_chain",
+    "title": "Document Workflow Chain",
+    "has_readme": true,
+    "readme_content": "# Document Workflow Chain\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Description\n\nThe **Document Workflow Chain** is a professional and optimized AI system that allows con",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Main Application - Complete Document Workflow Chain System"
+  },
+  {
+    "name": "dog_training_coaching_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\dog_training_coaching_ai",
+    "title": "Dog Training Coaching Ai",
+    "has_readme": true,
+    "readme_content": "# Dog Training Coaching AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI-powered dog training coaching assistant using OpenRouter to provide personalized training advice and pl",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Dog Training Coaching AI - Main Application\n===========================================\nServidor principal para el sistema de coaching de adiestramiento de perros."
+  },
+  {
+    "name": "email_sequence",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\email_sequence",
+    "title": "Email Sequence",
+    "has_readme": true,
+    "readme_content": "# Email Sequence AI System\n\nA comprehensive, AI-powered email sequence management system built with FastAPI, featuring LangChain integration, advanced analytics, and scalable architecture.\n\n## \ud83d\ude80 Featu",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "FastAPI Email Sequence Application\n\nThis is the main FastAPI application for the email sequence system,\nfollowing best practices for async operations, error handling, and performance."
+  },
+  {
+    "name": "emails",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\emails",
+    "title": "Emails",
+    "has_readme": true,
+    "readme_content": "# Email Templates\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Type](https://img.shields.io/badge/type-react--email--tsx-orange.svg)\n![Framework](https://",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "embedding_cache",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\embedding_cache",
+    "title": "Embedding Cache",
+    "has_readme": true,
+    "readme_content": "# Embedding Cache\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-placeholder-grey.svg)\n![Type](https://img.shields.io/badge/type-cache--store-blue.svg)\n\n**Reserved storage for ve",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "enterprise",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\enterprise",
+    "title": "Enterprise",
+    "has_readme": true,
+    "readme_content": "# Enterprise System\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-production--ready-success.svg)\n![Version](https://img.shields.io/badge/version-3.2-blue.svg)\n![Architecture](ht",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "\ud83d\ude80 ULTIMATE ENTERPRISE API\n==========================\n\nComplete enterprise-grade API system with:\n- \u2705 Clean Architecture (SOLID principles)\n- \u2705 Microservices (Service discovery, message queues, load balancing) \n- \u2705 Ultra Performance (3-5x faster serialization, multi-level caching, compression)\n- \u2705 Artificial Intelligence (Predictive caching, neural load balancing, RL auto-scaling)\n\nSingle import provides all functionality."
+  },
+  {
+    "name": "entrepreneur_coach_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\entrepreneur_coach_ai",
+    "title": "Entrepreneur Coach Ai",
+    "has_readme": true,
+    "readme_content": "# Entrepreneur Coach AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI-powered coaching system for entrepreneurs.\n\n## \ud83d\ude80 Features\n\n- **Coaching Sessions**: AI-d",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "export_ia",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\export_ia",
+    "title": "Export Ia",
+    "has_readme": true,
+    "readme_content": "# Export IA \u2014 AI-Powered Document Export System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI-powered document export system \u2014 modular and functional architecture.\n\n## \ud83d\ude80 Featur",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Export IA - Main Application\n============================\n\nAdvanced document export and analytics system with AI-powered content analysis."
+  },
+  {
+    "name": "facebook_posts",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\facebook_posts",
+    "title": "Facebook Posts",
+    "has_readme": true,
+    "readme_content": "# Facebook Posts Generation System\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-3.6-blue.svg)\n![Models](http",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "FastAPI Application for Facebook Posts API\nFollowing functional programming principles and FastAPI best practices"
+  },
+  {
+    "name": "faceless_video_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\faceless_video_ai",
+    "title": "Faceless Video Ai",
+    "has_readme": true,
+    "readme_content": "# Faceless Video AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nComplete system for generating faceless videos entirely with AI from scripts, including image generation, audio, ",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Faceless Video AI - Sistema de generaci\u00f3n de videos sin rostro con IA\n======================================================================\n\nSistema completo para generar videos completamente con IA a partir de scripts,\nincluyendo generaci\u00f3n de im\u00e1genes, animaci\u00f3n, subt\u00edtulos y audio.\n\nVersi\u00f3n: 1.0.0\nAutor: Blatam Academy\nLicencia: Propietaria"
+  },
+  {
+    "name": "fashion_grooming_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\fashion_grooming_ai",
+    "title": "Fashion Grooming Ai",
+    "has_readme": true,
+    "readme_content": "# Fashion Grooming AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for fashion and grooming advice and analysis.\n\n## \ud83d\ude80 Features\n\n- **Fashion Analysis*",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "folder",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\folder",
+    "title": "Folder",
+    "has_readme": true,
+    "readme_content": "# Folder Management System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nFolder management system with models, schemas, services, and RESTful API.\n\n## \ud83d\ude80 Key Feat",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils"
+    ],
+    "description": ""
+  },
+  {
+    "name": "game_development_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\game_development_ai",
+    "title": "Game Development Ai",
+    "has_readme": true,
+    "readme_content": "# Game Development AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system to assist in game development.\n\n## \ud83d\ude80 Features\n\n- **Asset Generation**: Create game ",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "gamma_app",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\gamma_app",
+    "title": "Gamma App",
+    "has_readme": true,
+    "readme_content": "# Gamma App \u2014 AI-Powered Content Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n\ud83d\ude80 **Gamma App** is an advanced AI-powered content generation system that allows au",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Gamma App - AI-Powered Content Generation System\nAdvanced presentation, document, and web page creation with AI"
+  },
+  {
+    "name": "github_autonomous_agent",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\github_autonomous_agent",
+    "title": "Github Autonomous Agent",
+    "has_readme": true,
+    "readme_content": "# \ud83e\udd16 GitHub Autonomous Agent\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n**Intelligent autonomous agent that connects to GitHub repositories and executes instructions continuousl",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "GitHub Autonomous Agent - Main Entry Point\n==========================================\n\nPunto de entrada principal para el agente aut\u00f3nomo de GitHub."
+  },
+  {
+    "name": "github_autonomous_agent_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\github_autonomous_agent_ai",
+    "title": "Github Autonomous Agent Ai",
+    "has_readme": true,
+    "readme_content": "# GitHub Autonomous Agent AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAutonomous agent that connects to any GitHub repository and executes instructions continuously, even wit",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "GitHub Autonomous Agent AI - Main Entry Point\n==============================================\n\nPunto de entrada principal para el agente aut\u00f3nomo de GitHub."
+  },
+  {
+    "name": "guides",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\guides",
+    "title": "Guides",
+    "has_readme": true,
+    "readme_content": "# Learning Path & Guides\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Type](https://img.shields.io/badge/type-mdx--resources-blue.svg)\n![Focus](https://im",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "heygen_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\heygen_ai",
+    "title": "Heygen Ai",
+    "has_readme": true,
+    "readme_content": "# HeyGen AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nHeyGen AI Clone - Advanced AI Video Generation System. This system allows generating realistic avatars,",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "HeyGen AI FastAPI Main Entry Point\nFastAPI best practices for main application entry point with proper configuration."
+  },
+  {
+    "name": "image_process",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\image_process",
+    "title": "Image Process",
+    "has_readme": true,
+    "readme_content": "# Advanced Image Processing System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAdvanced image processing system with GPU optimization, mixed precision training, and advanced los",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Image Process Feature Module\n=============================\n\nAI-powered image processing and analysis system."
+  },
+  {
+    "name": "image_upscaling_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\image_upscaling_ai",
+    "title": "Image Upscaling Ai",
+    "has_readme": true,
+    "readme_content": "# Image Upscaling AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI-powered image upscaling service using OpenRouter and optimization_core for super-resolution image enhancement",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Image Upscaling AI - Main Entry Point\n======================================\n\nMain entry point for the Image Upscaling AI service."
+  },
+  {
+    "name": "imagen_video_enhancer_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\imagen_video_enhancer_ai",
+    "title": "Imagen Video Enhancer Ai",
+    "has_readme": true,
+    "readme_content": "# Imagen Video Enhancer AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nImage and video enhancement system with SAM3 architecture, integrated with OpenRouter and TruthGPT. Simila",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for Imagen Video Enhancer AI\n=============================================\n\nRun the agent in continuous 24/7 mode."
+  },
+  {
+    "name": "input_prompt",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\input_prompt",
+    "title": "Input Prompt",
+    "has_readme": true,
+    "readme_content": "# Input Prompt Management\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSystem for input prompt management with models, schemas, services, and RESTful API.\n\n## \ud83d\ude80",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils"
+    ],
+    "description": ""
+  },
+  {
+    "name": "instagram_captions",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\instagram_captions",
+    "title": "Instagram Captions",
+    "has_readme": true,
+    "readme_content": "# Instagram Captions Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSystem for generating Instagram captions with modular architecture and advan",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Configuration Module for Instagram Captions API v10.0\n\nCentralized configuration management and dependency injection."
+  },
+  {
+    "name": "integrated",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\integrated",
+    "title": "Integrated",
+    "has_readme": true,
+    "readme_content": "# Integrated Discovery Modules\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-1.5-blue.svg)\n![Type](https://im",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "integration_system",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\integration_system",
+    "title": "Integration System",
+    "has_readme": true,
+    "readme_content": "# Integration System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nMain integration system and API Gateway for Blatam Academy. Orchestrates all services and acts",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Integration System - Main Application\n=====================================\n\nUnified system that integrates all features: Content Redundancy Detector, BUL, Gamma App, Business Agents, and Export IA."
+  },
+  {
+    "name": "interior_design_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\interior_design_ai",
+    "title": "Interior Design Ai",
+    "has_readme": true,
+    "readme_content": "# Interior Design AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for interior design visualization and planning.\n\n## \ud83d\ude80 Features\n\n- **Room Analysis**:",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "key_messages",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\key_messages",
+    "title": "Key Messages",
+    "has_readme": true,
+    "readme_content": "# Key Messages Management\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nComplete system for key messages management with ML capabilities, cybersecurity, and func",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Key Messages Feature Module\n============================\n\nAI-powered key message generation and management system."
+  },
+  {
+    "name": "linkedin_posts",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\linkedin_posts",
+    "title": "Linkedin Posts",
+    "has_readme": true,
+    "readme_content": "# LinkedIn Posts Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAdvanced system for generating LinkedIn posts with ultra optimizations, microser",
+    "tech_stack": [
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "LinkedIn Posts Production System\n================================\n\nMain production entry point for the LinkedIn Posts feature.\nUltra-optimized, enterprise-ready, and production-grade."
+  },
+  {
+    "name": "logistics_ai_platform",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\logistics_ai_platform",
+    "title": "Logistics Ai Platform",
+    "has_readme": true,
+    "readme_content": "# Logistics AI Platform\n\nA comprehensive freight forwarding and logistics management system - A Nowports clone built with FastAPI.\n\n## \ud83d\ude80 Description\n\nLogistics AI Platform is a complete digital freigh",
+    "tech_stack": [
+      "Docker",
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Main FastAPI application for Logistics AI Platform\nA comprehensive freight forwarding and logistics management system"
+  },
+  {
+    "name": "lovable",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\lovable",
+    "title": "Lovable",
+    "has_readme": true,
+    "readme_content": "# Lovable Community SAM3\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83c\udfaf Complete System\n\nLovable Community SAM3 is a complete, robust, and scalable system with over 60 REST en",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "lovable_community",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\lovable_community",
+    "title": "Lovable Community",
+    "has_readme": true,
+    "readme_content": "# Lovable Community API\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nLovable-style community system where users can publish their chats, remix other users' chats, and the best ch",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Aplicaci\u00f3n principal FastAPI para la comunidad Lovable (modularizado)\n\nSistema de comunidad estilo Lovable donde los usuarios pueden:\n- Publicar sus chats\n- Remixar chats de otros usuarios\n- Votar y rankear contenido\n- Descubrir los mejores chats\n\nIncluye optimizaciones, middleware, y mejor configuraci\u00f3n.\nEstructura modular para mejor mantenibilidad y escalabilidad."
+  },
+  {
+    "name": "manuales_hogar_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\manuales_hogar_ai",
+    "title": "Manuales Hogar Ai",
+    "has_readme": true,
+    "readme_content": "# Manuales Hogar AI \ud83c\udfe0\ud83d\udd27\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI system to generate LEGO-style step-by-step manuals for popular trades. Allows processing internal images (p",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point para Manuales Hogar AI\n========================================\n\nServidor FastAPI independiente para el feature.\nRefactorizado para microservicios, serverless y cloud-native."
+  },
+  {
+    "name": "manufacturing_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\manufacturing_ai",
+    "title": "Manufacturing Ai",
+    "has_readme": true,
+    "readme_content": "# Manufacturing AI\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.5-blue.svg)\n![Type](https://img.shields.io",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Manufacturing AI - Sistema de IA para Optimizaci\u00f3n de Manufactura\n==================================================================\n\nSistema completo de IA para optimizaci\u00f3n de procesos de manufactura incluyendo:\n- Optimizaci\u00f3n de capacidad\n- Predicci\u00f3n de demanda\n- Optimizaci\u00f3n de inventario\n- Mantenimiento predictivo\n- Optimizaci\u00f3n de procesos\n- Control de calidad\n- An\u00e1lisis de producci\u00f3n\n- Planificaci\u00f3n de producci\u00f3n\n- Optimizaci\u00f3n de rutas de producci\u00f3n"
+  },
+  {
+    "name": "markdown_to_professional_docs_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\markdown_to_professional_docs_ai",
+    "title": "Markdown To Professional Docs Ai",
+    "has_readme": true,
+    "readme_content": "# Markdown to Professional Documents AI\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)\n![Featu",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Markdown to Professional Documents AI - FastAPI Application"
+  },
+  {
+    "name": "marketing_funnels",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\marketing_funnels",
+    "title": "Marketing Funnels",
+    "has_readme": true,
+    "readme_content": "# Marketing Funnels AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for creating and optimizing marketing funnels.\n\n## \ud83d\ude80 Features\n\n- **Funnel Generati",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "marketing_intelligence_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\marketing_intelligence_ai",
+    "title": "Marketing Intelligence Ai",
+    "has_readme": true,
+    "readme_content": "# Marketing Intelligence AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSystem for analyzing marketing data and providing actionable insights.\n\n## \ud83d\ude80 Features\n\n",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "mcp_code_improvement",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\mcp_code_improvement",
+    "title": "Mcp Code Improvement",
+    "has_readme": true,
+    "readme_content": "# MCP Code Improvement\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-beta-yellow.svg)\n![Version](https://img.shields.io/badge/version-0.5-blue.svg)\n![License](https://img.shield",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Servidor MCP para mejora de c\u00f3digo - Blatam Academy\nImplementa herramientas para an\u00e1lisis, refactorizaci\u00f3n y optimizaci\u00f3n de c\u00f3digo"
+  },
+  {
+    "name": "metrics",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\metrics",
+    "title": "Metrics",
+    "has_readme": true,
+    "readme_content": "# Metrics System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSystem for collecting, processing, and analyzing application metrics.\n\n## \ud83d\ude80 Features\n\n- **Real-tim",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "microservices_framework",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\microservices_framework",
+    "title": "Microservices Framework",
+    "has_readme": true,
+    "readme_content": "# Advanced FastAPI Microservices Framework with Deep Learning & LLM Support\n\nA production-ready microservices framework with integrated deep learning capabilities, supporting transformers, diffusion m",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Diffusion Service - Refactored with Modular Architecture"
+  },
+  {
+    "name": "msa",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\msa",
+    "title": "Msa",
+    "has_readme": true,
+    "readme_content": "# \ud83c\udfd7\ufe0f Microservices Architecture (MSA) Implementation\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n\n## \ud83d\ude80 Quick Start\n\n### Prerequisites\n- Docker & Docker Compose\n- Kubernetes (opt",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "vLLM Inference Service\n\nHigh-performance LLM inference service using vLLM with PagedAttention."
+  },
+  {
+    "name": "multi_model_api",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\multi_model_api",
+    "title": "Multi Model Api",
+    "has_readme": true,
+    "readme_content": "# Multi-Model API\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAPI optimized for executing multiple AI models in parallel, sequentially, or with consensus.\n\n## Features\n\n### \ud83d\ude80 Co",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Multi-Model API Feature\n========================\n\nOptimized multi-model API with enhanced caching, circuit breakers, and health monitoring."
+  },
+  {
+    "name": "music_analyzer_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\music_analyzer_ai",
+    "title": "Music Analyzer Ai",
+    "has_readme": true,
+    "readme_content": "# Music Analyzer AI \u2014 Music Analysis & Coaching System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Quick Start \u2014 Single Command\n\n**Start the entire system with Docker:**\n\n`",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Servidor principal para Music Analyzer AI"
+  },
+  {
+    "name": "neo_humanoid_core",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\neo_humanoid_core",
+    "title": "Neo Humanoid Core",
+    "has_readme": true,
+    "readme_content": "# Neo Humanoid Core\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nCore system for the neo-humanoid robot, handling movement, perception, and interaction.\n\n## \ud83d\ude80 F",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "notebooklm_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\notebooklm_ai",
+    "title": "Notebooklm Ai",
+    "has_readme": true,
+    "readme_content": "# NotebookLM AI Integration\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.2-blue.svg)\n![Type](https://img.s",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "NotebookLM AI - Advanced Document Intelligence System\n=====================================================\n\nInspired by Google's NotebookLM with latest AI libraries and optimizations."
+  },
+  {
+    "name": "notifications",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\notifications",
+    "title": "Notifications",
+    "has_readme": true,
+    "readme_content": "# Notifications System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nNotification system for the Blatam Academy ecosystem.\n\n## \ud83d\ude80 Key Features\n\n- **Notification S",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "os_content",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\os_content",
+    "title": "Os Content",
+    "has_readme": true,
+    "readme_content": "# \ud83d\ude80 OS Content System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n**Advanced content generation and management system with AI, optimized for high performance and scalability.**\n",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for the integrated OS Content system\nRuns all optimized components with clean architecture"
+  },
+  {
+    "name": "password",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\password",
+    "title": "Password",
+    "has_readme": true,
+    "readme_content": "# Password Management System\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Security](https://img.shields.io/badge/security-hardened-green.svg)\n![Type](http",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils"
+    ],
+    "description": ""
+  },
+  {
+    "name": "pdf_variantes",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\pdf_variantes",
+    "title": "Pdf Variantes",
+    "has_readme": true,
+    "readme_content": "# \ud83d\ude80 PDF Variants API - Complete Enhanced System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \u2705 **SYSTEM 100% COMPLETED AND READY FOR FRONTEND**\n\nThe **PDF Variants API** syste",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "PDF Variantes API - Main Application Entry Point\n\n\u26a0\ufe0f DEPRECATED: This file is deprecated. Use `run.py` instead.\nThis file is kept for backward compatibility only.\n\nFor new code, use:\n    from api.main import app\n    # or\n    python run.py"
+  },
+  {
+    "name": "persona",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\persona",
+    "title": "Persona",
+    "has_readme": true,
+    "readme_content": "# Persona Management System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSystem for persona/profile management with models, schemas, services, and RESTful API.\n",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils",
+      "tool",
+      "document_set"
+    ],
+    "description": "Persona Feature Module\n======================\n\nAI-powered persona creation and management system."
+  },
+  {
+    "name": "physical_store_designer_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\physical_store_designer_ai",
+    "title": "Physical Store Designer Ai",
+    "has_readme": true,
+    "readme_content": "# Physical Store Designer AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nComplete AI system for designing physical stores, including visual design, marketing plan, and decoratio",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Physical Store Designer AI - Main Entry Point\n==============================================\n\nPunto de entrada principal para el dise\u00f1ador de locales f\u00edsicos con IA.\n\nUso:\n    python main.py"
+  },
+  {
+    "name": "piel_mejorador_ai_sam3",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\piel_mejorador_ai_sam3",
+    "title": "Piel Mejorador Ai Sam3",
+    "has_readme": true,
+    "readme_content": "# Skin Enhancer AI SAM3\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nSkin enhancement system with SAM3 architecture, integrated with OpenRouter and TruthGPT for image and video p",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for Piel Mejorador AI SAM3\n============================================\n\nRun the agent in continuous 24/7 mode."
+  },
+  {
+    "name": "plastic_surgery_visualization_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\plastic_surgery_visualization_ai",
+    "title": "Plastic Surgery Visualization Ai",
+    "has_readme": true,
+    "readme_content": "# Plastic Surgery Visualization AI\n\nAI system that visualizes how you'll look after plastic surgery procedures.\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n\n> **Quick Start**: S",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Plastic Surgery Visualization AI - FastAPI Server\nAI system that visualizes how you'll look after plastic surgery procedures."
+  },
+  {
+    "name": "plugins",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\plugins",
+    "title": "Plugins",
+    "has_readme": true,
+    "readme_content": "# System Plugins\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-placeholder-grey.svg)\n![Type](https://img.shields.io/badge/type-extension--point-blue.svg)\n\n**Reserved directory f",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "poster_generator_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\poster_generator_ai",
+    "title": "Poster Generator Ai",
+    "has_readme": true,
+    "readme_content": "# Poster Generator AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI-based poster generation system for marketing and events.\n\n## \ud83d\ude80 Features\n\n- **AI-Powered De",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "previsiones_y_alertas_financieras",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\previsiones_y_alertas_financieras",
+    "title": "Previsiones Y Alertas Financieras",
+    "has_readme": true,
+    "readme_content": "# Financial Forecasts and Alerts\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSystem for financial forecasting and alert generation based on data analysis.\n\n## ",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "price_tracker",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\price_tracker",
+    "title": "Price Tracker",
+    "has_readme": true,
+    "readme_content": "# Price Tracker\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAutomated system for tracking and analyzing product prices on various e-commerce platforms.\n\n## \ud83d\ude80 F",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "product_description_generator",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\product_description_generator",
+    "title": "Product Description Generator",
+    "has_readme": true,
+    "readme_content": "# Product Description Generator\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI-powered system for generating compelling product descriptions.\n\n## \ud83d\ude80 Features\n\n-",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "product_descriptions",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\product_descriptions",
+    "title": "Product Descriptions",
+    "has_readme": true,
+    "readme_content": "# Product Descriptions Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAdvanced system for product description generation with multiple features,",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils"
+    ],
+    "description": "Product Description Generator - Main Entry Point\n===============================================\n\nRun the product description generator in different modes:\n- API service\n- Gradio interface  \n- CLI tool\n- Demo mode"
+  },
+  {
+    "name": "product_photography_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\product_photography_ai",
+    "title": "Product Photography Ai",
+    "has_readme": true,
+    "readme_content": "# Product Photography AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for generating professional product photography.\n\n## \ud83d\ude80 Features\n\n- **Background ",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "production",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\production",
+    "title": "Production",
+    "has_readme": true,
+    "readme_content": "# Production System\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-stable-success.svg)\n![Tier](https://img.shields.io/badge/tier-production-blue.svg)\n![Opt](https://img.shields.i",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "\ud83d\ude80 ULTRA-OPTIMIZED PRODUCTION MAIN ENTRY POINT\n==============================================\n\nDevin-Level AI Copywriting System with:\n- Clean Architecture\n- Dependency Injection\n- Ultra Performance\n- Production Monitoring\n- Auto-scaling\n- Self-healing"
+  },
+  {
+    "name": "professional_documents",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\professional_documents",
+    "title": "Professional Documents",
+    "has_readme": true,
+    "readme_content": "# Professional Documents Feature\n\nA comprehensive document generation system that creates professional documents based on user queries and exports them in multiple formats (PDF, MD, Word, HTML) with h",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Professional Document Generation System\n======================================\n\nThis module provides a comprehensive document generation system that creates\nprofessional documents based on user queries and exports them in multiple formats\n(PDF, MD, Word) with high-quality formatting and styling.\n\nFeatures:\n- AI-powered content generation\n- Professional document templates\n- Multiple export formats (PDF, MD, Word)\n- Customizable styling and branding\n- Document management and history"
+  },
+  {
+    "name": "professional_photo_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\professional_photo_ai",
+    "title": "Professional Photo Ai",
+    "has_readme": true,
+    "readme_content": "# Professional Photo AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nEnhanced AI system for generating professional photos and headshots.\n\n## \ud83d\ude80 Features\n\n- **He",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "project_management_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\project_management_ai",
+    "title": "Project Management Ai",
+    "has_readme": true,
+    "readme_content": "# Project Management AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI-assisted project management system for optimizing workflows and resources.\n\n## \ud83d\ude80 Feature",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "prompt_compiler_ai_sam3",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\prompt_compiler_ai_sam3",
+    "title": "Prompt Compiler Ai Sam3",
+    "has_readme": true,
+    "readme_content": "# Prompt Compiler AI SAM3\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAdvanced prompt compilation system using SAM3 architecture.\n\n## \ud83d\ude80 Features\n\n- **Prompt Op",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "prompt_generator",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\prompt_generator",
+    "title": "Prompt Generator",
+    "has_readme": true,
+    "readme_content": "# Prompt Generator\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nTool for generating and optimizing prompts for various AI models.\n\n## \ud83d\ude80 Features\n\n- **Prompt Opt",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "prompt_statistics",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\prompt_statistics",
+    "title": "Prompt Statistics",
+    "has_readme": true,
+    "readme_content": "# Prompt Statistics\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSystem for analyzing and tracking prompt usage and performance.\n\n## \ud83d\ude80 Features\n\n- **Usage Track",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "proposal_generator",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\proposal_generator",
+    "title": "Proposal Generator",
+    "has_readme": true,
+    "readme_content": "# Proposal Generator\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-1.5-blue.svg)\n![Python](https://img.shield",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "psychological_profile_analyzer",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\psychological_profile_analyzer",
+    "title": "Psychological Profile Analyzer",
+    "has_readme": true,
+    "readme_content": "# Psychological Profile Analyzer\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAnalyzer for determining psychological profiles and behavioral traits.\n\n## \ud83d\ude80 Featu",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "quality_control_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\quality_control_ai",
+    "title": "Quality Control Ai",
+    "has_readme": true,
+    "readme_content": "# Quality Control AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nQuality Control System with Camera-Based Defect Detection\n\n## Description\n\nComplete quality control system that ",
+    "tech_stack": [
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Quality Control AI - Sistema de Control de Calidad con Detecci\u00f3n de Defectos por C\u00e1mara\nEnhanced with PyTorch, Transformers, and Diffusion Models\n\nRefactored with Clean Architecture and Domain-Driven Design principles.\n\nVersion: 2.3.0\nAuthor: Blatam Academy"
+  },
+  {
+    "name": "real_estate_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\real_estate_ai",
+    "title": "Real Estate Ai",
+    "has_readme": true,
+    "readme_content": "# Real Estate AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nComprehensive AI system for the real estate market.\n\n## \ud83d\ude80 Features\n\n- **Property Valuation**: Auto",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "renewable_energy",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\renewable_energy",
+    "title": "Renewable Energy",
+    "has_readme": true,
+    "readme_content": "# Renewable Energy AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for optimization and management of renewable energy sources.\n\n## \ud83d\ude80 Features\n\n- **En",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "research_agent",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\research_agent",
+    "title": "Research Agent",
+    "has_readme": true,
+    "readme_content": "# Research Agent\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAutonomous agent for conducting in-depth research and information gathering.\n\n## \ud83d\ude80 Features\n\n- **A",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "research_paper_code_improver",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\research_paper_code_improver",
+    "title": "Research Paper Code Improver",
+    "has_readme": true,
+    "readme_content": "# Research Paper Code Improver\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system that allows you to:\n1. **Upload research papers** via PDFs or links\n2. **E",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Aplicaci\u00f3n Principal - Research Paper Code Improver\n===================================================="
+  },
+  {
+    "name": "robot_maintenance_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\robot_maintenance_ai",
+    "title": "Robot Maintenance Ai",
+    "has_readme": true,
+    "readme_content": "# Robot Maintenance AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI system for teaching maintenance of robots and machines that uses OpenRouter, NLP, and ML with the best avai",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for Robot Maintenance AI API server."
+  },
+  {
+    "name": "robot_maintenance_teaching_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\robot_maintenance_teaching_ai",
+    "title": "Robot Maintenance Teaching Ai",
+    "has_readme": true,
+    "readme_content": "# Robot Maintenance Teaching AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAdvanced AI system for teaching robot and machine maintenance using OpenRouter, NLP, and Machine Lear",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Main entry point for Robot Maintenance Teaching AI API."
+  },
+  {
+    "name": "robot_movement_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\robot_movement_ai",
+    "title": "Robot Movement Ai",
+    "has_readme": true,
+    "readme_content": "# Robot Movement AI\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.0-blue.svg)\n![Python](https://img.shields",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Robot Movement AI - Main Entry Point\n=====================================\n\nPunto de entrada principal para la plataforma IA de movimiento rob\u00f3tico.\nSistema tipo Tesla Prime para control de robots mediante chat."
+  },
+  {
+    "name": "sales_agent",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\sales_agent",
+    "title": "Sales Agent",
+    "has_readme": true,
+    "readme_content": "# Sales Agent\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAutonomous agent for managing sales processes and customer interactions.\n\n## \ud83d\ude80 Features\n\n- **Lead Qua",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "seo",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\seo",
+    "title": "Seo",
+    "has_readme": true,
+    "readme_content": "# SEO Optimization System\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-15.0-blue.svg)\n![Optimization](https:",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Punto de entrada principal para el servicio SEO ultra-optimizado en producci\u00f3n.\nConfiguraci\u00f3n completa con logging, m\u00e9tricas y manejo de se\u00f1ales."
+  },
+  {
+    "name": "server",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\server",
+    "title": "Server",
+    "has_readme": true,
+    "readme_content": "# Server Directory\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Type](https://img.shields.io/badge/Layer-Infrastructure-red.svg)\n\n**Server infrastructure,",
+    "tech_stack": [
+      "Node.js"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "shopping_engine_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\shopping_engine_ai",
+    "title": "Shopping Engine Ai",
+    "has_readme": true,
+    "readme_content": "# Shopping Engine AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nSmart shopping engine powered by AI for personalized product recommendations and search.\n\n## \ud83d\ude80",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "smell_detection_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\smell_detection_ai",
+    "title": "Smell Detection Ai",
+    "has_readme": true,
+    "readme_content": "# Smell Detection AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nInnovative system for digital smell detection and analysis using electronic nose data.\n\n## \ud83d\ude80 F",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "social_media_identity_clone_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\social_media_identity_clone_ai",
+    "title": "Social Media Identity Clone Ai",
+    "has_readme": true,
+    "readme_content": "# Social Media Identity Clone AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAdvanced AI system that clones the identity of social media profiles (TikTok, Inst",
+    "tech_stack": [
+      "Python",
+      "Docker",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Social Media Identity Clone AI\n==============================\n\nSistema de IA para clonar identidades de perfiles de redes sociales\n(TikTok, Instagram, YouTube) y generar contenido basado en esa identidad.\n\nCaracter\u00edsticas:\n- Extracci\u00f3n de datos de perfiles de redes sociales\n- An\u00e1lisis de contenido de videos y posts\n- Construcci\u00f3n de perfil de identidad\n- Generaci\u00f3n de contenido basado en identidad clonada"
+  },
+  {
+    "name": "social_video_transcriber_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\social_video_transcriber_ai",
+    "title": "Social Video Transcriber Ai",
+    "has_readme": true,
+    "readme_content": "# Social Video Transcriber AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nTool for transcribing videos from social networks.\n\n## \ud83d\ude80 Features\n\n- **Link Support**",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Social Video Transcriber AI\n===========================\n\nA powerful AI-powered tool for transcribing videos from TikTok, Instagram, and YouTube.\n\nFeatures:\n- Video transcription with optional timestamps\n- AI-powered framework and structure analysis\n- Text variant generation maintaining context, length, and structure\n- OpenRouter integration for AI capabilities"
+  },
+  {
+    "name": "stake_casino_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\stake_casino_ai",
+    "title": "Stake Casino Ai",
+    "has_readme": true,
+    "readme_content": "# Stake Casino AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI system for analysis and strategy in casino games.\n\n## \ud83d\ude80 Features\n\n- **Game Analysis**: Analyze",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "suno_clone_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\suno_clone_ai",
+    "title": "Suno Clone Ai",
+    "has_readme": true,
+    "readme_content": "# Suno Clone AI \u2014 AI Music Generation System\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 Overview\n\nSuno Clone AI is a complete AI music generation system that allows users ",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Aplicaci\u00f3n principal FastAPI optimizada con arquitectura modular\n\nConfiguraciones de rendimiento:\n- Serializaci\u00f3n JSON r\u00e1pida con orjson\n- Connection pooling\n- Caching agresivo\n- Async I/O para todas las operaciones\n- Arquitectura modular con microservicios"
+  },
+  {
+    "name": "suno_clone_ai_sam3",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\suno_clone_ai_sam3",
+    "title": "Suno Clone Ai Sam3",
+    "has_readme": true,
+    "readme_content": "# Suno Clone AI SAM3\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-3.0-blue.svg)\n![Python](https://img.shield",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "tool",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\tool",
+    "title": "Tool",
+    "has_readme": true,
+    "readme_content": "# General Tools Module\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Type](https://img.shields.io/badge/module-shared--utilities-blue.svg)\n![Version](https",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils"
+    ],
+    "description": ""
+  },
+  {
+    "name": "truthgpt-spec",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\truthgpt-spec",
+    "title": "Truthgpt-Spec",
+    "has_readme": true,
+    "readme_content": "# TruthGPT Specification & Master Summaries\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Type](https://img.shields.io/badge/type-architecture--spec-purple",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "ultra_extreme_v18",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\ultra_extreme_v18",
+    "title": "Ultra Extreme V18",
+    "has_readme": true,
+    "readme_content": "# Ultra Extreme V18 - Optimization Core\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-experimental--prod-red.svg)\n![Tier](https://img.shields.io/badge/tier-ultra--extreme-purple",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "universal_model_benchmark_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\universal_model_benchmark_ai",
+    "title": "Universal Model Benchmark Ai",
+    "has_readme": true,
+    "readme_content": "# Universal Model Benchmark AI\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.4-blue.svg)\n![Polyglot](https:",
+    "tech_stack": [
+      "Docker",
+      "Python"
+    ],
+    "connections": [],
+    "description": "Universal Model Benchmark AI - Sistema de Benchmarking de Modelos de IA\n========================================================================\n\nSistema completo para evaluar y comparar el rendimiento de diferentes modelos de IA."
+  },
+  {
+    "name": "validacion_psicologica_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\validacion_psicologica_ai",
+    "title": "Validacion Psicologica Ai",
+    "has_readme": true,
+    "readme_content": "# Psychological Validation AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI-based psychological validation system that connects with multiple user social netw",
+    "tech_stack": [
+      "Python",
+      "Node.js"
+    ],
+    "connections": [],
+    "description": "Validaci\u00f3n Psicol\u00f3gica AI\n==========================\n\nSistema de validaci\u00f3n psicol\u00f3gica basado en IA que:\n- Conecta con m\u00faltiples redes sociales del usuario\n- Analiza contenido y comportamiento\n- Genera informes de validaci\u00f3n psicol\u00f3gica\n- Almacena historial de validaciones en base de datos"
+  },
+  {
+    "name": "vibe_proving",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\vibe_proving",
+    "title": "Vibe Proving",
+    "has_readme": true,
+    "readme_content": "# Vibe Proving\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-experimental-yellow.svg)\n![Version](https://img.shields.io/badge/version-v0.1-orange.svg)\n![License](https://img.shi",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "vibe_proving_copy",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\vibe_proving_copy",
+    "title": "Vibe Proving Copy",
+    "has_readme": true,
+    "readme_content": "# Feature Backups & Clones\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-backup-yellow.svg)\n![Type](https://img.shields.io/badge/type-system--copy-blue.svg)\n\n**Reserved director",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "video-OpusClip",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\video-OpusClip",
+    "title": "Video-Opusclip",
+    "has_readme": true,
+    "readme_content": "# \ud83c\udfac Video-OpusClip API \u2014 Complete FastAPI Transformation\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\ude80 **ULTIMATE ENTERPRISE-GRADE VIDEO PROCESSING API**\n\nA completely transf",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [
+      "utils"
+    ],
+    "description": "Main Entry Point for Improved Video-OpusClip API\n\nComplete integration script that demonstrates all improvements:\n- Configuration management\n- Database initialization\n- Middleware setup\n- Performance monitoring\n- Health checking\n- API documentation\n- Graceful shutdown"
+  },
+  {
+    "name": "video_editor_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\video_editor_ai",
+    "title": "Video Editor Ai",
+    "has_readme": true,
+    "readme_content": "# Video Editor AI\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.1-blue.svg)\n![Python](https://img.shields.i",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "virtual_assistant",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\virtual_assistant",
+    "title": "Virtual Assistant",
+    "has_readme": true,
+    "readme_content": "# Virtual Assistant\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.2-blue.svg)\n![Python](https://img.shields",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "virtual_event_planner",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\virtual_event_planner",
+    "title": "Virtual Event Planner",
+    "has_readme": true,
+    "readme_content": "# Virtual Event Planner\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-1.8-blue.svg)\n![Python](https://img.shi",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "virtual_fashion_stylist_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\virtual_fashion_stylist_ai",
+    "title": "Virtual Fashion Stylist Ai",
+    "has_readme": true,
+    "readme_content": "# Virtual Fashion Stylist AI\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-2.0-blue.svg)\n![Python](https://im",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  },
+  {
+    "name": "voice_coaching_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\voice_coaching_ai",
+    "title": "Voice Coaching Ai",
+    "has_readme": true,
+    "readme_content": "# Voice Coaching AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\n## \ud83d\udccb Description\n\nAI-powered voice coaching system providing real-time voice analysis, personalized feedback, and",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "\ud83c\udfa4 VOICE COACHING AI - MAIN MODULE\n==================================\n\nAdvanced AI-powered voice coaching system for leadership development,\nconfidence building, and professional voice training using OpenRouter.\n\nFEATURES:\n- \ud83c\udfa4 Real-time voice analysis and tone detection\n- \ud83c\udfc6 Leadership voice training and coaching\n- \ud83d\udcca Confidence building and progress tracking\n- \ud83c\udfaf Personalized exercise recommendations\n- \ud83d\udcc8 Comprehensive progress analytics\n- \ud83e\udd16 OpenRouter AI integration for intelligent coaching"
+  },
+  {
+    "name": "web_content_extractor_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\web_content_extractor_ai",
+    "title": "Web Content Extractor Ai",
+    "has_readme": true,
+    "readme_content": "# Web Content Extractor AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAdvanced system for extracting complete information from web pages using OpenRouter and multiple scraping ",
+    "tech_stack": [
+      "Python",
+      "Docker"
+    ],
+    "connections": [],
+    "description": "Servidor principal para Web Content Extractor AI"
+  },
+  {
+    "name": "web_link_validator_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\web_link_validator_ai",
+    "title": "Web Link Validator Ai",
+    "has_readme": true,
+    "readme_content": "# Web Link Validator AI\n\n> Part of the [Blatam Academy Integrated Platform](../README.md)\n\nAI-powered web link validator that checks if links are real, accessible, and relevant to user queries. Solves",
+    "tech_stack": [
+      "Python"
+    ],
+    "connections": [],
+    "description": "Web Link Validator AI - FastAPI Application"
+  },
+  {
+    "name": "workflow_orchestrator_ai",
+    "path": "C:\\blatam-academy\\agents\\backend\\onyx\\server\\features\\workflow_orchestrator_ai",
+    "title": "Workflow Orchestrator Ai",
+    "has_readme": true,
+    "readme_content": "# Workflow Orchestrator AI\n\n<div align=\"center\">\n\n![Status](https://img.shields.io/badge/status-active-success.svg)\n![Version](https://img.shields.io/badge/version-1.0-blue.svg)\n![License](https://img",
+    "tech_stack": [],
+    "connections": [],
+    "description": ""
+  }
+]

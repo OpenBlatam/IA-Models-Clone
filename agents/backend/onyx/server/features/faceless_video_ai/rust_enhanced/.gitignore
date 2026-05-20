@@ -1,0 +1,50 @@
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+*.mp4
+*.jpg
+*.png
+*.mp3
+*.wav
+
+# Temporary files
+/tmp/
+*.tmp
+
+
+
+
+
+
+
+
+
+
+
+

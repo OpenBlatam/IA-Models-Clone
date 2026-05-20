@@ -1,0 +1,102 @@
+# Faceless Video AI - Requirements
+
+# Core dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+python-multipart>=0.0.6
+
+# Image processing
+Pillow>=10.1.0
+numpy>=1.26.0
+
+# Video processing
+ffmpeg-python>=0.2.0
+
+# AI/ML Services
+openai>=1.3.0  # OpenAI API (DALL-E, TTS)
+httpx>=0.25.0  # HTTP client for API calls
+
+# Image generation alternatives
+# stability-sdk>=0.8.0  # Stability AI (optional)
+# diffusers>=0.24.0  # Hugging Face Diffusers (optional)
+# transformers>=4.35.0  # Hugging Face Transformers (optional)
+
+# Text-to-Speech
+gTTS>=2.4.0  # Google Text-to-Speech (free, recommended)
+# elevenlabs>=0.2.26  # ElevenLabs (high quality, optional)
+# azure-cognitiveservices-speech>=1.32.0  # Azure TTS (optional)
+
+# Utilities
+python-dotenv>=1.0.0
+aiofiles>=23.2.1
+
+# Logging
+structlog>=23.2.0
+
+# Optional: Database for job storage
+# sqlalchemy>=2.0.23
+# alembic>=1.12.1
+# psycopg2-binary>=2.9.9  # PostgreSQL
+redis>=5.0.1  # Redis for caching (optional but recommended)
+
+# Authentication
+PyJWT>=2.8.0  # JWT token handling
+passlib[bcrypt]>=1.7.4  # Password hashing
+
+# Cloud Storage
+boto3>=1.34.0  # AWS S3 integration
+
+# WebSocket
+websockets>=12.0  # WebSocket support
+
+# Email/SMS
+sendgrid>=6.11.0  # SendGrid for emails (optional)
+twilio>=8.10.0  # Twilio for SMS (optional)
+
+# Transcription
+openai-whisper>=20231117  # OpenAI Whisper for transcription (optional)
+
+# System Monitoring
+psutil>=5.9.0  # System and process utilities
+
+# Testing
+pytest>=7.4.0  # Testing framework
+pytest-asyncio>=0.21.0  # Async testing support
+pytest-cov>=4.1.0  # Coverage reporting
+pytest-mock>=3.11.1  # Mocking support
+
+# Security
+cryptography>=41.0.0  # Encryption and security
+
+# Metrics
+prometheus-client>=0.19.0  # Prometheus metrics
+
+# Async Task Processing
+celery>=5.3.0  # Celery for async task processing
+kombu>=5.3.0  # Celery message transport
+flower>=2.0.0  # Celery monitoring (optional)
+
+# AWS Serverless
+mangum>=0.17.0  # ASGI to AWS Lambda adapter
+
+# Observability & Tracing
+opentelemetry-api>=1.21.0  # OpenTelemetry API
+opentelemetry-sdk>=1.21.0  # OpenTelemetry SDK
+opentelemetry-exporter-otlp-proto-grpc>=1.21.0  # OTLP exporter
+opentelemetry-instrumentation-fastapi>=0.42b0  # FastAPI instrumentation
+opentelemetry-instrumentation-httpx>=0.42b0  # HTTPX instrumentation
+opentelemetry-instrumentation-redis>=0.42b0  # Redis instrumentation
+opentelemetry-instrumentation-boto3sqs>=0.42b0  # SQS instrumentation
+
+# Database
+sqlalchemy>=2.0.23  # SQL toolkit and ORM
+alembic>=1.12.1  # Database migrations
+psycopg2-binary>=2.9.9  # PostgreSQL adapter
+asyncpg>=0.29.0  # Async PostgreSQL driver
+
+# Circuit Breaker & Resilience
+pybreaker>=1.0.1  # Alternative circuit breaker (optional)
+tenacity>=8.2.3  # Retry library with exponential backoff
+

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "faceless-video-enhanced"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.metadata]
+maturin = { module-name = "faceless_video_enhanced" }
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+compatibility = "linux"
+
+
+
+
+
+
+
+
+
+
+
+

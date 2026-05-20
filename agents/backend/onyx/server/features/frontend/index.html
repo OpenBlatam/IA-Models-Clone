@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUL - Generador de Documentos con IA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">🚀 BUL</h1>
+                <div class="header-actions">
+                    <div class="status-indicator" id="statusIndicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Conectando...</span>
+                    </div>
+                    <button class="btn-icon" id="refreshBtn" title="Actualizar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                            <path d="M21 3v5h-5"></path>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                            <path d="M3 21v-5h5"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="nav">
+                    <button class="nav-item active" data-view="generate">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <path d="M14 2v6h6"></path>
+                            <path d="M16 13H8"></path>
+                            <path d="M16 17H8"></path>
+                            <path d="M10 9H8"></path>
+                        </svg>
+                        <span>Generar</span>
+                    </button>
+                    <button class="nav-item" data-view="tasks">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        <span>Tareas</span>
+                        <span class="badge" id="tasksBadge">0</span>
+                    </button>
+                    <button class="nav-item" data-view="documents">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <span>Documentos</span>
+                    </button>
+                    <button class="nav-item" data-view="stats">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"></path>
+                            <path d="M18 17V9"></path>
+                            <path d="M13 17V5"></path>
+                            <path d="M8 17v-3"></path>
+                        </svg>
+                        <span>Estadísticas</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Generate View -->
+                <div class="view active" id="generateView">
+                    <div class="view-header">
+                        <h2>Generar Nuevo Documento</h2>
+                        <p class="subtitle">Crea documentos personalizados usando inteligencia artificial</p>
+                    </div>
+
+                    <form class="generate-form" id="generateForm">
+                        <div class="form-group">
+                            <label for="query">Consulta de Negocio *</label>
+                            <textarea 
+                                id="query" 
+                                name="query" 
+                                rows="6" 
+                                placeholder="Describe el documento que deseas generar. Ejemplo: 'Necesito un plan de marketing para lanzar un nuevo producto tecnológico en el mercado latinoamericano...'"
+                                required
+                                minlength="10"
+                                maxlength="5000"
+                            ></textarea>
+                            <div class="char-count">
+                                <span id="charCount">0</span> / 5000 caracteres
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="businessArea">Área de Negocio</label>
+                                <select id="businessArea" name="businessArea">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="ventas">Ventas</option>
+                                    <option value="recursos-humanos">Recursos Humanos</option>
+                                    <option value="tecnologia">Tecnología</option>
+                                    <option value="finanzas">Finanzas</option>
+                                    <option value="operaciones">Operaciones</option>
+                                    <option value="general">General</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="documentType">Tipo de Documento</label>
+                                <select id="documentType" name="documentType">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="plan">Plan</option>
+                                    <option value="reporte">Reporte</option>
+                                    <option value="propuesta">Propuesta</option>
+                                    <option value="analisis">Análisis</option>
+                                    <option value="estrategia">Estrategia</option>
+                                    <option value="documento">Documento Estándar</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="priority">Prioridad</label>
+                                <select id="priority" name="priority">
+                                    <option value="1">Baja (1)</option>
+                                    <option value="2">Media-Baja (2)</option>
+                                    <option value="3" selected>Media (3)</option>
+                                    <option value="4">Media-Alta (4)</option>
+                                    <option value="5">Alta (5)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="generateBtn">
+                                <span class="btn-content">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14"></path>
+                                        <path d="M12 5l7 7-7 7"></path>
+                                    </svg>
+                                    Generar Documento
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Progress Card -->
+                    <div class="progress-card hidden" id="progressCard">
+                        <div class="progress-header">
+                            <h3>Generando Documento...</h3>
+                            <button class="btn-icon" id="cancelTaskBtn" title="Cancelar">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M15 9l-6 6"></path>
+                                    <path d="M9 9l6 6"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progressBar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span id="progressPercent">0%</span>
+                                <span id="progressStatus">En cola...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks View -->
+                <div class="view" id="tasksView">
+                    <div class="view-header">
+                        <h2>Gestión de Tareas</h2>
+                        <div class="view-actions">
+                            <select id="taskFilter" class="filter-select">
+                                <option value="">Todas</option>
+                                <option value="queued">En Cola</option>
+                                <option value="processing">Procesando</option>
+                                <option value="completed">Completadas</option>
+                                <option value="failed">Fallidas</option>
+                            </select>
+                            <button class="btn btn-secondary" id="refreshTasksBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                    <path d="M21 3v5h-5"></path>
+                                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                    <path d="M3 21v-5h5"></path>
+                                </svg>
+                                Actualizar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tasks-list" id="tasksList">
+                        <div class="empty-state">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                            </svg>
+                            <p>Cargando tareas...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents View -->
+                <div class="view" id="documentsView">
+                    <div class="view-header">
+                        <h2>Documentos Generados</h2>
+                        <button class="btn btn-secondary" id="refreshDocumentsBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                <path d="M21 3v5h-5"></path>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                <path d="M3 21v-5h5"></path>
+                            </svg>
+                            Actualizar
+                        </button>
+                    </div>
+                    <div class="documents-list" id="documentsList">
+                        <div class="empty-state">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            <p>Cargando documentos...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats View -->
+                <div class="view" id="statsView">
+                    <div class="view-header">
+                        <h2>Estadísticas del Sistema</h2>
+                        <button class="btn btn-secondary" id="refreshStatsBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                <path d="M21 3v5h-5"></path>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                <path d="M3 21v-5h5"></path>
+                            </svg>
+                            Actualizar
+                        </button>
+                    </div>
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statTotalRequests">-</div>
+                                <div class="stat-label">Total Solicitudes</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statActiveTasks">-</div>
+                                <div class="stat-label">Tareas Activas</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statCompletedTasks">-</div>
+                                <div class="stat-label">Tareas Completadas</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statSuccessRate">-</div>
+                                <div class="stat-label">Tasa de Éxito</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statAvgTime">-</div>
+                                <div class="stat-label">Tiempo Promedio</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🕐</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statUptime">-</div>
+                                <div class="stat-label">Tiempo Activo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Document Modal -->
+        <div class="modal" id="documentModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Documento</h3>
+                    <button class="btn-icon" id="closeModalBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18"></path>
+                            <path d="M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="document-viewer" id="documentViewer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="copyDocumentBtn">Copiar</button>
+                    <button class="btn btn-secondary" id="downloadDocumentBtn">Descargar</button>
+                    <button class="btn btn-primary" id="closeModalBtn2">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script src="api-client.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
+

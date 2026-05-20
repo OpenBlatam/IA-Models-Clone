@@ -1,0 +1,2509 @@
+{
+  "url": "https://antigravity.google/",
+  "title": "Google Antigravity",
+  "header": {
+    "role": "banner",
+    "name": "",
+    "ref": "ref-fzwtgndnhrs",
+    "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]"
+  },
+  "hero_section": {
+    "role": "main",
+    "name": "",
+    "ref": "ref-604v2kr6tt2",
+    "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+  },
+  "sections": [],
+  "footer": {},
+  "all_elements": [
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-vvy3tuud5rs",
+      "path": "[0]"
+    },
+    {
+      "role": "main",
+      "name": "",
+      "ref": "ref-6ddacbm3jbj",
+      "path": "[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-1xehss6m8uc",
+      "path": "[0]/generic[0]/main[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ey80ldg7vkb",
+      "path": "[0]/generic[0]/main[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-7jp30ehpeie",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "banner",
+      "name": "",
+      "ref": "ref-fzwtgndnhrs",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-i1j5e4p7jhq",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-1y5ocjs8xev",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]"
+    },
+    {
+      "role": "link",
+      "name": "Google Antigravity",
+      "ref": "ref-m6iyfwbnez",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-og6ofuro5lp",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "navigation",
+      "name": "",
+      "ref": "ref-rkytn0ldsq",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-jxuxm40o7r",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-6wp1wb682zh",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Product",
+      "ref": "ref-q4203yu028g",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-yam9z21vj7q",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-wmdjydw1m1",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Use Cases",
+      "ref": "ref-383eatrvg3c",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-zx8drl9mez",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-wkvu1rzui98",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Pricing",
+      "ref": "ref-vyj7d3r0bh",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-c3r6mc37avb",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-0zclt99t7iu",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Blog",
+      "ref": "ref-y9is78ww96",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-pso5466dkg",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-anazasn9vz",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Resources",
+      "ref": "ref-u9djlu09j4c",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-kv2i9lmlsti",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[1]"
+    },
+    {
+      "role": "button",
+      "name": "Download download",
+      "ref": "ref-znl279o4zb",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-mt02n372oos",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-dfr0ifby9eh",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "menu",
+      "ref": "ref-0h3r00voy3qq",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-po4um7ropvs",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-a11145m9hhl",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-uili2z9fjid",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-eb3bis6uw7u",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-pwh1mjz0zpe",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "menu",
+      "name": "",
+      "ref": "ref-bjm588bcrj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-b2sjutfzpvn",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-xvvmprlp1zl",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Product",
+      "ref": "ref-ph4zez3dqv",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "U e Ca e keyboard_arrow_down",
+      "ref": "ref-87zw60g9hjs",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-7blyh0amht8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-95nmqaew75f",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-jxas3abu9ij",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "Intuitive for every type of builder",
+      "ref": "ref-bk8bc9c5xew",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "Explore how Google Antigravity help  you build",
+      "ref": "ref-ouurbk2at3",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-dtuk7xnyjdb",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[2]"
+    },
+    {
+      "role": "link",
+      "name": "See overview",
+      "ref": "ref-sty9fewk7z",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[2]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-hrdmk76x28q",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]"
+    },
+    {
+      "role": "menu",
+      "name": "",
+      "ref": "ref-w5l65bua0xk",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "menuitem",
+      "name": "work pace Profe ional keyboard_arrow_right",
+      "ref": "ref-eeiawyvfjsp",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]/menu[0]"
+    },
+    {
+      "role": "menuitem",
+      "name": "code_block Frontend keyboard_arrow_right",
+      "ref": "ref-t578ia5i9wg",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]/menu[1]"
+    },
+    {
+      "role": "menuitem",
+      "name": "tack Full tack keyboard_arrow_right",
+      "ref": "ref-ywiaqjpp3e",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]/menu[2]"
+    },
+    {
+      "role": "button",
+      "name": "Pricing",
+      "ref": "ref-zjg76138xw",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[3]"
+    },
+    {
+      "role": "button",
+      "name": "Blog",
+      "ref": "ref-bn66drm0rn",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[4]"
+    },
+    {
+      "role": "button",
+      "name": "Re ource keyboard_arrow_down",
+      "ref": "ref-r3f2vtsgfpk",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[5]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-otk6yxy82j",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ioucwlcz50q",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-q7vs7m0fdvc",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]"
+    },
+    {
+      "role": "menu",
+      "name": "",
+      "ref": "ref-2b4oy83aezs",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "menuitem",
+      "name": "Documentation keyboard_arrow_right",
+      "ref": "ref-q3eh5z8h3d",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]/menu[0]"
+    },
+    {
+      "role": "menuitem",
+      "name": "Changelog keyboard_arrow_right",
+      "ref": "ref-gzodo3jmz4r",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]/menu[1]"
+    },
+    {
+      "role": "menuitem",
+      "name": "Support keyboard_arrow_right",
+      "ref": "ref-yncoqerai3",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]/menu[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-5y9cbg5efph",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ukknqsjr9f",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-cukdvln5bn6",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-rtnzmbz8r1",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "main",
+      "name": "",
+      "ref": "ref-604v2kr6tt2",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "section",
+      "name": "",
+      "ref": "ref-sgrzz4ggazr",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-p54sx8on2vf",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-sakk0gp53um",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-p7jyr6o8ym",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Download for Window",
+      "ref": "ref-1jkubuqiums",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-o2k7w4e1w6",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "button",
+      "name": "Explore u e ca e",
+      "ref": "ref-3crigswzubi",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-dkt0ssgyg9r",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]"
+    },
+    {
+      "role": "section",
+      "name": "",
+      "ref": "ref-9xphziua4ts",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-hmnnkfrusyq",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-aj4jgu8uzjv",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ezgxfjkwdq6",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-bh4p692r4dw",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-qgdpfdzlky",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "list",
+      "name": "",
+      "ref": "ref-0z9iqbdgt3a",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "listitem",
+      "name": "An AI IDE Core Google Antigravity'  Editor view offer  tab autocompletion, natural language code command , and a configurable, and context-aware configurable agent.",
+      "ref": "ref-8v2qb1pbvwe",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[0]"
+    },
+    {
+      "role": "listitem",
+      "name": "Higher-level Ab traction A more intuitive ta k-ba ed approach to monitoring agent activity, pre enting you with e ential artifact  and verification re ult  to build tru t.",
+      "ref": "ref-nf1y1gmxosm",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[1]"
+    },
+    {
+      "role": "listitem",
+      "name": "Cro - urface Agent Synchronized agentic control acro  your editor, terminal, and brow er for powerful development workflow .",
+      "ref": "ref-7anbupqqyoa",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[2]"
+    },
+    {
+      "role": "listitem",
+      "name": "U er Feedback Intuitively integrate feedback acro   urface  and artifact  to guide and refine the agent’  work.",
+      "ref": "ref-yjsm5z2kz9",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[3]"
+    },
+    {
+      "role": "listitem",
+      "name": "An Agent-Fir t Experience Manage multiple agent  at the  ame time, acro  any work pace, from one central mi ion control view.",
+      "ref": "ref-ut0431aynga",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[4]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-l8d9ud1l9er",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "link",
+      "name": "Explore Product",
+      "ref": "ref-7xwrexe72pj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-0pg0xekj80rp",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-sim6fdw6fq",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-h7t5xp0t1k",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-hsrulj41hyo",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-0387x7dwz4nw",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "clo e",
+      "ref": "ref-czy58nm5kw9",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "section",
+      "name": "",
+      "ref": "ref-1glcqt2dm0z",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-979b883e51e",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-7xbuypnrvwt",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-l2qs9gh6kup",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-jlsjphjyac",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-lfi4fmavk",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-l4y9eptqzre",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ukbpjmbvi5",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "Streamline UX development by leveraging brow er-in-the-loop agent  to automate repetitive ta k .",
+      "ref": "ref-ffbtd6ggbm8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "link",
+      "name": "View ca e",
+      "ref": "ref-ik114aux1li",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-vnajy62y1n",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-vfu2l0n24gl",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "Build production-ready application  with confidence with thoroughly de igned artifact  and comprehen ive verification te t .",
+      "ref": "ref-zgfv5tnfyy",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[1]"
+    },
+    {
+      "role": "link",
+      "name": "View ca e",
+      "ref": "ref-k6jabyvlab",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-z1kmdv2j2s7",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-shcyy14kpe",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "Streamline operation  and reduce context  witching by orche trating agent  acro  work pace  u ing the Agent Manager.",
+      "ref": "ref-q6ts2bwp5k9",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[1]"
+    },
+    {
+      "role": "link",
+      "name": "View ca e",
+      "ref": "ref-hd0wmjl8frf",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-t9y4zzody3b",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-9nslyvnetpc",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-09r0khqruj2t",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "keyboard_arrow_left",
+      "ref": "ref-omwtluyci9s",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "keyboard_arrow_right",
+      "ref": "ref-p5svgicjhj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ga8y801iewe",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]"
+    },
+    {
+      "role": "section",
+      "name": "",
+      "ref": "ref-1yni8h5sc2a",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-b6nztt06a9",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-02t4k3oo9qjs",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-l5g8syyvf8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-00y6i7e0mmmfj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-tusoig6084p",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-5levlo2ey9",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "Available at no charge",
+      "ref": "ref-iel3t5gdghr",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "For developer",
+      "ref": "ref-uu5o8wx3ni7",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "Achieve new height",
+      "ref": "ref-fkb9v9s5e7n",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-xsjfi6mdir",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-m80lt36xk8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-sdn7p4rxioc",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Download",
+      "ref": "ref-chrsnmqsfe8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-c8vgzr057ss",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-3jhyl4asqnb",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "Coming  oon",
+      "ref": "ref-tadd4m584lh",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "For organization",
+      "ref": "ref-ku7rvuu4mqc",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "Level up your entire team",
+      "ref": "ref-ejaxjzok9rq",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[2]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-5kdnfp0oewo",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-rpu2cmh1ia",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-g0wje3z6bqu",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Notify me",
+      "ref": "ref-vsbqk81tdnt",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ylaecqhya3",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]"
+    },
+    {
+      "role": "section",
+      "name": "",
+      "ref": "ref-cfmcynmwv5",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ouc93srfd9s",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-wsdjl9v85af",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-333y2l2ruim",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-vrt1yhob6t",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-q68956xlfd",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "View blog",
+      "ref": "ref-dxyzzowy0ow",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-poq16iv0gxo",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-awu1jawf5ju",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-nocwdqgqak",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-tkgilcjuw5m",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-4fniukq62dt",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-coiumrdlsjb",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "link",
+      "name": "Nano Banana Pro in Google Antigravity Nov 20, 2025 Product Read blog",
+      "ref": "ref-vubhc62t93r",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "link",
+      "name": "Introducing Google Antigravity Nov 18, 2025 Product Read blog",
+      "ref": "ref-7o0skwqhcik",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-pnwzlascsof",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-d17wfz7bv1w",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "keyboard_arrow_left",
+      "ref": "ref-73yqpxy3gid",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "keyboard_arrow_right",
+      "ref": "ref-ea3ja49nlg",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-397sdzlegm",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]"
+    },
+    {
+      "role": "section",
+      "name": "",
+      "ref": "ref-io54vrrha09",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-g45aldana74",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-cgh8agh1u8t",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-agd90u0qg49",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-p8uq813h15l",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-1qasnny34ii",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-qw49xdynw9r",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-9oo1unlpdx",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "button",
+      "name": "Download for x64",
+      "ref": "ref-pmju6h6nh8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-j2gw4fv9s7",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "button",
+      "name": "Download for ARM64",
+      "ref": "ref-idi3vlca0hj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-o3luxx73to8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+    },
+    {
+      "role": "contentinfo",
+      "name": "",
+      "ref": "ref-2gk3w55jzjp",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-m6dgmxdfe1t",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-srybbyy2btd",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-96m7hge2la9",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ocrpmhxu4g",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-upcgrasvlb8",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-2e1y2gwvcvw",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "link",
+      "name": "Download",
+      "ref": "ref-rop5ii2pps",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "link",
+      "name": "Product",
+      "ref": "ref-55n1ccsd815",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+    },
+    {
+      "role": "link",
+      "name": "Doc",
+      "ref": "ref-w0o4akfymz",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]"
+    },
+    {
+      "role": "link",
+      "name": "Changelog",
+      "ref": "ref-d0hnxe9lhv6",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[4]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-lx5jk2m5igh",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-09ap5877p4y",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-wpirb015vc",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "link",
+      "name": "Blog",
+      "ref": "ref-cl7utistf24",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+    },
+    {
+      "role": "link",
+      "name": "Pricing",
+      "ref": "ref-edmi71b2468",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[2]"
+    },
+    {
+      "role": "link",
+      "name": "U e Ca e",
+      "ref": "ref-jyxa0ebhtjo",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-214zadnqpmm",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-u4tsl9jcpbf",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-ofbvu0dxl3a",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-hcnromlbt1v",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "link",
+      "name": "Google",
+      "ref": "ref-lqd92huiphc",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+    },
+    {
+      "role": "generic",
+      "name": "",
+      "ref": "ref-kpktitbeohj",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]"
+    },
+    {
+      "role": "navigation",
+      "name": "",
+      "ref": "ref-53nhooo5yzk",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]"
+    },
+    {
+      "role": "link",
+      "name": "About Google",
+      "ref": "ref-5sbf0yjcwqy",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[0]"
+    },
+    {
+      "role": "link",
+      "name": "Google Product",
+      "ref": "ref-nvcd1zvw6ml",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[1]"
+    },
+    {
+      "role": "link",
+      "name": "Privacy",
+      "ref": "ref-pdmm48cxc6k",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[2]"
+    },
+    {
+      "role": "link",
+      "name": "Term",
+      "ref": "ref-2pn33nn58oe",
+      "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[3]"
+    }
+  ],
+  "total_elements": 204,
+  "by_role": {
+    "generic": 133,
+    "main": 2,
+    "banner": 1,
+    "link": 20,
+    "navigation": 2,
+    "button": 24,
+    "menu": 3,
+    "menuitem": 6,
+    "section": 6,
+    "list": 1,
+    "listitem": 5,
+    "contentinfo": 1
+  },
+  "roles_detail": {
+    "generic": [
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-vvy3tuud5rs",
+        "path": "[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-1xehss6m8uc",
+        "path": "[0]/generic[0]/main[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ey80ldg7vkb",
+        "path": "[0]/generic[0]/main[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-7jp30ehpeie",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-i1j5e4p7jhq",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-1y5ocjs8xev",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-og6ofuro5lp",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-jxuxm40o7r",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-6wp1wb682zh",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-yam9z21vj7q",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-wmdjydw1m1",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-zx8drl9mez",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-wkvu1rzui98",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-c3r6mc37avb",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-0zclt99t7iu",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-pso5466dkg",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-anazasn9vz",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-kv2i9lmlsti",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-mt02n372oos",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-dfr0ifby9eh",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-po4um7ropvs",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-a11145m9hhl",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-uili2z9fjid",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-eb3bis6uw7u",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-pwh1mjz0zpe",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-b2sjutfzpvn",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-xvvmprlp1zl",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-7blyh0amht8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-95nmqaew75f",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-jxas3abu9ij",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "Intuitive for every type of builder",
+        "ref": "ref-bk8bc9c5xew",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "Explore how Google Antigravity help  you build",
+        "ref": "ref-ouurbk2at3",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-dtuk7xnyjdb",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-hrdmk76x28q",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-otk6yxy82j",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ioucwlcz50q",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-q7vs7m0fdvc",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-5y9cbg5efph",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ukknqsjr9f",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-cukdvln5bn6",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-rtnzmbz8r1",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-p54sx8on2vf",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-sakk0gp53um",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-p7jyr6o8ym",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-o2k7w4e1w6",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-dkt0ssgyg9r",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-hmnnkfrusyq",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-aj4jgu8uzjv",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ezgxfjkwdq6",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-bh4p692r4dw",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-qgdpfdzlky",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-l8d9ud1l9er",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-0pg0xekj80rp",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-sim6fdw6fq",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-h7t5xp0t1k",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-hsrulj41hyo",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-0387x7dwz4nw",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-979b883e51e",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-7xbuypnrvwt",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-l2qs9gh6kup",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-jlsjphjyac",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-lfi4fmavk",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-l4y9eptqzre",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ukbpjmbvi5",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "Streamline UX development by leveraging brow er-in-the-loop agent  to automate repetitive ta k .",
+        "ref": "ref-ffbtd6ggbm8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-vnajy62y1n",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-vfu2l0n24gl",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "Build production-ready application  with confidence with thoroughly de igned artifact  and comprehen ive verification te t .",
+        "ref": "ref-zgfv5tnfyy",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-z1kmdv2j2s7",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-shcyy14kpe",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "Streamline operation  and reduce context  witching by orche trating agent  acro  work pace  u ing the Agent Manager.",
+        "ref": "ref-q6ts2bwp5k9",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-t9y4zzody3b",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-9nslyvnetpc",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-09r0khqruj2t",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ga8y801iewe",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-b6nztt06a9",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-02t4k3oo9qjs",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-l5g8syyvf8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-00y6i7e0mmmfj",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-tusoig6084p",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-5levlo2ey9",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "Available at no charge",
+        "ref": "ref-iel3t5gdghr",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "For developer",
+        "ref": "ref-uu5o8wx3ni7",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "Achieve new height",
+        "ref": "ref-fkb9v9s5e7n",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-xsjfi6mdir",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-m80lt36xk8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-sdn7p4rxioc",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-c8vgzr057ss",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-3jhyl4asqnb",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "Coming  oon",
+        "ref": "ref-tadd4m584lh",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "For organization",
+        "ref": "ref-ku7rvuu4mqc",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "Level up your entire team",
+        "ref": "ref-ejaxjzok9rq",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[2]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-5kdnfp0oewo",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-rpu2cmh1ia",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-g0wje3z6bqu",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ylaecqhya3",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ouc93srfd9s",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-wsdjl9v85af",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-333y2l2ruim",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-vrt1yhob6t",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-q68956xlfd",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-poq16iv0gxo",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-awu1jawf5ju",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-nocwdqgqak",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-tkgilcjuw5m",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-4fniukq62dt",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-coiumrdlsjb",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-pnwzlascsof",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-d17wfz7bv1w",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-397sdzlegm",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-g45aldana74",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-cgh8agh1u8t",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-agd90u0qg49",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-p8uq813h15l",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-1qasnny34ii",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-qw49xdynw9r",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-9oo1unlpdx",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-j2gw4fv9s7",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-o3luxx73to8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-m6dgmxdfe1t",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-srybbyy2btd",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-96m7hge2la9",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ocrpmhxu4g",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-upcgrasvlb8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-2e1y2gwvcvw",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-lx5jk2m5igh",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-09ap5877p4y",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-wpirb015vc",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-214zadnqpmm",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-u4tsl9jcpbf",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-ofbvu0dxl3a",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-hcnromlbt1v",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "generic",
+        "name": "",
+        "ref": "ref-kpktitbeohj",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]"
+      }
+    ],
+    "main": [
+      {
+        "role": "main",
+        "name": "",
+        "ref": "ref-6ddacbm3jbj",
+        "path": "[0]/generic[0]"
+      },
+      {
+        "role": "main",
+        "name": "",
+        "ref": "ref-604v2kr6tt2",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+      }
+    ],
+    "banner": [
+      {
+        "role": "banner",
+        "name": "",
+        "ref": "ref-fzwtgndnhrs",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]"
+      }
+    ],
+    "link": [
+      {
+        "role": "link",
+        "name": "Google Antigravity",
+        "ref": "ref-m6iyfwbnez",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "link",
+        "name": "See overview",
+        "ref": "ref-sty9fewk7z",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[0]/generic[2]/generic[0]"
+      },
+      {
+        "role": "link",
+        "name": "Explore Product",
+        "ref": "ref-7xwrexe72pj",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "link",
+        "name": "View ca e",
+        "ref": "ref-ik114aux1li",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+      },
+      {
+        "role": "link",
+        "name": "View ca e",
+        "ref": "ref-k6jabyvlab",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[2]"
+      },
+      {
+        "role": "link",
+        "name": "View ca e",
+        "ref": "ref-hd0wmjl8frf",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]/generic[2]"
+      },
+      {
+        "role": "link",
+        "name": "Nano Banana Pro in Google Antigravity Nov 20, 2025 Product Read blog",
+        "ref": "ref-vubhc62t93r",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "link",
+        "name": "Introducing Google Antigravity Nov 18, 2025 Product Read blog",
+        "ref": "ref-7o0skwqhcik",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "link",
+        "name": "Download",
+        "ref": "ref-rop5ii2pps",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "link",
+        "name": "Product",
+        "ref": "ref-55n1ccsd815",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[2]"
+      },
+      {
+        "role": "link",
+        "name": "Doc",
+        "ref": "ref-w0o4akfymz",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]"
+      },
+      {
+        "role": "link",
+        "name": "Changelog",
+        "ref": "ref-d0hnxe9lhv6",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[4]"
+      },
+      {
+        "role": "link",
+        "name": "Blog",
+        "ref": "ref-cl7utistf24",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+      },
+      {
+        "role": "link",
+        "name": "Pricing",
+        "ref": "ref-edmi71b2468",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[2]"
+      },
+      {
+        "role": "link",
+        "name": "U e Ca e",
+        "ref": "ref-jyxa0ebhtjo",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]"
+      },
+      {
+        "role": "link",
+        "name": "Google",
+        "ref": "ref-lqd92huiphc",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "link",
+        "name": "About Google",
+        "ref": "ref-5sbf0yjcwqy",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[0]"
+      },
+      {
+        "role": "link",
+        "name": "Google Product",
+        "ref": "ref-nvcd1zvw6ml",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[1]"
+      },
+      {
+        "role": "link",
+        "name": "Privacy",
+        "ref": "ref-pdmm48cxc6k",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[2]"
+      },
+      {
+        "role": "link",
+        "name": "Term",
+        "ref": "ref-2pn33nn58oe",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]/navigation[3]"
+      }
+    ],
+    "navigation": [
+      {
+        "role": "navigation",
+        "name": "",
+        "ref": "ref-rkytn0ldsq",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "navigation",
+        "name": "",
+        "ref": "ref-53nhooo5yzk",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]/contentinfo[1]/generic[0]/generic[0]/generic[1]/generic[0]"
+      }
+    ],
+    "button": [
+      {
+        "role": "button",
+        "name": "Product",
+        "ref": "ref-q4203yu028g",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Use Cases",
+        "ref": "ref-383eatrvg3c",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Pricing",
+        "ref": "ref-vyj7d3r0bh",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Blog",
+        "ref": "ref-y9is78ww96",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[3]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Resources",
+        "ref": "ref-u9djlu09j4c",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[0]/navigation[4]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Download download",
+        "ref": "ref-znl279o4zb",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[1]/generic[1]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "menu",
+        "ref": "ref-0h3r00voy3qq",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[0]/generic[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Product",
+        "ref": "ref-ph4zez3dqv",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "U e Ca e keyboard_arrow_down",
+        "ref": "ref-87zw60g9hjs",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[1]"
+      },
+      {
+        "role": "button",
+        "name": "Pricing",
+        "ref": "ref-zjg76138xw",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[3]"
+      },
+      {
+        "role": "button",
+        "name": "Blog",
+        "ref": "ref-bn66drm0rn",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[4]"
+      },
+      {
+        "role": "button",
+        "name": "Re ource keyboard_arrow_down",
+        "ref": "ref-r3f2vtsgfpk",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[5]"
+      },
+      {
+        "role": "button",
+        "name": "Download for Window",
+        "ref": "ref-1jkubuqiums",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Explore u e ca e",
+        "ref": "ref-3crigswzubi",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]/section[0]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "clo e",
+        "ref": "ref-czy58nm5kw9",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "keyboard_arrow_left",
+        "ref": "ref-omwtluyci9s",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "keyboard_arrow_right",
+        "ref": "ref-p5svgicjhj",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[1]"
+      },
+      {
+        "role": "button",
+        "name": "Download",
+        "ref": "ref-chrsnmqsfe8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Notify me",
+        "ref": "ref-vsbqk81tdnt",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[3]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "View blog",
+        "ref": "ref-dxyzzowy0ow",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "keyboard_arrow_left",
+        "ref": "ref-73yqpxy3gid",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "keyboard_arrow_right",
+        "ref": "ref-ea3ja49nlg",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]/section[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]/generic[1]"
+      },
+      {
+        "role": "button",
+        "name": "Download for x64",
+        "ref": "ref-pmju6h6nh8",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "button",
+        "name": "Download for ARM64",
+        "ref": "ref-idi3vlca0hj",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[1]/generic[0]"
+      }
+    ],
+    "menu": [
+      {
+        "role": "menu",
+        "name": "",
+        "ref": "ref-bjm588bcrj",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      },
+      {
+        "role": "menu",
+        "name": "",
+        "ref": "ref-w5l65bua0xk",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]"
+      },
+      {
+        "role": "menu",
+        "name": "",
+        "ref": "ref-2b4oy83aezs",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]"
+      }
+    ],
+    "menuitem": [
+      {
+        "role": "menuitem",
+        "name": "work pace Profe ional keyboard_arrow_right",
+        "ref": "ref-eeiawyvfjsp",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]/menu[0]"
+      },
+      {
+        "role": "menuitem",
+        "name": "code_block Frontend keyboard_arrow_right",
+        "ref": "ref-t578ia5i9wg",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]/menu[1]"
+      },
+      {
+        "role": "menuitem",
+        "name": "tack Full tack keyboard_arrow_right",
+        "ref": "ref-ywiaqjpp3e",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[2]/generic[0]/generic[1]/generic[0]/menu[2]"
+      },
+      {
+        "role": "menuitem",
+        "name": "Documentation keyboard_arrow_right",
+        "ref": "ref-q3eh5z8h3d",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]/menu[0]"
+      },
+      {
+        "role": "menuitem",
+        "name": "Changelog keyboard_arrow_right",
+        "ref": "ref-gzodo3jmz4r",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]/menu[1]"
+      },
+      {
+        "role": "menuitem",
+        "name": "Support keyboard_arrow_right",
+        "ref": "ref-yncoqerai3",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[0]/generic[0]/banner[0]/generic[2]/generic[0]/generic[6]/generic[0]/generic[0]/generic[0]/menu[2]"
+      }
+    ],
+    "section": [
+      {
+        "role": "section",
+        "name": "",
+        "ref": "ref-sgrzz4ggazr",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[0]"
+      },
+      {
+        "role": "section",
+        "name": "",
+        "ref": "ref-9xphziua4ts",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]"
+      },
+      {
+        "role": "section",
+        "name": "",
+        "ref": "ref-1glcqt2dm0z",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[2]/generic[1]"
+      },
+      {
+        "role": "section",
+        "name": "",
+        "ref": "ref-1yni8h5sc2a",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[3]/generic[0]"
+      },
+      {
+        "role": "section",
+        "name": "",
+        "ref": "ref-cfmcynmwv5",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[4]/generic[0]"
+      },
+      {
+        "role": "section",
+        "name": "",
+        "ref": "ref-io54vrrha09",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[5]/generic[0]"
+      }
+    ],
+    "list": [
+      {
+        "role": "list",
+        "name": "",
+        "ref": "ref-0z9iqbdgt3a",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]"
+      }
+    ],
+    "listitem": [
+      {
+        "role": "listitem",
+        "name": "An AI IDE Core Google Antigravity'  Editor view offer  tab autocompletion, natural language code command , and a configurable, and context-aware configurable agent.",
+        "ref": "ref-8v2qb1pbvwe",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[0]"
+      },
+      {
+        "role": "listitem",
+        "name": "Higher-level Ab traction A more intuitive ta k-ba ed approach to monitoring agent activity, pre enting you with e ential artifact  and verification re ult  to build tru t.",
+        "ref": "ref-nf1y1gmxosm",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[1]"
+      },
+      {
+        "role": "listitem",
+        "name": "Cro - urface Agent Synchronized agentic control acro  your editor, terminal, and brow er for powerful development workflow .",
+        "ref": "ref-7anbupqqyoa",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[2]"
+      },
+      {
+        "role": "listitem",
+        "name": "U er Feedback Intuitively integrate feedback acro   urface  and artifact  to guide and refine the agent’  work.",
+        "ref": "ref-yjsm5z2kz9",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[3]"
+      },
+      {
+        "role": "listitem",
+        "name": "An Agent-Fir t Experience Manage multiple agent  at the  ame time, acro  any work pace, from one central mi ion control view.",
+        "ref": "ref-ut0431aynga",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[0]/generic[0]/generic[0]/main[1]/generic[0]/section[0]/generic[0]/generic[0]/generic[0]/generic[0]/generic[0]/list[4]"
+      }
+    ],
+    "contentinfo": [
+      {
+        "role": "contentinfo",
+        "name": "",
+        "ref": "ref-2gk3w55jzjp",
+        "path": "[0]/generic[0]/main[0]/generic[0]/generic[1]/generic[0]/generic[1]/generic[0]"
+      }
+    ]
+  }
+}

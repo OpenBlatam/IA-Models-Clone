@@ -1,0 +1,20 @@
+{
+  "url": "https://antigravity.google/",
+  "title": "Google Antigravity",
+  "header": {},
+  "hero_section": {},
+  "sections": [],
+  "footer": {},
+  "all_elements": [
+    {
+      "tag": "html",
+      "attributes": {
+        "lang": "en"
+      },
+      "text": "Google Antigravity\n  \n  \n  \n\n  \n  \n  \n  \n  \n  \n  \n\n  \n  \n  \n  \n  \n  \n\n  \n  \n  \n  \n  \n  \n  @font-face{font-family:'Google Sans Code';font-style:italic;font-weight:400;font-display:swap;src:url(https://",
+      "class": "",
+      "id": ""
+    }
+  ],
+  "total_elements": 1
+}

@@ -1,0 +1,62 @@
+# Core Dependencies for Diffusion Models System
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Hugging Face Libraries
+diffusers>=0.24.0
+transformers>=4.35.0
+tokenizers>=0.15.0
+accelerate>=0.24.0
+safetensors>=0.4.0
+
+# Image Processing
+Pillow>=10.0.0
+opencv-python>=4.8.0
+imageio>=2.31.0
+
+# Scientific Computing
+numpy>=1.24.0
+scipy>=1.11.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Data Handling
+pandas>=2.0.0
+huggingface-hub>=0.17.0
+datasets>=2.14.0
+
+# Memory Optimization
+xformers>=0.0.22
+optimum>=1.14.0
+
+# Training & Optimization
+lion-pytorch>=0.1.0
+adafactor>=0.1.0
+bitsandbytes>=0.41.0
+
+# Utilities
+tqdm>=4.65.0
+rich>=13.0.0
+click>=8.1.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Development & Testing
+pytest>=7.4.0
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+
+# Optional: Advanced Features
+# unidecode>=1.3.0  # For text normalization
+# ftfy>=6.1.0       # For text cleaning
+# regex>=2023.0.0   # For advanced regex
+# sentencepiece>=0.1.99  # For tokenization
+# protobuf>=4.23.0  # For model loading
+
+
+
+
+
+

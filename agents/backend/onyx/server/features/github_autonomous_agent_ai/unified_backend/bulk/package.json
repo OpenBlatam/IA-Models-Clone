@@ -1,0 +1,63 @@
+{
+  "name": "bul-api-client",
+  "version": "1.0.0",
+  "description": "Cliente JavaScript/TypeScript para la API BUL",
+  "main": "bul-api-client.js",
+  "types": "bul-api-client.d.ts",
+  "scripts": {
+    "test": "node test_client.js",
+    "build": "tsc bul-api-client.ts --declaration --outDir dist"
+  },
+  "keywords": [
+    "bul",
+    "api",
+    "client",
+    "typescript",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "bul-api-client.js",
+    "bul-api-client.ts",
+    "frontend_types.ts",
+    "README.md"
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

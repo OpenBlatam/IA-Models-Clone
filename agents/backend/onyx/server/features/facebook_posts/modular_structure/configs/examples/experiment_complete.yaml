@@ -1,0 +1,194 @@
+# 🎯 Complete Experiment Configuration
+# This demonstrates a full experiment configuration combining all aspects
+# Implements the convention: "Use configuration files (e.g., YAML) for hyperparameters and model settings"
+
+# Experiment Metadata
+experiment:
+  name: "image_classification_resnet_cifar10"
+  project: "computer_vision_experiments"
+  description: "CIFAR-10 classification using ResNet with data augmentation"
+  tags:
+    - "classification"
+    - "computer_vision"
+    - "resnet"
+    - "cifar10"
+  
+# Model Configuration
+model:
+  model_type: "classification"
+  architecture: "resnet18"
+  input_size: [3, 32, 32]  # CIFAR-10 image size
+  output_size: 10
+  hidden_size: 512
+  num_layers: 4
+  dropout_rate: 0.2
+  
+  # Pre-trained settings
+  pretrained: true
+  pretrained_model_name: "resnet18"
+  freeze_backbone: false
+  
+  # Device settings
+  device: "auto"
+  mixed_precision: true
+  
+  # Classification-specific
+  classification_config:
+    num_classes: 10
+    class_weights: null
+    label_smoothing: 0.1
+
+# Data Configuration  
+data:
+  dataset_name: "CIFAR-10"
+  dataset_path: "${DATASET_PATH:./data/cifar10}"
+  batch_size: 64
+  num_workers: 4
+  pin_memory: true
+  
+  # Data splits
+  validation_split: 0.2
+  test_split: 0.0  # CIFAR-10 has predefined test set
+  stratify: true
+  
+  # Data preprocessing
+  preprocessing:
+    normalize: true
+    mean: [0.4914, 0.4822, 0.4465]
+    std: [0.2023, 0.1994, 0.2010]
+  
+  # Data augmentation
+  augmentation:
+    train:
+      horizontal_flip: 0.5
+      random_crop: 
+        size: 32
+        padding: 4
+      rotation: 15.0
+      brightness: 0.2
+      contrast: 0.2
+    
+    validation:
+      # No augmentation for validation
+      pass
+
+# Training Configuration
+training:
+  num_epochs: 200
+  learning_rate: 0.1
+  weight_decay: 0.0001
+  
+  # Optimizer
+  optimizer: "sgd"
+  optimizer_params:
+    momentum: 0.9
+    nesterov: true
+  
+  # Learning rate scheduling
+  scheduler: "cosine"
+  scheduler_params:
+    T_max: 200
+    eta_min: 0.0001
+  warmup_epochs: 5
+  warmup_lr: 0.01
+  
+  # Loss function
+  loss_function: "cross_entropy"
+  loss_params:
+    label_smoothing: 0.1
+  
+  # Regularization
+  gradient_clip_norm: 1.0
+  mixup_alpha: 0.2
+  cutmix_alpha: 0.0
+  
+  # Monitoring
+  log_interval: 50
+  eval_interval: 1
+  save_interval: 10
+  
+  # Early stopping
+  early_stopping: true
+  patience: 20
+  monitor_metric: "val_accuracy"
+  mode: "max"
+  
+  # Mixed precision
+  mixed_precision: true
+  
+  # Reproducibility
+  seed: 42
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "confusion_matrix"
+  
+  # Test-time augmentation
+  tta_enabled: false
+  tta_transforms: 5
+  
+  # Model ensemble
+  ensemble_enabled: false
+  ensemble_models: []
+
+# Logging and Tracking
+logging:
+  # Experiment tracking
+  use_tensorboard: true
+  use_wandb: true
+  wandb_project: "cifar10_classification"
+  wandb_entity: "${WANDB_ENTITY:}"
+  
+  # Logging settings
+  log_level: "INFO"
+  log_dir: "./logs"
+  
+  # What to log
+  log_gradients: true
+  log_model_weights: false
+  log_learning_rate: true
+  log_images: true
+  log_predictions: true
+
+# Checkpointing
+checkpointing:
+  checkpoint_dir: "./checkpoints"
+  save_best_only: true
+  save_last_checkpoint: true
+  save_top_k: 3
+  monitor_metric: "val_accuracy"
+  mode: "max"
+
+# Hardware and Performance
+hardware:
+  # Device settings
+  device: "auto"
+  use_cuda_if_available: true
+  
+  # Multi-GPU settings
+  distributed: false
+  world_size: 1
+  
+  # Memory optimization
+  gradient_checkpointing: false
+  memory_efficient: true
+  
+  # Performance
+  compile_model: false  # PyTorch 2.0+ optimization
+  benchmark: true
+
+# Environment-specific settings can be overridden in:
+# experiment_complete_dev.yaml - Development environment
+# experiment_complete_staging.yaml - Staging environment  
+# experiment_complete_prod.yaml - Production environment
+
+
+
+
+
+

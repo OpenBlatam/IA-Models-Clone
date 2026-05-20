@@ -1,0 +1,119 @@
+# 🚀 Standard Training Configuration
+# This demonstrates YAML-based configuration for training hyperparameters
+# Implements the convention: "Use configuration files (e.g., YAML) for hyperparameters and model settings"
+
+# Basic Training Parameters
+num_epochs: 100
+batch_size: 32
+learning_rate: 0.001
+weight_decay: 0.0001
+
+# Optimizer Configuration
+optimizer: "adamw"
+optimizer_params:
+  betas: [0.9, 0.999]
+  eps: 1e-8
+
+# Learning Rate Scheduling
+scheduler: "cosine"
+scheduler_params:
+  T_max: 100
+  eta_min: 1e-6
+warmup_epochs: 5
+warmup_lr: 0.0001
+
+# Loss Function
+loss_function: "cross_entropy"
+loss_params:
+  label_smoothing: 0.1
+
+# Regularization Techniques
+dropout_rate: 0.1
+label_smoothing: 0.1
+mixup_alpha: 0.2
+cutmix_alpha: 0.0
+
+# Gradient Management
+gradient_clip_norm: 1.0
+gradient_clip_value: null
+gradient_accumulation_steps: 1
+
+# Numerical Stability
+eps: 1e-8
+detect_anomaly: false
+nan_to_num: false
+
+# Training Monitoring
+log_interval: 100
+eval_interval: 1
+save_interval: 10
+
+# Early Stopping Configuration
+early_stopping: true
+patience: 15
+min_delta: 0.001
+monitor_metric: "val_loss"
+mode: "min"
+
+# Checkpointing
+save_best_only: true
+save_last_checkpoint: true
+checkpoint_dir: "checkpoints"
+
+# Data Loading
+num_workers: 4
+pin_memory: true
+persistent_workers: true
+prefetch_factor: 2
+
+# Mixed Precision Training
+mixed_precision: true
+amp_backend: "native"
+loss_scale: "dynamic"
+
+# Reproducibility
+seed: 42
+deterministic: false
+benchmark: true
+
+# Data Splitting
+validation_split: 0.2
+test_split: 0.1
+stratify: true
+
+# Data Augmentation
+augmentation_config:
+  horizontal_flip: 0.5
+  vertical_flip: 0.0
+  rotation: 15.0
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.1
+  hue: 0.05
+  noise: 0.01
+
+# Experiment Tracking
+experiment_name: "standard_classification_training"
+project_name: "image_classification_project"
+tags: 
+  - "classification"
+  - "resnet"
+  - "standard_training"
+notes: "Standard training configuration with data augmentation and mixed precision"
+
+# Advanced Techniques
+use_ema: false
+ema_decay: 0.999
+use_swa: false
+swa_lr: 0.01
+swa_start_epoch: 80
+
+# Environment-specific overrides available in:
+# training_standard_dev.yaml - Development settings (faster, less epochs)
+# training_standard_prod.yaml - Production settings (more epochs, better validation)
+
+
+
+
+
+
