@@ -1,0 +1,28 @@
+# Practical AI Document Processor Requirements
+# Only real, working dependencies
+
+# Core web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# Real AI/ML libraries
+torch==2.1.0
+transformers==4.35.0
+spacy==3.7.2
+nltk==3.8.1
+scikit-learn==1.3.2
+numpy==1.24.3
+
+# HTTP requests
+requests==2.31.0
+httpx==0.25.2
+
+# Basic utilities
+python-dotenv==1.0.0
+
+# Enhanced features
+scikit-learn==1.3.2
+redis==5.0.1
+psutil==5.9.6

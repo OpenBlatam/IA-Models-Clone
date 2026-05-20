@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: AI Video Microservice
+  version: 1.0.0
+paths:
+  /v1/video:
+    post:
+      summary: Solicita la generación de un video AI
+      tags: [Video]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoRequest'
+            example:
+              input_text: "Crea un video demo"
+              user_id: "user1"
+              plugins: ["plugin1"]
+              webhook_url: "http://requestbin.net/r/xxxx"
+      responses:
+        '202':
+          description: Video en proceso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoResponse'
+              example:
+                request_id: "req_1712345678"
+                status: "processing"
+                created_at: "2024-05-01T12:00:00Z"
+  /health:
+    get:
+      summary: Healthcheck del microservicio
+      tags: [Health]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: ok
+components:
+  schemas:
+    VideoRequest:
+      type: object
+      properties:
+        input_text:
+          type: string
+        user_id:
+          type: string
+        plugins:
+          type: array
+          items:
+            type: string
+        webhook_url:
+          type: string
+    VideoResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+securitySchemes:
+  bearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT 

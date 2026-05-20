@@ -1,0 +1,53 @@
+# Advanced Analytics and NLP Dependencies
+# Dependencias adicionales para análisis avanzado y NLP
+
+# Natural Language Processing
+nltk==3.8.1
+textblob==0.17.1
+spacy==3.7.2
+
+# Advanced NLP
+gensim==4.3.2
+langdetect==1.0.9
+googletrans==4.0.0rc1
+
+# Clustering and Machine Learning
+scikit-learn==1.3.2
+umap-learn==0.5.4
+
+# Text processing and analysis
+regex==2023.10.3
+networkx==3.2.1
+
+# Visualization
+matplotlib==3.8.2
+seaborn==0.13.0
+plotly==5.17.0
+
+# Additional utilities
+psutil==5.9.6
+memory-profiler==0.61.0
+
+# HTTP and async requests
+aiohttp==3.9.1
+httpx==0.25.2
+
+# Advanced monitoring and system metrics
+psutil==5.9.6
+
+# Machine learning and statistics
+scikit-learn==1.3.2
+scipy==1.11.4
+statsmodels==0.14.0
+
+# Data processing
+pandas==2.1.4
+numpy==1.24.4
+
+# Visualization and plotting
+matplotlib==3.8.2
+seaborn==0.13.0
+plotly==5.17.0
+
+# Network and graph analysis
+networkx==3.2.1

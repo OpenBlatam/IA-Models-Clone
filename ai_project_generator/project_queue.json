@@ -1,0 +1,16 @@
+{
+  "queue": [
+    {
+      "id": "moea_project_20250101_000000",
+      "description": "A Multi-Objective Evolutionary Algorithm (MOEA) system for solving optimization problems with multiple conflicting objectives. The system should support various MOEA algorithms like NSGA-II, NSGA-III, MOEA/D, and SPEA2. It should include visualization of Pareto fronts, performance metrics calculation (hypervolume, IGD, GD), comparison tools, and interactive parameter tuning. The system should handle real-time optimization, batch processing, and export results in various formats.",
+      "project_name": "moea_optimization_system",
+      "author": "Blatam Academy",
+      "priority": 5,
+      "created_at": "2025-01-01T00:00:00",
+      "status": "pending"
+    }
+  ],
+  "processed": [],
+  "last_updated": "2025-01-01T00:00:00"
+}
+

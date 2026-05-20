@@ -1,0 +1,62 @@
+# Ejemplo de manifest para recurso API
+resource_id: example_api
+name: Example API Resource
+type: api
+connector_type: api
+description: Example API resource for external integrations
+version: "1.0.0"
+
+permissions:
+  read: true
+  write: false
+  delete: false
+  admin: false
+
+required_scopes:
+  - read
+
+endpoint: "https://api.example.com"
+
+connection_config:
+  base_url: "https://api.example.com"
+  timeout: 30
+  headers:
+    User-Agent: "MCP-Server/1.0"
+  auth:
+    type: "bearer"
+    token_env: "API_TOKEN"
+
+data_schema:
+  type: object
+  properties:
+    status_code:
+      type: integer
+    headers:
+      type: object
+    content:
+      oneOf:
+        - type: object
+        - type: string
+    url:
+      type: string
+
+supported_operations:
+  - get
+  - post
+  - put
+  - delete
+  - patch
+
+max_context_size: 2048
+
+rate_limit:
+  requests_per_minute: 120
+  requests_per_hour: 2000
+
+metadata:
+  tags:
+    - example
+    - api
+    - external
+  category: integration
+

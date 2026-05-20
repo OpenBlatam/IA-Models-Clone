@@ -1,0 +1,65 @@
+---
+- name: Check if Docker is installed
+  command: docker --version
+  register: docker_version
+  changed_when: false
+  failed_when: false
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when: docker_version.rc != 0
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+  when: docker_version.rc != 0
+
+- name: Install Docker
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+    state: present
+    update_cache: yes
+  when: docker_version.rc != 0
+
+- name: Install Docker Compose (standalone)
+  get_url:
+    url: https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: '0755'
+  when: docker_version.rc != 0
+
+- name: Add user to docker group
+  user:
+    name: "{{ app_user | default('ubuntu') }}"
+    groups: docker
+    append: yes
+
+- name: Start and enable Docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Verify Docker installation
+  command: docker --version
+  register: docker_installed
+  changed_when: false
+
+- name: Verify Docker Compose installation
+  command: docker-compose --version
+  register: docker_compose_installed
+  changed_when: false
+
+- name: Display Docker information
+  debug:
+    msg:
+      - "Docker version: {{ docker_installed.stdout }}"
+      - "Docker Compose version: {{ docker_compose_installed.stdout }}"
+

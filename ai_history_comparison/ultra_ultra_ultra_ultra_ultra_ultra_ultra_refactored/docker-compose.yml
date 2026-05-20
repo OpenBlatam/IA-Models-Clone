@@ -1,0 +1,186 @@
+version: '3.8'
+
+services:
+  # API Gateway
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - HISTORY_SERVICE_URL=http://history-service:8001
+      - COMPARISON_SERVICE_URL=http://comparison-service:8002
+      - QUALITY_SERVICE_URL=http://quality-service:8003
+    depends_on:
+      - history-service
+      - comparison-service
+      - quality-service
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # History Microservice
+  history-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.history
+    ports:
+      - "8001:8001"
+    environment:
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - DATABASE_PATH=/app/data/history.db
+      - MESSAGE_BROKER_URL=redis://redis:6379
+    volumes:
+      - history-data:/app/data
+    depends_on:
+      - redis
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Comparison Microservice
+  comparison-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.comparison
+    ports:
+      - "8002:8002"
+    environment:
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - DATABASE_PATH=/app/data/comparison.db
+      - MESSAGE_BROKER_URL=redis://redis:6379
+    volumes:
+      - comparison-data:/app/data
+    depends_on:
+      - redis
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Quality Microservice
+  quality-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.quality
+    ports:
+      - "8003:8003"
+    environment:
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - DATABASE_PATH=/app/data/quality.db
+      - MESSAGE_BROKER_URL=redis://redis:6379
+    volumes:
+      - quality-data:/app/data
+    depends_on:
+      - redis
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis for Message Broker
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Prometheus for Metrics
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+
+  # Grafana for Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+
+  # Nginx Load Balancer
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - api-gateway
+    networks:
+      - ai-history-network
+    restart: unless-stopped
+
+volumes:
+  history-data:
+  comparison-data:
+  quality-data:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  ai-history-network:
+    driver: bridge
+
+
+
+

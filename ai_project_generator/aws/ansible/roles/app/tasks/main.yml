@@ -1,0 +1,105 @@
+---
+- name: Create application directory
+  file:
+    path: "{{ app_dir | default('/opt/ai-project-generator') }}"
+    state: directory
+    owner: "{{ app_user | default('ubuntu') }}"
+    group: "{{ app_user | default('ubuntu') }}"
+    mode: '0755'
+
+- name: Clone repository (if git_repository_url is defined)
+  git:
+    repo: "{{ git_repository_url }}"
+    dest: "{{ app_dir | default('/opt/ai-project-generator') }}"
+    version: "{{ git_branch | default('main') }}"
+    update: yes
+  when: git_repository_url is defined
+
+- name: Copy application files (alternative to git)
+  copy:
+    src: "{{ local_app_path | default('../../../../') }}"
+    dest: "{{ app_dir | default('/opt/ai-project-generator') }}"
+    exclude:
+      - ".git"
+      - "node_modules"
+      - "__pycache__"
+      - "*.pyc"
+      - ".env"
+      - "*.log"
+      - ".pytest_cache"
+      - ".mypy_cache"
+  when: git_repository_url is not defined
+
+- name: Create .env file from template
+  template:
+    src: env.j2
+    dest: "{{ app_dir | default('/opt/ai-project-generator') }}/.env"
+    owner: "{{ app_user | default('ubuntu') }}"
+    group: "{{ app_user | default('ubuntu') }}"
+    mode: '0600'
+  when: create_env_file | default(true)
+
+- name: Install Python dependencies
+  pip:
+    requirements: "{{ app_dir | default('/opt/ai-project-generator') }}/requirements.txt"
+    virtualenv: /opt/venv
+    virtualenv_command: python3 -m venv
+    state: present
+  when: requirements_file_exists | default(true)
+  ignore_errors: yes
+
+- name: Build Docker images (if Dockerfile exists)
+  docker_image:
+    name: "{{ project_name | default('ai-project-generator') }}"
+    path: "{{ app_dir | default('/opt/ai-project-generator') }}"
+    state: present
+    build:
+      dockerfile: Dockerfile
+      pull: yes
+  when: use_docker | default(true)
+  ignore_errors: yes
+
+- name: Start application with Docker Compose
+  docker_compose:
+    project_src: "{{ app_dir | default('/opt/ai-project-generator') }}"
+    state: present
+    build: yes
+    pull: yes
+    recreate: always
+  when: use_docker | default(true)
+  ignore_errors: yes
+
+- name: Create systemd service (alternative to Docker)
+  template:
+    src: ai-project-generator.service.j2
+    dest: /etc/systemd/system/{{ project_name | default('ai-project-generator') }}.service
+    owner: root
+    group: root
+    mode: '0644'
+  when: use_systemd | default(false)
+  notify: restart app
+
+- name: Start application with systemd
+  systemd:
+    name: "{{ project_name | default('ai-project-generator') }}"
+    enabled: yes
+    state: started
+    daemon_reload: yes
+  when: use_systemd | default(false)
+  ignore_errors: yes
+
+- name: Set ownership of application directory
+  file:
+    path: "{{ app_dir | default('/opt/ai-project-generator') }}"
+    owner: "{{ app_user | default('ubuntu') }}"
+    group: "{{ app_user | default('ubuntu') }}"
+    recurse: yes
+
+- name: Display deployment information
+  debug:
+    msg:
+      - "✅ Application deployed to: {{ app_dir | default('/opt/ai-project-generator') }}"
+      - "👤 Application user: {{ app_user | default('ubuntu') }}"
+      - "🔌 Application port: {{ app_port | default(8020) }}"
+      - "📊 Check status: systemctl status {{ project_name | default('ai-project-generator') }}"
+

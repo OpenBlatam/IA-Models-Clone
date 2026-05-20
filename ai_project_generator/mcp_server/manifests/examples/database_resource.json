@@ -1,0 +1,57 @@
+{
+  "resource_id": "example_database",
+  "name": "Example Database Resource",
+  "type": "database",
+  "connector_type": "database",
+  "description": "Example database resource for demonstration purposes",
+  "version": "1.0.0",
+  "permissions": {
+    "read": true,
+    "write": false,
+    "delete": false,
+    "admin": false
+  },
+  "required_scopes": ["read"],
+  "endpoint": null,
+  "connection_config": {
+    "connection_string": "postgresql://user:pass@localhost/dbname",
+    "pool_size": 10,
+    "max_overflow": 20
+  },
+  "data_schema": {
+    "type": "object",
+    "properties": {
+      "rows": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "columns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "count": {
+        "type": "integer"
+      }
+    }
+  },
+  "supported_operations": [
+    "query",
+    "schema",
+    "list_tables",
+    "describe"
+  ],
+  "max_context_size": 8192,
+  "rate_limit": {
+    "requests_per_minute": 30,
+    "requests_per_hour": 500
+  },
+  "metadata": {
+    "tags": ["example", "database"],
+    "category": "data"
+  }
+}
+

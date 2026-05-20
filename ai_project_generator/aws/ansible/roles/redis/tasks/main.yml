@@ -1,0 +1,41 @@
+---
+- name: Check if Redis is installed
+  command: redis-cli --version
+  register: redis_version
+  changed_when: false
+  failed_when: false
+
+- name: Install Redis server
+  apt:
+    name: redis-server
+    state: present
+    update_cache: yes
+  when: redis_version.rc != 0 and ansible_os_family == "Debian"
+
+- name: Configure Redis
+  template:
+    src: redis.conf.j2
+    dest: /etc/redis/redis.conf
+    owner: redis
+    group: redis
+    mode: '0644'
+  notify: restart redis
+
+- name: Start and enable Redis service
+  systemd:
+    name: redis-server
+    state: started
+    enabled: yes
+
+- name: Verify Redis installation
+  command: redis-cli ping
+  register: redis_ping
+  changed_when: false
+  failed_when: redis_ping.stdout != "PONG"
+
+- name: Display Redis information
+  debug:
+    msg:
+      - "Redis version: {{ redis_version.stdout }}"
+      - "Redis is running and responding to PING"
+

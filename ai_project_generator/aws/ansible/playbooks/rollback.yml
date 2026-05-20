@@ -1,0 +1,106 @@
+---
+- name: Rollback AI Project Generator Deployment
+  hosts: app_servers
+  become: yes
+  gather_facts: yes
+
+  vars:
+    app_dir: /opt/ai-project-generator
+    app_port: "{{ app_port | default(8020) }}"
+    rollback_to_version: "{{ rollback_to_version | default('previous') }}"
+
+  tasks:
+    - name: Get current version
+      uri:
+        url: "http://localhost:{{ app_port }}/api/v1/status"
+        method: GET
+        return_content: yes
+      register: current_status
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Display current version
+      debug:
+        msg: "Current version: {{ current_status.json.version | default('unknown') }}"
+
+    - name: Find previous backup
+      find:
+        paths: /opt/backups/ai-project-generator
+        patterns: "ai-project-generator-backup-*"
+        file_type: directory
+      register: backups
+      when: rollback_to_version == "previous"
+
+    - name: Select backup to restore
+      set_fact:
+        backup_path: "{{ backups.files | sort(attribute='mtime', reverse=true) | map(attribute='path') | list | select('match', '.*backup-.*') | list | first }}"
+      when: rollback_to_version == "previous"
+
+    - name: Stop application containers
+      docker_compose:
+        project_src: "{{ app_dir }}"
+        state: stopped
+      ignore_errors: yes
+
+    - name: Restore from backup
+      block:
+        - name: Restore application files
+          unarchive:
+            src: "{{ backup_path }}/application.tar.gz"
+            dest: "{{ app_dir }}/.."
+            remote_src: yes
+          when: backup_path is defined
+
+        - name: Restore environment file
+          copy:
+            src: "{{ backup_path }}/.env"
+            dest: "{{ app_dir }}/.env"
+            remote_src: yes
+          when: backup_path is defined and backup_path | length > 0
+
+        - name: Restore database
+          command: psql -U postgres ai_project_generator < "{{ backup_path }}/database.sql"
+          ignore_errors: yes
+          when: backup_path is defined
+
+      rescue:
+        - name: Restore failed - using Git
+          git:
+            repo: "{{ git_repository_url }}"
+            dest: "{{ app_dir }}"
+            version: "{{ rollback_to_version }}"
+            update: yes
+          when: git_repository_url is defined
+
+    - name: Start application with previous version
+      docker_compose:
+        project_src: "{{ app_dir }}"
+        state: present
+        build: yes
+        pull: no
+
+    - name: Wait for application to start
+      wait_for:
+        port: "{{ app_port }}"
+        host: localhost
+        delay: 10
+        timeout: 60
+      ignore_errors: yes
+
+    - name: Verify rollback
+      uri:
+        url: "http://localhost:{{ app_port }}/health"
+        method: GET
+        status_code: [200]
+      register: health_check
+      retries: 5
+      delay: 10
+      until: health_check.status == 200
+
+    - name: Display rollback information
+      debug:
+        msg:
+          - "✅ Rollback completed successfully"
+          - "Application directory: {{ app_dir }}"
+          - "Health check: http://localhost:{{ app_port }}/health"
+
