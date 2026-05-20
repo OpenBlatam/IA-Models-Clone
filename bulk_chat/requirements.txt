@@ -1,0 +1,536 @@
+# Bulk Chat - Sistema de Chat Continuo Proactivo
+# ================================================
+# Mejores librerías modernas para operaciones bulk de alto rendimiento
+
+# ============================================================================
+# CORE FRAMEWORK - Framework principal (Últimas versiones 2024-2025)
+# ============================================================================
+fastapi>=0.115.0                    # Framework web moderno y rápido
+uvicorn[standard]>=0.32.0           # ASGI server ultra-rápido con HTTP/2
+hypercorn>=0.17.0                   # ASGI server alternativo con HTTP/2/3
+pydantic>=2.9.0                     # Validación de datos con type hints
+pydantic-settings>=2.5.0            # Configuración type-safe
+python-multipart>=0.0.12            # Soporte multipart/form-data
+starlette>=0.37.0                   # Framework ASGI base (FastAPI depende de esto)
+
+# ============================================================================
+# ASYNC & PERFORMANCE - Operaciones asíncronas y optimización (Mejores 2024)
+# ============================================================================
+httpx>=0.27.0                       # Cliente HTTP async moderno (reemplaza requests)
+aiohttp>=3.11.0                     # Cliente HTTP async avanzado
+aiofiles>=24.1.0                    # Operaciones de archivo async
+asyncio-throttle>=1.0.2             # Throttling async avanzado
+async-timeout>=4.0.3                # Timeouts async mejorados
+aioredis>=2.0.1                     # Redis async (mejor que redis)
+aiocache>=0.12.2                    # Cache async multi-backend
+orjson>=3.10.7                      # JSON ultra-rápido (C++ optimizado) - MEJOR
+msgpack>=1.1.0                      # Serialización binaria rápida
+rapidjson>=1.11                     # JSON parser C++ muy rápido
+simdjson>=5.0.0                     # JSON parser SIMD (ultra-rápido)
+
+# ============================================================================
+# LLM PROVIDERS - Proveedores de modelos de lenguaje (2024-2025)
+# ============================================================================
+openai>=1.54.0                      # OpenAI API (GPT-4, etc.)
+anthropic>=0.39.0                   # Anthropic Claude API
+google-generativeai>=0.8.0          # Google Gemini API
+cohere>=4.47                        # Cohere API
+langchain>=0.3.0                    # Framework para LLM apps
+langchain-community>=0.3.0          # Integraciones LangChain
+langsmith>=0.1.130                  # Monitoring de LLM
+litellm>=1.52.0                     # Unified LLM interface (mejor abstracción)
+tiktoken>=0.8.0                     # Token counting para OpenAI (rápido)
+
+# ============================================================================
+# BULK OPERATIONS - Operaciones masivas optimizadas (Mejores 2024)
+# ============================================================================
+more-itertools>=10.3.0              # Utilidades avanzadas para iterables
+toolz>=0.12.1                       # Utilidades funcionales para procesamiento
+cytoolz>=0.12.3                     # Toolz optimizado en C (más rápido)
+joblib>=1.4.0                       # Parallel processing avanzado
+dask>=2024.11.0                     # Parallel computing escalable
+numba>=0.60.0                       # JIT compiler para NumPy (muy rápido)
+numpy>=2.1.0                        # Arrays numéricos optimizados
+pandas>=2.2.0                       # Análisis de datos estructurados
+polars>=1.0.0                       # DataFrame ultra-rápido (Rust, mejor que pandas)
+pyarrow>=17.0.0                     # Apache Arrow (intercambio de datos rápido)
+duckdb>=1.0.0                       # OLAP database in-memory (muy rápido)
+ray>=2.10.0                         # Distributed computing avanzado
+
+# ============================================================================
+# CACHING & STORAGE - Cache y almacenamiento (Mejores alternativas)
+# ============================================================================
+redis[hiredis]>=5.2.0               # Redis client con parser C optimizado
+diskcache>=5.6.3                    # Cache en disco rápido
+cachetools>=5.3.3                   # Cache en memoria eficiente
+python-bloomfilter>=0.5.0           # Bloom filters para deduplicación
+mmh3>=4.1.0                         # Hash functions rápidas
+lmdb>=1.4.1                          # Base de datos key-value en memoria (muy rápida)
+rocksdb>=0.9.0                      # Embedded key-value store (Facebook)
+leveldb>=0.203                       # Key-value store (Google)
+
+# ============================================================================
+# MONITORING & METRICS - Monitoreo y métricas (Stack moderno 2024)
+# ============================================================================
+prometheus-client>=0.20.0           # Métricas Prometheus
+opentelemetry-api>=1.27.0           # OpenTelemetry API
+opentelemetry-sdk>=1.27.0           # OpenTelemetry SDK
+opentelemetry-instrumentation-fastapi>=0.45b0  # FastAPI instrumentation
+opentelemetry-exporter-prometheus>=1.24.0      # Exportador Prometheus
+opentelemetry-instrumentation-httpx>=0.45b0   # HTTP client instrumentation
+structlog>=24.2.0                   # Logging estructurado avanzado
+sentry-sdk>=2.16.0                  # Error tracking y monitoring
+datadog>=0.48.0                     # Datadog APM (opcional)
+jaeger-client>=4.9.0                # Distributed tracing
+py-spy>=0.3.14                      # Sampling profiler (Rust-based, muy rápido)
+
+# ============================================================================
+# SECURITY & AUTHENTICATION - Seguridad
+# ============================================================================
+cryptography>=43.0.0                # Criptografía avanzada
+PyJWT>=2.9.0                        # JSON Web Tokens
+python-jose[cryptography]>=3.3.0    # JWT/JWS/JWE completo
+passlib[bcrypt]>=1.7.4              # Password hashing
+bcrypt>=4.2.0                       # Hashing de passwords seguro
+argon2-cffi>=23.1.0                 # Argon2 (mejor que bcrypt)
+
+# ============================================================================
+# DATA PROCESSING - Procesamiento de datos
+# ============================================================================
+pydantic-core>=2.23.0               # Core de Pydantic (validación rápida)
+pydantic-extra-types>=2.6.0         # Tipos adicionales para Pydantic
+email-validator>=2.2.0              # Validación de emails
+phonenumbers>=8.13.0                # Validación de números telefónicos
+python-dateutil>=2.9.0              # Utilidades de fecha mejoradas
+pytz>=2024.1                        # Timezone handling
+tzdata>=2024.1                      # Timezone data
+
+# ============================================================================
+# COMPRESSION & SERIALIZATION - Compresión y serialización (Mejores 2024)
+# ============================================================================
+lz4>=4.3.2                          # Compresión LZ4 (muy rápida)
+zstandard>=0.23.0                   # Compresión Zstandard (mejor ratio)
+snappy>=1.1.1                       # Compresión Snappy (Google)
+brotli>=1.1.0                       # Compresión Brotli
+zlib-ng>=2.1.0                      # Zlib mejorado (más rápido)
+lzma>=0.1.0                         # LZMA compression
+pyarrow>=17.0.0                     # Apache Arrow (intercambio de datos rápido)
+parquet>=1.3.1                      # Soporte Parquet
+
+# ============================================================================
+# DATABASE & PERSISTENCE - Bases de datos
+# ============================================================================
+sqlalchemy>=2.0.35                  # ORM moderno y potente
+asyncpg>=0.29.0                     # PostgreSQL async driver (muy rápido)
+aiomysql>=0.2.0                     # MySQL async driver
+motor>=3.6.0                        # MongoDB async driver
+aiosqlite>=0.20.0                   # SQLite async
+tinydb>=4.9.0                       # Base de datos ligera JSON
+
+# ============================================================================
+# MESSAGE QUEUES - Colas de mensajes (Mejores clientes async)
+# ============================================================================
+celery>=5.4.0                       # Task queue distribuida
+kombu>=5.4.0                        # Messaging library
+rabbitpy>=2.0.1                     # RabbitMQ client
+pika>=1.3.2                         # RabbitMQ async client
+aiokafka>=0.11.0                    # Kafka async client
+aio-pika>=9.3.0                     # RabbitMQ async client mejorado
+nats-py>=2.8.0                       # NATS messaging (muy rápido y ligero)
+confluent-kafka>=2.5.0               # Kafka client oficial (mejor rendimiento)
+
+# ============================================================================
+# MACHINE LEARNING - Machine Learning (Stack moderno 2024)
+# ============================================================================
+scikit-learn>=1.5.0                 # ML algorithms
+lightgbm>=4.4.0                     # Gradient boosting rápido
+xgboost>=2.1.0                      # Gradient boosting avanzado
+scipy>=1.13.0                       # Ciencia computacional
+torch>=2.5.0                        # PyTorch (deep learning)
+transformers>=4.40.0                # Hugging Face transformers
+sentence-transformers>=2.7.0        # Embeddings de texto (mejor que OpenAI)
+faiss-cpu>=1.7.4                    # Vector similarity search (Facebook)
+qdrant-client>=1.7.0                # Vector database (mejor que FAISS para producción)
+
+# ============================================================================
+# UTILITIES - Utilidades generales (Mejores 2024)
+# ============================================================================
+python-dotenv>=1.0.1                # Variables de entorno
+click>=8.1.7                        # CLI framework
+rich>=13.7.1                        # Terminal formatting avanzado
+tqdm>=4.66.4                        # Progress bars
+tenacity>=8.2.3                     # Retry library avanzada (mejor que backoff)
+backoff>=2.2.1                      # Exponential backoff
+faker>=30.0.0                       # Datos de prueba
+freezegun>=1.4.0                    # Mock dates para testing
+typer>=0.12.0                       # CLI moderno basado en type hints (mejor que click)
+python-decouple>=3.8                # Config management mejorado
+dynaconf>=3.2.0                     # Dynamic configuration (mejor que python-dotenv)
+
+# ============================================================================
+# LOGGING & DEBUGGING - Logging y debugging
+# ============================================================================
+colorlog>=6.8.2                     # Logging con colores
+loguru>=0.7.2                       # Logging moderno y fácil
+python-json-logger>=2.0.7           # JSON logger
+icecream>=2.1.3                     # Debugging mejorado (print mejorado)
+
+# ============================================================================
+# TESTING - Testing
+# ============================================================================
+pytest>=8.3.0                      # Testing framework
+pytest-asyncio>=0.23.7              # Async testing
+pytest-cov>=5.0.0                   # Coverage reports
+pytest-mock>=3.14.0                 # Mocking avanzado
+pytest-timeout>=2.3.1               # Timeouts en tests
+pytest-xdist>=3.6.0                 # Parallel testing
+# httpx y faker ya incluidos arriba
+
+# ============================================================================
+# GRAPHQL - GraphQL support
+# ============================================================================
+strawberry-graphql>=0.218.0         # GraphQL framework moderno
+graphql-core>=3.2.3                 # GraphQL core
+
+# ============================================================================
+# API DOCUMENTATION - Documentación de API
+# ============================================================================
+mkdocs>=1.6.0                       # Documentación estática
+mkdocs-material>=9.5.0              # Tema Material para MkDocs
+mkdocstrings[python]>=0.24.0       # Auto-documentación
+
+# ============================================================================
+# SYSTEM MONITORING - Monitoreo del sistema
+# ============================================================================
+psutil>=6.1.0                       # System and process utilities
+py-cpuinfo>=9.0.0                   # CPU information
+memory-profiler>=0.61.0             # Memory profiling
+# py-spy ya incluido arriba en MONITORING & METRICS
+
+# ============================================================================
+# VALIDATION & SCHEMA - Validación y esquemas
+# ============================================================================
+cerberus>=1.3.5                     # Validación de datos
+marshmallow>=3.21.3                 # Serialization/deserialization
+jsonschema>=4.23.0                  # JSON Schema validation
+voluptuous>=0.13.1                  # Data validation library
+
+# ============================================================================
+# WEBHOOKS & EVENTS - Webhooks y eventos
+# ============================================================================
+webhooks>=0.6.0                     # Webhook utilities
+pydantic-webhooks>=0.1.0            # Webhooks con Pydantic
+
+# ============================================================================
+# RATE LIMITING - Rate limiting
+# ============================================================================
+slowapi>=0.1.9                      # Rate limiting para FastAPI
+limits>=3.13.0                      # Rate limiting library
+ratelimit>=2.2.1                    # Rate limiting decorator
+
+# ============================================================================
+# DISTRIBUTED SYSTEMS - Sistemas distribuidos (Coordinación, Service Mesh)
+# ============================================================================
+etcd3>=0.1.6                        # etcd client (service discovery, coordination)
+consul>=1.1.0                       # Consul client (service discovery)
+kazoo>=2.9.0                        # ZooKeeper client (coordination)
+raft>=0.1.0                         # Raft consensus algorithm (si existe)
+pydantic-consul>=0.1.0              # Consul integration con Pydantic
+
+# ============================================================================
+# SERVICE MESH & LOAD BALANCING - Service mesh y load balancing
+# ============================================================================
+grpcio>=1.66.0                      # gRPC framework
+grpcio-reflection>=1.66.0            # gRPC reflection
+protobuf>=5.28.0                     # Protocol Buffers
+hazelcast-python-client>=5.3.0      # Distributed cache y coordination
+pyzmq>=26.0.0                        # ZeroMQ (messaging rápido)
+
+# ============================================================================
+# ADVANCED FEATURES - Características avanzadas adicionales
+# ============================================================================
+# Ray y Dask ya incluidos arriba
+# Polars y DuckDB ya incluidos arriba
+watchdog>=6.0.0                     # File system monitoring (muy útil)
+inotify-simple>=1.3.5                # Linux inotify (más rápido que watchdog en Linux)
+pyinotify>=0.9.6                     # Python inotify wrapper
+
+# ============================================================================
+# WEBSOCKETS & REAL-TIME - WebSockets y comunicación en tiempo real
+# ============================================================================
+websockets>=13.0                     # WebSocket client/server async (mejor que python-socketio)
+python-socketio>=5.11.0              # Socket.IO client/server (compatibilidad)
+sse-starlette>=1.8.0                # Server-Sent Events para FastAPI
+python-sse>=0.9.0                   # Server-Sent Events simple
+
+# ============================================================================
+# SCHEDULING & TASK QUEUES - Programación y colas de tareas avanzadas
+# ============================================================================
+apscheduler>=3.10.4                  # Advanced Python Scheduler (mejor que cron)
+croniter>=2.0.1                      # Cron expression parser
+celery-beat>=2.5.0                   # Celery periodic tasks
+dramatiq>=1.15.0                     # Task queue alternativa a Celery (más simple)
+
+# ============================================================================
+# TEMPLATING & GENERATION - Plantillas y generación de código
+# ============================================================================
+jinja2>=3.1.3                        # Template engine (usado por FastAPI docs)
+mako>=1.3.5                          # Template engine alternativo
+cookiecutter>=2.5.0                  # Project templates generator
+
+# ============================================================================
+# EMAIL & NOTIFICATIONS - Email y notificaciones
+# ============================================================================
+aiosmtplib>=3.0.1                    # Async SMTP client
+emails>=0.6.0                        # Email utilities
+# python-multipart ya incluido arriba
+
+# ============================================================================
+# HTTP CLIENTS & REQUESTS - Clientes HTTP adicionales
+# ============================================================================
+requests>=2.32.0                     # HTTP library sync (útil para casos especiales)
+requests-toolbelt>=1.0.0             # Utilidades para requests
+urllib3>=2.2.0                       # HTTP client de bajo nivel
+httpx[http2]>=0.27.0                  # HTTP2 support (ya incluido arriba)
+
+# ============================================================================
+# VALIDATION & SANITIZATION - Validación y sanitización avanzada
+# ============================================================================
+validators>=0.22.0                   # Validación de datos común
+bleach>=6.1.0                        # HTML sanitization (seguridad)
+html5lib>=1.1                        # HTML parser
+python-magic>=0.4.27                 # File type detection
+chardet>=5.2.0                       # Character encoding detection
+
+# ============================================================================
+# STATISTICS & ANALYTICS - Estadísticas y análisis avanzado
+# ============================================================================
+statsmodels>=0.14.1                  # Statistical modeling
+pandas-profiling>=3.6.6              # Data profiling (renombrado a ydata-profiling)
+ydata-profiling>=4.6.0                # Data profiling (nuevo nombre)
+# scipy ya incluido arriba
+
+# ============================================================================
+# PROPERTY-BASED TESTING - Testing basado en propiedades
+# ============================================================================
+hypothesis>=6.108.0                   # Property-based testing (muy útil)
+# faker ya incluido arriba
+
+# ============================================================================
+# SERIALIZATION ADVANCED - Serialización avanzada
+# ============================================================================
+cloudpickle>=3.0.0                   # Pickle para funciones y lambdas
+dill>=0.3.8                          # Pickle extendido
+pickle5>=0.0.11                      # Pickle protocol 5 (Python 3.8+)
+
+# ============================================================================
+# NETWORKING & SECURITY - Networking y seguridad avanzada
+# ============================================================================
+netifaces>=0.11.0                    # Network interface information
+ipaddress>=1.0.23                    # IP address manipulation (built-in pero útil)
+# cryptography ya incluido arriba
+pyopenssl>=24.1.0                    # OpenSSL wrapper
+certifi>=2024.2.2                    # Certificates bundle
+
+# ============================================================================
+# DATA PARSING & EXTRACTION - Parsing y extracción de datos
+# ============================================================================
+beautifulsoup4>=4.12.3                # HTML/XML parsing
+lxml>=5.2.0                          # XML/HTML parser rápido (C)
+pyyaml>=6.0.1                        # YAML parser
+toml>=0.10.2                         # TOML parser
+tomli>=2.0.1                         # TOML parser rápido (Python 3.11+)
+configparser>=6.0.0                  # Config parser (built-in pero útil)
+
+# ============================================================================
+# PERFORMANCE OPTIMIZATION - Optimización de rendimiento
+# ============================================================================
+cython>=3.0.9                        # C extensions compiler
+# numba ya incluido arriba
+line-profiler>=4.1.1                 # Line-by-line profiler
+pyinstrument>=5.0.0                  # Profiler alternativo
+# memory-profiler ya incluido arriba
+
+# ============================================================================
+# DATE & TIME - Fechas y tiempo avanzado
+# ============================================================================
+arrow>=1.3.0                         # Date/time library mejorada
+pendulum>=3.0.0                      # Date/time library (mejor que arrow)
+# python-dateutil y pytz ya incluidos arriba
+
+# ============================================================================
+# UTILITIES ADDITIONAL - Utilidades adicionales
+# ============================================================================
+# click, typer, rich, tqdm, pydantic-settings ya incluidos arriba
+humanize>=4.9.0                      # Human-readable formatting
+python-slugify>=8.0.0                # URL-friendly slugs
+
+# ============================================================================
+# TYPE CHECKING & STATIC ANALYSIS - Type checking y análisis estático
+# ============================================================================
+mypy>=1.8.0                          # Static type checker
+types-requests>=2.32.0               # Type stubs para requests
+types-redis>=4.6.0                   # Type stubs para redis
+types-python-dateutil>=2.9.0         # Type stubs para dateutil
+types-pyyaml>=6.0.0                  # Type stubs para pyyaml
+pyright>=1.1.340                     # Type checker alternativo (más rápido)
+pyre-check>=0.9.18                   # Type checker de Facebook
+ruff>=0.3.0                          # Linter ultra-rápido (Rust, reemplaza flake8)
+black>=24.2.0                        # Code formatter
+isort>=5.13.0                        # Import sorter
+autopep8>=2.0.4                      # PEP 8 formatter
+pylint>=3.0.3                        # Linter completo
+flake8>=7.0.0                        # Linter (alternativa a ruff)
+bandit>=1.7.6                        # Security linter
+safety>=3.0.0                        # Dependency vulnerability scanner
+mypy-boto3>=1.34.0                   # Type stubs para boto3 (AWS)
+
+# ============================================================================
+# DEVELOPMENT TOOLS - Herramientas de desarrollo
+# ============================================================================
+ipython>=8.22.0                      # Interactive Python shell mejorado
+ipdb>=0.13.13                        # Debugger mejorado
+pdb++>=0.10.3                        # Debugger mejorado
+pudb>=2024.1                         # Debugger visual
+debugpy>=1.8.3                       # Debugger remoto para VS Code
+pre-commit>=3.6.0                     # Git hooks framework
+commitizen>=3.13.0                   # Conventional commits
+# black y ruff ya incluidos arriba
+
+# ============================================================================
+# API DOCUMENTATION & OPENAPI - Documentación de API avanzada
+# ============================================================================
+# fastapi, mkdocs, mkdocs-material, mkdocstrings ya incluidos arriba
+swagger-ui-bundle>=1.0.0             # Swagger UI para FastAPI (incluido en FastAPI)
+redoc>=0.1.0                         # ReDoc para FastAPI (incluido en FastAPI)
+sphinx>=7.2.0                        # Documentation generator alternativo
+sphinx-rtd-theme>=2.0.0              # Read the Docs theme
+
+# ============================================================================
+# WORKERS & BACKGROUND TASKS - Workers y tareas en background avanzadas
+# ============================================================================
+# celery y dramatiq ya incluidos arriba
+rq>=1.15.1                           # Simple task queue (Redis-based)
+huey>=2.5.0                          # Lightweight task queue
+arq>=0.25.1                          # Async task queue (asyncio)
+taskiq>=0.13.0                       # Async distributed task queue
+
+# ============================================================================
+# CONFIGURATION MANAGEMENT - Gestión de configuración avanzada
+# ============================================================================
+python-decouple>=3.8                 # Config (ya incluido arriba)
+dynaconf>=3.2.0                      # Dynamic config (ya incluido arriba)
+omegaconf>=2.3.0                     # Structured config (Hydra)
+configobj>=5.0.8                     # Config file parser
+pyhocon>=0.3.63                      # HOCON config parser
+
+# ============================================================================
+# ASYNC ADVANCED - Async avanzado y concurrent programming
+# ============================================================================
+# asyncio es built-in
+trio>=0.23.0                         # Async framework alternativo
+curio>=1.6                           # Async framework alternativo
+anyio>=4.3.0                         # Async compatibility layer
+asyncio-mqtt>=0.16.0                 # Async MQTT client
+# aio-pika y aioredis ya incluidos arriba
+
+# ============================================================================
+# HTTP & API CLIENTS ADVANCED - Clientes HTTP y API avanzados
+# ============================================================================
+# httpx, requests, aiohttp ya incluidos arriba
+grequests>=0.6.0                     # Async requests wrapper
+requests-cache>=1.1.1                # Requests con cache
+requests-futures>=1.0.0              # Async requests
+# httpcore, h2, h11 ya incluidos con httpx
+
+# ============================================================================
+# DATABASE TOOLS & MIGRATIONS - Herramientas de base de datos
+# ============================================================================
+alembic>=1.13.0                      # SQLAlchemy migrations
+# sqlalchemy y asyncpg ya incluidos arriba
+psycopg2-binary>=2.9.9              # PostgreSQL sync driver
+sqlmodel>=0.0.16                     # SQL database ORM (Pydantic + SQLAlchemy)
+databases>=0.8.0                     # Async database interface
+tortoise-orm>=0.20.0                 # Async ORM (inspirado en Django)
+peewee>=3.17.0                       # Lightweight ORM
+pony>=0.7.17                         # ORM con syntax avanzado
+
+# ============================================================================
+# CACHE & SESSION MANAGEMENT - Gestión de cache y sesiones avanzada
+# ============================================================================
+# redis, aioredis, aiocache, diskcache, cachetools ya incluidos arriba
+memcached>=1.59                      # Memcached client
+pymemcache>=4.0.0                    # Memcached client mejorado
+python-memcached>=1.59               # Memcached client alternativo
+
+# ============================================================================
+# MONITORING & OBSERVABILITY ADVANCED - Observabilidad avanzada
+# ============================================================================
+# prometheus-client, opentelemetry, jaeger-client, py-spy ya incluidos arriba
+zipkin>=0.0.1                        # Zipkin distributed tracing
+ddtrace>=2.11.0                      # Datadog APM (más completo que datadog package)
+newrelic>=9.2.0                      # New Relic APM
+elastic-apm>=6.20.0                  # Elastic APM
+pyroscope-io>=1.1.0                  # Continuous profiling
+
+# ============================================================================
+# SECURITY ADVANCED - Seguridad avanzada
+# ============================================================================
+# cryptography, pyjwt, python-jose, passlib, bcrypt, argon2-cffi ya incluidos arriba
+# python-magic y bleach ya incluidos arriba
+itsdangerous>=2.1.2                  # Secure data serialization
+secure>=0.3.0                        # Security headers helper
+
+# ============================================================================
+# INSTALACIÓN RÁPIDA - Mejores prácticas 2024-2025
+# ============================================================================
+# 1. USAR UV (más rápido que pip): pip install uv && uv pip install -r requirements.txt
+# 2. Instalar solo core: uv pip install fastapi uvicorn pydantic
+# 3. Para producción: usar versiones exactas (==) en lugar de >=
+# 4. Algunas librerías requieren compilación (numba, numpy, etc.)
+# 5. Para mejor rendimiento: uv pip install --no-cache-dir -r requirements.txt
+# 6. Para desarrollo: usar uv venv para crear entorno virtual rápido
+# 7. Compatibilidad: Python 3.10+ (recomendado 3.12+)
+
+# ============================================================================
+# ALTERNATIVAS RÁPIDAS - Librerías más rápidas disponibles
+# ============================================================================
+# - orjson: JSON más rápido que json estándar (C++)
+# - polars: DataFrame más rápido que pandas (Rust)
+# - duckdb: SQL más rápido que SQLite (C++)
+# - simdjson: JSON parsing más rápido (SIMD)
+# - hiredis: Redis parser más rápido (C)
+# - py-spy: Profiler más rápido (Rust)
+
+# ============================================================================
+# NOTAS DE RENDIMIENTO
+# ============================================================================
+# - orjson es ~2-3x más rápido que json estándar
+# - polars es ~5-10x más rápido que pandas para operaciones grandes
+# - duckdb es ~100x más rápido que pandas para análisis OLAP
+# - simdjson es ~2-3x más rápido que orjson para parsing puro
+# - hiredis mejora Redis hasta 2x en throughput
+# - lxml es ~10x más rápido que BeautifulSoup para parsing XML/HTML
+# - websockets es más eficiente que python-socketio para conexiones puras
+# - aiosmtplib es async y más eficiente que smtplib estándar
+
+# ============================================================================
+# RECOMENDACIONES POR USO
+# ============================================================================
+# Para JSON rápido: orjson > simdjson > rapidjson > json estándar
+# Para DataFrames: polars > duckdb > pandas (según caso de uso)
+# Para WebSockets: websockets (async) > python-socketio (compatibilidad)
+# Para Scheduling: apscheduler (flexible) > croniter (simple)
+# Para Testing: hypothesis (property-based) + pytest (unit)
+# Para Templates: jinja2 (FastAPI usa esto) > mako
+# Para Email: aiosmtplib (async) > smtplib estándar
+# Para Profiling: py-spy (Rust, rápido) > pyinstrument > line-profiler
+# Para Type Checking: mypy (completo) > pyright (rápido) > pyre-check
+# Para Linting: ruff (Rust, ultra-rápido) > flake8 > pylint
+# Para Code Formatting: black (estándar) > autopep8
+# Para Task Queues: celery (completo) > dramatiq (simple) > arq (async puro)
+# Para ORM: SQLAlchemy (completo) > SQLModel (Pydantic+SQLAlchemy) > Tortoise (async)
+# Para Config: dynaconf (dinámico) > omegaconf (estructurado) > python-decouple
+# Para Observability: OpenTelemetry (estándar) > Datadog > New Relic > Jaeger
+# Para Debugging: debugpy (VS Code) > pudb (visual) > ipdb (interactivo)
+

@@ -1,0 +1,80 @@
+{
+  "workflow_type": "character_consistency",
+  "version": "1.0.0",
+  "character": {
+    "name": "ExampleCharacter",
+    "num_images": 2,
+    "embedding_dim": 768,
+    "created_at": "2024-01-01T12:00:00"
+  },
+  "model": {
+    "model_id": "black-forest-labs/flux2-dev",
+    "device": "cuda"
+  },
+  "embedding": {
+    "source": "external",
+    "path": "character_embeddings/example_character.safetensors",
+    "format": "safetensors",
+    "key": "character_embedding"
+  },
+  "workflow_config": {
+    "prompt_template": "A photo of {character} in a {setting}, high quality, detailed",
+    "negative_prompt": "blurry, low quality, distorted, deformed",
+    "num_inference_steps": 50,
+    "guidance_scale": 7.5,
+    "height": 1024,
+    "width": 1024,
+    "seed": null
+  },
+  "steps": [
+    {
+      "step": 1,
+      "name": "load_character_embedding",
+      "action": "load_safetensor",
+      "description": "Cargar el embedding del personaje desde safe tensor",
+      "params": {
+        "path": "character_embeddings/example_character.safetensors",
+        "key": "character_embedding",
+        "device": "cuda"
+      },
+      "output": "character_embedding"
+    },
+    {
+      "step": 2,
+      "name": "prepare_prompt",
+      "action": "format_prompt",
+      "description": "Formatear el prompt con el nombre del personaje",
+      "params": {
+        "template": "A photo of {character} in a {setting}, high quality, detailed",
+        "variables": {
+          "character": "ExampleCharacter",
+          "setting": "{user_input}"
+        }
+      },
+      "output": "formatted_prompt"
+    },
+    {
+      "step": 3,
+      "name": "generate_image",
+      "action": "diffusion_generate",
+      "description": "Generar imagen usando el embedding del personaje",
+      "params": {
+        "model": "black-forest-labs/flux2-dev",
+        "prompt": "{formatted_prompt}",
+        "negative_prompt": "blurry, low quality, distorted",
+        "character_embedding": "{character_embedding}",
+        "num_inference_steps": 50,
+        "guidance_scale": 7.5,
+        "height": 1024,
+        "width": 1024
+      },
+      "output": "generated_image"
+    }
+  ],
+  "usage": {
+    "python_example": "Ver workflow_usage_example.py",
+    "description": "Este workflow mantiene la consistencia del personaje en diferentes generaciones"
+  }
+}
+
+

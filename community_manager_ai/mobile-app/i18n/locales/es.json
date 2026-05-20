@@ -1,0 +1,82 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "back": "Atrás"
+  },
+  "posts": {
+    "title": "Publicaciones",
+    "create": "Crear Publicación",
+    "edit": "Editar Publicación",
+    "content": "Contenido",
+    "platforms": "Plataformas",
+    "schedule": "Programar",
+    "tags": "Etiquetas",
+    "publish": "Publicar",
+    "publishNow": "Publicar Ahora",
+    "cancel": "Cancelar Publicación",
+    "scheduled": "Programado",
+    "published": "Publicado",
+    "cancelled": "Cancelado",
+    "noPosts": "No se encontraron publicaciones",
+    "createFirst": "Crea tu primera publicación para comenzar"
+  },
+  "templates": {
+    "title": "Plantillas",
+    "create": "Crear Plantilla",
+    "name": "Nombre de Plantilla",
+    "content": "Contenido",
+    "variables": "Variables",
+    "category": "Categoría",
+    "noTemplates": "No se encontraron plantillas",
+    "createFirst": "Crea tu primera plantilla para reutilizar contenido"
+  },
+  "memes": {
+    "title": "Memes",
+    "upload": "Subir Meme",
+    "caption": "Descripción",
+    "category": "Categoría",
+    "noMemes": "No se encontraron memes"
+  },
+  "platforms": {
+    "title": "Plataformas",
+    "connect": "Conectar",
+    "disconnect": "Desconectar",
+    "connected": "Conectado",
+    "notConnected": "No Conectado"
+  },
+  "analytics": {
+    "title": "Analíticas",
+    "totalPosts": "Total de Publicaciones",
+    "totalEngagement": "Total de Interacción",
+    "avgEngagementRate": "Tasa Promedio de Interacción",
+    "bestPerforming": "Publicaciones con Mejor Rendimiento"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "overview": "Resumen",
+    "upcomingPosts": "Publicaciones Próximas",
+    "engagement": "Interacción"
+  },
+  "calendar": {
+    "title": "Calendario",
+    "noEvents": "No hay eventos programados para este día"
+  },
+  "errors": {
+    "generic": "Algo salió mal",
+    "network": "Error de red. Por favor verifica tu conexión",
+    "unauthorized": "No autorizado. Por favor inicia sesión nuevamente",
+    "notFound": "Recurso no encontrado",
+    "validation": "Por favor verifica tu entrada"
+  }
+}
+
+

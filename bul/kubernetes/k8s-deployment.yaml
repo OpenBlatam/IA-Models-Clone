@@ -1,0 +1,617 @@
+# BUL System - Kubernetes Deployment Configuration
+# ===============================================
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bul-system
+  labels:
+    name: bul-system
+    app: bul
+    environment: production
+
+---
+# ConfigMap for BUL configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bul-config
+  namespace: bul-system
+data:
+  # API Configuration
+  API_OPENROUTER_API_KEY: "your-openrouter-api-key"
+  API_OPENAI_API_KEY: "your-openai-api-key"
+  API_DEFAULT_MODEL: "openai/gpt-4"
+  API_FALLBACK_MODEL: "openai/gpt-3.5-turbo"
+  API_MAX_TOKENS: "4000"
+  API_TEMPERATURE: "0.7"
+  API_TIMEOUT: "30"
+  
+  # Server Configuration
+  SERVER_HOST: "0.0.0.0"
+  SERVER_PORT: "8000"
+  SERVER_WORKERS: "4"
+  SERVER_LOG_LEVEL: "info"
+  SERVER_CORS_ORIGINS: "*"
+  
+  # Database Configuration
+  DB_URL: "postgresql://bul_user:bul_password@postgres-service:5432/bul_db"
+  DB_ECHO: "false"
+  DB_POOL_SIZE: "10"
+  DB_MAX_OVERFLOW: "20"
+  
+  # Cache Configuration
+  CACHE_BACKEND: "redis"
+  CACHE_REDIS_URL: "redis://redis-service:6379/0"
+  CACHE_DEFAULT_TTL: "3600"
+  CACHE_MAX_SIZE: "1000"
+  
+  # Logging Configuration
+  LOG_LEVEL: "INFO"
+  LOG_FORMAT: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  LOG_FILE_PATH: "/app/logs/bul.log"
+  
+  # Environment
+  ENVIRONMENT: "production"
+  DEBUG: "false"
+
+---
+# Secret for sensitive data
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bul-secrets
+  namespace: bul-system
+type: Opaque
+data:
+  # Base64 encoded secrets
+  openrouter-api-key: eW91ci1vcGVucm91dGVyLWFwaS1rZXk=  # your-openrouter-api-key
+  openai-api-key: eW91ci1vcGVuYWktYXBpLWtleQ==  # your-openai-api-key
+  database-password: YnVsX3Bhc3N3b3Jk  # bul_password
+  jwt-secret: eW91ci1qd3Qtc2VjcmV0  # your-jwt-secret
+  webhook-secret: eW91ci13ZWJob29rLXNlY3JldA==  # your-webhook-secret
+
+---
+# Persistent Volume for logs and data
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: bul-pv
+  namespace: bul-system
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: bul-storage
+  hostPath:
+    path: /data/bul
+
+---
+# Persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bul-pvc
+  namespace: bul-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: bul-storage
+
+---
+# Redis Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: bul-system
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+        command:
+        - redis-server
+        - --appendonly
+        - "yes"
+        - --maxmemory
+        - "256mb"
+        - --maxmemory-policy
+        - "allkeys-lru"
+      volumes:
+      - name: redis-data
+        emptyDir: {}
+
+---
+# Redis Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  namespace: bul-system
+  labels:
+    app: redis
+spec:
+  selector:
+    app: redis
+  ports:
+  - port: 6379
+    targetPort: 6379
+    protocol: TCP
+  type: ClusterIP
+
+---
+# PostgreSQL Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: bul-system
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15-alpine
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: "bul_db"
+        - name: POSTGRES_USER
+          value: "bul_user"
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bul-secrets
+              key: database-password
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+        - name: postgres-config
+          mountPath: /etc/postgresql/postgresql.conf
+          subPath: postgresql.conf
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: bul-pvc
+      - name: postgres-config
+        configMap:
+          name: postgres-config
+
+---
+# PostgreSQL ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: bul-system
+data:
+  postgresql.conf: |
+    # PostgreSQL configuration
+    max_connections = 100
+    shared_buffers = 256MB
+    effective_cache_size = 1GB
+    maintenance_work_mem = 64MB
+    checkpoint_completion_target = 0.9
+    wal_buffers = 16MB
+    default_statistics_target = 100
+    random_page_cost = 1.1
+    effective_io_concurrency = 200
+    work_mem = 4MB
+    min_wal_size = 1GB
+    max_wal_size = 4GB
+
+---
+# PostgreSQL Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: bul-system
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+  type: ClusterIP
+
+---
+# BUL API Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bul-api
+  namespace: bul-system
+  labels:
+    app: bul-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bul-api
+  template:
+    metadata:
+      labels:
+        app: bul-api
+    spec:
+      containers:
+      - name: bul-api
+        image: bul-system:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: OPENROUTER_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: bul-secrets
+              key: openrouter-api-key
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: bul-secrets
+              key: openai-api-key
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bul-secrets
+              key: database-password
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: bul-secrets
+              key: jwt-secret
+        - name: WEBHOOK_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: bul-secrets
+              key: webhook-secret
+        envFrom:
+        - configMapRef:
+            name: bul-config
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: bul-logs
+          mountPath: /app/logs
+        - name: bul-data
+          mountPath: /app/data
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 10
+      volumes:
+      - name: bul-logs
+        persistentVolumeClaim:
+          claimName: bul-pvc
+      - name: bul-data
+        persistentVolumeClaim:
+          claimName: bul-pvc
+      imagePullSecrets:
+      - name: bul-registry-secret
+
+---
+# BUL API Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: bul-api-service
+  namespace: bul-system
+  labels:
+    app: bul-api
+spec:
+  selector:
+    app: bul-api
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+  type: ClusterIP
+
+---
+# BUL API Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bul-api-ingress
+  namespace: bul-system
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - api.bul-system.com
+    secretName: bul-api-tls
+  rules:
+  - host: api.bul-system.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bul-api-service
+            port:
+              number: 8000
+
+---
+# Horizontal Pod Autoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: bul-api-hpa
+  namespace: bul-system
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: bul-api
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 60
+
+---
+# Pod Disruption Budget
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: bul-api-pdb
+  namespace: bul-system
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: bul-api
+
+---
+# Network Policy
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: bul-network-policy
+  namespace: bul-system
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: bul-system
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: bul-system
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 53
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 80
+
+---
+# Service Monitor for Prometheus
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: bul-api-monitor
+  namespace: bul-system
+  labels:
+    app: bul-api
+spec:
+  selector:
+    matchLabels:
+      app: bul-api
+  endpoints:
+  - port: 8000
+    path: /metrics
+    interval: 30s
+    scrapeTimeout: 10s
+
+---
+# PrometheusRule for alerting
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: bul-alerts
+  namespace: bul-system
+  labels:
+    app: bul-api
+spec:
+  groups:
+  - name: bul.rules
+    rules:
+    - alert: BULAPIHighErrorRate
+      expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High error rate in BUL API"
+        description: "BUL API error rate is {{ $value }} errors per second"
+    
+    - alert: BULAPIHighLatency
+      expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 2
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High latency in BUL API"
+        description: "95th percentile latency is {{ $value }} seconds"
+    
+    - alert: BULAPIDown
+      expr: up{job="bul-api"} == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "BUL API is down"
+        description: "BUL API has been down for more than 1 minute"
+    
+    - alert: BULAPIHighCPUUsage
+      expr: rate(container_cpu_usage_seconds_total{pod=~"bul-api-.*"}[5m]) > 0.8
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU usage in BUL API"
+        description: "CPU usage is {{ $value }} cores"
+    
+    - alert: BULAPIHighMemoryUsage
+      expr: container_memory_usage_bytes{pod=~"bul-api-.*"} / container_spec_memory_limit_bytes > 0.9
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High memory usage in BUL API"
+        description: "Memory usage is {{ $value }}% of limit"
+
+---
+# CronJob for cleanup tasks
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bul-cleanup
+  namespace: bul-system
+spec:
+  schedule: "0 2 * * *"  # Run daily at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: bul-cleanup
+            image: bul-system:latest
+            command:
+            - python
+            - -c
+            - |
+              import asyncio
+              from bul.cleanup import cleanup_old_data
+              asyncio.run(cleanup_old_data())
+            envFrom:
+            - configMapRef:
+                name: bul-config
+            resources:
+              requests:
+                memory: "128Mi"
+                cpu: "100m"
+              limits:
+                memory: "256Mi"
+                cpu: "200m"
+          restartPolicy: OnFailure
+
+

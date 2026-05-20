@@ -1,0 +1,116 @@
+experiment_name: "diffusion_image_generation"
+experiment_description: "Stable Diffusion for text-to-image generation"
+version: "1.0.0"
+tags:
+  - "computer-vision"
+  - "generation"
+  - "diffusion"
+  - "text-to-image"
+
+environment: "development"
+seed: 42
+debug: false
+
+model:
+  model_type: "diffusion"
+  model_name: "stable-diffusion-v1-5"
+  num_classes: null
+  input_dim: null
+  hidden_dim: 768
+  num_layers: 12
+  num_heads: 12
+  dropout: 0.1
+  activation: "gelu"
+  pretrained: true
+  freeze_backbone: false
+  pretrained_path: null
+  model_params:
+    num_inference_steps: 50
+    guidance_scale: 7.5
+    image_size: 512
+    num_channels: 4
+    attention_head_dim: 64
+    cross_attention_dim: 768
+    layers_per_block: 2
+    block_out_channels: [128, 256, 512, 512]
+    down_block_types: ["CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D"]
+    up_block_types: ["UpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D"]
+
+data:
+  data_path: "data/image_dataset/"
+  train_data_path: null
+  val_data_path: null
+  test_data_path: null
+  batch_size: 1
+  val_batch_size: 1
+  test_batch_size: 1
+  num_workers: 2
+  pin_memory: true
+  shuffle: true
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  target_column: null
+  feature_columns: null
+  text_column: "prompt"
+  image_column: "image"
+  preprocessing:
+    resize: [512, 512]
+    normalize:
+      mean: [0.5, 0.5, 0.5]
+      std: [0.5, 0.5, 0.5]
+    to_tensor: true
+  augmentations:
+    horizontal_flip: false
+    random_rotation: 0
+    color_jitter: null
+    random_crop: null
+
+training:
+  epochs: 1000
+  learning_rate: 1e-4
+  weight_decay: 1e-6
+  optimizer: "adamw"
+  optimizer_params:
+    betas: [0.9, 0.999]
+    eps: 1e-8
+    weight_decay: 1e-6
+  scheduler: "cosine"
+  scheduler_params:
+    T_max: 1000
+    eta_min: 1e-6
+  loss_function: "mse"
+  loss_params:
+    reduction: "mean"
+  device: "auto"
+  mixed_precision: true
+  gradient_clipping: 1.0
+  early_stopping_patience: 50
+  save_best_model: true
+  save_checkpoints: true
+  checkpoint_frequency: 50
+  output_dir: "outputs"
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+  experiment_name: "diffusion_image_generation"
+  use_wandb: true
+  use_tensorboard: true
+
+evaluation:
+  metrics:
+    - "fid"
+    - "lpips"
+    - "ssim"
+    - "psnr"
+    - "inception_score"
+  save_predictions: true
+  save_plots: true
+  output_dir: "evaluation_results"
+  results_file: "results.json"
+  threshold: 0.5
+  thresholds: null
+  plot_config:
+    figsize: [15, 10]
+    dpi: 300
+    style: "seaborn-v0_8"
+    save_format: "png" 

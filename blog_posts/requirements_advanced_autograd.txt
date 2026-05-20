@@ -1,0 +1,146 @@
+# Advanced PyTorch Autograd Models Requirements
+# Comprehensive dependencies for transformers, LoRA, P-tuning, and advanced optimizations
+
+# Core PyTorch and Transformers
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+transformers>=4.30.0
+tokenizers>=0.13.0
+
+# Advanced attention and optimization libraries
+flash-attn>=2.0.0
+xformers>=0.0.20
+accelerate>=0.20.0
+
+# LoRA and P-tuning specific
+peft>=0.4.0
+bitsandbytes>=0.41.0
+
+# Scientific computing
+numpy>=1.21.0
+scipy>=1.7.0
+pandas>=1.4.0
+
+# Testing and validation
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-benchmark>=4.0.0
+pytest-xdist>=3.0.0
+
+# Type checking and linting
+mypy>=1.0.0
+black>=22.0.0
+isort>=5.10.0
+flake8>=5.0.0
+
+# Performance monitoring
+psutil>=5.8.0
+memory-profiler>=0.60.0
+nvidia-ml-py3>=7.352.0
+GPUtil>=1.4.0
+
+# Visualization and logging
+matplotlib>=3.5.0
+seaborn>=0.11.0
+tensorboard>=2.10.0
+wandb>=0.13.0
+mlflow>=1.28.0
+
+# JIT compilation and optimization
+torch-tb-profiler>=0.4.0
+torch-optimizer>=0.3.0
+torch-lr-finder>=0.3.0
+
+# Advanced optimizations
+torch-scatter>=2.1.0
+torch-sparse>=0.6.0
+torch-geometric>=2.2.0
+
+# Memory optimization
+torch-utils>=0.1.0
+
+# Configuration management
+pyyaml>=6.0
+hydra-core>=1.2.0
+omegaconf>=2.3.0
+
+# Async support
+asyncio-mqtt>=0.11.0
+aiofiles>=0.8.0
+
+# Caching and optimization
+redis>=4.3.0
+orjson>=3.7.0
+
+# Data processing
+scikit-learn>=1.1.0
+datasets>=2.12.0
+
+# Documentation
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+
+# Development tools
+jupyter>=1.0.0
+ipython>=8.0.0
+
+# Additional transformer libraries
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# Advanced training utilities
+deepspeed>=0.9.0
+fairscale>=0.4.0
+
+# Model compression and quantization
+torch-quantization>=0.1.0
+torch-pruning>=0.2.0
+
+# Gradient checkpointing and memory optimization
+torch-checkpoint>=0.1.0
+
+# Advanced loss functions
+focal-loss>=0.0.7
+label-smoothing>=0.1.0
+
+# Metric learning
+pytorch-metric-learning>=2.0.0
+
+# Text processing
+nltk>=3.8.0
+spacy>=3.5.0
+textstat>=0.7.0
+
+# Audio processing (for multimodal)
+librosa>=0.10.0
+soundfile>=0.12.0
+
+# Image processing (for multimodal)
+Pillow>=9.0.0
+opencv-python>=4.7.0
+
+# Web framework integration
+fastapi>=0.95.0
+uvicorn>=0.20.0
+
+# Database integration
+sqlalchemy>=2.0.0
+alembic>=1.10.0
+
+# Monitoring and observability
+prometheus-client>=0.16.0
+structlog>=23.0.0
+
+# Security
+cryptography>=40.0.0
+passlib>=1.7.0
+
+# Environment management
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# Additional utilities
+tqdm>=4.64.0
+click>=8.1.0
+rich>=13.0.0 

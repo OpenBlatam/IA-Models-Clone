@@ -1,0 +1,98 @@
+{
+  "family": "blatam-academy",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "2048",
+  "executionRoleArn": "arn:aws:iam::670683041397:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "blatam-academy",
+      "image": "670683041397.dkr.ecr.us-east-1.amazonaws.com/blatam-academy:latest",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "DATABASE_URL",
+          "value": "postgresql://neondb_owner:npg_ejg2Yr1EZMOw@ep-dark-sky-a5c88yly-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
+        },
+        {
+          "name": "AUTH_SECRET",
+          "value": "32mwUMnlOtkH1H8irIqxlaL80KvgdjUlbg2IovnhL1s="
+        },
+        {
+          "name": "GOOGLE_CLIENT_ID",
+          "value": "766657034501-2fcprad0507agtsvn5gvgvpv0ggqm80i.apps.googleusercontent.com"
+        },
+        {
+          "name": "GOOGLE_CLIENT_SECRET",
+          "value": "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"
+        },
+        {
+          "name": "NEXT_PUBLIC_SITE_URL",
+          "value": "https://blatam-academy.us-east-1.elasticbeanstalk.com"
+        },
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        },
+        {
+          "name": "NEXT_TELEMETRY_DISABLED",
+          "value": "1"
+        },
+        {
+          "name": "REDIS_URL",
+          "value": "redis://localhost:6379"
+        },
+        {
+          "name": "NEXT_PUBLIC_CDN_URL",
+          "value": "https://d1xxxxxxxx.cloudfront.net"
+        },
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "value": "AKIAZYJ6TBZ2WLU7GARQ"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "value": "cDcuyG/RiVaEdV5387y8+VEx6TZhPoW8eMOdTC6Z"
+        }
+      ],
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost:3000/api/health || exit 1"
+        ],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/blatam-academy",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      },
+      "ulimits": [
+        {
+          "name": "nofile",
+          "softLimit": 65536,
+          "hardLimit": 65536
+        }
+      ]
+    }
+  ]
+}            

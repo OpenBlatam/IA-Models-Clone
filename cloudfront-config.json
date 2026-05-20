@@ -1,0 +1,56 @@
+{
+  "DistributionConfig": {
+    "Origins": {
+      "Quantity": 1,
+      "Items": [
+        {
+          "Id": "BlatamALB",
+          "DomainName": "${ALB_DNS_NAME}",
+          "CustomOriginConfig": {
+            "HTTPPort": 80,
+            "HTTPSPort": 443,
+            "OriginProtocolPolicy": "https-only",
+            "OriginSslProtocols": {
+              "Quantity": 1,
+              "Items": ["TLSv1.2"]
+            }
+          }
+        }
+      ]
+    },
+    "DefaultCacheBehavior": {
+      "TargetOriginId": "BlatamALB",
+      "ViewerProtocolPolicy": "redirect-to-https",
+      "AllowedMethods": {
+        "Quantity": 2,
+        "Items": ["GET", "HEAD"],
+        "CachedMethods": {
+          "Quantity": 2,
+          "Items": ["GET", "HEAD"]
+        }
+      },
+      "Compress": true,
+      "MinTTL": 0,
+      "DefaultTTL": 86400,
+      "MaxTTL": 31536000,
+      "ForwardedValues": {
+        "QueryString": true,
+        "Cookies": {
+          "Forward": "whitelist",
+          "WhitelistedNames": {
+            "Quantity": 1,
+            "Items": ["session"]
+          }
+        },
+        "Headers": {
+          "Quantity": 1,
+          "Items": ["Host"]
+        }
+      }
+    },
+    "Enabled": true,
+    "PriceClass": "PriceClass_100",
+    "HttpVersion": "http2",
+    "IsIPV6Enabled": true
+  }
+} 

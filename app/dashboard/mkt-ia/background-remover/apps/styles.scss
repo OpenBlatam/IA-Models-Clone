@@ -1,0 +1,80 @@
+.control-group {
+  margin-bottom: 1rem;
+  
+  .flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .switch-group {
+    display: flex;
+    gap: 1rem;
+    
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      
+      input[type="radio"] {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .hint {
+    color: #6b7280;
+    font-size: 0.875rem;
+    
+    &.error {
+      color: #ef4444;
+    }
+    
+    &.purple-spinner {
+      color: #8b5cf6;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      &::after {
+        content: '';
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid #8b5cf6;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    
+    &:hover:not(:disabled) {
+      background-color: #f3f4f6;
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} 

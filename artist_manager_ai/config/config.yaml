@@ -1,0 +1,91 @@
+# Artist Manager AI Configuration
+# ===============================
+
+# Application Settings
+app:
+  name: "Artist Manager AI"
+  version: "1.0.0"
+  debug: false
+  log_level: "INFO"
+
+# OpenRouter AI Settings
+openrouter:
+  api_key: "${OPENROUTER_API_KEY}"
+  model: "anthropic/claude-3-haiku"
+  max_tokens: 2000
+  temperature: 0.7
+  timeout: 60
+  retry_count: 3
+  retry_delay: 1.0
+  exponential_base: 2.0
+
+# Database Settings
+database:
+  path: "artist_manager.db"
+  pool_size: 10
+  max_overflow: 20
+  pool_recycle: 3600
+  echo: false
+
+# Cache Settings
+cache:
+  default_ttl_seconds: 1800
+  max_size: 10000
+  cleanup_interval: 3600
+
+# Rate Limiting
+rate_limit:
+  enabled: true
+  max_requests: 100
+  window_seconds: 60
+
+# Circuit Breaker
+circuit_breaker:
+  failure_threshold: 5
+  success_threshold: 2
+  timeout_seconds: 60.0
+
+# Services Configuration
+services:
+  persistence:
+    enabled: true
+  notifications:
+    enabled: true
+  analytics:
+    enabled: true
+  webhooks:
+    enabled: true
+  sync:
+    enabled: true
+    default_interval_seconds: 3600
+
+# API Settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_enabled: true
+  cors_origins: ["*"]
+  docs_enabled: true
+
+# Logging
+logging:
+  format: "json"  # json or text
+  file: "logs/artist_manager.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+
+# Metrics
+metrics:
+  enabled: true
+  retention_hours: 24
+  export_interval: 3600
+
+# Health Checks
+health:
+  enabled: true
+  interval_seconds: 30
+  timeout_seconds: 10
+
+
+
+

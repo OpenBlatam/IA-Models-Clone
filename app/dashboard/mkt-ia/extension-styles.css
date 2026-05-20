@@ -1,0 +1,48 @@
+:root {
+  --color-green-100: oklch(0.962 0.044 156.743);
+  --color-green-700: oklch(0.527 0.154 150.069);
+  --color-red-100: oklch(0.936 0.032 17.717);
+  --color-red-700: oklch(0.505 0.213 27.518);
+}
+
+.tiptap-ai-changes--old,
+.tiptap-ai-changes--old > * {
+  color: var(--color-red-700);
+  background-color: var(--color-red-100);
+}
+
+.tiptap-ai-changes--new,
+.tiptap-ai-changes--new > * {
+  color: var(--color-green-700);
+  background-color: var(--color-green-100);
+}
+
+.tiptap-ai-insertion {
+  color: #706f6f;
+}
+
+.popover {
+  width: 154px;
+  background-color: white;
+  box-shadow: 0px 0.54px 1.49px 0px #00000005, 0px 1.5px 4.13px 0px #00000008,
+    0px 3.62px 9.95px 0px #0000000a, 0px 12px 20px 0px #0000000f;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--gray-3);
+  }
+  .button-group {
+    justify-content: center;
+  }
+}
+
+.popover-parent {
+  padding-bottom: 0.5rem;
+}
+
+button.destructive {
+  background-color: var(--red-light);
+  &:hover {
+    background-color: var(--red-light-contrast);
+  }
+} 

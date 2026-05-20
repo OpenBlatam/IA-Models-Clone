@@ -1,0 +1,66 @@
+# ============================================================================
+# Burnout Prevention AI - Production Dependencies
+# Minimal but production-ready
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Core Framework
+# ----------------------------------------------------------------------------
+fastapi>=0.115.0                    # Modern FastAPI with latest features
+uvicorn[standard]>=0.32.0           # ASGI server with HTTP/2 support
+pydantic>=2.9.0                     # Data validation (v2 with performance improvements)
+pydantic-settings>=2.5.0            # Settings management
+python-multipart>=0.0.12            # File uploads support (if needed)
+
+# ----------------------------------------------------------------------------
+# HTTP Client
+# ----------------------------------------------------------------------------
+httpx>=0.27.0                       # Modern async HTTP client (OpenRouter API)
+httpcore>=1.0.5                     # HTTP core library (used by httpx)
+
+# ----------------------------------------------------------------------------
+# Configuration & Environment
+# ----------------------------------------------------------------------------
+python-dotenv>=1.0.1                # Environment variables management
+
+# ----------------------------------------------------------------------------
+# Logging & Observability
+# ----------------------------------------------------------------------------
+structlog>=24.4.0                   # Structured logging (better than basic logging)
+python-json-logger>=3.2.0          # JSON log formatter
+
+# ----------------------------------------------------------------------------
+# Performance & Optimization
+# ----------------------------------------------------------------------------
+orjson>=3.10.0                      # Fast JSON library (2-3x faster than stdlib)
+uvloop>=0.20.0                       # Ultra-fast event loop (Linux/macOS only)
+
+# ----------------------------------------------------------------------------
+# Resilience & Retry
+# ----------------------------------------------------------------------------
+tenacity>=9.0.0                     # Retry library with exponential backoff
+
+# ----------------------------------------------------------------------------
+# Rate Limiting (Optional but recommended)
+# ----------------------------------------------------------------------------
+slowapi>=0.1.9                      # Rate limiting for FastAPI
+
+# ----------------------------------------------------------------------------
+# Health Checks & Monitoring
+# ----------------------------------------------------------------------------
+prometheus-client>=0.21.0           # Prometheus metrics exporter
+
+# ----------------------------------------------------------------------------
+# Testing (Development)
+# ----------------------------------------------------------------------------
+pytest>=8.3.0                       # Testing framework
+pytest-asyncio>=0.24.0              # Async test support
+pytest-cov>=6.0.0                   # Coverage reporting
+httpx>=0.27.0                        # Also used for testing
+
+# ----------------------------------------------------------------------------
+# Development Tools (Optional)
+# ----------------------------------------------------------------------------
+black>=24.10.0                      # Code formatter
+ruff>=0.8.0                         # Fast linter (replaces flake8, isort, etc.)
+mypy>=1.13.0                        # Type checking
