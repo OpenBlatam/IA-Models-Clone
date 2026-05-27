@@ -6,24 +6,29 @@ logging.basicConfig(level=logging.DEBUG)
 
 from agents.razonamiento_planificacion.orchestrator import MultiUserReActAgent
 from agents.models import AgentConfig
-from agents.razonamiento_planificacion.tools import DirectoryListTool
+from agents.razonamiento_planificacion.tools.filesystem import DirectoryListTool
+
+call_count = 0
 
 async def mock_llm(prompt, *args, **kwargs):
-    return """{
+    global call_count
+    call_count += 1
+    if call_count == 1:
+        return """{
   "thought": "El usuario me pide mejorar TruthGPT con código.",
   "tool": "directory_list",
   "tool_input": "."
+}"""
+    else:
+        return """{
+  "thought": "Ya revisé el directorio. Ahora daré la respuesta final.",
+  "final_answer": "TruthGPT está listo para ser mejorado."
 }"""
 
 async def main():
     agent = MultiUserReActAgent(config=AgentConfig(), llm_engine=mock_llm)
     agent.register_tool(DirectoryListTool())
     
-    # We will monkeypatch process_message to not catch critical_err so we can see the stack trace
-    original_process_message = agent.process_message
-    
-    # Actually, we can just run it, because the exception will be logged with traceback? No, it's not logged with traceback.
-    import agents.razonamiento_planificacion.orchestrator as orch
     try:
         res = await agent.process_message('user1', 'mejora truthgpt')
         print('FINAL RESPONSE:', res.content)
@@ -31,4 +36,5 @@ async def main():
         import traceback
         traceback.print_exc()
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

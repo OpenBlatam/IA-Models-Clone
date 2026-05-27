@@ -189,6 +189,7 @@ class InteractiveDashboardApp:
         
         # 3. FOOTER (Segmented Status Bar)
         def get_footer_text():
+            from interface.telemetry import TelemetryProvider
             tel = get_system_telemetry()
             load_pct = tel["load"]
             mem_pct = tel.get("mem", 0.0)
@@ -200,6 +201,10 @@ class InteractiveDashboardApp:
             h, r = divmod(uptime, 3600)
             m, s = divmod(r, 60)
             uptime_str = f"{h:02d}:{m:02d}:{s:02d}"
+            
+            balances = TelemetryProvider.get_api_balances()
+            ds_bal = balances.get("DeepSeek", (0.0, "Est"))
+            ds_str = f"${ds_bal[0]:.2f} ({ds_bal[1]})"
             
             return [
                 ('class:footer_prompt', ' ❯ INPUT '),
@@ -214,6 +219,8 @@ class InteractiveDashboardApp:
                 ('class:mem_label',  f' MEM: {mem_bar} {mem_pct:.0f}% '),
                 ('class:footer_sep', '│ '),
                 ('class:session_label', f' ⏱ {uptime_str} '),
+                ('class:footer_sep', '│ '),
+                ('class:session_label', f' 💰 DS: {ds_str} '),
                 ('class:footer_sep', '│ '),
                 ('class:session_label', f' ⊙ {tel["session_id"]} '),
                 ('class:footer_sep', '│ '),

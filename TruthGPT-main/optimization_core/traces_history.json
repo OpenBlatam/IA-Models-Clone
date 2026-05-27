@@ -8273,5 +8273,1310 @@
       },
       "duration_ms": 11.73
     }
+  ],
+  "9dd64879-76d": [
+    {
+      "span_id": "4bb5343e",
+      "trace_id": "9dd64879-76d",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779915530.7166948,
+      "end_time": 1779915545.2084231,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 14491.73
+    },
+    {
+      "span_id": "cbc104c0",
+      "trace_id": "9dd64879-76d",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.53s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.526319742202759, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779915537.3187597,
+      "end_time": 1779915544.8458383,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4012,
+        "elapsed_ms": 7527.12,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7527.08
+    }
+  ],
+  "dc936876-6ab": [
+    {
+      "span_id": "faeb18f8",
+      "trace_id": "dc936876-6ab",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779915848.8982322,
+      "end_time": 1779915856.7714286,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7873.2
+    },
+    {
+      "span_id": "c907e95b",
+      "trace_id": "dc936876-6ab",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.64s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.6435699462890625, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779915848.899773,
+      "end_time": 1779915856.5447605,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4087,
+        "elapsed_ms": 7645.01,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7644.99
+    }
+  ],
+  "0fce2325-da0": [
+    {
+      "span_id": "07e18c02",
+      "trace_id": "0fce2325-da0",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779916160.441681,
+      "end_time": 1779916168.1687326,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7727.05
+    },
+    {
+      "span_id": "1d34335d",
+      "trace_id": "0fce2325-da0",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.48s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.476764678955078, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779916160.4433494,
+      "end_time": 1779916167.9217372,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4125,
+        "elapsed_ms": 7478.41,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7478.39
+    }
+  ],
+  "7e604620-9d2": [
+    {
+      "span_id": "1d105f9e",
+      "trace_id": "7e604620-9d2",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779916471.5673053,
+      "end_time": 1779916480.9368415,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 9369.54
+    },
+    {
+      "span_id": "6931b9ad",
+      "trace_id": "7e604620-9d2",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 9.02s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 9.023759841918945, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779916471.5691502,
+      "end_time": 1779916480.607408,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4173,
+        "elapsed_ms": 9038.29,
+        "approx_tokens": 94
+      },
+      "duration_ms": 9038.26
+    }
+  ],
+  "a7946493-ac8": [
+    {
+      "span_id": "9a11cfa7",
+      "trace_id": "a7946493-ac8",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779916784.5709531,
+      "end_time": 1779916792.6930375,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 8122.08
+    },
+    {
+      "span_id": "e1017125",
+      "trace_id": "a7946493-ac8",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.77s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.7697913646698, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779916784.5728476,
+      "end_time": 1779916792.3438468,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4231,
+        "elapsed_ms": 7771.03,
+        "approx_tokens": 93
+      },
+      "duration_ms": 7771.0
+    }
+  ],
+  "5983a546-dac": [
+    {
+      "span_id": "13ab332c",
+      "trace_id": "5983a546-dac",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779917096.2643938,
+      "end_time": 1779917103.9447298,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7680.34
+    },
+    {
+      "span_id": "3ec1ec28",
+      "trace_id": "5983a546-dac",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.49s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.494176387786865, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779917096.265749,
+      "end_time": 1779917103.7611845,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7495.46,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7495.44
+    }
+  ],
+  "8a5e6daf-4af": [
+    {
+      "span_id": "102aa35d",
+      "trace_id": "8a5e6daf-4af",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779917407.542244,
+      "end_time": 1779917415.0801666,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7537.92
+    },
+    {
+      "span_id": "cb2d4ec5",
+      "trace_id": "8a5e6daf-4af",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.36s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.355204343795776, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779917407.543787,
+      "end_time": 1779917414.9002259,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7356.46,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7356.44
+    }
+  ],
+  "c01ee361-0f7": [
+    {
+      "span_id": "490bfa94",
+      "trace_id": "c01ee361-0f7",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779917718.5266798,
+      "end_time": 1779917726.1408324,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7614.15
+    },
+    {
+      "span_id": "066ba1c8",
+      "trace_id": "c01ee361-0f7",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.47s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.473116636276245, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779917718.5281265,
+      "end_time": 1779917726.0026376,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7474.53,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7474.51
+    }
+  ],
+  "3cea8d6a-a9a": [
+    {
+      "span_id": "68fca6f8",
+      "trace_id": "3cea8d6a-a9a",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779918030.2670708,
+      "end_time": 1779918039.834339,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 9567.27
+    },
+    {
+      "span_id": "9f6866c2",
+      "trace_id": "3cea8d6a-a9a",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 9.28s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 9.275127410888672, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779918030.2712166,
+      "end_time": 1779918039.548954,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 9277.79,
+        "approx_tokens": 94
+      },
+      "duration_ms": 9277.74
+    }
+  ],
+  "672cad44-bf3": [
+    {
+      "span_id": "28fc2c19",
+      "trace_id": "672cad44-bf3",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779918345.455201,
+      "end_time": 1779918353.1433697,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7688.17
+    },
+    {
+      "span_id": "b18153ee",
+      "trace_id": "672cad44-bf3",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.53s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.529608249664307, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779918345.456866,
+      "end_time": 1779918352.9877572,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7530.92,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7530.89
+    }
+  ],
+  "0a8a62ea-9f3": [
+    {
+      "span_id": "68626b67",
+      "trace_id": "0a8a62ea-9f3",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779918656.8658962,
+      "end_time": 1779918664.612277,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7746.38
+    },
+    {
+      "span_id": "77a72d64",
+      "trace_id": "0a8a62ea-9f3",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.49s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.494856357574463, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779918656.8675914,
+      "end_time": 1779918664.3641374,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7496.58,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7496.55
+    }
+  ],
+  "3bb94b41-b99": [
+    {
+      "span_id": "b10b3cc7",
+      "trace_id": "3bb94b41-b99",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779918967.758656,
+      "end_time": 1779918975.3403826,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7581.73
+    },
+    {
+      "span_id": "a3fb8ac4",
+      "trace_id": "3bb94b41-b99",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.41s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.408291578292847, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779918967.7603483,
+      "end_time": 1779918975.1702435,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7409.94,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7409.9
+    }
+  ],
+  "a5ef6032-606": [
+    {
+      "span_id": "f679eec4",
+      "trace_id": "a5ef6032-606",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779919278.6451044,
+      "end_time": 1779919286.5680988,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7922.99
+    },
+    {
+      "span_id": "457bc356",
+      "trace_id": "a5ef6032-606",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.71s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.713445425033569, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779919278.646741,
+      "end_time": 1779919286.3614743,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7714.76,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7714.73
+    }
+  ],
+  "8b6a2cc6-4d2": [
+    {
+      "span_id": "07303f7f",
+      "trace_id": "8b6a2cc6-4d2",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779919589.633981,
+      "end_time": 1779919597.6409206,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 8006.94
+    },
+    {
+      "span_id": "dacf8704",
+      "trace_id": "8b6a2cc6-4d2",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.77s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.7688148021698, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779919589.6357133,
+      "end_time": 1779919597.405815,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7770.13,
+        "approx_tokens": 93
+      },
+      "duration_ms": 7770.1
+    }
+  ],
+  "50bf5c0e-144": [
+    {
+      "span_id": "a6deb455",
+      "trace_id": "50bf5c0e-144",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779919900.9864147,
+      "end_time": 1779919908.8443968,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7857.98
+    },
+    {
+      "span_id": "62273e8d",
+      "trace_id": "50bf5c0e-144",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.42s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.416366100311279, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779919900.9879456,
+      "end_time": 1779919908.406087,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7418.16,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7418.14
+    }
+  ],
+  "aa8c7d5c-e11": [
+    {
+      "span_id": "b0a427df",
+      "trace_id": "aa8c7d5c-e11",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779920211.8149743,
+      "end_time": 1779920219.4726307,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7657.66
+    },
+    {
+      "span_id": "d49d672a",
+      "trace_id": "aa8c7d5c-e11",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.46s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.459989786148071, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779920211.8166695,
+      "end_time": 1779920219.2777903,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7461.14,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7461.12
+    }
+  ],
+  "afe9b6d4-d94": [
+    {
+      "span_id": "736e9f7b",
+      "trace_id": "afe9b6d4-d94",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779920522.992693,
+      "end_time": 1779920530.741927,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7749.23
+    },
+    {
+      "span_id": "6b965d9b",
+      "trace_id": "afe9b6d4-d94",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.50s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.501083850860596, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779920522.994248,
+      "end_time": 1779920530.4965432,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7502.32,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7502.3
+    }
+  ],
+  "6aaf80db-79e": [
+    {
+      "span_id": "e898e2c7",
+      "trace_id": "6aaf80db-79e",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779920833.7293985,
+      "end_time": 1779920841.5694675,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7840.07
+    },
+    {
+      "span_id": "85576efc",
+      "trace_id": "6aaf80db-79e",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.63s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.627579927444458, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779920833.7311623,
+      "end_time": 1779920841.3603592,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7629.22,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7629.2
+    }
+  ],
+  "0b4f8d61-882": [
+    {
+      "span_id": "1925cfbf",
+      "trace_id": "0b4f8d61-882",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779921149.6858456,
+      "end_time": 1779921160.8646657,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 11178.82
+    },
+    {
+      "span_id": "8c5230c8",
+      "trace_id": "0b4f8d61-882",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 8.95s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 8.948591470718384, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779921149.98635,
+      "end_time": 1779921158.9371426,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 8950.86,
+        "approx_tokens": 94
+      },
+      "duration_ms": 8950.79
+    }
+  ],
+  "ee027a27-eb0": [
+    {
+      "span_id": "d2b9ab47",
+      "trace_id": "ee027a27-eb0",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779921468.976193,
+      "end_time": 1779921480.6941197,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 11717.93
+    },
+    {
+      "span_id": "3d9b6583",
+      "trace_id": "ee027a27-eb0",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 9.34s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 9.339720010757446, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779921469.2144737,
+      "end_time": 1779921478.5563374,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 9341.91,
+        "approx_tokens": 94
+      },
+      "duration_ms": 9341.86
+    }
+  ],
+  "1b18409a-8a4": [
+    {
+      "span_id": "43a0f4ed",
+      "trace_id": "1b18409a-8a4",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779921788.0938137,
+      "end_time": 1779921799.456848,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 11363.03
+    },
+    {
+      "span_id": "d681b013",
+      "trace_id": "1b18409a-8a4",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 9.33s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 9.333981275558472, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779921788.4085655,
+      "end_time": 1779921797.7448325,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 9336.33,
+        "approx_tokens": 94
+      },
+      "duration_ms": 9336.27
+    }
+  ],
+  "fd5795c8-ea9": [
+    {
+      "span_id": "715db1c9",
+      "trace_id": "fd5795c8-ea9",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779922105.3249037,
+      "end_time": 1779922115.8483164,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 10523.41
+    },
+    {
+      "span_id": "c6b32fc9",
+      "trace_id": "fd5795c8-ea9",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 8.71s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 8.712343454360962, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779922105.695215,
+      "end_time": 1779922114.4098976,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 8714.74,
+        "approx_tokens": 94
+      },
+      "duration_ms": 8714.68
+    }
+  ],
+  "52c07e62-a75": [
+    {
+      "span_id": "a9648c86",
+      "trace_id": "52c07e62-a75",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779922423.0705914,
+      "end_time": 1779922433.5682929,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 10497.7
+    },
+    {
+      "span_id": "32aace5c",
+      "trace_id": "52c07e62-a75",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 8.38s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 8.37668228149414, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779922423.4917028,
+      "end_time": 1779922431.8702655,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 8378.62,
+        "approx_tokens": 94
+      },
+      "duration_ms": 8378.56
+    }
+  ],
+  "baa6ab43-592": [
+    {
+      "span_id": "3d557bea",
+      "trace_id": "baa6ab43-592",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779922736.4625967,
+      "end_time": 1779922744.2709258,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7808.33
+    },
+    {
+      "span_id": "b9a8abdb",
+      "trace_id": "baa6ab43-592",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.65s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.645944118499756, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779922736.4645464,
+      "end_time": 1779922744.1120415,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7647.53,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7647.5
+    }
+  ],
+  "65af1530-fc9": [
+    {
+      "span_id": "6b42b49b",
+      "trace_id": "65af1530-fc9",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779923047.9707217,
+      "end_time": 1779923055.5986733,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7627.95
+    },
+    {
+      "span_id": "c5702ac6",
+      "trace_id": "65af1530-fc9",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.45s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.448820352554321, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779923047.9726336,
+      "end_time": 1779923055.422944,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7450.35,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7450.31
+    }
+  ],
+  "9a5bef9d-2ed": [
+    {
+      "span_id": "4dd81a42",
+      "trace_id": "9a5bef9d-2ed",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779923359.1432672,
+      "end_time": 1779923366.7853575,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7642.09
+    },
+    {
+      "span_id": "2d9db255",
+      "trace_id": "9a5bef9d-2ed",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.48s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.477466821670532, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779923359.1452513,
+      "end_time": 1779923366.6239755,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7478.76,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7478.72
+    }
+  ],
+  "ec4d68be-01b": [
+    {
+      "span_id": "e359ed1e",
+      "trace_id": "ec4d68be-01b",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779923670.4461222,
+      "end_time": 1779923678.0299964,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7583.87
+    },
+    {
+      "span_id": "7e52874a",
+      "trace_id": "ec4d68be-01b",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.40s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.397096633911133, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779923670.4476888,
+      "end_time": 1779923677.8460681,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7398.41,
+        "approx_tokens": 94
+      },
+      "duration_ms": 7398.38
+    }
+  ],
+  "9da103bd-b9b": [
+    {
+      "span_id": "8645cb17",
+      "trace_id": "9da103bd-b9b",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779923982.3341115,
+      "end_time": 1779923991.4176931,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 9083.58
+    },
+    {
+      "span_id": "105c6313",
+      "trace_id": "9da103bd-b9b",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 8.85s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 8.849297046661377, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779923982.3378322,
+      "end_time": 1779923991.1899645,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 8852.19,
+        "approx_tokens": 94
+      },
+      "duration_ms": 8852.13
+    }
+  ],
+  "532dcace-621": [
+    {
+      "span_id": "d77fed7b",
+      "trace_id": "532dcace-621",
+      "parent_id": null,
+      "name": "react_loop",
+      "agent_name": "MultiUserReActAgent",
+      "kind": "internal",
+      "input_data": "refactor truthgpt",
+      "output_data": "",
+      "status": "ok",
+      "start_time": 1779924295.3998463,
+      "end_time": 1779924303.0712914,
+      "metadata": {
+        "user_id": "continuous_mission",
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "iterations": 1,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "duration_ms": 7671.45
+    },
+    {
+      "span_id": "05186103",
+      "trace_id": "532dcace-621",
+      "parent_id": null,
+      "name": "llm_inference",
+      "agent_name": "",
+      "kind": "llm_call",
+      "input_data": "You are TruthGPT, an autonomous agent powered by TruthGPT.\nYour role: Enterprise AI Assistant\nCurrent date: 2025 Standard Stack.\n\nYou operate using a ReAct (Reasoning and Action) loop.\nAnalyse the user request and decide if you need tools.\nAlways maintain a high standard of reasoning.\n\nTienes acceso a estas herramientas:\n- core_memory_append: A\u00f1ade informaci\u00f3n nueva a la memoria CORE (persona o human). Usa 'human' para datos del usuario y 'persona' para reglas del agente. Formato: block:content ",
+      "output_data": "{\"thought\": \"Ensemble [race] from deepseek (deepseek-v4-pro) \u2014 winner [deepseek/deepseek-v4-pro] in 7.42s:\\n[deepseek] inference error\", \"final_answer\": \"Error (deepseek): InferenceError: DeepSeek API Error 402\", \"metadata\": {\"ensemble_mode\": \"race\", \"winner\": \"deepseek\", \"winner_model\": \"deepseek-v4-pro\", \"elapsed\": 7.4173264503479, \"tokens\": 29, \"engines\": [\"deepseek\"]}}",
+      "status": "ok",
+      "start_time": 1779924295.4015336,
+      "end_time": 1779924302.8201892,
+      "metadata": {
+        "model": "deepseek-v4-pro + claude-sonnet-4-20250514",
+        "engine": "deepseek,claude",
+        "ensemble": true,
+        "prompt_chars": 4272,
+        "elapsed_ms": 7418.68,
+        "approx_tokens": 93
+      },
+      "duration_ms": 7418.66
+    }
   ]
 }

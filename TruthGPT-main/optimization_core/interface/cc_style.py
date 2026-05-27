@@ -96,6 +96,24 @@ def _fmt_elapsed(seconds: float) -> str:
     return f"{m}m {s}s"
 
 
+def cc_balance_bar(provider_name: str, val: float, val_type: str) -> None:
+    """Render an API balance bar styled like Claude Code.
+    Example: DeepSeek ████░░░ $2.14 (API)
+    """
+    if val is None:
+        _console.print(f"  [dim]{provider_name:<10}  (Not Configured)[/dim]")
+        return
+        
+    bar_width = 10
+    max_val = 10.0
+    filled = min(bar_width, int((val / max_val) * bar_width))
+    bar = "█" * filled + "░" * (bar_width - filled)
+    
+    color = "green" if val > 2.0 else ("yellow" if val > 0.5 else "red")
+    
+    _console.print(f"  [bold white]{provider_name:<10}[/bold white]  [{color}]{bar}[/{color}]  ${val:.2f} [dim]({val_type})[/dim]")
+
+
 def cc_action(message: str, status: str = "RUN") -> None:
     """Top-level action line: ``● Let me examine the structure.``"""
     color, glyph = _STATUS_STYLE.get(status.upper(), ("white", BULLET))

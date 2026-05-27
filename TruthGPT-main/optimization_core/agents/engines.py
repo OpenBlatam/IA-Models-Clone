@@ -438,7 +438,7 @@ async def safe_llm_call(engine: AsyncLLMEngine, prompt: str, trace_id: str | Non
     if prefs.get("auto_cost_routing", True) and not is_ensemble:
         if len(prompt) < 250 and not any(kw in prompt.lower() for kw in ["code", "analyze", "explain in detail", "architect", "refactor"]):
             try:
-                cheaper_engine = engine_registry.get_engine("google")
+                cheaper_engine = engine_registry._get_single_engine_callable("google")
                 if cheaper_engine and getattr(cheaper_engine, "provider_name", None) != engine_key:
                     engine = cheaper_engine
                     model_name = getattr(engine, "model_name", getattr(engine, "model", None))

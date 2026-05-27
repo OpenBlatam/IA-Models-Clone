@@ -60,6 +60,7 @@ pub mod rope;
 pub mod paged_attention;
 pub mod json_processor;
 pub mod hyperparameter_optimizer;
+pub mod nexus_kernel;
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // RE-EXPORTS
