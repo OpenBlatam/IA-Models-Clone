@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-05-19T23:40:13.543029",
+  "individual_results": [
+    {
+      "name": "attention_individual",
+      "module": "attention",
+      "latency_ms": 150.34747999743558,
+      "throughput": 13621.778030698832,
+      "operations": 10,
+      "memory_mb": 0.0,
+      "metadata": {
+        "batch_size": 4,
+        "seq_len": 512,
+        "d_model": 768
+      }
+    },
+    {
+      "name": "compression_individual",
+      "module": "compression",
+      "latency_ms": 0.012117000296711922,
+      "throughput": 708.3493139787541,
+      "operations": 100,
+      "memory_mb": 0.0,
+      "metadata": {
+        "data_size_bytes": 9000
+      }
+    }
+  ],
+  "integrated_results": [
+    {
+      "name": "attention_cache_integrated",
+      "module": "integration",
+      "latency_ms": 172.09679000079632,
+      "throughput": 11900.280069085098,
+      "operations": 10,
+      "memory_mb": 0.0,
+      "metadata": {
+        "modules": [
+          "attention",
+          "cache"
+        ],
+        "batch_size": 4,
+        "seq_len": 512
+      }
+    },
+    {
+      "name": "compression_cache_integrated",
+      "module": "integration",
+      "latency_ms": 0.01429299998562783,
+      "throughput": 600.5085605741874,
+      "operations": 100,
+      "memory_mb": 0.0,
+      "metadata": {
+        "modules": [
+          "compression",
+          "cache"
+        ],
+        "data_size_bytes": 9000
+      }
+    },
+    {
+      "name": "full_pipeline",
+      "module": "integration",
+      "latency_ms": 156.78505999967456,
+      "throughput": 13062.469089875343,
+      "operations": 10,
+      "memory_mb": 0.0,
+      "metadata": {
+        "modules": [
+          "attention",
+          "cache",
+          "compression"
+        ],
+        "batch_size": 4,
+        "seq_len": 512
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "individual_total_ms": 150.34747999743558,
+      "integrated_ms": 172.09679000079632,
+      "speedup": 0.8736216404544205,
+      "overhead_ms": 21.749310003360733,
+      "overhead_percent": 14.466028964191288,
+      "efficiency": 0.8736216404544205
+    },
+    {
+      "individual_total_ms": 0.012117000296711922,
+      "integrated_ms": 0.01429299998562783,
+      "speedup": 0.8477576652134639,
+      "overhead_ms": 0.0021759996889159083,
+      "overhead_percent": 17.95823748148615,
+      "efficiency": 0.8477576652134639
+    },
+    {
+      "individual_total_ms": 150.34869169746526,
+      "integrated_ms": 156.78505999967456,
+      "speedup": 0.9589478212897156,
+      "overhead_ms": 6.436368302209303,
+      "overhead_percent": 4.280960631942642,
+      "efficiency": 0.9589478212897156
+    }
+  ],
+  "summary": {
+    "average_overhead_percent": 12.235075692540027,
+    "average_efficiency": 0.8934423756525334,
+    "average_speedup": 0.8934423756525334,
+    "total_comparisons": 3
+  }
+}

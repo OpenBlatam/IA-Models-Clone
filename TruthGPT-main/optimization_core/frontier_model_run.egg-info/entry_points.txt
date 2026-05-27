@@ -1,0 +1,3 @@
+[console_scripts]
+frontier = optimization_core.cli:app
+truth = truth_cli:app

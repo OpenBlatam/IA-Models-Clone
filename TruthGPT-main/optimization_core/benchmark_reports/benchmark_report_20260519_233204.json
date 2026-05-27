@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-05-19T23:32:04.570217",
+  "polyglot_results": [
+    {
+      "name": "kv_cache_put",
+      "module": "kv_cache",
+      "backend": "python",
+      "latency_ms": 0.002170200052205473,
+      "throughput_tokens_per_sec": 460787.0131528873,
+      "memory_mb": 0.0,
+      "tokens_generated": 0,
+      "success": true,
+      "error": null,
+      "metadata": {
+        "operations": 1000
+      }
+    },
+    {
+      "name": "kv_cache_get",
+      "module": "kv_cache",
+      "backend": "python",
+      "latency_ms": 0.000513100007083267,
+      "throughput_tokens_per_sec": 1948937.8019784705,
+      "memory_mb": 0.0,
+      "tokens_generated": 0,
+      "success": true,
+      "error": null,
+      "metadata": {
+        "operations": 1000
+      }
+    },
+    {
+      "name": "compression_python",
+      "module": "compression",
+      "backend": "python",
+      "latency_ms": 0.0,
+      "throughput_tokens_per_sec": 0.0,
+      "memory_mb": 0.0,
+      "tokens_generated": 0,
+      "success": false,
+      "error": "Missing library for decompression: No module named 'lz4'",
+      "metadata": {}
+    },
+    {
+      "name": "attention_forward",
+      "module": "attention",
+      "backend": "python",
+      "latency_ms": 148.43801999813877,
+      "throughput_tokens_per_sec": 13797.004298667413,
+      "memory_mb": 0.0,
+      "tokens_generated": 0,
+      "success": true,
+      "error": null,
+      "metadata": {
+        "batch_size": 4,
+        "seq_len": 512,
+        "d_model": 768,
+        "n_heads": 12
+      }
+    }
+  ],
+  "closed_source_results": [],
+  "module_status": {
+    "polyglot_core": true,
+    "polyglot_inference": true,
+    "inference_engines": false,
+    "attention": true,
+    "compression": true,
+    "cache": true,
+    "rust": false,
+    "cpp": false,
+    "go": true
+  },
+  "summary": {
+    "total_polyglot_tests": 4,
+    "successful_polyglot_tests": 3,
+    "total_closed_source_tests": 0,
+    "successful_closed_source_tests": 0,
+    "module_performance": {
+      "kv_cache": {
+        "avg_latency_ms": 0.00134165002964437,
+        "avg_throughput_tokens_per_sec": 1204862.407565679,
+        "test_count": 2
+      },
+      "attention": {
+        "avg_latency_ms": 148.43801999813877,
+        "avg_throughput_tokens_per_sec": 13797.004298667413,
+        "test_count": 1
+      }
+    },
+    "comparison": {}
+  }
+}
