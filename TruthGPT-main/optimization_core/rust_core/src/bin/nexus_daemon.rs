@@ -92,6 +92,19 @@ async fn handle_syscall(syscall: SysCall, kernel: Arc<KernelCore>) -> Response {
             }
         },
 
+        "SYS_HTTP_GET" => {
+            info!("🌐 [Network] Descargando URL: {}", syscall.payload);
+            match reqwest::get(&syscall.payload).await {
+                Ok(resp) => {
+                    match resp.text().await {
+                        Ok(text) => msg = text,
+                        Err(e) => { success = false; msg = format!("Failed to read response body: {}", e); }
+                    }
+                },
+                Err(e) => { success = false; msg = format!("Failed to GET URL: {}", e); }
+            }
+        },
+
         "SYS_EXEC" => {
             info!("🚀 [Zero-Trust] Ejecutando código aislado (PID: {})", syscall.pid);
             

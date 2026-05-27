@@ -58,12 +58,13 @@ class MultiUserReActAgent:
         name: Optional[str] = None
     ):
         from agents.memoria_aprendizaje.sqlite_memory import SQLiteMemory
+        from agents.memoria_aprendizaje.l1_l2_memory import L1L2TieredMemory
         from agents.memoria_aprendizaje.core_memory import CoreMemory
         from agents.memoria_aprendizaje.core_memory_tools import CoreMemoryAppendTool, CoreMemoryReplaceTool
 
         self.config = config
         self.llm = llm_engine or config.llm_engine
-        self.memory = memory or SQLiteMemory(db_path=config.memory_db_path)
+        self.memory = memory or L1L2TieredMemory(db_path=config.memory_db_path)
         self.vector_memory = vector_memory
         self.core_memory = CoreMemory()
         self.tools: Dict[str, BaseTool] = {}

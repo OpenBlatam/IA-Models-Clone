@@ -84,6 +84,30 @@ class OSEnvironment:
         self._syscall("SYS_MEM_WRITE", payload, priority=2)
 
     # =========================================================================
+    # IPC (Inter-Process Communication) SysCalls
+    # =========================================================================
+    
+    def ipc_send(self, to_agent: str, message: str) -> None:
+        """Envía un mensaje hiper-rápido a la bandeja de entrada de otro agente usando L1 Cache."""
+        key = f"ipc:inbox:{to_agent}"
+        # Se podría implementar un append, pero por ahora sobreescribe o asume lectura destructiva
+        self.mem_write(key, message)
+        
+    def ipc_read(self, my_agent_name: str) -> str:
+        """Lee la bandeja de entrada de este agente desde la caché L1."""
+        key = f"ipc:inbox:{my_agent_name}"
+        return self.mem_read(key)
+
+    # =========================================================================
+    # NETWORK OFFLOADING SysCalls
+    # =========================================================================
+
+    def http_get(self, url: str) -> str:
+        """Delega una petición HTTP GET al Kernel de Rust (descarga ultra rápida asíncrona)."""
+        res = self._syscall("SYS_HTTP_GET", url, priority=4)
+        return res.get("message", "")
+
+    # =========================================================================
     # SCHEDULER & EXEC SysCalls
     # =========================================================================
 
